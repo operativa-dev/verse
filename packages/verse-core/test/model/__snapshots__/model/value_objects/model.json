@@ -1,0 +1,32 @@
+{
+  "entities": [
+    {
+      "name": "Customer",
+      "properties": [
+        {
+          "name": "id",
+          "kind": "int"
+        },
+        {
+          "name": "address",
+          "target": "Address"
+        }
+      ],
+      "foreignKeys": [],
+      "conditions": []
+    }
+  ],
+  "values": [
+    {
+      "name": "Address",
+      "properties": [
+        {
+          "name": "street",
+          "kind": "string"
+        }
+      ]
+    }
+  ],
+  "sequences": [],
+  "conversions": []
+}

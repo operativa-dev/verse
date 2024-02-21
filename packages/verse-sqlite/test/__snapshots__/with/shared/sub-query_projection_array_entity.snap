@@ -1,0 +1,96 @@
+[
+  [
+    Artist {
+      "albums": [],
+      "artistId": 1,
+      "name": "AC/DC",
+    },
+    [
+      Album {
+        "albumId": 1,
+        "artist": undefined,
+        "artistId": 1,
+        "title": "For Those About To Rock We Salute You",
+        "tracks": [],
+      },
+      Album {
+        "albumId": 4,
+        "artist": undefined,
+        "artistId": 1,
+        "title": "Let There Be Rock",
+        "tracks": [],
+      },
+    ],
+  ],
+  [
+    Artist {
+      "albums": [],
+      "artistId": 2,
+      "name": "Accept",
+    },
+    [
+      Album {
+        "albumId": 2,
+        "artist": undefined,
+        "artistId": 2,
+        "title": "Balls to the Wall",
+        "tracks": [],
+      },
+      Album {
+        "albumId": 3,
+        "artist": undefined,
+        "artistId": 2,
+        "title": "Restless and Wild",
+        "tracks": [],
+      },
+    ],
+  ],
+  [
+    Artist {
+      "albums": [],
+      "artistId": 3,
+      "name": "Aerosmith",
+    },
+    [
+      Album {
+        "albumId": 5,
+        "artist": undefined,
+        "artistId": 3,
+        "title": "Big Ones",
+        "tracks": [],
+      },
+    ],
+  ],
+  [
+    Artist {
+      "albums": [],
+      "artistId": 4,
+      "name": "Alanis Morissette",
+    },
+    [
+      Album {
+        "albumId": 6,
+        "artist": undefined,
+        "artistId": 4,
+        "title": "Jagged Little Pill",
+        "tracks": [],
+      },
+    ],
+  ],
+  [
+    Artist {
+      "albums": [],
+      "artistId": 5,
+      "name": "Alice In Chains",
+    },
+    [
+      Album {
+        "albumId": 7,
+        "artist": undefined,
+        "artistId": 5,
+        "title": "Facelift",
+        "tracks": [],
+      },
+    ],
+  ],
+]

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": [
+    "../../packages/verse-core/src/conventions/convention.ts",
+    "../../packages/verse-core/src/db/driver.ts",
+    "../../packages/verse-core/src/db/schema.ts",
+    "../../packages/verse-core/src/db/rewriter.ts",
+    "../../packages/verse-core/src/db/sql.ts",
+    "../../packages/verse-core/src/db/visitor.ts",
+    "../../packages/verse-core/src/inheritance/strategy.ts",
+    "../../packages/verse-core/src/model/builder.ts",
+    "../../packages/verse-core/src/model/model.ts",
+    "../../packages/verse-core/src/model/rewriter.ts",
+    "../../packages/verse-core/src/model/visitor.ts",
+    "../../packages/verse-core/src/query/queryable.ts",
+    "../../packages/verse-core/src/uow.ts",
+    "../../packages/verse-core/src/utils/logging.ts",
+    "../../packages/verse-core/src/verse.ts"
+  ],
+  "out": "api",
+  "excludePrivate": true,
+  "plugin": [
+    "typedoc-plugin-markdown",
+    "typedoc-plugin-frontmatter",
+    "typedoc-plugin-include-example",
+    "typedoc-plugin-mdn-links",
+    "./node_modules/scripts/dist/plugin.js"
+  ]
+}

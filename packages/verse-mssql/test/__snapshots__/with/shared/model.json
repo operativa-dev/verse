@@ -1,0 +1,286 @@
+{
+  "entities": [
+    {
+      "name": "Artist",
+      "properties": [
+        {
+          "name": "artistId",
+          "column": "ArtistId",
+          "type": "integer",
+          "nullable": false,
+          "generate": {
+            "using": "identity"
+          },
+          "kind": "int"
+        },
+        {
+          "name": "name",
+          "column": "Name",
+          "type": "varchar(255)",
+          "nullable": false,
+          "kind": "string",
+          "maxLength": 255
+        },
+        {
+          "name": "albums",
+          "target": "Album",
+          "foreignKey": [
+            "artistId"
+          ],
+          "many": true,
+          "nullable": false
+        }
+      ],
+      "label": "artists",
+      "table": "Artist",
+      "key": [
+        "artistId"
+      ],
+      "foreignKeys": [],
+      "conditions": []
+    },
+    {
+      "name": "Album",
+      "properties": [
+        {
+          "name": "albumId",
+          "column": "AlbumId",
+          "type": "integer",
+          "nullable": false,
+          "generate": {
+            "using": "identity"
+          },
+          "kind": "int"
+        },
+        {
+          "name": "title",
+          "column": "Title",
+          "type": "varchar(255)",
+          "nullable": false,
+          "kind": "string",
+          "maxLength": 255
+        },
+        {
+          "name": "artistId",
+          "column": "ArtistId",
+          "type": "integer",
+          "nullable": false,
+          "kind": "int"
+        },
+        {
+          "name": "artist",
+          "target": "Artist",
+          "foreignKey": [
+            "artistId"
+          ],
+          "many": false,
+          "nullable": false
+        },
+        {
+          "name": "tracks",
+          "target": "Track",
+          "foreignKey": [
+            "albumId"
+          ],
+          "many": true,
+          "nullable": false,
+          "orderBy": "t => t.trackId"
+        }
+      ],
+      "label": "albums",
+      "table": "Album",
+      "key": [
+        "albumId"
+      ],
+      "foreignKeys": [
+        {
+          "references": "Artist",
+          "properties": [
+            "artistId"
+          ],
+          "onDelete": "cascade"
+        }
+      ],
+      "conditions": []
+    },
+    {
+      "name": "Genre",
+      "properties": [
+        {
+          "name": "genreId",
+          "column": "GenreId",
+          "type": "integer",
+          "nullable": false,
+          "generate": {
+            "using": "identity"
+          },
+          "kind": "int"
+        },
+        {
+          "name": "name",
+          "column": "Name",
+          "type": "varchar(255)",
+          "nullable": false,
+          "kind": "string",
+          "maxLength": 255
+        },
+        {
+          "name": "tracks",
+          "target": "Track",
+          "foreignKey": [
+            "genreId"
+          ],
+          "many": true,
+          "nullable": false
+        }
+      ],
+      "label": "genres",
+      "table": "Genre",
+      "key": [
+        "genreId"
+      ],
+      "foreignKeys": [],
+      "conditions": []
+    },
+    {
+      "name": "Track",
+      "properties": [
+        {
+          "name": "trackId",
+          "column": "TrackId",
+          "type": "integer",
+          "nullable": false,
+          "generate": {
+            "using": "identity"
+          },
+          "kind": "int"
+        },
+        {
+          "name": "name",
+          "column": "Name",
+          "type": "varchar(255)",
+          "nullable": false,
+          "kind": "string",
+          "maxLength": 255
+        },
+        {
+          "name": "albumId",
+          "column": "AlbumId",
+          "type": "integer",
+          "nullable": false,
+          "kind": "int"
+        },
+        {
+          "name": "genreId",
+          "column": "GenreId",
+          "type": "integer",
+          "nullable": false,
+          "kind": "int"
+        },
+        {
+          "name": "composer",
+          "column": "Composer",
+          "type": "varchar(255)",
+          "nullable": true,
+          "kind": "string",
+          "maxLength": 255
+        },
+        {
+          "name": "playlistTracks",
+          "target": "PlaylistTrack",
+          "foreignKey": [
+            "trackId"
+          ],
+          "many": true,
+          "nullable": false
+        },
+        {
+          "name": "genre",
+          "target": "Genre",
+          "foreignKey": [
+            "genreId"
+          ],
+          "many": false,
+          "nullable": false
+        },
+        {
+          "name": "album",
+          "target": "Album",
+          "foreignKey": [
+            "albumId"
+          ],
+          "many": false,
+          "nullable": false
+        }
+      ],
+      "label": "tracks",
+      "table": "Track",
+      "key": [
+        "trackId"
+      ],
+      "foreignKeys": [
+        {
+          "references": "Album",
+          "properties": [
+            "albumId"
+          ],
+          "onDelete": "cascade"
+        },
+        {
+          "references": "Genre",
+          "properties": [
+            "genreId"
+          ],
+          "onDelete": "cascade"
+        }
+      ],
+      "conditions": []
+    },
+    {
+      "name": "PlaylistTrack",
+      "properties": [
+        {
+          "name": "playlistId",
+          "column": "PlaylistId",
+          "type": "integer",
+          "nullable": false,
+          "kind": "int"
+        },
+        {
+          "name": "trackId",
+          "column": "TrackId",
+          "type": "integer",
+          "nullable": false,
+          "kind": "int"
+        }
+      ],
+      "label": "playlistTracks",
+      "table": "PlaylistTrack",
+      "key": [
+        "playlistId",
+        "trackId"
+      ],
+      "foreignKeys": [
+        {
+          "references": "Track",
+          "properties": [
+            "trackId"
+          ],
+          "onDelete": "cascade"
+        }
+      ],
+      "conditions": []
+    }
+  ],
+  "values": [],
+  "sequences": [],
+  "conversions": [
+    [
+      null,
+      {
+        "read": "(v) => (v === 1 ? true : v === 0 ? false : v)",
+        "write": "(v) => (v === true ? 1 : v === false ? 0 : v)"
+      }
+    ]
+  ]
+}

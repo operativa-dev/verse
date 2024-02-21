@@ -1,0 +1,51 @@
+{
+  "entities": [
+    {
+      "name": "Album",
+      "properties": [
+        {
+          "name": "albumId",
+          "column": "AlbumId",
+          "type": "integer",
+          "nullable": false,
+          "generate": {
+            "using": "seqhilo",
+            "sequence": "__verse_seqhilo"
+          },
+          "kind": "int"
+        },
+        {
+          "name": "title",
+          "column": "Title",
+          "type": "varchar(255)",
+          "nullable": false,
+          "kind": "string",
+          "maxLength": 255
+        },
+        {
+          "name": "artistId",
+          "column": "ArtistId",
+          "type": "integer",
+          "nullable": false,
+          "kind": "int"
+        }
+      ],
+      "label": "albums",
+      "table": "Album",
+      "key": [
+        "albumId"
+      ],
+      "foreignKeys": [],
+      "conditions": []
+    }
+  ],
+  "values": [],
+  "sequences": [
+    {
+      "name": "__verse_seqhilo",
+      "start": 1,
+      "increment": 10
+    }
+  ],
+  "conversions": []
+}

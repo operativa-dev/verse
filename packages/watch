@@ -1,0 +1,14 @@
+#!/usr/bin/env zsh
+
+dirs=("verse-cli" "verse-core" "verse-migrations" "verse-mssql" "verse-mysql" "verse-postgres" "verse-sqlite")
+
+for dir in "${dirs[@]}"
+do
+  cd "$dir"
+  echo "Running tsc --watch in $PWD ..."
+  tsc --watch &
+  cd -
+done
+
+# to kill all tsc --watch processes
+# for i in {PID_START..PID_END}; do kill -9 $i; done

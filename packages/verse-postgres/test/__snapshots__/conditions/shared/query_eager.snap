@@ -1,0 +1,15 @@
+[
+  Product {
+    "deleted": false,
+    "id": 1,
+    "name": "Bugatti Veyron",
+    "orders": [
+      Order {
+        "deleted": false,
+        "id": 11,
+        "productId": 1,
+        "quantity": 5,
+      },
+    ],
+  },
+]

@@ -1,0 +1,26 @@
+{
+  "entities": [
+    {
+      "name": "Customer",
+      "properties": [
+        {
+          "name": "id",
+          "kind": "int"
+        },
+        {
+          "name": "name",
+          "kind": "string"
+        },
+        {
+          "name": "deleted",
+          "kind": "boolean"
+        }
+      ],
+      "foreignKeys": [],
+      "conditions": []
+    }
+  ],
+  "values": [],
+  "sequences": [],
+  "conversions": []
+}

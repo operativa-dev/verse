@@ -1,0 +1,131 @@
+{
+  "entities": [
+    {
+      "name": "Product",
+      "properties": [
+        {
+          "name": "id",
+          "column": "Id",
+          "type": "integer",
+          "nullable": false,
+          "generate": {
+            "using": "identity"
+          },
+          "kind": "int"
+        },
+        {
+          "name": "name",
+          "column": "Name",
+          "type": "varchar(255)",
+          "nullable": false,
+          "kind": "string",
+          "maxLength": 255
+        },
+        {
+          "name": "deleted",
+          "column": "Deleted",
+          "type": "boolean",
+          "nullable": false,
+          "convert": {
+            "read": "(v) => (v === 1 ? true : v === 0 ? false : v)",
+            "write": "(v) => (v === true ? 1 : v === false ? 0 : v)"
+          },
+          "kind": "boolean"
+        },
+        {
+          "name": "orders",
+          "target": "Order",
+          "foreignKey": [
+            "productId"
+          ],
+          "many": true,
+          "nullable": false
+        }
+      ],
+      "label": "products",
+      "table": "Product",
+      "key": [
+        "id"
+      ],
+      "foreignKeys": [],
+      "conditions": [
+        {
+          "name": "soft delete"
+        }
+      ]
+    },
+    {
+      "name": "Order",
+      "properties": [
+        {
+          "name": "id",
+          "column": "Id",
+          "type": "integer",
+          "nullable": false,
+          "generate": {
+            "using": "identity"
+          },
+          "kind": "int"
+        },
+        {
+          "name": "quantity",
+          "column": "Quantity",
+          "type": "integer",
+          "nullable": false,
+          "kind": "int"
+        },
+        {
+          "name": "productId",
+          "column": "ProductId",
+          "type": "integer",
+          "nullable": false,
+          "kind": "int"
+        },
+        {
+          "name": "deleted",
+          "column": "Deleted",
+          "type": "boolean",
+          "nullable": false,
+          "generate": {
+            "default": false
+          },
+          "convert": {
+            "read": "(v) => (v === 1 ? true : v === 0 ? false : v)",
+            "write": "(v) => (v === true ? 1 : v === false ? 0 : v)"
+          },
+          "kind": "boolean"
+        }
+      ],
+      "label": "orders",
+      "table": "Order",
+      "key": [
+        "id"
+      ],
+      "foreignKeys": [
+        {
+          "references": "Product",
+          "properties": [
+            "productId"
+          ],
+          "onDelete": "cascade"
+        }
+      ],
+      "conditions": [
+        {
+          "name": "soft delete"
+        }
+      ]
+    }
+  ],
+  "values": [],
+  "sequences": [],
+  "conversions": [
+    [
+      null,
+      {
+        "read": "(v) => (v === 1 ? true : v === 0 ? false : v)",
+        "write": "(v) => (v === true ? 1 : v === false ? 0 : v)"
+      }
+    ]
+  ]
+}

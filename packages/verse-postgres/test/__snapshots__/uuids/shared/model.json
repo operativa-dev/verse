@@ -1,0 +1,55 @@
+{
+  "entities": [
+    {
+      "name": "Customer",
+      "properties": [
+        {
+          "name": "id",
+          "column": "Id",
+          "type": "uuid",
+          "nullable": false,
+          "generate": {
+            "using": "uuid"
+          },
+          "kind": "string",
+          "maxLength": 36
+        },
+        {
+          "name": "name",
+          "column": "Name",
+          "type": "varchar(255)",
+          "nullable": false,
+          "kind": "string",
+          "maxLength": 255
+        }
+      ],
+      "label": "customers",
+      "table": "Customer",
+      "key": [
+        "id"
+      ],
+      "foreignKeys": [],
+      "conditions": [],
+      "data": [
+        {
+          "name": "Customer 1"
+        },
+        {
+          "name": "Customer 2"
+        },
+        {
+          "name": "Customer 3"
+        }
+      ]
+    }
+  ],
+  "values": [],
+  "sequences": [
+    {
+      "name": "__verse_seqhilo",
+      "start": 1,
+      "increment": 10
+    }
+  ],
+  "conversions": []
+}

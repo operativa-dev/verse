@@ -1,0 +1,219 @@
+[
+  [
+    {
+      "key": Album {
+        "albumId": 249,
+        "artist": undefined,
+        "artistId": 156,
+        "title": "The Office, Season 1",
+        "tracks": [],
+      },
+    },
+    {
+      "key": Album {
+        "albumId": 250,
+        "artist": undefined,
+        "artistId": 156,
+        "title": "The Office, Season 2",
+        "tracks": [],
+      },
+    },
+    {
+      "key": Album {
+        "albumId": 251,
+        "artist": undefined,
+        "artistId": 156,
+        "title": "The Office, Season 3",
+        "tracks": [],
+      },
+    },
+  ],
+  [
+    {
+      "key": Album {
+        "albumId": 242,
+        "artist": undefined,
+        "artistId": 152,
+        "title": "Diver Down",
+        "tracks": [],
+      },
+    },
+    {
+      "key": Album {
+        "albumId": 243,
+        "artist": undefined,
+        "artistId": 152,
+        "title": "The Best Of Van Halen, Vol. I",
+        "tracks": [],
+      },
+    },
+    {
+      "key": Album {
+        "albumId": 244,
+        "artist": undefined,
+        "artistId": 152,
+        "title": "Van Halen",
+        "tracks": [],
+      },
+    },
+    {
+      "key": Album {
+        "albumId": 245,
+        "artist": undefined,
+        "artistId": 152,
+        "title": "Van Halen III",
+        "tracks": [],
+      },
+    },
+  ],
+  [
+    {
+      "key": Album {
+        "albumId": 219,
+        "artist": undefined,
+        "artistId": 143,
+        "title": "Tangents",
+        "tracks": [],
+      },
+    },
+    {
+      "key": Album {
+        "albumId": 220,
+        "artist": undefined,
+        "artistId": 143,
+        "title": "Transmission",
+        "tracks": [],
+      },
+    },
+  ],
+  [
+    {
+      "key": Album {
+        "albumId": 43,
+        "artist": undefined,
+        "artistId": 58,
+        "title": "MK III The Final Concerts [Disc 1]",
+        "tracks": [],
+      },
+    },
+    {
+      "key": Album {
+        "albumId": 50,
+        "artist": undefined,
+        "artistId": 58,
+        "title": "The Final Concerts (Disc 2)",
+        "tracks": [],
+      },
+    },
+    {
+      "key": Album {
+        "albumId": 58,
+        "artist": undefined,
+        "artistId": 58,
+        "title": "Come Taste The Band",
+        "tracks": [],
+      },
+    },
+    {
+      "key": Album {
+        "albumId": 59,
+        "artist": undefined,
+        "artistId": 58,
+        "title": "Deep Purple In Rock",
+        "tracks": [],
+      },
+    },
+    {
+      "key": Album {
+        "albumId": 60,
+        "artist": undefined,
+        "artistId": 58,
+        "title": "Fireball",
+        "tracks": [],
+      },
+    },
+    {
+      "key": Album {
+        "albumId": 61,
+        "artist": undefined,
+        "artistId": 58,
+        "title": "Knocking at Your Back Door: The Best Of Deep Purple in the 80's",
+        "tracks": [],
+      },
+    },
+    {
+      "key": Album {
+        "albumId": 62,
+        "artist": undefined,
+        "artistId": 58,
+        "title": "Machine Head",
+        "tracks": [],
+      },
+    },
+    {
+      "key": Album {
+        "albumId": 63,
+        "artist": undefined,
+        "artistId": 58,
+        "title": "Purpendicular",
+        "tracks": [],
+      },
+    },
+    {
+      "key": Album {
+        "albumId": 64,
+        "artist": undefined,
+        "artistId": 58,
+        "title": "Slaves And Masters",
+        "tracks": [],
+      },
+    },
+    {
+      "key": Album {
+        "albumId": 65,
+        "artist": undefined,
+        "artistId": 58,
+        "title": "Stormbringer",
+        "tracks": [],
+      },
+    },
+    {
+      "key": Album {
+        "albumId": 66,
+        "artist": undefined,
+        "artistId": 58,
+        "title": "The Battle Rages On",
+        "tracks": [],
+      },
+    },
+  ],
+  [
+    {
+      "key": Album {
+        "albumId": 48,
+        "artist": undefined,
+        "artistId": 68,
+        "title": "The Essential Miles Davis [Disc 1]",
+        "tracks": [],
+      },
+    },
+    {
+      "key": Album {
+        "albumId": 49,
+        "artist": undefined,
+        "artistId": 68,
+        "title": "The Essential Miles Davis [Disc 2]",
+        "tracks": [],
+      },
+    },
+    {
+      "key": Album {
+        "albumId": 157,
+        "artist": undefined,
+        "artistId": 68,
+        "title": "Miles Ahead",
+        "tracks": [],
+      },
+    },
+  ],
+]

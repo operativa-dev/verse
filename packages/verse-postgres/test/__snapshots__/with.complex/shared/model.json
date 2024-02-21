@@ -1,0 +1,219 @@
+{
+  "entities": [
+    {
+      "name": "Base",
+      "properties": [
+        {
+          "name": "baseId",
+          "column": "BaseId",
+          "type": "integer",
+          "nullable": false,
+          "generate": {
+            "using": "none"
+          },
+          "kind": "int"
+        },
+        {
+          "name": "as",
+          "target": "BranchA",
+          "foreignKey": [
+            "baseId"
+          ],
+          "many": true,
+          "nullable": false
+        },
+        {
+          "name": "bs",
+          "target": "BranchB",
+          "foreignKey": [
+            "baseId"
+          ],
+          "many": true,
+          "nullable": false
+        }
+      ],
+      "label": "bases",
+      "table": "Base",
+      "key": [
+        "baseId"
+      ],
+      "foreignKeys": [],
+      "conditions": []
+    },
+    {
+      "name": "BranchA",
+      "properties": [
+        {
+          "name": "aId",
+          "column": "AId",
+          "type": "integer",
+          "nullable": false,
+          "generate": {
+            "using": "none"
+          },
+          "kind": "int"
+        },
+        {
+          "name": "baseId",
+          "column": "BaseId",
+          "type": "integer",
+          "nullable": false,
+          "kind": "int"
+        },
+        {
+          "name": "cs",
+          "target": "LeafC",
+          "foreignKey": [
+            "aId"
+          ],
+          "many": true,
+          "nullable": false
+        }
+      ],
+      "label": "as",
+      "table": "BranchA",
+      "key": [
+        "aId"
+      ],
+      "foreignKeys": [
+        {
+          "references": "Base",
+          "properties": [
+            "baseId"
+          ],
+          "onDelete": "cascade"
+        }
+      ],
+      "conditions": []
+    },
+    {
+      "name": "BranchB",
+      "properties": [
+        {
+          "name": "bId",
+          "column": "BId",
+          "type": "integer",
+          "nullable": false,
+          "generate": {
+            "using": "none"
+          },
+          "kind": "int"
+        },
+        {
+          "name": "baseId",
+          "column": "BaseId",
+          "type": "integer",
+          "nullable": false,
+          "kind": "int"
+        }
+      ],
+      "label": "bs",
+      "table": "BranchB",
+      "key": [
+        "bId"
+      ],
+      "foreignKeys": [
+        {
+          "references": "Base",
+          "properties": [
+            "baseId"
+          ],
+          "onDelete": "cascade"
+        }
+      ],
+      "conditions": []
+    },
+    {
+      "name": "LeafC",
+      "properties": [
+        {
+          "name": "cId",
+          "column": "CId",
+          "type": "integer",
+          "nullable": false,
+          "generate": {
+            "using": "none"
+          },
+          "kind": "int"
+        },
+        {
+          "name": "aId",
+          "column": "AId",
+          "type": "integer",
+          "nullable": false,
+          "kind": "int"
+        }
+      ],
+      "label": "cs",
+      "table": "LeafC",
+      "key": [
+        "cId"
+      ],
+      "foreignKeys": [
+        {
+          "references": "BranchA",
+          "properties": [
+            "aId"
+          ],
+          "onDelete": "cascade"
+        }
+      ],
+      "conditions": []
+    },
+    {
+      "name": "LeafD",
+      "properties": [
+        {
+          "name": "dId",
+          "column": "DId",
+          "type": "integer",
+          "nullable": false,
+          "generate": {
+            "using": "none"
+          },
+          "kind": "int"
+        },
+        {
+          "name": "bId",
+          "column": "BId",
+          "type": "integer",
+          "nullable": false,
+          "kind": "int"
+        },
+        {
+          "name": "b",
+          "target": "BranchB",
+          "foreignKey": [
+            "bId"
+          ],
+          "many": false,
+          "nullable": false
+        }
+      ],
+      "label": "ds",
+      "table": "LeafD",
+      "key": [
+        "dId"
+      ],
+      "foreignKeys": [
+        {
+          "references": "BranchB",
+          "properties": [
+            "bId"
+          ],
+          "onDelete": "cascade"
+        }
+      ],
+      "conditions": []
+    }
+  ],
+  "values": [],
+  "sequences": [
+    {
+      "name": "__verse_seqhilo",
+      "start": 1,
+      "increment": 10
+    }
+  ],
+  "conversions": []
+}

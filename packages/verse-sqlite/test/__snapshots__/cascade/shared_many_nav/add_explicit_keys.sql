@@ -1,0 +1,6 @@
+-- Executing SQL: Parameters: [$1=420, $2='Customer 420']
+insert into "Customer" ("Cid", "Name") values (?, ?)
+
+-- Executing SQL: Parameters: [$1=420]
+insert into "Order" ("CustomerId") values (?) returning "Oid"
+

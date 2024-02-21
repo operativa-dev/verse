@@ -1,0 +1,11 @@
+[
+  Car {
+    "__verse_type": "Car",
+    "doors": 4,
+    "id": 1,
+    "make": "Audi",
+    "model": "RS3",
+    "wheels": 4,
+    "year": 2018,
+  },
+]

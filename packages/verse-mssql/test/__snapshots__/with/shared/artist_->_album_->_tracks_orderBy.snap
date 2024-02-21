@@ -1,0 +1,55 @@
+[
+  Artist {
+    "albums": [],
+    "artistId": 43,
+    "name": "A Cor Do Som",
+  },
+  Artist {
+    "albums": [
+      Album {
+        "albumId": 296,
+        "artist": undefined,
+        "artistId": 230,
+        "title": "A Copland Celebration, Vol. I",
+        "tracks": [
+          Track {
+            "album": undefined,
+            "albumId": 296,
+            "composer": "Aaron Copland",
+            "genre": undefined,
+            "genreId": 24,
+            "name": "Fanfare for the Common Man",
+            "playlistTracks": [],
+            "trackId": 3427,
+          },
+        ],
+      },
+    ],
+    "artistId": 230,
+    "name": "Aaron Copland & London Symphony Orchestra",
+  },
+  Artist {
+    "albums": [
+      Album {
+        "albumId": 267,
+        "artist": undefined,
+        "artistId": 202,
+        "title": "Worlds",
+        "tracks": [
+          Track {
+            "album": undefined,
+            "albumId": 267,
+            "composer": "Aaron Goldberg",
+            "genre": undefined,
+            "genreId": 2,
+            "name": "OAM's Blues",
+            "playlistTracks": [],
+            "trackId": 3357,
+          },
+        ],
+      },
+    ],
+    "artistId": 202,
+    "name": "Aaron Goldberg",
+  },
+]

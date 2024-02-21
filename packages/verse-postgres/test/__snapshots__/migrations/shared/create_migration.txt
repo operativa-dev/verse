@@ -1,0 +1,7 @@
+import { DB, Migration } from "@operativa/verse-migrations";
+
+const migration: Migration = (db: DB) => {
+  // Add your migration code here...
+};
+
+export default migration;

@@ -1,0 +1,215 @@
+[
+  [
+    Album {
+      "albumId": 249,
+      "artist": undefined,
+      "artistId": 156,
+      "title": "The Office, Season 1",
+      "tracks": [],
+    },
+    Album {
+      "albumId": 250,
+      "artist": undefined,
+      "artistId": 156,
+      "title": "The Office, Season 2",
+      "tracks": [],
+    },
+    Album {
+      "albumId": 251,
+      "artist": undefined,
+      "artistId": 156,
+      "title": "The Office, Season 3",
+      "tracks": [],
+    },
+  ],
+  [
+    Album {
+      "albumId": 177,
+      "artist": undefined,
+      "artistId": 117,
+      "title": "The Beast Live",
+      "tracks": [],
+    },
+  ],
+  [
+    Album {
+      "albumId": 20,
+      "artist": undefined,
+      "artistId": 15,
+      "title": "The Best Of Buddy Guy - The Millenium Collection",
+      "tracks": [],
+    },
+  ],
+  [
+    Album {
+      "albumId": 72,
+      "artist": undefined,
+      "artistId": 81,
+      "title": "The Cream Of Clapton",
+      "tracks": [],
+    },
+    Album {
+      "albumId": 73,
+      "artist": undefined,
+      "artistId": 81,
+      "title": "Unplugged",
+      "tracks": [],
+    },
+  ],
+  [
+    Album {
+      "albumId": 269,
+      "artist": undefined,
+      "artistId": 204,
+      "title": "Temple of the Dog",
+      "tracks": [],
+    },
+  ],
+  [
+    Album {
+      "albumId": 13,
+      "artist": undefined,
+      "artistId": 10,
+      "title": "The Best Of Billy Cobham",
+      "tracks": [],
+    },
+  ],
+  [
+    Album {
+      "albumId": 147,
+      "artist": undefined,
+      "artistId": 105,
+      "title": "The Best Of Men At Work",
+      "tracks": [],
+    },
+  ],
+  [
+    Album {
+      "albumId": 308,
+      "artist": undefined,
+      "artistId": 243,
+      "title": "Tchaikovsky: 1812 Festival Overture, Op.49, Capriccio Italien & Beethoven: Wellington's Victory",
+      "tracks": [],
+    },
+  ],
+  [
+    Album {
+      "albumId": 219,
+      "artist": undefined,
+      "artistId": 143,
+      "title": "Tangents",
+      "tracks": [],
+    },
+    Album {
+      "albumId": 220,
+      "artist": undefined,
+      "artistId": 143,
+      "title": "Transmission",
+      "tracks": [],
+    },
+  ],
+  [
+    Album {
+      "albumId": 268,
+      "artist": undefined,
+      "artistId": 203,
+      "title": "The Best of Beethoven",
+      "tracks": [],
+    },
+  ],
+  [
+    Album {
+      "albumId": 48,
+      "artist": undefined,
+      "artistId": 68,
+      "title": "The Essential Miles Davis [Disc 1]",
+      "tracks": [],
+    },
+    Album {
+      "albumId": 49,
+      "artist": undefined,
+      "artistId": 68,
+      "title": "The Essential Miles Davis [Disc 2]",
+      "tracks": [],
+    },
+    Album {
+      "albumId": 157,
+      "artist": undefined,
+      "artistId": 68,
+      "title": "Miles Ahead",
+      "tracks": [],
+    },
+  ],
+  [
+    Album {
+      "albumId": 332,
+      "artist": undefined,
+      "artistId": 262,
+      "title": "The Ultimate Relexation Album",
+      "tracks": [],
+    },
+  ],
+  [
+    Album {
+      "albumId": 280,
+      "artist": undefined,
+      "artistId": 214,
+      "title": "The World of Classical Favourites",
+      "tracks": [],
+    },
+  ],
+  [
+    Album {
+      "albumId": 47,
+      "artist": undefined,
+      "artistId": 37,
+      "title": "The Best of Ed Motta",
+      "tracks": [],
+    },
+  ],
+  [
+    Album {
+      "albumId": 211,
+      "artist": undefined,
+      "artistId": 138,
+      "title": "The Singles",
+      "tracks": [],
+    },
+  ],
+  [
+    Album {
+      "albumId": 289,
+      "artist": undefined,
+      "artistId": 223,
+      "title": "Tchaikovsky: The Nutcracker",
+      "tracks": [],
+    },
+  ],
+  [
+    Album {
+      "albumId": 290,
+      "artist": undefined,
+      "artistId": 224,
+      "title": "The Last Night of the Proms",
+      "tracks": [],
+    },
+  ],
+  [
+    Album {
+      "albumId": 214,
+      "artist": undefined,
+      "artistId": 140,
+      "title": "The Doors",
+      "tracks": [],
+    },
+  ],
+  [
+    Album {
+      "albumId": 215,
+      "artist": undefined,
+      "artistId": 141,
+      "title": "The Police Greatest Hits",
+      "tracks": [],
+    },
+  ],
+]

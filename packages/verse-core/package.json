@@ -1,0 +1,76 @@
+{
+  "name": "@operativa/verse",
+  "version": "0.6.0",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/operativa-dev/verse.git",
+    "directory": "packages/verse-core"
+  },
+  "bugs": {
+    "url": "https://github.com/operativa-dev/verse/issues"
+  },
+  "type": "module",
+  "main": "dist/src/verse.js",
+  "module": "dist/src/verse.js",
+  "exports": {
+    ".": "./dist/src/verse.js",
+    "./uow": "./dist/src/uow.js",
+    "./conventions/*": "./dist/src/conventions/*.js",
+    "./db/*": "./dist/src/db/*.js",
+    "./identity/*": "./dist/src/identity/*.js",
+    "./inheritance/*": "./dist/src/inheritance/*.js",
+    "./model/*": "./dist/src/model/*.js",
+    "./query/*": "./dist/src/query/*.js",
+    "./utils/*": "./dist/src/utils/*.js",
+    "./test/db/*": "./dist/test/db/*.js",
+    "./test/identity/*": "./dist/test/identity/*.js",
+    "./test/infra": "./dist/test/infra.js",
+    "./test/mapping/*": "./dist/test/mapping/*.js",
+    "./test/query/*": "./dist/test/query/*.js",
+    "./test/update/*": "./dist/test/update/*.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "clean": "rimraf dist",
+    "test": "vitest run",
+    "build": "tsc",
+    "api": "typedoc",
+    "api-watch": "typedoc --watch"
+  },
+  "dependencies": {
+    "@jsep-plugin/arrow": "^1.0.5",
+    "@jsep-plugin/comment": "^1.0.3",
+    "@jsep-plugin/new": "^1.0.3",
+    "@jsep-plugin/object": "^1.2.1",
+    "@jsep-plugin/spread": "^1.0.2",
+    "@jsep-plugin/template": "^1.0.3",
+    "camelcase": "^8.0.0",
+    "chalk": "^5.3.0",
+    "cli-highlight": "^2.1.11",
+    "immutable": "5.0.0-beta.5",
+    "jsep": "^1.3.8",
+    "pluralize": "^8.0.0",
+    "rfdc": "^1.3.1",
+    "tiny-invariant": "^1.3.1",
+    "ts-essentials": "^9.4.1",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/json-stringify-safe": "^5.0.3",
+    "@types/pluralize": "^0.0.33",
+    "@types/uuid": "^9.0.8",
+    "eslint-config-custom": "workspace:*",
+    "json-stringify-safe": "^5.0.1",
+    "tsconfig": "workspace:*",
+    "typedoc": "^0.25.8",
+    "typedoc-plugin-include-example": "^1.2.0",
+    "typedoc-plugin-mdn-links": "^3.1.16",
+    "typedoc-plugin-not-exported": "^0.1.6"
+  }
+}

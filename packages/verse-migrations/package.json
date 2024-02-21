@@ -1,0 +1,43 @@
+{
+  "name": "@operativa/verse-migrations",
+  "version": "3.0.0",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/operativa-dev/verse.git",
+    "directory": "packages/verse-migrations"
+  },
+  "bugs": {
+    "url": "https://github.com/operativa-dev/verse/issues"
+  },
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "exports": {
+    ".": "./dist/src/index.js",
+    "./test/*": "./dist/test/*.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "clean": "rimraf dist",
+    "test": "vitest run --passWithNoTests",
+    "build": "tsc"
+  },
+  "peerDependencies": {
+    "@operativa/verse": "workspace:*"
+  },
+  "dependencies": {
+    "immutable": "5.0.0-beta.5",
+    "ts-essentials": "^9.4.1"
+  },
+  "devDependencies": {
+    "@operativa/verse": "workspace:*",
+    "eslint-config-custom": "workspace:*",
+    "tsconfig": "workspace:*"
+  }
+}

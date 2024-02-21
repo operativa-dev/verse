@@ -1,0 +1,966 @@
+[
+  [
+    42,
+    Artist {
+      "albums": [],
+      "artistId": 43,
+      "name": "A Cor Do Som",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 1,
+          "artist": undefined,
+          "artistId": 1,
+          "title": "For Those About To Rock We Salute You",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 4,
+          "artist": undefined,
+          "artistId": 1,
+          "title": "Let There Be Rock",
+          "tracks": [],
+        },
+      ],
+      "artistId": 1,
+      "name": "AC/DC",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 2,
+          "artist": undefined,
+          "artistId": 2,
+          "title": "Balls to the Wall",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 3,
+          "artist": undefined,
+          "artistId": 2,
+          "title": "Restless and Wild",
+          "tracks": [],
+        },
+      ],
+      "artistId": 2,
+      "name": "Accept",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 5,
+          "artist": undefined,
+          "artistId": 3,
+          "title": "Big Ones",
+          "tracks": [],
+        },
+      ],
+      "artistId": 3,
+      "name": "Aerosmith",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 6,
+          "artist": undefined,
+          "artistId": 4,
+          "title": "Jagged Little Pill",
+          "tracks": [],
+        },
+      ],
+      "artistId": 4,
+      "name": "Alanis Morissette",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 7,
+          "artist": undefined,
+          "artistId": 5,
+          "title": "Facelift",
+          "tracks": [],
+        },
+      ],
+      "artistId": 5,
+      "name": "Alice In Chains",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 8,
+          "artist": undefined,
+          "artistId": 6,
+          "title": "Warner 25 Anos",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 34,
+          "artist": undefined,
+          "artistId": 6,
+          "title": "Chill: Brazil (Disc 2)",
+          "tracks": [],
+        },
+      ],
+      "artistId": 6,
+      "name": "Antônio Carlos Jobim",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 9,
+          "artist": undefined,
+          "artistId": 7,
+          "title": "Plays Metallica By Four Cellos",
+          "tracks": [],
+        },
+      ],
+      "artistId": 7,
+      "name": "Apocalyptica",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 10,
+          "artist": undefined,
+          "artistId": 8,
+          "title": "Audioslave",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 11,
+          "artist": undefined,
+          "artistId": 8,
+          "title": "Out Of Exile",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 271,
+          "artist": undefined,
+          "artistId": 8,
+          "title": "Revelations",
+          "tracks": [],
+        },
+      ],
+      "artistId": 8,
+      "name": "Audioslave",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [],
+      "artistId": 26,
+      "name": "Azymuth",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [],
+      "artistId": 31,
+      "name": "Baby Consuelo",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 12,
+          "artist": undefined,
+          "artistId": 9,
+          "title": "BackBeat Soundtrack",
+          "tracks": [],
+        },
+      ],
+      "artistId": 9,
+      "name": "BackBeat",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [],
+      "artistId": 38,
+      "name": "Banda Black Rio",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [],
+      "artistId": 48,
+      "name": "Barão Vermelho",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [],
+      "artistId": 29,
+      "name": "Bebel Gilberto",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 13,
+          "artist": undefined,
+          "artistId": 10,
+          "title": "The Best Of Billy Cobham",
+          "tracks": [],
+        },
+      ],
+      "artistId": 10,
+      "name": "Billy Cobham",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 14,
+          "artist": undefined,
+          "artistId": 11,
+          "title": "Alcohol Fueled Brewtality Live! [Disc 1]",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 15,
+          "artist": undefined,
+          "artistId": 11,
+          "title": "Alcohol Fueled Brewtality Live! [Disc 2]",
+          "tracks": [],
+        },
+      ],
+      "artistId": 11,
+      "name": "Black Label Society",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 16,
+          "artist": undefined,
+          "artistId": 12,
+          "title": "Black Sabbath",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 17,
+          "artist": undefined,
+          "artistId": 12,
+          "title": "Black Sabbath Vol. 4 (Remaster)",
+          "tracks": [],
+        },
+      ],
+      "artistId": 12,
+      "name": "Black Sabbath",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 18,
+          "artist": undefined,
+          "artistId": 13,
+          "title": "Body Count",
+          "tracks": [],
+        },
+      ],
+      "artistId": 13,
+      "name": "Body Count",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 19,
+          "artist": undefined,
+          "artistId": 14,
+          "title": "Chemical Wedding",
+          "tracks": [],
+        },
+      ],
+      "artistId": 14,
+      "name": "Bruce Dickinson",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 20,
+          "artist": undefined,
+          "artistId": 15,
+          "title": "The Best Of Buddy Guy - The Millenium Collection",
+          "tracks": [],
+        },
+      ],
+      "artistId": 15,
+      "name": "Buddy Guy",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 21,
+          "artist": undefined,
+          "artistId": 16,
+          "title": "Prenda Minha",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 22,
+          "artist": undefined,
+          "artistId": 16,
+          "title": "Sozinho Remix Ao Vivo",
+          "tracks": [],
+        },
+      ],
+      "artistId": 16,
+      "name": "Caetano Veloso",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 23,
+          "artist": undefined,
+          "artistId": 17,
+          "title": "Minha Historia",
+          "tracks": [],
+        },
+      ],
+      "artistId": 17,
+      "name": "Chico Buarque",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 24,
+          "artist": undefined,
+          "artistId": 18,
+          "title": "Afrociberdelia",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 25,
+          "artist": undefined,
+          "artistId": 18,
+          "title": "Da Lama Ao Caos",
+          "tracks": [],
+        },
+      ],
+      "artistId": 18,
+      "name": "Chico Science & Nação Zumbi",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 26,
+          "artist": undefined,
+          "artistId": 19,
+          "title": "Acústico MTV [Live]",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 27,
+          "artist": undefined,
+          "artistId": 19,
+          "title": "Cidade Negra - Hits",
+          "tracks": [],
+        },
+      ],
+      "artistId": 19,
+      "name": "Cidade Negra",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 28,
+          "artist": undefined,
+          "artistId": 20,
+          "title": "Na Pista",
+          "tracks": [],
+        },
+      ],
+      "artistId": 20,
+      "name": "Cláudio Zoli",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 47,
+          "artist": undefined,
+          "artistId": 37,
+          "title": "The Best of Ed Motta",
+          "tracks": [],
+        },
+      ],
+      "artistId": 37,
+      "name": "Ed Motta",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [],
+      "artistId": 49,
+      "name": "Edson, DJ Marky & DJ Patife Featuring Fernanda Porto",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 71,
+          "artist": undefined,
+          "artistId": 41,
+          "title": "Elis Regina-Minha História",
+          "tracks": [],
+        },
+      ],
+      "artistId": 41,
+      "name": "Elis Regina",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [],
+      "artistId": 39,
+      "name": "Fernanda Porto",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 31,
+          "artist": undefined,
+          "artistId": 23,
+          "title": "Bongo Fury",
+          "tracks": [],
+        },
+      ],
+      "artistId": 23,
+      "name": "Frank Zappa & Captain Beefheart",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 85,
+          "artist": undefined,
+          "artistId": 27,
+          "title": "As Canções de Eu Tu Eles",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 86,
+          "artist": undefined,
+          "artistId": 27,
+          "title": "Quanta Gente Veio Ver (Live)",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 87,
+          "artist": undefined,
+          "artistId": 27,
+          "title": "Quanta Gente Veio ver--Bônus De Carnaval",
+          "tracks": [],
+        },
+      ],
+      "artistId": 27,
+      "name": "Gilberto Gil",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [],
+      "artistId": 47,
+      "name": "Hermeto Pascoal",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [],
+      "artistId": 28,
+      "name": "João Gilberto",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 122,
+          "artist": undefined,
+          "artistId": 46,
+          "title": "Jorge Ben Jor 25 Anos",
+          "tracks": [],
+        },
+      ],
+      "artistId": 46,
+      "name": "Jorge Ben",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [],
+      "artistId": 30,
+      "name": "Jorge Vercilo",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [],
+      "artistId": 44,
+      "name": "Kid Abelha",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 30,
+          "artist": undefined,
+          "artistId": 22,
+          "title": "BBC Sessions [Disc 1] [Live]",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 44,
+          "artist": undefined,
+          "artistId": 22,
+          "title": "Physical Graffiti [Disc 1]",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 127,
+          "artist": undefined,
+          "artistId": 22,
+          "title": "BBC Sessions [Disc 2] [Live]",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 128,
+          "artist": undefined,
+          "artistId": 22,
+          "title": "Coda",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 129,
+          "artist": undefined,
+          "artistId": 22,
+          "title": "Houses Of The Holy",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 130,
+          "artist": undefined,
+          "artistId": 22,
+          "title": "In Through The Out Door",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 131,
+          "artist": undefined,
+          "artistId": 22,
+          "title": "IV",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 132,
+          "artist": undefined,
+          "artistId": 22,
+          "title": "Led Zeppelin I",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 133,
+          "artist": undefined,
+          "artistId": 22,
+          "title": "Led Zeppelin II",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 134,
+          "artist": undefined,
+          "artistId": 22,
+          "title": "Led Zeppelin III",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 135,
+          "artist": undefined,
+          "artistId": 22,
+          "title": "Physical Graffiti [Disc 2]",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 136,
+          "artist": undefined,
+          "artistId": 22,
+          "title": "Presence",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 137,
+          "artist": undefined,
+          "artistId": 22,
+          "title": "The Song Remains The Same (Disc 1)",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 138,
+          "artist": undefined,
+          "artistId": 22,
+          "title": "The Song Remains The Same (Disc 2)",
+          "tracks": [],
+        },
+      ],
+      "artistId": 22,
+      "name": "Led Zeppelin",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [],
+      "artistId": 33,
+      "name": "Luiz Melodia",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 33,
+          "artist": undefined,
+          "artistId": 24,
+          "title": "Chill: Brazil (Disc 1)",
+          "tracks": [],
+        },
+      ],
+      "artistId": 24,
+      "name": "Marcos Valle",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 35,
+          "artist": undefined,
+          "artistId": 50,
+          "title": "Garage Inc. (Disc 1)",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 148,
+          "artist": undefined,
+          "artistId": 50,
+          "title": "Black Album",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 149,
+          "artist": undefined,
+          "artistId": 50,
+          "title": "Garage Inc. (Disc 2)",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 150,
+          "artist": undefined,
+          "artistId": 50,
+          "title": "Kill 'Em All",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 151,
+          "artist": undefined,
+          "artistId": 50,
+          "title": "Load",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 152,
+          "artist": undefined,
+          "artistId": 50,
+          "title": "Master Of Puppets",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 153,
+          "artist": undefined,
+          "artistId": 50,
+          "title": "ReLoad",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 154,
+          "artist": undefined,
+          "artistId": 50,
+          "title": "Ride The Lightning",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 155,
+          "artist": undefined,
+          "artistId": 50,
+          "title": "St. Anger",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 156,
+          "artist": undefined,
+          "artistId": 50,
+          "title": "...And Justice For All",
+          "tracks": [],
+        },
+      ],
+      "artistId": 50,
+      "name": "Metallica",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 158,
+          "artist": undefined,
+          "artistId": 42,
+          "title": "Milton Nascimento Ao Vivo",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 159,
+          "artist": undefined,
+          "artistId": 42,
+          "title": "Minas",
+          "tracks": [],
+        },
+      ],
+      "artistId": 42,
+      "name": "Milton Nascimento",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [],
+      "artistId": 25,
+      "name": "Milton Nascimento & Bebeto",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [],
+      "artistId": 34,
+      "name": "Nando Reis",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [],
+      "artistId": 32,
+      "name": "Ney Matogrosso",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 259,
+          "artist": undefined,
+          "artistId": 36,
+          "title": "Radio Brasil (O Som da Jovem Vanguarda) - Seleccao de Henrique Amaro",
+          "tracks": [],
+        },
+      ],
+      "artistId": 36,
+      "name": "O Rappa",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [],
+      "artistId": 40,
+      "name": "Os Cariocas",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [],
+      "artistId": 35,
+      "name": "Pedro Luís & A Parede",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [],
+      "artistId": 45,
+      "name": "Sandra De Sá",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 45,
+          "artist": undefined,
+          "artistId": 21,
+          "title": "Sambas De Enredo 2001",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 53,
+          "artist": undefined,
+          "artistId": 21,
+          "title": "Vozes do MPB",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 32,
+          "artist": undefined,
+          "artistId": 21,
+          "title": "Carnaval 2001",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 29,
+          "artist": undefined,
+          "artistId": 21,
+          "title": "Axé Bahia 2001",
+          "tracks": [],
+        },
+      ],
+      "artistId": 21,
+      "name": "Various Artists",
+    },
+    "abc",
+  ],
+]

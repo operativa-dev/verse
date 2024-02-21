@@ -1,0 +1,52 @@
+{
+  "entities": [
+    {
+      "name": "Customer",
+      "properties": [
+        {
+          "name": "id",
+          "kind": "int"
+        },
+        {
+          "name": "orders",
+          "target": "Order",
+          "many": true,
+          "nullable": false
+        }
+      ],
+      "key": [
+        "id"
+      ],
+      "foreignKeys": [],
+      "conditions": []
+    },
+    {
+      "name": "Order",
+      "properties": [
+        {
+          "name": "id",
+          "kind": "int"
+        },
+        {
+          "name": "customerId",
+          "kind": "int"
+        }
+      ],
+      "key": [
+        "id"
+      ],
+      "foreignKeys": [
+        {
+          "references": "Customer",
+          "properties": [
+            "customerId"
+          ]
+        }
+      ],
+      "conditions": []
+    }
+  ],
+  "values": [],
+  "sequences": [],
+  "conversions": []
+}

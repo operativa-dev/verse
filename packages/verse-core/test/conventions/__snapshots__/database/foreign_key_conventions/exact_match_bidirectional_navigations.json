@@ -1,0 +1,64 @@
+{
+  "entities": [
+    {
+      "name": "A",
+      "properties": [
+        {
+          "name": "aKey",
+          "kind": "int"
+        },
+        {
+          "name": "bs",
+          "target": "B",
+          "foreignKey": [
+            "aKey"
+          ],
+          "many": true,
+          "nullable": false
+        }
+      ],
+      "key": [
+        "aKey"
+      ],
+      "foreignKeys": [],
+      "conditions": []
+    },
+    {
+      "name": "B",
+      "properties": [
+        {
+          "name": "id",
+          "kind": "int"
+        },
+        {
+          "name": "aKey",
+          "kind": "int"
+        },
+        {
+          "name": "a",
+          "target": "A",
+          "foreignKey": [
+            "aKey"
+          ],
+          "many": false,
+          "nullable": false
+        }
+      ],
+      "key": [
+        "id"
+      ],
+      "foreignKeys": [
+        {
+          "references": "A",
+          "properties": [
+            "aKey"
+          ]
+        }
+      ],
+      "conditions": []
+    }
+  ],
+  "values": [],
+  "sequences": [],
+  "conversions": []
+}

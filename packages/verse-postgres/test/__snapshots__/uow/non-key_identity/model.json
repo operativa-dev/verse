@@ -1,0 +1,46 @@
+{
+  "entities": [
+    {
+      "name": "NonKeyIdentity",
+      "properties": [
+        {
+          "name": "id",
+          "column": "Id",
+          "type": "integer",
+          "nullable": false,
+          "generate": {
+            "using": "seqhilo",
+            "sequence": "__verse_seqhilo"
+          },
+          "kind": "int"
+        },
+        {
+          "name": "nonKey",
+          "column": "NonKey",
+          "type": "integer",
+          "nullable": false,
+          "generate": {
+            "using": "identity"
+          },
+          "kind": "int"
+        }
+      ],
+      "label": "nonKeyIdentity",
+      "table": "NonKeyIdentity",
+      "key": [
+        "id"
+      ],
+      "foreignKeys": [],
+      "conditions": []
+    }
+  ],
+  "values": [],
+  "sequences": [
+    {
+      "name": "__verse_seqhilo",
+      "start": 1,
+      "increment": 10
+    }
+  ],
+  "conversions": []
+}

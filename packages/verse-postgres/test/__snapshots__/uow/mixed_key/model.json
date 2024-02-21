@@ -1,0 +1,44 @@
+{
+  "entities": [
+    {
+      "name": "MixedKey",
+      "properties": [
+        {
+          "name": "id",
+          "column": "Id",
+          "type": "integer",
+          "nullable": false,
+          "generate": {
+            "using": "identity"
+          },
+          "kind": "int"
+        },
+        {
+          "name": "other",
+          "column": "Other",
+          "type": "varchar(255)",
+          "nullable": false,
+          "kind": "string",
+          "maxLength": 255
+        }
+      ],
+      "label": "mixedKeys",
+      "table": "MixedKey",
+      "key": [
+        "id",
+        "other"
+      ],
+      "foreignKeys": [],
+      "conditions": []
+    }
+  ],
+  "values": [],
+  "sequences": [
+    {
+      "name": "__verse_seqhilo",
+      "start": 1,
+      "increment": 10
+    }
+  ],
+  "conversions": []
+}

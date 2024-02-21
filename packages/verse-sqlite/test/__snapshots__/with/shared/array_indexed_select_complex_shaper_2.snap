@@ -1,0 +1,16 @@
+[
+  [
+    Artist {
+      "albums": [],
+      "artistId": 1,
+      "name": "AC/DC",
+    },
+    "AC/DC",
+    Artist {
+      "albums": [],
+      "artistId": 1,
+      "name": "AC/DC",
+    },
+    1,
+  ],
+]

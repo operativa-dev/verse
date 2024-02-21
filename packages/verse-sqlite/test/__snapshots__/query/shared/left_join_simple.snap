@@ -1,0 +1,35 @@
+[
+  [
+    Album {
+      "albumId": 1,
+      "artistId": 1,
+      "title": "For Those About To Rock We Salute You",
+    },
+    Artist {
+      "artistId": 1,
+      "name": "AC/DC",
+    },
+  ],
+  [
+    Album {
+      "albumId": 2,
+      "artistId": 2,
+      "title": "Balls to the Wall",
+    },
+    Artist {
+      "artistId": 2,
+      "name": "Accept",
+    },
+  ],
+  [
+    Album {
+      "albumId": 3,
+      "artistId": 2,
+      "title": "Restless and Wild",
+    },
+    Artist {
+      "artistId": 2,
+      "name": "Accept",
+    },
+  ],
+]

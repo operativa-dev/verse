@@ -1,0 +1,27 @@
+{
+  "database": "/Users/andrewpeters/Development/Operativa/verse/packages/verse-sqlite/test/migrations.sqlite",
+  "databaseExists": true,
+  "directory": "/Users/andrewpeters/Development/Operativa/verse/packages/verse-migrations/dist/test/migrations",
+  "directoryExists": true,
+  "migrations": [
+    {
+      "applied": false,
+      "file": "2023-11-15-08-41-Initial.js",
+      "id": "2023-11-15-08-41-Initial",
+      "name": "Initial",
+    },
+    {
+      "applied": false,
+      "file": "2023-11-16-08-42-Second.js",
+      "id": "2023-11-16-08-42-Second",
+      "name": "Second",
+    },
+    {
+      "applied": false,
+      "file": "2023-11-18-08-42-AllOperations.js",
+      "id": "2023-11-18-08-42-AllOperations",
+      "name": "AllOperations",
+    },
+  ],
+  "tableExists": false,
+}

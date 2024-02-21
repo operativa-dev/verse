@@ -1,0 +1,177 @@
+{
+  "entities": [
+    {
+      "name": "Vehicle",
+      "properties": [
+        {
+          "name": "id",
+          "column": "Id",
+          "type": "integer",
+          "nullable": false,
+          "generate": {
+            "using": "identity"
+          },
+          "kind": "int"
+        },
+        {
+          "name": "make",
+          "column": "Make",
+          "type": "varchar(255)",
+          "nullable": false,
+          "kind": "string",
+          "maxLength": 255
+        },
+        {
+          "name": "model",
+          "column": "Model",
+          "type": "varchar(255)",
+          "nullable": false,
+          "kind": "string",
+          "maxLength": 255
+        },
+        {
+          "name": "year",
+          "column": "Year",
+          "type": "integer",
+          "nullable": true,
+          "kind": "int"
+        },
+        {
+          "name": "__verse_type",
+          "column": "__verse_type",
+          "type": "varchar(255)",
+          "nullable": false,
+          "generate": {},
+          "kind": "string",
+          "maxLength": 255
+        }
+      ],
+      "label": "vehicles",
+      "table": "Vehicle",
+      "key": [
+        "id"
+      ],
+      "foreignKeys": [],
+      "conditions": [
+        {
+          "name": "type",
+          "condition": "e => e.__verse_type == \"Motorbike\" || e.__verse_type == \"Vehicle\" || e.__verse_type == \"Automobile\" || e.__verse_type == \"Car\" || e.__verse_type == \"Truck\""
+        }
+      ]
+    },
+    {
+      "name": "Motorbike",
+      "properties": [
+        {
+          "name": "ccs",
+          "column": "Ccs",
+          "type": "integer",
+          "nullable": false,
+          "kind": "int"
+        }
+      ],
+      "label": "bikes",
+      "table": "Vehicle",
+      "key": [
+        "id"
+      ],
+      "foreignKeys": [],
+      "conditions": [
+        {
+          "name": "type",
+          "condition": "e => e.__verse_type == \"Motorbike\""
+        }
+      ]
+    },
+    {
+      "name": "Automobile",
+      "properties": [
+        {
+          "name": "wheels",
+          "column": "Wheels",
+          "type": "integer",
+          "nullable": false,
+          "kind": "int"
+        }
+      ],
+      "label": "autos",
+      "table": "Vehicle",
+      "key": [
+        "id"
+      ],
+      "foreignKeys": [],
+      "conditions": [
+        {
+          "name": "type",
+          "condition": "e => e.__verse_type == \"Automobile\" || e.__verse_type == \"Car\" || e.__verse_type == \"Truck\""
+        }
+      ]
+    },
+    {
+      "name": "Car",
+      "properties": [
+        {
+          "name": "doors",
+          "column": "Doors",
+          "type": "integer",
+          "nullable": false,
+          "kind": "int"
+        }
+      ],
+      "label": "cars",
+      "table": "Vehicle",
+      "key": [
+        "id"
+      ],
+      "foreignKeys": [],
+      "conditions": [
+        {
+          "name": "type",
+          "condition": "e => e.__verse_type == \"Car\""
+        }
+      ]
+    },
+    {
+      "name": "Truck",
+      "properties": [
+        {
+          "name": "doors",
+          "column": "TruckDoors",
+          "type": "integer",
+          "nullable": false,
+          "kind": "int"
+        },
+        {
+          "name": "capacity",
+          "column": "Capacity",
+          "type": "integer",
+          "nullable": false,
+          "kind": "int"
+        }
+      ],
+      "label": "trucks",
+      "table": "Vehicle",
+      "key": [
+        "id"
+      ],
+      "foreignKeys": [],
+      "conditions": [
+        {
+          "name": "type",
+          "condition": "e => e.__verse_type == \"Truck\""
+        }
+      ]
+    }
+  ],
+  "values": [],
+  "sequences": [],
+  "conversions": [
+    [
+      null,
+      {
+        "read": "(v) => (v === 1 ? true : v === 0 ? false : v)",
+        "write": "(v) => (v === true ? 1 : v === false ? 0 : v)"
+      }
+    ]
+  ]
+}

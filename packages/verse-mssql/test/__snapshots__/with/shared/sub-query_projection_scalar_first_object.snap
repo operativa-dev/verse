@@ -1,0 +1,1102 @@
+[
+  {
+    "bar": "AC/DC",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Accept",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Aerosmith",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Alanis Morissette",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Alice In Chains",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Antônio Carlos Jobim",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Apocalyptica",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Audioslave",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "BackBeat",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Billy Cobham",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Black Label Society",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Black Sabbath",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Body Count",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Bruce Dickinson",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Buddy Guy",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Caetano Veloso",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Chico Buarque",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Chico Science & Nação Zumbi",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Cidade Negra",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Cláudio Zoli",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Various Artists",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Led Zeppelin",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Frank Zappa & Captain Beefheart",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Marcos Valle",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Milton Nascimento & Bebeto",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Azymuth",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Gilberto Gil",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "João Gilberto",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Bebel Gilberto",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Jorge Vercilo",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Baby Consuelo",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Ney Matogrosso",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Luiz Melodia",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Nando Reis",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Pedro Luís & A Parede",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "O Rappa",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Ed Motta",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Banda Black Rio",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Fernanda Porto",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Os Cariocas",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Elis Regina",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Milton Nascimento",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "A Cor Do Som",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Kid Abelha",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Sandra De Sá",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Jorge Ben",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Hermeto Pascoal",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Barão Vermelho",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Edson, DJ Marky & DJ Patife Featuring Fernanda Porto",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Metallica",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Queen",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Kiss",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Spyro Gyra",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Green Day",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "David Coverdale",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Gonzaguinha",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Os Mutantes",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Deep Purple",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Santana",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Santana Feat. Dave Matthews",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Santana Feat. Everlast",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Santana Feat. Rob Thomas",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Santana Feat. Lauryn Hill & Cee-Lo",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Santana Feat. The Project G&B",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Santana Feat. Maná",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Santana Feat. Eagle-Eye Cherry",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Santana Feat. Eric Clapton",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Miles Davis",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Gene Krupa",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Toquinho & Vinícius",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Vinícius De Moraes & Baden Powell",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Vinícius De Moraes",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Vinícius E Qurteto Em Cy",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Vinícius E Odette Lara",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Vinicius, Toquinho & Quarteto Em Cy",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Creedence Clearwater Revival",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Cássia Eller",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Def Leppard",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Dennis Chambers",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Djavan",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Eric Clapton",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Faith No More",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Falamansa",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Foo Fighters",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Frank Sinatra",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Funk Como Le Gusta",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Godsmack",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Guns N' Roses",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Incognito",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Iron Maiden",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "James Brown",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Jamiroquai",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "JET",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Jimi Hendrix",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Joe Satriani",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Jota Quest",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "João Suplicy",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Judas Priest",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Legião Urbana",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Lenny Kravitz",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Lulu Santos",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Marillion",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Marisa Monte",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Marvin Gaye",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Men At Work",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Motörhead",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Motörhead & Girlschool",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Mônica Marianno",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Mötley Crüe",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Nirvana",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "O Terço",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Olodum",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Os Paralamas Do Sucesso",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Ozzy Osbourne",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Page & Plant",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Passengers",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Paul D'Ianno",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Pearl Jam",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Peter Tosh",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Pink Floyd",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Planet Hemp",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "R.E.M. Feat. Kate Pearson",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "R.E.M. Feat. KRS-One",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "R.E.M.",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Raimundos",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Raul Seixas",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Red Hot Chili Peppers",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Rush",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Simply Red",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Skank",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Smashing Pumpkins",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Soundgarden",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Stevie Ray Vaughan & Double Trouble",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Stone Temple Pilots",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "System Of A Down",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Terry Bozzio, Tony Levin & Steve Stevens",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "The Black Crowes",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "The Clash",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "The Cult",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "The Doors",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "The Police",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "The Rolling Stones",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "The Tea Party",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "The Who",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Tim Maia",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Titãs",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Battlestar Galactica",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Heroes",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Lost",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "U2",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "UB40",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Van Halen",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Velvet Revolver",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Whitesnake",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Zeca Pagodinho",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "The Office",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Dread Zeppelin",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Battlestar Galactica (Classic)",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Aquaman",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Christina Aguilera featuring BigElf",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Aerosmith & Sierra Leone's Refugee Allstars",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Los Lonely Boys",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Corinne Bailey Rae",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Dhani Harrison & Jakob Dylan",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Jackson Browne",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Avril Lavigne",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Big & Rich",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Youssou N'Dour",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Black Eyed Peas",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Jack Johnson",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Ben Harper",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Snow Patrol",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Matisyahu",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "The Postal Service",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Jaguares",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "The Flaming Lips",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Jack's Mannequin & Mick Fleetwood",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Regina Spektor",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Scorpions",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "House Of Pain",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Xis",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Nega Gizza",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Gustavo & Andres Veiga & Salazar",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Rodox",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Charlie Brown Jr.",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Pedro Luís E A Parede",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Los Hermanos",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Mundo Livre S/A",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Otto",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Instituto",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Nação Zumbi",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "DJ Dolores & Orchestra Santa Massa",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Seu Jorge",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Sabotage E Instituto",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Stereo Maracana",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Cake",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Aisha Duo",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Habib Koité and Bamada",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Karsh Kale",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "The Posies",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Luciana Souza/Romero Lubambo",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Aaron Goldberg",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Nicolaus Esterhazy Sinfonia",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Temple of the Dog",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Chris Cornell",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Alberto Turco & Nova Schola Gregoriana",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Richard Marlow & The Choir of Trinity College, Cambridge",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "English Concert & Trevor Pinnock",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Anne-Sophie Mutter, Herbert Von Karajan & Wiener Philharmoniker",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Hilary Hahn, Jeffrey Kahane, Los Angeles Chamber Orchestra & Margaret Batjer",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Wilhelm Kempff",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Yo-Yo Ma",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Scholars Baroque Ensemble",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Academy of St. Martin in the Fields & Sir Neville Marriner",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Academy of St. Martin in the Fields Chamber Ensemble & Sir Neville Marriner",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Berliner Philharmoniker, Claudio Abbado & Sabine Meyer",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Royal Philharmonic Orchestra & Sir Thomas Beecham",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Orchestre Révolutionnaire et Romantique & John Eliot Gardiner",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Britten Sinfonia, Ivor Bolton & Lesley Garrett",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Chicago Symphony Chorus, Chicago Symphony Orchestra & Sir Georg Solti",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Sir Georg Solti & Wiener Philharmoniker",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Academy of St. Martin in the Fields, John Birch, Sir Neville Marriner & Sylvia McNair",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "London Symphony Orchestra & Sir Charles Mackerras",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Barry Wordsworth & BBC Concert Orchestra",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Herbert Von Karajan, Mirella Freni & Wiener Philharmoniker",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Eugene Ormandy",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Luciano Pavarotti",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Leonard Bernstein & New York Philharmonic",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Boston Symphony Orchestra & Seiji Ozawa",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Aaron Copland & London Symphony Orchestra",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Ton Koopman",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Sergei Prokofiev & Yuri Temirkanov",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Chicago Symphony Orchestra & Fritz Reiner",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Orchestra of The Age of Enlightenment",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Emanuel Ax, Eugene Ormandy & Philadelphia Orchestra",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "James Levine",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Berliner Philharmoniker & Hans Rosbaud",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Maurizio Pollini",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Academy of St. Martin in the Fields, Sir Neville Marriner & William Bennett",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Gustav Mahler",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Felix Schmidt, London Symphony Orchestra & Rafael Frühbeck de Burgos",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Edo de Waart & San Francisco Symphony",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Antal Doráti & London Symphony Orchestra",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Choir Of Westminster Abbey & Simon Preston",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Michael Tilson Thomas & San Francisco Symphony",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Chor der Wiener Staatsoper, Herbert Von Karajan & Wiener Philharmoniker",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "The King's Singers",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Berliner Philharmoniker & Herbert Von Karajan",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Sir Georg Solti, Sumi Jo & Wiener Philharmoniker",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Christopher O'Riley",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Fretwork",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Amy Winehouse",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Calexico",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Otto Klemperer & Philharmonia Orchestra",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Yehudi Menuhin",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Philharmonia Orchestra & Sir Neville Marriner",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Academy of St. Martin in the Fields, Sir Neville Marriner & Thurston Dart",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Les Arts Florissants & William Christie",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "The 12 Cellists of The Berlin Philharmonic",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Adrian Leaper & Doreen de Feis",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Roger Norrington, London Classical Players",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Charles Dutoit & L'Orchestre Symphonique de Montréal",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Equale Brass Ensemble, John Eliot Gardiner & Munich Monteverdi Orchestra and Choir",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Kent Nagano and Orchestre de l'Opéra de Lyon",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Julian Bream",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Martin Roscoe",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Göteborgs Symfoniker & Neeme Järvi",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Itzhak Perlman",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Michele Campanella",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Gerald Moore",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Mela Tenenbaum, Pro Musica Prague & Richard Kapp",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Emerson String Quartet",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "C. Monteverdi, Nigel Rogers - Chiaroscuro; London Baroque; London Cornett & Sackbu",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Nash Ensemble",
+    "foo": "...And Justice For All",
+  },
+  {
+    "bar": "Philip Glass Ensemble",
+    "foo": "...And Justice For All",
+  },
+]

@@ -1,0 +1,62 @@
+[
+  Track {
+    "album": Album {
+      "albumId": 296,
+      "artist": Artist {
+        "albums": [],
+        "artistId": 230,
+        "name": "Aaron Copland & London Symphony Orchestra",
+      },
+      "artistId": 230,
+      "title": "A Copland Celebration, Vol. I",
+      "tracks": [],
+    },
+    "albumId": 296,
+    "composer": "Aaron Copland",
+    "genre": undefined,
+    "genreId": 24,
+    "name": "Fanfare for the Common Man",
+    "playlistTracks": [],
+    "trackId": 3427,
+  },
+  Track {
+    "album": Album {
+      "albumId": 267,
+      "artist": Artist {
+        "albums": [],
+        "artistId": 202,
+        "name": "Aaron Goldberg",
+      },
+      "artistId": 202,
+      "title": "Worlds",
+      "tracks": [],
+    },
+    "albumId": 267,
+    "composer": "Aaron Goldberg",
+    "genre": undefined,
+    "genreId": 2,
+    "name": "OAM's Blues",
+    "playlistTracks": [],
+    "trackId": 3357,
+  },
+  Track {
+    "album": Album {
+      "albumId": 35,
+      "artist": Artist {
+        "albums": [],
+        "artistId": 50,
+        "name": "Metallica",
+      },
+      "artistId": 50,
+      "title": "Garage Inc. (Disc 1)",
+      "tracks": [],
+    },
+    "albumId": 35,
+    "composer": "A.Bouchard/J.Bouchard/S.Pearlman",
+    "genre": undefined,
+    "genreId": 3,
+    "name": "Astronomy",
+    "playlistTracks": [],
+    "trackId": 415,
+  },
+]

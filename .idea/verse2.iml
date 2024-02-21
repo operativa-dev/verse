@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/packages/verse-core/test" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/verse-mysql/test" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/verse-postgres/test" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/verse-sqlite/test" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/verse-cli/test" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/verse-migrations/test" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/verse-mssql/test" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/.tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/temp" />
+      <excludeFolder url="file://$MODULE_DIR$/tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/verse-core/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/verse-sqlite/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/verse-mysql/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/verse-postgres/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/verse-core/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/verse-mysql/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/verse-postgres/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/verse-sqlite/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/.husky/_" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/dataSources" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/basic/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/todo/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/verse-mssql/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/verse-mssql/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/basic/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/verse-cli/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/verse-cli/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/verse-migrations/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/verse-migrations/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/snippets/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/snippets/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/scripts/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/docs/.docusaurus" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/docs/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/docs/build" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/scripts/dist" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

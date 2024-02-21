@@ -1,0 +1,27 @@
+[
+  Album {
+    "albumId": 6,
+    "artistId": 4,
+    "title": "Jagged Little Pill",
+  },
+  Album {
+    "albumId": 7,
+    "artistId": 5,
+    "title": "Facelift",
+  },
+  Album {
+    "albumId": 8,
+    "artistId": 6,
+    "title": "Warner 25 Anos",
+  },
+  Album {
+    "albumId": 9,
+    "artistId": 7,
+    "title": "Plays Metallica By Four Cellos",
+  },
+  Album {
+    "albumId": 10,
+    "artistId": 8,
+    "title": "Audioslave",
+  },
+]

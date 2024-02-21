@@ -1,0 +1,98 @@
+{
+  "entities": [
+    {
+      "name": "Customer",
+      "properties": [
+        {
+          "name": "id",
+          "column": "Id",
+          "type": "integer",
+          "nullable": false,
+          "generate": {
+            "using": "none"
+          },
+          "kind": "int"
+        },
+        {
+          "name": "name",
+          "column": "Name",
+          "type": "varchar(255)",
+          "nullable": false,
+          "kind": "string",
+          "maxLength": 255
+        },
+        {
+          "name": "version",
+          "column": "_version",
+          "type": "integer",
+          "nullable": false,
+          "generate": {
+            "default": 1
+          },
+          "kind": "int"
+        }
+      ],
+      "label": "customers",
+      "table": "Customer",
+      "key": [
+        "id"
+      ],
+      "foreignKeys": [],
+      "conditions": [],
+      "concurrency": {
+        "version": "version"
+      }
+    },
+    {
+      "name": "Order",
+      "properties": [
+        {
+          "name": "id",
+          "column": "Id",
+          "type": "varchar(255)",
+          "nullable": false,
+          "kind": "string",
+          "maxLength": 255
+        },
+        {
+          "name": "amount",
+          "column": "Amount",
+          "type": "numeric(18, 4)",
+          "nullable": false,
+          "kind": "number",
+          "precision": 18,
+          "scale": 4
+        },
+        {
+          "name": "token",
+          "column": "Token",
+          "type": "integer",
+          "nullable": false,
+          "generate": {
+            "default": 9
+          },
+          "kind": "int"
+        }
+      ],
+      "label": "orders",
+      "table": "Order",
+      "key": [
+        "id"
+      ],
+      "foreignKeys": [],
+      "conditions": [],
+      "concurrency": {
+        "version": "token"
+      }
+    }
+  ],
+  "values": [],
+  "sequences": [
+    {
+      "name": "__verse_seqhilo",
+      "start": 1,
+      "increment": 10
+    }
+  ],
+  "conversions": []
+}

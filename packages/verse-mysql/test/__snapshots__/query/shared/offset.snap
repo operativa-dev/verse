@@ -1,0 +1,27 @@
+[
+  Album {
+    "albumId": 4,
+    "artistId": 1,
+    "title": "Let There Be Rock",
+  },
+  Album {
+    "albumId": 5,
+    "artistId": 3,
+    "title": "Big Ones",
+  },
+  Album {
+    "albumId": 6,
+    "artistId": 4,
+    "title": "Jagged Little Pill",
+  },
+  Album {
+    "albumId": 7,
+    "artistId": 5,
+    "title": "Facelift",
+  },
+  Album {
+    "albumId": 8,
+    "artistId": 6,
+    "title": "Warner 25 Anos",
+  },
+]

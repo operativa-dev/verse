@@ -1,0 +1,829 @@
+[
+  [
+    {
+      "foo": "AC/DC",
+    },
+    {
+      "foo": "Accept",
+    },
+    {
+      "foo": "Aerosmith",
+    },
+    {
+      "foo": "Alanis Morissette",
+    },
+    {
+      "foo": "Alice In Chains",
+    },
+    {
+      "foo": "Ant�nio Carlos Jobim",
+    },
+    {
+      "foo": "Apocalyptica",
+    },
+    {
+      "foo": "Audioslave",
+    },
+    {
+      "foo": "BackBeat",
+    },
+    {
+      "foo": "Billy Cobham",
+    },
+    {
+      "foo": "Black Label Society",
+    },
+    {
+      "foo": "Black Sabbath",
+    },
+    {
+      "foo": "Body Count",
+    },
+    {
+      "foo": "Bruce Dickinson",
+    },
+    {
+      "foo": "Buddy Guy",
+    },
+    {
+      "foo": "Caetano Veloso",
+    },
+    {
+      "foo": "Chico Buarque",
+    },
+    {
+      "foo": "Chico Science & Na��o Zumbi",
+    },
+    {
+      "foo": "Cidade Negra",
+    },
+    {
+      "foo": "Cl�udio Zoli",
+    },
+    {
+      "foo": "Various Artists",
+    },
+    {
+      "foo": "Led Zeppelin",
+    },
+    {
+      "foo": "Frank Zappa & Captain Beefheart",
+    },
+    {
+      "foo": "Marcos Valle",
+    },
+    {
+      "foo": "Milton Nascimento & Bebeto",
+    },
+    {
+      "foo": "Azymuth",
+    },
+    {
+      "foo": "Gilberto Gil",
+    },
+    {
+      "foo": "Jo�o Gilberto",
+    },
+    {
+      "foo": "Bebel Gilberto",
+    },
+    {
+      "foo": "Jorge Vercilo",
+    },
+    {
+      "foo": "Baby Consuelo",
+    },
+    {
+      "foo": "Ney Matogrosso",
+    },
+    {
+      "foo": "Luiz Melodia",
+    },
+    {
+      "foo": "Nando Reis",
+    },
+    {
+      "foo": "Pedro Lu�s & A Parede",
+    },
+    {
+      "foo": "O Rappa",
+    },
+    {
+      "foo": "Ed Motta",
+    },
+    {
+      "foo": "Banda Black Rio",
+    },
+    {
+      "foo": "Fernanda Porto",
+    },
+    {
+      "foo": "Os Cariocas",
+    },
+    {
+      "foo": "Elis Regina",
+    },
+    {
+      "foo": "Milton Nascimento",
+    },
+    {
+      "foo": "A Cor Do Som",
+    },
+    {
+      "foo": "Kid Abelha",
+    },
+    {
+      "foo": "Sandra De S�",
+    },
+    {
+      "foo": "Jorge Ben",
+    },
+    {
+      "foo": "Hermeto Pascoal",
+    },
+    {
+      "foo": "Bar�o Vermelho",
+    },
+    {
+      "foo": "Edson, DJ Marky & DJ Patife Featuring Fernanda Porto",
+    },
+    {
+      "foo": "Metallica",
+    },
+    {
+      "foo": "Queen",
+    },
+    {
+      "foo": "Kiss",
+    },
+    {
+      "foo": "Spyro Gyra",
+    },
+    {
+      "foo": "Green Day",
+    },
+    {
+      "foo": "David Coverdale",
+    },
+    {
+      "foo": "Gonzaguinha",
+    },
+    {
+      "foo": "Os Mutantes",
+    },
+    {
+      "foo": "Deep Purple",
+    },
+    {
+      "foo": "Santana",
+    },
+    {
+      "foo": "Santana Feat. Dave Matthews",
+    },
+    {
+      "foo": "Santana Feat. Everlast",
+    },
+    {
+      "foo": "Santana Feat. Rob Thomas",
+    },
+    {
+      "foo": "Santana Feat. Lauryn Hill & Cee-Lo",
+    },
+    {
+      "foo": "Santana Feat. The Project G&B",
+    },
+    {
+      "foo": "Santana Feat. Man�",
+    },
+    {
+      "foo": "Santana Feat. Eagle-Eye Cherry",
+    },
+    {
+      "foo": "Santana Feat. Eric Clapton",
+    },
+    {
+      "foo": "Miles Davis",
+    },
+    {
+      "foo": "Gene Krupa",
+    },
+    {
+      "foo": "Toquinho & Vin�cius",
+    },
+    {
+      "foo": "Vin�cius De Moraes & Baden Powell",
+    },
+    {
+      "foo": "Vin�cius De Moraes",
+    },
+    {
+      "foo": "Vin�cius E Qurteto Em Cy",
+    },
+    {
+      "foo": "Vin�cius E Odette Lara",
+    },
+    {
+      "foo": "Vinicius, Toquinho & Quarteto Em Cy",
+    },
+    {
+      "foo": "Creedence Clearwater Revival",
+    },
+    {
+      "foo": "C�ssia Eller",
+    },
+    {
+      "foo": "Def Leppard",
+    },
+    {
+      "foo": "Dennis Chambers",
+    },
+    {
+      "foo": "Djavan",
+    },
+    {
+      "foo": "Eric Clapton",
+    },
+    {
+      "foo": "Faith No More",
+    },
+    {
+      "foo": "Falamansa",
+    },
+    {
+      "foo": "Foo Fighters",
+    },
+    {
+      "foo": "Frank Sinatra",
+    },
+    {
+      "foo": "Funk Como Le Gusta",
+    },
+    {
+      "foo": "Godsmack",
+    },
+    {
+      "foo": "Guns N' Roses",
+    },
+    {
+      "foo": "Incognito",
+    },
+    {
+      "foo": "Iron Maiden",
+    },
+    {
+      "foo": "James Brown",
+    },
+    {
+      "foo": "Jamiroquai",
+    },
+    {
+      "foo": "JET",
+    },
+    {
+      "foo": "Jimi Hendrix",
+    },
+    {
+      "foo": "Joe Satriani",
+    },
+    {
+      "foo": "Jota Quest",
+    },
+    {
+      "foo": "Jo�o Suplicy",
+    },
+    {
+      "foo": "Judas Priest",
+    },
+    {
+      "foo": "Legi�o Urbana",
+    },
+    {
+      "foo": "Lenny Kravitz",
+    },
+    {
+      "foo": "Lulu Santos",
+    },
+    {
+      "foo": "Marillion",
+    },
+    {
+      "foo": "Marisa Monte",
+    },
+    {
+      "foo": "Marvin Gaye",
+    },
+    {
+      "foo": "Men At Work",
+    },
+    {
+      "foo": "Mot�rhead",
+    },
+    {
+      "foo": "Mot�rhead & Girlschool",
+    },
+    {
+      "foo": "M�nica Marianno",
+    },
+    {
+      "foo": "M�tley Cr�e",
+    },
+    {
+      "foo": "Nirvana",
+    },
+    {
+      "foo": "O Ter�o",
+    },
+    {
+      "foo": "Olodum",
+    },
+    {
+      "foo": "Os Paralamas Do Sucesso",
+    },
+    {
+      "foo": "Ozzy Osbourne",
+    },
+    {
+      "foo": "Page & Plant",
+    },
+    {
+      "foo": "Passengers",
+    },
+    {
+      "foo": "Paul D'Ianno",
+    },
+    {
+      "foo": "Pearl Jam",
+    },
+    {
+      "foo": "Peter Tosh",
+    },
+    {
+      "foo": "Pink Floyd",
+    },
+    {
+      "foo": "Planet Hemp",
+    },
+    {
+      "foo": "R.E.M. Feat. Kate Pearson",
+    },
+    {
+      "foo": "R.E.M. Feat. KRS-One",
+    },
+    {
+      "foo": "R.E.M.",
+    },
+    {
+      "foo": "Raimundos",
+    },
+    {
+      "foo": "Raul Seixas",
+    },
+    {
+      "foo": "Red Hot Chili Peppers",
+    },
+    {
+      "foo": "Rush",
+    },
+    {
+      "foo": "Simply Red",
+    },
+    {
+      "foo": "Skank",
+    },
+    {
+      "foo": "Smashing Pumpkins",
+    },
+    {
+      "foo": "Soundgarden",
+    },
+    {
+      "foo": "Stevie Ray Vaughan & Double Trouble",
+    },
+    {
+      "foo": "Stone Temple Pilots",
+    },
+    {
+      "foo": "System Of A Down",
+    },
+    {
+      "foo": "Terry Bozzio, Tony Levin & Steve Stevens",
+    },
+    {
+      "foo": "The Black Crowes",
+    },
+    {
+      "foo": "The Clash",
+    },
+    {
+      "foo": "The Cult",
+    },
+    {
+      "foo": "The Doors",
+    },
+    {
+      "foo": "The Police",
+    },
+    {
+      "foo": "The Rolling Stones",
+    },
+    {
+      "foo": "The Tea Party",
+    },
+    {
+      "foo": "The Who",
+    },
+    {
+      "foo": "Tim Maia",
+    },
+    {
+      "foo": "Tit�s",
+    },
+    {
+      "foo": "Battlestar Galactica",
+    },
+    {
+      "foo": "Heroes",
+    },
+    {
+      "foo": "Lost",
+    },
+    {
+      "foo": "U2",
+    },
+    {
+      "foo": "UB40",
+    },
+    {
+      "foo": "Van Halen",
+    },
+    {
+      "foo": "Velvet Revolver",
+    },
+    {
+      "foo": "Whitesnake",
+    },
+    {
+      "foo": "Zeca Pagodinho",
+    },
+    {
+      "foo": "The Office",
+    },
+    {
+      "foo": "Dread Zeppelin",
+    },
+    {
+      "foo": "Battlestar Galactica (Classic)",
+    },
+    {
+      "foo": "Aquaman",
+    },
+    {
+      "foo": "Christina Aguilera featuring BigElf",
+    },
+    {
+      "foo": "Aerosmith & Sierra Leone's Refugee Allstars",
+    },
+    {
+      "foo": "Los Lonely Boys",
+    },
+    {
+      "foo": "Corinne Bailey Rae",
+    },
+    {
+      "foo": "Dhani Harrison & Jakob Dylan",
+    },
+    {
+      "foo": "Jackson Browne",
+    },
+    {
+      "foo": "Avril Lavigne",
+    },
+    {
+      "foo": "Big & Rich",
+    },
+    {
+      "foo": "Youssou N'Dour",
+    },
+    {
+      "foo": "Black Eyed Peas",
+    },
+    {
+      "foo": "Jack Johnson",
+    },
+    {
+      "foo": "Ben Harper",
+    },
+    {
+      "foo": "Snow Patrol",
+    },
+    {
+      "foo": "Matisyahu",
+    },
+    {
+      "foo": "The Postal Service",
+    },
+    {
+      "foo": "Jaguares",
+    },
+    {
+      "foo": "The Flaming Lips",
+    },
+    {
+      "foo": "Jack's Mannequin & Mick Fleetwood",
+    },
+    {
+      "foo": "Regina Spektor",
+    },
+    {
+      "foo": "Scorpions",
+    },
+    {
+      "foo": "House Of Pain",
+    },
+    {
+      "foo": "Xis",
+    },
+    {
+      "foo": "Nega Gizza",
+    },
+    {
+      "foo": "Gustavo & Andres Veiga & Salazar",
+    },
+    {
+      "foo": "Rodox",
+    },
+    {
+      "foo": "Charlie Brown Jr.",
+    },
+    {
+      "foo": "Pedro Lu�s E A Parede",
+    },
+    {
+      "foo": "Los Hermanos",
+    },
+    {
+      "foo": "Mundo Livre S/A",
+    },
+    {
+      "foo": "Otto",
+    },
+    {
+      "foo": "Instituto",
+    },
+    {
+      "foo": "Na��o Zumbi",
+    },
+    {
+      "foo": "DJ Dolores & Orchestra Santa Massa",
+    },
+    {
+      "foo": "Seu Jorge",
+    },
+    {
+      "foo": "Sabotage E Instituto",
+    },
+    {
+      "foo": "Stereo Maracana",
+    },
+    {
+      "foo": "Cake",
+    },
+    {
+      "foo": "Aisha Duo",
+    },
+    {
+      "foo": "Habib Koit� and Bamada",
+    },
+    {
+      "foo": "Karsh Kale",
+    },
+    {
+      "foo": "The Posies",
+    },
+    {
+      "foo": "Luciana Souza/Romero Lubambo",
+    },
+    {
+      "foo": "Aaron Goldberg",
+    },
+    {
+      "foo": "Nicolaus Esterhazy Sinfonia",
+    },
+    {
+      "foo": "Temple of the Dog",
+    },
+    {
+      "foo": "Chris Cornell",
+    },
+    {
+      "foo": "Alberto Turco & Nova Schola Gregoriana",
+    },
+    {
+      "foo": "Richard Marlow & The Choir of Trinity College, Cambridge",
+    },
+    {
+      "foo": "English Concert & Trevor Pinnock",
+    },
+    {
+      "foo": "Anne-Sophie Mutter, Herbert Von Karajan & Wiener Philharmoniker",
+    },
+    {
+      "foo": "Hilary Hahn, Jeffrey Kahane, Los Angeles Chamber Orchestra & Margaret Batjer",
+    },
+    {
+      "foo": "Wilhelm Kempff",
+    },
+    {
+      "foo": "Yo-Yo Ma",
+    },
+    {
+      "foo": "Scholars Baroque Ensemble",
+    },
+    {
+      "foo": "Academy of St. Martin in the Fields & Sir Neville Marriner",
+    },
+    {
+      "foo": "Academy of St. Martin in the Fields Chamber Ensemble & Sir Neville Marriner",
+    },
+    {
+      "foo": "Berliner Philharmoniker, Claudio Abbado & Sabine Meyer",
+    },
+    {
+      "foo": "Royal Philharmonic Orchestra & Sir Thomas Beecham",
+    },
+    {
+      "foo": "Orchestre R�volutionnaire et Romantique & John Eliot Gardiner",
+    },
+    {
+      "foo": "Britten Sinfonia, Ivor Bolton & Lesley Garrett",
+    },
+    {
+      "foo": "Chicago Symphony Chorus, Chicago Symphony Orchestra & Sir Georg Solti",
+    },
+    {
+      "foo": "Sir Georg Solti & Wiener Philharmoniker",
+    },
+    {
+      "foo": "Academy of St. Martin in the Fields, John Birch, Sir Neville Marriner & Sylvia McNair",
+    },
+    {
+      "foo": "London Symphony Orchestra & Sir Charles Mackerras",
+    },
+    {
+      "foo": "Barry Wordsworth & BBC Concert Orchestra",
+    },
+    {
+      "foo": "Herbert Von Karajan, Mirella Freni & Wiener Philharmoniker",
+    },
+    {
+      "foo": "Eugene Ormandy",
+    },
+    {
+      "foo": "Luciano Pavarotti",
+    },
+    {
+      "foo": "Leonard Bernstein & New York Philharmonic",
+    },
+    {
+      "foo": "Boston Symphony Orchestra & Seiji Ozawa",
+    },
+    {
+      "foo": "Aaron Copland & London Symphony Orchestra",
+    },
+    {
+      "foo": "Ton Koopman",
+    },
+    {
+      "foo": "Sergei Prokofiev & Yuri Temirkanov",
+    },
+    {
+      "foo": "Chicago Symphony Orchestra & Fritz Reiner",
+    },
+    {
+      "foo": "Orchestra of The Age of Enlightenment",
+    },
+    {
+      "foo": "Emanuel Ax, Eugene Ormandy & Philadelphia Orchestra",
+    },
+    {
+      "foo": "James Levine",
+    },
+    {
+      "foo": "Berliner Philharmoniker & Hans Rosbaud",
+    },
+    {
+      "foo": "Maurizio Pollini",
+    },
+    {
+      "foo": "Academy of St. Martin in the Fields, Sir Neville Marriner & William Bennett",
+    },
+    {
+      "foo": "Gustav Mahler",
+    },
+    {
+      "foo": "Felix Schmidt, London Symphony Orchestra & Rafael Fr�hbeck de Burgos",
+    },
+    {
+      "foo": "Edo de Waart & San Francisco Symphony",
+    },
+    {
+      "foo": "Antal Dor�ti & London Symphony Orchestra",
+    },
+    {
+      "foo": "Choir Of Westminster Abbey & Simon Preston",
+    },
+    {
+      "foo": "Michael Tilson Thomas & San Francisco Symphony",
+    },
+    {
+      "foo": "Chor der Wiener Staatsoper, Herbert Von Karajan & Wiener Philharmoniker",
+    },
+    {
+      "foo": "The King's Singers",
+    },
+    {
+      "foo": "Berliner Philharmoniker & Herbert Von Karajan",
+    },
+    {
+      "foo": "Sir Georg Solti, Sumi Jo & Wiener Philharmoniker",
+    },
+    {
+      "foo": "Christopher O'Riley",
+    },
+    {
+      "foo": "Fretwork",
+    },
+    {
+      "foo": "Amy Winehouse",
+    },
+    {
+      "foo": "Calexico",
+    },
+    {
+      "foo": "Otto Klemperer & Philharmonia Orchestra",
+    },
+    {
+      "foo": "Yehudi Menuhin",
+    },
+    {
+      "foo": "Philharmonia Orchestra & Sir Neville Marriner",
+    },
+    {
+      "foo": "Academy of St. Martin in the Fields, Sir Neville Marriner & Thurston Dart",
+    },
+    {
+      "foo": "Les Arts Florissants & William Christie",
+    },
+    {
+      "foo": "The 12 Cellists of The Berlin Philharmonic",
+    },
+    {
+      "foo": "Adrian Leaper & Doreen de Feis",
+    },
+    {
+      "foo": "Roger Norrington, London Classical Players",
+    },
+    {
+      "foo": "Charles Dutoit & L'Orchestre Symphonique de Montr�al",
+    },
+    {
+      "foo": "Equale Brass Ensemble, John Eliot Gardiner & Munich Monteverdi Orchestra and Choir",
+    },
+    {
+      "foo": "Kent Nagano and Orchestre de l'Op�ra de Lyon",
+    },
+    {
+      "foo": "Julian Bream",
+    },
+    {
+      "foo": "Martin Roscoe",
+    },
+    {
+      "foo": "G�teborgs Symfoniker & Neeme J�rvi",
+    },
+    {
+      "foo": "Itzhak Perlman",
+    },
+    {
+      "foo": "Michele Campanella",
+    },
+    {
+      "foo": "Gerald Moore",
+    },
+    {
+      "foo": "Mela Tenenbaum, Pro Musica Prague & Richard Kapp",
+    },
+    {
+      "foo": "Emerson String Quartet",
+    },
+    {
+      "foo": "C. Monteverdi, Nigel Rogers - Chiaroscuro; London Baroque; London Cornett & Sackbu",
+    },
+    {
+      "foo": "Nash Ensemble",
+    },
+    {
+      "foo": "Philip Glass Ensemble",
+    },
+  ],
+]

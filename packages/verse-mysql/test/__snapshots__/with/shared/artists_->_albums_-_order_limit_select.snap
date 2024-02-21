@@ -1,0 +1,840 @@
+[
+  [
+    42,
+    Artist {
+      "albums": [],
+      "artistId": 43,
+      "name": "A Cor Do Som",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 296,
+          "artist": undefined,
+          "artistId": 230,
+          "title": "A Copland Celebration, Vol. I",
+          "tracks": [],
+        },
+      ],
+      "artistId": 230,
+      "name": "Aaron Copland & London Symphony Orchestra",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 267,
+          "artist": undefined,
+          "artistId": 202,
+          "title": "Worlds",
+          "tracks": [],
+        },
+      ],
+      "artistId": 202,
+      "name": "Aaron Goldberg",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 1,
+          "artist": undefined,
+          "artistId": 1,
+          "title": "For Those About To Rock We Salute You",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 4,
+          "artist": undefined,
+          "artistId": 1,
+          "title": "Let There Be Rock",
+          "tracks": [],
+        },
+      ],
+      "artistId": 1,
+      "name": "AC/DC",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 280,
+          "artist": undefined,
+          "artistId": 214,
+          "title": "The World of Classical Favourites",
+          "tracks": [],
+        },
+      ],
+      "artistId": 214,
+      "name": "Academy of St. Martin in the Fields & Sir Neville Marriner",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 281,
+          "artist": undefined,
+          "artistId": 215,
+          "title": "Sir Neville Marriner: A Celebration",
+          "tracks": [],
+        },
+      ],
+      "artistId": 215,
+      "name": "Academy of St. Martin in the Fields Chamber Ensemble & Sir Neville Marriner",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 288,
+          "artist": undefined,
+          "artistId": 222,
+          "title": "Fauré: Requiem, Ravel: Pavane & Others",
+          "tracks": [],
+        },
+      ],
+      "artistId": 222,
+      "name": "Academy of St. Martin in the Fields, John Birch, Sir Neville Marriner & Sylvia McNair",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 327,
+          "artist": undefined,
+          "artistId": 257,
+          "title": "Bach: Orchestral Suites Nos. 1 - 4",
+          "tracks": [],
+        },
+      ],
+      "artistId": 257,
+      "name": "Academy of St. Martin in the Fields, Sir Neville Marriner & Thurston Dart",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [],
+      "artistId": 239,
+      "name": "Academy of St. Martin in the Fields, Sir Neville Marriner & William Bennett",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 2,
+          "artist": undefined,
+          "artistId": 2,
+          "title": "Balls to the Wall",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 3,
+          "artist": undefined,
+          "artistId": 2,
+          "title": "Restless and Wild",
+          "tracks": [],
+        },
+      ],
+      "artistId": 2,
+      "name": "Accept",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 330,
+          "artist": undefined,
+          "artistId": 260,
+          "title": "Górecki: Symphony No. 3",
+          "tracks": [],
+        },
+      ],
+      "artistId": 260,
+      "name": "Adrian Leaper & Doreen de Feis",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 5,
+          "artist": undefined,
+          "artistId": 3,
+          "title": "Big Ones",
+          "tracks": [],
+        },
+      ],
+      "artistId": 3,
+      "name": "Aerosmith",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [],
+      "artistId": 161,
+      "name": "Aerosmith & Sierra Leone's Refugee Allstars",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 262,
+          "artist": undefined,
+          "artistId": 197,
+          "title": "Quiet Songs",
+          "tracks": [],
+        },
+      ],
+      "artistId": 197,
+      "name": "Aisha Duo",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 6,
+          "artist": undefined,
+          "artistId": 4,
+          "title": "Jagged Little Pill",
+          "tracks": [],
+        },
+      ],
+      "artistId": 4,
+      "name": "Alanis Morissette",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 272,
+          "artist": undefined,
+          "artistId": 206,
+          "title": "Adorate Deum: Gregorian Chant from the Proper of the Mass",
+          "tracks": [],
+        },
+      ],
+      "artistId": 206,
+      "name": "Alberto Turco & Nova Schola Gregoriana",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 7,
+          "artist": undefined,
+          "artistId": 5,
+          "title": "Facelift",
+          "tracks": [],
+        },
+      ],
+      "artistId": 5,
+      "name": "Alice In Chains",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 321,
+          "artist": undefined,
+          "artistId": 252,
+          "title": "Back to Black",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 322,
+          "artist": undefined,
+          "artistId": 252,
+          "title": "Frank",
+          "tracks": [],
+        },
+      ],
+      "artistId": 252,
+      "name": "Amy Winehouse",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 275,
+          "artist": undefined,
+          "artistId": 209,
+          "title": "Vivaldi: The Four Seasons",
+          "tracks": [],
+        },
+      ],
+      "artistId": 209,
+      "name": "Anne-Sophie Mutter, Herbert Von Karajan & Wiener Philharmoniker",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 308,
+          "artist": undefined,
+          "artistId": 243,
+          "title": "Tchaikovsky: 1812 Festival Overture, Op.49, Capriccio Italien & Beethoven: Wellington's Victory",
+          "tracks": [],
+        },
+      ],
+      "artistId": 243,
+      "name": "Antal Doráti & London Symphony Orchestra",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 8,
+          "artist": undefined,
+          "artistId": 6,
+          "title": "Warner 25 Anos",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 34,
+          "artist": undefined,
+          "artistId": 6,
+          "title": "Chill: Brazil (Disc 2)",
+          "tracks": [],
+        },
+      ],
+      "artistId": 6,
+      "name": "Antônio Carlos Jobim",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 9,
+          "artist": undefined,
+          "artistId": 7,
+          "title": "Plays Metallica By Four Cellos",
+          "tracks": [],
+        },
+      ],
+      "artistId": 7,
+      "name": "Apocalyptica",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 254,
+          "artist": undefined,
+          "artistId": 159,
+          "title": "Aquaman",
+          "tracks": [],
+        },
+      ],
+      "artistId": 159,
+      "name": "Aquaman",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 10,
+          "artist": undefined,
+          "artistId": 8,
+          "title": "Audioslave",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 11,
+          "artist": undefined,
+          "artistId": 8,
+          "title": "Out Of Exile",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 271,
+          "artist": undefined,
+          "artistId": 8,
+          "title": "Revelations",
+          "tracks": [],
+        },
+      ],
+      "artistId": 8,
+      "name": "Audioslave",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [],
+      "artistId": 166,
+      "name": "Avril Lavigne",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [],
+      "artistId": 26,
+      "name": "Azymuth",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [],
+      "artistId": 31,
+      "name": "Baby Consuelo",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 12,
+          "artist": undefined,
+          "artistId": 9,
+          "title": "BackBeat Soundtrack",
+          "tracks": [],
+        },
+      ],
+      "artistId": 9,
+      "name": "BackBeat",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [],
+      "artistId": 38,
+      "name": "Banda Black Rio",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [],
+      "artistId": 48,
+      "name": "Barão Vermelho",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 290,
+          "artist": undefined,
+          "artistId": 224,
+          "title": "The Last Night of the Proms",
+          "tracks": [],
+        },
+      ],
+      "artistId": 224,
+      "name": "Barry Wordsworth & BBC Concert Orchestra",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 226,
+          "artist": undefined,
+          "artistId": 147,
+          "title": "Battlestar Galactica: The Story So Far",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 227,
+          "artist": undefined,
+          "artistId": 147,
+          "title": "Battlestar Galactica, Season 3",
+          "tracks": [],
+        },
+      ],
+      "artistId": 147,
+      "name": "Battlestar Galactica",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 253,
+          "artist": undefined,
+          "artistId": 158,
+          "title": "Battlestar Galactica (Classic), Season 1",
+          "tracks": [],
+        },
+      ],
+      "artistId": 158,
+      "name": "Battlestar Galactica (Classic)",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [],
+      "artistId": 29,
+      "name": "Bebel Gilberto",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [],
+      "artistId": 171,
+      "name": "Ben Harper",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 303,
+          "artist": undefined,
+          "artistId": 237,
+          "title": "Sibelius: Finlandia",
+          "tracks": [],
+        },
+      ],
+      "artistId": 237,
+      "name": "Berliner Philharmoniker & Hans Rosbaud",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 316,
+          "artist": undefined,
+          "artistId": 248,
+          "title": "Grieg: Peer Gynt Suites & Sibelius: Pelléas et Mélisande",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 320,
+          "artist": undefined,
+          "artistId": 248,
+          "title": "Mozart: Symphonies Nos. 40 & 41",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 336,
+          "artist": undefined,
+          "artistId": 248,
+          "title": "Prokofiev: Symphony No.5 & Stravinksy: Le Sacre Du Printemps",
+          "tracks": [],
+        },
+      ],
+      "artistId": 248,
+      "name": "Berliner Philharmoniker & Herbert Von Karajan",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 282,
+          "artist": undefined,
+          "artistId": 216,
+          "title": "Mozart: Wind Concertos",
+          "tracks": [],
+        },
+      ],
+      "artistId": 216,
+      "name": "Berliner Philharmoniker, Claudio Abbado & Sabine Meyer",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [],
+      "artistId": 167,
+      "name": "Big & Rich",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 13,
+          "artist": undefined,
+          "artistId": 10,
+          "title": "The Best Of Billy Cobham",
+          "tracks": [],
+        },
+      ],
+      "artistId": 10,
+      "name": "Billy Cobham",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [],
+      "artistId": 169,
+      "name": "Black Eyed Peas",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 14,
+          "artist": undefined,
+          "artistId": 11,
+          "title": "Alcohol Fueled Brewtality Live! [Disc 1]",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 15,
+          "artist": undefined,
+          "artistId": 11,
+          "title": "Alcohol Fueled Brewtality Live! [Disc 2]",
+          "tracks": [],
+        },
+      ],
+      "artistId": 11,
+      "name": "Black Label Society",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 16,
+          "artist": undefined,
+          "artistId": 12,
+          "title": "Black Sabbath",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 17,
+          "artist": undefined,
+          "artistId": 12,
+          "title": "Black Sabbath Vol. 4 (Remaster)",
+          "tracks": [],
+        },
+      ],
+      "artistId": 12,
+      "name": "Black Sabbath",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 18,
+          "artist": undefined,
+          "artistId": 13,
+          "title": "Body Count",
+          "tracks": [],
+        },
+      ],
+      "artistId": 13,
+      "name": "Body Count",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 295,
+          "artist": undefined,
+          "artistId": 229,
+          "title": "Carmina Burana",
+          "tracks": [],
+        },
+      ],
+      "artistId": 229,
+      "name": "Boston Symphony Orchestra & Seiji Ozawa",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 285,
+          "artist": undefined,
+          "artistId": 219,
+          "title": "A Soprano Inspired",
+          "tracks": [],
+        },
+      ],
+      "artistId": 219,
+      "name": "Britten Sinfonia, Ivor Bolton & Lesley Garrett",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 19,
+          "artist": undefined,
+          "artistId": 14,
+          "title": "Chemical Wedding",
+          "tracks": [],
+        },
+      ],
+      "artistId": 14,
+      "name": "Bruce Dickinson",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 20,
+          "artist": undefined,
+          "artistId": 15,
+          "title": "The Best Of Buddy Guy - The Millenium Collection",
+          "tracks": [],
+        },
+      ],
+      "artistId": 15,
+      "name": "Buddy Guy",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 345,
+          "artist": undefined,
+          "artistId": 273,
+          "title": "Monteverdi: L'Orfeo",
+          "tracks": [],
+        },
+      ],
+      "artistId": 273,
+      "name": "C. Monteverdi, Nigel Rogers - Chiaroscuro; London Baroque; London Cornett & Sackbu",
+    },
+    "abc",
+  ],
+  [
+    42,
+    Artist {
+      "albums": [
+        Album {
+          "albumId": 21,
+          "artist": undefined,
+          "artistId": 16,
+          "title": "Prenda Minha",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 22,
+          "artist": undefined,
+          "artistId": 16,
+          "title": "Sozinho Remix Ao Vivo",
+          "tracks": [],
+        },
+      ],
+      "artistId": 16,
+      "name": "Caetano Veloso",
+    },
+    "abc",
+  ],
+]

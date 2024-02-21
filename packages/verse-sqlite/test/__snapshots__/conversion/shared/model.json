@@ -1,0 +1,61 @@
+{
+  "entities": [
+    {
+      "name": "Entity",
+      "properties": [
+        {
+          "name": "num",
+          "column": "Num",
+          "type": "varchar(2)",
+          "nullable": false,
+          "convert": {
+            "read": "(v) => Number.parseInt(v)",
+            "write": "(v) => String(v)"
+          },
+          "kind": "number",
+          "precision": 18,
+          "scale": 4
+        },
+        {
+          "name": "bool",
+          "column": "Bool",
+          "type": "boolean",
+          "nullable": true,
+          "convert": {
+            "read": "(v) => (v === 1 ? true : v === 0 ? false : v)",
+            "write": "(v) => (v === true ? 1 : v === false ? 0 : v)"
+          },
+          "kind": "boolean"
+        },
+        {
+          "name": "date",
+          "column": "Date",
+          "type": "timestamp",
+          "nullable": true,
+          "convert": {
+            "read": "(s) => (s ? new Date(s) : s)",
+            "write": "(d) => (d ? d.toISOString() : d)"
+          }
+        }
+      ],
+      "label": "entities",
+      "table": "Entity",
+      "key": [
+        "num"
+      ],
+      "foreignKeys": [],
+      "conditions": []
+    }
+  ],
+  "values": [],
+  "sequences": [],
+  "conversions": [
+    [
+      null,
+      {
+        "read": "(v) => (v === 1 ? true : v === 0 ? false : v)",
+        "write": "(v) => (v === true ? 1 : v === false ? 0 : v)"
+      }
+    ]
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "entities": [
+    {
+      "name": "PrintMe",
+      "properties": [
+        {
+          "name": "n1",
+          "kind": "number",
+          "precision": 10,
+          "scale": 2
+        },
+        {
+          "name": "n2",
+          "kind": "number"
+        },
+        {
+          "name": "s1",
+          "nullable": false,
+          "kind": "string"
+        },
+        {
+          "name": "s2",
+          "kind": "string",
+          "maxLength": 42
+        },
+        {
+          "name": "s3",
+          "type": "text",
+          "kind": "string"
+        },
+        {
+          "name": "i",
+          "column": "foo",
+          "kind": "int"
+        }
+      ],
+      "foreignKeys": [],
+      "conditions": []
+    }
+  ],
+  "values": [],
+  "sequences": [],
+  "conversions": []
+}

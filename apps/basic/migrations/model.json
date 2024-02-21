@@ -1,0 +1,64 @@
+{
+  "entities": [
+    {
+      "name": "Todo",
+      "properties": [
+        {
+          "name": "id",
+          "column": "Id",
+          "type": "integer",
+          "nullable": false,
+          "generate": {
+            "using": "identity"
+          },
+          "kind": "int"
+        },
+        {
+          "name": "title",
+          "column": "Title",
+          "type": "varchar(255)",
+          "nullable": false,
+          "kind": "string",
+          "maxLength": 255
+        },
+        {
+          "name": "completed",
+          "column": "Completed",
+          "type": "boolean",
+          "nullable": false,
+          "convert": {
+            "read": "(v) => (v === 1 ? true : v === 0 ? false : v)",
+            "write": "(v) => (v === true ? 1 : v === false ? 0 : v)"
+          },
+          "kind": "boolean"
+        }
+      ],
+      "label": "todos",
+      "table": "todos",
+      "key": ["id"],
+      "foreignKeys": [],
+      "conditions": [],
+      "data": [
+        {
+          "title": "My first todo",
+          "completed": true
+        },
+        {
+          "title": "My second todo",
+          "completed": false
+        }
+      ]
+    }
+  ],
+  "values": [],
+  "sequences": [],
+  "conversions": [
+    [
+      null,
+      {
+        "read": "(v) => (v === 1 ? true : v === 0 ? false : v)",
+        "write": "(v) => (v === true ? 1 : v === false ? 0 : v)"
+      }
+    ]
+  ]
+}

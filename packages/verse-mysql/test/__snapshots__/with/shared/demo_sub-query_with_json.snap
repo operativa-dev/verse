@@ -1,0 +1,82 @@
+[
+  [
+    Artist {
+      "albums": [],
+      "artistId": 1,
+      "name": "AC/DC",
+    },
+    undefined,
+  ],
+  [
+    Artist {
+      "albums": [],
+      "artistId": 2,
+      "name": "Accept",
+    },
+    "Balls to the Wall",
+  ],
+  [
+    Artist {
+      "albums": [],
+      "artistId": 3,
+      "name": "Aerosmith",
+    },
+    "Big Ones",
+  ],
+  [
+    Artist {
+      "albums": [],
+      "artistId": 4,
+      "name": "Alanis Morissette",
+    },
+    undefined,
+  ],
+  [
+    Artist {
+      "albums": [],
+      "artistId": 5,
+      "name": "Alice In Chains",
+    },
+    undefined,
+  ],
+  [
+    Artist {
+      "albums": [],
+      "artistId": 6,
+      "name": "Antônio Carlos Jobim",
+    },
+    undefined,
+  ],
+  [
+    Artist {
+      "albums": [],
+      "artistId": 7,
+      "name": "Apocalyptica",
+    },
+    undefined,
+  ],
+  [
+    Artist {
+      "albums": [],
+      "artistId": 8,
+      "name": "Audioslave",
+    },
+    undefined,
+  ],
+  [
+    Artist {
+      "albums": [],
+      "artistId": 9,
+      "name": "BackBeat",
+    },
+    "BackBeat Soundtrack",
+  ],
+  [
+    Artist {
+      "albums": [],
+      "artistId": 10,
+      "name": "Billy Cobham",
+    },
+    undefined,
+  ],
+]

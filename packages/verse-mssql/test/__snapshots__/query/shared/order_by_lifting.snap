@@ -1,0 +1,602 @@
+[
+  [
+    Artist {
+      "artistId": 43,
+      "name": "A Cor Do Som",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 1,
+      "name": "AC/DC",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 2,
+      "name": "Accept",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 3,
+      "name": "Aerosmith",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 4,
+      "name": "Alanis Morissette",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 5,
+      "name": "Alice In Chains",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 6,
+      "name": "Antônio Carlos Jobim",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 7,
+      "name": "Apocalyptica",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 8,
+      "name": "Audioslave",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 26,
+      "name": "Azymuth",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 31,
+      "name": "Baby Consuelo",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 9,
+      "name": "BackBeat",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 38,
+      "name": "Banda Black Rio",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 48,
+      "name": "Barão Vermelho",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 29,
+      "name": "Bebel Gilberto",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 10,
+      "name": "Billy Cobham",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 11,
+      "name": "Black Label Society",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 12,
+      "name": "Black Sabbath",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 13,
+      "name": "Body Count",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 14,
+      "name": "Bruce Dickinson",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 15,
+      "name": "Buddy Guy",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 16,
+      "name": "Caetano Veloso",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 77,
+      "name": "Cássia Eller",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 17,
+      "name": "Chico Buarque",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 18,
+      "name": "Chico Science & Nação Zumbi",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 19,
+      "name": "Cidade Negra",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 20,
+      "name": "Cláudio Zoli",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 76,
+      "name": "Creedence Clearwater Revival",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 55,
+      "name": "David Coverdale",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 58,
+      "name": "Deep Purple",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 78,
+      "name": "Def Leppard",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 79,
+      "name": "Dennis Chambers",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 80,
+      "name": "Djavan",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 37,
+      "name": "Ed Motta",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 49,
+      "name": "Edson, DJ Marky & DJ Patife Featuring Fernanda Porto",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 41,
+      "name": "Elis Regina",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 81,
+      "name": "Eric Clapton",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 82,
+      "name": "Faith No More",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 83,
+      "name": "Falamansa",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 39,
+      "name": "Fernanda Porto",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 84,
+      "name": "Foo Fighters",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 85,
+      "name": "Frank Sinatra",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 23,
+      "name": "Frank Zappa & Captain Beefheart",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 86,
+      "name": "Funk Como Le Gusta",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 69,
+      "name": "Gene Krupa",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 27,
+      "name": "Gilberto Gil",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 87,
+      "name": "Godsmack",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 56,
+      "name": "Gonzaguinha",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 54,
+      "name": "Green Day",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 88,
+      "name": "Guns N' Roses",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 47,
+      "name": "Hermeto Pascoal",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 89,
+      "name": "Incognito",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 90,
+      "name": "Iron Maiden",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 91,
+      "name": "James Brown",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 92,
+      "name": "Jamiroquai",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 93,
+      "name": "JET",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 94,
+      "name": "Jimi Hendrix",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 28,
+      "name": "João Gilberto",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 97,
+      "name": "João Suplicy",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 95,
+      "name": "Joe Satriani",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 46,
+      "name": "Jorge Ben",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 30,
+      "name": "Jorge Vercilo",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 96,
+      "name": "Jota Quest",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 98,
+      "name": "Judas Priest",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 44,
+      "name": "Kid Abelha",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 52,
+      "name": "Kiss",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 22,
+      "name": "Led Zeppelin",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 99,
+      "name": "Legião Urbana",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 100,
+      "name": "Lenny Kravitz",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 33,
+      "name": "Luiz Melodia",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 24,
+      "name": "Marcos Valle",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 50,
+      "name": "Metallica",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 68,
+      "name": "Miles Davis",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 42,
+      "name": "Milton Nascimento",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 25,
+      "name": "Milton Nascimento & Bebeto",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 34,
+      "name": "Nando Reis",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 32,
+      "name": "Ney Matogrosso",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 36,
+      "name": "O Rappa",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 40,
+      "name": "Os Cariocas",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 57,
+      "name": "Os Mutantes",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 35,
+      "name": "Pedro Luís & A Parede",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 51,
+      "name": "Queen",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 45,
+      "name": "Sandra De Sá",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 59,
+      "name": "Santana",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 60,
+      "name": "Santana Feat. Dave Matthews",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 66,
+      "name": "Santana Feat. Eagle-Eye Cherry",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 67,
+      "name": "Santana Feat. Eric Clapton",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 61,
+      "name": "Santana Feat. Everlast",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 63,
+      "name": "Santana Feat. Lauryn Hill & Cee-Lo",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 65,
+      "name": "Santana Feat. Maná",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 62,
+      "name": "Santana Feat. Rob Thomas",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 64,
+      "name": "Santana Feat. The Project G&B",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 53,
+      "name": "Spyro Gyra",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 70,
+      "name": "Toquinho & Vinícius",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 21,
+      "name": "Various Artists",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 72,
+      "name": "Vinícius De Moraes",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 71,
+      "name": "Vinícius De Moraes & Baden Powell",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 74,
+      "name": "Vinícius E Odette Lara",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 73,
+      "name": "Vinícius E Qurteto Em Cy",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 75,
+      "name": "Vinicius, Toquinho & Quarteto Em Cy",
+    },
+  ],
+]

@@ -1,0 +1,29 @@
+{
+  "entities": [
+    {
+      "name": "Customer",
+      "properties": [
+        {
+          "name": "id",
+          "kind": "int"
+        }
+      ],
+      "foreignKeys": [],
+      "conditions": []
+    },
+    {
+      "name": "GoldCustomer",
+      "properties": [
+        {
+          "name": "rewards",
+          "kind": "number"
+        }
+      ],
+      "foreignKeys": [],
+      "conditions": []
+    }
+  ],
+  "values": [],
+  "sequences": [],
+  "conversions": []
+}

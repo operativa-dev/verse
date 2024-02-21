@@ -1,0 +1,14 @@
+[
+  Customer {
+    "address": Address {
+      "city": "The Wall",
+      "street": "Castle Black",
+    },
+    "id": 1,
+    "name": "John Snow",
+    "shipTo": Address {
+      "city": "Riverlands",
+      "street": "Riverrun",
+    },
+  },
+]

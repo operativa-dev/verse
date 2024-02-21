@@ -1,0 +1,29 @@
+[
+  {
+    "albumId": 10,
+    "artist": {
+      "id": 1,
+      "name": "Allan Holdsworth",
+    },
+    "artistId": 1,
+    "title": "The Sixteen Men of Tain",
+  },
+  {
+    "albumId": 11,
+    "artist": {
+      "id": 1,
+      "name": "Allan Holdsworth",
+    },
+    "artistId": 1,
+    "title": "Atavachron",
+  },
+  {
+    "albumId": 12,
+    "artist": {
+      "id": 1,
+      "name": "Allan Holdsworth",
+    },
+    "artistId": 1,
+    "title": "Metal Fatigue",
+  },
+]

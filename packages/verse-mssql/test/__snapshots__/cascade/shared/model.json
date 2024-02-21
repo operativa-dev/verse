@@ -1,0 +1,110 @@
+{
+  "entities": [
+    {
+      "name": "Customer",
+      "properties": [
+        {
+          "name": "cid",
+          "column": "Cid",
+          "type": "integer",
+          "nullable": false,
+          "generate": {
+            "using": "identity"
+          },
+          "kind": "int"
+        },
+        {
+          "name": "name",
+          "column": "Name",
+          "type": "varchar(255)",
+          "nullable": false,
+          "kind": "string",
+          "maxLength": 255
+        }
+      ],
+      "label": "customers",
+      "table": "Customer",
+      "key": [
+        "cid"
+      ],
+      "foreignKeys": [],
+      "conditions": [],
+      "data": [
+        {
+          "name": "Customer 1"
+        },
+        {
+          "name": "Customer 2"
+        },
+        {
+          "name": "Customer 3"
+        },
+        {
+          "name": "Customer 4"
+        }
+      ]
+    },
+    {
+      "name": "Order",
+      "properties": [
+        {
+          "name": "oid",
+          "column": "Oid",
+          "type": "integer",
+          "nullable": false,
+          "generate": {
+            "using": "identity"
+          },
+          "kind": "int"
+        },
+        {
+          "name": "customerId",
+          "column": "CustomerId",
+          "type": "integer",
+          "nullable": false,
+          "kind": "int"
+        }
+      ],
+      "label": "orders",
+      "table": "Order",
+      "key": [
+        "oid"
+      ],
+      "foreignKeys": [
+        {
+          "references": "Customer",
+          "properties": [
+            "customerId"
+          ],
+          "onDelete": "cascade"
+        }
+      ],
+      "conditions": [],
+      "data": [
+        {
+          "customerId": 1
+        },
+        {
+          "customerId": 2
+        },
+        {
+          "customerId": 3
+        },
+        {
+          "customerId": 4
+        }
+      ]
+    }
+  ],
+  "values": [],
+  "sequences": [],
+  "conversions": [
+    [
+      null,
+      {
+        "read": "(v) => (v === 1 ? true : v === 0 ? false : v)",
+        "write": "(v) => (v === true ? 1 : v === false ? 0 : v)"
+      }
+    ]
+  ]
+}

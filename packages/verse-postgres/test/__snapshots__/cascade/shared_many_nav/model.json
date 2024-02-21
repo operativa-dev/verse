@@ -1,0 +1,135 @@
+{
+  "entities": [
+    {
+      "name": "Customer",
+      "properties": [
+        {
+          "name": "cid",
+          "column": "Cid",
+          "type": "integer",
+          "nullable": false,
+          "generate": {
+            "using": "seqhilo",
+            "sequence": "__verse_seqhilo"
+          },
+          "kind": "int"
+        },
+        {
+          "name": "name",
+          "column": "Name",
+          "type": "varchar(255)",
+          "nullable": false,
+          "kind": "string",
+          "maxLength": 255
+        },
+        {
+          "name": "orders",
+          "target": "Order",
+          "foreignKey": [
+            "customerId"
+          ],
+          "many": true,
+          "nullable": false
+        }
+      ],
+      "label": "customers",
+      "table": "Customer",
+      "key": [
+        "cid"
+      ],
+      "foreignKeys": [],
+      "conditions": [],
+      "data": [
+        {
+          "name": "Customer 1",
+          "orders": []
+        },
+        {
+          "name": "Customer 2",
+          "orders": []
+        },
+        {
+          "name": "Customer 3",
+          "orders": []
+        },
+        {
+          "name": "Customer 4",
+          "orders": []
+        },
+        {
+          "name": "Customer 5",
+          "orders": []
+        }
+      ]
+    },
+    {
+      "name": "Order",
+      "properties": [
+        {
+          "name": "oid",
+          "column": "Oid",
+          "type": "integer",
+          "nullable": false,
+          "generate": {
+            "using": "seqhilo",
+            "sequence": "__verse_seqhilo"
+          },
+          "kind": "int"
+        },
+        {
+          "name": "customerId",
+          "column": "CustomerId",
+          "type": "integer",
+          "nullable": false,
+          "kind": "int"
+        }
+      ],
+      "label": "orders",
+      "table": "Order",
+      "key": [
+        "oid"
+      ],
+      "foreignKeys": [
+        {
+          "references": "Customer",
+          "properties": [
+            "customerId"
+          ],
+          "onDelete": "cascade"
+        }
+      ],
+      "conditions": [],
+      "data": [
+        {
+          "customerId": 1,
+          "productId": 101
+        },
+        {
+          "customerId": 2,
+          "productId": 101
+        },
+        {
+          "customerId": 3,
+          "productId": 101
+        },
+        {
+          "customerId": 4,
+          "productId": 101
+        },
+        {
+          "customerId": 5,
+          "productId": 101
+        }
+      ]
+    }
+  ],
+  "values": [],
+  "sequences": [
+    {
+      "name": "__verse_seqhilo",
+      "start": 1,
+      "increment": 10
+    }
+  ],
+  "conversions": []
+}

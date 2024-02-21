@@ -1,0 +1,16 @@
+[
+  [
+    "AC/DC",
+    Artist {
+      "albums": [],
+      "artistId": 2,
+      "name": "Accept",
+    },
+    {
+      "foo": [
+        3,
+        "Aerosmith",
+      ],
+    },
+  ],
+]

@@ -1,0 +1,19 @@
+{
+  "name": "basic",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node dist/index.js",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@operativa/verse": "workspace:*",
+    "@operativa/verse-sqlite": "workspace:*"
+  },
+  "devDependencies": {
+    "@operativa/verse-cli": "workspace:*",
+    "@operativa/verse-migrations": "workspace:*",
+    "tsx": "^4.7.1"
+  }
+}

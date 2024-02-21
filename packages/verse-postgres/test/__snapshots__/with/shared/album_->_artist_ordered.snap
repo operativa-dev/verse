@@ -1,0 +1,57 @@
+[
+  Album {
+    "albumId": 208,
+    "artist": Artist {
+      "albums": [],
+      "artistId": 136,
+      "name": "Terry Bozzio, Tony Levin & Steve Stevens",
+    },
+    "artistId": 136,
+    "title": "[1997] Black Light Syndrome",
+    "tracks": [],
+  },
+  Album {
+    "albumId": 257,
+    "artist": Artist {
+      "albums": [],
+      "artistId": 179,
+      "name": "Scorpions",
+    },
+    "artistId": 179,
+    "title": "20th Century Masters - The Millennium Collection: The Best of Scorpions",
+    "tracks": [],
+  },
+  Album {
+    "albumId": 160,
+    "artist": Artist {
+      "albums": [],
+      "artistId": 106,
+      "name": "Mot�rhead",
+    },
+    "artistId": 106,
+    "title": "Ace Of Spades",
+    "tracks": [],
+  },
+  Album {
+    "albumId": 232,
+    "artist": Artist {
+      "albums": [],
+      "artistId": 150,
+      "name": "U2",
+    },
+    "artistId": 150,
+    "title": "Achtung Baby",
+    "tracks": [],
+  },
+  Album {
+    "albumId": 296,
+    "artist": Artist {
+      "albums": [],
+      "artistId": 230,
+      "name": "Aaron Copland & London Symphony Orchestra",
+    },
+    "artistId": 230,
+    "title": "A Copland Celebration, Vol. I",
+    "tracks": [],
+  },
+]

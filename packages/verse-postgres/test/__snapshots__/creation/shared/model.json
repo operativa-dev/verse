@@ -1,0 +1,290 @@
+{
+  "entities": [
+    {
+      "name": "Album",
+      "properties": [
+        {
+          "name": "albumId",
+          "column": "AlbumId",
+          "type": "integer",
+          "nullable": false,
+          "generate": {
+            "using": "seqhilo",
+            "sequence": "__verse_seqhilo"
+          },
+          "kind": "int"
+        },
+        {
+          "name": "title",
+          "column": "Title",
+          "type": "varchar(160)",
+          "nullable": false,
+          "kind": "string",
+          "maxLength": 160
+        },
+        {
+          "name": "artistId",
+          "column": "artist_id",
+          "type": "integer",
+          "nullable": false,
+          "kind": "int"
+        }
+      ],
+      "label": "albums",
+      "table": "Album",
+      "key": [
+        "albumId"
+      ],
+      "foreignKeys": [],
+      "conditions": []
+    },
+    {
+      "name": "Artist",
+      "properties": [
+        {
+          "name": "artistId",
+          "column": "ArtistId",
+          "type": "integer",
+          "nullable": false,
+          "generate": {
+            "using": "seqhilo",
+            "sequence": "__verse_seqhilo"
+          },
+          "kind": "int"
+        },
+        {
+          "name": "name",
+          "column": "Name",
+          "type": "varchar(255)",
+          "nullable": false,
+          "kind": "string",
+          "maxLength": 255
+        }
+      ],
+      "label": "artists",
+      "table": "artist",
+      "key": [
+        "artistId"
+      ],
+      "foreignKeys": [],
+      "conditions": []
+    },
+    {
+      "name": "AllTypes",
+      "properties": [
+        {
+          "name": "n1",
+          "column": "N1",
+          "type": "numeric(10, 2)",
+          "nullable": false,
+          "kind": "number",
+          "precision": 10,
+          "scale": 2
+        },
+        {
+          "name": "n2",
+          "column": "N2",
+          "type": "numeric(18, 4)",
+          "nullable": false,
+          "kind": "number",
+          "precision": 18,
+          "scale": 4
+        },
+        {
+          "name": "s1",
+          "column": "S1",
+          "type": "varchar(255)",
+          "nullable": false,
+          "kind": "string",
+          "maxLength": 255
+        },
+        {
+          "name": "s2",
+          "column": "S2",
+          "type": "varchar(42)",
+          "nullable": false,
+          "kind": "string",
+          "maxLength": 42
+        },
+        {
+          "name": "s3",
+          "column": "S3",
+          "type": "text",
+          "nullable": false,
+          "kind": "string",
+          "maxLength": 255
+        },
+        {
+          "name": "i",
+          "column": "I",
+          "type": "integer",
+          "nullable": false,
+          "kind": "int"
+        },
+        {
+          "name": "uuid",
+          "column": "Uuid",
+          "type": "uuid",
+          "nullable": false,
+          "kind": "string",
+          "maxLength": 36
+        },
+        {
+          "name": "bool",
+          "column": "Bool",
+          "type": "boolean",
+          "nullable": false,
+          "kind": "boolean"
+        },
+        {
+          "name": "date",
+          "column": "Date",
+          "type": "timestamp with time zone",
+          "nullable": false
+        },
+        {
+          "name": "shadow",
+          "column": "shadow",
+          "type": "varchar(255)",
+          "nullable": false,
+          "kind": "string",
+          "maxLength": 255
+        }
+      ],
+      "label": "allTypes",
+      "table": "AllTypes",
+      "key": [
+        "n1"
+      ],
+      "foreignKeys": [],
+      "conditions": []
+    },
+    {
+      "name": "B",
+      "properties": [
+        {
+          "name": "foo",
+          "column": "Foo",
+          "type": "integer",
+          "nullable": false,
+          "generate": {
+            "using": "seqhilo",
+            "sequence": "__verse_seqhilo"
+          },
+          "kind": "int"
+        }
+      ],
+      "label": "bs",
+      "table": "B",
+      "key": [
+        "foo"
+      ],
+      "foreignKeys": [],
+      "conditions": []
+    },
+    {
+      "name": "A",
+      "properties": [
+        {
+          "name": "pk",
+          "column": "Pk",
+          "type": "integer",
+          "nullable": false,
+          "generate": {
+            "using": "seqhilo",
+            "sequence": "__verse_seqhilo"
+          },
+          "kind": "int"
+        },
+        {
+          "name": "fk",
+          "column": "Fk",
+          "type": "integer",
+          "nullable": false,
+          "kind": "int"
+        }
+      ],
+      "label": "as",
+      "table": "A",
+      "key": [
+        "pk"
+      ],
+      "foreignKeys": [
+        {
+          "references": "B",
+          "properties": [
+            "fk"
+          ],
+          "onDelete": "cascade"
+        }
+      ],
+      "conditions": []
+    },
+    {
+      "name": "Customer",
+      "properties": [
+        {
+          "name": "id",
+          "column": "Id",
+          "type": "integer",
+          "nullable": false,
+          "generate": {
+            "using": "seqhilo",
+            "sequence": "__verse_seqhilo"
+          },
+          "kind": "int"
+        },
+        {
+          "name": "name",
+          "column": "Name",
+          "type": "varchar(255)",
+          "nullable": false,
+          "kind": "string",
+          "maxLength": 255
+        },
+        {
+          "name": "address",
+          "target": "Address"
+        }
+      ],
+      "label": "customers",
+      "table": "Customer",
+      "key": [
+        "id"
+      ],
+      "foreignKeys": [],
+      "conditions": []
+    }
+  ],
+  "values": [
+    {
+      "name": "Address",
+      "properties": [
+        {
+          "name": "street",
+          "column": "Street",
+          "type": "varchar(255)",
+          "nullable": false,
+          "kind": "string",
+          "maxLength": 255
+        },
+        {
+          "name": "city",
+          "column": "City",
+          "type": "varchar(255)",
+          "nullable": false,
+          "kind": "string",
+          "maxLength": 255
+        }
+      ]
+    }
+  ],
+  "sequences": [
+    {
+      "name": "__verse_seqhilo",
+      "start": 1,
+      "increment": 10
+    }
+  ],
+  "conversions": []
+}
