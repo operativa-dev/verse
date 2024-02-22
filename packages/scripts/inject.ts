@@ -8,10 +8,11 @@ type Annotation = {
   end: number;
 };
 
-const tryParseAnnotation = (text: string): Annotation | null => {
-  const match = text.match(/^```ts include (.*)(?::([0-9]+)-([0-9]+))?/);
+const tryParseAnnotation = (text: string): Annotation | undefined => {
+  const match = text.match(/^```ts include ([^:]+)(?::([0-9]+)-([0-9]+))?/);
+
   if (!match) {
-    return null;
+    return undefined;
   }
 
   return {
@@ -24,7 +25,7 @@ const tryParseAnnotation = (text: string): Annotation | null => {
 const extractSnippet = (annotation: Annotation) => {
   const srcLines = fs.readFileSync(annotation.filename, "utf-8").split("\n");
 
-  return srcLines.slice(annotation.start - 1, annotation.end - 1);
+  return srcLines.slice(annotation.start - 1, annotation.end);
 };
 
 const trimEmptyLines = (lines: string[]) => {
@@ -50,71 +51,103 @@ const getCodeBlockEscape = (snippet: string[]) => {
 
 const rootDir = path.join(process.cwd(), "../..");
 
-const files = await glob("**/*.md", {
+const files = await glob(["**/*.md", "**/*.mdx"], {
   cwd: rootDir,
   ignore: ["packages/scripts/**", "node_modules/**"],
 });
 
-// Process each markdown file
-files.forEach(file => {
-  const filePath = path.join(rootDir, file);
+const watched = process.argv.includes("--watch") ? new Set<string>() : undefined;
+const wrote = new Set<string>();
 
-  //console.log(`Reading ${filePath}...`);
+function run() {
+  files.forEach(file => {
+    const filePath = path.join(rootDir, file);
 
-  const mdLines = fs.readFileSync(filePath, "utf-8").split("\n");
-  let lineIndex = 0;
-  let modified = false;
-  while (lineIndex < mdLines.length) {
-    const [, codeBlockMarker] = (mdLines[lineIndex] ?? "").match(/^(`{3,})/) ?? [];
-    if (!codeBlockMarker) {
-      // no code block in this line
-      lineIndex++;
-      continue;
-    }
+    //watched?.add(filePath);
 
-    const annotation = tryParseAnnotation(mdLines[lineIndex] ?? "");
-    if (!annotation) {
-      // no annotation in this line. This is the case for almost all lines.
-      lineIndex++;
-      continue;
-    }
+    const lines = fs.readFileSync(filePath, "utf-8").split("\n");
 
-    const endBlockIndex =
-      mdLines.slice(lineIndex + 1).findIndex(l => l === codeBlockMarker) + lineIndex + 1;
+    let lineIndex = 0;
+    let modified = false;
 
-    const resolvedFilename = path.resolve(rootDir, annotation.filename);
-    if (!fs.existsSync(resolvedFilename)) {
-      console.error(
-        `Source file (${resolvedFilename}) not found from annotation ${JSON.stringify(
-          annotation
-        )} in ${filePath}#L${lineIndex + 1}.`
+    while (lineIndex < lines.length) {
+      const [, codeBlockMarker] = (lines[lineIndex] ?? "").match(/^(`{3,})/) ?? [];
+
+      if (!codeBlockMarker) {
+        lineIndex++;
+        continue;
+      }
+
+      const annotation = tryParseAnnotation(lines[lineIndex] ?? "");
+
+      if (!annotation) {
+        lineIndex++;
+        continue;
+      }
+
+      const endBlockIndex =
+        lines.slice(lineIndex + 1).findIndex(l => l === codeBlockMarker) + lineIndex + 1;
+
+      const resolvedFilename = path.resolve(rootDir, annotation.filename);
+
+      if (!fs.existsSync(resolvedFilename)) {
+        console.error(
+          `Source file (${resolvedFilename}) not found from annotation ${JSON.stringify(
+            annotation
+          )} in ${filePath}#L${lineIndex + 1}.`
+        );
+        process.exit(1);
+      }
+
+      watched?.add(resolvedFilename);
+
+      const snippet = trimEmptyLines(extractSnippet({ ...annotation, filename: resolvedFilename }));
+
+      // handle escaping of backticks inside the snippet
+      const blockBraces = getCodeBlockEscape(snippet);
+      lines[lineIndex] = (lines[lineIndex] ?? codeBlockMarker).replace(
+        codeBlockMarker,
+        blockBraces
       );
-      process.exit(1);
+      lines[endBlockIndex] = (lines[endBlockIndex] ?? codeBlockMarker).replace(
+        codeBlockMarker,
+        blockBraces
+      );
+
+      // replace the code block with the snippet
+      lines.splice(lineIndex + 1, endBlockIndex - lineIndex - 1, ...snippet);
+
+      modified = true;
+      lineIndex += snippet.length + 1;
     }
 
-    const snippet = trimEmptyLines(extractSnippet({ ...annotation, filename: resolvedFilename }));
+    if (modified) {
+      fs.writeFileSync(filePath, lines.join("\n"), "utf-8");
 
-    // handle escaping of backticks inside the snippet
-    const blockBraces = getCodeBlockEscape(snippet);
-    mdLines[lineIndex] = (mdLines[lineIndex] ?? codeBlockMarker).replace(
-      codeBlockMarker,
-      blockBraces
-    );
-    mdLines[endBlockIndex] = (mdLines[endBlockIndex] ?? codeBlockMarker).replace(
-      codeBlockMarker,
-      blockBraces
-    );
+      console.info(`Updated: ${filePath}`);
 
-    // replace the code block with the snippet
-    mdLines.splice(lineIndex + 1, endBlockIndex - lineIndex - 1, ...snippet);
+      wrote.add(file);
+    }
+  });
+}
 
-    modified = true;
-    lineIndex += snippet.length + 1;
-  }
+wrote.clear();
 
-  if (modified) {
-    // overwrite the file with the latest version
-    fs.writeFileSync(filePath, mdLines.join("\n"), "utf-8");
-    console.info(`Updated: ${filePath}`);
-  }
-});
+run();
+
+if (watched) {
+  console.info("\nWatching for changes...");
+
+  const chokidar = await import("chokidar");
+
+  let watcher = chokidar.watch([...watched], { cwd: rootDir, ignoreInitial: true });
+
+  watcher.on("change", async file => {
+    if (wrote.has(file)) {
+      wrote.delete(file);
+    } else {
+      console.info(`Detected change in '${file}', updating...`);
+      run();
+    }
+  });
+}
