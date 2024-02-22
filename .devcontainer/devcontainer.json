@@ -10,10 +10,10 @@
       "extensions": [
         "ZixuanChen.vitest-explorer",
         "ckolkman.vscode-postgres",
-        "esbenp.prettier-vscode",
-      ],
-    },
-  },
+        "esbenp.prettier-vscode"
+      ]
+    }
+  }
 
   // Features to add to the dev container. More info: https://containers.dev/features.
   // "features": {},

@@ -8,6 +8,7 @@
     "build": "pnpm tsx inject.ts"
   },
   "dependencies": {
+    "chokidar": "^3.6.0",
     "glob": "^10.3.10"
   },
   "devDependencies": {
