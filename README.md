@@ -98,7 +98,7 @@ for await (const todo of query) {
   console.log(`${todo.id}: ${todo.title} (completed: ${todo.completed})`);
 }
 
-// Modify a todo and save the changes.>
+// Modify a todo and save the changes.
 
 const uow = db.uow();
 

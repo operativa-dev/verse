@@ -5,6 +5,7 @@ import { AsyncSequence, Queryable } from "../../src/query/queryable.js";
 import { Logger } from "../../src/utils/logging.js";
 import { Verse } from "../../src/verse.js";
 import { dataTest, fixture } from "../infra.js";
+import { dump } from "./navigations.js";
 
 export class Album {
   constructor(
@@ -238,6 +239,18 @@ export const queryTests = (verse: Verse<typeof queryModel>) => {
     await snap(q);
   });
 
+  test("any where inline", async () => {
+    const q = verse.from.albums.any(a => a.title === "Miles Ahead");
+
+    await snap(q);
+  });
+
+  test("any where inline local args", async () => {
+    const q = verse.from.albums.any((a, $title: string) => a.title === $title, "Miles Ahead");
+
+    await snap(q);
+  });
+
   test("any where none", async () => {
     const q = verse.from.albums.where(a => a.title === "Miles").any();
 
@@ -262,6 +275,18 @@ export const queryTests = (verse: Verse<typeof queryModel>) => {
     await snap(q);
   });
 
+  test("first where inline", async () => {
+    const q = verse.from.albums.first(a => a.title === "Miles Ahead");
+
+    await snap(q);
+  });
+
+  test("first where inline local args", async () => {
+    const q = verse.from.albums.first((a, $title: string) => a.title === $title, "Miles Ahead");
+
+    await snap(q);
+  });
+
   test("join three levels first", async () => {
     const q = verse.from.tracks
       .join(Album, (tr, al) => tr.theAlbumId === al.albumId)
@@ -273,6 +298,21 @@ export const queryTests = (verse: Verse<typeof queryModel>) => {
 
   test("maybeFirst", async () => {
     const q = verse.from.albums.maybeFirst();
+
+    await snap(q);
+  });
+
+  test("maybeFirst where inline", async () => {
+    const q = verse.from.albums.maybeFirst(a => a.title === "Miles Ahead");
+
+    await snap(q);
+  });
+
+  test("maybeFirst where inline local args", async () => {
+    const q = verse.from.albums.maybeFirst(
+      (a, $title: string) => a.title === $title,
+      "Miles Ahead"
+    );
 
     await snap(q);
   });
@@ -300,8 +340,35 @@ export const queryTests = (verse: Verse<typeof queryModel>) => {
     await snap(q());
   });
 
+  test("single where inline", async () => {
+    const q = verse.from.albums.single(a => a.title === "Miles Ahead");
+
+    await snap(q);
+  });
+
+  test("single where inline local args", async () => {
+    const q = verse.from.albums.single((a, $title: string) => a.title === $title, "Miles Ahead");
+
+    await snap(q);
+  });
+
   test("maybeSingle", async () => {
     const q = verse.from.albums.where(a => a.title == "Miles Ahead").maybeSingle();
+
+    await snap(q);
+  });
+
+  test("maybeSingle where inline", async () => {
+    const q = verse.from.albums.maybeSingle(a => a.title === "Miles Ahead");
+
+    await snap(q);
+  });
+
+  test("maybeSingle where inline local args", async () => {
+    const q = verse.from.albums.maybeSingle(
+      (a, $title: string) => a.title === $title,
+      "Miles Ahead"
+    );
 
     await snap(q);
   });
@@ -909,6 +976,90 @@ export const queryTests = (verse: Verse<typeof queryModel>) => {
     const q = verse.from.artists.select(_ => Date.now());
 
     await q.toArray(); // can't snap now()
+  });
+
+  test("join lifting 1", async () => {
+    const q = verse.from.albums
+      .join(Artist, (al, ar) => al.artistId === ar.artistId)
+      .select(([_, ar]) => ar);
+
+    await dump(q);
+  });
+
+  test("join lifting 2", async () => {
+    const q = verse.from.albums
+      .join(Artist, (al, ar) => al.artistId === ar.artistId)
+      .select(([_, ar]) => [ar, ar.artistId]);
+
+    await dump(q);
+  });
+
+  test("join lifting 3", async () => {
+    const q = verse.from.albums
+      .join(Artist, (al, ar) => al.artistId === ar.artistId)
+      .select(([_, ar]) => [ar, ar.artistId + 1]);
+
+    await dump(q);
+  });
+
+  test("join lifting 4", async () => {
+    const q = verse.from.albums
+      .join(Artist, (al, ar) => al.artistId === ar.artistId)
+      .orderBy(([_, ar]) => ar.artistId);
+
+    await dump(q);
+  });
+
+  test("join lifting 5", async () => {
+    const q = verse.from.albums
+      .join(Artist, (al, ar) => al.artistId === ar.artistId)
+      .select(([_, ar]) => ar.name);
+
+    await dump(q);
+  });
+
+  test("join lifting 6", async () => {
+    const q = verse.from.albums
+      .join(Artist, (al, ar) => al.artistId === ar.artistId)
+      .select(([al, ar]) => [ar, al.title]);
+
+    await dump(q);
+  });
+
+  test("join lifting 7", async () => {
+    const q = verse.from.albums
+      .join(Artist, (al, ar) => al.artistId === ar.artistId)
+      .where(([_, ar]) => ar.name === "Alice In Chains")
+      .join(Artist, ([al, _], ar) => al.artistId === ar.artistId)
+      .select(([_, ar]) => ar.name);
+
+    await dump(q);
+  });
+
+  test("join lifting 8", async () => {
+    const q = verse.from.albums
+      .select(al => ({ al }))
+      .join(Artist, (o, ar) => o.al.artistId === ar.artistId)
+      .where(([_, ar]) => ar.name === "Alice In Chains")
+      .select(([_, ar]) => ar.name);
+
+    await dump(q);
+  });
+
+  test("join lifting 9", async () => {
+    const q = verse.from.albums
+      .join(Artist, (al, ar) => al.artistId === ar.artistId)
+      .select(([_, ar]) => [ar, ar.name]);
+
+    await dump(q);
+  });
+
+  test("join lifting 10", async () => {
+    const q = verse.from.albums
+      .join(Artist, (al, ar) => al.artistId === ar.artistId)
+      .orderBy(([_, ar]) => ar.name);
+
+    await dump(q);
   });
 };
 

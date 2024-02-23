@@ -1,0 +1,108 @@
+{
+  "entities": [
+    {
+      "name": "Artist",
+      "properties": [
+        {
+          "name": "artistId",
+          "column": "ArtistId",
+          "type": "integer",
+          "nullable": false,
+          "generate": {
+            "using": "identity"
+          },
+          "kind": "int"
+        },
+        {
+          "name": "name",
+          "column": "Name",
+          "type": "varchar(255)",
+          "nullable": false,
+          "kind": "string",
+          "maxLength": 255
+        },
+        {
+          "name": "albums",
+          "target": "Album",
+          "foreignKey": [
+            "artistId"
+          ],
+          "many": true,
+          "nullable": false
+        }
+      ],
+      "label": "artists",
+      "table": "Artist",
+      "key": [
+        "artistId"
+      ],
+      "foreignKeys": [],
+      "conditions": []
+    },
+    {
+      "name": "Album",
+      "properties": [
+        {
+          "name": "albumId",
+          "column": "AlbumId",
+          "type": "integer",
+          "nullable": false,
+          "generate": {
+            "using": "identity"
+          },
+          "kind": "int"
+        },
+        {
+          "name": "title",
+          "column": "Title",
+          "type": "varchar(255)",
+          "nullable": false,
+          "kind": "string",
+          "maxLength": 255
+        },
+        {
+          "name": "artistId",
+          "column": "ArtistId",
+          "type": "integer",
+          "nullable": false,
+          "kind": "int"
+        },
+        {
+          "name": "artist",
+          "target": "Artist",
+          "foreignKey": [
+            "artistId"
+          ],
+          "many": false,
+          "nullable": false
+        }
+      ],
+      "label": "albums",
+      "table": "Album",
+      "key": [
+        "albumId"
+      ],
+      "foreignKeys": [
+        {
+          "references": "Artist",
+          "properties": [
+            "artistId"
+          ],
+          "onDelete": "cascade"
+        }
+      ],
+      "conditions": []
+    }
+  ],
+  "values": [],
+  "sequences": [],
+  "conversions": [
+    [
+      null,
+      {
+        "read": "(v) => (v === 1 ? true : v === 0 ? false : v)",
+        "write": "(v) => (v === true ? 1 : v === false ? 0 : v)"
+      }
+    ]
+  ]
+}

@@ -472,7 +472,7 @@ export class Verse<TEntities extends Entities = any> {
   }
 
   #applyConventions(model: Model) {
-    let prevModel;
+    let prevModel: Model;
     let counter = 0;
 
     while (counter < 5) {

@@ -792,6 +792,14 @@ export class SqlSelect extends SqlNode {
     return this.state.joins;
   }
 
+  withJoins(joins: List<SqlJoin>) {
+    if (!is(joins, this.joins)) {
+      return new SqlSelect({ ...this.state, joins }, this.binding);
+    }
+
+    return this;
+  }
+
   get where() {
     return this.state.where;
   }
@@ -1588,6 +1596,10 @@ export class SqlNegation extends SqlNode {
 
   override bind(binding: SqlBinding) {
     return new SqlNegation(this.operand, binding);
+  }
+
+  override identify(aliaser: (n: SqlNode) => SqlNode) {
+    return aliaser(this);
   }
 
   override accept<T, S = unknown>(visitor: SqlVisitor<T>, state?: S) {
