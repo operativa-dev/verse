@@ -844,6 +844,14 @@ export const withTests = (verse: Verse<typeof withModel>) => {
     await snap(q());
   });
 
+  test("join multiple", async () => {
+    const q = verse.from.tracks
+      .join(Album, (tr, al) => tr.albumId === al.albumId)
+      .join(Genre, (tup, g) => tup[0].genreId === g.genreId);
+
+    await snap(q);
+  });
+
   test("demo sub-query with json", async () => {
     const q = verse.compile((from, $pattern: string) =>
       from.artists.limit(10).select(a => [

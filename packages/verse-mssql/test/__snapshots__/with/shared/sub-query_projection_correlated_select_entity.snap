@@ -52,10 +52,10 @@
   [
     "Antônio Carlos Jobim",
     Album {
-      "albumId": 8,
+      "albumId": 34,
       "artist": undefined,
       "artistId": 6,
-      "title": "Warner 25 Anos",
+      "title": "Chill: Brazil (Disc 2)",
       "tracks": [],
     },
   ],
@@ -212,10 +212,10 @@
   [
     "Led Zeppelin",
     Album {
-      "albumId": 30,
+      "albumId": 127,
       "artist": undefined,
       "artistId": 22,
-      "title": "BBC Sessions [Disc 1] [Live]",
+      "title": "BBC Sessions [Disc 2] [Live]",
       "tracks": [],
     },
   ],
@@ -378,40 +378,40 @@
   [
     "Metallica",
     Album {
-      "albumId": 35,
+      "albumId": 148,
       "artist": undefined,
       "artistId": 50,
-      "title": "Garage Inc. (Disc 1)",
+      "title": "Black Album",
       "tracks": [],
     },
   ],
   [
     "Queen",
     Album {
-      "albumId": 36,
+      "albumId": 185,
       "artist": undefined,
       "artistId": 51,
-      "title": "Greatest Hits II",
+      "title": "Greatest Hits I",
       "tracks": [],
     },
   ],
   [
     "Kiss",
     Album {
-      "albumId": 37,
+      "albumId": 126,
       "artist": undefined,
       "artistId": 52,
-      "title": "Greatest Kiss",
+      "title": "Unplugged [Live]",
       "tracks": [],
     },
   ],
   [
     "Spyro Gyra",
     Album {
-      "albumId": 38,
+      "albumId": 204,
       "artist": undefined,
       "artistId": 53,
-      "title": "Heart of the Night",
+      "title": "Morning Dance",
       "tracks": [],
     },
   ],
@@ -468,10 +468,10 @@
   [
     "Santana",
     Album {
-      "albumId": 46,
+      "albumId": 197,
       "artist": undefined,
       "artistId": 59,
-      "title": "Supernatural",
+      "title": "Santana - As Years Go By",
       "tracks": [],
     },
   ],
@@ -510,10 +510,10 @@
   [
     "Miles Davis",
     Album {
-      "albumId": 48,
+      "albumId": 157,
       "artist": undefined,
       "artistId": 68,
-      "title": "The Essential Miles Davis [Disc 1]",
+      "title": "Miles Ahead",
       "tracks": [],
     },
   ],
@@ -706,10 +706,10 @@
   [
     "Iron Maiden",
     Album {
-      "albumId": 94,
+      "albumId": 100,
       "artist": undefined,
       "artistId": 90,
-      "title": "A Matter of Life and Death",
+      "title": "Iron Maiden",
       "tracks": [],
     },
   ],

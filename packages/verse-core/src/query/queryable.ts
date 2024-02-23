@@ -360,11 +360,7 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
    * @returns `true` if any elements in the sequence satisfy the condition, otherwise `false`.
    */
   any(predicate?: (obj: T) => boolean) {
-    if (predicate) {
-      this.where(predicate);
-    }
-
-    this.expression = this.op("any");
+    this.expression = this.op("any", ...(predicate ? [jsep(predicate.toString())] : []));
 
     return false;
   }
@@ -389,11 +385,7 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
    * @throws Error, if no such element is found.
    */
   first(predicate?: (obj: T) => boolean) {
-    if (predicate) {
-      this.where(predicate);
-    }
-
-    this.expression = this.op("first");
+    this.expression = this.op("first", ...(predicate ? [jsep(predicate.toString())] : []));
 
     return this as unknown as T;
   }
@@ -405,11 +397,7 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
    * @param predicate A function to test each element for a condition.
    */
   maybeFirst(predicate?: (obj: T) => boolean) {
-    if (predicate) {
-      this.where(predicate);
-    }
-
-    this.expression = this.op("maybeFirst");
+    this.expression = this.op("maybeFirst", ...(predicate ? [jsep(predicate.toString())] : []));
 
     return this as unknown as T | undefined;
   }
@@ -422,11 +410,7 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
    * @throws Error, if no such element is found, or multiple elements satisfy the condition.
    */
   single(predicate?: (obj: T) => boolean) {
-    if (predicate) {
-      this.where(predicate);
-    }
-
-    this.expression = this.op("single");
+    this.expression = this.op("single", ...(predicate ? [jsep(predicate.toString())] : []));
 
     return this as unknown as T;
   }
@@ -440,11 +424,7 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
    * @throws Error, if multiple elements satisfy the condition.
    */
   maybeSingle(predicate?: (obj: T) => boolean) {
-    if (predicate) {
-      this.where(predicate);
-    }
-
-    this.expression = this.op("maybeSingle");
+    this.expression = this.op("maybeSingle", ...(predicate ? [jsep(predicate.toString())] : []));
 
     return this as unknown as T | undefined;
   }
@@ -768,11 +748,11 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
    * @returns A promise that resolves with `true` if any elements in the sequence satisfy the condition, otherwise `false`.
    */
   any<A extends unknown[]>(predicate?: (obj: T, ...args: A) => boolean, ...args: A) {
-    if (predicate) {
-      this.where(predicate, ...args);
-    }
+    const expressions = predicate
+      ? this.#curry(jsep(predicate.toString()), args as Primitive[])
+      : [];
 
-    this.expression = this.op("any");
+    this.expression = this.op("any", ...expressions);
 
     return this.#executeOne<boolean>();
   }
@@ -801,11 +781,11 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
    * @throws Error, if no such element is found.
    */
   first<A extends unknown[]>(predicate?: (obj: T, ...args: A) => boolean, ...args: A) {
-    if (predicate) {
-      this.where(predicate, ...args);
-    }
+    const expressions = predicate
+      ? this.#curry(jsep(predicate.toString()), args as Primitive[])
+      : [];
 
-    this.expression = this.op("first");
+    this.expression = this.op("first", ...expressions);
 
     return this.#executeOne<T>();
   }
@@ -819,11 +799,11 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
    * @returns A promise that resolves with the first element in the sequence that satisfies the condition, or `undefined` if no such element is found.
    */
   maybeFirst<A extends unknown[]>(predicate?: (obj: T, ...args: A) => boolean, ...args: A) {
-    if (predicate) {
-      this.where(predicate, ...args);
-    }
+    const expressions = predicate
+      ? this.#curry(jsep(predicate.toString()), args as Primitive[])
+      : [];
 
-    this.expression = this.op("maybeFirst");
+    this.expression = this.op("maybeFirst", ...expressions);
 
     return this.#executeOne<T | undefined>();
   }
@@ -837,11 +817,11 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
    * @throws Error, if no such element is found, or multiple elements satisfy the condition.
    */
   single<A extends unknown[]>(predicate?: (obj: T, ...args: A) => boolean, ...args: A) {
-    if (predicate) {
-      this.where(predicate, ...args);
-    }
+    const expressions = predicate
+      ? this.#curry(jsep(predicate.toString()), args as Primitive[])
+      : [];
 
-    this.expression = this.op("single");
+    this.expression = this.op("single", ...expressions);
 
     return this.#executeOne<T>();
   }
@@ -856,11 +836,11 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
    * @throws Error, if multiple elements satisfy the condition.
    */
   maybeSingle<A extends unknown[]>(predicate?: (obj: T, ...args: A) => boolean, ...args: A) {
-    if (predicate) {
-      this.where(predicate, ...args);
-    }
+    const expressions = predicate
+      ? this.#curry(jsep(predicate.toString()), args as Primitive[])
+      : [];
 
-    this.expression = this.op("maybeSingle");
+    this.expression = this.op("maybeSingle", ...expressions);
 
     return this.#executeOne<T | undefined>();
   }

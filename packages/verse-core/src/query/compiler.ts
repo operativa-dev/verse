@@ -334,11 +334,12 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
   }
 
   compile(expr: Expression) {
-    const sql = this.visit(expr)
+    let sql = this.visit(expr)
       .accept(new SqlNullSemantics())
       .accept(new OrderByLifter())
-      .accept(new EagerLoader(this.context))
-      .accept(new SqlOptimizer());
+      .accept(new EagerLoader(this.context));
+
+    sql = new SqlOptimizer().optimize(sql);
 
     return {
       sql,
@@ -857,15 +858,25 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
             });
           }
 
-          if (op === "any" && arity0) {
-            const projection = new SqlExists(object);
-
+          if (op === "any" && (arity0 || arity1or2)) {
             if (this.#scopes.size === 0) {
               this.#cardinality = "one";
             }
 
-            return new SqlSelect({
-              projection,
+            let select = object;
+
+            return this.#withLocals(expr, () => {
+              if (arity1or2) {
+                select = new SqlSelect({
+                  projection,
+                  from,
+                  where: this.visit(expr.arguments[0]),
+                });
+              }
+
+              return new SqlSelect({
+                projection: new SqlExists(select),
+              });
             });
           }
 
@@ -969,7 +980,7 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
             });
           }
 
-          if (op === "first" && arity0) {
+          if (op === "first" && (arity0 || arity1or2)) {
             if (this.#scopes.size === 0) {
               this.#cardinality = "one";
             } else {
@@ -979,26 +990,32 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
               );
             }
 
-            return new SqlSelect({
-              projection,
-              from,
-              limit: new SqlNumber(1),
+            return this.#withLocals(expr, () => {
+              return new SqlSelect({
+                projection,
+                from,
+                limit: new SqlNumber(1),
+                where: this.visit(expr.arguments[0]),
+              });
             });
           }
 
-          if (op === "maybeFirst" && arity0) {
+          if (op === "maybeFirst" && (arity0 || arity1or2)) {
             if (this.#scopes.size === 0) {
               this.#cardinality = "optional";
             }
 
-            return new SqlSelect({
-              projection,
-              from,
-              limit: new SqlNumber(1),
+            return this.#withLocals(expr, () => {
+              return new SqlSelect({
+                projection,
+                from,
+                limit: new SqlNumber(1),
+                where: this.visit(expr.arguments[0]),
+              });
             });
           }
 
-          if (op === "single" && arity0) {
+          if (op === "single" && (arity0 || arity1or2)) {
             if (this.#scopes.size === 0) {
               this.#cardinality = "one";
             } else {
@@ -1008,22 +1025,28 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
               );
             }
 
-            return new SqlSelect({
-              projection,
-              from,
-              limit: new SqlNumber(2),
+            return this.#withLocals(expr, () => {
+              return new SqlSelect({
+                projection,
+                from,
+                limit: new SqlNumber(2),
+                where: this.visit(expr.arguments[0]),
+              });
             });
           }
 
-          if (op === "maybeSingle" && arity0) {
+          if (op === "maybeSingle" && (arity0 || arity1or2)) {
             if (this.#scopes.size === 0) {
               this.#cardinality = "optional";
             }
 
-            return new SqlSelect({
-              projection,
-              from,
-              limit: new SqlNumber(2),
+            return this.#withLocals(expr, () => {
+              return new SqlSelect({
+                projection,
+                from,
+                limit: new SqlNumber(2),
+                where: this.visit(expr.arguments[0]),
+              });
             });
           }
         } else {

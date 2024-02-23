@@ -198,7 +198,7 @@ export class SqlPrinter extends SqlVisitor<string> {
     }
 
     if (select.where) {
-      sql += `${this.#clauseSep}where ${select.where.accept(this)}`;
+      sql += `${this.#clauseSep}where ${this.#parens(select.where)}`;
     }
 
     if (select.orderBy) {

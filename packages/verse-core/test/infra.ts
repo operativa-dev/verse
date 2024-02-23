@@ -17,14 +17,6 @@ export class SqlSpy extends PrettyConsoleLogger {
   }
 }
 
-// export async function dump(query: Promise<unknown> | AsyncSequence<unknown>) {
-//   const results = isAsyncSequence(query) ? await query.toArray() : [await query];
-//   console.log("\nResults:\n");
-//   //console.log(results);
-//   console.log(stringify(results, null, 3));
-//   console.log();
-// }
-
 export const dataTest = (verse: Verse) => {
   let $data: unknown[] = [];
 
@@ -62,7 +54,7 @@ export const dbTest = (verse: Verse) => {
   });
 };
 
-function isAsyncSequence(
+export function isAsyncSequence(
   data: Promise<unknown> | AsyncSequence<unknown>
 ): data is AsyncSequence<unknown> {
   return (data as AsyncSequence<unknown>).toArray !== undefined;
