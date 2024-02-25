@@ -1315,6 +1315,10 @@ export class SqlFunction extends SqlNode {
     );
   }
 
+  override bind(binding: SqlBinding) {
+    return new SqlFunction(this.name, this.args, binding);
+  }
+
   override accept<T, S = unknown>(visitor: SqlVisitor<T>, state?: S) {
     return visitor.visitFunction(this, state);
   }

@@ -6,11 +6,8 @@ select `Id` from `Customer` where `Id` = last_insert_id()
 update `Customer` set `Name` = ? where `Id` = ?
 
 -- Executing SQL: Parameters: [$1=5]
-select `t2`.`Id`, `t2`.`Name`
-from (
-   select `t1`.`Id`, `t1`.`Name`
-   from `Customer` as `t1`
-   where `t1`.`Id` = ?
-) as `t2`
+select `t1`.`Id`, `t1`.`Name`
+from `Customer` as `t1`
+where `t1`.`Id` = ?
 limit 2
 

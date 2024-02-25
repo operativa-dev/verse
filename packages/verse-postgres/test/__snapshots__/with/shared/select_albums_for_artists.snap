@@ -7,16 +7,20 @@
     },
     [
       [
-        [
-          1,
-          "For Those About To Rock We Salute You",
-          1,
-        ],
-        [
-          4,
-          "Let There Be Rock",
-          1,
-        ],
+        Album {
+          "albumId": 1,
+          "artist": undefined,
+          "artistId": 1,
+          "title": "For Those About To Rock We Salute You",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 4,
+          "artist": undefined,
+          "artistId": 1,
+          "title": "Let There Be Rock",
+          "tracks": [],
+        },
       ],
     ],
   ],
@@ -28,16 +32,20 @@
     },
     [
       [
-        [
-          2,
-          "Balls to the Wall",
-          2,
-        ],
-        [
-          3,
-          "Restless and Wild",
-          2,
-        ],
+        Album {
+          "albumId": 2,
+          "artist": undefined,
+          "artistId": 2,
+          "title": "Balls to the Wall",
+          "tracks": [],
+        },
+        Album {
+          "albumId": 3,
+          "artist": undefined,
+          "artistId": 2,
+          "title": "Restless and Wild",
+          "tracks": [],
+        },
       ],
     ],
   ],
@@ -49,11 +57,13 @@
     },
     [
       [
-        [
-          5,
-          "Big Ones",
-          3,
-        ],
+        Album {
+          "albumId": 5,
+          "artist": undefined,
+          "artistId": 3,
+          "title": "Big Ones",
+          "tracks": [],
+        },
       ],
     ],
   ],
@@ -65,11 +75,13 @@
     },
     [
       [
-        [
-          6,
-          "Jagged Little Pill",
-          4,
-        ],
+        Album {
+          "albumId": 6,
+          "artist": undefined,
+          "artistId": 4,
+          "title": "Jagged Little Pill",
+          "tracks": [],
+        },
       ],
     ],
   ],
@@ -81,11 +93,13 @@
     },
     [
       [
-        [
-          7,
-          "Facelift",
-          5,
-        ],
+        Album {
+          "albumId": 7,
+          "artist": undefined,
+          "artistId": 5,
+          "title": "Facelift",
+          "tracks": [],
+        },
       ],
     ],
   ],

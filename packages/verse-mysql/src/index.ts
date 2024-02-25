@@ -363,7 +363,16 @@ class DialectRewriter extends SqlRewriter {
             path = (newBinary.left.right as SqlString).value;
           }
 
-          return sqlBin(left, binary.op, sqlStr(`${path}[${newBinary.right.value}]`));
+          let result = new SqlFunction(
+            "json_extract",
+            List.of(left, sqlStr(`${path}[${newBinary.right.value}]`))
+          );
+
+          if (newBinary.op === "->>") {
+            result = new SqlFunction("json_unquote", List.of(result));
+          }
+
+          return result;
         }
     }
 

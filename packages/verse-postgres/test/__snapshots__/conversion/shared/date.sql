@@ -2,11 +2,8 @@
 insert into "Entity" ("Num", "Bool", "Date") values ($1, $2, $3)
 
 -- Executing SQL: Parameters: [$1='61']
-select "t2"."Num", "t2"."Bool", "t2"."Date"
-from (
-   select "t1"."Num", "t1"."Bool", "t1"."Date"
-   from "Entity" as "t1"
-   where "t1"."Num" = $1
-) as "t2"
+select "t1"."Num", "t1"."Bool", "t1"."Date"
+from "Entity" as "t1"
+where "t1"."Num" = $1
 limit 2
 

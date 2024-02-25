@@ -3,12 +3,9 @@ select "t5"."c0", "t5"."ArtistId", "t5"."Name", "t5"."c1", "t7"."AlbumId", "t7".
 from (
    select 42 as "c0", "t4"."ArtistId", "t4"."Name", 'abc' as "c1"
    from (
-      select "t3"."ArtistId", "t3"."Name"
-      from (
-         select "t2"."ArtistId", "t2"."Name"
-         from "Artist" as "t2"
-         order by "t2"."Name"
-      ) as "t3"
+      select "t2"."ArtistId", "t2"."Name"
+      from "Artist" as "t2"
+      order by "t2"."Name"
       limit 50
    ) as "t4"
    order by "t4"."Name"
