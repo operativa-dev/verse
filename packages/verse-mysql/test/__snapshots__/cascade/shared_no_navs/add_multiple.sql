@@ -15,38 +15,26 @@ insert into `Order` (`CustomerId`, `ProductId`) values (?, ?);
 select `Oid` from `Order` where `Oid` = last_insert_id()
 
 -- Executing SQL: Parameters: []
-select `t2`.`Cid`, `t2`.`Name`
-from (
-   select `t1`.`Cid`, `t1`.`Name`
-   from `Customer` as `t1`
-   where `t1`.`Name` = 'Customer X'
-) as `t2`
+select `t1`.`Cid`, `t1`.`Name`
+from `Customer` as `t1`
+where `t1`.`Name` = 'Customer X'
 limit 2
 
 -- Executing SQL: Parameters: [$1=422]
-select `t2`.`Oid`, `t2`.`CustomerId`, `t2`.`ProductId`
-from (
-   select `t1`.`Oid`, `t1`.`CustomerId`, `t1`.`ProductId`
-   from `Order` as `t1`
-   where `t1`.`CustomerId` = ?
-) as `t2`
+select `t1`.`Oid`, `t1`.`CustomerId`, `t1`.`ProductId`
+from `Order` as `t1`
+where `t1`.`CustomerId` = ?
 limit 2
 
 -- Executing SQL: Parameters: []
-select `t2`.`Cid`, `t2`.`Name`
-from (
-   select `t1`.`Cid`, `t1`.`Name`
-   from `Customer` as `t1`
-   where `t1`.`Name` = 'Customer Y'
-) as `t2`
+select `t1`.`Cid`, `t1`.`Name`
+from `Customer` as `t1`
+where `t1`.`Name` = 'Customer Y'
 limit 2
 
 -- Executing SQL: Parameters: [$1=423]
-select `t2`.`Oid`, `t2`.`CustomerId`, `t2`.`ProductId`
-from (
-   select `t1`.`Oid`, `t1`.`CustomerId`, `t1`.`ProductId`
-   from `Order` as `t1`
-   where `t1`.`CustomerId` = ?
-) as `t2`
+select `t1`.`Oid`, `t1`.`CustomerId`, `t1`.`ProductId`
+from `Order` as `t1`
+where `t1`.`CustomerId` = ?
 limit 2
 

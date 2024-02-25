@@ -2,11 +2,8 @@
 insert into "Entity" ("Num", "Bool", "Date") values (@p0, @p1, @p2)
 
 -- Executing SQL: Parameters: []
-select "t2"."Num", "t2"."Bool", "t2"."Date"
-from (
-   select "t1"."Num", "t1"."Bool", "t1"."Date"
-   from "Entity" as "t1"
-   where ("t1"."Num" = '63') and ("t1"."Date" = '1979-10-12T10:13:14.000Z')
-) as "t2"
+select "t1"."Num", "t1"."Bool", "t1"."Date"
+from "Entity" as "t1"
+where ("t1"."Num" = '63') and ("t1"."Date" = '1979-10-12T10:13:14.000Z')
 order by 1 offset 0 rows fetch next 2 rows only
 

@@ -2,11 +2,8 @@
 insert into "Customer" ("Name", "Deleted", "Street", "City", "Country") values (?, ?, ?, ?, ?) returning "Id"
 
 -- Executing SQL: Parameters: [$1=2]
-select "t2"."Id", "t2"."Name", "t2"."Deleted", "t2"."Street", "t2"."City", "t2"."Country"
-from (
-   select "t1"."Id", "t1"."Name", "t1"."Deleted", "t1"."Street", "t1"."City", "t1"."Country"
-   from "Customer" as "t1"
-   where "t1"."Id" = ?
-) as "t2"
+select "t1"."Id", "t1"."Name", "t1"."Deleted", "t1"."Street", "t1"."City", "t1"."Country"
+from "Customer" as "t1"
+where "t1"."Id" = ?
 limit 2
 

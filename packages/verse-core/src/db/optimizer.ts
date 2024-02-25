@@ -21,7 +21,7 @@ export class SqlOptimizer {
       sql = sql
         .accept(new IdentitySelectRemover())
         .accept(new JoinLifter())
-        .accept(new ProjectionEliminator());
+        .accept(new OuterQueryEliminator());
 
       if (prevSql === sql) {
         break;
@@ -40,35 +40,38 @@ export class SqlOptimizer {
   }
 }
 
-class ProjectionEliminator extends SqlRewriter {
+class OuterQueryEliminator extends SqlRewriter {
   override visitSelect(select: SqlSelect): SqlNode {
-    let newSelect = super.visitSelect(select) as SqlSelect;
+    let outerSelect = super.visitSelect(select) as SqlSelect;
 
-    if (
-      newSelect.from instanceof SqlAlias &&
-      newSelect.from.target instanceof SqlSelect &&
-      newSelect.from.target.projection instanceof SqlComposite &&
-      this.#canEliminate(newSelect)
-    ) {
-      return newSelect.from.target.withProjection(
-        new ProjectionRemapper(
-          newSelect.from.target.projection,
-          newSelect.from.alias
-        ).rewriteProjection(newSelect.projection)
-      );
+    if (outerSelect.from instanceof SqlAlias && outerSelect.from.target instanceof SqlSelect) {
+      const innerSelect = outerSelect.from.target;
+
+      if (this.#canEliminate(outerSelect, innerSelect)) {
+        let result = innerSelect.withProjection(
+          new ProjectionRemapper(innerSelect.projection, outerSelect.from.alias).rewriteProjection(
+            outerSelect.projection
+          )
+        );
+
+        if (outerSelect.limit || outerSelect.offset) {
+          result = result.withLimit(outerSelect.limit).withOffset(outerSelect.offset);
+        }
+
+        return result;
+      }
     }
 
-    return newSelect;
+    return outerSelect;
   }
 
-  #canEliminate(select: SqlSelect) {
+  #canEliminate(outerSelect: SqlSelect, innerSelect: SqlSelect) {
     return (
-      !select.joins &&
-      !select.where &&
-      !select.orderBy &&
-      !select.groupBy &&
-      !select.limit &&
-      !select.offset
+      !outerSelect.joins &&
+      !outerSelect.where &&
+      !outerSelect.orderBy &&
+      !outerSelect.groupBy &&
+      ((!outerSelect.limit && !outerSelect.offset) || (!innerSelect.limit && !innerSelect.offset))
     );
   }
 }
@@ -89,7 +92,6 @@ class JoinLifter extends SqlRewriter {
           if (
             !newSelect.joins &&
             innerAlias.target instanceof SqlIdentifier &&
-            innerSelect.projection instanceof SqlComposite &&
             innerSelect.joins &&
             this.#isLiftable(innerSelect)
           ) {
@@ -121,7 +123,7 @@ class ProjectionRemapper extends SqlRewriter {
   #aliasesValid = false;
 
   constructor(
-    private projection: SqlComposite,
+    private projection: SqlNode,
     private remappedAlias: SqlIdentifier
   ) {
     super();

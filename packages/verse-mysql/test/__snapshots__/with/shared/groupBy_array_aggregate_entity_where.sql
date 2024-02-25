@@ -6,5 +6,5 @@ from (
    left join `Album` as `t2` on `t1`.`ArtistId` = `t2`.`ArtistId`
    group by `t1`.`ArtistId`
 ) as `t5`
-where `t5`.`c1` ->> '$[0][1]' like 'T%'
+where json_unquote(json_extract(json_extract(`t5`.`c1`, '$[0]'), '$[1]')) like 'T%'
 
