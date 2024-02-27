@@ -23,7 +23,7 @@ jobs:
         uses: ./.github/composite-actions/install
 
       - name: Build
-        run: turbo build
+        run: pnpm run build
 
       - name: Deploy to GitHub Pages
         run: pnpm deploy:docs
