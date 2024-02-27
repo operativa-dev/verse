@@ -23,7 +23,7 @@ jobs:
         uses: ./.github/composite-actions/install
 
       - name: Build
-        run: turbo run build
+        run: pnpm run build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
