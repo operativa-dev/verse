@@ -5,7 +5,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "pnpm tsx inject.ts"
+    "build": "tsc && pnpm tsx inject.ts"
   },
   "dependencies": {
     "chokidar": "^3.6.0",

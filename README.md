@@ -102,7 +102,9 @@ for await (const todo of query) {
 
 const uow = db.uow();
 
-const todo = await uow.todos.where(todo => todo.title === "Do the dishes").single();
+const todo = await uow.todos
+  .where(todo => todo.title === "Do the dishes")
+  .single();
 
 todo.completed = true;
 
