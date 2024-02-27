@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.1.1">
-<title data-rh="true">Class: AsyncQueryable\&lt;T\&gt; | Verse</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://verse.operativa.dev/verse/docs/api/query/queryable/classes/AsyncQueryable"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Class: AsyncQueryable\&lt;T\&gt; | Verse"><meta data-rh="true" name="description" content="Fluent query operators used when constructing queries."><meta data-rh="true" property="og:description" content="Fluent query operators used when constructing queries."><link data-rh="true" rel="icon" href="/verse/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://verse.operativa.dev/verse/docs/api/query/queryable/classes/AsyncQueryable"><link data-rh="true" rel="alternate" href="https://verse.operativa.dev/verse/docs/api/query/queryable/classes/AsyncQueryable" hreflang="en"><link data-rh="true" rel="alternate" href="https://verse.operativa.dev/verse/docs/api/query/queryable/classes/AsyncQueryable" hreflang="x-default"><link rel="stylesheet" href="/verse/assets/css/styles.97e71bf7.css">
-<script src="/verse/assets/js/runtime~main.f4939a2f.js" defer="defer"></script>
+<title data-rh="true">AsyncQueryable | Verse</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://verse.operativa.dev/verse/docs/api/query/queryable/classes/AsyncQueryable"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="AsyncQueryable | Verse"><meta data-rh="true" name="description" content="Fluent query operators used when constructing queries."><meta data-rh="true" property="og:description" content="Fluent query operators used when constructing queries."><link data-rh="true" rel="icon" href="/verse/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://verse.operativa.dev/verse/docs/api/query/queryable/classes/AsyncQueryable"><link data-rh="true" rel="alternate" href="https://verse.operativa.dev/verse/docs/api/query/queryable/classes/AsyncQueryable" hreflang="en"><link data-rh="true" rel="alternate" href="https://verse.operativa.dev/verse/docs/api/query/queryable/classes/AsyncQueryable" hreflang="x-default"><link rel="stylesheet" href="/verse/assets/css/styles.97e71bf7.css">
+<script src="/verse/assets/js/runtime~main.e66294b6.js" defer="defer"></script>
 <script src="/verse/assets/js/main.06cd7bf4.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -12,7 +12,7 @@
 <p>Fluent query operators used when constructing queries.</p>
 <p>A query can be created by accessing entity sets exposed by the <a href="/verse/docs/api/verse/classes/Verse#from">Verse.from</a> property.</p>
 <h2 class="anchor anchorWithStickyNavbar_xl8d" id="example">Example<a href="#example" class="hash-link" aria-label="Direct link to Example" title="Direct link to Example">​</a></h2>
-<div class="language-ts codeBlockContainer_XM91 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_wMaH"><pre tabindex="0" class="prism-code language-ts codeBlock_sg9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_zlFs"><span class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">const</span><span class="token plain"> customer </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token keyword" style="color:#00009f">await</span><span class="token plain"> db</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">from</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">customers</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">.</span><span class="token function" style="color:#d73a49">where</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">c </span><span class="token operator" style="color:#393A34">=&gt;</span><span class="token plain"> c</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">name </span><span class="token operator" style="color:#393A34">===</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;ACME Corp.&quot;</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">.</span><span class="token function" style="color:#d73a49">single</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></span></code></pre><div class="buttonGroup_Jj18"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_LIi5" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_hx_h"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_v708"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<div class="language-ts codeBlockContainer_XM91 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_wMaH"><pre tabindex="0" class="prism-code language-ts codeBlock_sg9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_zlFs codeBlockLinesWithNumbering_cWtw"><span class="token-line codeLine_G9ry" style="color:#393A34"><span class="codeLineNumber_pyBC"></span><span class="codeLineContent_pF2r"><span class="token keyword" style="color:#00009f">const</span><span class="token plain"> customer </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_G9ry" style="color:#393A34"><span class="codeLineNumber_pyBC"></span><span class="codeLineContent_pF2r"><span class="token plain">  </span><span class="token keyword" style="color:#00009f">await</span><span class="token plain"> db</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">from</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">customers</span></span><br></span><span class="token-line codeLine_G9ry" style="color:#393A34"><span class="codeLineNumber_pyBC"></span><span class="codeLineContent_pF2r"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">.</span><span class="token function" style="color:#d73a49">where</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">c </span><span class="token operator" style="color:#393A34">=&gt;</span><span class="token plain"> c</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">name </span><span class="token operator" style="color:#393A34">===</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;ACME Corp.&quot;</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_G9ry" style="color:#393A34"><span class="codeLineNumber_pyBC"></span><span class="codeLineContent_pF2r"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">.</span><span class="token function" style="color:#d73a49">single</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span></span><br></span></code></pre><div class="buttonGroup_Jj18"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_LIi5" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_hx_h"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_v708"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <h2 class="anchor anchorWithStickyNavbar_xl8d" id="extends">Extends<a href="#extends" class="hash-link" aria-label="Direct link to Extends" title="Direct link to Extends">​</a></h2>
 <ul>
 <li><a href="/verse/docs/api/query/queryable/classes/AbstractQueryable"><code>AbstractQueryable</code></a></li>
@@ -37,7 +37,7 @@
 <p><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" target="_blank" rel="noopener noreferrer"><code>Promise</code></a>&lt; <code>boolean</code> &gt;</p>
 <p>A promise that resolves with <code>true</code> if all elements in the sequence satisfy the condition, otherwise <code>false</code>.</p>
 <h4 class="anchor anchorWithStickyNavbar_xl8d" id="source">Source<a href="#source" class="hash-link" aria-label="Direct link to Source" title="Direct link to Source">​</a></h4>
-<p><a href="https://github.com/operativa-dev/verse/blob/4eae236/packages/verse-core/src/query/queryable.ts#L767" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:767</a></p>
+<p><a href="https://github.com/operativa-dev/verse/blob/0100504/packages/verse-core/src/query/queryable.ts#L767" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:767</a></p>
 <hr>
 <h3 class="anchor anchorWithStickyNavbar_xl8d" id="any">any()<a href="#any" class="hash-link" aria-label="Direct link to any()" title="Direct link to any()">​</a></h3>
 <blockquote>
@@ -52,7 +52,7 @@
 <p><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" target="_blank" rel="noopener noreferrer"><code>Promise</code></a>&lt; <code>boolean</code> &gt;</p>
 <p>A promise that resolves with <code>true</code> if any elements in the sequence satisfy the condition, otherwise <code>false</code>.</p>
 <h4 class="anchor anchorWithStickyNavbar_xl8d" id="source-1">Source<a href="#source-1" class="hash-link" aria-label="Direct link to Source" title="Direct link to Source">​</a></h4>
-<p><a href="https://github.com/operativa-dev/verse/blob/4eae236/packages/verse-core/src/query/queryable.ts#L750" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:750</a></p>
+<p><a href="https://github.com/operativa-dev/verse/blob/0100504/packages/verse-core/src/query/queryable.ts#L750" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:750</a></p>
 <hr>
 <h3 class="anchor anchorWithStickyNavbar_xl8d" id="array">array()<a href="#array" class="hash-link" aria-label="Direct link to array()" title="Direct link to array()">​</a></h3>
 <blockquote>
@@ -63,7 +63,7 @@
 <p><a href="/verse/docs/api/query/queryable/classes/AsyncQueryable"><code>AsyncQueryable</code></a>&lt; <code>T</code>[] &gt;</p>
 <p>The queryable result of the array operation.</p>
 <h4 class="anchor anchorWithStickyNavbar_xl8d" id="source-2">Source<a href="#source-2" class="hash-link" aria-label="Direct link to Source" title="Direct link to Source">​</a></h4>
-<p><a href="https://github.com/operativa-dev/verse/blob/4eae236/packages/verse-core/src/query/queryable.ts#L907" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:907</a></p>
+<p><a href="https://github.com/operativa-dev/verse/blob/0100504/packages/verse-core/src/query/queryable.ts#L907" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:907</a></p>
 <hr>
 <h3 class="anchor anchorWithStickyNavbar_xl8d" id="avg">avg()<a href="#avg" class="hash-link" aria-label="Direct link to avg()" title="Direct link to avg()">​</a></h3>
 <blockquote>
@@ -76,7 +76,7 @@
 <p><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" target="_blank" rel="noopener noreferrer"><code>Promise</code></a>&lt; <code>number</code> &gt;</p>
 <p>A promise that resolves with the average value of the specified numerical expression for the sequence.</p>
 <h4 class="anchor anchorWithStickyNavbar_xl8d" id="source-3">Source<a href="#source-3" class="hash-link" aria-label="Direct link to Source" title="Direct link to Source">​</a></h4>
-<p><a href="https://github.com/operativa-dev/verse/blob/4eae236/packages/verse-core/src/query/queryable.ts#L897" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:897</a></p>
+<p><a href="https://github.com/operativa-dev/verse/blob/0100504/packages/verse-core/src/query/queryable.ts#L897" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:897</a></p>
 <hr>
 <h3 class="anchor anchorWithStickyNavbar_xl8d" id="count">count()<a href="#count" class="hash-link" aria-label="Direct link to count()" title="Direct link to count()">​</a></h3>
 <blockquote>
@@ -87,7 +87,7 @@
 <p><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" target="_blank" rel="noopener noreferrer"><code>Promise</code></a>&lt; <code>number</code> &gt;</p>
 <p>A promise that resolves with the number of elements in the sequence.</p>
 <h4 class="anchor anchorWithStickyNavbar_xl8d" id="source-4">Source<a href="#source-4" class="hash-link" aria-label="Direct link to Source" title="Direct link to Source">​</a></h4>
-<p><a href="https://github.com/operativa-dev/verse/blob/4eae236/packages/verse-core/src/query/queryable.ts#L853" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:853</a></p>
+<p><a href="https://github.com/operativa-dev/verse/blob/0100504/packages/verse-core/src/query/queryable.ts#L853" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:853</a></p>
 <hr>
 <h3 class="anchor anchorWithStickyNavbar_xl8d" id="distinct">distinct()<a href="#distinct" class="hash-link" aria-label="Direct link to distinct()" title="Direct link to distinct()">​</a></h3>
 <blockquote>
@@ -98,7 +98,7 @@
 <p><a href="/verse/docs/api/query/queryable/classes/AsyncQueryable"><code>AsyncQueryable</code></a>&lt; <code>T</code> &gt;</p>
 <p>The queryable result of the distinct operation.</p>
 <h4 class="anchor anchorWithStickyNavbar_xl8d" id="source-5">Source<a href="#source-5" class="hash-link" aria-label="Direct link to Source" title="Direct link to Source">​</a></h4>
-<p><a href="https://github.com/operativa-dev/verse/blob/4eae236/packages/verse-core/src/query/queryable.ts#L610" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:610</a></p>
+<p><a href="https://github.com/operativa-dev/verse/blob/0100504/packages/verse-core/src/query/queryable.ts#L610" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:610</a></p>
 <hr>
 <h3 class="anchor anchorWithStickyNavbar_xl8d" id="first">first()<a href="#first" class="hash-link" aria-label="Direct link to first()" title="Direct link to first()">​</a></h3>
 <blockquote>
@@ -115,7 +115,7 @@
 <h4 class="anchor anchorWithStickyNavbar_xl8d" id="throws">Throws<a href="#throws" class="hash-link" aria-label="Direct link to Throws" title="Direct link to Throws">​</a></h4>
 <p>Error, if no such element is found.</p>
 <h4 class="anchor anchorWithStickyNavbar_xl8d" id="source-6">Source<a href="#source-6" class="hash-link" aria-label="Direct link to Source" title="Direct link to Source">​</a></h4>
-<p><a href="https://github.com/operativa-dev/verse/blob/4eae236/packages/verse-core/src/query/queryable.ts#L783" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:783</a></p>
+<p><a href="https://github.com/operativa-dev/verse/blob/0100504/packages/verse-core/src/query/queryable.ts#L783" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:783</a></p>
 <hr>
 <h3 class="anchor anchorWithStickyNavbar_xl8d" id="groupby">groupBy()<a href="#groupby" class="hash-link" aria-label="Direct link to groupBy()" title="Direct link to groupBy()">​</a></h3>
 <blockquote>
@@ -130,7 +130,7 @@
 <p><a href="/verse/docs/api/query/queryable/classes/AsyncQueryable"><code>AsyncQueryable</code></a>&lt; <code>TResult</code> &gt;</p>
 <p>The queryable result of the groupBy operation.</p>
 <h4 class="anchor anchorWithStickyNavbar_xl8d" id="source-7">Source<a href="#source-7" class="hash-link" aria-label="Direct link to Source" title="Direct link to Source">​</a></h4>
-<p><a href="https://github.com/operativa-dev/verse/blob/4eae236/packages/verse-core/src/query/queryable.ts#L713" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:713</a></p>
+<p><a href="https://github.com/operativa-dev/verse/blob/0100504/packages/verse-core/src/query/queryable.ts#L713" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:713</a></p>
 <hr>
 <h3 class="anchor anchorWithStickyNavbar_xl8d" id="join">join()<a href="#join" class="hash-link" aria-label="Direct link to join()" title="Direct link to join()">​</a></h3>
 <blockquote>
@@ -145,7 +145,7 @@
 <p><a href="/verse/docs/api/query/queryable/classes/AsyncQueryable"><code>AsyncQueryable</code></a>&lt; <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#parameterstype" target="_blank" rel="noopener noreferrer"><code>Parameters</code></a>&lt; <code>C</code> &gt; &gt;</p>
 <p>The queryable result of the join operation.</p>
 <h4 class="anchor anchorWithStickyNavbar_xl8d" id="source-8">Source<a href="#source-8" class="hash-link" aria-label="Direct link to Source" title="Direct link to Source">​</a></h4>
-<p><a href="https://github.com/operativa-dev/verse/blob/4eae236/packages/verse-core/src/query/queryable.ts#L623" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:623</a></p>
+<p><a href="https://github.com/operativa-dev/verse/blob/0100504/packages/verse-core/src/query/queryable.ts#L623" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:623</a></p>
 <hr>
 <h3 class="anchor anchorWithStickyNavbar_xl8d" id="leftjoin">leftJoin()<a href="#leftjoin" class="hash-link" aria-label="Direct link to leftJoin()" title="Direct link to leftJoin()">​</a></h3>
 <blockquote>
@@ -160,7 +160,7 @@
 <p><a href="/verse/docs/api/query/queryable/classes/AsyncQueryable"><code>AsyncQueryable</code></a>&lt; <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#parameterstype" target="_blank" rel="noopener noreferrer"><code>Parameters</code></a>&lt; <code>C</code> &gt; &gt;</p>
 <p>The queryable result of the join operation.</p>
 <h4 class="anchor anchorWithStickyNavbar_xl8d" id="source-9">Source<a href="#source-9" class="hash-link" aria-label="Direct link to Source" title="Direct link to Source">​</a></h4>
-<p><a href="https://github.com/operativa-dev/verse/blob/4eae236/packages/verse-core/src/query/queryable.ts#L645" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:645</a></p>
+<p><a href="https://github.com/operativa-dev/verse/blob/0100504/packages/verse-core/src/query/queryable.ts#L645" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:645</a></p>
 <hr>
 <h3 class="anchor anchorWithStickyNavbar_xl8d" id="limit">limit()<a href="#limit" class="hash-link" aria-label="Direct link to limit()" title="Direct link to limit()">​</a></h3>
 <blockquote>
@@ -173,7 +173,7 @@
 <p><a href="/verse/docs/api/query/queryable/classes/AsyncQueryable"><code>AsyncQueryable</code></a>&lt; <code>T</code> &gt;</p>
 <p>The queryable result of the limit operation.</p>
 <h4 class="anchor anchorWithStickyNavbar_xl8d" id="source-10">Source<a href="#source-10" class="hash-link" aria-label="Direct link to Source" title="Direct link to Source">​</a></h4>
-<p><a href="https://github.com/operativa-dev/verse/blob/4eae236/packages/verse-core/src/query/queryable.ts#L725" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:725</a></p>
+<p><a href="https://github.com/operativa-dev/verse/blob/0100504/packages/verse-core/src/query/queryable.ts#L725" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:725</a></p>
 <hr>
 <h3 class="anchor anchorWithStickyNavbar_xl8d" id="max">max()<a href="#max" class="hash-link" aria-label="Direct link to max()" title="Direct link to max()">​</a></h3>
 <blockquote>
@@ -186,7 +186,7 @@
 <p><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" target="_blank" rel="noopener noreferrer"><code>Promise</code></a>&lt; <code>number</code> &gt;</p>
 <p>A promise that resolves with the maximum value of the specified numerical expression for the sequence.</p>
 <h4 class="anchor anchorWithStickyNavbar_xl8d" id="source-11">Source<a href="#source-11" class="hash-link" aria-label="Direct link to Source" title="Direct link to Source">​</a></h4>
-<p><a href="https://github.com/operativa-dev/verse/blob/4eae236/packages/verse-core/src/query/queryable.ts#L875" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:875</a></p>
+<p><a href="https://github.com/operativa-dev/verse/blob/0100504/packages/verse-core/src/query/queryable.ts#L875" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:875</a></p>
 <hr>
 <h3 class="anchor anchorWithStickyNavbar_xl8d" id="maybefirst">maybeFirst()<a href="#maybefirst" class="hash-link" aria-label="Direct link to maybeFirst()" title="Direct link to maybeFirst()">​</a></h3>
 <blockquote>
@@ -202,7 +202,7 @@ if no such element is found.</p>
 <p><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" target="_blank" rel="noopener noreferrer"><code>Promise</code></a>&lt; <code>undefined</code> | <code>T</code> &gt;</p>
 <p>A promise that resolves with the first element in the sequence that satisfies the condition, or <code>undefined</code> if no such element is found.</p>
 <h4 class="anchor anchorWithStickyNavbar_xl8d" id="source-12">Source<a href="#source-12" class="hash-link" aria-label="Direct link to Source" title="Direct link to Source">​</a></h4>
-<p><a href="https://github.com/operativa-dev/verse/blob/4eae236/packages/verse-core/src/query/queryable.ts#L801" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:801</a></p>
+<p><a href="https://github.com/operativa-dev/verse/blob/0100504/packages/verse-core/src/query/queryable.ts#L801" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:801</a></p>
 <hr>
 <h3 class="anchor anchorWithStickyNavbar_xl8d" id="maybesingle">maybeSingle()<a href="#maybesingle" class="hash-link" aria-label="Direct link to maybeSingle()" title="Direct link to maybeSingle()">​</a></h3>
 <blockquote>
@@ -220,7 +220,7 @@ if no such element is found.</p>
 <h4 class="anchor anchorWithStickyNavbar_xl8d" id="throws-1">Throws<a href="#throws-1" class="hash-link" aria-label="Direct link to Throws" title="Direct link to Throws">​</a></h4>
 <p>Error, if multiple elements satisfy the condition.</p>
 <h4 class="anchor anchorWithStickyNavbar_xl8d" id="source-13">Source<a href="#source-13" class="hash-link" aria-label="Direct link to Source" title="Direct link to Source">​</a></h4>
-<p><a href="https://github.com/operativa-dev/verse/blob/4eae236/packages/verse-core/src/query/queryable.ts#L838" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:838</a></p>
+<p><a href="https://github.com/operativa-dev/verse/blob/0100504/packages/verse-core/src/query/queryable.ts#L838" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:838</a></p>
 <hr>
 <h3 class="anchor anchorWithStickyNavbar_xl8d" id="min">min()<a href="#min" class="hash-link" aria-label="Direct link to min()" title="Direct link to min()">​</a></h3>
 <blockquote>
@@ -233,7 +233,7 @@ if no such element is found.</p>
 <p><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" target="_blank" rel="noopener noreferrer"><code>Promise</code></a>&lt; <code>number</code> &gt;</p>
 <p>A promise that resolves with the minimum value of the specified numerical expression for the sequence.</p>
 <h4 class="anchor anchorWithStickyNavbar_xl8d" id="source-14">Source<a href="#source-14" class="hash-link" aria-label="Direct link to Source" title="Direct link to Source">​</a></h4>
-<p><a href="https://github.com/operativa-dev/verse/blob/4eae236/packages/verse-core/src/query/queryable.ts#L864" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:864</a></p>
+<p><a href="https://github.com/operativa-dev/verse/blob/0100504/packages/verse-core/src/query/queryable.ts#L864" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:864</a></p>
 <hr>
 <h3 class="anchor anchorWithStickyNavbar_xl8d" id="offset">offset()<a href="#offset" class="hash-link" aria-label="Direct link to offset()" title="Direct link to offset()">​</a></h3>
 <blockquote>
@@ -246,7 +246,7 @@ if no such element is found.</p>
 <p><a href="/verse/docs/api/query/queryable/classes/AsyncQueryable"><code>AsyncQueryable</code></a>&lt; <code>T</code> &gt;</p>
 <p>The queryable result of the offset operation.</p>
 <h4 class="anchor anchorWithStickyNavbar_xl8d" id="source-15">Source<a href="#source-15" class="hash-link" aria-label="Direct link to Source" title="Direct link to Source">​</a></h4>
-<p><a href="https://github.com/operativa-dev/verse/blob/4eae236/packages/verse-core/src/query/queryable.ts#L737" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:737</a></p>
+<p><a href="https://github.com/operativa-dev/verse/blob/0100504/packages/verse-core/src/query/queryable.ts#L737" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:737</a></p>
 <hr>
 <h3 class="anchor anchorWithStickyNavbar_xl8d" id="op">op()<a href="#op" class="hash-link" aria-label="Direct link to op()" title="Direct link to op()">​</a></h3>
 <blockquote>
@@ -295,7 +295,7 @@ if no such element is found.</p>
 <h4 class="anchor anchorWithStickyNavbar_xl8d" id="inherited-from">Inherited from<a href="#inherited-from" class="hash-link" aria-label="Direct link to Inherited from" title="Direct link to Inherited from">​</a></h4>
 <p><a href="/verse/docs/api/query/queryable/classes/AbstractQueryable"><code>AbstractQueryable</code></a>.<a href="/verse/docs/api/query/queryable/classes/AbstractQueryable#op"><code>op</code></a></p>
 <h4 class="anchor anchorWithStickyNavbar_xl8d" id="source-16">Source<a href="#source-16" class="hash-link" aria-label="Direct link to Source" title="Direct link to Source">​</a></h4>
-<p><a href="https://github.com/operativa-dev/verse/blob/4eae236/packages/verse-core/src/query/queryable.ts#L144" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:144</a></p>
+<p><a href="https://github.com/operativa-dev/verse/blob/0100504/packages/verse-core/src/query/queryable.ts#L144" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:144</a></p>
 <hr>
 <h3 class="anchor anchorWithStickyNavbar_xl8d" id="orderby">orderBy()<a href="#orderby" class="hash-link" aria-label="Direct link to orderBy()" title="Direct link to orderBy()">​</a></h3>
 <blockquote>
@@ -310,7 +310,7 @@ if no such element is found.</p>
 <p><a href="/verse/docs/api/query/queryable/classes/AsyncQueryable"><code>AsyncQueryable</code></a>&lt; <code>T</code> &gt;</p>
 <p>The queryable result of the orderBy operation.</p>
 <h4 class="anchor anchorWithStickyNavbar_xl8d" id="source-17">Source<a href="#source-17" class="hash-link" aria-label="Direct link to Source" title="Direct link to Source">​</a></h4>
-<p><a href="https://github.com/operativa-dev/verse/blob/4eae236/packages/verse-core/src/query/queryable.ts#L683" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:683</a></p>
+<p><a href="https://github.com/operativa-dev/verse/blob/0100504/packages/verse-core/src/query/queryable.ts#L683" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:683</a></p>
 <hr>
 <h3 class="anchor anchorWithStickyNavbar_xl8d" id="orderbydesc">orderByDesc()<a href="#orderbydesc" class="hash-link" aria-label="Direct link to orderByDesc()" title="Direct link to orderByDesc()">​</a></h3>
 <blockquote>
@@ -325,7 +325,7 @@ if no such element is found.</p>
 <p><a href="/verse/docs/api/query/queryable/classes/AsyncQueryable"><code>AsyncQueryable</code></a>&lt; <code>T</code> &gt;</p>
 <p>The queryable result of the orderByDesc operation.</p>
 <h4 class="anchor anchorWithStickyNavbar_xl8d" id="source-18">Source<a href="#source-18" class="hash-link" aria-label="Direct link to Source" title="Direct link to Source">​</a></h4>
-<p><a href="https://github.com/operativa-dev/verse/blob/4eae236/packages/verse-core/src/query/queryable.ts#L698" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:698</a></p>
+<p><a href="https://github.com/operativa-dev/verse/blob/0100504/packages/verse-core/src/query/queryable.ts#L698" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:698</a></p>
 <hr>
 <h3 class="anchor anchorWithStickyNavbar_xl8d" id="scalar">scalar()<a href="#scalar" class="hash-link" aria-label="Direct link to scalar()" title="Direct link to scalar()">​</a></h3>
 <blockquote>
@@ -338,7 +338,7 @@ if no such element is found.</p>
 <h4 class="anchor anchorWithStickyNavbar_xl8d" id="inherited-from-1">Inherited from<a href="#inherited-from-1" class="hash-link" aria-label="Direct link to Inherited from" title="Direct link to Inherited from">​</a></h4>
 <p><a href="/verse/docs/api/query/queryable/classes/AbstractQueryable"><code>AbstractQueryable</code></a>.<a href="/verse/docs/api/query/queryable/classes/AbstractQueryable#scalar"><code>scalar</code></a></p>
 <h4 class="anchor anchorWithStickyNavbar_xl8d" id="source-19">Source<a href="#source-19" class="hash-link" aria-label="Direct link to Source" title="Direct link to Source">​</a></h4>
-<p><a href="https://github.com/operativa-dev/verse/blob/4eae236/packages/verse-core/src/query/queryable.ts#L160" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:160</a></p>
+<p><a href="https://github.com/operativa-dev/verse/blob/0100504/packages/verse-core/src/query/queryable.ts#L160" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:160</a></p>
 <hr>
 <h3 class="anchor anchorWithStickyNavbar_xl8d" id="select">select()<a href="#select" class="hash-link" aria-label="Direct link to select()" title="Direct link to select()">​</a></h3>
 <blockquote>
@@ -353,7 +353,7 @@ if no such element is found.</p>
 <p><a href="/verse/docs/api/query/queryable/classes/AsyncQueryable"><code>AsyncQueryable</code></a>&lt; <code>S</code> &gt;</p>
 <p>The queryable result of the select operation.</p>
 <h4 class="anchor anchorWithStickyNavbar_xl8d" id="source-20">Source<a href="#source-20" class="hash-link" aria-label="Direct link to Source" title="Direct link to Source">​</a></h4>
-<p><a href="https://github.com/operativa-dev/verse/blob/4eae236/packages/verse-core/src/query/queryable.ts#L585" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:585</a></p>
+<p><a href="https://github.com/operativa-dev/verse/blob/0100504/packages/verse-core/src/query/queryable.ts#L585" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:585</a></p>
 <hr>
 <h3 class="anchor anchorWithStickyNavbar_xl8d" id="single">single()<a href="#single" class="hash-link" aria-label="Direct link to single()" title="Direct link to single()">​</a></h3>
 <blockquote>
@@ -370,7 +370,7 @@ if no such element is found.</p>
 <h4 class="anchor anchorWithStickyNavbar_xl8d" id="throws-2">Throws<a href="#throws-2" class="hash-link" aria-label="Direct link to Throws" title="Direct link to Throws">​</a></h4>
 <p>Error, if no such element is found, or multiple elements satisfy the condition.</p>
 <h4 class="anchor anchorWithStickyNavbar_xl8d" id="source-21">Source<a href="#source-21" class="hash-link" aria-label="Direct link to Source" title="Direct link to Source">​</a></h4>
-<p><a href="https://github.com/operativa-dev/verse/blob/4eae236/packages/verse-core/src/query/queryable.ts#L819" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:819</a></p>
+<p><a href="https://github.com/operativa-dev/verse/blob/0100504/packages/verse-core/src/query/queryable.ts#L819" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:819</a></p>
 <hr>
 <h3 class="anchor anchorWithStickyNavbar_xl8d" id="sum">sum()<a href="#sum" class="hash-link" aria-label="Direct link to sum()" title="Direct link to sum()">​</a></h3>
 <blockquote>
@@ -383,7 +383,7 @@ if no such element is found.</p>
 <p><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" target="_blank" rel="noopener noreferrer"><code>Promise</code></a>&lt; <code>number</code> &gt;</p>
 <p>A promise that resolves with the sum of the specified numerical expression for the sequence.</p>
 <h4 class="anchor anchorWithStickyNavbar_xl8d" id="source-22">Source<a href="#source-22" class="hash-link" aria-label="Direct link to Source" title="Direct link to Source">​</a></h4>
-<p><a href="https://github.com/operativa-dev/verse/blob/4eae236/packages/verse-core/src/query/queryable.ts#L886" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:886</a></p>
+<p><a href="https://github.com/operativa-dev/verse/blob/0100504/packages/verse-core/src/query/queryable.ts#L886" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:886</a></p>
 <hr>
 <h3 class="anchor anchorWithStickyNavbar_xl8d" id="toarray">toArray()<a href="#toarray" class="hash-link" aria-label="Direct link to toArray()" title="Direct link to toArray()">​</a></h3>
 <blockquote>
@@ -396,7 +396,7 @@ if no such element is found.</p>
 <h4 class="anchor anchorWithStickyNavbar_xl8d" id="implementation-of">Implementation of<a href="#implementation-of" class="hash-link" aria-label="Direct link to Implementation of" title="Direct link to Implementation of">​</a></h4>
 <p><a href="/verse/docs/api/query/queryable/interfaces/AsyncSequence"><code>AsyncSequence</code></a>.<a href="/verse/docs/api/query/queryable/interfaces/AsyncSequence#toarray"><code>toArray</code></a></p>
 <h4 class="anchor anchorWithStickyNavbar_xl8d" id="source-23">Source<a href="#source-23" class="hash-link" aria-label="Direct link to Source" title="Direct link to Source">​</a></h4>
-<p><a href="https://github.com/operativa-dev/verse/blob/4eae236/packages/verse-core/src/query/queryable.ts#L918" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:918</a></p>
+<p><a href="https://github.com/operativa-dev/verse/blob/0100504/packages/verse-core/src/query/queryable.ts#L918" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:918</a></p>
 <hr>
 <h3 class="anchor anchorWithStickyNavbar_xl8d" id="where">where()<a href="#where" class="hash-link" aria-label="Direct link to where()" title="Direct link to where()">​</a></h3>
 <blockquote>
@@ -411,7 +411,7 @@ if no such element is found.</p>
 <p><a href="/verse/docs/api/query/queryable/classes/AsyncQueryable"><code>AsyncQueryable</code></a>&lt; <code>T</code> &gt;</p>
 <p>The queryable result of the where operation.</p>
 <h4 class="anchor anchorWithStickyNavbar_xl8d" id="source-24">Source<a href="#source-24" class="hash-link" aria-label="Direct link to Source" title="Direct link to Source">​</a></h4>
-<p><a href="https://github.com/operativa-dev/verse/blob/4eae236/packages/verse-core/src/query/queryable.ts#L667" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:667</a></p>
+<p><a href="https://github.com/operativa-dev/verse/blob/0100504/packages/verse-core/src/query/queryable.ts#L667" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:667</a></p>
 <hr>
 <h3 class="anchor anchorWithStickyNavbar_xl8d" id="with">with()<a href="#with" class="hash-link" aria-label="Direct link to with()" title="Direct link to with()">​</a></h3>
 <blockquote>
@@ -426,6 +426,6 @@ if no such element is found.</p>
 <p><a href="/verse/docs/api/query/queryable/classes/AsyncQueryable"><code>AsyncQueryable</code></a>&lt; <code>T</code> &gt;</p>
 <p>The queryable result of the with operation.</p>
 <h4 class="anchor anchorWithStickyNavbar_xl8d" id="source-25">Source<a href="#source-25" class="hash-link" aria-label="Direct link to Source" title="Direct link to Source">​</a></h4>
-<p><a href="https://github.com/operativa-dev/verse/blob/4eae236/packages/verse-core/src/query/queryable.ts#L599" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:599</a></p></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/verse/docs/api/query/queryable/classes/AbstractQueryable"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Class: abstract AbstractQueryable</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/verse/docs/api/query/queryable/classes/AsyncQueryableRoot"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Class: AsyncQueryableRoot\&lt;T\&gt;</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_IuDh thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#example" class="table-of-contents__link toc-highlight">Example</a></li><li><a href="#extends" class="table-of-contents__link toc-highlight">Extends</a></li><li><a href="#type-parameters" class="table-of-contents__link toc-highlight">Type parameters</a></li><li><a href="#implements" class="table-of-contents__link toc-highlight">Implements</a></li><li><a href="#methods" class="table-of-contents__link toc-highlight">Methods</a><ul><li><a href="#all" class="table-of-contents__link toc-highlight">all()</a></li><li><a href="#any" class="table-of-contents__link toc-highlight">any()</a></li><li><a href="#array" class="table-of-contents__link toc-highlight">array()</a></li><li><a href="#avg" class="table-of-contents__link toc-highlight">avg()</a></li><li><a href="#count" class="table-of-contents__link toc-highlight">count()</a></li><li><a href="#distinct" class="table-of-contents__link toc-highlight">distinct()</a></li><li><a href="#first" class="table-of-contents__link toc-highlight">first()</a></li><li><a href="#groupby" class="table-of-contents__link toc-highlight">groupBy()</a></li><li><a href="#join" class="table-of-contents__link toc-highlight">join()</a></li><li><a href="#leftjoin" class="table-of-contents__link toc-highlight">leftJoin()</a></li><li><a href="#limit" class="table-of-contents__link toc-highlight">limit()</a></li><li><a href="#max" class="table-of-contents__link toc-highlight">max()</a></li><li><a href="#maybefirst" class="table-of-contents__link toc-highlight">maybeFirst()</a></li><li><a href="#maybesingle" class="table-of-contents__link toc-highlight">maybeSingle()</a></li><li><a href="#min" class="table-of-contents__link toc-highlight">min()</a></li><li><a href="#offset" class="table-of-contents__link toc-highlight">offset()</a></li><li><a href="#op" class="table-of-contents__link toc-highlight">op()</a></li><li><a href="#orderby" class="table-of-contents__link toc-highlight">orderBy()</a></li><li><a href="#orderbydesc" class="table-of-contents__link toc-highlight">orderByDesc()</a></li><li><a href="#scalar" class="table-of-contents__link toc-highlight">scalar()</a></li><li><a href="#select" class="table-of-contents__link toc-highlight">select()</a></li><li><a href="#single" class="table-of-contents__link toc-highlight">single()</a></li><li><a href="#sum" class="table-of-contents__link toc-highlight">sum()</a></li><li><a href="#toarray" class="table-of-contents__link toc-highlight">toArray()</a></li><li><a href="#where" class="table-of-contents__link toc-highlight">where()</a></li><li><a href="#with" class="table-of-contents__link toc-highlight">with()</a></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2024 Operativa.</div></div></div></footer></div>
+<p><a href="https://github.com/operativa-dev/verse/blob/0100504/packages/verse-core/src/query/queryable.ts#L599" target="_blank" rel="noopener noreferrer">packages/verse-core/src/query/queryable.ts:599</a></p></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/verse/docs/api/query/queryable/classes/AbstractQueryable"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">AbstractQueryable</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/verse/docs/api/query/queryable/classes/AsyncQueryableRoot"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">AsyncQueryableRoot</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_IuDh thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#example" class="table-of-contents__link toc-highlight">Example</a></li><li><a href="#extends" class="table-of-contents__link toc-highlight">Extends</a></li><li><a href="#type-parameters" class="table-of-contents__link toc-highlight">Type parameters</a></li><li><a href="#implements" class="table-of-contents__link toc-highlight">Implements</a></li><li><a href="#methods" class="table-of-contents__link toc-highlight">Methods</a><ul><li><a href="#all" class="table-of-contents__link toc-highlight">all()</a></li><li><a href="#any" class="table-of-contents__link toc-highlight">any()</a></li><li><a href="#array" class="table-of-contents__link toc-highlight">array()</a></li><li><a href="#avg" class="table-of-contents__link toc-highlight">avg()</a></li><li><a href="#count" class="table-of-contents__link toc-highlight">count()</a></li><li><a href="#distinct" class="table-of-contents__link toc-highlight">distinct()</a></li><li><a href="#first" class="table-of-contents__link toc-highlight">first()</a></li><li><a href="#groupby" class="table-of-contents__link toc-highlight">groupBy()</a></li><li><a href="#join" class="table-of-contents__link toc-highlight">join()</a></li><li><a href="#leftjoin" class="table-of-contents__link toc-highlight">leftJoin()</a></li><li><a href="#limit" class="table-of-contents__link toc-highlight">limit()</a></li><li><a href="#max" class="table-of-contents__link toc-highlight">max()</a></li><li><a href="#maybefirst" class="table-of-contents__link toc-highlight">maybeFirst()</a></li><li><a href="#maybesingle" class="table-of-contents__link toc-highlight">maybeSingle()</a></li><li><a href="#min" class="table-of-contents__link toc-highlight">min()</a></li><li><a href="#offset" class="table-of-contents__link toc-highlight">offset()</a></li><li><a href="#op" class="table-of-contents__link toc-highlight">op()</a></li><li><a href="#orderby" class="table-of-contents__link toc-highlight">orderBy()</a></li><li><a href="#orderbydesc" class="table-of-contents__link toc-highlight">orderByDesc()</a></li><li><a href="#scalar" class="table-of-contents__link toc-highlight">scalar()</a></li><li><a href="#select" class="table-of-contents__link toc-highlight">select()</a></li><li><a href="#single" class="table-of-contents__link toc-highlight">single()</a></li><li><a href="#sum" class="table-of-contents__link toc-highlight">sum()</a></li><li><a href="#toarray" class="table-of-contents__link toc-highlight">toArray()</a></li><li><a href="#where" class="table-of-contents__link toc-highlight">where()</a></li><li><a href="#with" class="table-of-contents__link toc-highlight">with()</a></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2024 Operativa.</div></div></div></footer></div>
 </body>
 </html>
