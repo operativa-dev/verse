@@ -3,8 +3,8 @@
   "scripts": {
     "prepare": "husky install",
     "build": "turbo run build",
-    "build:docs": "turbo run build:docs",
-    "deploy:docs": "turbo run deploy:docs",
+    "build:docs": "pnpm run --filter docs build",
+    "deploy:docs": "pnpm run --filter docs deploy",
     "test": "turbo run test",
     "lint": "eslint packages/**/**/src --ext .ts,.tsx --config .eslintrc --cache",
     "typecheck": "turbo run tsc -- --noEmit",
