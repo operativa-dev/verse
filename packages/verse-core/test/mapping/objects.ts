@@ -1,51 +1,64 @@
 import { expect, test } from "vitest";
+
 import { Driver } from "../../src/db/driver.js";
-import { entity, int, one, string } from "../../src/model/builder.js";
+import { entity, int, many, one, string } from "../../src/model/builder.js";
 import { EntityType, Verse } from "../../src/verse.js";
 import { dbTest, fixture, snap } from "../infra.js";
 
-const objectsModel = {
-  entities: {
-    albums: entity(
-      {
-        albumId: int(),
-        title: string(),
-        artistId: int({ nullable: true }),
-        artist: one("Artist"),
-      },
-      a => {
-        a.data(
-          {
-            albumId: 10,
-            artistId: 1,
-            title: "The Sixteen Men of Tain",
-          },
-          {
-            albumId: 11,
-            artistId: 1,
-            title: "Atavachron",
-          },
-          {
-            albumId: 12,
-            artistId: 1,
-            title: "Metal Fatigue",
-          }
-        );
-      }
-    ),
-    artists: entity(
-      {
-        id: int(),
-        name: string(),
-      },
-      a => {
-        a.data({ id: 1, name: "Allan Holdsworth" });
-      }
-    ),
-  },
+type AlbumType = {
+  albumId: number;
+  title: string;
+  artistId?: number;
+  artist?: ArtistType;
 };
 
-type Album = EntityType<typeof objectsModel.entities.albums>;
+const Artist = entity(
+  {
+    id: int(),
+    name: string(),
+    albums: many<AlbumType>("Album"),
+  },
+  a => {
+    a.data({ id: 1, name: "Allan Holdsworth", albums: [] });
+  }
+);
+
+type ArtistType = EntityType<typeof Artist>;
+
+const Album = entity(
+  {
+    albumId: int(),
+    title: string(),
+    artistId: int({ nullable: true }),
+    artist: one(Artist, { nullable: true }),
+  },
+  a => {
+    a.data(
+      {
+        albumId: 10,
+        artistId: 1,
+        title: "The Sixteen Men of Tain",
+      },
+      {
+        albumId: 11,
+        artistId: 1,
+        title: "Atavachron",
+      },
+      {
+        albumId: 12,
+        artistId: 1,
+        title: "Metal Fatigue",
+      }
+    );
+  }
+);
+
+const objectsModel = {
+  entities: {
+    albums: Album,
+    artists: Artist,
+  },
+};
 
 export const objectsFixture = (driver: Driver) => {
   return fixture(driver, objectsModel);
@@ -73,7 +86,7 @@ export const objectsTests = (verse: Verse<typeof objectsModel.entities>) => {
   });
 
   test("eager", async ctx => {
-    const q = verse.from.albums.with(a => a.artist);
+    const q = verse.from.albums.with(a => a.artist?.albums.with(a => a.artist));
 
     await snap(ctx, await q.toArray());
   });
@@ -81,7 +94,7 @@ export const objectsTests = (verse: Verse<typeof objectsModel.entities>) => {
   test("uow", async () => {
     let uow = verse.uow();
 
-    const album: Album = { albumId: -1, title: "Eidolon", artistId: 1 };
+    const album: AlbumType = { albumId: -1, title: "Eidolon", artistId: 1 };
 
     await uow.albums.add(album);
 
@@ -107,7 +120,7 @@ export const objectsTests = (verse: Verse<typeof objectsModel.entities>) => {
   test("uow add no label throws", async () => {
     const uow = verse.uow();
 
-    const album: Album = { albumId: 1, title: "a" };
+    const album: AlbumType = { albumId: 1, title: "a" };
 
     await expect(async () => uow.add(album)).rejects.toThrow(
       'Unable to determine an entity type for object: \'{"albumId":1,"title":"a"}\'.'

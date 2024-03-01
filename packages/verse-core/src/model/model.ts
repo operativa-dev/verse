@@ -868,6 +868,14 @@ export class ForeignKeyModel extends AbstractModel {
     return this.#targetName;
   }
 
+  withTargetName(targetName: string) {
+    if (targetName !== this.targetName) {
+      return new ForeignKeyModel(targetName, this.names, this.onDelete);
+    }
+
+    return this;
+  }
+
   get names() {
     return this.#names;
   }
@@ -1541,6 +1549,14 @@ export class NavigationPropertyModel extends ReferencePropertyModel {
 
   constructor(state: Readonly<NavigationPropertyModelState>) {
     super(state);
+  }
+
+  withTargetName(targetName: string) {
+    if (targetName !== this.targetName) {
+      return new NavigationPropertyModel({ ...this.state, targetName });
+    }
+
+    return this;
   }
 
   get foreignKey() {

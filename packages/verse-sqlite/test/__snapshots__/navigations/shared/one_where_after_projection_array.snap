@@ -1,0 +1,17 @@
+[
+  [
+    [
+      Album {
+        "albumId": 7,
+        "artist": undefined,
+        "artistId": 5,
+        "title": "Facelift",
+      },
+    ],
+    Artist {
+      "albums": [],
+      "artistId": 5,
+      "name": "Alice In Chains",
+    },
+  ],
+]

@@ -59,9 +59,17 @@ export type OptionalProperties<T> = {
  * @template T - The type to unwrap the properties from.
  */
 export type UnwrapProperties<T> = {
-  [K in OptionalProperties<T>]?: T[K] extends Property<infer R> ? R : never;
+  [K in OptionalProperties<T>]?: T[K] extends Property<infer R>
+    ? R extends { [key: string]: unknown }
+      ? UnwrapProperties<R>
+      : R
+    : never;
 } & {
-  [K in Exclude<keyof T, OptionalProperties<T>>]: T[K] extends Property<infer R> ? R : never;
+  [K in Exclude<keyof T, OptionalProperties<T>>]: T[K] extends Property<infer R>
+    ? R extends { [key: string]: unknown }
+      ? UnwrapProperties<R>
+      : R
+    : never;
 };
 
 /**
@@ -717,7 +725,10 @@ export type ManyOptions<T extends object> = {
  * @param target The target entity class or name.
  * @param options The options for the collection navigation property.
  */
-export const many = <T extends object>(target: Newable<T> | string, options?: ManyOptions<T>) =>
+export const many = <T extends object>(
+  target: Newable<T> | EntityModel<T> | string,
+  options?: ManyOptions<T>
+) =>
   ((name: string) => {
     const targetName = typeof target === "string" ? target : target.name;
 
@@ -741,27 +752,51 @@ export type OneOptions<T extends object> = {
    * The foreign key properties that reference the target entity.
    */
   foreignKey?: (keyof T | string | (keyof T | string)[]) | undefined;
+
+  /**
+   * The nullability of the property.
+   */
+  nullable?: boolean | undefined;
 };
+
+/**
+ * Adds a nullable reference navigation property to the entity and allows for configuration of the property.
+ * @param target The target entity class or name.
+ * @param options The options for the reference navigation property.
+ */
+export function one<T extends object>(
+  target: Newable<T> | EntityModel<T> | string,
+  options: { nullable: true } & OneOptions<T>
+): Property<T | undefined | null>;
 
 /**
  * Adds a reference navigation property to the entity and allows for configuration of the property.
  * @param target The target entity class or name.
  * @param options The options for the reference navigation property.
  */
-export const one = <T extends object>(target: Newable<T> | string, options?: OneOptions<T>) =>
-  ((name: string) => {
+export function one<T extends object>(
+  target: Newable<T> | EntityModel<T> | string,
+  options?: OneOptions<T>
+): Property<T>;
+
+export function one<T extends object>(
+  target: Newable<T> | EntityModel<T> | string,
+  options?: OneOptions<T>
+) {
+  return ((name: string) => {
     const targetName = typeof target === "string" ? target : target.name;
 
     return new NavigationPropertyModel({
       name,
       targetName,
       many: false,
-      nullable: false,
+      nullable: options?.nullable ?? false,
       foreignKey: options?.foreignKey
         ? List(array(options.foreignKey)!.map(k => String(k)))
         : undefined,
     });
   }) as Property<T>;
+}
 
 /**
  * Adds a value object property to the entity and allows for configuration of the property.

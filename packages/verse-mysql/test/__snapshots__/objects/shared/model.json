@@ -20,6 +20,15 @@
           "nullable": false,
           "kind": "string",
           "maxLength": 255
+        },
+        {
+          "name": "albums",
+          "target": "Album",
+          "foreignKey": [
+            "artistId"
+          ],
+          "many": true,
+          "nullable": false
         }
       ],
       "label": "artists",
@@ -32,7 +41,8 @@
       "data": [
         {
           "id": 1,
-          "name": "Allan Holdsworth"
+          "name": "Allan Holdsworth",
+          "albums": []
         }
       ]
     },
@@ -71,7 +81,7 @@
             "artistId"
           ],
           "many": false,
-          "nullable": false
+          "nullable": true
         }
       ],
       "label": "albums",
