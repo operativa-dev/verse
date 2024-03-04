@@ -1,9 +1,8 @@
 import { test } from "vitest";
 import { Driver } from "../../src/db/driver.js";
 import { entity, int, many, one, string } from "../../src/model/builder.js";
-import { AsyncSequence } from "../../src/query/queryable.js";
 import { Verse } from "../../src/verse.js";
-import { fixture, isAsyncSequence } from "../infra.js";
+import { dataTest, fixture } from "../infra.js";
 
 export class Artist {
   constructor(
@@ -22,6 +21,25 @@ export class Album {
   ) {}
 }
 
+export class Track {
+  constructor(
+    readonly trackId: number,
+    readonly name: string,
+    readonly albumId: number,
+    readonly genreId: number,
+    readonly composer: string,
+    readonly genre: Genre,
+    readonly album: Album
+  ) {}
+}
+
+export class Genre {
+  constructor(
+    readonly genreId: number,
+    readonly name: string
+  ) {}
+}
+
 const navsModel = {
   artists: entity(Artist, {
     artistId: int(),
@@ -35,6 +53,21 @@ const navsModel = {
     artistId: int(),
     artist: one(Artist),
   }),
+
+  tracks: entity(Track, {
+    trackId: int(),
+    name: string(),
+    albumId: int(),
+    genreId: int(),
+    composer: string({ nullable: true }),
+    genre: one(Genre),
+    album: one(Album),
+  }),
+
+  genres: entity(Genre, {
+    genreId: int(),
+    name: string(),
+  }),
 };
 
 export const navsFixture = (driver: Driver) => {
@@ -42,156 +75,199 @@ export const navsFixture = (driver: Driver) => {
 };
 
 export const navsTests = (verse: Verse<typeof navsModel>) => {
-  //const snap = dataTest(verse);
+  const snap = dataTest(verse);
 
-  // test("one where", async () => {
-  //   const q = verse.from.albums.where(a => a.artist.name === "Alice In Chains");
-  //
-  //   //await snap(q);
-  //
-  //   // const q = verse.compile(from =>
-  //   //   from.albums
-  //   //     .join(Artist, (al, ar) => al.artistId === ar.artistId)
-  //   //     .where(([_, ar]) => ar.name === "Alice In Chains")
-  //   // );
-  //
-  //   await dump(q);
-  // });
+  test("select many", async () => {
+    const q = verse.from.artists.select(a => a.albums);
 
-  test("one select", async () => {
-    // const q = verse.from.albums.select(a => a.artist);
-
-    //await snap(q);
-
-    const q = verse.from.albums
-      .join(Artist, (al, ar) => al.artistId === ar.artistId)
-      .select(([_, ar]) => ar);
-
-    await dump(q);
+    await snap(q);
   });
 
-  test("one select aliasing", async () => {
-    // const q = verse.from.albums.select(a => a.artist);
+  test("where many length", async () => {
+    const q = verse.from.artists.where(a => a.albums.length > 1);
 
-    //await snap(q);
-
-    const q = verse.from.albums
-      .join(Artist, (al, ar) => al.artistId === ar.artistId)
-      .select(([_, ar]) => [ar, ar.artistId]);
-
-    await dump(q);
+    await snap(q);
   });
 
-  test("one select aliasing binary", async () => {
-    // const q = verse.from.albums.select(a => a.artist);
+  test("is null", async () => {
+    const q = verse.from.albums.where(a => a.artist === null);
 
-    //await snap(q);
-
-    const q = verse.from.albums
-      .join(Artist, (al, ar) => al.artistId === ar.artistId)
-      .select(([_, ar]) => [ar, ar.artistId + 1]);
-
-    await dump(q);
+    await snap(q);
   });
 
-  test("one orderby aliasing", async () => {
-    // const q = verse.from.albums.select(a => a.artist);
+  test("is not null", async () => {
+    const q = verse.from.tracks.where(t => t.album.artist !== null);
 
-    //await snap(q);
-
-    const q = verse.from.albums
-      .join(Artist, (al, ar) => al.artistId === ar.artistId)
-      .orderBy(([_, ar]) => ar.artistId);
-
-    await dump(q);
+    await snap(q);
   });
 
-  test("one select scalar", async () => {
-    //const q = verse.from.albums.select(a => a.artist.name);
+  if (verse.metadata.config.driver.info.name !== "mssql") {
+    test("group by", async () => {
+      const q = verse.from.tracks
+        .groupBy(
+          t => t.albumId,
+          g => g.array(t => t.album)
+        )
+        .toArray();
 
-    //await snap(q);
+      await snap(q);
+    });
+  }
 
-    const q = verse.from.albums
-      .join(Artist, (al, ar) => al.artistId === ar.artistId)
-      .select(([_, ar]) => ar.name);
+  test("select two levels", async () => {
+    const q = verse.from.tracks.select(t => t.album.artist.name);
 
-    await dump(q);
+    await snap(q);
   });
 
-  test("one select mixed", async () => {
-    // const q = verse.from.albums.select(a => [a.artist, a.title]);
+  test("where two levels", async () => {
+    const q = verse.from.tracks.where(t => t.album.artist.name === "Alice In Chains");
 
-    //await snap(q);
+    await snap(q);
+  });
 
-    const q = verse.from.albums
-      .join(Artist, (al, ar) => al.artistId === ar.artistId)
-      .select(([al, ar]) => [ar, al.title]);
+  test("after join", async () => {
+    const q = verse.from.tracks
+      .join(Album, (t, a) => t.albumId === a.albumId)
+      .where(t => t[1].artist.name === "Alice In Chains");
 
-    await dump(q);
+    await snap(q);
   });
 
   test("one where select", async () => {
-    // const q = verse.from.albums
-    //   .where(al => al.artist.name === "Alice In Chains")
-    //   .select(al => al.artist.name);
-
-    //await snap(q);
-
     const q = verse.from.albums
-      .join(Artist, (al, ar) => al.artistId === ar.artistId)
-      .where(([_, ar]) => ar.name === "Alice In Chains")
-      .join(Artist, ([al, _], ar) => al.artistId === ar.artistId)
-      .select(([_, ar]) => ar.name);
+      .where(al => al.artist.name === "Alice In Chains")
+      .select(al => al.artist.name);
 
-    await dump(q);
+    await snap(q);
+  });
+
+  test("one where", async () => {
+    const q = verse.from.albums.where(a => a.artist.name === "Alice In Chains");
+
+    await snap(q);
+  });
+
+  test("one where after projection array", async () => {
+    const q = verse.from.albums
+      .select(a => [a])
+      .where(o => o[0]!.artist.name === "Alice In Chains");
+
+    await snap(q);
+  });
+
+  test("one select", async () => {
+    const q = verse.from.albums.select(a => a.artist);
+
+    await snap(q);
+  });
+
+  test("after join destructure", async () => {
+    const q = verse.from.tracks
+      .join(Album, (t, a) => t.albumId === a.albumId)
+      .where(([_, a]) => a.artist.name === "Alice In Chains")
+      .toArray();
+
+    await snap(q);
+  });
+
+  test("one where after projection deep complex", async () => {
+    const q = verse.from.albums
+      .select(a => ({ foo: { bar: a }, baz: a }))
+      .where(o => o.foo.bar.artist.name === "Alice In Chains");
+
+    await snap(q);
+  });
+
+  test("one where after projection deep", async () => {
+    const q = verse.from.albums
+      .select(a => ({ foo: { bar: a } }))
+      .where(o => o.foo.bar.artist.name === "Alice In Chains");
+
+    await snap(q);
+  });
+
+  test("one where after projection array", async () => {
+    const q = verse.from.albums
+      .select(a => [a])
+      .where(o => o[0]!.artist.name === "Alice In Chains");
+
+    await snap(q);
+  });
+
+  test("one where after projection", async () => {
+    const q = verse.from.albums
+      .select(a => ({ foo: a }))
+      .where(o => o.foo.artist.name === "Alice In Chains");
+
+    await snap(q);
+  });
+
+  test("one where select scalar", async () => {
+    const q = verse.from.albums
+      .where(a => a.artist.name === "Alice In Chains")
+      .select(a => a.title);
+
+    await snap(q);
+  });
+
+  test("one where select where", async () => {
+    const q = verse.from.albums
+      .where(al => al.artist.name === "Alice In Chains")
+      .select(al => al.artist.name)
+      .where(n => n === "Alice In Chains");
+
+    await snap(q);
+  });
+
+  test("one select", async () => {
+    const q = verse.from.albums.select(a => a.artist);
+
+    await snap(q);
+  });
+
+  test("one select tuple", async () => {
+    const q = verse.from.albums.select(a => [a.artist, a.artistId]);
+
+    await snap(q);
+  });
+
+  test("one select twice", async () => {
+    const q = verse.from.albums.select(a => [a.artist, a.artist]);
+
+    await snap(q);
+  });
+
+  test("one select tuple binary", async () => {
+    const q = verse.from.albums.select(a => [a, a.artist, a.artistId + 1]);
+
+    await snap(q);
+  });
+
+  test("one orderby", async () => {
+    const q = verse.from.albums.orderBy(a => a.artist.name);
+
+    await snap(q);
+  });
+
+  test("one select mixed", async () => {
+    const q = verse.from.albums.select(a => [a.artist, a.title]);
+
+    await snap(q);
   });
 
   test("one select where deep", async () => {
-    // const q = verse.from.albums
-    //   .select(al => ({ al }))
-    //   .where(o => o.al.artist.name === "Alice In Chains")
-    //   .select(o => o.al.artist.name);
-
-    //await snap(q);
-
     const q = verse.from.albums
       .select(al => ({ al }))
-      .join(Artist, (o, ar) => o.al.artistId === ar.artistId)
-      .where(([_, ar]) => ar.name === "Alice In Chains")
-      .select(([_, ar]) => ar.name);
+      .where(o => o.al.artist.name === "Alice In Chains")
+      .select(o => o.al.artist.name);
 
-    await dump(q);
+    await snap(q);
   });
 
   test("one select entity and scalar", async () => {
-    //const q = verse.from.albums.select(a => a.artist.name);
+    const q = verse.from.albums.select(a => [a.artist, a.artist.name]);
 
-    //await snap(q);
-
-    const q = verse.from.albums
-      .join(Artist, (al, ar) => al.artistId === ar.artistId)
-      .select(([_, ar]) => [ar, ar.name]);
-
-    await dump(q);
-  });
-
-  test("one orderBy scalar", async () => {
-    //const q = verse.from.albums.orderBy(a => a.artist.name);
-
-    //await snap(q);
-
-    const q = verse.from.albums
-      .join(Artist, (al, ar) => al.artistId === ar.artistId)
-      .orderBy(([_, ar]) => ar.name);
-
-    await dump(q);
+    await snap(q);
   });
 };
-
-export async function dump(query: Promise<unknown> | AsyncSequence<unknown>) {
-  const results = isAsyncSequence(query) ? await query.toArray() : [await query];
-
-  console.log("\nResults:\n");
-  console.log(JSON.stringify(results, null, 2));
-  console.log();
-}

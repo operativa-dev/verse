@@ -105,7 +105,7 @@ export interface Grouping<K, T> {
    *
    * @return An array of the objects in the group.
    */
-  array<S>(expr: (obj: T) => S): S[];
+  array<S>(expr?: (obj: T) => S): S[];
 }
 
 /** @ignore */
@@ -320,13 +320,29 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
    * Groups the elements of a sequence according to a specified key selector function.
    *
    * @param key A function to extract the key for each element.
+   * @returns The result of the groupBy operation.
+   */
+  groupBy<TKey>(key: (obj: T) => TKey): Queryable<{ key: TKey; items: T[] }>;
+
+  /**
+   * Groups the elements of a sequence according to a specified key selector function and
+   * creates a result value from each group.
+   *
+   * @param key A function to extract the key for each element.
    * @param result A function to create a result value from each group.
    * @returns The queryable result of the groupBy operation.
    */
-  groupBy<TKey, TResult>(key: (obj: T) => TKey, result: (param: Grouping<TKey, T>) => TResult) {
-    this.expression = this.op("groupBy", jsep(key.toString()), jsep(result.toString()));
+  groupBy<TKey, TResult>(
+    key: (obj: T) => TKey,
+    result: (param: Grouping<TKey, T>) => TResult
+  ): Queryable<TResult>;
 
-    return this as unknown as AsyncQueryable<TResult>;
+  groupBy<TKey, TResult>(key: (obj: T) => TKey, result?: (param: Grouping<TKey, T>) => TResult) {
+    const r = result ?? ((g: Grouping<TKey, T>) => ({ key: g.key, items: g.array(x => x) }));
+
+    this.expression = this.op("groupBy", jsep(key.toString()), jsep(r.toString()));
+
+    return this as unknown as Queryable<TResult>;
   }
 
   /**
@@ -707,11 +723,27 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
    * Groups the elements of a sequence according to a specified key selector function.
    *
    * @param key A function to extract the key for each element.
+   * @returns The result of the groupBy operation.
+   */
+  groupBy<TKey>(key: (obj: T) => TKey): AsyncQueryable<{ key: TKey; items: T[] }>;
+
+  /**
+   * Groups the elements of a sequence according to a specified key selector function and
+   * creates a result value from each group.
+   *
+   * @param key A function to extract the key for each element.
    * @param result A function to create a result value from each group.
    * @returns The queryable result of the groupBy operation.
    */
-  groupBy<TKey, TResult>(key: (obj: T) => TKey, result: (param: Grouping<TKey, T>) => TResult) {
-    this.expression = this.op("groupBy", jsep(key.toString()), jsep(result.toString()));
+  groupBy<TKey, TResult>(
+    key: (obj: T) => TKey,
+    result: (param: Grouping<TKey, T>) => TResult
+  ): AsyncQueryable<TResult>;
+
+  groupBy<TKey, TResult>(key: (obj: T) => TKey, result?: (param: Grouping<TKey, T>) => TResult) {
+    const r = result ?? ((g: Grouping<TKey, T>) => ({ key: g.key, items: g.array(x => x) }));
+
+    this.expression = this.op("groupBy", jsep(key.toString()), jsep(r.toString()));
 
     return this as unknown as AsyncQueryable<TResult>;
   }

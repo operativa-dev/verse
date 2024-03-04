@@ -7,10 +7,11 @@
       "name": "Accept",
     },
     {
-      "foo": [
-        3,
-        "Aerosmith",
-      ],
+      "foo": Artist {
+        "albums": [],
+        "artistId": 3,
+        "name": "Aerosmith",
+      },
     },
   ],
 ]

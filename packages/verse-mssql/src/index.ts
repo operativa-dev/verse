@@ -215,7 +215,7 @@ export class MssqlDriver implements Driver {
   }
 
   static readonly #EXISTS = new SqlSelect({
-    projection: new SqlNumber(1),
+    projection: SqlNumber.ONE,
     from: new SqlMember(sqlId("sys"), sqlId("databases")),
     where: sqlBin(sqlId("name"), "=", new SqlParameter(0)),
   });
@@ -235,7 +235,7 @@ export class MssqlDriver implements Driver {
     // noinspection LoopStatementThatDoesntLoopJS
     for await (const _ of this.rows(
       new SqlSelect({
-        projection: new SqlNumber(1),
+        projection: SqlNumber.ONE,
         from: new SqlMember(sqlId("information_schema"), sqlId("tables")),
         where: sqlBin(
           sqlBin(sqlId("table_schema"), "=", sqlStr(this.config.database!)),
@@ -318,18 +318,18 @@ class DialectRewriter extends SqlRewriter {
       let orderBy = newSelect.orderBy;
 
       if (!orderBy) {
-        orderBy = new SqlOrderBy(List.of(new SqlOrdering(new SqlNumber(1))));
+        orderBy = new SqlOrderBy(List.of(new SqlOrdering(SqlNumber.ONE)));
       }
 
       newSelect = newSelect
         .withOrderBy(
-          new SqlOrderBy(orderBy.expressions, newSelect.offset ?? new SqlNumber(0), newSelect.limit)
+          new SqlOrderBy(orderBy.expressions, newSelect.offset ?? SqlNumber.ZERO, newSelect.limit)
         )
         .withLimit(undefined)
         .withOffset(undefined);
     } else if (newSelect.orderBy && this.#selectDepth > 0) {
       newSelect = newSelect.withOrderBy(
-        new SqlOrderBy(newSelect.orderBy.expressions, new SqlNumber(0))
+        new SqlOrderBy(newSelect.orderBy.expressions, SqlNumber.ZERO)
       );
     }
 
@@ -437,7 +437,7 @@ class DialectRewriter extends SqlRewriter {
       const identifier = member.member as SqlIdentifier;
 
       if (identifier.type === "boolean") {
-        return sqlBin(member, "=", new SqlNumber(1));
+        return sqlBin(member, "=", SqlNumber.ONE);
       }
     }
 
@@ -446,7 +446,7 @@ class DialectRewriter extends SqlRewriter {
 
   #selectBoolean(node: SqlNode) {
     if (node instanceof SqlNot || node instanceof SqlExists) {
-      return new SqlFunction("iif", List.of<SqlNode>(node, new SqlNumber(1), new SqlNumber(0)));
+      return new SqlFunction("iif", List.of<SqlNode>(node, SqlNumber.ONE, SqlNumber.ZERO));
     }
 
     return node;

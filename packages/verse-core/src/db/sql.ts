@@ -7,6 +7,7 @@
 import { hash, is, List, ValueObject } from "immutable";
 import invariant from "tiny-invariant";
 import { Newable } from "ts-essentials";
+
 import { AbstractModel, ConversionModel, Model, OnDelete } from "../model/model.js";
 import { LoadNode } from "../query/eager.js";
 import { notEmpty, notNull } from "../utils/check.js";
@@ -792,6 +793,17 @@ export class SqlSelect extends SqlNode {
     return this.state.joins;
   }
 
+  addJoins(...joins: SqlJoin[]) {
+    if (joins.length === 0) {
+      return this;
+    }
+
+    return new SqlSelect(
+      { ...this.state, joins: this.joins ? this.joins.push(...joins) : List(joins) },
+      this.binding
+    );
+  }
+
   withJoins(joins: List<SqlJoin>) {
     if (!is(joins, this.joins)) {
       return new SqlSelect({ ...this.state, joins }, this.binding);
@@ -852,7 +864,7 @@ export class SqlSelect extends SqlNode {
     return this;
   }
 
-  override bind(binding: SqlBinding): SqlNode {
+  override bind(binding: SqlBinding) {
     return new SqlSelect(this.state, binding);
   }
 
@@ -1694,6 +1706,9 @@ export class SqlTimestamp extends SqlNode {
 }
 
 export class SqlNumber extends SqlNode {
+  static readonly ZERO = new SqlNumber(0);
+  static readonly ONE = new SqlNumber(1);
+
   constructor(
     readonly value: number,
     binding?: SqlBinding

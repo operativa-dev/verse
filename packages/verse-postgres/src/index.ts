@@ -155,7 +155,7 @@ export class PostgresDriver implements Driver, AsyncDisposable {
   }
 
   static readonly #EXISTS = new SqlSelect({
-    projection: new SqlNumber(1),
+    projection: SqlNumber.ONE,
     from: sqlId("pg_database"),
     where: sqlBin(sqlId("datname"), "=", new SqlParameter(0)),
   });
@@ -170,7 +170,7 @@ export class PostgresDriver implements Driver, AsyncDisposable {
   }
 
   static readonly #TABLE_EXISTS = new SqlSelect({
-    projection: new SqlNumber(1),
+    projection: SqlNumber.ONE,
     from: new SqlMember(sqlId("information_schema"), sqlId("tables")),
     where: sqlBin(
       sqlBin(sqlId("table_schema"), "=", sqlStr("public")),

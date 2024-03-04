@@ -251,7 +251,7 @@ export class SqlPrinter extends SqlVisitor<string> {
   }
 
   override visitOrdering(ordering: SqlOrdering): string {
-    return `${ordering.node.accept(this)}${ordering.desc ? " desc" : ""}`;
+    return `${this.#parens(ordering.node)}${ordering.desc ? " desc" : ""}`;
   }
 
   override visitAlias(alias: SqlAlias): string {
@@ -278,7 +278,7 @@ export class SqlPrinter extends SqlVisitor<string> {
   }
 
   override visitFunction(func: SqlFunction): string {
-    return `${func.name}(${func.args.map(n => n.accept(this)).join(", ")})`;
+    return `${func.name}(${func.args.map(n => this.#parens(n)).join(", ")})`;
   }
 
   override visitIdentifier(identifier: SqlIdentifier) {
@@ -332,11 +332,11 @@ export class SqlPrinter extends SqlVisitor<string> {
   }
 
   override visitIsNull(isNull: SqlIsNull): string {
-    return `${isNull.operand.accept(this)} is null`;
+    return `${this.#parens(isNull.operand)} is null`;
   }
 
   override visitIsNotNull(isNotNull: SqlIsNotNull): string {
-    return `${isNotNull.operand.accept(this)} is not null`;
+    return `${this.#parens(isNotNull.operand)} is not null`;
   }
 
   override visitString(str: SqlString) {
