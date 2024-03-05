@@ -117,6 +117,22 @@ uow.todos.remove(todo);
 await uow.commit();
 ```
 
+### Examples
+
+The following steps will get you up and running with the Verse examples:
+In the verse root directory run these commands:
+
+**`pnpm install`**: bootstraps the entire project, symlinks all dependencies for
+cross-component development and builds all components.
+
+**`pnpm build`**: run build for all component packages.
+
+You can then navigate to an example and run the example like:
+```
+cd apps/basic/
+pnpm dev
+``` 
+
 ### Contributing
 
 We welcome community pull requests for bug fixes, enhancements, and documentation. See [How to contribute](./CONTRIBUTING.md) for more information.
