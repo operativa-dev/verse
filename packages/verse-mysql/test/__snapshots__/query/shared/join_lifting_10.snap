@@ -1,1 +1,3819 @@
-[]
+[
+  [
+    Album {
+      "albumId": 296,
+      "artistId": 230,
+      "title": "A Copland Celebration, Vol. I",
+    },
+    Artist {
+      "artistId": 230,
+      "name": "Aaron Copland & London Symphony Orchestra",
+    },
+  ],
+  [
+    Album {
+      "albumId": 267,
+      "artistId": 202,
+      "title": "Worlds",
+    },
+    Artist {
+      "artistId": 202,
+      "name": "Aaron Goldberg",
+    },
+  ],
+  [
+    Album {
+      "albumId": 1,
+      "artistId": 1,
+      "title": "For Those About To Rock We Salute You",
+    },
+    Artist {
+      "artistId": 1,
+      "name": "AC/DC",
+    },
+  ],
+  [
+    Album {
+      "albumId": 4,
+      "artistId": 1,
+      "title": "Let There Be Rock",
+    },
+    Artist {
+      "artistId": 1,
+      "name": "AC/DC",
+    },
+  ],
+  [
+    Album {
+      "albumId": 280,
+      "artistId": 214,
+      "title": "The World of Classical Favourites",
+    },
+    Artist {
+      "artistId": 214,
+      "name": "Academy of St. Martin in the Fields & Sir Neville Marriner",
+    },
+  ],
+  [
+    Album {
+      "albumId": 281,
+      "artistId": 215,
+      "title": "Sir Neville Marriner: A Celebration",
+    },
+    Artist {
+      "artistId": 215,
+      "name": "Academy of St. Martin in the Fields Chamber Ensemble & Sir Neville Marriner",
+    },
+  ],
+  [
+    Album {
+      "albumId": 288,
+      "artistId": 222,
+      "title": "Fauré: Requiem, Ravel: Pavane & Others",
+    },
+    Artist {
+      "artistId": 222,
+      "name": "Academy of St. Martin in the Fields, John Birch, Sir Neville Marriner & Sylvia McNair",
+    },
+  ],
+  [
+    Album {
+      "albumId": 327,
+      "artistId": 257,
+      "title": "Bach: Orchestral Suites Nos. 1 - 4",
+    },
+    Artist {
+      "artistId": 257,
+      "name": "Academy of St. Martin in the Fields, Sir Neville Marriner & Thurston Dart",
+    },
+  ],
+  [
+    Album {
+      "albumId": 2,
+      "artistId": 2,
+      "title": "Balls to the Wall",
+    },
+    Artist {
+      "artistId": 2,
+      "name": "Accept",
+    },
+  ],
+  [
+    Album {
+      "albumId": 3,
+      "artistId": 2,
+      "title": "Restless and Wild",
+    },
+    Artist {
+      "artistId": 2,
+      "name": "Accept",
+    },
+  ],
+  [
+    Album {
+      "albumId": 330,
+      "artistId": 260,
+      "title": "Górecki: Symphony No. 3",
+    },
+    Artist {
+      "artistId": 260,
+      "name": "Adrian Leaper & Doreen de Feis",
+    },
+  ],
+  [
+    Album {
+      "albumId": 5,
+      "artistId": 3,
+      "title": "Big Ones",
+    },
+    Artist {
+      "artistId": 3,
+      "name": "Aerosmith",
+    },
+  ],
+  [
+    Album {
+      "albumId": 262,
+      "artistId": 197,
+      "title": "Quiet Songs",
+    },
+    Artist {
+      "artistId": 197,
+      "name": "Aisha Duo",
+    },
+  ],
+  [
+    Album {
+      "albumId": 6,
+      "artistId": 4,
+      "title": "Jagged Little Pill",
+    },
+    Artist {
+      "artistId": 4,
+      "name": "Alanis Morissette",
+    },
+  ],
+  [
+    Album {
+      "albumId": 272,
+      "artistId": 206,
+      "title": "Adorate Deum: Gregorian Chant from the Proper of the Mass",
+    },
+    Artist {
+      "artistId": 206,
+      "name": "Alberto Turco & Nova Schola Gregoriana",
+    },
+  ],
+  [
+    Album {
+      "albumId": 7,
+      "artistId": 5,
+      "title": "Facelift",
+    },
+    Artist {
+      "artistId": 5,
+      "name": "Alice In Chains",
+    },
+  ],
+  [
+    Album {
+      "albumId": 321,
+      "artistId": 252,
+      "title": "Back to Black",
+    },
+    Artist {
+      "artistId": 252,
+      "name": "Amy Winehouse",
+    },
+  ],
+  [
+    Album {
+      "albumId": 322,
+      "artistId": 252,
+      "title": "Frank",
+    },
+    Artist {
+      "artistId": 252,
+      "name": "Amy Winehouse",
+    },
+  ],
+  [
+    Album {
+      "albumId": 275,
+      "artistId": 209,
+      "title": "Vivaldi: The Four Seasons",
+    },
+    Artist {
+      "artistId": 209,
+      "name": "Anne-Sophie Mutter, Herbert Von Karajan & Wiener Philharmoniker",
+    },
+  ],
+  [
+    Album {
+      "albumId": 308,
+      "artistId": 243,
+      "title": "Tchaikovsky: 1812 Festival Overture, Op.49, Capriccio Italien & Beethoven: Wellington's Victory",
+    },
+    Artist {
+      "artistId": 243,
+      "name": "Antal Doráti & London Symphony Orchestra",
+    },
+  ],
+  [
+    Album {
+      "albumId": 8,
+      "artistId": 6,
+      "title": "Warner 25 Anos",
+    },
+    Artist {
+      "artistId": 6,
+      "name": "Antônio Carlos Jobim",
+    },
+  ],
+  [
+    Album {
+      "albumId": 34,
+      "artistId": 6,
+      "title": "Chill: Brazil (Disc 2)",
+    },
+    Artist {
+      "artistId": 6,
+      "name": "Antônio Carlos Jobim",
+    },
+  ],
+  [
+    Album {
+      "albumId": 9,
+      "artistId": 7,
+      "title": "Plays Metallica By Four Cellos",
+    },
+    Artist {
+      "artistId": 7,
+      "name": "Apocalyptica",
+    },
+  ],
+  [
+    Album {
+      "albumId": 254,
+      "artistId": 159,
+      "title": "Aquaman",
+    },
+    Artist {
+      "artistId": 159,
+      "name": "Aquaman",
+    },
+  ],
+  [
+    Album {
+      "albumId": 10,
+      "artistId": 8,
+      "title": "Audioslave",
+    },
+    Artist {
+      "artistId": 8,
+      "name": "Audioslave",
+    },
+  ],
+  [
+    Album {
+      "albumId": 11,
+      "artistId": 8,
+      "title": "Out Of Exile",
+    },
+    Artist {
+      "artistId": 8,
+      "name": "Audioslave",
+    },
+  ],
+  [
+    Album {
+      "albumId": 271,
+      "artistId": 8,
+      "title": "Revelations",
+    },
+    Artist {
+      "artistId": 8,
+      "name": "Audioslave",
+    },
+  ],
+  [
+    Album {
+      "albumId": 12,
+      "artistId": 9,
+      "title": "BackBeat Soundtrack",
+    },
+    Artist {
+      "artistId": 9,
+      "name": "BackBeat",
+    },
+  ],
+  [
+    Album {
+      "albumId": 290,
+      "artistId": 224,
+      "title": "The Last Night of the Proms",
+    },
+    Artist {
+      "artistId": 224,
+      "name": "Barry Wordsworth & BBC Concert Orchestra",
+    },
+  ],
+  [
+    Album {
+      "albumId": 226,
+      "artistId": 147,
+      "title": "Battlestar Galactica: The Story So Far",
+    },
+    Artist {
+      "artistId": 147,
+      "name": "Battlestar Galactica",
+    },
+  ],
+  [
+    Album {
+      "albumId": 227,
+      "artistId": 147,
+      "title": "Battlestar Galactica, Season 3",
+    },
+    Artist {
+      "artistId": 147,
+      "name": "Battlestar Galactica",
+    },
+  ],
+  [
+    Album {
+      "albumId": 253,
+      "artistId": 158,
+      "title": "Battlestar Galactica (Classic), Season 1",
+    },
+    Artist {
+      "artistId": 158,
+      "name": "Battlestar Galactica (Classic)",
+    },
+  ],
+  [
+    Album {
+      "albumId": 303,
+      "artistId": 237,
+      "title": "Sibelius: Finlandia",
+    },
+    Artist {
+      "artistId": 237,
+      "name": "Berliner Philharmoniker & Hans Rosbaud",
+    },
+  ],
+  [
+    Album {
+      "albumId": 316,
+      "artistId": 248,
+      "title": "Grieg: Peer Gynt Suites & Sibelius: Pelléas et Mélisande",
+    },
+    Artist {
+      "artistId": 248,
+      "name": "Berliner Philharmoniker & Herbert Von Karajan",
+    },
+  ],
+  [
+    Album {
+      "albumId": 320,
+      "artistId": 248,
+      "title": "Mozart: Symphonies Nos. 40 & 41",
+    },
+    Artist {
+      "artistId": 248,
+      "name": "Berliner Philharmoniker & Herbert Von Karajan",
+    },
+  ],
+  [
+    Album {
+      "albumId": 336,
+      "artistId": 248,
+      "title": "Prokofiev: Symphony No.5 & Stravinksy: Le Sacre Du Printemps",
+    },
+    Artist {
+      "artistId": 248,
+      "name": "Berliner Philharmoniker & Herbert Von Karajan",
+    },
+  ],
+  [
+    Album {
+      "albumId": 282,
+      "artistId": 216,
+      "title": "Mozart: Wind Concertos",
+    },
+    Artist {
+      "artistId": 216,
+      "name": "Berliner Philharmoniker, Claudio Abbado & Sabine Meyer",
+    },
+  ],
+  [
+    Album {
+      "albumId": 13,
+      "artistId": 10,
+      "title": "The Best Of Billy Cobham",
+    },
+    Artist {
+      "artistId": 10,
+      "name": "Billy Cobham",
+    },
+  ],
+  [
+    Album {
+      "albumId": 14,
+      "artistId": 11,
+      "title": "Alcohol Fueled Brewtality Live! [Disc 1]",
+    },
+    Artist {
+      "artistId": 11,
+      "name": "Black Label Society",
+    },
+  ],
+  [
+    Album {
+      "albumId": 15,
+      "artistId": 11,
+      "title": "Alcohol Fueled Brewtality Live! [Disc 2]",
+    },
+    Artist {
+      "artistId": 11,
+      "name": "Black Label Society",
+    },
+  ],
+  [
+    Album {
+      "albumId": 16,
+      "artistId": 12,
+      "title": "Black Sabbath",
+    },
+    Artist {
+      "artistId": 12,
+      "name": "Black Sabbath",
+    },
+  ],
+  [
+    Album {
+      "albumId": 17,
+      "artistId": 12,
+      "title": "Black Sabbath Vol. 4 (Remaster)",
+    },
+    Artist {
+      "artistId": 12,
+      "name": "Black Sabbath",
+    },
+  ],
+  [
+    Album {
+      "albumId": 18,
+      "artistId": 13,
+      "title": "Body Count",
+    },
+    Artist {
+      "artistId": 13,
+      "name": "Body Count",
+    },
+  ],
+  [
+    Album {
+      "albumId": 295,
+      "artistId": 229,
+      "title": "Carmina Burana",
+    },
+    Artist {
+      "artistId": 229,
+      "name": "Boston Symphony Orchestra & Seiji Ozawa",
+    },
+  ],
+  [
+    Album {
+      "albumId": 285,
+      "artistId": 219,
+      "title": "A Soprano Inspired",
+    },
+    Artist {
+      "artistId": 219,
+      "name": "Britten Sinfonia, Ivor Bolton & Lesley Garrett",
+    },
+  ],
+  [
+    Album {
+      "albumId": 19,
+      "artistId": 14,
+      "title": "Chemical Wedding",
+    },
+    Artist {
+      "artistId": 14,
+      "name": "Bruce Dickinson",
+    },
+  ],
+  [
+    Album {
+      "albumId": 20,
+      "artistId": 15,
+      "title": "The Best Of Buddy Guy - The Millenium Collection",
+    },
+    Artist {
+      "artistId": 15,
+      "name": "Buddy Guy",
+    },
+  ],
+  [
+    Album {
+      "albumId": 345,
+      "artistId": 273,
+      "title": "Monteverdi: L'Orfeo",
+    },
+    Artist {
+      "artistId": 273,
+      "name": "C. Monteverdi, Nigel Rogers - Chiaroscuro; London Baroque; London Cornett & Sackbu",
+    },
+  ],
+  [
+    Album {
+      "albumId": 21,
+      "artistId": 16,
+      "title": "Prenda Minha",
+    },
+    Artist {
+      "artistId": 16,
+      "name": "Caetano Veloso",
+    },
+  ],
+  [
+    Album {
+      "albumId": 22,
+      "artistId": 16,
+      "title": "Sozinho Remix Ao Vivo",
+    },
+    Artist {
+      "artistId": 16,
+      "name": "Caetano Veloso",
+    },
+  ],
+  [
+    Album {
+      "albumId": 260,
+      "artistId": 196,
+      "title": "Cake: B-Sides and Rarities",
+    },
+    Artist {
+      "artistId": 196,
+      "name": "Cake",
+    },
+  ],
+  [
+    Album {
+      "albumId": 323,
+      "artistId": 253,
+      "title": "Carried to Dust (Bonus Track Version)",
+    },
+    Artist {
+      "artistId": 253,
+      "name": "Calexico",
+    },
+  ],
+  [
+    Album {
+      "albumId": 56,
+      "artistId": 77,
+      "title": "Cássia Eller - Coleção Sem Limite [Disc 2]",
+    },
+    Artist {
+      "artistId": 77,
+      "name": "Cássia Eller",
+    },
+  ],
+  [
+    Album {
+      "albumId": 57,
+      "artistId": 77,
+      "title": "Cássia Eller - Sem Limite [Disc 1]",
+    },
+    Artist {
+      "artistId": 77,
+      "name": "Cássia Eller",
+    },
+  ],
+  [
+    Album {
+      "albumId": 332,
+      "artistId": 262,
+      "title": "The Ultimate Relexation Album",
+    },
+    Artist {
+      "artistId": 262,
+      "name": "Charles Dutoit & L'Orchestre Symphonique de Montréal",
+    },
+  ],
+  [
+    Album {
+      "albumId": 286,
+      "artistId": 220,
+      "title": "Great Opera Choruses",
+    },
+    Artist {
+      "artistId": 220,
+      "name": "Chicago Symphony Chorus, Chicago Symphony Orchestra & Sir Georg Solti",
+    },
+  ],
+  [
+    Album {
+      "albumId": 299,
+      "artistId": 233,
+      "title": "Scheherazade",
+    },
+    Artist {
+      "artistId": 233,
+      "name": "Chicago Symphony Orchestra & Fritz Reiner",
+    },
+  ],
+  [
+    Album {
+      "albumId": 23,
+      "artistId": 17,
+      "title": "Minha Historia",
+    },
+    Artist {
+      "artistId": 17,
+      "name": "Chico Buarque",
+    },
+  ],
+  [
+    Album {
+      "albumId": 24,
+      "artistId": 18,
+      "title": "Afrociberdelia",
+    },
+    Artist {
+      "artistId": 18,
+      "name": "Chico Science & Nação Zumbi",
+    },
+  ],
+  [
+    Album {
+      "albumId": 25,
+      "artistId": 18,
+      "title": "Da Lama Ao Caos",
+    },
+    Artist {
+      "artistId": 18,
+      "name": "Chico Science & Nação Zumbi",
+    },
+  ],
+  [
+    Album {
+      "albumId": 309,
+      "artistId": 244,
+      "title": "Palestrina: Missa Papae Marcelli & Allegri: Miserere",
+    },
+    Artist {
+      "artistId": 244,
+      "name": "Choir Of Westminster Abbey & Simon Preston",
+    },
+  ],
+  [
+    Album {
+      "albumId": 313,
+      "artistId": 246,
+      "title": "Bizet: Carmen Highlights",
+    },
+    Artist {
+      "artistId": 246,
+      "name": "Chor der Wiener Staatsoper, Herbert Von Karajan & Wiener Philharmoniker",
+    },
+  ],
+  [
+    Album {
+      "albumId": 270,
+      "artistId": 205,
+      "title": "Carry On",
+    },
+    Artist {
+      "artistId": 205,
+      "name": "Chris Cornell",
+    },
+  ],
+  [
+    Album {
+      "albumId": 318,
+      "artistId": 250,
+      "title": "SCRIABIN: Vers la flamme",
+    },
+    Artist {
+      "artistId": 250,
+      "name": "Christopher O'Riley",
+    },
+  ],
+  [
+    Album {
+      "albumId": 26,
+      "artistId": 19,
+      "title": "Acústico MTV [Live]",
+    },
+    Artist {
+      "artistId": 19,
+      "name": "Cidade Negra",
+    },
+  ],
+  [
+    Album {
+      "albumId": 27,
+      "artistId": 19,
+      "title": "Cidade Negra - Hits",
+    },
+    Artist {
+      "artistId": 19,
+      "name": "Cidade Negra",
+    },
+  ],
+  [
+    Album {
+      "albumId": 28,
+      "artistId": 20,
+      "title": "Na Pista",
+    },
+    Artist {
+      "artistId": 20,
+      "name": "Cláudio Zoli",
+    },
+  ],
+  [
+    Album {
+      "albumId": 54,
+      "artistId": 76,
+      "title": "Chronicle, Vol. 1",
+    },
+    Artist {
+      "artistId": 76,
+      "name": "Creedence Clearwater Revival",
+    },
+  ],
+  [
+    Album {
+      "albumId": 55,
+      "artistId": 76,
+      "title": "Chronicle, Vol. 2",
+    },
+    Artist {
+      "artistId": 76,
+      "name": "Creedence Clearwater Revival",
+    },
+  ],
+  [
+    Album {
+      "albumId": 40,
+      "artistId": 55,
+      "title": "Into The Light",
+    },
+    Artist {
+      "artistId": 55,
+      "name": "David Coverdale",
+    },
+  ],
+  [
+    Album {
+      "albumId": 43,
+      "artistId": 58,
+      "title": "MK III The Final Concerts [Disc 1]",
+    },
+    Artist {
+      "artistId": 58,
+      "name": "Deep Purple",
+    },
+  ],
+  [
+    Album {
+      "albumId": 50,
+      "artistId": 58,
+      "title": "The Final Concerts (Disc 2)",
+    },
+    Artist {
+      "artistId": 58,
+      "name": "Deep Purple",
+    },
+  ],
+  [
+    Album {
+      "albumId": 58,
+      "artistId": 58,
+      "title": "Come Taste The Band",
+    },
+    Artist {
+      "artistId": 58,
+      "name": "Deep Purple",
+    },
+  ],
+  [
+    Album {
+      "albumId": 59,
+      "artistId": 58,
+      "title": "Deep Purple In Rock",
+    },
+    Artist {
+      "artistId": 58,
+      "name": "Deep Purple",
+    },
+  ],
+  [
+    Album {
+      "albumId": 60,
+      "artistId": 58,
+      "title": "Fireball",
+    },
+    Artist {
+      "artistId": 58,
+      "name": "Deep Purple",
+    },
+  ],
+  [
+    Album {
+      "albumId": 61,
+      "artistId": 58,
+      "title": "Knocking at Your Back Door: The Best Of Deep Purple in the 80's",
+    },
+    Artist {
+      "artistId": 58,
+      "name": "Deep Purple",
+    },
+  ],
+  [
+    Album {
+      "albumId": 62,
+      "artistId": 58,
+      "title": "Machine Head",
+    },
+    Artist {
+      "artistId": 58,
+      "name": "Deep Purple",
+    },
+  ],
+  [
+    Album {
+      "albumId": 63,
+      "artistId": 58,
+      "title": "Purpendicular",
+    },
+    Artist {
+      "artistId": 58,
+      "name": "Deep Purple",
+    },
+  ],
+  [
+    Album {
+      "albumId": 64,
+      "artistId": 58,
+      "title": "Slaves And Masters",
+    },
+    Artist {
+      "artistId": 58,
+      "name": "Deep Purple",
+    },
+  ],
+  [
+    Album {
+      "albumId": 65,
+      "artistId": 58,
+      "title": "Stormbringer",
+    },
+    Artist {
+      "artistId": 58,
+      "name": "Deep Purple",
+    },
+  ],
+  [
+    Album {
+      "albumId": 66,
+      "artistId": 58,
+      "title": "The Battle Rages On",
+    },
+    Artist {
+      "artistId": 58,
+      "name": "Deep Purple",
+    },
+  ],
+  [
+    Album {
+      "albumId": 67,
+      "artistId": 78,
+      "title": "Vault: Def Leppard's Greatest Hits",
+    },
+    Artist {
+      "artistId": 78,
+      "name": "Def Leppard",
+    },
+  ],
+  [
+    Album {
+      "albumId": 68,
+      "artistId": 79,
+      "title": "Outbreak",
+    },
+    Artist {
+      "artistId": 79,
+      "name": "Dennis Chambers",
+    },
+  ],
+  [
+    Album {
+      "albumId": 69,
+      "artistId": 80,
+      "title": "Djavan Ao Vivo - Vol. 02",
+    },
+    Artist {
+      "artistId": 80,
+      "name": "Djavan",
+    },
+  ],
+  [
+    Album {
+      "albumId": 70,
+      "artistId": 80,
+      "title": "Djavan Ao Vivo - Vol. 1",
+    },
+    Artist {
+      "artistId": 80,
+      "name": "Djavan",
+    },
+  ],
+  [
+    Album {
+      "albumId": 252,
+      "artistId": 157,
+      "title": "Un-Led-Ed",
+    },
+    Artist {
+      "artistId": 157,
+      "name": "Dread Zeppelin",
+    },
+  ],
+  [
+    Album {
+      "albumId": 47,
+      "artistId": 37,
+      "title": "The Best of Ed Motta",
+    },
+    Artist {
+      "artistId": 37,
+      "name": "Ed Motta",
+    },
+  ],
+  [
+    Album {
+      "albumId": 307,
+      "artistId": 242,
+      "title": "Adams, John: The Chairman Dances",
+    },
+    Artist {
+      "artistId": 242,
+      "name": "Edo de Waart & San Francisco Symphony",
+    },
+  ],
+  [
+    Album {
+      "albumId": 71,
+      "artistId": 41,
+      "title": "Elis Regina-Minha História",
+    },
+    Artist {
+      "artistId": 41,
+      "name": "Elis Regina",
+    },
+  ],
+  [
+    Album {
+      "albumId": 301,
+      "artistId": 235,
+      "title": "Chopin: Piano Concertos Nos. 1 & 2",
+    },
+    Artist {
+      "artistId": 235,
+      "name": "Emanuel Ax, Eugene Ormandy & Philadelphia Orchestra",
+    },
+  ],
+  [
+    Album {
+      "albumId": 344,
+      "artistId": 272,
+      "title": "Schubert: The Late String Quartets & String Quintet (3 CD's)",
+    },
+    Artist {
+      "artistId": 272,
+      "name": "Emerson String Quartet",
+    },
+  ],
+  [
+    Album {
+      "albumId": 274,
+      "artistId": 208,
+      "title": "Pachelbel: Canon & Gigue",
+    },
+    Artist {
+      "artistId": 208,
+      "name": "English Concert & Trevor Pinnock",
+    },
+  ],
+  [
+    Album {
+      "albumId": 315,
+      "artistId": 208,
+      "title": "Handel: Music for the Royal Fireworks (Original Version 1749)",
+    },
+    Artist {
+      "artistId": 208,
+      "name": "English Concert & Trevor Pinnock",
+    },
+  ],
+  [
+    Album {
+      "albumId": 333,
+      "artistId": 263,
+      "title": "Purcell: Music for the Queen Mary",
+    },
+    Artist {
+      "artistId": 263,
+      "name": "Equale Brass Ensemble, John Eliot Gardiner & Munich Monteverdi Orchestra and Choir",
+    },
+  ],
+  [
+    Album {
+      "albumId": 72,
+      "artistId": 81,
+      "title": "The Cream Of Clapton",
+    },
+    Artist {
+      "artistId": 81,
+      "name": "Eric Clapton",
+    },
+  ],
+  [
+    Album {
+      "albumId": 73,
+      "artistId": 81,
+      "title": "Unplugged",
+    },
+    Artist {
+      "artistId": 81,
+      "name": "Eric Clapton",
+    },
+  ],
+  [
+    Album {
+      "albumId": 292,
+      "artistId": 226,
+      "title": "Holst: The Planets, Op. 32 & Vaughan Williams: Fantasies",
+    },
+    Artist {
+      "artistId": 226,
+      "name": "Eugene Ormandy",
+    },
+  ],
+  [
+    Album {
+      "albumId": 311,
+      "artistId": 226,
+      "title": "Strauss: Waltzes",
+    },
+    Artist {
+      "artistId": 226,
+      "name": "Eugene Ormandy",
+    },
+  ],
+  [
+    Album {
+      "albumId": 343,
+      "artistId": 226,
+      "title": "Respighi:Pines of Rome",
+    },
+    Artist {
+      "artistId": 226,
+      "name": "Eugene Ormandy",
+    },
+  ],
+  [
+    Album {
+      "albumId": 74,
+      "artistId": 82,
+      "title": "Album Of The Year",
+    },
+    Artist {
+      "artistId": 82,
+      "name": "Faith No More",
+    },
+  ],
+  [
+    Album {
+      "albumId": 75,
+      "artistId": 82,
+      "title": "Angel Dust",
+    },
+    Artist {
+      "artistId": 82,
+      "name": "Faith No More",
+    },
+  ],
+  [
+    Album {
+      "albumId": 76,
+      "artistId": 82,
+      "title": "King For A Day Fool For A Lifetime",
+    },
+    Artist {
+      "artistId": 82,
+      "name": "Faith No More",
+    },
+  ],
+  [
+    Album {
+      "albumId": 77,
+      "artistId": 82,
+      "title": "The Real Thing",
+    },
+    Artist {
+      "artistId": 82,
+      "name": "Faith No More",
+    },
+  ],
+  [
+    Album {
+      "albumId": 78,
+      "artistId": 83,
+      "title": "Deixa Entrar",
+    },
+    Artist {
+      "artistId": 83,
+      "name": "Falamansa",
+    },
+  ],
+  [
+    Album {
+      "albumId": 306,
+      "artistId": 241,
+      "title": "Elgar: Cello Concerto & Vaughan Williams: Fantasias",
+    },
+    Artist {
+      "artistId": 241,
+      "name": "Felix Schmidt, London Symphony Orchestra & Rafael Frühbeck de Burgos",
+    },
+  ],
+  [
+    Album {
+      "albumId": 79,
+      "artistId": 84,
+      "title": "In Your Honor [Disc 1]",
+    },
+    Artist {
+      "artistId": 84,
+      "name": "Foo Fighters",
+    },
+  ],
+  [
+    Album {
+      "albumId": 80,
+      "artistId": 84,
+      "title": "In Your Honor [Disc 2]",
+    },
+    Artist {
+      "artistId": 84,
+      "name": "Foo Fighters",
+    },
+  ],
+  [
+    Album {
+      "albumId": 81,
+      "artistId": 84,
+      "title": "One By One",
+    },
+    Artist {
+      "artistId": 84,
+      "name": "Foo Fighters",
+    },
+  ],
+  [
+    Album {
+      "albumId": 82,
+      "artistId": 84,
+      "title": "The Colour And The Shape",
+    },
+    Artist {
+      "artistId": 84,
+      "name": "Foo Fighters",
+    },
+  ],
+  [
+    Album {
+      "albumId": 83,
+      "artistId": 85,
+      "title": "My Way: The Best Of Frank Sinatra [Disc 1]",
+    },
+    Artist {
+      "artistId": 85,
+      "name": "Frank Sinatra",
+    },
+  ],
+  [
+    Album {
+      "albumId": 31,
+      "artistId": 23,
+      "title": "Bongo Fury",
+    },
+    Artist {
+      "artistId": 23,
+      "name": "Frank Zappa & Captain Beefheart",
+    },
+  ],
+  [
+    Album {
+      "albumId": 319,
+      "artistId": 251,
+      "title": "Armada: Music from the Courts of England and Spain",
+    },
+    Artist {
+      "artistId": 251,
+      "name": "Fretwork",
+    },
+  ],
+  [
+    Album {
+      "albumId": 84,
+      "artistId": 86,
+      "title": "Roda De Funk",
+    },
+    Artist {
+      "artistId": 86,
+      "name": "Funk Como Le Gusta",
+    },
+  ],
+  [
+    Album {
+      "albumId": 51,
+      "artistId": 69,
+      "title": "Up An' Atom",
+    },
+    Artist {
+      "artistId": 69,
+      "name": "Gene Krupa",
+    },
+  ],
+  [
+    Album {
+      "albumId": 341,
+      "artistId": 270,
+      "title": "Great Recordings of the Century - Shubert: Schwanengesang, 4 Lieder",
+    },
+    Artist {
+      "artistId": 270,
+      "name": "Gerald Moore",
+    },
+  ],
+  [
+    Album {
+      "albumId": 85,
+      "artistId": 27,
+      "title": "As Canções de Eu Tu Eles",
+    },
+    Artist {
+      "artistId": 27,
+      "name": "Gilberto Gil",
+    },
+  ],
+  [
+    Album {
+      "albumId": 86,
+      "artistId": 27,
+      "title": "Quanta Gente Veio Ver (Live)",
+    },
+    Artist {
+      "artistId": 27,
+      "name": "Gilberto Gil",
+    },
+  ],
+  [
+    Album {
+      "albumId": 87,
+      "artistId": 27,
+      "title": "Quanta Gente Veio ver--Bônus De Carnaval",
+    },
+    Artist {
+      "artistId": 27,
+      "name": "Gilberto Gil",
+    },
+  ],
+  [
+    Album {
+      "albumId": 88,
+      "artistId": 87,
+      "title": "Faceless",
+    },
+    Artist {
+      "artistId": 87,
+      "name": "Godsmack",
+    },
+  ],
+  [
+    Album {
+      "albumId": 41,
+      "artistId": 56,
+      "title": "Meus Momentos",
+    },
+    Artist {
+      "artistId": 56,
+      "name": "Gonzaguinha",
+    },
+  ],
+  [
+    Album {
+      "albumId": 338,
+      "artistId": 267,
+      "title": "Nielsen: The Six Symphonies",
+    },
+    Artist {
+      "artistId": 267,
+      "name": "Göteborgs Symfoniker & Neeme Järvi",
+    },
+  ],
+  [
+    Album {
+      "albumId": 39,
+      "artistId": 54,
+      "title": "International Superhits",
+    },
+    Artist {
+      "artistId": 54,
+      "name": "Green Day",
+    },
+  ],
+  [
+    Album {
+      "albumId": 89,
+      "artistId": 54,
+      "title": "American Idiot",
+    },
+    Artist {
+      "artistId": 54,
+      "name": "Green Day",
+    },
+  ],
+  [
+    Album {
+      "albumId": 90,
+      "artistId": 88,
+      "title": "Appetite for Destruction",
+    },
+    Artist {
+      "artistId": 88,
+      "name": "Guns N' Roses",
+    },
+  ],
+  [
+    Album {
+      "albumId": 91,
+      "artistId": 88,
+      "title": "Use Your Illusion I",
+    },
+    Artist {
+      "artistId": 88,
+      "name": "Guns N' Roses",
+    },
+  ],
+  [
+    Album {
+      "albumId": 92,
+      "artistId": 88,
+      "title": "Use Your Illusion II",
+    },
+    Artist {
+      "artistId": 88,
+      "name": "Guns N' Roses",
+    },
+  ],
+  [
+    Album {
+      "albumId": 305,
+      "artistId": 240,
+      "title": "Great Recordings of the Century - Mahler: Das Lied von der Erde",
+    },
+    Artist {
+      "artistId": 240,
+      "name": "Gustav Mahler",
+    },
+  ],
+  [
+    Album {
+      "albumId": 263,
+      "artistId": 198,
+      "title": "Muso Ko",
+    },
+    Artist {
+      "artistId": 198,
+      "name": "Habib Koité and Bamada",
+    },
+  ],
+  [
+    Album {
+      "albumId": 291,
+      "artistId": 225,
+      "title": "Puccini: Madama Butterfly - Highlights",
+    },
+    Artist {
+      "artistId": 225,
+      "name": "Herbert Von Karajan, Mirella Freni & Wiener Philharmoniker",
+    },
+  ],
+  [
+    Album {
+      "albumId": 228,
+      "artistId": 148,
+      "title": "Heroes, Season 1",
+    },
+    Artist {
+      "artistId": 148,
+      "name": "Heroes",
+    },
+  ],
+  [
+    Album {
+      "albumId": 276,
+      "artistId": 210,
+      "title": "Bach: Violin Concertos",
+    },
+    Artist {
+      "artistId": 210,
+      "name": "Hilary Hahn, Jeffrey Kahane, Los Angeles Chamber Orchestra & Margaret Batjer",
+    },
+  ],
+  [
+    Album {
+      "albumId": 258,
+      "artistId": 180,
+      "title": "House of Pain",
+    },
+    Artist {
+      "artistId": 180,
+      "name": "House Of Pain",
+    },
+  ],
+  [
+    Album {
+      "albumId": 93,
+      "artistId": 89,
+      "title": "Blue Moods",
+    },
+    Artist {
+      "artistId": 89,
+      "name": "Incognito",
+    },
+  ],
+  [
+    Album {
+      "albumId": 94,
+      "artistId": 90,
+      "title": "A Matter of Life and Death",
+    },
+    Artist {
+      "artistId": 90,
+      "name": "Iron Maiden",
+    },
+  ],
+  [
+    Album {
+      "albumId": 95,
+      "artistId": 90,
+      "title": "A Real Dead One",
+    },
+    Artist {
+      "artistId": 90,
+      "name": "Iron Maiden",
+    },
+  ],
+  [
+    Album {
+      "albumId": 96,
+      "artistId": 90,
+      "title": "A Real Live One",
+    },
+    Artist {
+      "artistId": 90,
+      "name": "Iron Maiden",
+    },
+  ],
+  [
+    Album {
+      "albumId": 97,
+      "artistId": 90,
+      "title": "Brave New World",
+    },
+    Artist {
+      "artistId": 90,
+      "name": "Iron Maiden",
+    },
+  ],
+  [
+    Album {
+      "albumId": 98,
+      "artistId": 90,
+      "title": "Dance Of Death",
+    },
+    Artist {
+      "artistId": 90,
+      "name": "Iron Maiden",
+    },
+  ],
+  [
+    Album {
+      "albumId": 99,
+      "artistId": 90,
+      "title": "Fear Of The Dark",
+    },
+    Artist {
+      "artistId": 90,
+      "name": "Iron Maiden",
+    },
+  ],
+  [
+    Album {
+      "albumId": 100,
+      "artistId": 90,
+      "title": "Iron Maiden",
+    },
+    Artist {
+      "artistId": 90,
+      "name": "Iron Maiden",
+    },
+  ],
+  [
+    Album {
+      "albumId": 101,
+      "artistId": 90,
+      "title": "Killers",
+    },
+    Artist {
+      "artistId": 90,
+      "name": "Iron Maiden",
+    },
+  ],
+  [
+    Album {
+      "albumId": 102,
+      "artistId": 90,
+      "title": "Live After Death",
+    },
+    Artist {
+      "artistId": 90,
+      "name": "Iron Maiden",
+    },
+  ],
+  [
+    Album {
+      "albumId": 103,
+      "artistId": 90,
+      "title": "Live At Donington 1992 (Disc 1)",
+    },
+    Artist {
+      "artistId": 90,
+      "name": "Iron Maiden",
+    },
+  ],
+  [
+    Album {
+      "albumId": 104,
+      "artistId": 90,
+      "title": "Live At Donington 1992 (Disc 2)",
+    },
+    Artist {
+      "artistId": 90,
+      "name": "Iron Maiden",
+    },
+  ],
+  [
+    Album {
+      "albumId": 105,
+      "artistId": 90,
+      "title": "No Prayer For The Dying",
+    },
+    Artist {
+      "artistId": 90,
+      "name": "Iron Maiden",
+    },
+  ],
+  [
+    Album {
+      "albumId": 106,
+      "artistId": 90,
+      "title": "Piece Of Mind",
+    },
+    Artist {
+      "artistId": 90,
+      "name": "Iron Maiden",
+    },
+  ],
+  [
+    Album {
+      "albumId": 107,
+      "artistId": 90,
+      "title": "Powerslave",
+    },
+    Artist {
+      "artistId": 90,
+      "name": "Iron Maiden",
+    },
+  ],
+  [
+    Album {
+      "albumId": 108,
+      "artistId": 90,
+      "title": "Rock In Rio [CD1]",
+    },
+    Artist {
+      "artistId": 90,
+      "name": "Iron Maiden",
+    },
+  ],
+  [
+    Album {
+      "albumId": 109,
+      "artistId": 90,
+      "title": "Rock In Rio [CD2]",
+    },
+    Artist {
+      "artistId": 90,
+      "name": "Iron Maiden",
+    },
+  ],
+  [
+    Album {
+      "albumId": 110,
+      "artistId": 90,
+      "title": "Seventh Son of a Seventh Son",
+    },
+    Artist {
+      "artistId": 90,
+      "name": "Iron Maiden",
+    },
+  ],
+  [
+    Album {
+      "albumId": 111,
+      "artistId": 90,
+      "title": "Somewhere in Time",
+    },
+    Artist {
+      "artistId": 90,
+      "name": "Iron Maiden",
+    },
+  ],
+  [
+    Album {
+      "albumId": 112,
+      "artistId": 90,
+      "title": "The Number of The Beast",
+    },
+    Artist {
+      "artistId": 90,
+      "name": "Iron Maiden",
+    },
+  ],
+  [
+    Album {
+      "albumId": 113,
+      "artistId": 90,
+      "title": "The X Factor",
+    },
+    Artist {
+      "artistId": 90,
+      "name": "Iron Maiden",
+    },
+  ],
+  [
+    Album {
+      "albumId": 114,
+      "artistId": 90,
+      "title": "Virtual XI",
+    },
+    Artist {
+      "artistId": 90,
+      "name": "Iron Maiden",
+    },
+  ],
+  [
+    Album {
+      "albumId": 339,
+      "artistId": 268,
+      "title": "Great Recordings of the Century: Paganini's 24 Caprices",
+    },
+    Artist {
+      "artistId": 268,
+      "name": "Itzhak Perlman",
+    },
+  ],
+  [
+    Album {
+      "albumId": 115,
+      "artistId": 91,
+      "title": "Sex Machine",
+    },
+    Artist {
+      "artistId": 91,
+      "name": "James Brown",
+    },
+  ],
+  [
+    Album {
+      "albumId": 302,
+      "artistId": 236,
+      "title": "Mascagni: Cavalleria Rusticana",
+    },
+    Artist {
+      "artistId": 236,
+      "name": "James Levine",
+    },
+  ],
+  [
+    Album {
+      "albumId": 116,
+      "artistId": 92,
+      "title": "Emergency On Planet Earth",
+    },
+    Artist {
+      "artistId": 92,
+      "name": "Jamiroquai",
+    },
+  ],
+  [
+    Album {
+      "albumId": 117,
+      "artistId": 92,
+      "title": "Synkronized",
+    },
+    Artist {
+      "artistId": 92,
+      "name": "Jamiroquai",
+    },
+  ],
+  [
+    Album {
+      "albumId": 118,
+      "artistId": 92,
+      "title": "The Return Of The Space Cowboy",
+    },
+    Artist {
+      "artistId": 92,
+      "name": "Jamiroquai",
+    },
+  ],
+  [
+    Album {
+      "albumId": 119,
+      "artistId": 93,
+      "title": "Get Born",
+    },
+    Artist {
+      "artistId": 93,
+      "name": "JET",
+    },
+  ],
+  [
+    Album {
+      "albumId": 120,
+      "artistId": 94,
+      "title": "Are You Experienced?",
+    },
+    Artist {
+      "artistId": 94,
+      "name": "Jimi Hendrix",
+    },
+  ],
+  [
+    Album {
+      "albumId": 124,
+      "artistId": 97,
+      "title": "Cafezinho",
+    },
+    Artist {
+      "artistId": 97,
+      "name": "João Suplicy",
+    },
+  ],
+  [
+    Album {
+      "albumId": 121,
+      "artistId": 95,
+      "title": "Surfing with the Alien (Remastered)",
+    },
+    Artist {
+      "artistId": 95,
+      "name": "Joe Satriani",
+    },
+  ],
+  [
+    Album {
+      "albumId": 122,
+      "artistId": 46,
+      "title": "Jorge Ben Jor 25 Anos",
+    },
+    Artist {
+      "artistId": 46,
+      "name": "Jorge Ben",
+    },
+  ],
+  [
+    Album {
+      "albumId": 123,
+      "artistId": 96,
+      "title": "Jota Quest-1995",
+    },
+    Artist {
+      "artistId": 96,
+      "name": "Jota Quest",
+    },
+  ],
+  [
+    Album {
+      "albumId": 125,
+      "artistId": 98,
+      "title": "Living After Midnight",
+    },
+    Artist {
+      "artistId": 98,
+      "name": "Judas Priest",
+    },
+  ],
+  [
+    Album {
+      "albumId": 335,
+      "artistId": 265,
+      "title": "J.S. Bach: Chaconne, Suite in E Minor, Partita in E Major & Prelude, Fugue and Allegro",
+    },
+    Artist {
+      "artistId": 265,
+      "name": "Julian Bream",
+    },
+  ],
+  [
+    Album {
+      "albumId": 264,
+      "artistId": 199,
+      "title": "Realize",
+    },
+    Artist {
+      "artistId": 199,
+      "name": "Karsh Kale",
+    },
+  ],
+  [
+    Album {
+      "albumId": 334,
+      "artistId": 264,
+      "title": "Weill: The Seven Deadly Sins",
+    },
+    Artist {
+      "artistId": 264,
+      "name": "Kent Nagano and Orchestre de l'Opéra de Lyon",
+    },
+  ],
+  [
+    Album {
+      "albumId": 37,
+      "artistId": 52,
+      "title": "Greatest Kiss",
+    },
+    Artist {
+      "artistId": 52,
+      "name": "Kiss",
+    },
+  ],
+  [
+    Album {
+      "albumId": 126,
+      "artistId": 52,
+      "title": "Unplugged [Live]",
+    },
+    Artist {
+      "artistId": 52,
+      "name": "Kiss",
+    },
+  ],
+  [
+    Album {
+      "albumId": 30,
+      "artistId": 22,
+      "title": "BBC Sessions [Disc 1] [Live]",
+    },
+    Artist {
+      "artistId": 22,
+      "name": "Led Zeppelin",
+    },
+  ],
+  [
+    Album {
+      "albumId": 44,
+      "artistId": 22,
+      "title": "Physical Graffiti [Disc 1]",
+    },
+    Artist {
+      "artistId": 22,
+      "name": "Led Zeppelin",
+    },
+  ],
+  [
+    Album {
+      "albumId": 127,
+      "artistId": 22,
+      "title": "BBC Sessions [Disc 2] [Live]",
+    },
+    Artist {
+      "artistId": 22,
+      "name": "Led Zeppelin",
+    },
+  ],
+  [
+    Album {
+      "albumId": 128,
+      "artistId": 22,
+      "title": "Coda",
+    },
+    Artist {
+      "artistId": 22,
+      "name": "Led Zeppelin",
+    },
+  ],
+  [
+    Album {
+      "albumId": 129,
+      "artistId": 22,
+      "title": "Houses Of The Holy",
+    },
+    Artist {
+      "artistId": 22,
+      "name": "Led Zeppelin",
+    },
+  ],
+  [
+    Album {
+      "albumId": 130,
+      "artistId": 22,
+      "title": "In Through The Out Door",
+    },
+    Artist {
+      "artistId": 22,
+      "name": "Led Zeppelin",
+    },
+  ],
+  [
+    Album {
+      "albumId": 131,
+      "artistId": 22,
+      "title": "IV",
+    },
+    Artist {
+      "artistId": 22,
+      "name": "Led Zeppelin",
+    },
+  ],
+  [
+    Album {
+      "albumId": 132,
+      "artistId": 22,
+      "title": "Led Zeppelin I",
+    },
+    Artist {
+      "artistId": 22,
+      "name": "Led Zeppelin",
+    },
+  ],
+  [
+    Album {
+      "albumId": 133,
+      "artistId": 22,
+      "title": "Led Zeppelin II",
+    },
+    Artist {
+      "artistId": 22,
+      "name": "Led Zeppelin",
+    },
+  ],
+  [
+    Album {
+      "albumId": 134,
+      "artistId": 22,
+      "title": "Led Zeppelin III",
+    },
+    Artist {
+      "artistId": 22,
+      "name": "Led Zeppelin",
+    },
+  ],
+  [
+    Album {
+      "albumId": 135,
+      "artistId": 22,
+      "title": "Physical Graffiti [Disc 2]",
+    },
+    Artist {
+      "artistId": 22,
+      "name": "Led Zeppelin",
+    },
+  ],
+  [
+    Album {
+      "albumId": 136,
+      "artistId": 22,
+      "title": "Presence",
+    },
+    Artist {
+      "artistId": 22,
+      "name": "Led Zeppelin",
+    },
+  ],
+  [
+    Album {
+      "albumId": 137,
+      "artistId": 22,
+      "title": "The Song Remains The Same (Disc 1)",
+    },
+    Artist {
+      "artistId": 22,
+      "name": "Led Zeppelin",
+    },
+  ],
+  [
+    Album {
+      "albumId": 138,
+      "artistId": 22,
+      "title": "The Song Remains The Same (Disc 2)",
+    },
+    Artist {
+      "artistId": 22,
+      "name": "Led Zeppelin",
+    },
+  ],
+  [
+    Album {
+      "albumId": 139,
+      "artistId": 99,
+      "title": "A TempestadeTempestade Ou O Livro Dos Dias",
+    },
+    Artist {
+      "artistId": 99,
+      "name": "Legião Urbana",
+    },
+  ],
+  [
+    Album {
+      "albumId": 140,
+      "artistId": 99,
+      "title": "Mais Do Mesmo",
+    },
+    Artist {
+      "artistId": 99,
+      "name": "Legião Urbana",
+    },
+  ],
+  [
+    Album {
+      "albumId": 141,
+      "artistId": 100,
+      "title": "Greatest Hits",
+    },
+    Artist {
+      "artistId": 100,
+      "name": "Lenny Kravitz",
+    },
+  ],
+  [
+    Album {
+      "albumId": 294,
+      "artistId": 228,
+      "title": "Great Performances - Barber's Adagio and Other Romantic Favorites for Strings",
+    },
+    Artist {
+      "artistId": 228,
+      "name": "Leonard Bernstein & New York Philharmonic",
+    },
+  ],
+  [
+    Album {
+      "albumId": 328,
+      "artistId": 258,
+      "title": "Charpentier: Divertissements, Airs & Concerts",
+    },
+    Artist {
+      "artistId": 258,
+      "name": "Les Arts Florissants & William Christie",
+    },
+  ],
+  [
+    Album {
+      "albumId": 289,
+      "artistId": 223,
+      "title": "Tchaikovsky: The Nutcracker",
+    },
+    Artist {
+      "artistId": 223,
+      "name": "London Symphony Orchestra & Sir Charles Mackerras",
+    },
+  ],
+  [
+    Album {
+      "albumId": 229,
+      "artistId": 149,
+      "title": "Lost, Season 3",
+    },
+    Artist {
+      "artistId": 149,
+      "name": "Lost",
+    },
+  ],
+  [
+    Album {
+      "albumId": 230,
+      "artistId": 149,
+      "title": "Lost, Season 1",
+    },
+    Artist {
+      "artistId": 149,
+      "name": "Lost",
+    },
+  ],
+  [
+    Album {
+      "albumId": 231,
+      "artistId": 149,
+      "title": "Lost, Season 2",
+    },
+    Artist {
+      "artistId": 149,
+      "name": "Lost",
+    },
+  ],
+  [
+    Album {
+      "albumId": 261,
+      "artistId": 149,
+      "title": "LOST, Season 4",
+    },
+    Artist {
+      "artistId": 149,
+      "name": "Lost",
+    },
+  ],
+  [
+    Album {
+      "albumId": 266,
+      "artistId": 201,
+      "title": "Duos II",
+    },
+    Artist {
+      "artistId": 201,
+      "name": "Luciana Souza/Romero Lubambo",
+    },
+  ],
+  [
+    Album {
+      "albumId": 293,
+      "artistId": 227,
+      "title": "Pavarotti's Opera Made Easy",
+    },
+    Artist {
+      "artistId": 227,
+      "name": "Luciano Pavarotti",
+    },
+  ],
+  [
+    Album {
+      "albumId": 142,
+      "artistId": 101,
+      "title": "Lulu Santos - RCA 100 Anos De Música - Álbum 01",
+    },
+    Artist {
+      "artistId": 101,
+      "name": "Lulu Santos",
+    },
+  ],
+  [
+    Album {
+      "albumId": 143,
+      "artistId": 101,
+      "title": "Lulu Santos - RCA 100 Anos De Música - Álbum 02",
+    },
+    Artist {
+      "artistId": 101,
+      "name": "Lulu Santos",
+    },
+  ],
+  [
+    Album {
+      "albumId": 33,
+      "artistId": 24,
+      "title": "Chill: Brazil (Disc 1)",
+    },
+    Artist {
+      "artistId": 24,
+      "name": "Marcos Valle",
+    },
+  ],
+  [
+    Album {
+      "albumId": 144,
+      "artistId": 102,
+      "title": "Misplaced Childhood",
+    },
+    Artist {
+      "artistId": 102,
+      "name": "Marillion",
+    },
+  ],
+  [
+    Album {
+      "albumId": 145,
+      "artistId": 103,
+      "title": "Barulhinho Bom",
+    },
+    Artist {
+      "artistId": 103,
+      "name": "Marisa Monte",
+    },
+  ],
+  [
+    Album {
+      "albumId": 337,
+      "artistId": 266,
+      "title": "Szymanowski: Piano Works, Vol. 1",
+    },
+    Artist {
+      "artistId": 266,
+      "name": "Martin Roscoe",
+    },
+  ],
+  [
+    Album {
+      "albumId": 146,
+      "artistId": 104,
+      "title": "Seek And Shall Find: More Of The Best (1963-1981)",
+    },
+    Artist {
+      "artistId": 104,
+      "name": "Marvin Gaye",
+    },
+  ],
+  [
+    Album {
+      "albumId": 304,
+      "artistId": 238,
+      "title": "Beethoven Piano Sonatas: Moonlight & Pastorale",
+    },
+    Artist {
+      "artistId": 238,
+      "name": "Maurizio Pollini",
+    },
+  ],
+  [
+    Album {
+      "albumId": 342,
+      "artistId": 271,
+      "title": "Locatelli: Concertos for Violin, Strings and Continuo, Vol. 3",
+    },
+    Artist {
+      "artistId": 271,
+      "name": "Mela Tenenbaum, Pro Musica Prague & Richard Kapp",
+    },
+  ],
+  [
+    Album {
+      "albumId": 147,
+      "artistId": 105,
+      "title": "The Best Of Men At Work",
+    },
+    Artist {
+      "artistId": 105,
+      "name": "Men At Work",
+    },
+  ],
+  [
+    Album {
+      "albumId": 35,
+      "artistId": 50,
+      "title": "Garage Inc. (Disc 1)",
+    },
+    Artist {
+      "artistId": 50,
+      "name": "Metallica",
+    },
+  ],
+  [
+    Album {
+      "albumId": 148,
+      "artistId": 50,
+      "title": "Black Album",
+    },
+    Artist {
+      "artistId": 50,
+      "name": "Metallica",
+    },
+  ],
+  [
+    Album {
+      "albumId": 149,
+      "artistId": 50,
+      "title": "Garage Inc. (Disc 2)",
+    },
+    Artist {
+      "artistId": 50,
+      "name": "Metallica",
+    },
+  ],
+  [
+    Album {
+      "albumId": 150,
+      "artistId": 50,
+      "title": "Kill 'Em All",
+    },
+    Artist {
+      "artistId": 50,
+      "name": "Metallica",
+    },
+  ],
+  [
+    Album {
+      "albumId": 151,
+      "artistId": 50,
+      "title": "Load",
+    },
+    Artist {
+      "artistId": 50,
+      "name": "Metallica",
+    },
+  ],
+  [
+    Album {
+      "albumId": 152,
+      "artistId": 50,
+      "title": "Master Of Puppets",
+    },
+    Artist {
+      "artistId": 50,
+      "name": "Metallica",
+    },
+  ],
+  [
+    Album {
+      "albumId": 153,
+      "artistId": 50,
+      "title": "ReLoad",
+    },
+    Artist {
+      "artistId": 50,
+      "name": "Metallica",
+    },
+  ],
+  [
+    Album {
+      "albumId": 154,
+      "artistId": 50,
+      "title": "Ride The Lightning",
+    },
+    Artist {
+      "artistId": 50,
+      "name": "Metallica",
+    },
+  ],
+  [
+    Album {
+      "albumId": 155,
+      "artistId": 50,
+      "title": "St. Anger",
+    },
+    Artist {
+      "artistId": 50,
+      "name": "Metallica",
+    },
+  ],
+  [
+    Album {
+      "albumId": 156,
+      "artistId": 50,
+      "title": "...And Justice For All",
+    },
+    Artist {
+      "artistId": 50,
+      "name": "Metallica",
+    },
+  ],
+  [
+    Album {
+      "albumId": 310,
+      "artistId": 245,
+      "title": "Prokofiev: Romeo & Juliet",
+    },
+    Artist {
+      "artistId": 245,
+      "name": "Michael Tilson Thomas & San Francisco Symphony",
+    },
+  ],
+  [
+    Album {
+      "albumId": 312,
+      "artistId": 245,
+      "title": "Berlioz: Symphonie Fantastique",
+    },
+    Artist {
+      "artistId": 245,
+      "name": "Michael Tilson Thomas & San Francisco Symphony",
+    },
+  ],
+  [
+    Album {
+      "albumId": 340,
+      "artistId": 269,
+      "title": "Liszt - 12 Études D'Execution Transcendante",
+    },
+    Artist {
+      "artistId": 269,
+      "name": "Michele Campanella",
+    },
+  ],
+  [
+    Album {
+      "albumId": 48,
+      "artistId": 68,
+      "title": "The Essential Miles Davis [Disc 1]",
+    },
+    Artist {
+      "artistId": 68,
+      "name": "Miles Davis",
+    },
+  ],
+  [
+    Album {
+      "albumId": 49,
+      "artistId": 68,
+      "title": "The Essential Miles Davis [Disc 2]",
+    },
+    Artist {
+      "artistId": 68,
+      "name": "Miles Davis",
+    },
+  ],
+  [
+    Album {
+      "albumId": 157,
+      "artistId": 68,
+      "title": "Miles Ahead",
+    },
+    Artist {
+      "artistId": 68,
+      "name": "Miles Davis",
+    },
+  ],
+  [
+    Album {
+      "albumId": 158,
+      "artistId": 42,
+      "title": "Milton Nascimento Ao Vivo",
+    },
+    Artist {
+      "artistId": 42,
+      "name": "Milton Nascimento",
+    },
+  ],
+  [
+    Album {
+      "albumId": 159,
+      "artistId": 42,
+      "title": "Minas",
+    },
+    Artist {
+      "artistId": 42,
+      "name": "Milton Nascimento",
+    },
+  ],
+  [
+    Album {
+      "albumId": 161,
+      "artistId": 108,
+      "title": "Demorou...",
+    },
+    Artist {
+      "artistId": 108,
+      "name": "Mônica Marianno",
+    },
+  ],
+  [
+    Album {
+      "albumId": 162,
+      "artistId": 109,
+      "title": "Motley Crue Greatest Hits",
+    },
+    Artist {
+      "artistId": 109,
+      "name": "Mötley Crüe",
+    },
+  ],
+  [
+    Album {
+      "albumId": 160,
+      "artistId": 106,
+      "title": "Ace Of Spades",
+    },
+    Artist {
+      "artistId": 106,
+      "name": "Motörhead",
+    },
+  ],
+  [
+    Album {
+      "albumId": 346,
+      "artistId": 274,
+      "title": "Mozart: Chamber Music",
+    },
+    Artist {
+      "artistId": 274,
+      "name": "Nash Ensemble",
+    },
+  ],
+  [
+    Album {
+      "albumId": 268,
+      "artistId": 203,
+      "title": "The Best of Beethoven",
+    },
+    Artist {
+      "artistId": 203,
+      "name": "Nicolaus Esterhazy Sinfonia",
+    },
+  ],
+  [
+    Album {
+      "albumId": 163,
+      "artistId": 110,
+      "title": "From The Muddy Banks Of The Wishkah [Live]",
+    },
+    Artist {
+      "artistId": 110,
+      "name": "Nirvana",
+    },
+  ],
+  [
+    Album {
+      "albumId": 164,
+      "artistId": 110,
+      "title": "Nevermind",
+    },
+    Artist {
+      "artistId": 110,
+      "name": "Nirvana",
+    },
+  ],
+  [
+    Album {
+      "albumId": 259,
+      "artistId": 36,
+      "title": "Radio Brasil (O Som da Jovem Vanguarda) - Seleccao de Henrique Amaro",
+    },
+    Artist {
+      "artistId": 36,
+      "name": "O Rappa",
+    },
+  ],
+  [
+    Album {
+      "albumId": 165,
+      "artistId": 111,
+      "title": "Compositores",
+    },
+    Artist {
+      "artistId": 111,
+      "name": "O Terço",
+    },
+  ],
+  [
+    Album {
+      "albumId": 166,
+      "artistId": 112,
+      "title": "Olodum",
+    },
+    Artist {
+      "artistId": 112,
+      "name": "Olodum",
+    },
+  ],
+  [
+    Album {
+      "albumId": 300,
+      "artistId": 234,
+      "title": "Bach: The Brandenburg Concertos",
+    },
+    Artist {
+      "artistId": 234,
+      "name": "Orchestra of The Age of Enlightenment",
+    },
+  ],
+  [
+    Album {
+      "albumId": 284,
+      "artistId": 218,
+      "title": "Beethoven: Symhonies Nos. 5 & 6",
+    },
+    Artist {
+      "artistId": 218,
+      "name": "Orchestre Révolutionnaire et Romantique & John Eliot Gardiner",
+    },
+  ],
+  [
+    Album {
+      "albumId": 42,
+      "artistId": 57,
+      "title": "Minha História",
+    },
+    Artist {
+      "artistId": 57,
+      "name": "Os Mutantes",
+    },
+  ],
+  [
+    Album {
+      "albumId": 167,
+      "artistId": 113,
+      "title": "Acústico MTV",
+    },
+    Artist {
+      "artistId": 113,
+      "name": "Os Paralamas Do Sucesso",
+    },
+  ],
+  [
+    Album {
+      "albumId": 168,
+      "artistId": 113,
+      "title": "Arquivo II",
+    },
+    Artist {
+      "artistId": 113,
+      "name": "Os Paralamas Do Sucesso",
+    },
+  ],
+  [
+    Album {
+      "albumId": 169,
+      "artistId": 113,
+      "title": "Arquivo Os Paralamas Do Sucesso",
+    },
+    Artist {
+      "artistId": 113,
+      "name": "Os Paralamas Do Sucesso",
+    },
+  ],
+  [
+    Album {
+      "albumId": 324,
+      "artistId": 254,
+      "title": "Beethoven: Symphony No. 6 'Pastoral' Etc.",
+    },
+    Artist {
+      "artistId": 254,
+      "name": "Otto Klemperer & Philharmonia Orchestra",
+    },
+  ],
+  [
+    Album {
+      "albumId": 170,
+      "artistId": 114,
+      "title": "Bark at the Moon (Remastered)",
+    },
+    Artist {
+      "artistId": 114,
+      "name": "Ozzy Osbourne",
+    },
+  ],
+  [
+    Album {
+      "albumId": 171,
+      "artistId": 114,
+      "title": "Blizzard of Ozz",
+    },
+    Artist {
+      "artistId": 114,
+      "name": "Ozzy Osbourne",
+    },
+  ],
+  [
+    Album {
+      "albumId": 172,
+      "artistId": 114,
+      "title": "Diary of a Madman (Remastered)",
+    },
+    Artist {
+      "artistId": 114,
+      "name": "Ozzy Osbourne",
+    },
+  ],
+  [
+    Album {
+      "albumId": 173,
+      "artistId": 114,
+      "title": "No More Tears (Remastered)",
+    },
+    Artist {
+      "artistId": 114,
+      "name": "Ozzy Osbourne",
+    },
+  ],
+  [
+    Album {
+      "albumId": 174,
+      "artistId": 114,
+      "title": "Tribute",
+    },
+    Artist {
+      "artistId": 114,
+      "name": "Ozzy Osbourne",
+    },
+  ],
+  [
+    Album {
+      "albumId": 256,
+      "artistId": 114,
+      "title": "Speak of the Devil",
+    },
+    Artist {
+      "artistId": 114,
+      "name": "Ozzy Osbourne",
+    },
+  ],
+  [
+    Album {
+      "albumId": 175,
+      "artistId": 115,
+      "title": "Walking Into Clarksdale",
+    },
+    Artist {
+      "artistId": 115,
+      "name": "Page & Plant",
+    },
+  ],
+  [
+    Album {
+      "albumId": 176,
+      "artistId": 116,
+      "title": "Original Soundtracks 1",
+    },
+    Artist {
+      "artistId": 116,
+      "name": "Passengers",
+    },
+  ],
+  [
+    Album {
+      "albumId": 177,
+      "artistId": 117,
+      "title": "The Beast Live",
+    },
+    Artist {
+      "artistId": 117,
+      "name": "Paul D'Ianno",
+    },
+  ],
+  [
+    Album {
+      "albumId": 178,
+      "artistId": 118,
+      "title": "Live On Two Legs [Live]",
+    },
+    Artist {
+      "artistId": 118,
+      "name": "Pearl Jam",
+    },
+  ],
+  [
+    Album {
+      "albumId": 179,
+      "artistId": 118,
+      "title": "Pearl Jam",
+    },
+    Artist {
+      "artistId": 118,
+      "name": "Pearl Jam",
+    },
+  ],
+  [
+    Album {
+      "albumId": 180,
+      "artistId": 118,
+      "title": "Riot Act",
+    },
+    Artist {
+      "artistId": 118,
+      "name": "Pearl Jam",
+    },
+  ],
+  [
+    Album {
+      "albumId": 181,
+      "artistId": 118,
+      "title": "Ten",
+    },
+    Artist {
+      "artistId": 118,
+      "name": "Pearl Jam",
+    },
+  ],
+  [
+    Album {
+      "albumId": 182,
+      "artistId": 118,
+      "title": "Vs.",
+    },
+    Artist {
+      "artistId": 118,
+      "name": "Pearl Jam",
+    },
+  ],
+  [
+    Album {
+      "albumId": 326,
+      "artistId": 256,
+      "title": "Mendelssohn: A Midsummer Night's Dream",
+    },
+    Artist {
+      "artistId": 256,
+      "name": "Philharmonia Orchestra & Sir Neville Marriner",
+    },
+  ],
+  [
+    Album {
+      "albumId": 347,
+      "artistId": 275,
+      "title": "Koyaanisqatsi (Soundtrack from the Motion Picture)",
+    },
+    Artist {
+      "artistId": 275,
+      "name": "Philip Glass Ensemble",
+    },
+  ],
+  [
+    Album {
+      "albumId": 183,
+      "artistId": 120,
+      "title": "Dark Side Of The Moon",
+    },
+    Artist {
+      "artistId": 120,
+      "name": "Pink Floyd",
+    },
+  ],
+  [
+    Album {
+      "albumId": 184,
+      "artistId": 121,
+      "title": "Os Cães Ladram Mas A Caravana Não Pára",
+    },
+    Artist {
+      "artistId": 121,
+      "name": "Planet Hemp",
+    },
+  ],
+  [
+    Album {
+      "albumId": 36,
+      "artistId": 51,
+      "title": "Greatest Hits II",
+    },
+    Artist {
+      "artistId": 51,
+      "name": "Queen",
+    },
+  ],
+  [
+    Album {
+      "albumId": 185,
+      "artistId": 51,
+      "title": "Greatest Hits I",
+    },
+    Artist {
+      "artistId": 51,
+      "name": "Queen",
+    },
+  ],
+  [
+    Album {
+      "albumId": 186,
+      "artistId": 51,
+      "title": "News Of The World",
+    },
+    Artist {
+      "artistId": 51,
+      "name": "Queen",
+    },
+  ],
+  [
+    Album {
+      "albumId": 188,
+      "artistId": 124,
+      "title": "Green",
+    },
+    Artist {
+      "artistId": 124,
+      "name": "R.E.M.",
+    },
+  ],
+  [
+    Album {
+      "albumId": 189,
+      "artistId": 124,
+      "title": "New Adventures In Hi-Fi",
+    },
+    Artist {
+      "artistId": 124,
+      "name": "R.E.M.",
+    },
+  ],
+  [
+    Album {
+      "albumId": 190,
+      "artistId": 124,
+      "title": "The Best Of R.E.M.: The IRS Years",
+    },
+    Artist {
+      "artistId": 124,
+      "name": "R.E.M.",
+    },
+  ],
+  [
+    Album {
+      "albumId": 187,
+      "artistId": 122,
+      "title": "Out Of Time",
+    },
+    Artist {
+      "artistId": 122,
+      "name": "R.E.M. Feat. Kate Pearson",
+    },
+  ],
+  [
+    Album {
+      "albumId": 191,
+      "artistId": 125,
+      "title": "Cesta Básica",
+    },
+    Artist {
+      "artistId": 125,
+      "name": "Raimundos",
+    },
+  ],
+  [
+    Album {
+      "albumId": 192,
+      "artistId": 126,
+      "title": "Raul Seixas",
+    },
+    Artist {
+      "artistId": 126,
+      "name": "Raul Seixas",
+    },
+  ],
+  [
+    Album {
+      "albumId": 193,
+      "artistId": 127,
+      "title": "Blood Sugar Sex Magik",
+    },
+    Artist {
+      "artistId": 127,
+      "name": "Red Hot Chili Peppers",
+    },
+  ],
+  [
+    Album {
+      "albumId": 194,
+      "artistId": 127,
+      "title": "By The Way",
+    },
+    Artist {
+      "artistId": 127,
+      "name": "Red Hot Chili Peppers",
+    },
+  ],
+  [
+    Album {
+      "albumId": 195,
+      "artistId": 127,
+      "title": "Californication",
+    },
+    Artist {
+      "artistId": 127,
+      "name": "Red Hot Chili Peppers",
+    },
+  ],
+  [
+    Album {
+      "albumId": 273,
+      "artistId": 207,
+      "title": "Allegri: Miserere",
+    },
+    Artist {
+      "artistId": 207,
+      "name": "Richard Marlow & The Choir of Trinity College, Cambridge",
+    },
+  ],
+  [
+    Album {
+      "albumId": 331,
+      "artistId": 261,
+      "title": "Purcell: The Fairy Queen",
+    },
+    Artist {
+      "artistId": 261,
+      "name": "Roger Norrington, London Classical Players",
+    },
+  ],
+  [
+    Album {
+      "albumId": 283,
+      "artistId": 217,
+      "title": "Haydn: Symphonies 99 - 104",
+    },
+    Artist {
+      "artistId": 217,
+      "name": "Royal Philharmonic Orchestra & Sir Thomas Beecham",
+    },
+  ],
+  [
+    Album {
+      "albumId": 196,
+      "artistId": 128,
+      "title": "Retrospective I (1974-1980)",
+    },
+    Artist {
+      "artistId": 128,
+      "name": "Rush",
+    },
+  ],
+  [
+    Album {
+      "albumId": 46,
+      "artistId": 59,
+      "title": "Supernatural",
+    },
+    Artist {
+      "artistId": 59,
+      "name": "Santana",
+    },
+  ],
+  [
+    Album {
+      "albumId": 197,
+      "artistId": 59,
+      "title": "Santana - As Years Go By",
+    },
+    Artist {
+      "artistId": 59,
+      "name": "Santana",
+    },
+  ],
+  [
+    Album {
+      "albumId": 198,
+      "artistId": 59,
+      "title": "Santana Live",
+    },
+    Artist {
+      "artistId": 59,
+      "name": "Santana",
+    },
+  ],
+  [
+    Album {
+      "albumId": 279,
+      "artistId": 213,
+      "title": "Handel: The Messiah (Highlights)",
+    },
+    Artist {
+      "artistId": 213,
+      "name": "Scholars Baroque Ensemble",
+    },
+  ],
+  [
+    Album {
+      "albumId": 257,
+      "artistId": 179,
+      "title": "20th Century Masters - The Millennium Collection: The Best of Scorpions",
+    },
+    Artist {
+      "artistId": 179,
+      "name": "Scorpions",
+    },
+  ],
+  [
+    Album {
+      "albumId": 298,
+      "artistId": 232,
+      "title": "Prokofiev: Symphony No.1",
+    },
+    Artist {
+      "artistId": 232,
+      "name": "Sergei Prokofiev & Yuri Temirkanov",
+    },
+  ],
+  [
+    Album {
+      "albumId": 287,
+      "artistId": 221,
+      "title": "Wagner: Favourite Overtures",
+    },
+    Artist {
+      "artistId": 221,
+      "name": "Sir Georg Solti & Wiener Philharmoniker",
+    },
+  ],
+  [
+    Album {
+      "albumId": 317,
+      "artistId": 249,
+      "title": "Mozart Gala: Famous Arias",
+    },
+    Artist {
+      "artistId": 249,
+      "name": "Sir Georg Solti, Sumi Jo & Wiener Philharmoniker",
+    },
+  ],
+  [
+    Album {
+      "albumId": 199,
+      "artistId": 130,
+      "title": "Maquinarama",
+    },
+    Artist {
+      "artistId": 130,
+      "name": "Skank",
+    },
+  ],
+  [
+    Album {
+      "albumId": 200,
+      "artistId": 130,
+      "title": "O Samba Poconé",
+    },
+    Artist {
+      "artistId": 130,
+      "name": "Skank",
+    },
+  ],
+  [
+    Album {
+      "albumId": 201,
+      "artistId": 131,
+      "title": "Judas 0: B-Sides and Rarities",
+    },
+    Artist {
+      "artistId": 131,
+      "name": "Smashing Pumpkins",
+    },
+  ],
+  [
+    Album {
+      "albumId": 202,
+      "artistId": 131,
+      "title": "Rotten Apples: Greatest Hits",
+    },
+    Artist {
+      "artistId": 131,
+      "name": "Smashing Pumpkins",
+    },
+  ],
+  [
+    Album {
+      "albumId": 203,
+      "artistId": 132,
+      "title": "A-Sides",
+    },
+    Artist {
+      "artistId": 132,
+      "name": "Soundgarden",
+    },
+  ],
+  [
+    Album {
+      "albumId": 38,
+      "artistId": 53,
+      "title": "Heart of the Night",
+    },
+    Artist {
+      "artistId": 53,
+      "name": "Spyro Gyra",
+    },
+  ],
+  [
+    Album {
+      "albumId": 204,
+      "artistId": 53,
+      "title": "Morning Dance",
+    },
+    Artist {
+      "artistId": 53,
+      "name": "Spyro Gyra",
+    },
+  ],
+  [
+    Album {
+      "albumId": 205,
+      "artistId": 133,
+      "title": "In Step",
+    },
+    Artist {
+      "artistId": 133,
+      "name": "Stevie Ray Vaughan & Double Trouble",
+    },
+  ],
+  [
+    Album {
+      "albumId": 206,
+      "artistId": 134,
+      "title": "Core",
+    },
+    Artist {
+      "artistId": 134,
+      "name": "Stone Temple Pilots",
+    },
+  ],
+  [
+    Album {
+      "albumId": 207,
+      "artistId": 135,
+      "title": "Mezmerize",
+    },
+    Artist {
+      "artistId": 135,
+      "name": "System Of A Down",
+    },
+  ],
+  [
+    Album {
+      "albumId": 269,
+      "artistId": 204,
+      "title": "Temple of the Dog",
+    },
+    Artist {
+      "artistId": 204,
+      "name": "Temple of the Dog",
+    },
+  ],
+  [
+    Album {
+      "albumId": 208,
+      "artistId": 136,
+      "title": "[1997] Black Light Syndrome",
+    },
+    Artist {
+      "artistId": 136,
+      "name": "Terry Bozzio, Tony Levin & Steve Stevens",
+    },
+  ],
+  [
+    Album {
+      "albumId": 329,
+      "artistId": 259,
+      "title": "South American Getaway",
+    },
+    Artist {
+      "artistId": 259,
+      "name": "The 12 Cellists of The Berlin Philharmonic",
+    },
+  ],
+  [
+    Album {
+      "albumId": 209,
+      "artistId": 137,
+      "title": "Live [Disc 1]",
+    },
+    Artist {
+      "artistId": 137,
+      "name": "The Black Crowes",
+    },
+  ],
+  [
+    Album {
+      "albumId": 210,
+      "artistId": 137,
+      "title": "Live [Disc 2]",
+    },
+    Artist {
+      "artistId": 137,
+      "name": "The Black Crowes",
+    },
+  ],
+  [
+    Album {
+      "albumId": 211,
+      "artistId": 138,
+      "title": "The Singles",
+    },
+    Artist {
+      "artistId": 138,
+      "name": "The Clash",
+    },
+  ],
+  [
+    Album {
+      "albumId": 212,
+      "artistId": 139,
+      "title": "Beyond Good And Evil",
+    },
+    Artist {
+      "artistId": 139,
+      "name": "The Cult",
+    },
+  ],
+  [
+    Album {
+      "albumId": 213,
+      "artistId": 139,
+      "title": "Pure Cult: The Best Of The Cult (For Rockers, Ravers, Lovers & Sinners) [UK]",
+    },
+    Artist {
+      "artistId": 139,
+      "name": "The Cult",
+    },
+  ],
+  [
+    Album {
+      "albumId": 214,
+      "artistId": 140,
+      "title": "The Doors",
+    },
+    Artist {
+      "artistId": 140,
+      "name": "The Doors",
+    },
+  ],
+  [
+    Album {
+      "albumId": 314,
+      "artistId": 247,
+      "title": "English Renaissance",
+    },
+    Artist {
+      "artistId": 247,
+      "name": "The King's Singers",
+    },
+  ],
+  [
+    Album {
+      "albumId": 249,
+      "artistId": 156,
+      "title": "The Office, Season 1",
+    },
+    Artist {
+      "artistId": 156,
+      "name": "The Office",
+    },
+  ],
+  [
+    Album {
+      "albumId": 250,
+      "artistId": 156,
+      "title": "The Office, Season 2",
+    },
+    Artist {
+      "artistId": 156,
+      "name": "The Office",
+    },
+  ],
+  [
+    Album {
+      "albumId": 251,
+      "artistId": 156,
+      "title": "The Office, Season 3",
+    },
+    Artist {
+      "artistId": 156,
+      "name": "The Office",
+    },
+  ],
+  [
+    Album {
+      "albumId": 215,
+      "artistId": 141,
+      "title": "The Police Greatest Hits",
+    },
+    Artist {
+      "artistId": 141,
+      "name": "The Police",
+    },
+  ],
+  [
+    Album {
+      "albumId": 265,
+      "artistId": 200,
+      "title": "Every Kind of Light",
+    },
+    Artist {
+      "artistId": 200,
+      "name": "The Posies",
+    },
+  ],
+  [
+    Album {
+      "albumId": 216,
+      "artistId": 142,
+      "title": "Hot Rocks, 1964-1971 (Disc 1)",
+    },
+    Artist {
+      "artistId": 142,
+      "name": "The Rolling Stones",
+    },
+  ],
+  [
+    Album {
+      "albumId": 217,
+      "artistId": 142,
+      "title": "No Security",
+    },
+    Artist {
+      "artistId": 142,
+      "name": "The Rolling Stones",
+    },
+  ],
+  [
+    Album {
+      "albumId": 218,
+      "artistId": 142,
+      "title": "Voodoo Lounge",
+    },
+    Artist {
+      "artistId": 142,
+      "name": "The Rolling Stones",
+    },
+  ],
+  [
+    Album {
+      "albumId": 219,
+      "artistId": 143,
+      "title": "Tangents",
+    },
+    Artist {
+      "artistId": 143,
+      "name": "The Tea Party",
+    },
+  ],
+  [
+    Album {
+      "albumId": 220,
+      "artistId": 143,
+      "title": "Transmission",
+    },
+    Artist {
+      "artistId": 143,
+      "name": "The Tea Party",
+    },
+  ],
+  [
+    Album {
+      "albumId": 221,
+      "artistId": 144,
+      "title": "My Generation - The Very Best Of The Who",
+    },
+    Artist {
+      "artistId": 144,
+      "name": "The Who",
+    },
+  ],
+  [
+    Album {
+      "albumId": 222,
+      "artistId": 145,
+      "title": "Serie Sem Limite (Disc 1)",
+    },
+    Artist {
+      "artistId": 145,
+      "name": "Tim Maia",
+    },
+  ],
+  [
+    Album {
+      "albumId": 223,
+      "artistId": 145,
+      "title": "Serie Sem Limite (Disc 2)",
+    },
+    Artist {
+      "artistId": 145,
+      "name": "Tim Maia",
+    },
+  ],
+  [
+    Album {
+      "albumId": 224,
+      "artistId": 146,
+      "title": "Acústico",
+    },
+    Artist {
+      "artistId": 146,
+      "name": "Titãs",
+    },
+  ],
+  [
+    Album {
+      "albumId": 225,
+      "artistId": 146,
+      "title": "Volume Dois",
+    },
+    Artist {
+      "artistId": 146,
+      "name": "Titãs",
+    },
+  ],
+  [
+    Album {
+      "albumId": 297,
+      "artistId": 231,
+      "title": "Bach: Toccata & Fugue in D Minor",
+    },
+    Artist {
+      "artistId": 231,
+      "name": "Ton Koopman",
+    },
+  ],
+  [
+    Album {
+      "albumId": 52,
+      "artistId": 70,
+      "title": "Vinícius De Moraes - Sem Limite",
+    },
+    Artist {
+      "artistId": 70,
+      "name": "Toquinho & Vinícius",
+    },
+  ],
+  [
+    Album {
+      "albumId": 232,
+      "artistId": 150,
+      "title": "Achtung Baby",
+    },
+    Artist {
+      "artistId": 150,
+      "name": "U2",
+    },
+  ],
+  [
+    Album {
+      "albumId": 233,
+      "artistId": 150,
+      "title": "All That You Can't Leave Behind",
+    },
+    Artist {
+      "artistId": 150,
+      "name": "U2",
+    },
+  ],
+  [
+    Album {
+      "albumId": 234,
+      "artistId": 150,
+      "title": "B-Sides 1980-1990",
+    },
+    Artist {
+      "artistId": 150,
+      "name": "U2",
+    },
+  ],
+  [
+    Album {
+      "albumId": 235,
+      "artistId": 150,
+      "title": "How To Dismantle An Atomic Bomb",
+    },
+    Artist {
+      "artistId": 150,
+      "name": "U2",
+    },
+  ],
+  [
+    Album {
+      "albumId": 236,
+      "artistId": 150,
+      "title": "Pop",
+    },
+    Artist {
+      "artistId": 150,
+      "name": "U2",
+    },
+  ],
+  [
+    Album {
+      "albumId": 237,
+      "artistId": 150,
+      "title": "Rattle And Hum",
+    },
+    Artist {
+      "artistId": 150,
+      "name": "U2",
+    },
+  ],
+  [
+    Album {
+      "albumId": 238,
+      "artistId": 150,
+      "title": "The Best Of 1980-1990",
+    },
+    Artist {
+      "artistId": 150,
+      "name": "U2",
+    },
+  ],
+  [
+    Album {
+      "albumId": 239,
+      "artistId": 150,
+      "title": "War",
+    },
+    Artist {
+      "artistId": 150,
+      "name": "U2",
+    },
+  ],
+  [
+    Album {
+      "albumId": 240,
+      "artistId": 150,
+      "title": "Zooropa",
+    },
+    Artist {
+      "artistId": 150,
+      "name": "U2",
+    },
+  ],
+  [
+    Album {
+      "albumId": 255,
+      "artistId": 150,
+      "title": "Instant Karma: The Amnesty International Campaign to Save Darfur",
+    },
+    Artist {
+      "artistId": 150,
+      "name": "U2",
+    },
+  ],
+  [
+    Album {
+      "albumId": 241,
+      "artistId": 151,
+      "title": "UB40 The Best Of - Volume Two [UK]",
+    },
+    Artist {
+      "artistId": 151,
+      "name": "UB40",
+    },
+  ],
+  [
+    Album {
+      "albumId": 242,
+      "artistId": 152,
+      "title": "Diver Down",
+    },
+    Artist {
+      "artistId": 152,
+      "name": "Van Halen",
+    },
+  ],
+  [
+    Album {
+      "albumId": 243,
+      "artistId": 152,
+      "title": "The Best Of Van Halen, Vol. I",
+    },
+    Artist {
+      "artistId": 152,
+      "name": "Van Halen",
+    },
+  ],
+  [
+    Album {
+      "albumId": 244,
+      "artistId": 152,
+      "title": "Van Halen",
+    },
+    Artist {
+      "artistId": 152,
+      "name": "Van Halen",
+    },
+  ],
+  [
+    Album {
+      "albumId": 245,
+      "artistId": 152,
+      "title": "Van Halen III",
+    },
+    Artist {
+      "artistId": 152,
+      "name": "Van Halen",
+    },
+  ],
+  [
+    Album {
+      "albumId": 29,
+      "artistId": 21,
+      "title": "Axé Bahia 2001",
+    },
+    Artist {
+      "artistId": 21,
+      "name": "Various Artists",
+    },
+  ],
+  [
+    Album {
+      "albumId": 32,
+      "artistId": 21,
+      "title": "Carnaval 2001",
+    },
+    Artist {
+      "artistId": 21,
+      "name": "Various Artists",
+    },
+  ],
+  [
+    Album {
+      "albumId": 45,
+      "artistId": 21,
+      "title": "Sambas De Enredo 2001",
+    },
+    Artist {
+      "artistId": 21,
+      "name": "Various Artists",
+    },
+  ],
+  [
+    Album {
+      "albumId": 53,
+      "artistId": 21,
+      "title": "Vozes do MPB",
+    },
+    Artist {
+      "artistId": 21,
+      "name": "Various Artists",
+    },
+  ],
+  [
+    Album {
+      "albumId": 246,
+      "artistId": 153,
+      "title": "Contraband",
+    },
+    Artist {
+      "artistId": 153,
+      "name": "Velvet Revolver",
+    },
+  ],
+  [
+    Album {
+      "albumId": 247,
+      "artistId": 72,
+      "title": "Vinicius De Moraes",
+    },
+    Artist {
+      "artistId": 72,
+      "name": "Vinícius De Moraes",
+    },
+  ],
+  [
+    Album {
+      "albumId": 277,
+      "artistId": 211,
+      "title": "Bach: Goldberg Variations",
+    },
+    Artist {
+      "artistId": 211,
+      "name": "Wilhelm Kempff",
+    },
+  ],
+  [
+    Album {
+      "albumId": 325,
+      "artistId": 255,
+      "title": "Bartok: Violin & Viola Concertos",
+    },
+    Artist {
+      "artistId": 255,
+      "name": "Yehudi Menuhin",
+    },
+  ],
+  [
+    Album {
+      "albumId": 278,
+      "artistId": 212,
+      "title": "Bach: The Cello Suites",
+    },
+    Artist {
+      "artistId": 212,
+      "name": "Yo-Yo Ma",
+    },
+  ],
+  [
+    Album {
+      "albumId": 248,
+      "artistId": 155,
+      "title": "Ao Vivo [IMPORT]",
+    },
+    Artist {
+      "artistId": 155,
+      "name": "Zeca Pagodinho",
+    },
+  ],
+]

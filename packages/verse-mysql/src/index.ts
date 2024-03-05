@@ -251,7 +251,7 @@ export class MySqlDriver implements Driver, AsyncDisposable {
   }
 
   static readonly #EXISTS = new SqlSelect({
-    projection: new SqlNumber(1),
+    projection: SqlNumber.ONE,
     from: new SqlMember(sqlId("information_schema"), sqlId("schemata")),
     where: sqlBin(sqlId("schema_name"), "=", new SqlParameter(0)),
   });
@@ -271,7 +271,7 @@ export class MySqlDriver implements Driver, AsyncDisposable {
     // noinspection LoopStatementThatDoesntLoopJS
     for await (const _ of this.rows(
       new SqlSelect({
-        projection: new SqlNumber(1),
+        projection: SqlNumber.ONE,
         from: new SqlMember(sqlId("information_schema"), sqlId("tables")),
         where: sqlBin(
           sqlBin(sqlId("table_schema"), "=", sqlStr(this.#config.database!)),

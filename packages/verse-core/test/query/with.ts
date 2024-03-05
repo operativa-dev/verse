@@ -1,3 +1,5 @@
+// noinspection JSUnusedGlobalSymbols
+
 import { expect, test } from "vitest";
 import { Driver } from "../../src/db/driver.js";
 import { entity, int, many, one, string } from "../../src/model/builder.js";
@@ -100,6 +102,36 @@ export const withFixture = (driver: Driver) => {
 
 export const withTests = (verse: Verse<typeof withModel>) => {
   const snap = dataTest(verse);
+
+  test("groupBy no result selector", async () => {
+    const q = verse.from.albums.groupBy(a => a.artistId);
+
+    await snap(q);
+  });
+
+  test("groupBy no result selector compiled", async () => {
+    const q = verse.compile(from => from.albums.groupBy(a => a.artistId));
+
+    await snap(q());
+  });
+
+  test("groupBy identity array result", async () => {
+    const q = verse.from.albums.groupBy(
+      a => a.artistId,
+      g => ({ items: g.array(a => a) })
+    );
+
+    await snap(q);
+  });
+
+  test("groupBy no-args array result", async () => {
+    const q = verse.from.albums.groupBy(
+      a => a.artistId,
+      g => [g.array()]
+    );
+
+    await snap(q);
+  });
 
   test("groupBy array aggregate with key", async () => {
     const q = verse.from.artists
@@ -1018,5 +1050,19 @@ export const withErrorTests = (verse: Verse<typeof withModel>) => {
     );
 
     await expect(() => q()).rejects.toThrow("Query produced more than one result (expected 1).");
+  });
+
+  test("groupBy identity grouping", async () => {
+    expect(() => {
+      verse.from.albums
+        .groupBy(
+          a => a.artistId,
+          g => g
+        )
+        .toArray();
+    }).toThrow(
+      "Unable to compile the identity 'groupBy' result expression: '(g) => g'. " +
+        "Use the 'groupBy' overload that omits the result expression."
+    );
   });
 };
