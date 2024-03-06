@@ -341,18 +341,6 @@ importers:
       tsconfig:
         specifier: workspace:*
         version: link:../tsconfig
-      typedoc:
-        specifier: ^0.25.11
-        version: 0.25.11(typescript@5.3.3)
-      typedoc-plugin-include-example:
-        specifier: ^1.2.0
-        version: 1.2.0(typedoc@0.25.11)
-      typedoc-plugin-mdn-links:
-        specifier: ^3.1.17
-        version: 3.1.17(typedoc@0.25.11)
-      typedoc-plugin-not-exported:
-        specifier: ^0.1.6
-        version: 0.1.6(typedoc@0.25.11)
 
   packages/verse-migrations:
     dependencies:
@@ -15102,14 +15090,6 @@ packages:
     resolution: {integrity: sha512-DCkMuXna8qipSwfzXl6c1x7nBeZUW/qWCACoaaP/cUzUyy/1MXedUyteuVsfw6+Sod61gIAr9ccwH78nrdwu6A==}
     peerDependencies:
       typedoc: '>= 0.23.14 || 0.24.x || 0.25.x'
-    dependencies:
-      typedoc: 0.25.11(typescript@5.3.3)
-    dev: true
-
-  /typedoc-plugin-not-exported@0.1.6(typedoc@0.25.11):
-    resolution: {integrity: sha512-nVtDW2zofM+ns0DcQkLMaZ2c6zJTiqHHNVYcDdFaFDuMSSxF9PYmRByO19EYKi+P2olw1cv7rOT4OLbgD4OglQ==}
-    peerDependencies:
-      typedoc: '>=0.20.16'
     dependencies:
       typedoc: 0.25.11(typescript@5.3.3)
     dev: true

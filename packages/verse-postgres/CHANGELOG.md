@@ -1,5 +1,16 @@
 # @operativa/verse-postgres
 
+## 1.0.0
+
+### Minor Changes
+
+- Mar 2024 Release
+
+### Patch Changes
+
+- Updated dependencies
+  - @operativa/verse@0.7.0
+
 ## 5.0.0
 
 ### Minor Changes
