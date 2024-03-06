@@ -1,6 +1,6 @@
 {
   "name": "@operativa/verse-cli",
-  "version": "3.0.0",
+  "version": "0.7.0",
   "license": "MIT",
   "publishConfig": {
     "access": "public"

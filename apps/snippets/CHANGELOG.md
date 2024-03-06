@@ -1,5 +1,13 @@
 # snippets
 
+## 1.0.2
+
+### Patch Changes
+
+- Updated dependencies
+  - @operativa/verse-sqlite@1.0.0
+  - @operativa/verse@0.7.0
+
 ## 1.0.1
 
 ### Patch Changes

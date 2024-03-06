@@ -1,5 +1,11 @@
 # @operativa/verse
 
+## 0.7.0
+
+### Minor Changes
+
+- Mar 2024 Release
+
 ## 0.6.0
 
 ### Minor Changes

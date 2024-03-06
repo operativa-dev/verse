@@ -1,6 +1,6 @@
 {
   "name": "@operativa/verse-mysql",
-  "version": "5.0.0",
+  "version": "0.7.0",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "immutable": "5.0.0-beta.5",
-    "mysql2": "^3.9.1"
+    "mysql2": "^3.9.2"
   },
   "devDependencies": {
     "@operativa/verse": "workspace:*",
