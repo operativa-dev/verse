@@ -7,5 +7,13 @@
   "access": "restricted",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": ["basic", "docs", "todo"]
+  "ignore": [
+    "basic",
+    "docs",
+    "todo",
+    "snippets",
+    "scripts",
+    "tsconfig",
+    "eslint-config-custom"
+  ]
 }
