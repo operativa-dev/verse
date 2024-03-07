@@ -10,14 +10,10 @@
     "typecheck": "turbo run tsc -- --noEmit",
     "format:check": "prettier --check . --cache",
     "format:write": "prettier --write . --cache",
-    "changelog": "tsx scripts/changelog.ts",
-    "changelog:latest": "tsx scripts/changelog.ts --latest",
-    "changelog:commit": "git add . && git commit -am 'docs: add changelog' && git push",
-    "changelog:format": "prettier --write .changelog",
     "version": "changeset version",
-    "release": "changeset publish",
+    "publish": "changeset publish",
     "version:dev": "changeset version --snapshot dev",
-    "release:dev": "changeset publish --tag dev"
+    "publish:dev": "changeset publish --tag dev"
   },
   "devDependencies": {
     "@changesets/cli": "2.27.1",
