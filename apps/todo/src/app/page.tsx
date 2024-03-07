@@ -2,6 +2,8 @@ import { TodoItem } from "@/components/TodoItem";
 import { getTodos } from "@/server";
 import Link from "next/link";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   const todos = await getTodos();
 
