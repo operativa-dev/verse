@@ -1,6 +1,6 @@
 {
   "name": "@operativa/verse-migrations",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
@@ -21,7 +21,7 @@
     "./test/*": "./dist/test/*.js"
   },
   "files": [
-    "dist"
+    "dist/src"
   ],
   "scripts": {
     "clean": "rimraf dist",
