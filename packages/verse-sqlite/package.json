@@ -1,6 +1,6 @@
 {
   "name": "@operativa/verse-sqlite",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
@@ -20,7 +20,7 @@
     ".": "./dist/src/index.js"
   },
   "files": [
-    "dist"
+    "dist/src"
   ],
   "scripts": {
     "clean": "rimraf dist",

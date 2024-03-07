@@ -1,6 +1,6 @@
 {
   "name": "@operativa/verse",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
@@ -34,7 +34,7 @@
     "./test/update/*": "./dist/test/update/*.js"
   },
   "files": [
-    "dist"
+    "dist/src"
   ],
   "scripts": {
     "clean": "rimraf dist",
