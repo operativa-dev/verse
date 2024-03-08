@@ -1,6 +1,6 @@
-import { db, Todo } from "@/data";
-import { redirect } from "next/navigation";
+import { db } from "@/data";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 async function createTodo(data: FormData) {
   "use server";
@@ -13,7 +13,7 @@ async function createTodo(data: FormData) {
   }
 
   const uow = db.uow();
-  await uow.todos.add(new Todo(title));
+  await uow.todos.add({ title, completed: false });
   await uow.commit();
 
   redirect("/");

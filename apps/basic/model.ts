@@ -3,15 +3,6 @@ import { sqlite } from "@operativa/verse-sqlite";
 import { boolean, entity, int, string } from "@operativa/verse/model/builder";
 import { PrettyConsoleLogger } from "@operativa/verse/utils/logging";
 
-export class Todo {
-  public readonly id!: number;
-
-  constructor(
-    public title: string,
-    public completed = false
-  ) {}
-}
-
 export const db = verse({
   config: {
     driver: sqlite("basic.sqlite"),
@@ -20,7 +11,6 @@ export const db = verse({
   model: {
     entities: {
       todos: entity(
-        Todo,
         {
           id: int(),
           title: string(),
@@ -28,7 +18,10 @@ export const db = verse({
         },
         t => {
           t.table("todos");
-          t.data(new Todo("My first todo", true), new Todo("My second todo", false));
+          t.data(
+            { title: "My first todo", completed: true },
+            { title: "My second todo", completed: false }
+          );
         }
       ),
     },

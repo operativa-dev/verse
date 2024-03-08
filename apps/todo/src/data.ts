@@ -1,15 +1,7 @@
-import { verse } from "@operativa/verse";
+import { EntityType, verse } from "@operativa/verse";
 import { sqlite } from "@operativa/verse-sqlite";
 import { boolean, entity, int, string } from "@operativa/verse/model/builder";
 import { PrettyConsoleLogger } from "@operativa/verse/utils/logging";
-
-export class Todo {
-  public readonly id!: number;
-
-  constructor(public title: string) {}
-
-  completed: boolean = false;
-}
 
 export const db = verse({
   config: {
@@ -19,7 +11,6 @@ export const db = verse({
   model: {
     entities: {
       todos: entity(
-        Todo,
         {
           id: int(),
           title: string(),
@@ -30,3 +21,5 @@ export const db = verse({
     },
   },
 });
+
+export type Todo = EntityType<typeof db.entities.todos>;
