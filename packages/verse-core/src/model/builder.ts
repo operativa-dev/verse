@@ -231,7 +231,7 @@ export interface EntityBuilder<T extends object, O extends object = any> {
    * @param data The initial data.
    * @returns A chainable EntityBuilder instance.
    */
-  data(...data: O[]): EntityBuilder<T>;
+  data(...data: Partial<O>[]): EntityBuilder<T>;
 }
 
 /**
@@ -257,7 +257,7 @@ export class EntityBuilderImpl<T extends object, O extends object = any>
   }> = List();
   #conditions: List<Condition> = List();
   #concurrency?: { version: NumberKeys<UnwrapProperties<T>> } | undefined;
-  #data?: List<O> | undefined;
+  #data?: List<Partial<O>> | undefined;
 
   properties(properties: Properties<T>) {
     if (this.#properties) {
@@ -331,7 +331,7 @@ export class EntityBuilderImpl<T extends object, O extends object = any>
     return this;
   }
 
-  data(...data: O[]) {
+  data(...data: Partial<O>[]) {
     this.#data = List(data);
 
     return this;

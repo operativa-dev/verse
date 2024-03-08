@@ -1,5 +1,5 @@
 import { EntityType } from "@operativa/verse";
-import { db, Todo } from "./model.js";
+import { db } from "./model.js";
 
 await db.database.recreate();
 
@@ -7,11 +7,11 @@ console.log("Created database!");
 
 const uow = db.uow();
 
-type TodoEntity = EntityType<typeof db.entities.todos>;
+type Todo = EntityType<typeof db.entities.todos>;
 
-const todo: TodoEntity = new Todo("Buy milk");
+const todo: Partial<Todo> = { title: "Buy milk", completed: false };
 
-await uow.todos.add(todo, new Todo("Buy eggs"));
+await uow.todos.add(todo, { title: "Buy eggs", completed: false });
 
 await uow.commit();
 

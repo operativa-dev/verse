@@ -198,7 +198,7 @@ export type EntitySet<T extends object> = {
    * @returns A promise that resolves when the entities have been successfully
    * added to the unit of work.
    */
-  add(...entities: T[]): Promise<void>;
+  add(...entities: Partial<T>[]): Promise<void>;
 
   /**
    * Removes one or more entities from the current unit of work. The entities will be tracked in the
@@ -598,7 +598,7 @@ class QueryableSet<T extends object> extends AsyncQueryableRoot<T> implements En
     this.#entity = entity;
   }
 
-  async add(...entities: T[]) {
+  async add(...entities: Partial<T>[]) {
     await this.uow.add(this.#entity, ...entities);
   }
 

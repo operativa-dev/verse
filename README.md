@@ -43,16 +43,21 @@ import { sqlite } from "@operativa/verse-sqlite";
 import { boolean, entity, int, string } from "@operativa/verse/model/builder";
 import { PrettyConsoleLogger } from "@operativa/verse/utils/logging";
 
-// Create a simple entity class to represent a todo item.
+// Define a simple entity to represent a Todo item.
 
-class Todo {
-  public readonly id!: number;
-
-  constructor(
-    public title: string,
-    public completed = false
-  ) {}
-}
+const Todo = entity(
+  {
+    id: int(),
+    title: string(),
+    completed: boolean(),
+  },
+  builder => {
+    builder.data(
+      { title: "Do the dishes", completed: false },
+      { title: "Walk the dog", completed: false }
+    );
+  }
+);
 
 // Setup our Verse instance.
 
@@ -63,17 +68,7 @@ const db = verse({
   },
   model: {
     entities: {
-      todos: entity(
-        Todo,
-        {
-          id: int(),
-          title: string(),
-          completed: boolean(),
-        },
-        builder => {
-          builder.data(new Todo("Do the dishes"), new Todo("Walk the dog"));
-        }
-      ),
+      todos: Todo,
     },
   },
 });
