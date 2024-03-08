@@ -1,5 +1,14 @@
 # @operativa/verse-cli
 
+## 0.7.4
+
+### Patch Changes
+
+- revert CLI approach
+- Updated dependencies
+  - @operativa/verse@0.7.4
+  - @operativa/verse-migrations@0.7.4
+
 ## 0.7.3
 
 ### Patch Changes
