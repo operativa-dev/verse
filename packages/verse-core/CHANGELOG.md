@@ -1,5 +1,11 @@
 # @operativa/verse
 
+## 0.7.3
+
+### Patch Changes
+
+- try another cli pattern
+
 ## 0.7.2
 
 ### Patch Changes

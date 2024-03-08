@@ -1,5 +1,13 @@
 # @operativa/verse-mysql
 
+## 0.7.3
+
+### Patch Changes
+
+- try another cli pattern
+- Updated dependencies
+  - @operativa/verse@0.7.3
+
 ## 0.7.2
 
 ### Patch Changes
