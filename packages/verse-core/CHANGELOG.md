@@ -1,5 +1,11 @@
 # @operativa/verse
 
+## 0.7.4
+
+### Patch Changes
+
+- revert CLI approach
+
 ## 0.7.3
 
 ### Patch Changes

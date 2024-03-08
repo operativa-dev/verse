@@ -271,9 +271,6 @@ importers:
       tsconfig:
         specifier: workspace:*
         version: link:../tsconfig
-      tsx:
-        specifier: ^4.7.1
-        version: 4.7.1
 
   packages/verse-core:
     dependencies:

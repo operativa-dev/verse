@@ -1,4 +1,4 @@
-#!/usr/bin/env -S tsx
+#!/usr/bin/env -S npx tsx
 
 import { Verse } from "@operativa/verse";
 import { Migrator } from "@operativa/verse-migrations";
