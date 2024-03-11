@@ -93,7 +93,7 @@ export function entity<T extends object, P extends Properties<T>>(
   klass: Newable<T>,
   properties: NonEmptyObject<P>,
   build?: (builder: EntityBuilder<P, T>) => void
-): EntityModel<P, T>;
+): EntityModel<P, T & { __proto: "class" }>;
 
 /**
  * Builds an {@link EntityModel} based on an Object. The type of the entity can be inferred using

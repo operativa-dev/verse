@@ -198,7 +198,9 @@ export type EntitySet<T extends object> = {
    * @returns A promise that resolves when the entities have been successfully
    * added to the unit of work.
    */
-  add(...entities: Partial<T>[]): Promise<void>;
+  add(
+    ...entities: (T extends { __proto: "class" } ? Omit<T, "__proto"> : Partial<T>)[]
+  ): Promise<void>;
 
   /**
    * Removes one or more entities from the current unit of work. The entities will be tracked in the
@@ -207,7 +209,7 @@ export type EntitySet<T extends object> = {
    *
    * @param entities The entities to be removed from the unit of work.
    */
-  remove(...entities: T[]): void;
+  remove(...entities: Omit<T, "__proto">[]): void;
 };
 
 /**
