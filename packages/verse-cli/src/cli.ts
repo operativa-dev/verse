@@ -9,6 +9,7 @@ import chalk from "chalk";
 import { highlight } from "cli-highlight";
 import Table from "cli-table";
 import * as console from "console";
+import * as fs from "fs";
 import yargs, { ArgumentsCamelCase, Argv, CommandModule } from "yargs";
 import { hideBin } from "yargs/helpers";
 
@@ -351,7 +352,13 @@ async function createMigrator(verbose?: boolean) {
 
 async function loadVerse() {
   const cwd = process.cwd();
-  const config = await import(`${cwd}/verse.config.ts`);
+  const path = `${cwd}/verse.config.ts`;
+
+  if (!fs.existsSync(path)) {
+    throw new Error("No 'verse.config.ts' file found in the current directory.");
+  }
+
+  const config = await import(path);
 
   if (!config.default.verse || !(config.default.verse instanceof Verse)) {
     throw new Error("No verse instance found in verse.config.ts");
