@@ -129,7 +129,7 @@ export const navsTests = (verse: Verse<typeof navsModel>) => {
   test("after join", async () => {
     const q = verse.from.tracks
       .join(Album, (t, a) => t.albumId === a.albumId)
-      .where(t => t[1].artist.name === "Alice In Chains");
+      .where((_, a) => a.artist.name === "Alice In Chains");
 
     await snap(q);
   });
@@ -165,7 +165,7 @@ export const navsTests = (verse: Verse<typeof navsModel>) => {
   test("after join destructure", async () => {
     const q = verse.from.tracks
       .join(Album, (t, a) => t.albumId === a.albumId)
-      .where(([_, a]) => a.artist.name === "Alice In Chains")
+      .where((_, a) => a.artist.name === "Alice In Chains")
       .toArray();
 
     await snap(q);

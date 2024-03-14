@@ -16,15 +16,15 @@
             "name": "For Those About To Rock (We Salute You)",
             "playlistTracks": [
               PlaylistTrack {
+                "playlistId": 17,
+                "trackId": 1,
+              },
+              PlaylistTrack {
                 "playlistId": 1,
                 "trackId": 1,
               },
               PlaylistTrack {
                 "playlistId": 8,
-                "trackId": 1,
-              },
-              PlaylistTrack {
-                "playlistId": 17,
                 "trackId": 1,
               },
             ],
@@ -384,15 +384,15 @@
             "name": "Balls to the Wall",
             "playlistTracks": [
               PlaylistTrack {
+                "playlistId": 17,
+                "trackId": 2,
+              },
+              PlaylistTrack {
                 "playlistId": 1,
                 "trackId": 2,
               },
               PlaylistTrack {
                 "playlistId": 8,
-                "trackId": 2,
-              },
-              PlaylistTrack {
-                "playlistId": 17,
                 "trackId": 2,
               },
             ],
@@ -415,6 +415,10 @@
             "name": "Fast As a Shark",
             "playlistTracks": [
               PlaylistTrack {
+                "playlistId": 17,
+                "trackId": 3,
+              },
+              PlaylistTrack {
                 "playlistId": 1,
                 "trackId": 3,
               },
@@ -424,10 +428,6 @@
               },
               PlaylistTrack {
                 "playlistId": 8,
-                "trackId": 3,
-              },
-              PlaylistTrack {
-                "playlistId": 17,
                 "trackId": 3,
               },
             ],
@@ -442,6 +442,10 @@
             "name": "Restless and Wild",
             "playlistTracks": [
               PlaylistTrack {
+                "playlistId": 17,
+                "trackId": 4,
+              },
+              PlaylistTrack {
                 "playlistId": 1,
                 "trackId": 4,
               },
@@ -451,10 +455,6 @@
               },
               PlaylistTrack {
                 "playlistId": 8,
-                "trackId": 4,
-              },
-              PlaylistTrack {
-                "playlistId": 17,
                 "trackId": 4,
               },
             ],
@@ -469,6 +469,10 @@
             "name": "Princess of the Dawn",
             "playlistTracks": [
               PlaylistTrack {
+                "playlistId": 17,
+                "trackId": 5,
+              },
+              PlaylistTrack {
                 "playlistId": 1,
                 "trackId": 5,
               },
@@ -478,10 +482,6 @@
               },
               PlaylistTrack {
                 "playlistId": 8,
-                "trackId": 5,
-              },
-              PlaylistTrack {
-                "playlistId": 17,
                 "trackId": 5,
               },
             ],
@@ -1205,6 +1205,10 @@
             "name": "Man In The Box",
             "playlistTracks": [
               PlaylistTrack {
+                "playlistId": 16,
+                "trackId": 52,
+              },
+              PlaylistTrack {
                 "playlistId": 1,
                 "trackId": 52,
               },
@@ -1214,10 +1218,6 @@
               },
               PlaylistTrack {
                 "playlistId": 8,
-                "trackId": 52,
-              },
-              PlaylistTrack {
-                "playlistId": 16,
                 "trackId": 52,
               },
             ],

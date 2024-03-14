@@ -835,7 +835,14 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
 
             this.#projection = oldProjection;
 
-            const nodes = List.of(this.#projection, target.projection.scope(rhs));
+            let nodes =
+              this.#projection instanceof SqlComposite &&
+              !this.#projection.binding?.klass &&
+              this.#projection.nodes.every(n => n instanceof SqlComposite)
+                ? this.#projection.nodes
+                : List.of(this.#projection);
+
+            nodes = nodes.push(target.projection.scope(rhs));
 
             this.#projection = new SqlComposite(nodes);
 

@@ -11,6 +11,7 @@ import { Map } from "immutable";
 import jsep, { Expression, Identifier } from "jsep";
 import { Newable, Primitive } from "ts-essentials";
 import { QueryCache } from "../uow.js";
+import { Brand } from "../utils/utils.js";
 import { QueryOptions, Verse } from "../verse.js";
 import { QueryCompiler } from "./compiler.js";
 import { EntityExpression } from "./expression.js";
@@ -125,6 +126,33 @@ export interface AsyncSequence<T> extends AsyncIterable<T> {
   toArray(): Promise<T[]>;
 }
 
+/** @ignore */
+export type Expr<E> = E extends (...args: [infer H, ...infer T]) => infer R
+  ? H extends JoinResult<infer K>
+    ? (...args: [...K, ...T]) => R
+    : E
+  : E;
+
+/**
+ * Represents the result of a join operation.
+ */
+export type JoinResult<T extends readonly unknown[]> = Brand<T, "join-result">;
+
+/**
+ * Represents a join condition used when joining two sequences.
+ */
+export type JoinCondition<T, S> = Expr<(left: T, right: S) => boolean>;
+
+/**
+ * Represents a predicate expression used to filter a sequence.
+ */
+export type PredicateExpr<T, A extends unknown[] = []> = Expr<(obj: T, ...args: A) => boolean>;
+
+/**
+ * Represents a numeric expression used in an aggregate query.
+ */
+export type NumericExpr<T> = Expr<(obj: T) => number>;
+
 /**
  * The base class for queryable objects.
  */
@@ -205,10 +233,10 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
    * @param projector A function that transforms the input element.
    * @returns The queryable result of the select operation.
    */
-  select<S>(projector: (obj: T) => S) {
+  select<P extends Expr<(obj: T) => unknown>>(projector: P) {
     this.expression = this.op("select", jsep(projector.toString()));
 
-    return this as unknown as Queryable<S>;
+    return this as unknown as Queryable<ReturnType<P>>;
   }
 
   /**
@@ -217,7 +245,7 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
    * @param navigation The navigation property to be loaded.
    * @returns The queryable result of the with operation.
    */
-  with<S>(navigation: (obj: T) => S) {
+  with<S>(navigation: Expr<(obj: T) => S>) {
     this.expression = this.op("with", jsep(navigation.toString()));
 
     return this;
@@ -235,17 +263,13 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
   }
 
   /**
-   * Joins the sequence with another query or entity.
+   * Joins the sequence with another sequence based on a condition.
    *
    * @param entityOrQuery The entity or query to join with.
    * @param condition The join condition.
-   *
    * @returns The queryable result of the join operation.
    */
-  join<S, C extends (l: T, r: S) => boolean>(
-    entityOrQuery: Newable<S> | Queryable<S>,
-    condition: C
-  ) {
+  join<S, C extends JoinCondition<T, S>>(entityOrQuery: Newable<S> | Queryable<S>, condition: C) {
     this.expression = this.op(
       "join",
       entityOrQuery instanceof Queryable
@@ -254,18 +278,17 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
       jsep(condition.toString())
     );
 
-    return this as Queryable<Parameters<C>>;
+    return this as Queryable<JoinResult<Parameters<C>>>;
   }
 
   /**
-   * Left joins the sequence with another query or entity.
+   * Left joins the sequence with another sequence based on a condition.
    *
    * @param entityOrQuery The entity or query to join with.
    * @param condition The join condition.
-   *
    * @returns The queryable result of the join operation.
    */
-  leftJoin<S, C extends (l: T, r: S) => boolean>(
+  leftJoin<S, C extends JoinCondition<T, S>>(
     entityOrQuery: Newable<S> | Queryable<S>,
     condition: C
   ) {
@@ -277,7 +300,7 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
       jsep(condition.toString())
     );
 
-    return this as Queryable<Parameters<C>>;
+    return this as Queryable<JoinResult<Parameters<C>>>;
   }
 
   /**
@@ -286,7 +309,7 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
    * @param predicate A function to test each element for a condition.
    * @returns The queryable result of the where operation.
    */
-  where(predicate: (obj: T) => boolean) {
+  where<P extends PredicateExpr<T>>(predicate: P) {
     this.expression = this.op("where", jsep(predicate.toString()));
 
     return this;
@@ -298,7 +321,7 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
    * @param expr A function to extract a sort key from an element.
    * @returns The queryable result of the orderBy operation.
    */
-  orderBy(expr: (obj: T) => unknown) {
+  orderBy<E extends Expr<(obj: T) => unknown>>(expr: E) {
     this.expression = this.op("orderBy", jsep(expr.toString()));
 
     return this;
@@ -310,7 +333,7 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
    * @param expr A function to extract a sort key from an element.
    * @returns The queryable result of the orderByDesc operation.
    */
-  orderByDesc(expr: (obj: T) => unknown) {
+  orderByDesc<E extends Expr<(obj: T) => unknown>>(expr: E) {
     this.expression = this.op("orderByDesc", jsep(expr.toString()));
 
     return this;
@@ -322,7 +345,9 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
    * @param key A function to extract the key for each element.
    * @returns The result of the groupBy operation.
    */
-  groupBy<TKey>(key: (obj: T) => TKey): Queryable<{ key: TKey; items: T[] }>;
+  groupBy<K extends Expr<(obj: T) => unknown>>(
+    key: K
+  ): Queryable<{ key: ReturnType<K>; items: T[] }>;
 
   /**
    * Groups the elements of a sequence according to a specified key selector function and
@@ -332,17 +357,17 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
    * @param result A function to create a result value from each group.
    * @returns The queryable result of the groupBy operation.
    */
-  groupBy<TKey, TResult>(
-    key: (obj: T) => TKey,
-    result: (param: Grouping<TKey, T>) => TResult
-  ): Queryable<TResult>;
+  groupBy<K extends Expr<(obj: T) => unknown>, R>(
+    key: K,
+    result: (param: Grouping<ReturnType<K>, T>) => R
+  ): Queryable<R>;
 
-  groupBy<TKey, TResult>(key: (obj: T) => TKey, result?: (param: Grouping<TKey, T>) => TResult) {
-    const r = result ?? ((g: Grouping<TKey, T>) => ({ key: g.key, items: g.array(x => x) }));
+  groupBy<K, R>(key: (obj: T) => K, result?: (param: Grouping<K, T>) => R) {
+    const r = result ?? ((g: Grouping<K, T>) => ({ key: g.key, items: g.array(x => x) }));
 
     this.expression = this.op("groupBy", jsep(key.toString()), jsep(r.toString()));
 
-    return this as unknown as Queryable<TResult>;
+    return this as unknown as Queryable<R>;
   }
 
   /**
@@ -375,7 +400,7 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
    * @param predicate A function to test each element for a condition.
    * @returns `true` if any elements in the sequence satisfy the condition, otherwise `false`.
    */
-  any(predicate?: (obj: T) => boolean) {
+  any<P extends PredicateExpr<T>>(predicate?: P) {
     this.expression = this.op("any", ...(predicate ? [jsep(predicate.toString())] : []));
 
     return false;
@@ -387,7 +412,7 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
    * @param predicate A function to test each element for a condition.
    * @returns `true` if all elements in the sequence satisfy the condition, otherwise `false`.
    */
-  all(predicate: (obj: T) => boolean) {
+  all<P extends PredicateExpr<T>>(predicate: P) {
     this.expression = this.op("all", jsep(predicate.toString()));
 
     return false;
@@ -400,7 +425,7 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
    * @returns The first element in the sequence that satisfies the condition.
    * @throws Error, if no such element is found.
    */
-  first(predicate?: (obj: T) => boolean) {
+  first<P extends PredicateExpr<T>>(predicate?: P) {
     this.expression = this.op("first", ...(predicate ? [jsep(predicate.toString())] : []));
 
     return this as unknown as T;
@@ -412,7 +437,7 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
    *
    * @param predicate A function to test each element for a condition.
    */
-  maybeFirst(predicate?: (obj: T) => boolean) {
+  maybeFirst<P extends PredicateExpr<T>>(predicate?: P) {
     this.expression = this.op("maybeFirst", ...(predicate ? [jsep(predicate.toString())] : []));
 
     return this as unknown as T | undefined;
@@ -425,7 +450,7 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
    * @returns The only element in the sequence that satisfies the condition.
    * @throws Error, if no such element is found, or multiple elements satisfy the condition.
    */
-  single(predicate?: (obj: T) => boolean) {
+  single<P extends PredicateExpr<T>>(predicate?: P) {
     this.expression = this.op("single", ...(predicate ? [jsep(predicate.toString())] : []));
 
     return this as unknown as T;
@@ -439,7 +464,7 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
    * @returns The only element in the sequence that satisfies the condition, or `undefined` if no such element is found.
    * @throws Error, if multiple elements satisfy the condition.
    */
-  maybeSingle(predicate?: (obj: T) => boolean) {
+  maybeSingle<P extends PredicateExpr<T>>(predicate?: P) {
     this.expression = this.op("maybeSingle", ...(predicate ? [jsep(predicate.toString())] : []));
 
     return this as unknown as T | undefined;
@@ -461,7 +486,7 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
    * @param expr The numerical expression to be evaluated.
    * @returns The minimum value of the specified numerical expression for the sequence.
    */
-  min(expr: (obj: T) => number) {
+  min(expr: NumericExpr<T>) {
     this.expression = this.op("min", jsep(expr.toString()));
 
     return this as unknown as number;
@@ -472,7 +497,7 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
    * @param expr The numerical expression to be evaluated.
    * @returns The maximum value of the specified numerical expression for the sequence.
    */
-  max(expr: (obj: T) => number) {
+  max(expr: NumericExpr<T>) {
     this.expression = this.op("max", jsep(expr.toString()));
 
     return this as unknown as number;
@@ -483,7 +508,7 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
    * @param expr The numerical expression to be evaluated.
    * @returns The sum of the specified numerical expression for the sequence.
    */
-  sum(expr: (obj: T) => number) {
+  sum(expr: NumericExpr<T>) {
     this.expression = this.op("sum", jsep(expr.toString()));
 
     return this as unknown as number;
@@ -494,7 +519,7 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
    * @param expr The numerical expression to be evaluated.
    * @returns The average value of the specified numerical expression for the sequence.
    */
-  avg(expr: (obj: T) => number) {
+  avg(expr: NumericExpr<T>) {
     this.expression = this.op("avg", jsep(expr.toString()));
 
     return this as unknown as number;
@@ -598,12 +623,15 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
    * @param args Additional arguments to be passed to the projector.
    * @returns The queryable result of the select operation.
    */
-  select<S, A extends unknown[]>(projector: (obj: T, ...args: A) => S, ...args: A) {
+  select<P extends Expr<(obj: T, ...args: A) => unknown>, A extends unknown[]>(
+    projector: P,
+    ...args: A
+  ) {
     const expressions = this.#curry(jsep(projector.toString()), args as Primitive[]);
 
     this.expression = this.op("select", ...expressions);
 
-    return this as unknown as AsyncQueryable<S>;
+    return this as unknown as AsyncQueryable<ReturnType<P>>;
   }
 
   /**
@@ -612,7 +640,7 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
    * @param navigation The navigation property to be loaded.
    * @returns The queryable result of the with operation.
    */
-  with<S>(navigation: (obj: T) => S) {
+  with<S>(navigation: Expr<(obj: T) => S>) {
     this.expression = this.op("with", jsep(navigation.toString()));
 
     return this;
@@ -630,13 +658,13 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
   }
 
   /**
-   * Joins the sequence with another query or entity.
+   * Joins the sequence with another sequence based on a condition.
    *
    * @param entityOrQuery The entity or query to join with.
    * @param condition The join condition.
    * @returns The queryable result of the join operation.
    */
-  join<S, C extends (l: T, r: S) => boolean>(
+  join<S, C extends JoinCondition<T, S>>(
     entityOrQuery: Newable<S> | AsyncQueryable<S>,
     condition: C
   ) {
@@ -648,17 +676,17 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
       jsep(condition.toString())
     );
 
-    return this as AsyncQueryable<Parameters<C>>;
+    return this as AsyncQueryable<JoinResult<Parameters<C>>>;
   }
 
   /**
-   * Left joins the sequence with another query or entity.
+   * Left joins the sequence with another sequence based on a condition.
    *
    * @param entityOrQuery The entity or query to join with.
    * @param condition The join condition.
    * @returns The queryable result of the join operation.
    */
-  leftJoin<S, C extends (l: T, r: S) => boolean>(
+  leftJoin<S, C extends JoinCondition<T, S>>(
     entityOrQuery: Newable<S> | AsyncQueryable<S>,
     condition: C
   ) {
@@ -670,7 +698,7 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
       jsep(condition.toString())
     );
 
-    return this as AsyncQueryable<Parameters<C>>;
+    return this as AsyncQueryable<JoinResult<Parameters<C>>>;
   }
 
   /**
@@ -680,7 +708,7 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
    * @param args Additional arguments to be passed to the predicate.
    * @returns The queryable result of the where operation.
    */
-  where<A extends unknown[]>(predicate: (obj: T, ...args: A) => boolean, ...args: A) {
+  where<P extends PredicateExpr<T, A>, A extends unknown[]>(predicate: P, ...args: A) {
     const expr = jsep(predicate.toString());
     const expressions = this.#curry(expr, args as Primitive[]);
 
@@ -696,7 +724,10 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
    * @param args Additional arguments to be passed to the expression.
    * @returns The queryable result of the orderBy operation.
    */
-  orderBy<A extends unknown[]>(expr: (obj: T, ...args: A) => unknown, ...args: A) {
+  orderBy<E extends Expr<(obj: T, ...args: A) => unknown>, A extends unknown[]>(
+    expr: E,
+    ...args: A
+  ) {
     const expressions = this.#curry(jsep(expr.toString()), args as Primitive[]);
 
     this.expression = this.op("orderBy", ...expressions);
@@ -711,7 +742,10 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
    * @param args Additional arguments to be passed to the expression.
    * @returns The queryable result of the orderByDesc operation.
    */
-  orderByDesc<A extends unknown[]>(expr: (obj: T, ...args: A) => unknown, ...args: A) {
+  orderByDesc<E extends Expr<(obj: T, ...args: A) => unknown>, A extends unknown[]>(
+    expr: E,
+    ...args: A
+  ) {
     const expressions = this.#curry(jsep(expr.toString()), args as Primitive[]);
 
     this.expression = this.op("orderByDesc", ...expressions);
@@ -725,7 +759,9 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
    * @param key A function to extract the key for each element.
    * @returns The result of the groupBy operation.
    */
-  groupBy<TKey>(key: (obj: T) => TKey): AsyncQueryable<{ key: TKey; items: T[] }>;
+  groupBy<K extends Expr<(obj: T) => unknown>>(
+    key: K
+  ): AsyncQueryable<{ key: ReturnType<K>; items: T[] }>;
 
   /**
    * Groups the elements of a sequence according to a specified key selector function and
@@ -735,17 +771,17 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
    * @param result A function to create a result value from each group.
    * @returns The queryable result of the groupBy operation.
    */
-  groupBy<TKey, TResult>(
-    key: (obj: T) => TKey,
-    result: (param: Grouping<TKey, T>) => TResult
-  ): AsyncQueryable<TResult>;
+  groupBy<K extends Expr<(obj: T) => unknown>, R>(
+    key: K,
+    result: (param: Grouping<ReturnType<K>, T>) => R
+  ): AsyncQueryable<R>;
 
-  groupBy<TKey, TResult>(key: (obj: T) => TKey, result?: (param: Grouping<TKey, T>) => TResult) {
-    const r = result ?? ((g: Grouping<TKey, T>) => ({ key: g.key, items: g.array(x => x) }));
+  groupBy<K, R>(key: (obj: T) => K, result?: (param: Grouping<K, T>) => R) {
+    const r = result ?? ((g: Grouping<K, T>) => ({ key: g.key, items: g.array(x => x) }));
 
     this.expression = this.op("groupBy", jsep(key.toString()), jsep(r.toString()));
 
-    return this as unknown as AsyncQueryable<TResult>;
+    return this as unknown as AsyncQueryable<R>;
   }
 
   /**
@@ -779,7 +815,7 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
    * @param args Additional arguments to be passed to the predicate.
    * @returns A promise that resolves with `true` if any elements in the sequence satisfy the condition, otherwise `false`.
    */
-  any<A extends unknown[]>(predicate?: (obj: T, ...args: A) => boolean, ...args: A) {
+  any<P extends PredicateExpr<T, A>, A extends unknown[]>(predicate?: P, ...args: A) {
     const expressions = predicate
       ? this.#curry(jsep(predicate.toString()), args as Primitive[])
       : [];
@@ -796,7 +832,7 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
    * @param args Additional arguments to be passed to the predicate.
    * @returns A promise that resolves with `true` if all elements in the sequence satisfy the condition, otherwise `false`.
    */
-  all<A extends unknown[]>(predicate: (obj: T, ...args: A) => boolean, ...args: A) {
+  all<P extends PredicateExpr<T, A>, A extends unknown[]>(predicate: P, ...args: A) {
     const expressions = this.#curry(jsep(predicate.toString()), args as Primitive[]);
 
     this.expression = this.op("all", ...expressions);
@@ -812,7 +848,7 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
    * @returns A promise that resolves with the first element in the sequence that satisfies the condition.
    * @throws Error, if no such element is found.
    */
-  first<A extends unknown[]>(predicate?: (obj: T, ...args: A) => boolean, ...args: A) {
+  first<P extends PredicateExpr<T, A>, A extends unknown[]>(predicate?: P, ...args: A) {
     const expressions = predicate
       ? this.#curry(jsep(predicate.toString()), args as Primitive[])
       : [];
@@ -830,7 +866,7 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
    * @param args Additional arguments to be passed to the predicate.
    * @returns A promise that resolves with the first element in the sequence that satisfies the condition, or `undefined` if no such element is found.
    */
-  maybeFirst<A extends unknown[]>(predicate?: (obj: T, ...args: A) => boolean, ...args: A) {
+  maybeFirst<P extends PredicateExpr<T, A>, A extends unknown[]>(predicate?: P, ...args: A) {
     const expressions = predicate
       ? this.#curry(jsep(predicate.toString()), args as Primitive[])
       : [];
@@ -848,7 +884,7 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
    * @returns A promise that resolves with the only element in the sequence that satisfies the condition.
    * @throws Error, if no such element is found, or multiple elements satisfy the condition.
    */
-  single<A extends unknown[]>(predicate?: (obj: T, ...args: A) => boolean, ...args: A) {
+  single<P extends PredicateExpr<T, A>, A extends unknown[]>(predicate?: P, ...args: A) {
     const expressions = predicate
       ? this.#curry(jsep(predicate.toString()), args as Primitive[])
       : [];
@@ -867,7 +903,7 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
    * @returns A promise that resolves with the only element in the sequence that satisfies the condition, or `undefined` if no such element is found.
    * @throws Error, if multiple elements satisfy the condition.
    */
-  maybeSingle<A extends unknown[]>(predicate?: (obj: T, ...args: A) => boolean, ...args: A) {
+  maybeSingle<P extends PredicateExpr<T, A>, A extends unknown[]>(predicate?: P, ...args: A) {
     const expressions = predicate
       ? this.#curry(jsep(predicate.toString()), args as Primitive[])
       : [];
@@ -893,7 +929,7 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
    * @param expr The numerical expression to be evaluated.
    * @returns A promise that resolves with the minimum value of the specified numerical expression for the sequence.
    */
-  min(expr: (obj: T) => number) {
+  min(expr: NumericExpr<T>) {
     this.expression = this.op("min", jsep(expr.toString()));
 
     return this.#executeOne<number>();
@@ -904,7 +940,7 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
    * @param expr The numerical expression to be evaluated.
    * @returns A promise that resolves with the maximum value of the specified numerical expression for the sequence.
    */
-  max(expr: (obj: T) => number) {
+  max(expr: NumericExpr<T>) {
     this.expression = this.op("max", jsep(expr.toString()));
 
     return this.#executeOne<number>();
@@ -915,7 +951,7 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
    * @param expr The numerical expression to be evaluated.
    * @returns A promise that resolves with the sum of the specified numerical expression for the sequence.
    */
-  sum(expr: (obj: T) => number) {
+  sum(expr: NumericExpr<T>) {
     this.expression = this.op("sum", jsep(expr.toString()));
 
     return this.#executeOne<number>();
@@ -926,7 +962,7 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
    * @param expr The numerical expression to be evaluated.
    * @returns A promise that resolves with the average value of the specified numerical expression for the sequence.
    */
-  avg(expr: (obj: T) => number) {
+  avg(expr: NumericExpr<T>) {
     this.expression = this.op("avg", jsep(expr.toString()));
 
     return this.#executeOne<number>();
@@ -978,16 +1014,20 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
       const arrow = expression as ArrowExpression;
 
       if (arrow.params && arrow.params.length > 1) {
+        const params = arrow.params;
+
         return [
-          { ...arrow, params: [arrow.params[0]] },
+          { ...arrow, params: params.slice(0, params.length - args.length) },
           constant(
             Map(
-              arrow.params.slice(1).map((p, i) => {
-                if (p.type !== "Identifier") {
-                  throw new Error(`Invalid local parameter: ${printExpr(p)}`);
+              args.map((a, i) => {
+                const param = params[params.length - args.length + i]!;
+
+                if (param.type !== "Identifier") {
+                  throw new Error(`Invalid local parameter: ${printExpr(param)}`);
                 }
 
-                return [(p as Identifier).name, args[i]];
+                return [(param as Identifier).name, a];
               })
             )
           ),

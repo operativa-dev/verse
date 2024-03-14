@@ -28,7 +28,7 @@ import { SchemaGenerator } from "./db/schema.js";
 import { SingleTableInheritance } from "./inheritance/sti.js";
 import { InheritanceStrategy } from "./inheritance/strategy.js";
 import { ModelBinder } from "./model/binder.js";
-import { UnwrapProperties } from "./model/builder.js";
+import { FromClass, UnwrapProperties } from "./model/builder.js";
 import { EntityModel, Model, ValueObjectModel } from "./model/model.js";
 import { ModelValidator } from "./model/validator.js";
 import { QueryCompiler } from "./query/compiler.js";
@@ -43,6 +43,7 @@ import {
 import { EntityState, UnitOfWorkApi, UnitOfWorkImpl, UnitOfWorkSpy } from "./uow.js";
 import { notNull } from "./utils/check.js";
 import { Logger } from "./utils/logging.js";
+import { Unbrand } from "./utils/utils.js";
 
 /**
  * An object specifying runtime configuration information like the database driver,
@@ -198,9 +199,7 @@ export type EntitySet<T extends object> = {
    * @returns A promise that resolves when the entities have been successfully
    * added to the unit of work.
    */
-  add(
-    ...entities: (T extends { __proto: "class" } ? Omit<T, "__proto"> : Partial<T>)[]
-  ): Promise<void>;
+  add(...entities: (T extends FromClass<T> ? Unbrand<T> : Partial<T>)[]): Promise<void>;
 
   /**
    * Removes one or more entities from the current unit of work. The entities will be tracked in the
@@ -209,7 +208,7 @@ export type EntitySet<T extends object> = {
    *
    * @param entities The entities to be removed from the unit of work.
    */
-  remove(...entities: Omit<T, "__proto">[]): void;
+  remove(...entities: Unbrand<T>[]): void;
 };
 
 /**

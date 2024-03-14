@@ -8,7 +8,7 @@ import { List } from "immutable";
 import { Newable, NonEmptyObject } from "ts-essentials";
 import { SqlType } from "../db/sql.js";
 import { notEmpty, notNull } from "../utils/check.js";
-import { array } from "../utils/utils.js";
+import { array, Brand } from "../utils/utils.js";
 import { EntityType } from "../verse.js";
 import {
   BooleanPropertyModel,
@@ -79,6 +79,8 @@ export type NumberKeys<T> = {
   [K in keyof T]: T[K] extends number ? K : never;
 }[keyof T];
 
+export type FromClass<T> = Brand<T, "class">;
+
 /**
  * Builds an {@link EntityModel} based on a Class.
  *
@@ -93,7 +95,7 @@ export function entity<T extends object, P extends Properties<T>>(
   klass: Newable<T>,
   properties: NonEmptyObject<P>,
   build?: (builder: EntityBuilder<P, T>) => void
-): EntityModel<P, T & { __proto: "class" }>;
+): EntityModel<P, FromClass<T>>;
 
 /**
  * Builds an {@link EntityModel} based on an Object. The type of the entity can be inferred using
