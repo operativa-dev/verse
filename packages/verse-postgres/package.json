@@ -38,7 +38,6 @@
     "@operativa/verse": "workspace:*",
     "@operativa/verse-migrations": "workspace:*",
     "eslint-config-custom": "workspace:*",
-    "tinybench": "^2.6.0",
     "tsconfig": "workspace:*"
   }
 }
