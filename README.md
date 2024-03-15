@@ -1,3 +1,5 @@
+[Join the Verse Discord Server](https://discord.gg/r2Zcuq7xpR)
+
 # Verse
 
 > [!WARNING]
