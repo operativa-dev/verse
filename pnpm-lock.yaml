@@ -87,6 +87,9 @@ importers:
       '@docusaurus/core':
         specifier: 3.1.1
         version: 3.1.1(@docusaurus/types@3.1.1)(esbuild@0.18.20)(eslint@8.57.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
+      '@docusaurus/plugin-google-tag-manager':
+        specifier: ^3.1.1
+        version: 3.1.1(esbuild@0.18.20)(eslint@8.57.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
       '@docusaurus/preset-classic':
         specifier: 3.1.1
         version: 3.1.1(@algolia/client-search@4.22.1)(@types/react@18.2.65)(esbuild@0.18.20)(eslint@8.57.0)(react-dom@18.2.0)(react@18.2.0)(search-insights@2.13.0)(typescript@5.3.3)
