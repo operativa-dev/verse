@@ -1,6 +1,11 @@
 import { verse } from "@operativa/verse";
 import { sqlite } from "@operativa/verse-sqlite";
-import { boolean, entity, int, string } from "@operativa/verse/model/builder";
+import {
+  boolean,
+  entity,
+  int,
+  string,
+} from "@operativa/verse/model/builder";
 import { PrettyConsoleLogger } from "@operativa/verse/utils/logging";
 
 // Define a simple entity to represent a Todo item.
@@ -42,7 +47,9 @@ await db.database.recreate();
 const todos = await db.from.todos.toArray();
 
 todos.forEach(todo => {
-  console.log(`${todo.id}: ${todo.title} (completed: ${todo.completed})`);
+  console.log(
+    `${todo.id}: ${todo.title} (completed: ${todo.completed})`
+  );
 });
 
 // Query todos about dogs.
@@ -50,7 +57,9 @@ todos.forEach(todo => {
 const query = db.from.todos.where(todo => todo.title.like("%dog%"));
 
 for await (const todo of query) {
-  console.log(`${todo.id}: ${todo.title} (completed: ${todo.completed})`);
+  console.log(
+    `${todo.id}: ${todo.title} (completed: ${todo.completed})`
+  );
 }
 
 // Modify a todo and save the changes.

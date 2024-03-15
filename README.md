@@ -1,9 +1,7 @@
-# Repository
+# Verse
 
 > [!WARNING]
 > Verse is an **experimental** package. It is subject to change and intended only for evaluation purposes.
-
-## Verse
 
 Verse is a modern, fast, object/relational mapper for TypeScript. Some of its features are:
 
@@ -23,7 +21,7 @@ Verse is licensed under the [Apache 2.0 License](https://www.apache.org/licenses
 
 Reference and API documentation is available at [verse docs](https://operativa-dev.github.io/verse).
 
-### Installation
+## Installation
 
 Verse is available on [npm](https://www.npmjs.com/package/@operativa/verse).
 
@@ -45,7 +43,7 @@ It is advisable to also install the cli:
 npm i @operativa/verse-cli
 ```
 
-### Basic usage
+## Basic usage
 
 The following code demonstrates basic usage of Verse.
 
@@ -124,11 +122,17 @@ uow.todos.remove(todo);
 await uow.commit();
 ```
 
-### Contributing
+## Development Status
+
+Please note that "Verse" is in its early development and the presented version is an alpha release. It's intended to be
+a preview for select developers. We appreciate bug reports and improvement suggestions as we continue to refine and
+enhance this library.
+
+## Contributing
 
 We welcome community pull requests for bug fixes, enhancements, and documentation. See [How to contribute](./CONTRIBUTING.md) for more information.
 
-### Getting support
+## Getting support
 
 If you encounter a bug or would like to request a feature, [submit an issue](https://github.com/operativa-dev/verse/issues/new/choose).
 
