@@ -34,7 +34,7 @@ export default function Home(): JSX.Element {
   return (
     <Layout
       title={`${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />"
+      description="Verse is an experimental package to provide a next-gen Typescript ORM. It is subject to change and intended only for evaluation purposes."
     >
       <HomepageHeader />
       <main>
