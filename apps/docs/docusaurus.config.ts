@@ -67,12 +67,6 @@ const config: Config = {
         parametersFormat: "table",
       },
     ],
-    [
-      "@docusaurus/plugin-google-tag-manager",
-      {
-        containerId: "GTM-WG75CT3N",
-      },
-    ],
   ],
 
   themeConfig: {
