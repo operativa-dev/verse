@@ -1,0 +1,52 @@
+# Overview
+
+Querying in Verse is based on a fluent, compositional, pipeline-style API. This means that you chain together a
+series of discrete operations to build up a complete query. This is similar to how you might build a pipeline in a
+shell script, or a series of method calls in a programming language. This approach is designed to be easy to read and
+write, and to have excellent tooling support and type safety.
+
+For example:
+
+```ts include ./apps/snippets/src/query.ts:40-43 showLineNumbers
+const artists = await db.from.artists
+  .where(a => a.name.like("A%"))
+  .select(a => a.name)
+  .toArray();
+```
+
+In this example, we start by querying all artists with `db.from.artists`, then we use the `where` operator to filter
+the
+results to only include artists whose name starts with "A", and then we apply the `select` operator to project just the
+`name` property from the results. Finally, we call `toArray` to execute the query and buffer the results into an array.
+
+Instead of buffering with `toArray`, you can also use a `for await` loop to iterate over the results in a streaming
+fashion, which can be more efficient for large result sets:
+
+```ts include ./apps/snippets/src/query.ts:45-51 showLineNumbers
+const query = db.from.artists.where(a => a.name.like("A%")).select(a => a.name);
+
+for await (const name of query) {
+  console.log(name);
+}
+
+const acdc = await db.from.artists.where(a => a.name === "AC/DC").first();
+```
+
+We can also use the `first` operator to get the first result, or `single` to get the only result:
+
+```ts include ./apps/snippets/src/query.ts:53-59 showLineNumbers
+const alanis = await db.from.artists
+  .where(a => a.name === "Alanis Morissette")
+  .single();
+```
+
+The difference between `first` and `single` is that `single` will throw an error if there is more than one result.
+
+:::note
+
+Both `first` and `single` will throw an error if there is no result. To return `undefined` instead,
+we can use the `maybeFirst` or `maybeSingle` operators.
+
+:::
+
+Verse supports a wide range of other operators, including `orderBy`, `groupBy`, `join`, `limit`, `offset`, among others. We'll cover these in more detail in the following sections.
