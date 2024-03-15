@@ -42,17 +42,13 @@ const artists = await db.from.artists
   .select(a => a.name)
   .toArray();
 
-const query = db.from.artists
-  .where(a => a.name.like("A%"))
-  .select(a => a.name);
+const query = db.from.artists.where(a => a.name.like("A%")).select(a => a.name);
 
 for await (const name of query) {
   console.log(name);
 }
 
-const acdc = await db.from.artists
-  .where(a => a.name === "AC/DC")
-  .first();
+const acdc = await db.from.artists.where(a => a.name === "AC/DC").first();
 
 const alanis = await db.from.artists
   .where(a => a.name === "Alanis Morissette")
