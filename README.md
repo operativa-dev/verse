@@ -3,13 +3,25 @@
 > [!WARNING]
 > Verse is an **experimental** package. It is subject to change and intended only for evaluation purposes.
 
-This repository is home to the following [Verse](http://about:blank/) packages. These packages are licensed under the [MIT License](LICENSE).
-
-- [Verse](#verse)
-
 ## Verse
 
-Verse is a modern object-database mapper for TypeScript. It supports fluent queries, change tracking, updates, and schema migrations. Verse works with PostgreSql, MySql, Azure|SQL Database, SQLite, and other databases through a provider plugin API.
+Verse is a modern, fast, object/relational mapper for TypeScript. Some of its features are:
+
+- **Type safety**: Define your model using TypeScript and get full type safety when querying and modifying your data.
+- **Performance**: Designed to be fast and efficient, with minimal overhead.
+- **Powerful modelling**: Create entities with relationships, inheritance, identity generation strategies, value
+  objects, data converters and more.
+- **Rich querying**: Supports complex queries, including eager-loading, navigation properties, joins, sub-queries,
+  aggregations, grouping etc. The generated SQL is concise and easy to read.
+- **Unit of work**: Supports the unit of work pattern, allowing you to easily batch multiple changes and commit them
+  in a single transaction.
+- **Migrations**: Supports database migrations, allowing you to manage your database schema in a versioned and
+  repeatable way.
+- **Reliability**: Verse is designed to be reliable and robust, with a strong focus on testing and quality.
+
+Verse is licensed under the [Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0).
+
+Reference and API documentation is available at [verse docs](https://operativa-dev.github.io/verse).
 
 ### Installation
 
@@ -19,7 +31,7 @@ Verse is available on [npm](https://www.npmjs.com/package/@operativa/verse).
 npm i @operativa/verse
 ```
 
-Install the provider package corresponding to your target database:
+Install the driver package corresponding to your target database:
 
 ```bash
 npm i @operativa/verse-sqlite
@@ -122,5 +134,5 @@ If you encounter a bug or would like to request a feature, [submit an issue](htt
 
 ## See also
 
-- [Documentation](https://about:blank/)
+- [Documentation](https://operativa-dev.github.io/verse)
 - [Code of conduct](CODE_OF_CONDUCT.md)
