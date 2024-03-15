@@ -4,7 +4,8 @@ import { themes as prismThemes } from "prism-react-renderer";
 
 const config: Config = {
   title: "@operativa/verse",
-  tagline: "Painless data access for humans and compilers :)",
+  tagline:
+    "Verse is an experimental package to provide a next-gen Typescript ORM. It is subject to change and intended only for evaluation purposes.",
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here
@@ -91,6 +92,15 @@ const config: Config = {
           sidebarId: "apiSidebar",
           position: "left",
           label: "API Reference",
+        },
+        {
+          href: "#",
+          label: "⚠️ Experimental package work in progress ⚠️",
+          position: "right",
+          style: {
+            color: "#dc9234",
+            fontWeight: "bold",
+          },
         },
         {
           href: "https://github.com/operativa-dev/verse",

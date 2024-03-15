@@ -21,7 +21,7 @@ function HomepageHeader() {
             className="button button--secondary button--lg"
             to="/docs/ref/Tutorials/getting-started"
           >
-            Read the docs
+            Read the docs ⏰ (WIP) 🐟
           </Link>
         </div>
       </div>
