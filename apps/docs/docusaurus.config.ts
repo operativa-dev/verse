@@ -3,8 +3,8 @@ import type { Config } from "@docusaurus/types";
 import { themes as prismThemes } from "prism-react-renderer";
 
 const config: Config = {
-  title: "Verse",
-  tagline: "Beautiful Typescript Data Access",
+  title: "@operativa/verse",
+  tagline: "Painless data access for humans and compilers :)",
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here
@@ -66,8 +66,19 @@ const config: Config = {
   ],
 
   themeConfig: {
+    image: "img/icon.png",
+
     navbar: {
-      title: "Verse",
+      title: "@operativa/verse",
+      logo: {
+        alt: "Operativa Logo",
+        src: "img/icon.svg",
+        srcDark: "img/icon_dark.svg",
+        href: "/",
+        target: "_self",
+        width: 32,
+        height: 32,
+      },
       items: [
         {
           type: "docSidebar",
@@ -131,7 +142,7 @@ const config: Config = {
         //   ],
         // },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Operativa.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Operativa Solutions (PTY) LTD.`,
     },
     prism: {
       theme: prismThemes.github,
