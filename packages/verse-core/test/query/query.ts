@@ -5,7 +5,6 @@ import { AsyncSequence, Queryable } from "../../src/query/queryable.js";
 import { Logger } from "../../src/utils/logging.js";
 import { Verse } from "../../src/verse.js";
 import { dataTest, fixture } from "../infra.js";
-import { dump } from "./navigations.js";
 
 export class Album {
   constructor(
@@ -138,7 +137,7 @@ export const queryTests = (verse: Verse<typeof queryModel>) => {
   test("join simple", async () => {
     const q = verse.from.albums.join(Artist, (a, ar) => a.artistId === ar.artistId);
 
-    await snap(q as AsyncSequence<[Album, Artist]>);
+    await snap(q as AsyncSequence<readonly [Album, Artist]>);
   });
 
   test("object select where", async () => {
@@ -189,7 +188,7 @@ export const queryTests = (verse: Verse<typeof queryModel>) => {
   test("join select lhs", async () => {
     const q = verse.from.tracks
       .join(Album, (t, a) => t.theAlbumId === a.albumId)
-      .select(t => t[0].composer)
+      .select((t, _) => t.composer)
       .orderBy(t => t);
 
     await snap(q);
@@ -198,15 +197,7 @@ export const queryTests = (verse: Verse<typeof queryModel>) => {
   test("join three levels", async () => {
     const q = verse.from.tracks
       .join(Album, (tr, al) => tr.theAlbumId === al.albumId)
-      .join(Artist, (tup, ar) => tup[1].artistId === ar.artistId);
-
-    await snap(q);
-  });
-
-  test("join three levels tuple", async () => {
-    const q = verse.from.tracks
-      .join(Album, (t, a) => t.theAlbumId === a.albumId)
-      .join(Artist, ([_, a], ar) => a.artistId === ar.artistId);
+      .join(Artist, (_, al, ar) => al.artistId === ar.artistId);
 
     await snap(q);
   });
@@ -214,9 +205,9 @@ export const queryTests = (verse: Verse<typeof queryModel>) => {
   test("join three levels where select", async () => {
     const q = verse.from.tracks
       .join(Album, (t, a) => t.theAlbumId === a.albumId)
-      .join(Artist, ([_, a], ar) => a.artistId === ar.artistId)
-      .where(([[_, a], __]) => a.title == "Miles Ahead")
-      .select(([[t, a], ar]) => ({ album: a.title, artist: ar.name, track: t.name }));
+      .join(Artist, (_, a, ar) => a.artistId === ar.artistId)
+      .where((_, a, __) => a.title == "Miles Ahead")
+      .select((t, a, ar) => ({ album: a.title, artist: ar.name, track: t.name }));
 
     await snap(q);
   });
@@ -290,8 +281,35 @@ export const queryTests = (verse: Verse<typeof queryModel>) => {
   test("join three levels first", async () => {
     const q = verse.from.tracks
       .join(Album, (tr, al) => tr.theAlbumId === al.albumId)
-      .join(Artist, (tup, ar) => tup[1].artistId === ar.artistId)
+      .join(Artist, (_, al, ar) => al.artistId === ar.artistId)
       .first();
+
+    await snap(q);
+  });
+
+  test("join three levels any", async () => {
+    const q = verse.from.tracks
+      .join(Album, (tr, al) => tr.theAlbumId === al.albumId)
+      .join(Artist, (_, al, ar) => al.artistId === ar.artistId)
+      .any((_, al, __) => al.artistId === 1);
+
+    await snap(q);
+  });
+
+  test("join three levels aggregate", async () => {
+    const q = verse.from.tracks
+      .join(Album, (tr, al) => tr.theAlbumId === al.albumId)
+      .join(Artist, (_, al, ar) => al.artistId === ar.artistId)
+      .avg((_, al, ar) => al.artistId + ar.artistId);
+
+    await snap(q);
+  });
+
+  test("join three levels groupBy", async () => {
+    const q = verse.from.tracks
+      .join(Album, (tr, al) => tr.theAlbumId === al.albumId)
+      .join(Artist, (_, al, ar) => al.artistId === ar.artistId)
+      .groupBy((_, al, __) => al.artistId);
 
     await snap(q);
   });
@@ -863,7 +881,7 @@ export const queryTests = (verse: Verse<typeof queryModel>) => {
   test("join duplicate name binding", async () => {
     const q = verse.from.artists
       .join(Album, (a, al) => a.artistId === al.artistId)
-      .select(([_, al]) => al);
+      .select((_, al) => al);
 
     await snap(q);
   });
@@ -981,85 +999,93 @@ export const queryTests = (verse: Verse<typeof queryModel>) => {
   test("join lifting 1", async () => {
     const q = verse.from.albums
       .join(Artist, (al, ar) => al.artistId === ar.artistId)
-      .select(([_, ar]) => ar);
+      .select((_, ar) => ar);
 
-    await dump(q);
+    await snap(q);
   });
 
   test("join lifting 2", async () => {
     const q = verse.from.albums
       .join(Artist, (al, ar) => al.artistId === ar.artistId)
-      .select(([_, ar]) => [ar, ar.artistId]);
+      .select((_, ar) => [ar, ar.artistId]);
 
-    await dump(q);
+    await snap(q);
   });
 
   test("join lifting 3", async () => {
     const q = verse.from.albums
       .join(Artist, (al, ar) => al.artistId === ar.artistId)
-      .select(([_, ar]) => [ar, ar.artistId + 1]);
+      .select((_, ar) => [ar, ar.artistId + 1]);
 
-    await dump(q);
+    await snap(q);
   });
 
   test("join lifting 4", async () => {
     const q = verse.from.albums
       .join(Artist, (al, ar) => al.artistId === ar.artistId)
-      .orderBy(([_, ar]) => ar.artistId);
+      .orderBy((_, ar) => ar.artistId);
 
-    await dump(q);
+    await snap(q);
   });
 
   test("join lifting 5", async () => {
     const q = verse.from.albums
       .join(Artist, (al, ar) => al.artistId === ar.artistId)
-      .select(([_, ar]) => ar.name);
+      .select((_, ar) => ar.name);
 
-    await dump(q);
+    await snap(q);
   });
 
   test("join lifting 6", async () => {
     const q = verse.from.albums
       .join(Artist, (al, ar) => al.artistId === ar.artistId)
-      .select(([al, ar]) => [ar, al.title]);
+      .select((al, ar) => [ar, al.title]);
 
-    await dump(q);
+    await snap(q);
   });
 
   test("join lifting 7", async () => {
     const q = verse.from.albums
       .join(Artist, (al, ar) => al.artistId === ar.artistId)
-      .where(([_, ar]) => ar.name === "Alice In Chains")
-      .join(Artist, ([al, _], ar) => al.artistId === ar.artistId)
-      .select(([_, ar]) => ar.name);
+      .where((_, ar) => ar.name === "Alice In Chains")
+      .join(Artist, (al, _, ar) => al.artistId === ar.artistId)
+      .select((_, ar) => ar.name);
 
-    await dump(q);
+    await snap(q);
   });
 
   test("join lifting 8", async () => {
     const q = verse.from.albums
       .select(al => ({ al }))
       .join(Artist, (o, ar) => o.al.artistId === ar.artistId)
-      .where(([_, ar]) => ar.name === "Alice In Chains")
-      .select(([_, ar]) => ar.name);
+      .where((_, ar) => ar.name === "Alice In Chains")
+      .select((_, ar) => ar.name);
 
-    await dump(q);
+    await snap(q);
   });
 
   test("join lifting 9", async () => {
     const q = verse.from.albums
       .join(Artist, (al, ar) => al.artistId === ar.artistId)
-      .select(([_, ar]) => [ar, ar.name]);
+      .select((_, ar) => [ar, ar.name]);
 
-    await dump(q);
+    await snap(q);
   });
 
   test("join lifting 10", async () => {
     const q = verse.from.albums
       .join(Artist, (al, ar) => al.artistId === ar.artistId)
-      .orderBy(([_, ar]) => ar.name);
+      .orderBy((_, ar) => ar.name);
 
-    await dump(q);
+    await snap(q);
+  });
+
+  test("join min", async () => {
+    const q = verse.from.albums
+      .join(Artist, (al, ar) => al.artistId === ar.artistId)
+      .min((_, ar) => ar.artistId);
+
+    await snap(q);
   });
 };
 

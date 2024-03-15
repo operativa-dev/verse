@@ -85,8 +85,13 @@ function run() {
         continue;
       }
 
-      const endBlockIndex =
-        lines.slice(lineIndex + 1).findIndex(l => l === codeBlockMarker) + lineIndex + 1;
+      let endBlockIndex = lines.slice(lineIndex + 1).findIndex(l => l === codeBlockMarker);
+
+      if (endBlockIndex === -1) {
+        throw new Error(`Could not find end of code block in ${filePath}#L${lineIndex + 1}.`);
+      }
+
+      endBlockIndex += lineIndex + 1;
 
       const resolvedFilename = path.resolve(rootDir, annotation.filename);
 

@@ -3,8 +3,9 @@ import type { Config } from "@docusaurus/types";
 import { themes as prismThemes } from "prism-react-renderer";
 
 const config: Config = {
-  title: "Verse",
-  tagline: "Beautiful Typescript Data Access",
+  title: "@operativa/verse",
+  tagline:
+    "Verse is an experimental package to provide a next-gen Typescript ORM. It is subject to change and intended only for evaluation purposes.",
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here
@@ -12,7 +13,7 @@ const config: Config = {
 
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: "/verse/",
+  baseUrl: "/",
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -46,6 +47,9 @@ const config: Config = {
         theme: {
           customCss: "./src/css/custom.css",
         },
+        googleTagManager: {
+          containerId: "GTM-WG75CT3N",
+        },
       } satisfies Preset.Options,
     ],
   ],
@@ -66,8 +70,19 @@ const config: Config = {
   ],
 
   themeConfig: {
+    image: "img/icon.png",
+
     navbar: {
-      title: "Verse",
+      title: "@operativa/verse",
+      logo: {
+        alt: "Operativa Logo",
+        src: "img/icon.svg",
+        srcDark: "img/icon_dark.svg",
+        href: "/",
+        target: "_self",
+        width: 32,
+        height: 32,
+      },
       items: [
         {
           type: "docSidebar",
@@ -80,6 +95,15 @@ const config: Config = {
           sidebarId: "apiSidebar",
           position: "left",
           label: "API Reference",
+        },
+        {
+          href: "#",
+          label: "⚠️ Experimental package work in progress ⚠️",
+          position: "right",
+          style: {
+            color: "#dc9234",
+            fontWeight: "bold",
+          },
         },
         {
           href: "https://github.com/operativa-dev/verse",
@@ -131,7 +155,7 @@ const config: Config = {
         //   ],
         // },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Operativa.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Operativa Solutions (PTY) LTD.`,
     },
     prism: {
       theme: prismThemes.github,

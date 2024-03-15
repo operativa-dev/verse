@@ -6,7 +6,7 @@ for dir in "${dirs[@]}"
 do
   cd "$dir"
   echo "Running tsc --watch in $PWD ..."
-  tsc --watch &
+  pnpm tsc --watch &
   cd -
 done
 

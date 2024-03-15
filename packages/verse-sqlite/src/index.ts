@@ -208,7 +208,7 @@ export class SqliteDriver implements Driver {
   }
 
   static readonly #TABLE_EXISTS = new SqlSelect({
-    projection: new SqlNumber(1),
+    projection: SqlNumber.ONE,
     from: sqlId("sqlite_master"),
     where: sqlBin(
       sqlBin(sqlId("type"), "=", sqlStr("table")),

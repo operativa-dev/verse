@@ -17,3 +17,9 @@ export function indent(s: string, indent: number = 2) {
 export type Prettify<T> = {
   [K in keyof T]: T[K];
 } & {};
+
+declare const brand: unique symbol;
+
+export type Brand<T, K extends string> = T & { [brand]: K };
+
+export type Unbrand<T> = Omit<T, typeof brand>;

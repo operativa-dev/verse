@@ -1,15 +1,11 @@
 import { TodoItem } from "@/components/TodoItem";
-import { db } from "@/data";
+import { getTodos } from "@/server";
 import Link from "next/link";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
-  const exists = await db.database.exists();
-
-  if (!exists) {
-    await db.database.recreate();
-  }
-
-  const todos = await db.from.todos.toArray();
+  const todos = await getTodos();
 
   return (
     <>

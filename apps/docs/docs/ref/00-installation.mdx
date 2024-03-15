@@ -1,0 +1,61 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+# Installation
+
+Verse is comprised of a core library, and a set of optional plugins. The core library is required, and you will also need to
+install at least one database driver plugin corresponding to the database you are targeting.
+
+### Verse Core
+
+This package contains the core functionality of Verse, and is required for all Verse applications.
+
+```bash npm2yarn
+npm install @operativa/verse
+```
+
+### Database Drivers
+
+Verse currently supports the following database drivers:
+
+#### PostgreSQL
+
+```bash npm2yarn
+npm install @operativa/verse-postgres
+```
+
+#### MySQL
+
+```bash npm2yarn
+npm install @operativa/verse-mysql
+```
+
+#### SQLite
+
+```bash npm2yarn
+npm install @operativa/verse-sqlite
+```
+
+#### SQL Server
+
+```bash npm2yarn
+npm install @operativa/verse-mssql
+```
+
+### CLI
+
+Verse also includes a command line interface for generating and running migrations, running ad hoc queries and visualizing
+your Verse model. This package is optional, but recommended. The CLI depends on the [tsx](https://www.npmjs.com/package/tsx)
+runtime, which will be installed on first run if required.
+
+```bash npm2yarn
+npm install @operativa/verse-cli --save-dev
+```
+
+### Migrations
+
+Verse includes a migration system that allows you to define and run migrations for your database.
+
+```bash npm2yarn
+npm install @operativa/verse-migrations --save-dev
+```

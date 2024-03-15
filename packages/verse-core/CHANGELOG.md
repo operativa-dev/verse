@@ -1,31 +1,25 @@
 # @operativa/verse
 
-## 0.6.0
+## 0.7.4
 
-### Minor Changes
+### Patch Changes
 
-- 9bab6db: Improvements to update pipeline
+- revert CLI approach
 
-## 0.5.0
+## 0.7.3
 
-### Minor Changes
+### Patch Changes
 
-- b470fab: Migrations etc.
+- try another cli pattern
 
-## 0.4.0
+## 0.7.2
 
-### Minor Changes
+### Patch Changes
 
-- 7f1f21c: Added migrations
+- Tweak docs
 
-## 0.3.0
+## 0.7.1
 
-### Minor Changes
+### Patch Changes
 
-- 67dff3c: optimistic concurrency control and isolation levels
-
-## 0.2.0
-
-### Minor Changes
-
-- 726371b: Initialize changesets
+- Remove tests from publishing

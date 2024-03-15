@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@docusaurus/core": "3.1.1",
+    "@docusaurus/plugin-google-tag-manager": "^3.1.1",
     "@docusaurus/preset-classic": "3.1.1",
     "@docusaurus/theme-live-codeblock": "^3.1.1",
     "@mdx-js/react": "^3.0.1",
@@ -31,11 +32,11 @@
     "@docusaurus/types": "3.1.1",
     "docusaurus-plugin-typedoc": "1.0.0-next.27",
     "scripts": "workspace:*",
-    "typedoc": "^0.25.8",
+    "typedoc": "^0.25.11",
     "typedoc-plugin-frontmatter": "^0.0.2",
     "typedoc-plugin-include-example": "^1.2.0",
     "typedoc-plugin-markdown": "4.0.0-next.53",
-    "typedoc-plugin-mdn-links": "^3.1.16"
+    "typedoc-plugin-mdn-links": "^3.1.17"
   },
   "browserslist": {
     "production": [

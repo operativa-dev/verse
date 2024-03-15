@@ -21,7 +21,7 @@ function HomepageHeader() {
             className="button button--secondary button--lg"
             to="/docs/ref/Tutorials/getting-started"
           >
-            Get Started! - 5min ⏱️
+            Read the docs ⏰ (WIP) 🐟
           </Link>
         </div>
       </div>
@@ -34,7 +34,7 @@ export default function Home(): JSX.Element {
   return (
     <Layout
       title={`${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />"
+      description="Verse is an experimental package to provide a next-gen Typescript ORM. It is subject to change and intended only for evaluation purposes."
     >
       <HomepageHeader />
       <main>

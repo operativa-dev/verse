@@ -1,6 +1,6 @@
 {
   "name": "@operativa/verse-cli",
-  "version": "3.0.0",
+  "version": "0.7.4",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
@@ -23,7 +23,7 @@
     "verse": "./dist/cli.js"
   },
   "files": [
-    "dist"
+    "dist/src"
   ],
   "scripts": {
     "clean": "rimraf dist",

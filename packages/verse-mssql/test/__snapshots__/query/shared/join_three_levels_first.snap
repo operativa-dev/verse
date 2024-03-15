@@ -1,20 +1,18 @@
 [
   [
-    [
-      Track {
-        "album": undefined,
-        "composer": "Angus Young, Malcolm Young, Brian Johnson",
-        "genreId": 1,
-        "name": "For Those About To Rock (We Salute You)",
-        "theAlbumId": 1,
-        "trackId": 1,
-      },
-      Album {
-        "albumId": 1,
-        "artistId": 1,
-        "title": "For Those About To Rock We Salute You",
-      },
-    ],
+    Track {
+      "album": undefined,
+      "composer": "Angus Young, Malcolm Young, Brian Johnson",
+      "genreId": 1,
+      "name": "For Those About To Rock (We Salute You)",
+      "theAlbumId": 1,
+      "trackId": 1,
+    },
+    Album {
+      "albumId": 1,
+      "artistId": 1,
+      "title": "For Those About To Rock We Salute You",
+    },
     Artist {
       "artistId": 1,
       "name": "AC/DC",

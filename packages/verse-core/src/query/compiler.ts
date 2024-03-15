@@ -394,14 +394,22 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
       if (node instanceof SqlSelect && node.projection instanceof SqlComposite) {
         const alias = this.context.createAlias();
 
-        const projection = new SqlFunction(
+        let projection = new SqlFunction(
           "json_array",
           List.of(node.projection.record().scope(alias)),
           new SqlBinding({ element: node.projection, type: "json" })
-        ).identify(n => this.context.identify(n));
+        );
+
+        if (node.binding?.model instanceof NavigationPropertyModel && node.binding.model.many) {
+          projection = new SqlFunction(
+            "json_arrayagg",
+            List.of(projection),
+            new SqlBinding({ klass: Array, element: projection, type: "json" })
+          );
+        }
 
         node = new SqlSelect({
-          projection,
+          projection: projection.identify(n => this.context.identify(n)),
           from: new SqlAlias(node, alias),
         });
       }
@@ -433,7 +441,14 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
           const name = (p.key as Identifier).name;
           const value = this.scopedVisit(p.value!);
 
-          return value.bind(new SqlBinding({ name, type: value.type }));
+          return value.bind(
+            new SqlBinding({
+              name,
+              type: value.type,
+              klass: value.binding?.klass,
+              element: value.binding?.element,
+            })
+          );
         })
       ),
       new SqlBinding({ klass: Object })
@@ -505,6 +520,12 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
           return this.#groupBy;
         }
 
+        const subquery = this.#tryCompileNavigation(identifier.name, node);
+
+        if (subquery) {
+          return subquery;
+        }
+
         throw new Error(`Couldn't bind member '${identifier.name}' in '${printExpr(expr)}'.`);
       }
 
@@ -542,20 +563,34 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
       return sqlBin(node, op, new SqlNumber(index!), element.binding?.withType(type));
     }
 
-    if (node instanceof SqlSelect) {
-      if (node.projection instanceof SqlComposite) {
-        const member = node.projection.resolve(identifier.name);
+    if (node instanceof SqlSelect && node.projection instanceof SqlComposite) {
+      const composite = node.projection;
+      const member = composite.resolve(identifier.name);
 
-        if (!member) {
-          throw new Error(`Couldn't bind member '${identifier.name}' in '${printExpr(expr)}'.`);
+      if (!member) {
+        const subquery = this.#tryCompileNavigation(identifier.name, composite);
+
+        if (subquery) {
+          return node
+            .withProjection(subquery.projection)
+            .addJoins(new SqlJoin("inner", subquery.from!, subquery.where!));
         }
 
-        const alias = this.context.createAlias();
-        const from = new SqlAlias(node, alias);
-        const projection = member.scope(alias);
+        if (identifier.name === "length") {
+          return new SqlSelect({
+            projection: new SqlFunction("count", List.of(SqlStar.INSTANCE)),
+            from: new SqlAlias(node, this.context.createAlias()),
+          });
+        }
 
-        return new SqlSelect({ from, projection });
+        throw new Error(`Couldn't bind member '${identifier.name}' in '${printExpr(expr)}'.`);
       }
+
+      const alias = this.context.createAlias();
+      const from = new SqlAlias(node, alias);
+      const projection = member.scope(alias);
+
+      return new SqlSelect({ from, projection });
     }
 
     if (node instanceof SqlParameter) {
@@ -575,6 +610,32 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
     }
 
     throw new Error(`Unsupported member expression '${printExpr(expr)}'.`);
+  }
+
+  #tryCompileNavigation(name: string, node: SqlComposite) {
+    const model = node.binding?.model;
+
+    if (model instanceof EntityModel) {
+      const property = model.allProperties.find(p => p.name === name);
+
+      if (property instanceof NavigationPropertyModel) {
+        const select = this.selectEntity(property.target);
+        const projection = select.projection as SqlComposite;
+        const pks = property.foreignKey.references.key!.properties;
+        const fks = property.foreignKey.properties;
+
+        const condition = pks
+          .zip(fks)
+          .map(([pk, fk]) => sqlBin(node.resolve(pk.name)!, "=", projection.resolve(fk.name)!))
+          .reduce((acc: SqlNode, next) => (acc ? sqlBin(acc, "and", next) : next));
+
+        return select
+          .withWhere(condition)
+          .bind(select.binding!.merge(new SqlBinding({ model: property })));
+      }
+    }
+
+    return undefined;
   }
 
   protected override visitEntityExpression(expr: EntityExpression) {
@@ -774,7 +835,14 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
 
             this.#projection = oldProjection;
 
-            const nodes = List.of(this.#projection, target.projection.scope(rhs));
+            let nodes =
+              this.#projection instanceof SqlComposite &&
+              !this.#projection.binding?.klass &&
+              this.#projection.nodes.every(n => n instanceof SqlComposite)
+                ? this.#projection.nodes
+                : List.of(this.#projection);
+
+            nodes = nodes.push(target.projection.scope(rhs));
 
             this.#projection = new SqlComposite(nodes);
 
@@ -798,8 +866,17 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
 
             this.#groupBy = groupBy;
 
+            if ((expr.arguments[1] as ArrowExpression).body.type === "Identifier") {
+              error(
+                `Unable to compile the identity 'groupBy' result expression: '${printExpr(expr.arguments[1]!)}'.
+                 Use the 'groupBy' overload that omits the result expression.`
+              );
+            }
+
+            const result = this.visit(expr.arguments[1]);
+
             const projection = this.context.uniquify(
-              this.visit(expr.arguments[1]).identify(n => this.context.identify(n))
+              result.identify(n => this.context.identify(n))
             );
 
             this.#groupBy = undefined;
@@ -907,15 +984,11 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
           }
 
           if (op === "where" && arity1or2) {
-            return this.#withLocals(
-              expr,
-              () =>
-                new SqlSelect({
-                  projection,
-                  from,
-                  where: this.visit(expr.arguments[0]),
-                })
-            );
+            return this.#withLocals(expr, () => {
+              const where = this.visit(expr.arguments[0]);
+
+              return new SqlSelect({ projection, from, where });
+            });
           }
 
           if (op === "orderBy" && arity1or2) {
@@ -994,7 +1067,7 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
               return new SqlSelect({
                 projection,
                 from,
-                limit: new SqlNumber(1),
+                limit: SqlNumber.ONE,
                 where: this.visit(expr.arguments[0]),
               });
             });
@@ -1009,7 +1082,7 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
               return new SqlSelect({
                 projection,
                 from,
-                limit: new SqlNumber(1),
+                limit: SqlNumber.ONE,
                 where: this.visit(expr.arguments[0]),
               });
             });
@@ -1052,7 +1125,7 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
         } else {
           if (op === "substring" && arity1or2) {
             const args = expr.arguments.map(a => this.visit(a));
-            args[0] = sqlBin(args[0]!, "+", new SqlNumber(1));
+            args[0] = sqlBin(args[0]!, "+", SqlNumber.ONE);
 
             return new SqlFunction("substr", List.of(object, ...args));
           }
@@ -1071,8 +1144,18 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
             );
           }
 
-          if (op === "array" && arity1) {
-            let element = this.visit(expr.arguments[0]);
+          if (op === "array" && (arity0 || arity1)) {
+            let selector = expr.arguments[0];
+
+            if (!selector) {
+              selector = {
+                type: "ArrowFunctionExpression",
+                params: [{ type: "Identifier", name: "g" }],
+                body: { type: "Identifier", name: "g" },
+              };
+            }
+
+            let element = this.visit(selector);
 
             if (element instanceof SqlComposite) {
               element = new SqlFunction(

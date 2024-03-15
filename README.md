@@ -1,17 +1,29 @@
-# Repository
+[Join the Verse Discord Server](https://discord.gg/r2Zcuq7xpR)
+
+# Verse
 
 > [!WARNING]
 > Verse is an **experimental** package. It is subject to change and intended only for evaluation purposes.
 
-This repository is home to the following [Verse](http://about:blank/) packages. These packages are licensed under the [MIT License](LICENSE).
+Verse is a modern, fast, object/relational mapper for TypeScript. Some of its features are:
 
-- [Verse](#verse)
+- **Type safety**: Define your model using TypeScript and get full type safety when querying and modifying your data.
+- **Performance**: Designed to be fast and efficient, with minimal overhead.
+- **Powerful modelling**: Create entities with relationships, inheritance, identity generation strategies, value
+  objects, data converters and more.
+- **Rich querying**: Supports complex queries, including eager-loading, navigation properties, joins, sub-queries,
+  aggregations, grouping etc. The generated SQL is concise and easy to read.
+- **Unit of work**: Supports the unit of work pattern, allowing you to easily batch multiple changes and commit them
+  in a single transaction.
+- **Migrations**: Supports database migrations, allowing you to manage your database schema in a versioned and
+  repeatable way.
+- **Reliability**: Verse is designed to be reliable and robust, with a strong focus on testing and quality.
 
-## Verse
+Verse is licensed under the [Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0).
 
-Verse is a modern object-database mapper for TypeScript. It supports fluent queries, change tracking, updates, and schema migrations. Verse works with PostgreSql, MySql, Azure|SQL Database, SQLite, and other databases through a provider plugin API.
+Reference and API documentation is available at [verse docs](https://operativa-dev.github.io/verse).
 
-### Installation
+## Installation
 
 Verse is available on [npm](https://www.npmjs.com/package/@operativa/verse).
 
@@ -19,7 +31,7 @@ Verse is available on [npm](https://www.npmjs.com/package/@operativa/verse).
 npm i @operativa/verse
 ```
 
-Install the provider package corresponding to your target database:
+Install the driver package corresponding to your target database:
 
 ```bash
 npm i @operativa/verse-sqlite
@@ -33,7 +45,7 @@ It is advisable to also install the cli:
 npm i @operativa/verse-cli
 ```
 
-### Basic usage
+## Basic usage
 
 The following code demonstrates basic usage of Verse.
 
@@ -43,16 +55,21 @@ import { sqlite } from "@operativa/verse-sqlite";
 import { boolean, entity, int, string } from "@operativa/verse/model/builder";
 import { PrettyConsoleLogger } from "@operativa/verse/utils/logging";
 
-// Create a simple entity class to represent a todo item.
+// Define a simple entity to represent a Todo item.
 
-class Todo {
-  public readonly id!: number;
-
-  constructor(
-    public title: string,
-    public completed = false
-  ) {}
-}
+const Todo = entity(
+  {
+    id: int(),
+    title: string(),
+    completed: boolean(),
+  },
+  builder => {
+    builder.data(
+      { title: "Do the dishes", completed: false },
+      { title: "Walk the dog", completed: false }
+    );
+  }
+);
 
 // Setup our Verse instance.
 
@@ -63,17 +80,7 @@ const db = verse({
   },
   model: {
     entities: {
-      todos: entity(
-        Todo,
-        {
-          id: int(),
-          title: string(),
-          completed: boolean(),
-        },
-        builder => {
-          builder.data(new Todo("Do the dishes"), new Todo("Walk the dog"));
-        }
-      ),
+      todos: Todo,
     },
   },
 });
@@ -134,15 +141,21 @@ cd apps/basic/
 pnpm dev
 ```
 
-### Contributing
+## Development Status
+
+Please note that "Verse" is in its early development and the presented version is an alpha release. It's intended to be
+a preview for select developers. We appreciate bug reports and improvement suggestions as we continue to refine and
+enhance this library.
+
+## Contributing
 
 We welcome community pull requests for bug fixes, enhancements, and documentation. See [How to contribute](./CONTRIBUTING.md) for more information.
 
-### Getting support
+## Getting support
 
 If you encounter a bug or would like to request a feature, [submit an issue](https://github.com/operativa-dev/verse/issues/new/choose).
 
 ## See also
 
-- [Documentation](https://about:blank/)
+- [Documentation](https://operativa-dev.github.io/verse)
 - [Code of conduct](CODE_OF_CONDUCT.md)
