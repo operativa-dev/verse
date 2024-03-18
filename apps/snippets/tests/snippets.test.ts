@@ -8,4 +8,8 @@ describe("sample snippets", () => {
   test("builder", async () => {
     await import("../src/building.js");
   });
+
+  test("query", async () => {
+    await import("../src/query.js");
+  });
 });
