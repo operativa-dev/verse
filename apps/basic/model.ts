@@ -19,8 +19,8 @@ export const db = verse({
         t => {
           t.table("todos");
           t.data(
-            { title: "My first todo", completed: true },
-            { title: "My second todo", completed: false }
+            {id:1, title: "My first todo", completed: true },
+            {id:2, title: "My second todo", completed: false }
           );
         }
       ),
