@@ -26,7 +26,7 @@ export default async function Page() {
   const availableBooks = await db.from.libraryInventory
     .where((i) => i.userId === null)
     .join(Book, (lib, book) => lib.bookId === book.bookId)
-    .select(([lib, book]) => [lib.id, book.title, book.description])
+    .select((lib,book) => [lib.id, book.title, book.description])
     .toArray();
   return (
     <>
@@ -61,7 +61,7 @@ export default async function Page() {
 
         <div className="flex gap-1 justify-end">
           <Link
-            href=".."
+            href="/customers"
             className="border border-slate-500 text-slate-500 px-2 py-1 rounded hover:bg-slate-200 focus-within:bg-slate-300 outline-none"
           >
             Cancel

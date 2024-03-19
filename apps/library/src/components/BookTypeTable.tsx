@@ -10,7 +10,7 @@ export async function BookTypeTable() {
         <h1 className="text-2xl">Book List</h1>
         <Link
           className="border border-slate-500 text-slate-500 px-2 py-1 rounded hover:bg-slate-200 focus-within:bg-slate-300 outline-none"
-          href="/addBookType"
+          href="/library/addBookType"
         >
           Add Book to System
         </Link>

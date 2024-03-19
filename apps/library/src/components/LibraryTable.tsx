@@ -13,7 +13,7 @@ export async function LibraryTable() {
         <h1 className="text-2xl">Library Inventory</h1>
         <Link
           className="border border-slate-500 text-slate-500 px-2 py-1 rounded hover:bg-slate-200 focus-within:bg-slate-300 outline-none"
-          href="/addBookToLibrary"
+          href="/library//addBookToLibrary"
         >
           Add Book to Library
         </Link>

@@ -1,14 +1,12 @@
 import Sheet from "@mui/joy/Sheet";
-
+import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
 export default async function TopMenu() {
   return (
     <>
       <Sheet
         sx={{
-          // display: { xs: "flex", md: "none" },
           alignItems: "center",
           justifyContent: "space-between",
-          // position: "fixed",
           top: 0,
           width: "100vw",
           height: "var(--Header-height)",
@@ -20,8 +18,8 @@ export default async function TopMenu() {
           boxShadow: "sm",
         }}
       >
-        {/* <MenuIcon /> */}
-        Library app
+      <LocalLibraryIcon />
+      {" "}Library app
       </Sheet>
     </>
   );

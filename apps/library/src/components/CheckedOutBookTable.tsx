@@ -6,26 +6,22 @@ export async function CheckedOutBookTable() {
   const checkOutBooks = await db.from.libraryInventory
     .where((i) => i.userId !== 0)
     .join(Book, (lib, book) => lib.bookId === book.bookId)
-    .join(User, (lib, book, user) => lib.userId === user.userId)
-    .select((lib, book, user) => [lib.id, user.firstName, book.title, lib.created])
+    .join(User, (lib, _, user) => lib.userId === user.userId)
+    .select((lib, book, user) => ({
+      id: lib.id,
+      firstName: user.firstName,
+      title: book.title,
+      created: lib.created,
+    }))
     .toArray();
-  // const checkOutBooks = await db.from.libraryInventory
-  //   .join(Book, (lib, book) => lib.bookId === book.bookId)
-  //   .join(User, ([lib, b], user) => lib.userId === user.userId)
-  //   .where((i) => i.userId !== 0)
-  //   .select((lib, book, user) => ({
-  //     libraryInventory: lib.id,
-  //     users: user.firstName,
-  //     books: book.title,
-  //   }))
-  //   .toArray();
+    
   return (
     <>
       <header className="flex justify-between items-center mb-4">
         <h1 className="text-2xl">Checked Out Books</h1>
         <Link
           className="border border-slate-500 text-slate-500 px-2 py-1 rounded hover:bg-slate-200 focus-within:bg-slate-300 outline-none"
-          href="/checkoutBook"
+          href="/customers/checkoutBook"
         >
           Checkout Book
         </Link>
@@ -38,17 +34,19 @@ export async function CheckedOutBookTable() {
             <th style={{ width: "5%" }}>Id</th>
             <th>Customer</th>
             <th>Book</th>
+            <th>Created</th>
           </tr>
         </thead>
         <tbody>
-          {checkOutBooks.map((checkOutBook: Array<string | number>) => (
-            <tr key={"key-" + checkOutBooks[0]}>
+          {checkOutBooks.map((checkOutBook: any) => (
+            <tr key={"key-" + checkOutBook.id}>
               <td>
-                <ReturnBookButton id={parseInt(checkOutBook[0] + "")} />
+                <ReturnBookButton id={parseInt(checkOutBook.id + "")} />
               </td>
-              <td>{checkOutBook[0]}</td>
-              <td>{checkOutBook[1]}</td>
-              <td>{checkOutBook[2]}</td>
+              <td>{checkOutBook.id}</td>
+              <td>{checkOutBook.firstName}</td>
+              <td>{checkOutBook.title}</td>
+              <td>{checkOutBook.created}</td>
             </tr>
           ))}
         </tbody>

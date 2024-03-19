@@ -9,7 +9,7 @@ export function CustomerTable({ users }: { users: Array<User> }) {
         <h1 className="text-2xl">Customer List</h1>
         <Link
           className="border border-slate-500 text-slate-500 px-2 py-1 rounded hover:bg-slate-200 focus-within:bg-slate-300 outline-none"
-          href="/addCustomer"
+          href="/customers/addCustomer"
         >
           Add Customer
         </Link>
