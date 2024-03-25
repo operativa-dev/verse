@@ -668,6 +668,10 @@ export namespace SqlType {
   export function isNumeric(type?: SqlType) {
     return type === "integer" || type?.startsWith("numeric");
   }
+
+  export function isText(type?: SqlType) {
+    return type === "text" || type?.startsWith("varchar");
+  }
 }
 
 export class SqlColumn extends SqlNode {
@@ -1661,6 +1665,10 @@ export class SqlString extends SqlNode {
 
   override identify(aliaser: (n: SqlNode) => SqlNode): SqlNode {
     return aliaser(this);
+  }
+
+  override get type(): SqlType | undefined {
+    return "text";
   }
 
   override accept<T, S = unknown>(visitor: SqlVisitor<T>, state?: S) {

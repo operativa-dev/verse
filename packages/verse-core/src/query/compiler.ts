@@ -68,6 +68,7 @@ import { ConstantExpression, EntityExpression, ExpressionVisitor } from "./expre
 import { printExpr } from "./printer.js";
 import { __expr, AbstractQueryable, AsyncSequence } from "./queryable.js";
 import { Shaper, ShaperCompiler, ShaperContext } from "./shaping.js";
+import isText = SqlType.isText;
 
 export class QueryCompiler {
   constructor(
@@ -1198,7 +1199,7 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
     this.#inBinary = true;
 
     let left = this.scopedVisit(expr.left);
-    const op = ExpressionCompiler.#mapOp(expr.operator);
+    let op = ExpressionCompiler.#mapOp(expr.operator);
     let right = this.scopedVisit(expr.right);
 
     this.#inBinary = false;
@@ -1235,6 +1236,10 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
       if (left instanceof SqlNull) {
         return right.apply(SqlIsNotNull);
       }
+    }
+
+    if (op === "+" && (isText(left.type) || isText(right.type))) {
+      op = "||";
     }
 
     return left.compare(op, right);

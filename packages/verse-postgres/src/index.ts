@@ -34,6 +34,7 @@ import { notEmpty } from "@operativa/verse/utils/check";
 import { logBatch, Logger, logSql } from "@operativa/verse/utils/logging";
 import { List } from "immutable";
 import pg from "postgres";
+import isNumeric = SqlType.isNumeric;
 
 export function postgres(connectionString: string) {
   return new PostgresDriver(connectionString);
@@ -259,8 +260,8 @@ class DialectRewriter extends SqlRewriter {
     if (
       (SqlBinaryOperator.isComparison(newBinary.op) ||
         SqlBinaryOperator.isArithmetic(newBinary.op)) &&
-      !SqlType.isNumeric(newBinary.left.type) &&
-      SqlType.isNumeric(newBinary.right.type)
+      !isNumeric(newBinary.left.type) &&
+      isNumeric(newBinary.right.type)
     ) {
       return sqlBin(
         new SqlFunction("cast", List.of(new SqlTypeAlias(newBinary.left, newBinary.right.type!))),
