@@ -469,8 +469,26 @@ export const queryTests = (verse: Verse<typeof queryModel>) => {
     await snap(q);
   });
 
+  test("like concat", async () => {
+    const q = verse.from.albums.where((a, $p) => a.title.like("%" + $p + "%"), "a");
+
+    await snap(q);
+  });
+
   test("not like", async () => {
     const q = verse.from.albums.where(a => !a.title.like("M%"));
+
+    await snap(q);
+  });
+
+  test("concat", async () => {
+    const q = verse.from.albums.select(_ => "a" + "b");
+
+    await snap(q);
+  });
+
+  test("concat columns", async () => {
+    const q = verse.from.albums.select(a => a.title + a.title);
 
     await snap(q);
   });
