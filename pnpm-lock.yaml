@@ -210,9 +210,6 @@ importers:
 
   packages/scripts:
     dependencies:
-      fs-extra:
-        specifier: ^11.2.0
-        version: 11.2.0
       glob:
         specifier: ^10.3.10
         version: 10.3.10

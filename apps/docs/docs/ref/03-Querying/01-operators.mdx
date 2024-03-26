@@ -3,6 +3,221 @@
 Verse provides many query operators to help you write sophisticated queries. This section will describe
 the built-in operators and how to use them.
 
-## All
+## all
 
-The `all` operator is used to check if all elements in a collection satisfy a condition. It is used as follows:
+The `all` operator is used to check if all of the elements in a sequence satisfy a given condition:
+
+```ts include ./apps/snippets/src/query.ts:all showLineNumbers
+const all = await db.from.artists.all(a => a.name !== "AC/DC"); // false
+```
+
+## any
+
+The `any` operator is used to check if a sequence contains any elements:
+
+```ts include ./apps/snippets/src/query.ts:any showLineNumbers
+let any = await db.from.artists.where(a => a.name === "AC/DC").any(); // true
+```
+
+There is a shorthand for the common case above:
+
+```ts include ./apps/snippets/src/query.ts:any-pred showLineNumbers
+any = await db.from.artists.any(a => a.name === "AC/DC"); // true
+```
+
+## array
+
+The `array` operator is an aggregate operator that collects all the elements in a sequence into an array:
+
+```ts include ./apps/snippets/src/query.ts:array showLineNumbers
+const array = await db.from.artists.array().first(); // true
+```
+
+Aggregation happens on the database side, usually using a JSON array aggregation function such as `json_agg` in PostgreSQL.
+
+## avg
+
+The `avg` operator is an aggregate operator that calculates the average of a sequence of numbers:
+
+```ts include ./apps/snippets/src/query.ts:avg showLineNumbers
+let avg = await db.from.artists.select(a => a.artistId).avg();
+```
+
+There is a shorthand for the common case above:
+
+```ts include ./apps/snippets/src/query.ts:avg-short showLineNumbers
+avg = await db.from.artists.avg(a => a.artistId);
+```
+
+## count
+
+The `count` operator is an aggregate operator that counts the number of elements in a sequence:
+
+```ts include ./apps/snippets/src/query.ts:count showLineNumbers
+const count = await db.from.artists.count();
+```
+
+## distinct
+
+The `distinct` operator is used to remove duplicate elements from a sequence:
+
+```ts include ./apps/snippets/src/query.ts:distinct showLineNumbers
+const distinct = await db.from.artists
+  .select(a => a.name)
+  .distinct()
+  .toArray();
+```
+
+## first
+
+The `first` operator is used to get the first element of a sequence:
+
+```ts include ./apps/snippets/src/query.ts:first showLineNumbers
+let first = await db.from.artists.where(a => a.name === "AC/DC").first();
+```
+
+There is a shorthand for the common case above:
+
+```ts include ./apps/snippets/src/query.ts:first-pred showLineNumbers
+first = await db.from.artists.first(a => a.name === "AC/DC");
+```
+
+## groupBy
+
+The `groupBy` operator is used to group elements in a sequence by a key:
+
+```ts include ./apps/snippets/src/query.ts:group-by showLineNumbers
+const groupBy = await db.from.albums.groupBy(a => a.artistId).toArray();
+```
+
+Each group is represented as a key-value pair where the key is the group key and the value
+is an array of the elements in the group.
+
+You can also perform aggregation on the groups:
+
+```ts include ./apps/snippets/src/query.ts:group-by-agg showLineNumbers
+const albumCounts = await db.from.albums
+  .groupBy(
+    a => a.artistId,
+    g => ({
+      artist: g.key,
+      count: g.count(),
+    })
+  )
+  .toArray();
+```
+
+## join
+
+The `join` operator is used to join two sequences based on a common key:
+
+```ts include ./apps/snippets/src/query.ts:join showLineNumbers
+const joined = await db.from.artists
+  .join(db.from.albums, (ar, al) => ar.artistId === al.artistId)
+  .select((ar, al) => ({
+    artist: ar.name,
+    album: al.title,
+  }))
+  .toArray();
+```
+
+`join` returns a sequence of pairs where the first element is from the first sequence and the second
+element is from the second sequence. Subsequent operators (like the `select` operator above) will
+automatically destructure the pairs into separate parameters when the operator accepts an arrow function.
+
+## leftJoin
+
+The `leftJoin` operator is used to join two sequences based on a common key, returning all elements from the
+first sequence, and the matching elements from the second sequence:
+
+```ts include ./apps/snippets/src/query.ts:left-join showLineNumbers
+const leftJoined = await db.from.artists
+  .leftJoin(db.from.albums, (ar, al) => ar.artistId === al.artistId)
+  .toArray();
+```
+
+Join returns a sequence of pairs where the first element is from the first sequence and the second
+element is from the second sequence, or `undefined` if there is no match. As with `join`, subsequent operators will
+automatically destructure the pairs into separate parameters when the operator accepts an arrow function.
+
+## limit
+
+The `limit` operator is used to limit the number of elements in a sequence:
+
+```ts include ./apps/snippets/src/query.ts:limit showLineNumbers
+const limit = await db.from.artists.limit(5).toArray();
+```
+
+## max
+
+The `max` operator is an aggregate operator that calculates the maximum of a sequence of numbers:
+
+```ts include ./apps/snippets/src/query.ts:max showLineNumbers
+let max = await db.from.artists.select(a => a.artistId).max();
+```
+
+  There is a shorthand for the common case above:
+
+```ts include ./apps/snippets/src/query.ts:max-short showLineNumbers
+avg = await db.from.artists.max(a => a.artistId);
+```
+
+## maybeFirst
+
+The `maybeFirst` operator is used to get the first element of a sequence, or return `undefined` if the sequence is empty:
+
+```ts include ./apps/snippets/src/query.ts:maybe-first showLineNumbers
+let maybeFirst = await db.from.artists
+  .where(a => a.name === "Allan Holdsworth")
+  .maybeFirst();
+```
+
+There is a shorthand for the common case above:
+
+```ts include ./apps/snippets/src/query.ts:maybe-first-pred showLineNumbers
+maybeFirst = await db.from.artists.maybeFirst(
+  a => a.name === "Allan Holdsworth"
+);
+```
+
+## maybeSingle
+
+The `maybeSingle` operator is used to get the only element of a sequence, or return `undefined` if the sequence is empty:
+
+```ts include ./apps/snippets/src/query.ts:maybe-single showLineNumbers
+let maybeSingle = await db.from.artists
+  .where(a => a.name === "Allan Holdsworth")
+  .maybeSingle();
+```
+
+This operator will throw an error if the sequence contains more than one element.
+
+There is a shorthand for the common case above:
+
+```ts include ./apps/snippets/src/query.ts:maybe-single-pred showLineNumbers
+maybeSingle = await db.from.artists.maybeSingle(
+  a => a.name === "Allan Holdsworth"
+);
+```
+
+## min
+
+The `min` operator is an aggregate operator that calculates the minimum of a sequence of numbers:
+
+```ts include ./apps/snippets/src/query.ts:min showLineNumbers
+let min = await db.from.artists.select(a => a.artistId).min();
+```
+
+  There is a shorthand for the common case above:
+
+```ts include ./apps/snippets/src/query.ts:min-short showLineNumbers
+avg = await db.from.artists.min(a => a.artistId);
+```
+
+## offset
+
+The `offset` operator is used to skip a number of elements in a sequence:
+
+```ts include ./apps/snippets/src/query.ts:offset showLineNumbers
+const offset = await db.from.artists.offset(5).toArray();
+```

@@ -8,7 +8,6 @@
     "build": "tsc && pnpm tsx inject.ts"
   },
   "dependencies": {
-    "fs-extra": "^11.2.0",
     "glob": "^10.3.10"
   },
   "devDependencies": {
