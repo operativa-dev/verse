@@ -1,5 +1,13 @@
 # @operativa/verse-mssql
 
+## 0.7.5
+
+### Patch Changes
+
+- Mar 26 point release
+- Updated dependencies
+  - @operativa/verse@0.7.5
+
 ## 0.7.4
 
 ### Patch Changes
