@@ -11,6 +11,7 @@ import {
   ExecuteStatement,
   IsolationLevel,
 } from "@operativa/verse/db/driver";
+import { explodeIn, hasInParameter } from "@operativa/verse/db/in";
 import { SqlPrinter } from "@operativa/verse/db/printer";
 import { SqlRewriter } from "@operativa/verse/db/rewriter";
 import {
@@ -18,6 +19,7 @@ import {
   SqlColumn,
   SqlFunction,
   sqlId,
+  SqlIn,
   SqlNode,
   SqlNumber,
   SqlParameter,
@@ -78,21 +80,33 @@ export class SqliteDriver implements Driver {
   }
 
   rows(sql: SqlNode) {
-    const printer = new SqlitePrinter();
-    const query = sql.accept(new DialectRewriter()).accept(printer);
-    let stmt: Statement;
+    if (!hasInParameter(sql)) {
+      const printer = new SqlitePrinter();
+      const stmt = this.#prepare(sql, new DialectRewriter(), printer);
+
+      return (args: unknown[]) => this.#query(stmt, args, printer.argsMap);
+    }
+
+    return (args: unknown[]) => {
+      const printer = new SqlitePrinter();
+      const stmt = this.#prepare(sql, new DialectRewriter(args), printer);
+
+      return this.#query(stmt, args, printer.argsMap);
+    };
+  }
+
+  #prepare(sql: SqlNode, dialect: DialectRewriter, printer: SqlitePrinter) {
+    const query = sql.accept(dialect).accept(printer);
 
     try {
-      stmt = this.db.prepare(query).raw();
+      return this.db.prepare(query).raw();
     } catch (e) {
       logSql(query, [], this.#logger);
       throw e;
     }
-
-    return (args: unknown[]) => this.#query(stmt, args, printer.argsMap);
   }
 
-  async *#query(stmt: Statement, args: unknown[], argsMap: number[]): AsyncIterable<unknown[]> {
+  async *#query(stmt: Statement, args: unknown[], argsMap: number[]) {
     logSql(stmt.source, args, this.#logger);
 
     for (const row of stmt.iterate(argsMap.map(i => args[i]))) {
@@ -105,15 +119,15 @@ export class SqliteDriver implements Driver {
     isolation?: IsolationLevel,
     onBeforeCommit?: (results: ExecuteResult[]) => void
   ) {
-    const dialect = new DialectRewriter();
-
     const batch = statements.map(stmt => {
       const printer = new SqlitePrinter();
 
+      const args = stmt.args ?? [];
+
       return {
         ...stmt,
-        sql: stmt.sql.accept(dialect).accept(printer),
-        args: stmt.args ?? [],
+        sql: stmt.sql.accept(new DialectRewriter(args)).accept(printer),
+        args,
         argsMap: printer.argsMap,
         readable: stmt.sql.readable,
       };
@@ -181,7 +195,7 @@ export class SqliteDriver implements Driver {
   }
 
   script(statements: ExecuteStatement[]) {
-    const dialect = new DialectRewriter();
+    const dialect = new DialectRewriter([]);
     const printer = new SqlitePrinter();
 
     return statements.map(stmt => stmt.sql.accept(dialect).accept(printer));
@@ -230,6 +244,10 @@ export class SqliteDriver implements Driver {
 }
 
 class DialectRewriter extends SqlRewriter {
+  constructor(private args: unknown[] = []) {
+    super();
+  }
+
   override visitFunction(func: SqlFunction) {
     const newFunction = super.visitFunction(func) as SqlFunction;
 
@@ -252,6 +270,14 @@ class DialectRewriter extends SqlRewriter {
     }
 
     return newColumn;
+  }
+
+  override visitIn(_in: SqlIn) {
+    if (this.args.length > 0) {
+      return explodeIn(_in, this.args);
+    }
+
+    return _in;
   }
 }
 

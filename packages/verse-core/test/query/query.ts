@@ -61,6 +61,36 @@ export const queryFixture = (driver: Driver, logger?: Logger) => {
 export const queryTests = (verse: Verse<typeof queryModel>) => {
   const snap = dataTest(verse);
 
+  test("includes", async () => {
+    const q = verse.from.albums.where(a => [1, 2].includes(a.artistId));
+
+    await snap(q);
+  });
+
+  test("includes parameter", async () => {
+    const q = verse.from.albums.where(
+      (a, $title, $ids) => a.title.like($title) && $ids.includes(a.artistId),
+      "B%",
+      [2, 12]
+    );
+
+    await snap(q);
+  });
+
+  test("not includes", async () => {
+    const q = verse.from.albums.where(a => ![1, 2].includes(a.artistId));
+
+    await snap(q);
+  });
+
+  test("includes compiled", async () => {
+    const q = verse.compile((from, $title: string, $ids: number[]) =>
+      from.albums.where(a => a.title.like($title) && $ids.includes(a.artistId))
+    );
+
+    await snap(q("B%", [2, 12]));
+  });
+
   test("identity", async () => {
     const q = verse.from.albums;
 

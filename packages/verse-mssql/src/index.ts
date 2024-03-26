@@ -9,6 +9,7 @@ import {
   ExecuteStatement,
   IsolationLevel,
 } from "@operativa/verse/db/driver";
+import { explodeIn, hasInParameter } from "@operativa/verse/db/in";
 import { SqlPrinter } from "@operativa/verse/db/printer";
 import { SqlRewriter } from "@operativa/verse/db/rewriter";
 import {
@@ -22,6 +23,7 @@ import {
   SqlFunction,
   sqlId,
   SqlIdentifier,
+  SqlIn,
   SqlInsert,
   SqlMember,
   SqlNode,
@@ -84,9 +86,21 @@ export class MssqlDriver implements Driver {
 
   rows(sql: SqlNode) {
     const printer = new MssqlPrinter();
-    const query = sql.accept(new DialectRewriter()).accept(printer);
 
-    return (args: unknown[]) => this.#query(query, args);
+    // noinspection DuplicatedCode
+    if (!hasInParameter(sql)) {
+      const query = sql.accept(new DialectRewriter()).accept(printer);
+
+      return (args: unknown[]) => {
+        return this.#query(query, args);
+      };
+    }
+
+    return (args: unknown[]) => {
+      const query = sql.accept(new DialectRewriter(args)).accept(printer);
+
+      return this.#query(query, args);
+    };
   }
 
   async *#query(sql: string, args: unknown[]): AsyncIterable<unknown[]> {
@@ -300,6 +314,18 @@ export class MssqlDriver implements Driver {
 
 class DialectRewriter extends SqlRewriter {
   #selectDepth = 0;
+
+  constructor(private args: unknown[] = []) {
+    super();
+  }
+
+  override visitIn(_in: SqlIn) {
+    if (this.args.length > 0) {
+      return explodeIn(_in, this.args);
+    }
+
+    return _in;
+  }
 
   override visitSelect(select: SqlSelect) {
     this.#selectDepth++;

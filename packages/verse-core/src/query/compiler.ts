@@ -30,6 +30,7 @@ import {
   SqlFunction,
   sqlId,
   SqlIdentifier,
+  SqlIn,
   SqlIsNotNull,
   SqlIsNull,
   SqlJoin,
@@ -107,7 +108,7 @@ export class QueryCompiler {
 
     this.metadata.config.logger?.debug(shaper.toString() + "\n");
 
-    const rows = this.#rowFn(sql, arity, locals, conversions, this.metadata.model);
+    const rows = this.#rows(sql, arity, locals, conversions, this.metadata.model);
 
     if (cardinality !== "many") {
       return async (args: A[], cache?: QueryCache) =>
@@ -118,13 +119,15 @@ export class QueryCompiler {
       new AsyncSequenceImpl(this.#many(args, rows, shaper, cache));
   }
 
-  #rowFn(
+  #rows(
     sql: SqlNode,
     arity: number,
     locals: List<Primitive>,
     conversions: Map<number, Converter>,
     model: Model
   ) {
+    const rows = this.metadata.config.driver.rows(sql);
+
     return (args: unknown[]) => {
       const allArgs = Array(arity).fill(null);
 
@@ -142,7 +145,7 @@ export class QueryCompiler {
         }
       });
 
-      return this.metadata.config.driver.rows(sql)(allArgs);
+      return rows(allArgs);
     };
   }
 
@@ -712,9 +715,10 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
       const member = expr.callee as MemberExpression;
 
       if (member.property.type === "Identifier") {
-        const arity0 = expr.arguments.length === 0;
-        const arity1 = expr.arguments.length === 1;
-        const arity2 = expr.arguments.length === 2;
+        const arity = expr.arguments.length;
+        const arity0 = arity === 0;
+        const arity1 = arity === 1;
+        const arity2 = arity === 2;
         const arity0or1 = arity0 || arity1;
         const arity1or2 = arity1 || arity2;
 
@@ -1145,6 +1149,12 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
             return new SqlFunction("substr", List.of(object, ...args));
           }
 
+          if (op === "includes" && arity1) {
+            const operand = this.visit(expr.arguments[0]);
+
+            return new SqlIn(operand, object);
+          }
+
           if (op === "like" && arity1) {
             const pattern = this.visit(expr.arguments[0]);
 
@@ -1200,7 +1210,7 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
           }
         }
 
-        throw new Error(`Function '${op}' is not supported.`);
+        throw new Error(`Function '${op}/${arity}' is not supported in query expressions.`);
       }
     }
 

@@ -9,6 +9,7 @@ import {
   ExecuteStatement,
   IsolationLevel,
 } from "@operativa/verse/db/driver";
+import { explodeIn, hasInParameter } from "@operativa/verse/db/in";
 import { SqlPrinter } from "@operativa/verse/db/printer";
 import { SqlRewriter } from "@operativa/verse/db/rewriter";
 import {
@@ -21,6 +22,7 @@ import {
   SqlFunction,
   sqlId,
   SqlIdentifier,
+  SqlIn,
   SqlMember,
   SqlNode,
   SqlNumber,
@@ -73,8 +75,21 @@ export class PostgresDriver implements Driver, AsyncDisposable {
   }
 
   rows(sql: SqlNode) {
-    return (args: unknown[]) =>
-      this.#query(sql.accept(new DialectRewriter()).accept(new PgSqlPrinter()), args);
+    const printer = new PgSqlPrinter();
+
+    if (!hasInParameter(sql)) {
+      const query = sql.accept(new DialectRewriter()).accept(printer);
+
+      return (args: unknown[]) => {
+        return this.#query(query, args);
+      };
+    }
+
+    return (args: unknown[]) => {
+      const query = sql.accept(new DialectRewriter(args)).accept(printer);
+
+      return this.#query(query, args);
+    };
   }
 
   async *#query(sql: string, args: unknown[]) {
@@ -240,6 +255,10 @@ export class PostgresDriver implements Driver, AsyncDisposable {
 }
 
 class DialectRewriter extends SqlRewriter {
+  constructor(private args: unknown[] = []) {
+    super();
+  }
+
   override visitFunction(func: SqlFunction) {
     const newFunction = super.visitFunction(func) as SqlFunction;
 
@@ -272,6 +291,14 @@ class DialectRewriter extends SqlRewriter {
     }
 
     return newBinary;
+  }
+
+  override visitIn(_in: SqlIn) {
+    if (this.args.length > 0) {
+      return explodeIn(_in, this.args);
+    }
+
+    return _in;
   }
 }
 

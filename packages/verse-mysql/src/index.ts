@@ -11,6 +11,7 @@ import {
   ExecuteStatement,
   IsolationLevel,
 } from "@operativa/verse/db/driver";
+import { explodeIn, hasInParameter } from "@operativa/verse/db/in";
 import { SqlPrinter } from "@operativa/verse/db/printer";
 import { SqlRewriter } from "@operativa/verse/db/rewriter";
 import {
@@ -25,6 +26,7 @@ import {
   SqlFunction,
   sqlId,
   SqlIdentifier,
+  SqlIn,
   SqlInsert,
   SqlMember,
   SqlNode,
@@ -81,12 +83,25 @@ export class MySqlDriver implements Driver, AsyncDisposable {
   }
 
   rows(sql: SqlNode) {
-    const printer = new MySqlPrinter();
-    const dialect = new DialectRewriter();
+    if (!hasInParameter(sql)) {
+      const printer = new MySqlPrinter();
+      const dialect = new DialectRewriter();
 
-    const query = sql.accept(dialect).accept(printer);
+      const query = sql.accept(dialect).accept(printer);
 
-    return (args: unknown[]) => this.#query(query, args, printer.argsMap, dialect.coerceArgs);
+      return (args: unknown[]) => {
+        return this.#query(query, args, printer.argsMap, dialect.coerceArgs);
+      };
+    }
+
+    return (args: unknown[]) => {
+      const printer = new MySqlPrinter();
+      const dialect = new DialectRewriter(args);
+
+      const query = sql.accept(dialect).accept(printer);
+
+      return this.#query(query, args, printer.argsMap, dialect.coerceArgs);
+    };
   }
 
   async *#query(
@@ -342,6 +357,10 @@ export class MySqlDriver implements Driver, AsyncDisposable {
 class DialectRewriter extends SqlRewriter {
   #coerceArgs: Set<number> = new Set<number>();
 
+  constructor(private args: unknown[] = []) {
+    super();
+  }
+
   get coerceArgs() {
     return this.#coerceArgs;
   }
@@ -401,6 +420,14 @@ class DialectRewriter extends SqlRewriter {
     }
 
     return newColumn;
+  }
+
+  override visitIn(_in: SqlIn) {
+    if (this.args.length > 0) {
+      return explodeIn(_in, this.args);
+    }
+
+    return _in;
   }
 }
 

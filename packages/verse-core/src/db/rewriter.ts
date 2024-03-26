@@ -20,6 +20,7 @@ import {
   SqlExists,
   SqlFunction,
   SqlIdentifier,
+  SqlIn,
   SqlInsert,
   SqlIsNotNull,
   SqlIsNull,
@@ -83,6 +84,11 @@ export abstract class SqlRewriter extends SqlVisitor<SqlNode> {
   override visitExists(exists: SqlExists) {
     this.beforeVisit(exists);
     return exists.rewrite(this);
+  }
+
+  override visitIn(_in: SqlIn) {
+    this.beforeVisit(_in);
+    return _in.rewrite(this);
   }
 
   override visitLike(like: SqlLike) {
