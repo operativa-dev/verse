@@ -21,6 +21,7 @@ import {
   SqlForeignKey,
   SqlFunction,
   SqlIdentifier,
+  SqlIn,
   SqlInsert,
   SqlIsNotNull,
   SqlIsNull,
@@ -78,6 +79,10 @@ export abstract class SqlVisitor<T, S = unknown> {
 
   public visitExists(exists: SqlExists, state?: S): T {
     return this.visitNode(exists, state);
+  }
+
+  public visitIn(_in: SqlIn, state?: S): T {
+    return this.visitNode(_in, state);
   }
 
   public visitLike(like: SqlLike, state?: S): T {

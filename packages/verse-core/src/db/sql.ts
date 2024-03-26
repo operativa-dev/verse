@@ -1500,6 +1500,41 @@ export class SqlExists extends SqlNode {
   }
 }
 
+export class SqlIn extends SqlNode {
+  constructor(
+    readonly operand: SqlNode,
+    readonly values: SqlNode
+  ) {
+    super();
+  }
+
+  override accept<T, S = unknown>(visitor: SqlVisitor<T>, state?: S) {
+    return visitor.visitIn(this, state);
+  }
+
+  override rewrite(rewriter: SqlRewriter): SqlNode {
+    const newOperand = this.operand.accept(rewriter);
+    const newValues = this.values.accept(rewriter);
+
+    if (this.operand !== newOperand || this.values !== newValues) {
+      return new SqlIn(newOperand, newValues);
+    }
+
+    return this;
+  }
+
+  override equals(other: unknown) {
+    return (
+      this === other ||
+      (other instanceof SqlIn && is(this.operand, other.operand) && is(this.values, other.values))
+    );
+  }
+
+  override hashCode() {
+    return (hash(this.operand) * 27) ^ (hash(this.values) * 27);
+  }
+}
+
 export class SqlLike extends SqlNode {
   constructor(
     readonly operand: SqlNode,
