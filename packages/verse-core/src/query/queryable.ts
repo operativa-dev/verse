@@ -486,8 +486,8 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
    * @param expr The numerical expression to be evaluated.
    * @returns The minimum value of the specified numerical expression for the sequence.
    */
-  min(expr: NumericExpr<T>) {
-    this.expression = this.op("min", jsep(expr.toString()));
+  min(expr?: NumericExpr<T>) {
+    this.expression = this.op("min", ...(expr ? [jsep(expr.toString())] : []));
 
     return this as unknown as number;
   }
@@ -497,8 +497,8 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
    * @param expr The numerical expression to be evaluated.
    * @returns The maximum value of the specified numerical expression for the sequence.
    */
-  max(expr: NumericExpr<T>) {
-    this.expression = this.op("max", jsep(expr.toString()));
+  max(expr?: NumericExpr<T>) {
+    this.expression = this.op("max", ...(expr ? [jsep(expr.toString())] : []));
 
     return this as unknown as number;
   }
@@ -508,8 +508,8 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
    * @param expr The numerical expression to be evaluated.
    * @returns The sum of the specified numerical expression for the sequence.
    */
-  sum(expr: NumericExpr<T>) {
-    this.expression = this.op("sum", jsep(expr.toString()));
+  sum(expr?: NumericExpr<T>) {
+    this.expression = this.op("sum", ...(expr ? [jsep(expr.toString())] : []));
 
     return this as unknown as number;
   }
@@ -519,8 +519,8 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
    * @param expr The numerical expression to be evaluated.
    * @returns The average value of the specified numerical expression for the sequence.
    */
-  avg(expr: NumericExpr<T>) {
-    this.expression = this.op("avg", jsep(expr.toString()));
+  avg(expr?: NumericExpr<T>) {
+    this.expression = this.op("avg", ...(expr ? [jsep(expr.toString())] : []));
 
     return this as unknown as number;
   }
@@ -929,8 +929,8 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
    * @param expr The numerical expression to be evaluated.
    * @returns A promise that resolves with the minimum value of the specified numerical expression for the sequence.
    */
-  min(expr: NumericExpr<T>) {
-    this.expression = this.op("min", jsep(expr.toString()));
+  min(expr?: NumericExpr<T>) {
+    this.expression = this.op("min", ...(expr ? [jsep(expr.toString())] : []));
 
     return this.#executeOne<number>();
   }
@@ -940,8 +940,8 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
    * @param expr The numerical expression to be evaluated.
    * @returns A promise that resolves with the maximum value of the specified numerical expression for the sequence.
    */
-  max(expr: NumericExpr<T>) {
-    this.expression = this.op("max", jsep(expr.toString()));
+  max(expr?: NumericExpr<T>) {
+    this.expression = this.op("max", ...(expr ? [jsep(expr.toString())] : []));
 
     return this.#executeOne<number>();
   }
@@ -951,8 +951,8 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
    * @param expr The numerical expression to be evaluated.
    * @returns A promise that resolves with the sum of the specified numerical expression for the sequence.
    */
-  sum(expr: NumericExpr<T>) {
-    this.expression = this.op("sum", jsep(expr.toString()));
+  sum(expr?: NumericExpr<T>) {
+    this.expression = this.op("sum", ...(expr ? [jsep(expr.toString())] : []));
 
     return this.#executeOne<number>();
   }
@@ -962,8 +962,8 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
    * @param expr The numerical expression to be evaluated.
    * @returns A promise that resolves with the average value of the specified numerical expression for the sequence.
    */
-  avg(expr: NumericExpr<T>) {
-    this.expression = this.op("avg", jsep(expr.toString()));
+  avg(expr?: NumericExpr<T>) {
+    this.expression = this.op("avg", ...(expr ? [jsep(expr.toString())] : []));
 
     return this.#executeOne<number>();
   }

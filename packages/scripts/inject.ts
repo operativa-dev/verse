@@ -1,5 +1,5 @@
-import fs from "fs";
-import fsExtra from "fs-extra";
+import { existsSync } from "fs";
+import { readFile, writeFile } from "fs/promises";
 import { glob } from "glob";
 import path from "node:path";
 
@@ -10,11 +10,11 @@ const files = await glob(["**/*.md", "**/*.mdx"], {
   ignore: ["packages/scripts/**", "node_modules/**"],
 });
 
-const codeRegex = /^(```ts include ([^:\n]+)(?::([a-z-0-9]+)[^\n]*)?\n)(.+?)```/gms;
+const codeRegex = /^(```ts include ([^:\n]+)(?::([a-z-0-9]+)[^\n]*)?\n)(.*?)```/gms;
 
 for (const file of files) {
   const filePath = path.join(rootDir, file);
-  const content = await fsExtra.readFile(filePath, { encoding: "utf8" });
+  const content = await readFile(filePath, { encoding: "utf8" });
 
   let match;
   let newContent = content;
@@ -24,12 +24,12 @@ for (const file of files) {
     const name = match[3]!;
     const srcPath = path.resolve(rootDir, src);
 
-    if (!fs.existsSync(srcPath)) {
+    if (!existsSync(srcPath)) {
       console.error(`Source file '${srcPath}' not found! Referenced in: ${filePath}`);
       process.exit(1);
     }
 
-    let snippet = await fsExtra.readFile(srcPath, "utf8");
+    let snippet = await readFile(srcPath, "utf8");
 
     if (name) {
       const snippetRegex = new RegExp(`\\/\\/\\/ ${name}\\n([\\s\\S]+?)\\/\\/\\/`, "gm");
@@ -53,7 +53,7 @@ for (const file of files) {
   }
 
   if (newContent !== content) {
-    await fsExtra.writeFile(filePath, newContent);
+    await writeFile(filePath, newContent);
 
     console.log(`Updated ${filePath}`);
   }

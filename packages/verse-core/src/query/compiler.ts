@@ -68,6 +68,7 @@ import { ConstantExpression, EntityExpression, ExpressionVisitor } from "./expre
 import { printExpr } from "./printer.js";
 import { __expr, AbstractQueryable, AsyncSequence } from "./queryable.js";
 import { Shaper, ShaperCompiler, ShaperContext } from "./shaping.js";
+import isNumeric = SqlType.isNumeric;
 import isText = SqlType.isText;
 
 export class QueryCompiler {
@@ -714,6 +715,7 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
         const arity0 = expr.arguments.length === 0;
         const arity1 = expr.arguments.length === 1;
         const arity2 = expr.arguments.length === 2;
+        const arity0or1 = arity0 || arity1;
         const arity1or2 = arity1 || arity2;
 
         const op = (member.property as Identifier).name;
@@ -923,8 +925,20 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
             });
           }
 
-          if (ExpressionCompiler.#AGGREGATES.contains(op) && arity1) {
-            const projection = this.visit(expr.arguments[0]);
+          if (ExpressionCompiler.#AGGREGATES.contains(op) && arity0or1) {
+            let projection: SqlNode;
+
+            if (arity1) {
+              projection = this.visit(expr.arguments[0]);
+            } else {
+              projection = this.#projection;
+
+              if (!(projection instanceof SqlMember) || !isNumeric(projection.type)) {
+                throw error(
+                  `Aggregate function '${op}' requires a scalar numeric input expression.`
+                );
+              }
+            }
 
             if (this.#scopes.size === 0) {
               this.#cardinality = "one";
@@ -1145,7 +1159,7 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
             );
           }
 
-          if (op === "array" && (arity0 || arity1)) {
+          if (op === "array" && arity0or1) {
             let selector = expr.arguments[0];
 
             if (!selector) {

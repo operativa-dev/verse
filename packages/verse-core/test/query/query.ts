@@ -427,6 +427,32 @@ export const queryTests = (verse: Verse<typeof queryModel>) => {
     await snap(q);
   });
 
+  test("avg no args", async () => {
+    const q = verse.from.albums.select(a => a.albumId).avg();
+
+    await snap(q);
+  });
+
+  test("avg no args indexer", async () => {
+    const q = verse.from.albums
+      .select(a => [a.albumId])
+      .select(t => t[0])
+      .avg();
+
+    await snap(q);
+  });
+
+  test("avg no args object", async () => {
+    const q = verse.from.albums
+      .select(a => ({
+        foo: a.albumId,
+      }))
+      .select(o => o.foo)
+      .avg();
+
+    await snap(q);
+  });
+
   test("functions select substr", async () => {
     const q = verse.from.albums.select(a => a.title.substring(3));
 
@@ -926,7 +952,7 @@ export const queryTests = (verse: Verse<typeof queryModel>) => {
     await snap(q);
   });
 
-  test("limit parameter compiled", async () => {
+  test("limit parameter", async () => {
     const q: ($count: number) => AsyncSequence<Album> = verse.compile((from, $count: number) =>
       from.albums.limit({ $count })
     );
@@ -1148,5 +1174,17 @@ export const queryErrorTests = (verse: Verse<typeof queryModel>) => {
         from.albums.where(a => a.title.like(`%${params.title}%`))
       )
     ).toThrow("Complex parameter objects are not supported: 'params.title'.");
+  });
+
+  test("aggregate not scalar", async () => {
+    expect(() => verse.from.albums.avg()).toThrow(
+      "Aggregate function 'avg' requires a scalar numeric input expression."
+    );
+  });
+
+  test("aggregate not numeric", async () => {
+    expect(() => verse.from.albums.select(a => a.title).avg()).toThrow(
+      "Aggregate function 'avg' requires a scalar numeric input expression."
+    );
   });
 };
