@@ -1,5 +1,11 @@
 # @operativa/verse
 
+## 0.7.5
+
+### Patch Changes
+
+- Mar 26 point release
+
 ## 0.7.4
 
 ### Patch Changes
