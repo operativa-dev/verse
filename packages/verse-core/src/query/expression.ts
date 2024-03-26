@@ -1,23 +1,20 @@
-import jsepArrow, { ArrowExpression } from "@jsep-plugin/arrow";
-import jsepComment from "@jsep-plugin/comment";
-import jsepNew, { NewExpression } from "@jsep-plugin/new";
-import jsepObject, { ObjectExpression, Property } from "@jsep-plugin/object";
-import jsepSpread, { SpreadElement } from "@jsep-plugin/spread";
-import jsepTemplateLiteral, { TemplateElement, TemplateLiteral } from "@jsep-plugin/template";
-import jsep, {
+import {
   ArrayExpression,
+  ArrowFunctionExpression,
   BinaryExpression,
   CallExpression,
   Expression,
-  Identifier,
-  Literal,
+  IdentifierExpression,
+  LiteralExpression,
   MemberExpression,
+  NewExpression,
+  ObjectExpression,
+  PropertyExpression,
+  SpreadExpression,
+  TemplateExpression,
+  TemplateLiteralExpression,
   UnaryExpression,
-} from "jsep";
-
-jsep.literals["undefined"] = undefined;
-
-jsep.plugins.register(jsepNew, jsepArrow, jsepComment, jsepObject, jsepSpread, jsepTemplateLiteral);
+} from "./parser.js";
 
 export interface EntityExpression extends Expression {
   type: "EntityExpression";
@@ -40,7 +37,7 @@ export abstract class ExpressionVisitor<T = unknown> {
         return this.visitArrayExpression(expr as ArrayExpression);
 
       case "ArrowFunctionExpression":
-        return this.visitArrowExpression(expr as ArrowExpression);
+        return this.visitArrowExpression(expr as ArrowFunctionExpression);
 
       case "BinaryExpression":
         return this.visitBinaryExpression(expr as BinaryExpression);
@@ -51,11 +48,11 @@ export abstract class ExpressionVisitor<T = unknown> {
       case "EntityExpression":
         return this.visitEntityExpression(expr as EntityExpression);
 
-      case "Identifier":
-        return this.visitIdentifier(expr as Identifier);
+      case "IdentifierExpression":
+        return this.visitIdentifier(expr as IdentifierExpression);
 
-      case "Literal":
-        return this.visitLiteral(expr as Literal);
+      case "LiteralExpression":
+        return this.visitLiteral(expr as LiteralExpression);
 
       case "MemberExpression":
         return this.visitMemberExpression(expr as MemberExpression);
@@ -66,17 +63,17 @@ export abstract class ExpressionVisitor<T = unknown> {
       case "ObjectExpression":
         return this.visitObjectExpression(expr as ObjectExpression);
 
-      case "Property":
-        return this.visitProperty(expr as Property);
+      case "PropertyExpression":
+        return this.visitProperty(expr as PropertyExpression);
 
-      case "SpreadElement":
-        return this.visitSpreadElement(expr as SpreadElement);
+      case "SpreadExpression":
+        return this.visitSpreadElement(expr as SpreadExpression);
 
-      case "TemplateElement":
-        return this.visitTemplateElement(expr as TemplateElement);
+      case "TemplateExpression":
+        return this.visitTemplateElement(expr as TemplateExpression);
 
-      case "TemplateLiteral":
-        return this.visitTemplateLiteral(expr as TemplateLiteral);
+      case "TemplateLiteralExpression":
+        return this.visitTemplateLiteral(expr as TemplateLiteralExpression);
 
       case "UnaryExpression":
         return this.visitUnaryExpression(expr as UnaryExpression);
@@ -90,7 +87,7 @@ export abstract class ExpressionVisitor<T = unknown> {
     return this.visitUnhandled(expr);
   }
 
-  protected visitArrowExpression(expr: ArrowExpression) {
+  protected visitArrowExpression(expr: ArrowFunctionExpression) {
     return this.visitUnhandled(expr);
   }
 
@@ -106,11 +103,11 @@ export abstract class ExpressionVisitor<T = unknown> {
     return this.visitUnhandled(expr);
   }
 
-  protected visitIdentifier(expr: Identifier) {
+  protected visitIdentifier(expr: IdentifierExpression) {
     return this.visitUnhandled(expr);
   }
 
-  protected visitLiteral(expr: Literal) {
+  protected visitLiteral(expr: LiteralExpression) {
     return this.visitUnhandled(expr);
   }
 
@@ -126,18 +123,18 @@ export abstract class ExpressionVisitor<T = unknown> {
     return this.visitUnhandled(expr);
   }
 
-  protected visitProperty(expr: Property) {
+  protected visitProperty(expr: PropertyExpression) {
     return this.visitUnhandled(expr);
   }
 
-  protected visitSpreadElement(expr: SpreadElement) {
+  protected visitSpreadElement(expr: SpreadExpression) {
     return this.visitUnhandled(expr);
   }
 
-  protected visitTemplateElement(expr: TemplateElement) {
+  protected visitTemplateElement(expr: TemplateExpression) {
     return this.visitUnhandled(expr);
   }
-  protected visitTemplateLiteral(expr: TemplateLiteral) {
+  protected visitTemplateLiteral(expr: TemplateLiteralExpression) {
     return this.visitUnhandled(expr);
   }
 

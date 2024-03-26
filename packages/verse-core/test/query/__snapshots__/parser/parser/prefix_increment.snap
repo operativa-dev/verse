@@ -1,0 +1,74 @@
+[
+  {
+    "argument": {
+      "name": "foo",
+      "type": "IdentifierExpression",
+    },
+    "operator": "++",
+    "prefix": true,
+    "type": "UnaryExpression",
+  },
+  {
+    "argument": {
+      "name": "foo",
+      "type": "IdentifierExpression",
+    },
+    "operator": "--",
+    "prefix": true,
+    "type": "UnaryExpression",
+  },
+  {
+    "argument": {
+      "type": "LiteralExpression",
+      "value": 0,
+    },
+    "operator": "void",
+    "prefix": true,
+    "type": "UnaryExpression",
+  },
+  {
+    "argument": {
+      "name": "foo",
+      "type": "IdentifierExpression",
+    },
+    "operator": "typeof",
+    "prefix": true,
+    "type": "UnaryExpression",
+  },
+  {
+    "argument": {
+      "computed": true,
+      "object": {
+        "name": "obj",
+        "type": "IdentifierExpression",
+      },
+      "optional": undefined,
+      "property": {
+        "name": "key",
+        "type": "IdentifierExpression",
+      },
+      "type": "MemberExpression",
+    },
+    "operator": "await",
+    "prefix": true,
+    "type": "UnaryExpression",
+  },
+  {
+    "argument": {
+      "computed": true,
+      "object": {
+        "name": "obj",
+        "type": "IdentifierExpression",
+      },
+      "optional": undefined,
+      "property": {
+        "name": "key",
+        "type": "IdentifierExpression",
+      },
+      "type": "MemberExpression",
+    },
+    "operator": "delete",
+    "prefix": true,
+    "type": "UnaryExpression",
+  },
+]

@@ -1,0 +1,35 @@
+[
+  {
+    "type": "number",
+    "value": 0,
+  },
+  {
+    "type": "number",
+    "value": 1,
+  },
+  {
+    "type": "number",
+    "value": 65535,
+  },
+  {
+    "type": "-",
+  },
+  {
+    "type": "number",
+    "value": 65535,
+  },
+  {
+    "type": "+",
+  },
+  {
+    "type": "number",
+    "value": 43690,
+  },
+  {
+    "type": "number",
+    "value": 291n,
+  },
+  {
+    "type": "eof",
+  },
+]

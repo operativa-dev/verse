@@ -1,0 +1,46 @@
+[
+  {
+    "arguments": [
+      {
+        "type": "LiteralExpression",
+        "value": 12,
+      },
+    ],
+    "callee": {
+      "name": "foo",
+      "type": "IdentifierExpression",
+    },
+    "type": "CallExpression",
+  },
+  {
+    "properties": [
+      {
+        "computed": false,
+        "key": {
+          "name": "foo",
+          "type": "IdentifierExpression",
+        },
+        "shorthand": true,
+        "type": "PropertyExpression",
+        "value": {
+          "name": "foo",
+          "type": "IdentifierExpression",
+        },
+      },
+    ],
+    "type": "ObjectExpression",
+  },
+  {
+    "body": {
+      "type": "LiteralExpression",
+      "value": 123,
+    },
+    "params": [
+      {
+        "name": "foo",
+        "type": "IdentifierExpression",
+      },
+    ],
+    "type": "ArrowFunctionExpression",
+  },
+]

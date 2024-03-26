@@ -1,8 +1,7 @@
 // noinspection JSConsecutiveCommasInArrayLiteral
 
-import { ArrowExpression } from "@jsep-plugin/arrow";
 import { List } from "immutable";
-import jsep, { BinaryExpression, Expression, Identifier, Literal, MemberExpression } from "jsep";
+
 import invariant from "tiny-invariant";
 import { Newable } from "ts-essentials";
 import { TYPE_CONDITION } from "../conventions/database.js";
@@ -13,6 +12,15 @@ import { EntityKey, IdentityMap, QueryCache } from "../uow.js";
 import { RowIterator } from "./compiler.js";
 import { LoadNode } from "./eager.js";
 import { ExpressionVisitor } from "./expression.js";
+import {
+  ArrowFunctionExpression,
+  BinaryExpression,
+  Expression,
+  IdentifierExpression,
+  LiteralExpression,
+  MemberExpression,
+  parse,
+} from "./parser.js";
 import { printExpr } from "./printer.js";
 
 export class ShaperContext {
@@ -346,17 +354,17 @@ class TypeConditionAnalyzer extends ExpressionVisitor {
 
     this.#entity = entity;
 
-    this.visit(jsep(entity.condition(TYPE_CONDITION).condition as string));
+    this.visit(parse(entity.condition(TYPE_CONDITION).condition as string));
 
     return { property: this.#typeProperty, map: this.#map };
   }
 
-  protected override visitArrowExpression(expr: ArrowExpression) {
+  protected override visitArrowExpression(expr: ArrowFunctionExpression) {
     if (expr.params?.length !== 1) {
       throw new Error(`Type condition must have exactly one parameter.`);
     }
 
-    this.#param = (expr.params[0] as Identifier).name;
+    this.#param = (expr.params[0] as IdentifierExpression).name;
 
     this.visit(expr.body);
   }
@@ -371,13 +379,13 @@ class TypeConditionAnalyzer extends ExpressionVisitor {
   }
 
   protected override visitMemberExpression(expr: MemberExpression) {
-    const param = (expr.object as Identifier).name;
+    const param = (expr.object as IdentifierExpression).name;
 
     if (this.#param !== param) {
       throw new Error(`Type condition must be on the same parameter.`);
     }
 
-    const typeProperty = (expr.property as Identifier).name;
+    const typeProperty = (expr.property as IdentifierExpression).name;
 
     if (!this.#typeProperty) {
       this.#typeProperty = typeProperty;
@@ -388,7 +396,7 @@ class TypeConditionAnalyzer extends ExpressionVisitor {
     }
   }
 
-  protected override visitLiteral(expr: Literal) {
+  protected override visitLiteral(expr: LiteralExpression) {
     if (typeof expr.value !== "string") {
       throw new Error(`Type condition must be a string literal.`);
     }

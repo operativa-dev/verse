@@ -1753,7 +1753,7 @@ export class SqlNumber extends SqlNode {
   static readonly ONE = new SqlNumber(1);
 
   constructor(
-    readonly value: number,
+    readonly value: number | bigint,
     binding?: SqlBinding
   ) {
     super(binding);

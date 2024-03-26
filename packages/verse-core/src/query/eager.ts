@@ -1,5 +1,4 @@
 import { List } from "immutable";
-import jsep from "jsep";
 import { SqlRewriter } from "../db/rewriter.js";
 import {
   SqlAlias,
@@ -17,6 +16,7 @@ import {
 } from "../db/sql.js";
 import { EntityModel, NavigationPropertyModel } from "../model/model.js";
 import { CompilationContext, ExpressionCompiler } from "./compiler.js";
+import { parse } from "./parser.js";
 import { Shaper, ShaperCompiler } from "./shaping.js";
 
 export class LoadNode {
@@ -163,7 +163,7 @@ export class EagerLoader extends SqlRewriter {
       if (navigation.many) {
         if (navigation.orderBy) {
           const orderBy = compiler.compileFragment(
-            jsep(navigation.orderBy.toString()),
+            parse(navigation.orderBy.toString()),
             rhsProjection
           );
 

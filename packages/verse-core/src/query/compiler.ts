@@ -1,19 +1,4 @@
-import { ArrowExpression } from "@jsep-plugin/arrow";
-import { NewExpression } from "@jsep-plugin/new";
-import { ObjectExpression } from "@jsep-plugin/object";
-import { SpreadElement } from "@jsep-plugin/spread";
-import { TemplateElement, TemplateLiteral } from "@jsep-plugin/template";
 import { List, Map, Set as ImmutableSet, Stack } from "immutable";
-import jsep, {
-  ArrayExpression,
-  BinaryExpression,
-  CallExpression,
-  Expression,
-  Identifier,
-  Literal,
-  MemberExpression,
-  UnaryExpression,
-} from "jsep";
 import invariant from "tiny-invariant";
 import { Primitive } from "ts-essentials";
 import { SqlOptimizer } from "../db/optimizer.js";
@@ -66,6 +51,24 @@ import { error } from "../utils/utils.js";
 import { From, Metadata, QueryOptions } from "../verse.js";
 import { EagerLoader, LoadNode } from "./eager.js";
 import { ConstantExpression, EntityExpression, ExpressionVisitor } from "./expression.js";
+import {
+  ArrayExpression,
+  ArrowFunctionExpression,
+  BinaryExpression,
+  CallExpression,
+  Expression,
+  IdentifierExpression,
+  LiteralExpression,
+  MemberExpression,
+  NewExpression,
+  ObjectExpression,
+  parse,
+  PropertyExpression,
+  SpreadExpression,
+  TemplateExpression,
+  TemplateLiteralExpression,
+  UnaryExpression,
+} from "./parser.js";
 import { printExpr } from "./printer.js";
 import { __expr, AbstractQueryable, AsyncSequence } from "./queryable.js";
 import { Shaper, ShaperCompiler, ShaperContext } from "./shaping.js";
@@ -88,13 +91,14 @@ export class QueryCompiler {
 
     const params = queryJS.substring(0, arrowIndex);
     const arrowJs = `${params}=> {}`;
-    const arrowExpr = jsep(arrowJs) as ArrowExpression;
+    const arrowExpr = parse(arrowJs) as ArrowFunctionExpression;
+
     const queryable = (query as (from: From, ...args: unknown[]) => AbstractQueryable)(this.from);
     const expr = queryable[__expr]();
 
     this.metadata.config.logger?.debug(expr);
 
-    const argsMap = List(arrowExpr.params?.map(e => (e as Identifier).name));
+    const argsMap = List(arrowExpr.params?.map(e => (e as IdentifierExpression).name));
 
     const compiler = new ExpressionCompiler(
       new CompilationContext(this.metadata),
@@ -360,7 +364,7 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
     return this.visit(expr);
   }
 
-  protected override visitArrowExpression(expr: ArrowExpression) {
+  protected override visitArrowExpression(expr: ArrowFunctionExpression) {
     this.#scopes = this.#scopes.push(this.scopes(expr.params!));
 
     try {
@@ -372,8 +376,8 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
 
   private scopes(params: Expression[]): Scope {
     const scopes = params.map(p => {
-      if (p.type === "Identifier") {
-        return new Scope(this.#projection, (p as Identifier).name);
+      if (p.type === "IdentifierExpression") {
+        return new Scope(this.#projection, (p as IdentifierExpression).name);
       }
 
       if (p.type === "ArrayExpression") {
@@ -443,8 +447,8 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
     return new SqlComposite(
       List(
         expr.properties.map(p => {
-          const name = (p.key as Identifier).name;
-          const value = this.scopedVisit(p.value!);
+          const name = (p.key as IdentifierExpression).name;
+          const value = this.scopedVisit(p.value! as PropertyExpression);
 
           return value.bind(
             new SqlBinding({
@@ -460,7 +464,7 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
     );
   }
 
-  protected override visitIdentifier(expr: Identifier) {
+  protected override visitIdentifier(expr: IdentifierExpression) {
     const index = this.argsMap.keyOf(expr.name);
 
     if (index != undefined) {
@@ -509,9 +513,9 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
   }
 
   protected override visitMemberExpression(expr: MemberExpression) {
-    let index = expr.computed ? ((expr.property as Literal).value as number) : undefined;
+    let index = expr.computed ? ((expr.property as LiteralExpression).value as number) : undefined;
     const node = this.visit(expr.object);
-    const identifier = expr.property as Identifier;
+    const identifier = expr.property as IdentifierExpression;
 
     if (node instanceof SqlComposite) {
       if (index !== undefined) {
@@ -663,7 +667,7 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
     if (disabledConditions !== "all") {
       predicate = entity.conditions
         .filter(c => !c.name || !disabledConditions.includes(c.name))
-        .map(c => this.compileFragment(jsep(c.condition.toString()), projection))
+        .map(c => this.compileFragment(parse(c.condition.toString()), projection))
         .reduce((acc: SqlNode, next) => (acc ? sqlBin(acc, "and", next) : next));
     }
 
@@ -714,7 +718,7 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
     if (expr.callee.type === "MemberExpression") {
       const member = expr.callee as MemberExpression;
 
-      if (member.property.type === "Identifier") {
+      if (member.property.type === "IdentifierExpression") {
         const arity = expr.arguments.length;
         const arity0 = arity === 0;
         const arity1 = arity === 1;
@@ -722,7 +726,7 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
         const arity0or1 = arity0 || arity1;
         const arity1or2 = arity1 || arity2;
 
-        const op = (member.property as Identifier).name;
+        const op = (member.property as IdentifierExpression).name;
 
         let noopCall = false;
 
@@ -873,7 +877,9 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
 
             this.#groupBy = groupBy;
 
-            if ((expr.arguments[1] as ArrowExpression).body.type === "Identifier") {
+            if (
+              (expr.arguments[1] as ArrowFunctionExpression).body.type === "IdentifierExpression"
+            ) {
               error(
                 `Unable to compile the identity 'groupBy' result expression: '${printExpr(expr.arguments[1]!)}'.
                  Use the 'groupBy' overload that omits the result expression.`
@@ -938,9 +944,7 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
               projection = this.#projection;
 
               if (!(projection instanceof SqlMember) || !isNumeric(projection.type)) {
-                throw error(
-                  `Aggregate function '${op}' requires a scalar numeric input expression.`
-                );
+                error(`Aggregate function '${op}' requires a scalar numeric input expression.`);
               }
             }
 
@@ -1175,8 +1179,8 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
             if (!selector) {
               selector = {
                 type: "ArrowFunctionExpression",
-                params: [{ type: "Identifier", name: "g" }],
-                body: { type: "Identifier", name: "g" },
+                params: [{ type: "IdentifierExpression", name: "g" }],
+                body: { type: "IdentifierExpression", name: "g" },
               };
             }
 
@@ -1310,7 +1314,7 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
       }
     }
 
-    const identifier = expr.callee as Identifier;
+    const identifier = expr.callee as IdentifierExpression;
 
     if (identifier.name === "Date") {
       // @ts-ignore
@@ -1343,7 +1347,7 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
     throw new Error(`Unsupported new expression: '${printExpr(expr)}'.`);
   }
 
-  protected override visitLiteral(expr: Literal) {
+  protected override visitLiteral(expr: LiteralExpression) {
     const [node, conversion] = primitiveToSql(
       expr.value as Primitive,
       this.context.metadata.model,
@@ -1383,10 +1387,10 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
     }
   }
 
-  protected override visitTemplateLiteral(expr: TemplateLiteral) {
+  protected override visitTemplateLiteral(expr: TemplateLiteralExpression) {
     return expr.quasis
       .map((te, i) => {
-        const quasi = te.value.raw.length > 0 ? this.visit(te) : undefined;
+        const quasi = te.value.cooked.length > 0 ? this.visit(te) : undefined;
         const e = i < expr.expressions.length ? this.visit(expr.expressions[i]) : undefined;
         return quasi && e ? sqlBin(quasi, "||", e) : (quasi ?? e)!;
       })
@@ -1395,7 +1399,7 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
 
   protected override visitUnaryExpression(expr: UnaryExpression) {
     if (expr.prefix && expr.operator === "-") {
-      if (expr.argument.type === "Literal") {
+      if (expr.argument.type === "LiteralExpression") {
         return new SqlNumber(-expr.argument["value"]!);
       }
 
@@ -1409,11 +1413,11 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
     throw new Error(`Unary operator '${expr.operator}' is not supported.`);
   }
 
-  protected override visitTemplateElement(expr: TemplateElement) {
-    return sqlStr(expr.value.raw);
+  protected override visitTemplateElement(expr: TemplateExpression) {
+    return sqlStr(expr.value.cooked);
   }
 
-  protected override visitSpreadElement(_: SpreadElement): SqlNode {
+  protected override visitSpreadElement(_: SpreadExpression): SqlNode {
     throw new Error("Spread expressions are not supported in queries.");
   }
 }
@@ -1425,10 +1429,10 @@ class WithParser extends ExpressionVisitor<List<NavigationPropertyModel>> {
     super();
   }
 
-  protected override visitArrowExpression(expr: ArrowExpression) {
+  protected override visitArrowExpression(expr: ArrowFunctionExpression) {
     const oldScope = this.#scope;
 
-    this.#scope = (expr.params![0] as Identifier).name;
+    this.#scope = (expr.params![0] as IdentifierExpression).name;
 
     try {
       return this.visit(expr.body);
@@ -1439,7 +1443,7 @@ class WithParser extends ExpressionVisitor<List<NavigationPropertyModel>> {
 
   protected override visitCallExpression(expr: CallExpression) {
     const member = expr.callee as MemberExpression;
-    const name = (member.property as Identifier).name;
+    const name = (member.property as IdentifierExpression).name;
 
     if (name === "with") {
       const path = this.visit(member.object);
@@ -1451,10 +1455,10 @@ class WithParser extends ExpressionVisitor<List<NavigationPropertyModel>> {
   }
 
   protected override visitMemberExpression(expr: MemberExpression) {
-    const property = (expr.property as Identifier).name;
+    const property = (expr.property as IdentifierExpression).name;
 
-    if (expr.object.type === "Identifier") {
-      const scope = (expr.object as Identifier).name;
+    if (expr.object.type === "IdentifierExpression") {
+      const scope = (expr.object as IdentifierExpression).name;
 
       if (scope === this.#scope) {
         const navigation = this.model.navigation(property);

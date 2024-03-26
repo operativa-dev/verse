@@ -1,18 +1,20 @@
-import { ArrowExpression } from "@jsep-plugin/arrow";
-import { ObjectExpression, Property } from "@jsep-plugin/object";
-import { SpreadElement } from "@jsep-plugin/spread";
-import { TemplateElement, TemplateLiteral } from "@jsep-plugin/template";
+import { EntityExpression, ExpressionVisitor } from "./expression.js";
 import {
   ArrayExpression,
+  ArrowFunctionExpression,
   BinaryExpression,
   CallExpression,
   Expression,
-  Identifier,
-  Literal,
+  IdentifierExpression,
+  LiteralExpression,
   MemberExpression,
+  ObjectExpression,
+  PropertyExpression,
+  SpreadExpression,
+  TemplateExpression,
+  TemplateLiteralExpression,
   UnaryExpression,
-} from "jsep";
-import { EntityExpression, ExpressionVisitor } from "./expression.js";
+} from "./parser.js";
 
 export class ExpressionRewriter extends ExpressionVisitor<Expression> {
   protected override visitArrayExpression(expr: ArrayExpression) {
@@ -21,7 +23,7 @@ export class ExpressionRewriter extends ExpressionVisitor<Expression> {
     return changed ? { ...expr, elements } : expr;
   }
 
-  protected override visitArrowExpression(expr: ArrowExpression) {
+  protected override visitArrowExpression(expr: ArrowFunctionExpression) {
     const body = this.visit(expr.body);
 
     return body !== expr.body ? { ...expr, body } : expr;
@@ -44,11 +46,11 @@ export class ExpressionRewriter extends ExpressionVisitor<Expression> {
     return expr;
   }
 
-  protected override visitIdentifier(expr: Identifier) {
+  protected override visitIdentifier(expr: IdentifierExpression) {
     return expr;
   }
 
-  protected override visitLiteral(expr: Literal) {
+  protected override visitLiteral(expr: LiteralExpression) {
     return expr;
   }
 
@@ -67,23 +69,23 @@ export class ExpressionRewriter extends ExpressionVisitor<Expression> {
     return changed ? { ...expr, properties } : expr;
   }
 
-  protected override visitProperty(expr: Property) {
+  protected override visitProperty(expr: PropertyExpression) {
     const value = this.visit(expr.value);
 
     return value !== expr.value ? { ...expr, value } : expr;
   }
 
-  protected override visitSpreadElement(expr: SpreadElement) {
+  protected override visitSpreadElement(expr: SpreadExpression) {
     const argument = this.visit(expr.argument);
 
     return argument !== expr.argument ? { ...expr, argument } : expr;
   }
 
-  protected override visitTemplateElement(expr: TemplateElement) {
+  protected override visitTemplateElement(expr: TemplateExpression) {
     return expr;
   }
 
-  protected override visitTemplateLiteral(expr: TemplateLiteral) {
+  protected override visitTemplateLiteral(expr: TemplateLiteralExpression) {
     const [expressions, expressionsChanged] = this.rewriteArray(expr.expressions);
     const [quasis, quasisChanged] = this.rewriteArray(expr.quasis);
 
