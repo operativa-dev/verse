@@ -1213,7 +1213,7 @@ class Parser {
 
     while (this.#match(TokenType.Slash, TokenType.Star, TokenType.Percent)) {
       const op = this.#prev;
-      const right = this.#prefix();
+      const right = this.#exponent();
       expr = { type: "BinaryExpression", operator: nameof(op.type), left: expr, right };
     }
 
@@ -1224,7 +1224,7 @@ class Parser {
     let left = this.#prefix();
 
     if (this.#match(TokenType.StarStar)) {
-      const right = this.#exponent();
+      const right = this.#exponent(); // right-associative
       return { type: "BinaryExpression", operator: "**", left, right };
     }
 
@@ -1247,7 +1247,7 @@ class Parser {
       )
     ) {
       const op = this.#prev;
-      const argument = this.#prefix();
+      const argument = this.#member();
 
       return {
         type: "UnaryExpression",
