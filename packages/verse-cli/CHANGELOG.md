@@ -1,5 +1,14 @@
 # @operativa/verse-cli
 
+## 0.7.6
+
+### Patch Changes
+
+- Removed jsep dependency
+- Updated dependencies
+  - @operativa/verse@0.7.6
+  - @operativa/verse-migrations@0.7.6
+
 ## 0.7.5
 
 ### Patch Changes
