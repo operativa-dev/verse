@@ -1,0 +1,25 @@
+[
+  {
+    "properties": [
+      {
+        "computed": true,
+        "key": {
+          "elements": [
+            {
+              "name": "abc",
+              "type": "IdentifierExpression",
+            },
+          ],
+          "type": "ArrayExpression",
+        },
+        "shorthand": false,
+        "type": "PropertyExpression",
+        "value": {
+          "type": "LiteralExpression",
+          "value": 123,
+        },
+      },
+    ],
+    "type": "ObjectExpression",
+  },
+]

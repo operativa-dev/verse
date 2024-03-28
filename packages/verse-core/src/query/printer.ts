@@ -1,19 +1,21 @@
-import { ArrowExpression } from "@jsep-plugin/arrow";
-import { NewExpression } from "@jsep-plugin/new";
-import { ObjectExpression, Property } from "@jsep-plugin/object";
-import { SpreadElement } from "@jsep-plugin/spread";
-import { TemplateElement, TemplateLiteral } from "@jsep-plugin/template";
+import { ExpressionVisitor } from "./expression.js";
 import {
   ArrayExpression,
+  ArrowFunctionExpression,
   BinaryExpression,
   CallExpression,
   Expression,
-  Identifier,
-  Literal,
+  IdentifierExpression,
+  LiteralExpression,
   MemberExpression,
+  NewExpression,
+  ObjectExpression,
+  PropertyExpression,
+  SpreadExpression,
+  TemplateExpression,
+  TemplateLiteralExpression,
   UnaryExpression,
-} from "jsep";
-import { ExpressionVisitor } from "./expression.js";
+} from "./parser.js";
 
 export function printExpr(expr: Expression) {
   return new ExpressionPrinter().visit(expr);
@@ -24,7 +26,7 @@ class ExpressionPrinter extends ExpressionVisitor<string> {
     return `[${expr.elements.map(e => this.visit(e)).join(", ")}]`;
   }
 
-  protected override visitArrowExpression(expr: ArrowExpression) {
+  protected override visitArrowExpression(expr: ArrowFunctionExpression) {
     return `(${expr.params?.map(p => this.visit(p)).join(", ")}) => ${this.visit(expr.body)}`;
   }
 
@@ -36,11 +38,11 @@ class ExpressionPrinter extends ExpressionVisitor<string> {
     return `${this.visit(expr.callee)}(${expr.arguments.map(arg => this.visit(arg)).join(", ")})`;
   }
 
-  protected override visitIdentifier(expr: Identifier) {
+  protected override visitIdentifier(expr: IdentifierExpression) {
     return expr.name;
   }
 
-  protected override visitLiteral(expr: Literal) {
+  protected override visitLiteral(expr: LiteralExpression) {
     return `${expr.raw}`;
   }
 
@@ -58,19 +60,19 @@ class ExpressionPrinter extends ExpressionVisitor<string> {
     return `{${expr.properties.map(p => this.visit(p)).join(", ")}}`;
   }
 
-  protected override visitProperty(expr: Property) {
+  protected override visitProperty(expr: PropertyExpression) {
     return `${this.visit(expr.key)}${expr.value ? ": " + this.visit(expr.value) : ""}`;
   }
 
-  protected override visitSpreadElement(expr: SpreadElement) {
+  protected override visitSpreadElement(expr: SpreadExpression) {
     return `...${this.visit(expr.argument)}`;
   }
 
-  protected override visitTemplateElement(expr: TemplateElement) {
-    return expr.value.raw;
+  protected override visitTemplateElement(expr: TemplateExpression) {
+    return String(expr.value);
   }
 
-  protected override visitTemplateLiteral(expr: TemplateLiteral) {
+  protected override visitTemplateLiteral(expr: TemplateLiteralExpression) {
     return (
       "`" +
       expr.quasis

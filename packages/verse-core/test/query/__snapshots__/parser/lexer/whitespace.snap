@@ -1,0 +1,13 @@
+[
+  {
+    "type": "identifier",
+    "value": "a",
+  },
+  {
+    "type": "identifier",
+    "value": "b",
+  },
+  {
+    "type": "eof",
+  },
+]

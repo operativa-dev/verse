@@ -1,0 +1,54 @@
+[
+  {
+    "expressions": [
+      {
+        "name": "a",
+        "type": "IdentifierExpression",
+      },
+      {
+        "type": "LiteralExpression",
+        "value": 12,
+      },
+      {
+        "name": "b",
+        "type": "IdentifierExpression",
+      },
+    ],
+    "type": "CommaExpression",
+  },
+  {
+    "expressions": [
+      {
+        "name": "a",
+        "type": "IdentifierExpression",
+      },
+      {
+        "type": "LiteralExpression",
+        "value": 12,
+      },
+    ],
+    "type": "CommaExpression",
+  },
+  {
+    "computed": true,
+    "object": {
+      "name": "foo",
+      "type": "IdentifierExpression",
+    },
+    "optional": undefined,
+    "property": {
+      "expressions": [
+        {
+          "name": "a",
+          "type": "IdentifierExpression",
+        },
+        {
+          "name": "b",
+          "type": "IdentifierExpression",
+        },
+      ],
+      "type": "CommaExpression",
+    },
+    "type": "MemberExpression",
+  },
+]

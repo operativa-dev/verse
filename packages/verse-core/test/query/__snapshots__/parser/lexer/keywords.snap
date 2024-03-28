@@ -1,0 +1,38 @@
+[
+  {
+    "type": "this",
+  },
+  {
+    "type": "true",
+  },
+  {
+    "type": "false",
+  },
+  {
+    "type": "null",
+  },
+  {
+    "type": "undefined",
+  },
+  {
+    "type": "typeof",
+  },
+  {
+    "type": "void",
+  },
+  {
+    "type": "in",
+  },
+  {
+    "type": "instanceof",
+  },
+  {
+    "type": "new",
+  },
+  {
+    "type": "super",
+  },
+  {
+    "type": "eof",
+  },
+]
