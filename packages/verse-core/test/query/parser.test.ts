@@ -161,6 +161,13 @@ function testParse(...expr: string[]) {
   $ast = [...expr.map(e => parse(e))];
 }
 
+function precedence(expr: string, expected: string) {
+  const ast1 = parse(expr);
+  const ast2 = parse(expected);
+
+  expect(ast1).toEqual(ast2);
+}
+
 describe("parser", () => {
   afterEach(async ctx => {
     await snap(ctx, $ast);
@@ -227,38 +234,54 @@ describe("parser", () => {
 
   test("ternary", () => {
     testParse("foo ? bar : baz", "foo ? bar : baz ? qux : quux");
+    precedence("foo ? bar : baz ? qux : quux", "foo ? bar : (baz ? qux : quux)");
   });
 
   test("nullish", () => {
     testParse("foo ?? bar", "foo ?? bar ?? baz");
+    precedence("foo ?? bar ?? baz", "(foo ?? bar) ?? baz");
   });
 
   test("logicalOr", () => {
     testParse("123 || 456");
+    precedence("123 || 456 || 789", "(123 || 456) || 789");
+    precedence("123 || 456 && 789", "123 || (456 && 789)");
   });
 
   test("logicalAnd", () => {
     testParse("123 && 456", "foo || bar && baz");
+    precedence("foo && bar && baz", "(foo && bar) && baz");
+    precedence("foo && bar | baz", "foo && (bar | baz)");
   });
 
   test("bitwiseOr", () => {
     testParse("123 | 456");
+    precedence("123 | 456 | 789", "(123 | 456) | 789");
+    precedence("123 | 456 ^ 789", "123 | (456 ^ 789)");
   });
 
   test("bitwiseXor", () => {
     testParse("123 ^ 456");
+    precedence("123 ^ 456 ^ 789", "(123 ^ 456) ^ 789");
+    precedence("123 ^ 456 & 789", "123 ^ (456 & 789)");
   });
 
   test("bitwiseAnd", () => {
     testParse("123 & 456");
+    precedence("123 & 456 & 789", "(123 & 456) & 789");
+    precedence("123 & 456 === 789", "123 & (456 === 789)");
   });
 
   test("equality", () => {
     testParse("123 == bar[12]", "123 === 456", "123 != 456", "123 !== 456");
+    precedence("123 == 456 === 789", "(123 == 456) === 789");
+    precedence("123 == 456 < 789", "123 == (456 < 789)");
   });
 
   test("relational", () => {
     testParse("123 < foo.bar", "123 > 456", '123 <= "abc"', "bar >= 456");
+    precedence("123 < 456 > 789", "(123 < 456) > 789");
+    precedence("123 < 456 << foo", "123 < (456 << foo)");
   });
 
   test("bitwiseShift", () => {
@@ -267,14 +290,20 @@ describe("parser", () => {
 
   test("additive", () => {
     testParse("123 + 456", "123 - 456 * 789");
+    precedence("123 + 456 + 789", "(123 + 456) + 789");
+    precedence("123 + 456 * 789", "123 + (456 * 789)");
   });
 
   test("multiplicative", () => {
     testParse("123 / 456 * 789", "123 % (456 / abc.def)");
+    precedence("123 * 456 / 789", "(123 * 456) / 789");
+    precedence("123 * 456 ** 789", "123 * (456 ** 789)");
   });
 
   test("exponentiation", () => {
     testParse("123 ** 456 ** 789");
+    precedence("123 ** 456 ** 789", "123 ** (456 ** 789)");
+    precedence("123 ** -456", "123 ** (-456)");
   });
 
   test("prefix", () => {
