@@ -11,6 +11,7 @@ import {
   ObjectExpression,
   PropertyExpression,
   SpreadExpression,
+  TaggedTemplateExpression,
   TemplateExpression,
   TemplateLiteralExpression,
   UnaryExpression,
@@ -19,6 +20,13 @@ import {
 export interface EntityExpression extends Expression {
   type: "EntityExpression";
   name: string;
+}
+
+export function constant(value: any) {
+  return {
+    type: "ConstantExpression",
+    value,
+  };
 }
 
 export interface ConstantExpression extends Expression {
@@ -49,10 +57,10 @@ export abstract class ExpressionVisitor<T = unknown> {
         return this.visitEntityExpression(expr as EntityExpression);
 
       case "IdentifierExpression":
-        return this.visitIdentifier(expr as IdentifierExpression);
+        return this.visitIdentifierExpression(expr as IdentifierExpression);
 
       case "LiteralExpression":
-        return this.visitLiteral(expr as LiteralExpression);
+        return this.visitLiteralExpression(expr as LiteralExpression);
 
       case "MemberExpression":
         return this.visitMemberExpression(expr as MemberExpression);
@@ -64,16 +72,19 @@ export abstract class ExpressionVisitor<T = unknown> {
         return this.visitObjectExpression(expr as ObjectExpression);
 
       case "PropertyExpression":
-        return this.visitProperty(expr as PropertyExpression);
+        return this.visitPropertyExpression(expr as PropertyExpression);
 
       case "SpreadExpression":
-        return this.visitSpreadElement(expr as SpreadExpression);
+        return this.visitSpreadExpression(expr as SpreadExpression);
+
+      case "TaggedTemplateExpression":
+        return this.visitTaggedTemplateExpression(expr as TaggedTemplateExpression);
 
       case "TemplateExpression":
-        return this.visitTemplateElement(expr as TemplateExpression);
+        return this.visitTemplateExpression(expr as TemplateExpression);
 
       case "TemplateLiteralExpression":
-        return this.visitTemplateLiteral(expr as TemplateLiteralExpression);
+        return this.visitTemplateLiteralExpression(expr as TemplateLiteralExpression);
 
       case "UnaryExpression":
         return this.visitUnaryExpression(expr as UnaryExpression);
@@ -103,11 +114,11 @@ export abstract class ExpressionVisitor<T = unknown> {
     return this.visitUnhandled(expr);
   }
 
-  protected visitIdentifier(expr: IdentifierExpression) {
+  protected visitIdentifierExpression(expr: IdentifierExpression) {
     return this.visitUnhandled(expr);
   }
 
-  protected visitLiteral(expr: LiteralExpression) {
+  protected visitLiteralExpression(expr: LiteralExpression) {
     return this.visitUnhandled(expr);
   }
 
@@ -123,18 +134,23 @@ export abstract class ExpressionVisitor<T = unknown> {
     return this.visitUnhandled(expr);
   }
 
-  protected visitProperty(expr: PropertyExpression) {
+  protected visitPropertyExpression(expr: PropertyExpression) {
     return this.visitUnhandled(expr);
   }
 
-  protected visitSpreadElement(expr: SpreadExpression) {
+  protected visitSpreadExpression(expr: SpreadExpression) {
     return this.visitUnhandled(expr);
   }
 
-  protected visitTemplateElement(expr: TemplateExpression) {
+  protected visitTemplateExpression(expr: TemplateExpression) {
     return this.visitUnhandled(expr);
   }
-  protected visitTemplateLiteral(expr: TemplateLiteralExpression) {
+
+  protected visitTaggedTemplateExpression(expr: TaggedTemplateExpression) {
+    return this.visitUnhandled(expr);
+  }
+
+  protected visitTemplateLiteralExpression(expr: TemplateLiteralExpression) {
     return this.visitUnhandled(expr);
   }
 

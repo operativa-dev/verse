@@ -38,11 +38,11 @@ class ExpressionPrinter extends ExpressionVisitor<string> {
     return `${this.visit(expr.callee)}(${expr.arguments.map(arg => this.visit(arg)).join(", ")})`;
   }
 
-  protected override visitIdentifier(expr: IdentifierExpression) {
+  protected override visitIdentifierExpression(expr: IdentifierExpression) {
     return expr.name;
   }
 
-  protected override visitLiteral(expr: LiteralExpression) {
+  protected override visitLiteralExpression(expr: LiteralExpression) {
     return `${expr.raw}`;
   }
 
@@ -60,19 +60,19 @@ class ExpressionPrinter extends ExpressionVisitor<string> {
     return `{${expr.properties.map(p => this.visit(p)).join(", ")}}`;
   }
 
-  protected override visitProperty(expr: PropertyExpression) {
+  protected override visitPropertyExpression(expr: PropertyExpression) {
     return `${this.visit(expr.key)}${expr.value ? ": " + this.visit(expr.value) : ""}`;
   }
 
-  protected override visitSpreadElement(expr: SpreadExpression) {
+  protected override visitSpreadExpression(expr: SpreadExpression) {
     return `...${this.visit(expr.argument)}`;
   }
 
-  protected override visitTemplateElement(expr: TemplateExpression) {
+  protected override visitTemplateExpression(expr: TemplateExpression) {
     return String(expr.value);
   }
 
-  protected override visitTemplateLiteral(expr: TemplateLiteralExpression) {
+  protected override visitTemplateLiteralExpression(expr: TemplateLiteralExpression) {
     return (
       "`" +
       expr.quasis

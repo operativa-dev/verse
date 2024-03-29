@@ -396,7 +396,7 @@ class TypeConditionAnalyzer extends ExpressionVisitor {
     }
   }
 
-  protected override visitLiteral(expr: LiteralExpression) {
+  protected override visitLiteralExpression(expr: LiteralExpression) {
     if (typeof expr.value !== "string") {
       throw new Error(`Type condition must be a string literal.`);
     }

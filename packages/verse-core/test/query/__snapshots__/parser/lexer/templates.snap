@@ -169,6 +169,140 @@
     "type": "`",
   },
   {
+    "type": "`",
+  },
+  {
+    "type": "string",
+    "value": "",
+  },
+  {
+    "type": "${",
+  },
+  {
+    "type": "{",
+  },
+  {
+    "type": "identifier",
+    "value": "$id",
+  },
+  {
+    "type": "}",
+  },
+  {
+    "type": "}",
+  },
+  {
+    "type": "string",
+    "value": "",
+  },
+  {
+    "type": "`",
+  },
+  {
+    "type": "`",
+  },
+  {
+    "type": "string",
+    "value": "",
+  },
+  {
+    "type": "${",
+  },
+  {
+    "type": "{",
+  },
+  {
+    "type": "identifier",
+    "value": "id",
+  },
+  {
+    "type": ":",
+  },
+  {
+    "type": "{",
+  },
+  {
+    "type": "}",
+  },
+  {
+    "type": "}",
+  },
+  {
+    "type": "}",
+  },
+  {
+    "type": "string",
+    "value": "",
+  },
+  {
+    "type": "`",
+  },
+  {
+    "type": "identifier",
+    "value": "sql",
+  },
+  {
+    "type": "`",
+  },
+  {
+    "type": "string",
+    "value": "",
+  },
+  {
+    "type": "`",
+  },
+  {
+    "type": ".",
+  },
+  {
+    "type": "identifier",
+    "value": "f",
+  },
+  {
+    "type": "{",
+  },
+  {
+    "type": "identifier",
+    "value": "a",
+  },
+  {
+    "type": ":",
+  },
+  {
+    "type": "`",
+  },
+  {
+    "type": "string",
+    "value": "",
+  },
+  {
+    "type": "${",
+  },
+  {
+    "type": "identifier",
+    "value": "a",
+  },
+  {
+    "type": ".",
+  },
+  {
+    "type": "identifier",
+    "value": "title",
+  },
+  {
+    "type": "}",
+  },
+  {
+    "type": "string",
+    "value": "!",
+  },
+  {
+    "type": "`",
+  },
+  {
+    "type": "}",
+  },
+  {
     "type": "eof",
   },
 ]

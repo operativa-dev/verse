@@ -33,7 +33,6 @@ import { EntityModel, Model, ValueObjectModel } from "./model/model.js";
 import { ModelValidator } from "./model/validator.js";
 import { QueryCompiler } from "./query/compiler.js";
 import {
-  AbstractQueryable,
   AsyncQueryable,
   AsyncQueryableRoot,
   AsyncSequence,
@@ -152,11 +151,11 @@ export type From<TEntities extends { [Key in keyof TEntities]: EntityModel } = a
  * See {@link AsyncQueryable} for a list of available query operators.
  */
 export type AsyncFrom<TEntities extends { [Key in keyof TEntities]: EntityModel }> = {
-  [Key in keyof TEntities]: AsyncQueryable<EntityType<TEntities[Key]>> &
-    RootQueryOperations<AsyncQueryable<EntityType<TEntities[Key]>>>;
+  [Key in keyof TEntities]: AsyncQueryable<EntityType<TEntities[Key]>, TEntities> &
+    RootQueryOperations<AsyncQueryable<EntityType<TEntities[Key]>, TEntities>>;
 };
 
-export type RootQueryOperations<TQueryable extends AbstractQueryable> = {
+export type RootQueryOperations<TQueryable> = {
   /**
    * Inject a raw SQL query using tagged template literals. The returned queryable may be further
    * composed with additional query operators.
@@ -221,9 +220,9 @@ export type EntityObject<Model extends EntityModel> =
  * Labelled access to strongly-typed entity query and unit of work operations.
  */
 export type EntitySets<TEntities extends { [Key in keyof TEntities]: EntityModel }> = {
-  [Key in keyof TEntities]: AsyncQueryable<EntityType<TEntities[Key]>> &
+  [Key in keyof TEntities]: AsyncQueryable<EntityType<TEntities[Key]>, TEntities> &
     EntitySet<EntityObject<TEntities[Key]>> &
-    RootQueryOperations<AsyncQueryable<EntityType<TEntities[Key]>>>;
+    RootQueryOperations<AsyncQueryable<EntityType<TEntities[Key]>, TEntities>>;
 };
 
 /**
@@ -359,8 +358,7 @@ export class Verse<TEntities extends Entities = any> {
       this.metadata,
       this.#labelled<From<TEntities>>(
         entities,
-        label => () =>
-          new QueryableRoot(model.entityByLabel(label).name) as From<TEntities>[typeof label]
+        label => () => new QueryableRoot() as From<TEntities>[typeof label]
       )
     );
 
@@ -586,7 +584,10 @@ export class DbOperations {
   }
 }
 
-class QueryableSet<T extends object> extends AsyncQueryableRoot<T> implements EntitySet<T> {
+class QueryableSet<T extends object, E extends Entities>
+  extends AsyncQueryableRoot<T, E>
+  implements EntitySet<T>
+{
   readonly #entity: string;
 
   constructor(

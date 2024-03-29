@@ -50,7 +50,7 @@ import { QueryCache } from "../uow.js";
 import { error } from "../utils/utils.js";
 import { From, Metadata, QueryOptions } from "../verse.js";
 import { EagerLoader, LoadNode } from "./eager.js";
-import { ConstantExpression, EntityExpression, ExpressionVisitor } from "./expression.js";
+import { constant, ConstantExpression, EntityExpression, ExpressionVisitor } from "./expression.js";
 import {
   ArrayExpression,
   ArrowFunctionExpression,
@@ -65,12 +65,13 @@ import {
   parse,
   PropertyExpression,
   SpreadExpression,
+  TaggedTemplateExpression,
   TemplateExpression,
   TemplateLiteralExpression,
   UnaryExpression,
 } from "./parser.js";
 import { printExpr } from "./printer.js";
-import { __expr, AbstractQueryable, AsyncSequence } from "./queryable.js";
+import { __expr, AsyncSequence } from "./queryable.js";
 import { Shaper, ShaperCompiler, ShaperContext } from "./shaping.js";
 import isNumeric = SqlType.isNumeric;
 import isText = SqlType.isText;
@@ -83,18 +84,14 @@ export class QueryCompiler {
 
   compile<A extends unknown[]>(query: (from: From, ...args: A) => unknown, localParams = true) {
     const queryJS = query.toString();
-    const arrowIndex = queryJS.indexOf("=>");
+    const arrowExpr = parse(queryJS) as ArrowFunctionExpression;
 
-    if (arrowIndex === -1) {
-      throw new Error("Query expression must be an arrow function.");
+    let expr = arrowExpr.body;
+
+    if (expr.type === "ThisExpression") {
+      const queryable = (query as any)(this.from);
+      expr = queryable[__expr]();
     }
-
-    const params = queryJS.substring(0, arrowIndex);
-    const arrowJs = `${params}=> {}`;
-    const arrowExpr = parse(arrowJs) as ArrowFunctionExpression;
-
-    const queryable = (query as (from: From, ...args: unknown[]) => AbstractQueryable)(this.from);
-    const expr = queryable[__expr]();
 
     this.metadata.config.logger?.debug(expr);
 
@@ -106,13 +103,13 @@ export class QueryCompiler {
       localParams
     );
 
-    const { sql, cardinality, arity, locals, conversions } = compiler.compile(expr);
+    const { sql, cardinality, locals, conversions } = compiler.compile(expr);
 
     const shaper = new ShaperCompiler().compile(sql);
 
     this.metadata.config.logger?.debug(shaper.toString() + "\n");
 
-    const rows = this.#rows(sql, arity, locals, conversions, this.metadata.model);
+    const rows = this.#rows(sql, argsMap.size - 1, locals, conversions, this.metadata.model);
 
     if (cardinality !== "many") {
       return async (args: A[], cache?: QueryCache) =>
@@ -133,15 +130,17 @@ export class QueryCompiler {
     const rows = this.metadata.config.driver.rows(sql);
 
     return (args: unknown[]) => {
-      const allArgs = Array(arity).fill(null);
+      const allArgs: any[] = [];
+
+      args.forEach(arg => allArgs.push(arg ?? null));
+
+      for (let i = 0; i < arity - args.length; i++) {
+        allArgs.push(null);
+      }
+
+      locals.forEach(arg => allArgs.push(arg ?? null));
 
       allArgs.forEach((_, i) => {
-        if (args[i] !== undefined) {
-          allArgs[i] = args[i];
-        } else if (locals.get(i) !== undefined) {
-          allArgs[i] = locals.get(i);
-        }
-
         const converter = conversions.get(i) ?? model.conversion(allArgs[i]?.constructor)?.write;
 
         if (converter) {
@@ -285,10 +284,14 @@ class Scope {
     let resolved: SqlComposite | undefined;
 
     for (let i = 0; i < this.children.size; i++) {
-      resolved = this.children.get(i)!.resolve(name, composite.nodes.get(i) as SqlComposite);
+      const node = composite.nodes.get(i);
 
-      if (resolved) {
-        break;
+      if (node instanceof SqlComposite) {
+        resolved = this.children.get(i)!.resolve(name, node);
+
+        if (resolved) {
+          break;
+        }
       }
     }
 
@@ -317,6 +320,8 @@ export class CompilationContext {
   }
 }
 
+const defaultGroupSelector = parse("g => ({ key: g.key, items: g.array(x => x) })");
+
 export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
   static readonly #AGGREGATES = ImmutableSet.of("min", "max", "avg", "sum");
 
@@ -340,6 +345,8 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
     private readonly locals = false
   ) {
     super();
+
+    this.#paramCount = this.argsMap.size > 0 ? this.argsMap.size - 1 : 0;
   }
 
   compile(expr: Expression) {
@@ -353,7 +360,6 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
     return {
       sql,
       cardinality: this.#cardinality,
-      arity: this.#paramCount,
       locals: this.#localParams,
       conversions: this.#conversions,
     };
@@ -464,14 +470,10 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
     );
   }
 
-  protected override visitIdentifier(expr: IdentifierExpression) {
+  protected override visitIdentifierExpression(expr: IdentifierExpression) {
     const index = this.argsMap.keyOf(expr.name);
 
     if (index != undefined) {
-      if (index > 0) {
-        this.#paramCount++;
-      }
-
       return new SqlParameter(index - 1);
     }
 
@@ -481,9 +483,13 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
       const scope = this.#scopes.get(scopeIndex)!;
 
       if (scope.projection instanceof SqlComposite) {
-        const composite = scope.resolve(expr.name, scope.projection)!;
+        const node = scope.resolve(expr.name, scope.projection)!;
 
-        return composite.record();
+        if (node) {
+          return node.record();
+        }
+
+        return new SqlParameter(-1);
       }
 
       return scope.projection;
@@ -493,6 +499,7 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
 
     if (locals?.has(expr.name)) {
       const value = locals.get(expr.name);
+
       this.#localParams = this.#localParams.push(value);
 
       return new SqlParameter(
@@ -755,55 +762,41 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
 
           if (op === "sql" && arity2) {
             const fragments = (expr.arguments[0] as ConstantExpression).value as string[];
-            const values = (expr.arguments[1] as ConstantExpression).value as any[];
+            const expressions = (expr.arguments[1] as ConstantExpression).value as any[];
 
             return object.withFrom(
               new SqlAlias(
                 new SqlRaw(
                   List(fragments),
                   List(
-                    values.map((v, i) => {
+                    expressions.map(expr => {
                       if (this.locals) {
-                        this.#localParams = this.#localParams.push(v);
+                        this.#localParams = this.#localParams.push(expr);
 
                         return new SqlParameter(
                           this.#paramCount++,
                           new SqlBinding({
-                            model: this.context.metadata.model.conversion(v?.constructor),
+                            model: this.context.metadata.model.conversion(expr?.constructor),
                           })
                         );
                       } else {
-                        if (v === undefined || v === null) {
-                          error(
-                            `Template parameter near SQL fragment '${fragments[i]}' is undefined.
-                             Ensure parameter references use object literal syntax, e.g. { $param } instead of $param.`
+                        if (expr.type === "IdentifierExpression") {
+                          return this.visit(expr);
+                        } else if (expr.type === "LiteralExpression") {
+                          expr = expr.value;
+                        } else {
+                          throw new Error(
+                            `Unsupported template parameter expression: '${printExpr(expr)}'`
                           );
                         }
 
-                        if (typeof v === "object") {
-                          const key = Object.keys(v)[0];
-
-                          const index = this.argsMap.keyOf(key);
-
-                          if (index != undefined) {
-                            if (index > 0) {
-                              this.#paramCount++;
-                            }
-
-                            return new SqlParameter(index - 1);
-                          }
-
-                          throw new Error(`Unbound parameter '${key}'.`);
-                        }
-
-                        const [node] = primitiveToSql(v, this.context.metadata.model);
+                        const [node] = primitiveToSql(expr, this.context.metadata.model);
 
                         return node;
                       }
                     })
                   )
                 ),
-
                 (object.from as SqlAlias).alias
               )
             );
@@ -872,21 +865,23 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
             });
           }
 
-          if (op === "groupBy" && arity2) {
+          if (op === "groupBy" && arity1or2) {
             const groupBy = this.visit(expr.arguments[0]);
 
             this.#groupBy = groupBy;
 
-            if (
-              (expr.arguments[1] as ArrowFunctionExpression).body.type === "IdentifierExpression"
-            ) {
+            const selector = (
+              arity2 ? expr.arguments[1] : defaultGroupSelector
+            ) as ArrowFunctionExpression;
+
+            if (selector.body.type === "IdentifierExpression") {
               error(
                 `Unable to compile the identity 'groupBy' result expression: '${printExpr(expr.arguments[1]!)}'.
                  Use the 'groupBy' overload that omits the result expression.`
               );
             }
 
-            const result = this.visit(expr.arguments[1]);
+            const result = this.visit(selector);
 
             const projection = this.context.uniquify(
               result.identify(n => this.context.identify(n))
@@ -1051,8 +1046,9 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
           if (op === "limit" && arity1) {
             let limit = this.visit(expr.arguments[0]);
 
-            if (limit instanceof SqlComposite) {
-              limit = limit.nodes.first();
+            if (limit instanceof SqlNumber) {
+              this.#localParams = this.#localParams.push(limit.value);
+              limit = new SqlParameter(this.#paramCount++);
             }
 
             return new SqlSelect({
@@ -1065,8 +1061,9 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
           if (op === "offset" && arity1) {
             let offset = this.visit(expr.arguments[0]);
 
-            if (offset instanceof SqlComposite) {
-              offset = offset.nodes.first();
+            if (offset instanceof SqlNumber) {
+              this.#localParams = this.#localParams.push(offset.value);
+              offset = new SqlParameter(this.#paramCount++);
             }
 
             return new SqlSelect({
@@ -1347,7 +1344,7 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
     throw new Error(`Unsupported new expression: '${printExpr(expr)}'.`);
   }
 
-  protected override visitLiteral(expr: LiteralExpression) {
+  protected override visitLiteralExpression(expr: LiteralExpression) {
     const [node, conversion] = primitiveToSql(
       expr.value as Primitive,
       this.context.metadata.model,
@@ -1387,7 +1384,7 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
     }
   }
 
-  protected override visitTemplateLiteral(expr: TemplateLiteralExpression) {
+  protected override visitTemplateLiteralExpression(expr: TemplateLiteralExpression) {
     return expr.quasis
       .map((te, i) => {
         const quasi = te.value.cooked.length > 0 ? this.visit(te) : undefined;
@@ -1395,6 +1392,17 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
         return quasi && e ? sqlBin(quasi, "||", e) : (quasi ?? e)!;
       })
       .reduce((acc: SqlNode, next) => (acc ? sqlBin(acc, "||", next) : next));
+  }
+
+  protected override visitTaggedTemplateExpression(expr: TaggedTemplateExpression) {
+    return this.visit({
+      type: "CallExpression",
+      callee: expr.tag,
+      arguments: [
+        constant(expr.quasi.quasis.map(t => t.value.cooked)),
+        constant(expr.quasi.expressions),
+      ],
+    });
   }
 
   protected override visitUnaryExpression(expr: UnaryExpression) {
@@ -1413,11 +1421,11 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
     throw new Error(`Unary operator '${expr.operator}' is not supported.`);
   }
 
-  protected override visitTemplateElement(expr: TemplateExpression) {
+  protected override visitTemplateExpression(expr: TemplateExpression) {
     return sqlStr(expr.value.cooked);
   }
 
-  protected override visitSpreadElement(_: SpreadExpression): SqlNode {
+  protected override visitSpreadExpression(_: SpreadExpression): SqlNode {
     throw new Error("Spread expressions are not supported in queries.");
   }
 }

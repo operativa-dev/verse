@@ -64,9 +64,7 @@ export const rawTests = (verse: Verse<typeof rawModel>) => {
 
   test("compiled", async () => {
     const q = verse.compile((from, $title, $id) =>
-      from.albums.sql`SELECT * FROM "Album" WHERE "AlbumId" = ${{ $id }}`.where(
-        a => a.title === $title
-      )
+      from.albums.sql`SELECT * FROM "Album" WHERE "AlbumId" = ${$id}`.where(a => a.title === $title)
     );
 
     await snap(q("Miles Ahead", 157));
@@ -74,22 +72,10 @@ export const rawTests = (verse: Verse<typeof rawModel>) => {
 
   test("compiled uow", async () => {
     const q = verse.compileUow((from, $title, $id) =>
-      from.albums.sql`SELECT * FROM "Album" WHERE "AlbumId" = ${{ $id }}`.where(
-        a => a.title === $title
-      )
+      from.albums.sql`SELECT * FROM "Album" WHERE "AlbumId" = ${$id}`.where(a => a.title === $title)
     );
 
     await snap(q(verse.uow(), "Miles Ahead", 157));
-  });
-
-  test("compiled local param", async () => {
-    const id = 157;
-
-    const q = verse.compile((from, $title) =>
-      from.albums.sql`SELECT * FROM "Album" WHERE "AlbumId" = ${id}`.where(a => a.title === $title)
-    );
-
-    await snap(q("Miles Ahead"));
   });
 
   test("compiled literal params", async () => {
@@ -102,28 +88,24 @@ export const rawTests = (verse: Verse<typeof rawModel>) => {
 };
 
 export const rawErrorTests = (verse: Verse<typeof rawModel>) => {
-  test("compiled misused param", async () => {
-    expect(() => {
-      verse.compile((from, $title, $id) =>
-        from.albums.sql`SELECT * FROM "Album" WHERE "AlbumId" = ${$id}`.where(
-          a => a.title === $title
-        )
-      );
-    }).toThrow(
-      'Template parameter near SQL fragment \'SELECT * FROM "Album" WHERE "AlbumId" = \' is undefined. Ensure parameter references use object literal syntax, e.g. { $param } instead of $param.'
-    );
-  });
-
   test("compiled missing param", async () => {
     const $id1 = 157;
 
     expect(() => {
       // @ts-ignore
       verse.compile((from, $title, $id) =>
-        from.albums.sql`SELECT * FROM "Album" WHERE "AlbumId" = ${{ $id1 }}`.where(
+        from.albums.sql`SELECT * FROM "Album" WHERE "AlbumId" = ${$id1}`.where(
           a => a.title === $title
         )
       );
-    }).toThrow("Unbound parameter '$id1'.");
+    }).toThrow(
+      "Unbound identifier '$id1'. Local variables are not supported. Use parameters instead."
+    );
+  });
+
+  test("compiled bad expression", async () => {
+    expect(() => {
+      verse.compile(from => from.albums.sql`SELECT * FROM "Album" WHERE "AlbumId" = ${{}}`);
+    }).toThrow("Unsupported template parameter expression: '{}'");
   });
 };

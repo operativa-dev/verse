@@ -1,7 +1,7 @@
 import { expect, test } from "vitest";
 import { Driver } from "../../src/db/driver.js";
 import { entity, int, string } from "../../src/model/builder.js";
-import { AsyncSequence, Queryable } from "../../src/query/queryable.js";
+import { AsyncSequence } from "../../src/query/queryable.js";
 import { Logger } from "../../src/utils/logging.js";
 import { Verse } from "../../src/verse.js";
 import { dataTest, fixture } from "../infra.js";
@@ -60,6 +60,15 @@ export const queryFixture = (driver: Driver, logger?: Logger) => {
 
 export const queryTests = (verse: Verse<typeof queryModel>) => {
   const snap = dataTest(verse);
+
+  test("sub-query with limit parameter not compiled", async () => {
+    const q = verse.from.artists.select(
+      (_, from, $limit) => from.albums.limit($limit).maybeFirst(),
+      1
+    );
+
+    await snap(q);
+  });
 
   test("includes", async () => {
     const q = verse.from.albums.where(a => [1, 2].includes(a.artistId));
@@ -887,57 +896,11 @@ export const queryTests = (verse: Verse<typeof queryModel>) => {
     await snap(albums);
   });
 
-  test("composition compiled", async () => {
-    let albums = new Queryable<Album>(Album.name);
-
-    albums = albums.where(a => a.albumId > 5);
-
-    const q = verse.compile((_, $maxId: number) => albums.where(a => a.albumId < $maxId));
-
-    await snap(q(10));
-  });
-
   test("composition callable terminating", async () => {
     const albums = verse.from.albums;
     const maxed = albums.where(a => a.albumId > 5).max(a => a.albumId);
 
     await snap(maxed);
-  });
-
-  test("composition builder", async () => {
-    const q = verse.compile(from => {
-      return from.albums;
-    });
-
-    await snap(q());
-  });
-
-  test("composition builder dynamic", async () => {
-    const q = verse.compile(from => {
-      let albums = from.albums;
-
-      if (Math.floor(Math.random()) % 1 === 0) {
-        albums = albums.where(a => a.albumId > 5);
-      }
-
-      return albums;
-    });
-
-    await snap(q());
-  });
-
-  test("composition builder dynamic terminating", async () => {
-    const q = verse.compile(from => {
-      let albums = from.albums;
-
-      if (Math.floor(Math.random()) % 1 === 0) {
-        albums = albums.where(a => a.albumId > 5);
-      }
-
-      return albums.max(a => a.albumId);
-    });
-
-    await snap(q());
   });
 
   test("join", async () => {
@@ -984,14 +947,14 @@ export const queryTests = (verse: Verse<typeof queryModel>) => {
 
   test("limit parameter", async () => {
     const q: ($count: number) => AsyncSequence<Album> = verse.compile((from, $count: number) =>
-      from.albums.limit({ $count })
+      from.albums.limit($count)
     );
 
     await snap(q(5));
   });
 
   test("offset parameter", async () => {
-    const q = verse.compile((from, $offset: number) => from.albums.offset({ $offset }).limit(5));
+    const q = verse.compile((from, $offset: number) => from.albums.offset($offset).limit(5));
 
     await snap(q(3));
   });
@@ -1051,14 +1014,6 @@ export const queryTests = (verse: Verse<typeof queryModel>) => {
   test("sub-query with limit parameter", async () => {
     const q = verse.compile((from, $limit: number) =>
       from.artists.select(_ => from.albums.limit($limit).maybeFirst())
-    );
-
-    await snap(q(1));
-  });
-
-  test("sub-query with limit parameter object", async () => {
-    const q = verse.compile((from, $limit: number) =>
-      from.artists.select(_ => from.albums.limit({ $limit }).maybeFirst())
     );
 
     await snap(q(1));
