@@ -46,11 +46,11 @@ export class ExpressionRewriter extends ExpressionVisitor<Expression> {
     return expr;
   }
 
-  protected override visitIdentifier(expr: IdentifierExpression) {
+  protected override visitIdentifierExpression(expr: IdentifierExpression) {
     return expr;
   }
 
-  protected override visitLiteral(expr: LiteralExpression) {
+  protected override visitLiteralExpression(expr: LiteralExpression) {
     return expr;
   }
 
@@ -69,23 +69,23 @@ export class ExpressionRewriter extends ExpressionVisitor<Expression> {
     return changed ? { ...expr, properties } : expr;
   }
 
-  protected override visitProperty(expr: PropertyExpression) {
+  protected override visitPropertyExpression(expr: PropertyExpression) {
     const value = this.visit(expr.value);
 
     return value !== expr.value ? { ...expr, value } : expr;
   }
 
-  protected override visitSpreadElement(expr: SpreadExpression) {
+  protected override visitSpreadExpression(expr: SpreadExpression) {
     const argument = this.visit(expr.argument);
 
     return argument !== expr.argument ? { ...expr, argument } : expr;
   }
 
-  protected override visitTemplateElement(expr: TemplateExpression) {
+  protected override visitTemplateExpression(expr: TemplateExpression) {
     return expr;
   }
 
-  protected override visitTemplateLiteral(expr: TemplateLiteralExpression) {
+  protected override visitTemplateLiteralExpression(expr: TemplateLiteralExpression) {
     const [expressions, expressionsChanged] = this.rewriteArray(expr.expressions);
     const [quasis, quasisChanged] = this.rewriteArray(expr.quasis);
 

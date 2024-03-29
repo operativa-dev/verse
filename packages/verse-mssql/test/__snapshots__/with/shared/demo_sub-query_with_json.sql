@@ -1,4 +1,4 @@
--- Executing SQL: Parameters: [$1='B%']
+-- Executing SQL: Parameters: [$1='B%', $2=10]
 select "t1"."ArtistId", "t1"."Name", (
    select json_query(json_query("t6"."c0", '$[0]'), '$[1]') as "c1"
    from (
@@ -9,5 +9,5 @@ select "t1"."ArtistId", "t1"."Name", (
    where json_query(json_query("t6"."c0", '$[0]'), '$[1]') like @p0
 ) as "c2"
 from "Artist" as "t1"
-order by 1 offset 0 rows fetch next 10 rows only
+order by 1 offset 0 rows fetch next @p1 rows only
 

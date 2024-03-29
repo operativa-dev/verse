@@ -863,19 +863,6 @@ export const withTests = (verse: Verse<typeof withModel>) => {
     await snap(q);
   });
 
-  test("join compile composable", async () => {
-    const q = verse.compile(from => {
-      const artists = from.artists.select(a => [a]);
-
-      return from.artists
-        .limit(5)
-        .join(artists, (a1, a2) => a1.artistId === a2[0]!.artistId)
-        .select((a1, a2) => [a1.artistId, a2![0]!.name]);
-    });
-
-    await snap(q());
-  });
-
   test("join multiple", async () => {
     const q = verse.from.tracks
       .join(Album, (tr, al) => tr.albumId === al.albumId)

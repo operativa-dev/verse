@@ -76,7 +76,8 @@ describe("lexer", () => {
   test("templates", () => {
     testLex(
       "${ `` `$` `\\${` `}` `foo` `${bar}` `abc${bar}def` `${ `a${b}c` }` " +
-        "`\\u{1F600}` sql`select`"
+        "`\\u{1F600}` sql`select` `${{ $id }}` `${ { id: { } } }` sql``.f " +
+        "{ a: `${a.title}!` }"
     );
   });
 
@@ -206,7 +207,11 @@ describe("parser", () => {
       "`\\${`",
       "`${ `a${b}c` }`",
       "tag`foo`",
-      "sql`select * from table`"
+      "sql`select * from table`",
+      "`${{ $id }}`",
+      "`${ { id: { } } }`",
+      "sql``.f",
+      "{ a: `${a.title}!` }"
     );
   });
 

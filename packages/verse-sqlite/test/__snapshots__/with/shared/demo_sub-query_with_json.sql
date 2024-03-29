@@ -1,4 +1,4 @@
--- Executing SQL: Parameters: [$1='B%']
+-- Executing SQL: Parameters: [$1='B%', $2=10]
 select "t1"."ArtistId", "t1"."Name", (
    select ("t6"."c0" -> 0) ->> 1 as "c1"
    from (
@@ -9,5 +9,5 @@ select "t1"."ArtistId", "t1"."Name", (
    where ("t6"."c0" -> 0) ->> 1 like ?
 ) as "c2"
 from "Artist" as "t1"
-limit 10
+limit ?
 

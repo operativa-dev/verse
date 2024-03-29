@@ -195,6 +195,7 @@ export function* lex(expr: string) {
   let last: TokenType | undefined;
   let value: string | number | RegExp | bigint | undefined;
   let template = [false];
+  let braces = [];
 
   while (i < expr.length) {
     const char = expr[i]!;
@@ -510,12 +511,15 @@ export function* lex(expr: string) {
 
       case "{":
         type = TokenType.LBrace;
+        braces.push("{");
         break;
 
       case "}":
         type = TokenType.RBrace;
 
-        if (template.length > 1) {
+        const brace = braces.pop();
+
+        if (brace === "${") {
           template.pop();
         }
 
@@ -557,6 +561,7 @@ export function* lex(expr: string) {
             type = TokenType.DollarBrace;
             i++;
             template.push(false);
+            braces.push("${");
             break;
           }
 
@@ -875,7 +880,16 @@ function based(
   return [parseInt(value, base), i] as const;
 }
 
-export type baseTypes = string | number | boolean | RegExp | null | undefined | object | bigint;
+export type baseTypes =
+  | string
+  | number
+  | boolean
+  | RegExp
+  | null
+  | undefined
+  | object
+  | bigint
+  | unknown;
 
 export interface Expression {
   type: string;
@@ -1069,6 +1083,10 @@ class Parser {
     }
 
     if (params && this.#match(TokenType.EqGt)) {
+      if (this.#check(TokenType.LBrace)) {
+        throw new Error("Unexpected token: '{'. Block bodied arrow functions are not supported.");
+      }
+
       const body = this.#spread();
 
       return {
@@ -1347,19 +1365,17 @@ class Parser {
         this.#consume(TokenType.RParen, "Expected ')' after arguments.");
 
         expr = { type: "CallExpression", callee: expr, arguments: args };
+      } else if (this.#check(TokenType.Backtick)) {
+        const template = this.#primary() as TemplateLiteralExpression;
+
+        expr = {
+          type: "TaggedTemplateExpression",
+          tag: expr,
+          quasi: template,
+        };
       } else {
         break;
       }
-    }
-
-    if (this.#check(TokenType.Backtick)) {
-      const template = this.#primary() as TemplateLiteralExpression;
-
-      expr = {
-        type: "TaggedTemplateExpression",
-        tag: expr,
-        quasi: template,
-      };
     }
 
     return expr;

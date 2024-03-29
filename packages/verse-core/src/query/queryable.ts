@@ -11,9 +11,9 @@ import { Map } from "immutable";
 import { Newable, Primitive } from "ts-essentials";
 import { QueryCache } from "../uow.js";
 import { Brand } from "../utils/utils.js";
-import { QueryOptions, Verse } from "../verse.js";
+import { Entities, From, QueryOptions, Verse } from "../verse.js";
 import { QueryCompiler } from "./compiler.js";
-import { EntityExpression } from "./expression.js";
+import { constant, EntityExpression } from "./expression.js";
 import { ArrowFunctionExpression, Expression, IdentifierExpression, parse } from "./parser.js";
 import { printExpr } from "./printer.js";
 
@@ -154,63 +154,6 @@ export type PredicateExpr<T, A extends unknown[] = []> = Expr<(obj: T, ...args: 
 export type NumericExpr<T> = Expr<(obj: T) => number>;
 
 /**
- * The base class for queryable objects.
- */
-export abstract class AbstractQueryable {
-  /** @ignore */
-  protected expression: Expression;
-
-  protected constructor(entity: string) {
-    this.expression = { type: "EntityExpression", name: entity } as EntityExpression;
-  }
-
-  /** @ignore */
-  [__expr]() {
-    return this.expression;
-  }
-
-  protected op(name: string, ...args: Expression[]) {
-    return {
-      type: "CallExpression",
-      callee: {
-        type: "MemberExpression",
-        computed: false,
-        object: this.expression,
-        property: {
-          type: "IdentifierExpression",
-          name,
-        },
-      },
-      arguments: args,
-    };
-  }
-
-  protected scalar(value: number | { [key: string]: number }, op: string) {
-    if (typeof value === "number") {
-      return {
-        type: "LiteralExpression",
-        value,
-      };
-    }
-
-    if (!value || Object.keys(value).length !== 1) {
-      throw new Error(
-        `Argument passed to query operator '${op}' must be a number or an object with a single key.`
-      );
-    }
-
-    return {
-      type: "IdentifierExpression",
-      name: Object.keys(value)[0],
-    };
-  }
-}
-
-function parseExpr(expr: string) {
-  return parse(expr);
-}
-
-/**
  * Fluent query operators used when constructing compiled queries.
  *
  * A compiled query can be created using the {@link Verse.compile} or {@link Verse.compileUow} methods.
@@ -223,23 +166,15 @@ function parseExpr(expr: string) {
  *
  * const customer = await query("ACME Corp.");
  */
-export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
-  /**
-   * @ignore
-   */
-  constructor(entity: string) {
-    super(entity);
-  }
-
+export class Queryable<T> {
   /**
    * Projects each element of a sequence into a new form.
    *
    * @param projector A function that transforms the input element.
    * @returns The queryable result of the select operation.
    */
+  // @ts-ignore
   select<P extends Expr<(obj: T) => unknown>>(projector: P) {
-    this.expression = this.op("select", parseExpr(projector.toString()));
-
     return this as unknown as Queryable<ReturnType<P>>;
   }
 
@@ -249,9 +184,8 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
    * @param navigation The navigation property to be loaded.
    * @returns The queryable result of the with operation.
    */
+  // @ts-ignore
   with<S>(navigation: Expr<(obj: T) => S>) {
-    this.expression = this.op("with", parseExpr(navigation.toString()));
-
     return this;
   }
 
@@ -261,8 +195,6 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
    * @returns The queryable result of the distinct operation.
    */
   distinct() {
-    this.expression = this.op("distinct");
-
     return this;
   }
 
@@ -273,15 +205,8 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
    * @param condition The join condition.
    * @returns The queryable result of the join operation.
    */
+  // @ts-ignore
   join<S, C extends JoinCondition<T, S>>(entityOrQuery: Newable<S> | Queryable<S>, condition: C) {
-    this.expression = this.op(
-      "join",
-      entityOrQuery instanceof Queryable
-        ? entityOrQuery.expression
-        : ({ type: "EntityExpression", name: entityOrQuery.name } as EntityExpression),
-      parseExpr(condition.toString())
-    );
-
     return this as Queryable<JoinResult<Parameters<C>>>;
   }
 
@@ -293,17 +218,11 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
    * @returns The queryable result of the join operation.
    */
   leftJoin<S, C extends JoinCondition<T, S>>(
+    // @ts-ignore
     entityOrQuery: Newable<S> | Queryable<S>,
+    // @ts-ignore
     condition: C
   ) {
-    this.expression = this.op(
-      "leftJoin",
-      entityOrQuery instanceof Queryable
-        ? entityOrQuery.expression
-        : ({ type: "EntityExpression", name: entityOrQuery.name } as EntityExpression),
-      parseExpr(condition.toString())
-    );
-
     return this as Queryable<JoinResult<Parameters<C>>>;
   }
 
@@ -313,9 +232,8 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
    * @param predicate A function to test each element for a condition.
    * @returns The queryable result of the where operation.
    */
+  // @ts-ignore
   where<P extends PredicateExpr<T>>(predicate: P) {
-    this.expression = this.op("where", parseExpr(predicate.toString()));
-
     return this;
   }
 
@@ -325,9 +243,8 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
    * @param expr A function to extract a sort key from an element.
    * @returns The queryable result of the orderBy operation.
    */
+  // @ts-ignore
   orderBy<E extends Expr<(obj: T) => unknown>>(expr: E) {
-    this.expression = this.op("orderBy", parseExpr(expr.toString()));
-
     return this;
   }
 
@@ -337,9 +254,8 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
    * @param expr A function to extract a sort key from an element.
    * @returns The queryable result of the orderByDesc operation.
    */
+  // @ts-ignore
   orderByDesc<E extends Expr<(obj: T) => unknown>>(expr: E) {
-    this.expression = this.op("orderByDesc", parseExpr(expr.toString()));
-
     return this;
   }
 
@@ -366,11 +282,8 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
     result: (param: Grouping<ReturnType<K>, T>) => R
   ): Queryable<R>;
 
+  // @ts-ignore
   groupBy<K, R>(key: (obj: T) => K, result?: (param: Grouping<K, T>) => R) {
-    const r = result ?? ((g: Grouping<K, T>) => ({ key: g.key, items: g.array(x => x) }));
-
-    this.expression = this.op("groupBy", parseExpr(key.toString()), parseExpr(r.toString()));
-
     return this as unknown as Queryable<R>;
   }
 
@@ -380,9 +293,8 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
    * @param limit The number of elements to return.
    * @returns The queryable result of the limit operation.
    */
-  limit(limit: number | { [key: string]: number }) {
-    this.expression = this.op("limit", this.scalar(limit, "limit"));
-
+  // @ts-ignore
+  limit(limit: number) {
     return this;
   }
 
@@ -392,9 +304,8 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
    * @param offset The number of elements to skip.
    * @returns The queryable result of the offset operation.
    */
-  offset(offset: number | { [key: string]: number }) {
-    this.expression = this.op("offset", this.scalar(offset, "offset"));
-
+  // @ts-ignore
+  offset(offset: number) {
     return this;
   }
 
@@ -404,9 +315,8 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
    * @param predicate A function to test each element for a condition.
    * @returns `true` if any elements in the sequence satisfy the condition, otherwise `false`.
    */
+  // @ts-ignore
   any<P extends PredicateExpr<T>>(predicate?: P) {
-    this.expression = this.op("any", ...(predicate ? [parseExpr(predicate.toString())] : []));
-
     return false;
   }
 
@@ -416,9 +326,8 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
    * @param predicate A function to test each element for a condition.
    * @returns `true` if all elements in the sequence satisfy the condition, otherwise `false`.
    */
+  // @ts-ignore
   all<P extends PredicateExpr<T>>(predicate: P) {
-    this.expression = this.op("all", parseExpr(predicate.toString()));
-
     return false;
   }
 
@@ -429,9 +338,8 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
    * @returns The first element in the sequence that satisfies the condition.
    * @throws Error, if no such element is found.
    */
+  // @ts-ignore
   first<P extends PredicateExpr<T>>(predicate?: P) {
-    this.expression = this.op("first", ...(predicate ? [parseExpr(predicate.toString())] : []));
-
     return this as unknown as T;
   }
 
@@ -441,12 +349,8 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
    *
    * @param predicate A function to test each element for a condition.
    */
+  // @ts-ignore
   maybeFirst<P extends PredicateExpr<T>>(predicate?: P) {
-    this.expression = this.op(
-      "maybeFirst",
-      ...(predicate ? [parseExpr(predicate.toString())] : [])
-    );
-
     return this as unknown as T | undefined;
   }
 
@@ -457,9 +361,8 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
    * @returns The only element in the sequence that satisfies the condition.
    * @throws Error, if no such element is found, or multiple elements satisfy the condition.
    */
+  // @ts-ignore
   single<P extends PredicateExpr<T>>(predicate?: P) {
-    this.expression = this.op("single", ...(predicate ? [parseExpr(predicate.toString())] : []));
-
     return this as unknown as T;
   }
 
@@ -471,12 +374,8 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
    * @returns The only element in the sequence that satisfies the condition, or `undefined` if no such element is found.
    * @throws Error, if multiple elements satisfy the condition.
    */
+  // @ts-ignore
   maybeSingle<P extends PredicateExpr<T>>(predicate?: P) {
-    this.expression = this.op(
-      "maybeSingle",
-      ...(predicate ? [parseExpr(predicate.toString())] : [])
-    );
-
     return this as unknown as T | undefined;
   }
 
@@ -485,9 +384,8 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
    *
    * @returns The number of elements in the sequence.
    */
+  // @ts-ignore
   count() {
-    this.expression = this.op("count");
-
     return this as unknown as number;
   }
 
@@ -496,9 +394,8 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
    * @param expr The numerical expression to be evaluated.
    * @returns The minimum value of the specified numerical expression for the sequence.
    */
+  // @ts-ignore
   min(expr?: NumericExpr<T>) {
-    this.expression = this.op("min", ...(expr ? [parseExpr(expr.toString())] : []));
-
     return this as unknown as number;
   }
 
@@ -507,9 +404,8 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
    * @param expr The numerical expression to be evaluated.
    * @returns The maximum value of the specified numerical expression for the sequence.
    */
+  // @ts-ignore
   max(expr?: NumericExpr<T>) {
-    this.expression = this.op("max", ...(expr ? [parseExpr(expr.toString())] : []));
-
     return this as unknown as number;
   }
 
@@ -518,9 +414,8 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
    * @param expr The numerical expression to be evaluated.
    * @returns The sum of the specified numerical expression for the sequence.
    */
+  // @ts-ignore
   sum(expr?: NumericExpr<T>) {
-    this.expression = this.op("sum", ...(expr ? [parseExpr(expr.toString())] : []));
-
     return this as unknown as number;
   }
 
@@ -529,9 +424,8 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
    * @param expr The numerical expression to be evaluated.
    * @returns The average value of the specified numerical expression for the sequence.
    */
+  // @ts-ignore
   avg(expr?: NumericExpr<T>) {
-    this.expression = this.op("avg", ...(expr ? [parseExpr(expr.toString())] : []));
-
     return this as unknown as number;
   }
 
@@ -540,16 +434,7 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
    * @returns An array of the elements in the sequence.
    */
   array() {
-    this.expression = this.op("array");
-
     return this as Queryable<T[]>;
-  }
-
-  /**
-   * @ignore
-   */
-  [Symbol.iterator]() {
-    return undefined as any as Iterator<T>;
   }
 }
 
@@ -559,13 +444,6 @@ export class Queryable<T> extends AbstractQueryable implements Iterable<T> {
  * @template T The type of the entity being queried.
  */
 export class QueryableRoot<T> extends Queryable<T> {
-  /**
-   * @ignore
-   */
-  constructor(entity: string) {
-    super(entity);
-  }
-
   /**
    * Inject a raw SQL query using tagged template literals. The returned queryable may be further
    * composed with additional query operators.
@@ -578,9 +456,8 @@ export class QueryableRoot<T> extends Queryable<T> {
    * @param values The values to be inserted into the query.
    * @returns The queryable result of the injected SQL query.
    */
+  // @ts-ignore
   sql(strings: TemplateStringsArray, ...values: any[]) {
-    this.expression = this.op("sql", constant(strings), constant(values));
-
     return this;
   }
 
@@ -595,9 +472,8 @@ export class QueryableRoot<T> extends Queryable<T> {
    * @param options The query options.
    * @returns The queryable with the specified options applied.
    */
+  // @ts-ignore
   options(options: QueryOptions) {
-    this.expression = this.op("configure", constant(options));
-
     return this;
   }
 }
@@ -615,16 +491,29 @@ export class QueryableRoot<T> extends Queryable<T> {
  *     .where(c => c.name === "ACME Corp.")
  *     .single();
  */
-export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequence<T> {
+export class AsyncQueryable<T, E extends Entities> implements AsyncSequence<T> {
   #compiler: QueryCompiler;
 
-  /**
-   * @ignore
-   */
+  /** @ignore */
+  protected expression: Expression;
+
+  /** @ignore */
   constructor(entity: string, compiler: QueryCompiler) {
-    super(entity);
     this.#compiler = compiler;
+    this.expression = { type: "EntityExpression", name: entity } as EntityExpression;
   }
+
+  /**
+   * Projects each element of a sequence into a new form.
+   *
+   * @param projector A function that transforms the input element.
+   * @param args Additional arguments to be passed to the projector.
+   * @returns The queryable result of the select operation.
+   */
+  select<P extends Expr<(obj: T, from: From<E>, ...args: A) => unknown>, A extends unknown[]>(
+    projector: P,
+    ...args: A
+  ): AsyncQueryable<ReturnType<P>, E>;
 
   /**
    * Projects each element of a sequence into a new form.
@@ -636,12 +525,17 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
   select<P extends Expr<(obj: T, ...args: A) => unknown>, A extends unknown[]>(
     projector: P,
     ...args: A
+  ): AsyncQueryable<ReturnType<P>, E>;
+
+  select<P extends Expr<(obj: T, from: From<E>, ...args: A) => unknown>, A extends unknown[]>(
+    projector: P,
+    ...args: A
   ) {
-    const expressions = this.#curry(parseExpr(projector.toString()), args as Primitive[]);
+    const expressions = this.#curry(parse(projector.toString()), args as Primitive[]);
 
     this.expression = this.op("select", ...expressions);
 
-    return this as unknown as AsyncQueryable<ReturnType<P>>;
+    return this as unknown as AsyncQueryable<ReturnType<P>, E>;
   }
 
   /**
@@ -651,7 +545,7 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
    * @returns The queryable result of the with operation.
    */
   with<S>(navigation: Expr<(obj: T) => S>) {
-    this.expression = this.op("with", parseExpr(navigation.toString()));
+    this.expression = this.op("with", parse(navigation.toString()));
 
     return this;
   }
@@ -675,7 +569,7 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
    * @returns The queryable result of the join operation.
    */
   join<S, C extends JoinCondition<T, S>>(
-    entityOrQuery: Newable<S> | AsyncQueryable<S>,
+    entityOrQuery: Newable<S> | AsyncQueryable<S, E>,
     condition: C
   ) {
     this.expression = this.op(
@@ -683,10 +577,10 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
       entityOrQuery instanceof AsyncQueryable
         ? entityOrQuery.expression
         : ({ type: "EntityExpression", name: entityOrQuery.name } as EntityExpression),
-      parseExpr(condition.toString())
+      parse(condition.toString())
     );
 
-    return this as AsyncQueryable<JoinResult<Parameters<C>>>;
+    return this as AsyncQueryable<JoinResult<Parameters<C>>, E>;
   }
 
   /**
@@ -697,7 +591,7 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
    * @returns The queryable result of the join operation.
    */
   leftJoin<S, C extends JoinCondition<T, S>>(
-    entityOrQuery: Newable<S> | AsyncQueryable<S>,
+    entityOrQuery: Newable<S> | AsyncQueryable<S, E>,
     condition: C
   ) {
     this.expression = this.op(
@@ -705,10 +599,10 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
       entityOrQuery instanceof AsyncQueryable
         ? entityOrQuery.expression
         : ({ type: "EntityExpression", name: entityOrQuery.name } as EntityExpression),
-      parseExpr(condition.toString())
+      parse(condition.toString())
     );
 
-    return this as AsyncQueryable<JoinResult<Parameters<C>>>;
+    return this as AsyncQueryable<JoinResult<Parameters<C>>, E>;
   }
 
   /**
@@ -719,7 +613,7 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
    * @returns The queryable result of the where operation.
    */
   where<P extends PredicateExpr<T, A>, A extends unknown[]>(predicate: P, ...args: A) {
-    const expr = parseExpr(predicate.toString());
+    const expr = parse(predicate.toString());
     const expressions = this.#curry(expr, args as Primitive[]);
 
     this.expression = this.op("where", ...expressions);
@@ -738,7 +632,7 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
     expr: E,
     ...args: A
   ) {
-    const expressions = this.#curry(parseExpr(expr.toString()), args as Primitive[]);
+    const expressions = this.#curry(parse(expr.toString()), args as Primitive[]);
 
     this.expression = this.op("orderBy", ...expressions);
 
@@ -756,7 +650,7 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
     expr: E,
     ...args: A
   ) {
-    const expressions = this.#curry(parseExpr(expr.toString()), args as Primitive[]);
+    const expressions = this.#curry(parse(expr.toString()), args as Primitive[]);
 
     this.expression = this.op("orderByDesc", ...expressions);
 
@@ -771,7 +665,7 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
    */
   groupBy<K extends Expr<(obj: T) => unknown>>(
     key: K
-  ): AsyncQueryable<{ key: ReturnType<K>; items: T[] }>;
+  ): AsyncQueryable<{ key: ReturnType<K>; items: T[] }, E>;
 
   /**
    * Groups the elements of a sequence according to a specified key selector function and
@@ -784,14 +678,14 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
   groupBy<K extends Expr<(obj: T) => unknown>, R>(
     key: K,
     result: (param: Grouping<ReturnType<K>, T>) => R
-  ): AsyncQueryable<R>;
+  ): AsyncQueryable<R, E>;
 
   groupBy<K, R>(key: (obj: T) => K, result?: (param: Grouping<K, T>) => R) {
     const r = result ?? ((g: Grouping<K, T>) => ({ key: g.key, items: g.array(x => x) }));
 
-    this.expression = this.op("groupBy", parseExpr(key.toString()), parseExpr(r.toString()));
+    this.expression = this.op("groupBy", parse(key.toString()), parse(r.toString()));
 
-    return this as unknown as AsyncQueryable<R>;
+    return this as unknown as AsyncQueryable<R, E>;
   }
 
   /**
@@ -800,8 +694,8 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
    * @param limit The number of elements to return.
    * @returns The queryable result of the limit operation.
    */
-  limit(limit: number | { [key: string]: number }) {
-    this.expression = this.op("limit", this.scalar(limit, "limit"));
+  limit(limit: number) {
+    this.expression = this.op("limit", this.#scalar(limit, "limit"));
 
     return this;
   }
@@ -812,8 +706,8 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
    * @param offset The number of elements to skip.
    * @returns The queryable result of the offset operation.
    */
-  offset(offset: number | { [key: string]: number }) {
-    this.expression = this.op("offset", this.scalar(offset, "offset"));
+  offset(offset: number) {
+    this.expression = this.op("offset", this.#scalar(offset, "offset"));
 
     return this;
   }
@@ -827,7 +721,7 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
    */
   any<P extends PredicateExpr<T, A>, A extends unknown[]>(predicate?: P, ...args: A) {
     const expressions = predicate
-      ? this.#curry(parseExpr(predicate.toString()), args as Primitive[])
+      ? this.#curry(parse(predicate.toString()), args as Primitive[])
       : [];
 
     this.expression = this.op("any", ...expressions);
@@ -843,7 +737,7 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
    * @returns A promise that resolves with `true` if all elements in the sequence satisfy the condition, otherwise `false`.
    */
   all<P extends PredicateExpr<T, A>, A extends unknown[]>(predicate: P, ...args: A) {
-    const expressions = this.#curry(parseExpr(predicate.toString()), args as Primitive[]);
+    const expressions = this.#curry(parse(predicate.toString()), args as Primitive[]);
 
     this.expression = this.op("all", ...expressions);
 
@@ -860,7 +754,7 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
    */
   first<P extends PredicateExpr<T, A>, A extends unknown[]>(predicate?: P, ...args: A) {
     const expressions = predicate
-      ? this.#curry(parseExpr(predicate.toString()), args as Primitive[])
+      ? this.#curry(parse(predicate.toString()), args as Primitive[])
       : [];
 
     this.expression = this.op("first", ...expressions);
@@ -874,11 +768,12 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
    *
    * @param predicate A function to test each element for a condition.
    * @param args Additional arguments to be passed to the predicate.
-   * @returns A promise that resolves with the first element in the sequence that satisfies the condition, or `undefined` if no such element is found.
+   * @returns A promise that resolves with the first element in the sequence that satisfies the condition,
+   * or `undefined` if no such element is found.
    */
   maybeFirst<P extends PredicateExpr<T, A>, A extends unknown[]>(predicate?: P, ...args: A) {
     const expressions = predicate
-      ? this.#curry(parseExpr(predicate.toString()), args as Primitive[])
+      ? this.#curry(parse(predicate.toString()), args as Primitive[])
       : [];
 
     this.expression = this.op("maybeFirst", ...expressions);
@@ -896,7 +791,7 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
    */
   single<P extends PredicateExpr<T, A>, A extends unknown[]>(predicate?: P, ...args: A) {
     const expressions = predicate
-      ? this.#curry(parseExpr(predicate.toString()), args as Primitive[])
+      ? this.#curry(parse(predicate.toString()), args as Primitive[])
       : [];
 
     this.expression = this.op("single", ...expressions);
@@ -915,7 +810,7 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
    */
   maybeSingle<P extends PredicateExpr<T, A>, A extends unknown[]>(predicate?: P, ...args: A) {
     const expressions = predicate
-      ? this.#curry(parseExpr(predicate.toString()), args as Primitive[])
+      ? this.#curry(parse(predicate.toString()), args as Primitive[])
       : [];
 
     this.expression = this.op("maybeSingle", ...expressions);
@@ -940,7 +835,7 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
    * @returns A promise that resolves with the minimum value of the specified numerical expression for the sequence.
    */
   min(expr?: NumericExpr<T>) {
-    this.expression = this.op("min", ...(expr ? [parseExpr(expr.toString())] : []));
+    this.expression = this.op("min", ...(expr ? [parse(expr.toString())] : []));
 
     return this.#executeOne<number>();
   }
@@ -951,7 +846,7 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
    * @returns A promise that resolves with the maximum value of the specified numerical expression for the sequence.
    */
   max(expr?: NumericExpr<T>) {
-    this.expression = this.op("max", ...(expr ? [parseExpr(expr.toString())] : []));
+    this.expression = this.op("max", ...(expr ? [parse(expr.toString())] : []));
 
     return this.#executeOne<number>();
   }
@@ -962,7 +857,7 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
    * @returns A promise that resolves with the sum of the specified numerical expression for the sequence.
    */
   sum(expr?: NumericExpr<T>) {
-    this.expression = this.op("sum", ...(expr ? [parseExpr(expr.toString())] : []));
+    this.expression = this.op("sum", ...(expr ? [parse(expr.toString())] : []));
 
     return this.#executeOne<number>();
   }
@@ -973,7 +868,7 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
    * @returns A promise that resolves with the average value of the specified numerical expression for the sequence.
    */
   avg(expr?: NumericExpr<T>) {
-    this.expression = this.op("avg", ...(expr ? [parseExpr(expr.toString())] : []));
+    this.expression = this.op("avg", ...(expr ? [parse(expr.toString())] : []));
 
     return this.#executeOne<number>();
   }
@@ -985,7 +880,7 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
   array() {
     this.expression = this.op("array");
 
-    return this as AsyncQueryable<T[]>;
+    return this as AsyncQueryable<T[], E>;
   }
 
   /**
@@ -999,9 +894,49 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
     return asyncSequence.toArray();
   }
 
-  /**
-   * @ignore
-   */
+  /** @ignore */
+  [__expr]() {
+    return this.expression;
+  }
+
+  /** @ignore */
+  protected op(name: string, ...args: Expression[]) {
+    return {
+      type: "CallExpression",
+      callee: {
+        type: "MemberExpression",
+        computed: false,
+        object: this.expression,
+        property: {
+          type: "IdentifierExpression",
+          name,
+        },
+      },
+      arguments: args,
+    };
+  }
+
+  #scalar(value: number | { [key: string]: number }, op: string) {
+    if (typeof value === "number") {
+      return {
+        type: "LiteralExpression",
+        value,
+      };
+    }
+
+    if (!value || Object.keys(value).length !== 1) {
+      throw new Error(
+        `Argument passed to query operator '${op}' must be a number or an object with a single key.`
+      );
+    }
+
+    return {
+      type: "IdentifierExpression",
+      name: Object.keys(value)[0],
+    };
+  }
+
+  /** @ignore */
   [Symbol.asyncIterator]() {
     const asyncSequence = this.execute() as AsyncSequence<T>;
 
@@ -1012,14 +947,11 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
     return this.execute() as Promise<T>;
   }
 
-  /**
-   * @ignore
-   */
   protected execute(cache?: QueryCache) {
     return this.#compiler.compile(() => this)([], cache);
   }
 
-  #curry(expression: Expression, args: Primitive[]) {
+  #curry(expression: Expression, args: any[]) {
     if (expression.type === "ArrowFunctionExpression") {
       const arrow = expression as ArrowFunctionExpression;
 
@@ -1054,7 +986,7 @@ export class AsyncQueryable<T> extends AbstractQueryable implements AsyncSequenc
  *
  * @template T The type of the entity being queried.
  */
-export class AsyncQueryableRoot<T> extends AsyncQueryable<T> {
+export class AsyncQueryableRoot<T, E extends Entities> extends AsyncQueryable<T, E> {
   /**
    * @ignore
    */
@@ -1098,11 +1030,4 @@ export class AsyncQueryableRoot<T> extends AsyncQueryable<T> {
 
     return this;
   }
-}
-
-function constant(value: any) {
-  return {
-    type: "ConstantExpression",
-    value,
-  };
 }
