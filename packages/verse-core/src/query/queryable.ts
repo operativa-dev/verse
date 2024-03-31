@@ -6,16 +6,13 @@
  * @packageDocumentation
  */
 
-import { Map } from "immutable";
-
-import { Newable, Primitive } from "ts-essentials";
+import { Newable } from "ts-essentials";
 import { QueryCache } from "../uow.js";
 import { Brand } from "../utils/utils.js";
 import { Entities, From, QueryOptions, Verse } from "../verse.js";
 import { QueryCompiler } from "./compiler.js";
 import { constant, EntityExpression } from "./expression.js";
-import { ArrowFunctionExpression, Expression, IdentifierExpression, parse } from "./parser.js";
-import { printExpr } from "./printer.js";
+import { Expression, parse } from "./parser.js";
 
 declare global {
   interface String {
@@ -75,7 +72,7 @@ export interface Grouping<K, T> {
    * @param expr The expression to be evaluated.
    * @return The minimum value of the specified expression for the group.
    */
-  min(expr: (obj: T) => number): number;
+  min(expr: Expr<(obj: T) => number>): number;
 
   /**
    * Returns the maximum value of the specified expression for the group.
@@ -83,7 +80,7 @@ export interface Grouping<K, T> {
    * @param expr The expression to be evaluated.
    * @return The maximum value of the specified expression for the group.
    */
-  max(expr: (obj: T) => number): number;
+  max(expr: Expr<(obj: T) => number>): number;
 
   /**
    * Returns the sum of the specified expression for the group.
@@ -91,7 +88,7 @@ export interface Grouping<K, T> {
    * @param expr The expression to be evaluated.
    * @return The sum of the specified expression for the group.
    */
-  sum(expr: (obj: T) => number): number;
+  sum(expr: Expr<(obj: T) => number>): number;
 
   /**
    * Returns the average value of the specified expression for the group.
@@ -99,14 +96,14 @@ export interface Grouping<K, T> {
    * @param expr The expression to be evaluated.
    * @return The average value of the specified expression for the group.
    */
-  avg(expr: (obj: T) => number): number;
+  avg(expr: Expr<(obj: T) => number>): number;
 
   /**
    * Returns an array of the objects in the group.
    *
    * @return An array of the objects in the group.
    */
-  array<S>(expr?: (obj: T) => S): S[];
+  array<S>(expr?: Expr<(obj: T) => S>): S[];
 }
 
 /** @ignore */
@@ -126,8 +123,7 @@ export interface AsyncSequence<T> extends AsyncIterable<T> {
   toArray(): Promise<T[]>;
 }
 
-/** @ignore */
-export type Expr<E> = E extends (...args: [infer H, ...infer T]) => infer R
+type Expr<E> = E extends (...args: [infer H, ...infer T]) => infer R
   ? H extends JoinResult<infer K>
     ? (...args: [...K, ...T]) => R
     : E
@@ -146,6 +142,10 @@ export type JoinCondition<T, S> = Expr<(left: T, right: S) => boolean>;
 /**
  * Represents a predicate expression used to filter a sequence.
  */
+export type AsyncPredicateExpr<E extends Entities, T, A extends unknown[] = []> = Expr<
+  (obj: T, ...args: [...A, From<E>]) => boolean
+>;
+
 export type PredicateExpr<T, A extends unknown[] = []> = Expr<(obj: T, ...args: A) => boolean>;
 
 /**
@@ -493,14 +493,12 @@ export class QueryableRoot<T> extends Queryable<T> {
  */
 export class AsyncQueryable<T, E extends Entities> implements AsyncSequence<T> {
   #compiler: QueryCompiler;
-
-  /** @ignore */
-  protected expression: Expression;
+  #expression: Expression;
 
   /** @ignore */
   constructor(entity: string, compiler: QueryCompiler) {
     this.#compiler = compiler;
-    this.expression = { type: "EntityExpression", name: entity } as EntityExpression;
+    this.#expression = { type: "EntityExpression", name: entity } as EntityExpression;
   }
 
   /**
@@ -510,30 +508,11 @@ export class AsyncQueryable<T, E extends Entities> implements AsyncSequence<T> {
    * @param args Additional arguments to be passed to the projector.
    * @returns The queryable result of the select operation.
    */
-  select<P extends Expr<(obj: T, from: From<E>, ...args: A) => unknown>, A extends unknown[]>(
-    projector: P,
-    ...args: A
-  ): AsyncQueryable<ReturnType<P>, E>;
-
-  /**
-   * Projects each element of a sequence into a new form.
-   *
-   * @param projector A function that transforms the input element.
-   * @param args Additional arguments to be passed to the projector.
-   * @returns The queryable result of the select operation.
-   */
-  select<P extends Expr<(obj: T, ...args: A) => unknown>, A extends unknown[]>(
-    projector: P,
-    ...args: A
-  ): AsyncQueryable<ReturnType<P>, E>;
-
-  select<P extends Expr<(obj: T, from: From<E>, ...args: A) => unknown>, A extends unknown[]>(
+  select<P extends Expr<(obj: T, ...args: [...A, From<E>]) => unknown>, A extends unknown[]>(
     projector: P,
     ...args: A
   ) {
-    const expressions = this.#curry(parse(projector.toString()), args as Primitive[]);
-
-    this.expression = this.op("select", ...expressions);
+    this.op("select", parse(projector.toString()), args);
 
     return this as unknown as AsyncQueryable<ReturnType<P>, E>;
   }
@@ -545,7 +524,7 @@ export class AsyncQueryable<T, E extends Entities> implements AsyncSequence<T> {
    * @returns The queryable result of the with operation.
    */
   with<S>(navigation: Expr<(obj: T) => S>) {
-    this.expression = this.op("with", parse(navigation.toString()));
+    this.op("with", parse(navigation.toString()));
 
     return this;
   }
@@ -556,7 +535,7 @@ export class AsyncQueryable<T, E extends Entities> implements AsyncSequence<T> {
    * @returns The queryable result of the distinct operation.
    */
   distinct() {
-    this.expression = this.op("distinct");
+    this.op("distinct");
 
     return this;
   }
@@ -572,13 +551,12 @@ export class AsyncQueryable<T, E extends Entities> implements AsyncSequence<T> {
     entityOrQuery: Newable<S> | AsyncQueryable<S, E>,
     condition: C
   ) {
-    this.expression = this.op(
-      "join",
+    this.op("join", [
       entityOrQuery instanceof AsyncQueryable
-        ? entityOrQuery.expression
+        ? entityOrQuery.#expression
         : ({ type: "EntityExpression", name: entityOrQuery.name } as EntityExpression),
-      parse(condition.toString())
-    );
+      parse(condition.toString()),
+    ]);
 
     return this as AsyncQueryable<JoinResult<Parameters<C>>, E>;
   }
@@ -594,13 +572,12 @@ export class AsyncQueryable<T, E extends Entities> implements AsyncSequence<T> {
     entityOrQuery: Newable<S> | AsyncQueryable<S, E>,
     condition: C
   ) {
-    this.expression = this.op(
-      "leftJoin",
+    this.op("leftJoin", [
       entityOrQuery instanceof AsyncQueryable
-        ? entityOrQuery.expression
+        ? entityOrQuery.#expression
         : ({ type: "EntityExpression", name: entityOrQuery.name } as EntityExpression),
-      parse(condition.toString())
-    );
+      parse(condition.toString()),
+    ]);
 
     return this as AsyncQueryable<JoinResult<Parameters<C>>, E>;
   }
@@ -612,11 +589,8 @@ export class AsyncQueryable<T, E extends Entities> implements AsyncSequence<T> {
    * @param args Additional arguments to be passed to the predicate.
    * @returns The queryable result of the where operation.
    */
-  where<P extends PredicateExpr<T, A>, A extends unknown[]>(predicate: P, ...args: A) {
-    const expr = parse(predicate.toString());
-    const expressions = this.#curry(expr, args as Primitive[]);
-
-    this.expression = this.op("where", ...expressions);
+  where<P extends AsyncPredicateExpr<E, T, A>, A extends unknown[]>(predicate: P, ...args: A) {
+    this.op("where", parse(predicate.toString()), args);
 
     return this;
   }
@@ -632,9 +606,7 @@ export class AsyncQueryable<T, E extends Entities> implements AsyncSequence<T> {
     expr: E,
     ...args: A
   ) {
-    const expressions = this.#curry(parse(expr.toString()), args as Primitive[]);
-
-    this.expression = this.op("orderBy", ...expressions);
+    this.op("orderBy", parse(expr.toString()), args);
 
     return this;
   }
@@ -650,9 +622,7 @@ export class AsyncQueryable<T, E extends Entities> implements AsyncSequence<T> {
     expr: E,
     ...args: A
   ) {
-    const expressions = this.#curry(parse(expr.toString()), args as Primitive[]);
-
-    this.expression = this.op("orderByDesc", ...expressions);
+    this.op("orderByDesc", parse(expr.toString()), args);
 
     return this;
   }
@@ -681,9 +651,13 @@ export class AsyncQueryable<T, E extends Entities> implements AsyncSequence<T> {
   ): AsyncQueryable<R, E>;
 
   groupBy<K, R>(key: (obj: T) => K, result?: (param: Grouping<K, T>) => R) {
-    const r = result ?? ((g: Grouping<K, T>) => ({ key: g.key, items: g.array(x => x) }));
+    const expressions = [parse(key.toString())];
 
-    this.expression = this.op("groupBy", parse(key.toString()), parse(r.toString()));
+    if (result) {
+      expressions.push(parse(result.toString()));
+    }
+
+    this.op("groupBy", expressions);
 
     return this as unknown as AsyncQueryable<R, E>;
   }
@@ -695,7 +669,7 @@ export class AsyncQueryable<T, E extends Entities> implements AsyncSequence<T> {
    * @returns The queryable result of the limit operation.
    */
   limit(limit: number) {
-    this.expression = this.op("limit", this.#scalar(limit, "limit"));
+    this.op("limit", this.#scalar(limit, "limit"));
 
     return this;
   }
@@ -707,10 +681,17 @@ export class AsyncQueryable<T, E extends Entities> implements AsyncSequence<T> {
    * @returns The queryable result of the offset operation.
    */
   offset(offset: number) {
-    this.expression = this.op("offset", this.#scalar(offset, "offset"));
+    this.op("offset", this.#scalar(offset, "offset"));
 
     return this;
   }
+
+  /**
+   * Determines whether a sequence contains any elements.
+   *
+   * @returns A promise that resolves with `true` if the sequence contains any elements, otherwise `false`.
+   */
+  any(): Promise<boolean>;
 
   /**
    * Determines whether any element of a sequence satisfies a condition.
@@ -719,12 +700,13 @@ export class AsyncQueryable<T, E extends Entities> implements AsyncSequence<T> {
    * @param args Additional arguments to be passed to the predicate.
    * @returns A promise that resolves with `true` if any elements in the sequence satisfy the condition, otherwise `false`.
    */
-  any<P extends PredicateExpr<T, A>, A extends unknown[]>(predicate?: P, ...args: A) {
-    const expressions = predicate
-      ? this.#curry(parse(predicate.toString()), args as Primitive[])
-      : [];
+  any<P extends PredicateExpr<T, A>, A extends unknown[]>(
+    predicate: P,
+    ...args: A
+  ): Promise<boolean>;
 
-    this.expression = this.op("any", ...expressions);
+  any<P extends PredicateExpr<T, A>, A extends unknown[]>(predicate?: P, ...args: A) {
+    this.op("any", predicate ? parse(predicate.toString()) : undefined, args);
 
     return this.#executeOne<boolean>();
   }
@@ -737,12 +719,18 @@ export class AsyncQueryable<T, E extends Entities> implements AsyncSequence<T> {
    * @returns A promise that resolves with `true` if all elements in the sequence satisfy the condition, otherwise `false`.
    */
   all<P extends PredicateExpr<T, A>, A extends unknown[]>(predicate: P, ...args: A) {
-    const expressions = this.#curry(parse(predicate.toString()), args as Primitive[]);
-
-    this.expression = this.op("all", ...expressions);
+    this.op("all", parse(predicate.toString()), args);
 
     return this.#executeOne<boolean>();
   }
+
+  /**
+   * Returns the first element of a sequence.
+   *
+   * @returns A promise that resolves with the first element in the sequence.
+   * @throws Error, if no such element is found.
+   */
+  first(): Promise<T>;
 
   /**
    * Returns the first element of a sequence that satisfies a specified condition.
@@ -752,15 +740,21 @@ export class AsyncQueryable<T, E extends Entities> implements AsyncSequence<T> {
    * @returns A promise that resolves with the first element in the sequence that satisfies the condition.
    * @throws Error, if no such element is found.
    */
-  first<P extends PredicateExpr<T, A>, A extends unknown[]>(predicate?: P, ...args: A) {
-    const expressions = predicate
-      ? this.#curry(parse(predicate.toString()), args as Primitive[])
-      : [];
+  first<P extends PredicateExpr<T, A>, A extends unknown[]>(predicate?: P, ...args: A): Promise<T>;
 
-    this.expression = this.op("first", ...expressions);
+  first<P extends PredicateExpr<T, A>, A extends unknown[]>(predicate?: P, ...args: A) {
+    this.op("first", predicate ? parse(predicate.toString()) : undefined, args);
 
     return this.#executeOne<T>();
   }
+
+  /**
+   * Returns the first element of a sequence, or `undefined` if no such element is found.
+   *
+   * @returns A promise that resolves with the first element in the sequence,
+   * or `undefined` if no such element is found.
+   */
+  maybeFirst(): Promise<T | undefined>;
 
   /**
    * Returns the first element of a sequence that satisfies a specified condition, or `undefined`
@@ -771,15 +765,24 @@ export class AsyncQueryable<T, E extends Entities> implements AsyncSequence<T> {
    * @returns A promise that resolves with the first element in the sequence that satisfies the condition,
    * or `undefined` if no such element is found.
    */
-  maybeFirst<P extends PredicateExpr<T, A>, A extends unknown[]>(predicate?: P, ...args: A) {
-    const expressions = predicate
-      ? this.#curry(parse(predicate.toString()), args as Primitive[])
-      : [];
+  maybeFirst<P extends PredicateExpr<T, A>, A extends unknown[]>(
+    predicate?: P,
+    ...args: A
+  ): Promise<T | undefined>;
 
-    this.expression = this.op("maybeFirst", ...expressions);
+  maybeFirst<P extends PredicateExpr<T, A>, A extends unknown[]>(predicate?: P, ...args: A) {
+    this.op("maybeFirst", predicate ? parse(predicate.toString()) : undefined, args);
 
     return this.#executeOne<T | undefined>();
   }
+
+  /**
+   * Returns the only element of a sequence.
+   *
+   * @returns A promise that resolves with the only element in the sequence.
+   * @throws Error, if no such element is found, or there are multiple elements in the sequence.
+   */
+  single(): Promise<T>;
 
   /**
    * Returns the only element of a sequence that satisfies a specified condition.
@@ -789,15 +792,22 @@ export class AsyncQueryable<T, E extends Entities> implements AsyncSequence<T> {
    * @returns A promise that resolves with the only element in the sequence that satisfies the condition.
    * @throws Error, if no such element is found, or multiple elements satisfy the condition.
    */
-  single<P extends PredicateExpr<T, A>, A extends unknown[]>(predicate?: P, ...args: A) {
-    const expressions = predicate
-      ? this.#curry(parse(predicate.toString()), args as Primitive[])
-      : [];
+  single<P extends PredicateExpr<T, A>, A extends unknown[]>(predicate?: P, ...args: A): Promise<T>;
 
-    this.expression = this.op("single", ...expressions);
+  single<P extends PredicateExpr<T, A>, A extends unknown[]>(predicate?: P, ...args: A) {
+    this.op("single", predicate ? parse(predicate.toString()) : undefined, args);
 
     return this.#executeOne<T>();
   }
+
+  /**
+   * Returns the only element of a sequence, or `undefined` if no such element is found.
+   *
+   * @returns A promise that resolves with the only element in the sequence, or `undefined`
+   * if no such element is found.
+   * @throws Error, if multiple elements satisfy the condition.
+   */
+  maybeSingle(): Promise<T | undefined>;
 
   /**
    * Returns the only element of a sequence that satisfies a specified condition, or `undefined`
@@ -808,12 +818,13 @@ export class AsyncQueryable<T, E extends Entities> implements AsyncSequence<T> {
    * @returns A promise that resolves with the only element in the sequence that satisfies the condition, or `undefined` if no such element is found.
    * @throws Error, if multiple elements satisfy the condition.
    */
-  maybeSingle<P extends PredicateExpr<T, A>, A extends unknown[]>(predicate?: P, ...args: A) {
-    const expressions = predicate
-      ? this.#curry(parse(predicate.toString()), args as Primitive[])
-      : [];
+  maybeSingle<P extends PredicateExpr<T, A>, A extends unknown[]>(
+    predicate?: P,
+    ...args: A
+  ): Promise<T | undefined>;
 
-    this.expression = this.op("maybeSingle", ...expressions);
+  maybeSingle<P extends PredicateExpr<T, A>, A extends unknown[]>(predicate?: P, ...args: A) {
+    this.op("maybeSingle", predicate ? parse(predicate.toString()) : undefined, args);
 
     return this.#executeOne<T | undefined>();
   }
@@ -824,7 +835,7 @@ export class AsyncQueryable<T, E extends Entities> implements AsyncSequence<T> {
    * @returns A promise that resolves with the number of elements in the sequence.
    */
   count() {
-    this.expression = this.op("count");
+    this.op("count");
 
     return this.#executeOne<number>();
   }
@@ -835,7 +846,7 @@ export class AsyncQueryable<T, E extends Entities> implements AsyncSequence<T> {
    * @returns A promise that resolves with the minimum value of the specified numerical expression for the sequence.
    */
   min(expr?: NumericExpr<T>) {
-    this.expression = this.op("min", ...(expr ? [parse(expr.toString())] : []));
+    this.op("min", expr ? parse(expr.toString()) : undefined);
 
     return this.#executeOne<number>();
   }
@@ -846,7 +857,7 @@ export class AsyncQueryable<T, E extends Entities> implements AsyncSequence<T> {
    * @returns A promise that resolves with the maximum value of the specified numerical expression for the sequence.
    */
   max(expr?: NumericExpr<T>) {
-    this.expression = this.op("max", ...(expr ? [parse(expr.toString())] : []));
+    this.op("max", expr ? parse(expr.toString()) : undefined);
 
     return this.#executeOne<number>();
   }
@@ -857,7 +868,7 @@ export class AsyncQueryable<T, E extends Entities> implements AsyncSequence<T> {
    * @returns A promise that resolves with the sum of the specified numerical expression for the sequence.
    */
   sum(expr?: NumericExpr<T>) {
-    this.expression = this.op("sum", ...(expr ? [parse(expr.toString())] : []));
+    this.op("sum", expr ? parse(expr.toString()) : undefined);
 
     return this.#executeOne<number>();
   }
@@ -868,7 +879,7 @@ export class AsyncQueryable<T, E extends Entities> implements AsyncSequence<T> {
    * @returns A promise that resolves with the average value of the specified numerical expression for the sequence.
    */
   avg(expr?: NumericExpr<T>) {
-    this.expression = this.op("avg", ...(expr ? [parse(expr.toString())] : []));
+    this.op("avg", expr ? parse(expr.toString()) : undefined);
 
     return this.#executeOne<number>();
   }
@@ -878,7 +889,7 @@ export class AsyncQueryable<T, E extends Entities> implements AsyncSequence<T> {
    * @returns The queryable result of the array operation.
    */
   array() {
-    this.expression = this.op("array");
+    this.op("array");
 
     return this as AsyncQueryable<T[], E>;
   }
@@ -896,23 +907,31 @@ export class AsyncQueryable<T, E extends Entities> implements AsyncSequence<T> {
 
   /** @ignore */
   [__expr]() {
-    return this.expression;
+    return this.#expression;
   }
 
   /** @ignore */
-  protected op(name: string, ...args: Expression[]) {
-    return {
+  protected op(name: string, expressions?: Expression | Expression[], args?: unknown[]) {
+    if (!Array.isArray(expressions)) {
+      expressions = expressions ? [expressions] : [];
+    }
+
+    if (args && args.length > 0) {
+      expressions.push(constant(args));
+    }
+
+    this.#expression = {
       type: "CallExpression",
       callee: {
         type: "MemberExpression",
         computed: false,
-        object: this.expression,
+        object: this.#expression,
         property: {
           type: "IdentifierExpression",
           name,
         },
       },
-      arguments: args,
+      arguments: expressions,
     };
   }
 
@@ -950,35 +969,6 @@ export class AsyncQueryable<T, E extends Entities> implements AsyncSequence<T> {
   protected execute(cache?: QueryCache) {
     return this.#compiler.compile(() => this)([], cache);
   }
-
-  #curry(expression: Expression, args: any[]) {
-    if (expression.type === "ArrowFunctionExpression") {
-      const arrow = expression as ArrowFunctionExpression;
-
-      if (arrow.params && arrow.params.length > 1) {
-        const params = arrow.params;
-
-        return [
-          { ...arrow, params: params.slice(0, params.length - args.length) },
-          constant(
-            Map(
-              args.map((a, i) => {
-                const param = params[params.length - args.length + i]!;
-
-                if (param.type !== "IdentifierExpression") {
-                  throw new Error(`Invalid local parameter: ${printExpr(param)}`);
-                }
-
-                return [(param as IdentifierExpression).name, a];
-              })
-            )
-          ),
-        ];
-      }
-    }
-
-    return [expression];
-  }
 }
 
 /**
@@ -1010,7 +1000,7 @@ export class AsyncQueryableRoot<T, E extends Entities> extends AsyncQueryable<T,
    * @returns The queryable result of the injected SQL query.
    */
   sql(strings: TemplateStringsArray, ...values: any[]) {
-    this.expression = this.op("sql", constant(strings), constant(values));
+    this.op("sql", [constant(strings), constant(values)]);
 
     return this;
   }
@@ -1026,7 +1016,7 @@ export class AsyncQueryableRoot<T, E extends Entities> extends AsyncQueryable<T,
    * @returns The queryable with the specified options applied.
    */
   options(options: QueryOptions) {
-    this.expression = this.op("configure", constant(options));
+    this.op("configure", constant(options));
 
     return this;
   }

@@ -61,11 +61,31 @@ export const queryFixture = (driver: Driver, logger?: Logger) => {
 export const queryTests = (verse: Verse<typeof queryModel>) => {
   const snap = dataTest(verse);
 
+  test("sub-query with parameter not compiled scalar projection", async () => {
+    const q = verse.from.artists
+      .select(a => a.artistId)
+      .select((ar, $limit, from) => from.albums.limit($limit).where(a => a.artistId === ar), 1);
+
+    await snap(q);
+  });
+
   test("sub-query with limit parameter not compiled", async () => {
     const q = verse.from.artists.select(
-      (_, from, $limit) => from.albums.limit($limit).maybeFirst(),
+      (_, $limit, from) => from.albums.limit($limit).maybeFirst(),
       1
     );
+
+    await snap(q);
+  });
+
+  test("sub-query select not compiled", async () => {
+    const q = verse.from.artists.select((_, from) => from.albums.limit(1).maybeFirst());
+
+    await snap(q);
+  });
+
+  test("select parameter", async () => {
+    const q = verse.from.albums.select((a, $foo) => [a.title, $foo], "bar");
 
     await snap(q);
   });

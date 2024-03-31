@@ -22,13 +22,11 @@ export class SqlBindingState {
   type?: SqlType | undefined;
   element?: SqlNode | undefined;
   model?: AbstractModel | undefined;
-
-  /**
-   * @ignore
-   */
-  load?: LoadNode | undefined;
-
   eager?: boolean | undefined;
+  join?: boolean | undefined;
+
+  /** @ignore */
+  load?: LoadNode | undefined;
 }
 
 export class SqlBinding {
@@ -67,6 +65,10 @@ export class SqlBinding {
 
   get eager() {
     return this.state.eager;
+  }
+
+  get join() {
+    return this.state.join;
   }
 
   withType(type?: SqlType) {
@@ -1991,10 +1993,6 @@ export class SqlComposite extends SqlNode {
     binding?: SqlBinding
   ) {
     super(binding);
-  }
-
-  record() {
-    return this.map(n => (n instanceof SqlAlias ? n.alias.bind(n.binding!) : n));
   }
 
   override bind(binding: SqlBinding): SqlNode {
