@@ -89,8 +89,7 @@ export class QueryCompiler {
     let expr = arrowExpr.body;
 
     if (expr.type === "ThisExpression") {
-      const queryable = (query as any)(this.from);
-      expr = queryable[__expr]();
+      expr = (query as any)(this.from)[__expr]();
     }
 
     this.metadata.config.logger?.debug(expr);
@@ -265,40 +264,6 @@ class AsyncSequenceImpl<T> implements AsyncSequence<T> {
   }
 }
 
-class Scope {
-  constructor(
-    readonly projection: SqlNode,
-    readonly name?: string,
-    readonly children: List<Scope> = List()
-  ) {}
-
-  contains(name: string): boolean {
-    return this.name === name || this.children.some(c => c.contains(name));
-  }
-
-  resolve(name: string, composite: SqlComposite) {
-    if (name === this.name) {
-      return composite;
-    }
-
-    let resolved: SqlComposite | undefined;
-
-    for (let i = 0; i < this.children.size; i++) {
-      const node = composite.nodes.get(i);
-
-      if (node instanceof SqlComposite) {
-        resolved = this.children.get(i)!.resolve(name, node);
-
-        if (resolved) {
-          break;
-        }
-      }
-    }
-
-    return resolved;
-  }
-}
-
 type Cardinality = "many" | "one" | "optional";
 
 export class CompilationContext {
@@ -320,14 +285,12 @@ export class CompilationContext {
   }
 }
 
-const defaultGroupSelector = parse("g => ({ key: g.key, items: g.array(x => x) })");
-
 export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
   static readonly #AGGREGATES = ImmutableSet.of("min", "max", "avg", "sum");
 
-  #scopes: Stack<Scope> = Stack();
+  #scopes: Stack<[Expression[], SqlNode]> = Stack();
 
-  #locals: Stack<Map<string, any>> = Stack();
+  #locals: Stack<any[]> = Stack();
   #localParams: List<any> = List();
   #conversions: Map<number, Converter> = Map();
   #configuration?: QueryOptions | undefined;
@@ -371,68 +334,44 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
   }
 
   protected override visitArrowExpression(expr: ArrowFunctionExpression) {
-    this.#scopes = this.#scopes.push(this.scopes(expr.params!));
+    const oldProjection = this.#projection;
+    this.#scopes = this.#scopes.push([expr.params!, this.#projection]);
 
     try {
       return this.scopedVisit(expr.body);
     } finally {
       this.#scopes = this.#scopes.pop();
+      this.#projection = oldProjection;
     }
-  }
-
-  private scopes(params: Expression[]): Scope {
-    const scopes = params.map(p => {
-      if (p.type === "IdentifierExpression") {
-        return new Scope(this.#projection, (p as IdentifierExpression).name);
-      }
-
-      if (p.type === "ArrayExpression") {
-        return this.scopes((p as ArrayExpression).elements);
-      }
-
-      throw new Error(`Unsupported scope expression type: ${p.type}`);
-    });
-
-    if (scopes.length === 1) {
-      return scopes[0]!;
-    }
-
-    return new Scope(this.#projection, undefined, List(scopes));
   }
 
   scopedVisit(expr: Expression) {
-    const oldProjection = this.#projection;
+    let node = super.visit(expr);
 
-    try {
-      let node = super.visit(expr);
+    if (node instanceof SqlSelect && node.projection instanceof SqlComposite) {
+      const alias = this.context.createAlias();
 
-      if (node instanceof SqlSelect && node.projection instanceof SqlComposite) {
-        const alias = this.context.createAlias();
+      let projection = new SqlFunction(
+        "json_array",
+        List.of(node.projection.scope(alias)),
+        new SqlBinding({ element: node.projection, type: "json" })
+      );
 
-        let projection = new SqlFunction(
-          "json_array",
-          List.of(node.projection.record().scope(alias)),
-          new SqlBinding({ element: node.projection, type: "json" })
+      if (node.binding?.model instanceof NavigationPropertyModel && node.binding.model.many) {
+        projection = new SqlFunction(
+          "json_arrayagg",
+          List.of(projection),
+          new SqlBinding({ klass: Array, element: projection, type: "json" })
         );
-
-        if (node.binding?.model instanceof NavigationPropertyModel && node.binding.model.many) {
-          projection = new SqlFunction(
-            "json_arrayagg",
-            List.of(projection),
-            new SqlBinding({ klass: Array, element: projection, type: "json" })
-          );
-        }
-
-        node = new SqlSelect({
-          projection: projection.identify(n => this.context.identify(n)),
-          from: new SqlAlias(node, alias),
-        });
       }
 
-      return node;
-    } finally {
-      this.#projection = oldProjection;
+      node = new SqlSelect({
+        projection: projection.identify(n => this.context.identify(n)),
+        from: new SqlAlias(node, alias),
+      });
     }
+
+    return node;
   }
 
   protected override visitArrayExpression(expr: ArrayExpression) {
@@ -470,6 +409,81 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
     );
   }
 
+  #nameIndex(expressions: Expression[], name: string): number {
+    let i = 0;
+
+    while (i < expressions.length) {
+      const expr = expressions[i]!;
+
+      if (expr.type === "IdentifierExpression") {
+        const identifier = expr as IdentifierExpression;
+
+        if (identifier.name === name) {
+          return i;
+        }
+      } else if (expr.type === "ArrayExpression") {
+        const j = this.#nameIndex((expr as ArrayExpression).elements, name);
+
+        if (j !== -1) {
+          return j + i;
+        }
+      }
+
+      i++;
+    }
+
+    return -1;
+  }
+
+  *#nodes(node: SqlNode): Generator<SqlNode> {
+    if (node.binding?.join) {
+      const composite = node as SqlComposite;
+
+      for (const child of composite.nodes) {
+        yield* this.#nodes(child);
+      }
+    } else {
+      yield node;
+    }
+  }
+
+  #resolve(scope: [Expression[], SqlNode], name: string): SqlNode | undefined {
+    const [expressions, projection] = scope;
+    const index = this.#nameIndex(expressions, name);
+
+    if (index === -1) {
+      return undefined;
+    }
+
+    const nodes = [...this.#nodes(projection)];
+    const node = nodes[index];
+
+    if (node) {
+      return node;
+    }
+
+    const locals = this.#locals.peek();
+
+    if (locals) {
+      const i = index - nodes.length;
+
+      if (i < locals.length) {
+        const value = locals[i];
+
+        this.#localParams = this.#localParams.push(value);
+
+        return new SqlParameter(
+          this.#paramCount++,
+          new SqlBinding({
+            model: this.context.metadata.model.conversion(value?.constructor),
+          })
+        );
+      }
+    }
+
+    return new SqlParameter(-1);
+  }
+
   protected override visitIdentifierExpression(expr: IdentifierExpression) {
     const index = this.argsMap.keyOf(expr.name);
 
@@ -477,37 +491,12 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
       return new SqlParameter(index - 1);
     }
 
-    const scopeIndex = this.#scopes.findIndex(s => s.contains(expr.name));
+    for (const scope of this.#scopes) {
+      const node = this.#resolve(scope, expr.name);
 
-    if (scopeIndex != -1) {
-      const scope = this.#scopes.get(scopeIndex)!;
-
-      if (scope.projection instanceof SqlComposite) {
-        const node = scope.resolve(expr.name, scope.projection)!;
-
-        if (node) {
-          return node.record();
-        }
-
-        return new SqlParameter(-1);
+      if (node) {
+        return node;
       }
-
-      return scope.projection;
-    }
-
-    const locals = this.#locals.peek();
-
-    if (locals?.has(expr.name)) {
-      const value = locals.get(expr.name);
-
-      this.#localParams = this.#localParams.push(value);
-
-      return new SqlParameter(
-        this.#paramCount++,
-        new SqlBinding({
-          model: this.context.metadata.model.conversion(value?.constructor),
-        })
-      );
     }
 
     if (expr.name === "Date") {
@@ -848,7 +837,7 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
 
             nodes = nodes.push(target.projection.scope(rhs));
 
-            this.#projection = new SqlComposite(nodes);
+            this.#projection = new SqlComposite(nodes, new SqlBinding({ join: true }));
 
             const join = new SqlJoin(
               op == "leftJoin" ? "left" : "inner",
@@ -856,7 +845,7 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
               this.visit(expr.arguments[1])
             );
 
-            const projection = this.context.uniquify(new SqlComposite(nodes));
+            const projection = this.context.uniquify(this.#projection);
 
             return new SqlSelect({
               projection,
@@ -870,11 +859,17 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
 
             this.#groupBy = groupBy;
 
-            const selector = (
-              arity2 ? expr.arguments[1] : defaultGroupSelector
-            ) as ArrowFunctionExpression;
+            let selector = expr.arguments[1] as ArrowFunctionExpression | undefined;
 
-            if (selector.body.type === "IdentifierExpression") {
+            if (!selector) {
+              const key = expr.arguments[0] as ArrowFunctionExpression;
+              const params = key.params!.map(p => (p as IdentifierExpression).name).join(", ");
+              const result = key.params!.length === 1 ? params : `[${params}]`;
+
+              selector = parse(
+                `g => ({ key: g.key, items: g.array((${params}) => ${result}) })`
+              ) as ArrowFunctionExpression;
+            } else if (selector.body.type === "IdentifierExpression") {
               error(
                 `Unable to compile the identity 'groupBy' result expression: '${printExpr(expr.arguments[1]!)}'.
                  Use the 'groupBy' overload that omits the result expression.`
@@ -1369,7 +1364,8 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
   }
 
   #withLocals(call: CallExpression, sql: () => SqlNode) {
-    const constant = call.arguments[1] as ConstantExpression;
+    const last = call.arguments[call.arguments.length - 1];
+    const constant = last as ConstantExpression;
 
     if (constant) {
       this.#locals = this.#locals.push(constant.value);

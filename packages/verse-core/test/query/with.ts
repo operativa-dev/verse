@@ -138,7 +138,7 @@ export const withTests = (verse: Verse<typeof withModel>) => {
       .leftJoin(Album, (a, al) => a.artistId === al.artistId)
       .groupBy(
         (a, _) => [a.artistId, a.name],
-        g => [g.key[1], g.array(([_, al]) => [al.title, al.albumId])]
+        g => [g.key[1], g.array((_, al) => [al.title, al.albumId])]
       );
 
     await snap(q);
@@ -149,7 +149,7 @@ export const withTests = (verse: Verse<typeof withModel>) => {
       .leftJoin(Album, (a, al) => a.artistId === al.artistId)
       .groupBy(
         (a, _) => a.artistId,
-        g => g.array(([_, al]) => al.title)
+        g => g.array((_, al) => al.title)
       );
 
     await snap(q);
@@ -160,7 +160,7 @@ export const withTests = (verse: Verse<typeof withModel>) => {
       .leftJoin(Album, (a, al) => a.artistId === al.artistId)
       .groupBy(
         (a, _) => ({ id: a.artistId, name: a.name }),
-        g => [g.key.name, g.array(([_, al]) => [al.title, al.albumId])]
+        g => [g.key.name, g.array((_, al) => [al.title, al.albumId])]
       );
 
     await snap(q);
@@ -171,7 +171,7 @@ export const withTests = (verse: Verse<typeof withModel>) => {
       .leftJoin(Album, (a, al) => a.artistId === al.artistId)
       .groupBy(
         (a, _) => a.artistId,
-        g => [g.key, g.array(([_, al]) => [al.title, al.albumId])]
+        g => [g.key, g.array((_, al) => [al.title, al.albumId])]
       );
 
     await snap(q);
@@ -182,7 +182,7 @@ export const withTests = (verse: Verse<typeof withModel>) => {
       .leftJoin(Album, (a, al) => a.artistId === al.artistId)
       .groupBy(
         (a, _) => a.artistId,
-        g => [g.key, g.array(([_, al]) => al)]
+        g => [g.key, g.array((_, al) => al)]
       );
 
     await snap(q);
@@ -193,7 +193,7 @@ export const withTests = (verse: Verse<typeof withModel>) => {
       .leftJoin(Album, (a, al) => a.artistId === al.artistId)
       .groupBy(
         (a, _) => a.artistId,
-        g => g.array(([a, al]) => [al, a])
+        g => g.array((a, al) => [al, a])
       );
 
     await snap(q);
@@ -204,7 +204,7 @@ export const withTests = (verse: Verse<typeof withModel>) => {
       .leftJoin(Album, (a, al) => a.artistId === al.artistId)
       .groupBy(
         (a, _) => a.artistId,
-        g => g.array(([_, al]) => ({ foo: al.title, bar: al.albumId }))
+        g => g.array((_, al) => ({ foo: al.title, bar: al.albumId }))
       );
 
     await snap(q);
@@ -300,7 +300,7 @@ export const withTests = (verse: Verse<typeof withModel>) => {
       .leftJoin(Album, (a, al) => a.artistId === al.artistId)
       .groupBy(
         (a, _) => a.artistId,
-        g => g.array(([_, al]) => al)
+        g => g.array((_, al) => al)
       );
 
     await snap(q);
@@ -311,7 +311,7 @@ export const withTests = (verse: Verse<typeof withModel>) => {
       .leftJoin(Album, (a, al) => a.artistId === al.artistId)
       .groupBy(
         (a, _) => a.artistId,
-        g => g.array(([_, al]) => al)
+        g => g.array((_, al) => al)
       )
       .select(als => als);
 
@@ -323,7 +323,7 @@ export const withTests = (verse: Verse<typeof withModel>) => {
       .leftJoin(Album, (a, al) => a.artistId === al.artistId)
       .groupBy(
         (a, _) => a.artistId,
-        g => g.array(([_, al]) => al)
+        g => g.array((_, al) => al)
       )
       .select(als => als)
       .select(a => [a])
@@ -337,7 +337,7 @@ export const withTests = (verse: Verse<typeof withModel>) => {
       .leftJoin(Album, (a, al) => a.artistId === al.artistId)
       .groupBy(
         (a, _) => a.artistId,
-        g => g.array(([_, al]) => ({ a: al, b: al }))
+        g => g.array((_, al) => ({ a: al, b: al }))
       );
 
     await snap(q);
@@ -348,7 +348,7 @@ export const withTests = (verse: Verse<typeof withModel>) => {
       .leftJoin(Album, (a, al) => a.artistId === al.artistId)
       .groupBy(
         (a, _) => a.artistId,
-        g => g.array(([_, al]) => al.title)
+        g => g.array((_, al) => al.title)
       )
       .where(t => t[0]!.like("T%"));
 
@@ -360,7 +360,7 @@ export const withTests = (verse: Verse<typeof withModel>) => {
       .leftJoin(Album, (a, al) => a.artistId === al.artistId)
       .groupBy(
         (a, _) => a.artistId,
-        g => g.array(([_, al]) => al.artistId)
+        g => g.array((_, al) => al.artistId)
       )
       .where(t => t[0]! > 10);
 
@@ -372,7 +372,7 @@ export const withTests = (verse: Verse<typeof withModel>) => {
       .leftJoin(Album, (a, al) => a.artistId === al.artistId)
       .groupBy(
         (a, _) => a.artistId,
-        g => g.array(([_, al]) => [al.artistId])
+        g => g.array((_, al) => [al.artistId])
       )
       .where(t => t[0]![0]! > 10);
 
@@ -384,7 +384,7 @@ export const withTests = (verse: Verse<typeof withModel>) => {
       .leftJoin(Album, (a, al) => a.artistId === al.artistId)
       .groupBy(
         (a, _) => a.artistId,
-        g => g.array(([_, al]) => al)
+        g => g.array((_, al) => al)
       )
       .where(t => t[0]!.title.like("T%"));
 
@@ -396,7 +396,7 @@ export const withTests = (verse: Verse<typeof withModel>) => {
       .leftJoin(Album, (a, al) => a.artistId === al.artistId)
       .groupBy(
         (a, _) => a.artistId,
-        g => g.array(([_, al]) => ({ key: al }))
+        g => g.array((_, al) => ({ key: al }))
       )
       .where(o => o[1]!.key.title.like("T%"));
 
@@ -408,7 +408,7 @@ export const withTests = (verse: Verse<typeof withModel>) => {
       .leftJoin(Album, (a, al) => a.artistId === al.artistId)
       .groupBy(
         (a, _) => a.artistId,
-        g => g.array(([_, al]) => ({ key: [al] }))
+        g => g.array((_, al) => ({ key: [al] }))
       )
       .where(o => o[1]!.key[0]!.albumId > 10);
 
@@ -420,7 +420,7 @@ export const withTests = (verse: Verse<typeof withModel>) => {
       .leftJoin(Album, (a, al) => a.artistId === al.artistId)
       .groupBy(
         (a, _) => a.artistId,
-        g => [g.key, g.array(([_, al]) => al)]
+        g => [g.key, g.array((_, al) => al)]
       );
 
     await snap(q);
@@ -554,7 +554,7 @@ export const withTests = (verse: Verse<typeof withModel>) => {
       .leftJoin(Album, (a, al) => a.artistId === al.artistId)
       .groupBy(
         (a, _) => a.artistId,
-        g => g.array(([_, al]) => al)
+        g => g.array((_, al) => al)
       )
       .select(als => als[0]);
 
@@ -566,7 +566,7 @@ export const withTests = (verse: Verse<typeof withModel>) => {
       .leftJoin(Album, (a, al) => a.artistId === al.artistId)
       .groupBy(
         (a, _) => a.artistId,
-        g => g.array(([_, al]) => al)
+        g => g.array((_, al) => al)
       )
       .select(als => als[0]!)
       .select(a => a.albumId)
@@ -581,7 +581,7 @@ export const withTests = (verse: Verse<typeof withModel>) => {
       .leftJoin(Album, (a, al) => a.artistId === al.artistId)
       .groupBy(
         (a, _) => a.artistId,
-        g => g.array(([_, al]) => al)
+        g => g.array((_, al) => al)
       )
       .select(als => als[0]!)
       .select(a => a.title)
@@ -678,6 +678,15 @@ export const withTests = (verse: Verse<typeof withModel>) => {
     await snap(q());
   });
 
+  test("sub-query correlated where first outside non-compiled", async () => {
+    const q = verse.from.artists.where(
+      (a, from) =>
+        a.artistId === from.albums.where(al => a.artistId === al.artistId).maybeFirst()?.artistId
+    );
+
+    await snap(q);
+  });
+
   test("sub-query correlated where first inside", async () => {
     const q = verse.compile(from =>
       from.artists.where(
@@ -726,7 +735,7 @@ export const withTests = (verse: Verse<typeof withModel>) => {
       .leftJoin(Album, (a, al) => a.artistId === al.artistId)
       .groupBy(
         (a, _) => a.artistId,
-        g => [g.key, g.array(([_, al]) => al)]
+        g => [g.key, g.array((_, al) => al)]
       );
 
     await snap(q);
@@ -737,7 +746,7 @@ export const withTests = (verse: Verse<typeof withModel>) => {
       .leftJoin(Album, (a, al) => a.artistId === al.artistId)
       .groupBy(
         (a, _) => a.artistId,
-        g => [g.key, g.array(([a, al]) => [a, al, 42, al.title])]
+        g => [g.key, g.array((a, al) => [a, al, 42, al.title])]
       );
 
     await snap(q);
