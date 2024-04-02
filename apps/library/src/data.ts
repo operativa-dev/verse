@@ -1,12 +1,6 @@
 import { verse } from "@operativa/verse";
 import { sqlite } from "@operativa/verse-sqlite";
-import {
-  boolean,
-  date,
-  entity,
-  int,
-  string,
-} from "@operativa/verse/model/builder";
+import { boolean, date, entity, int, string } from "@operativa/verse/model/builder";
 import { PrettyConsoleLogger } from "@operativa/verse/utils/logging";
 
 export class User {
@@ -23,13 +17,20 @@ export class User {
 export class Book {
   public readonly bookId!: number;
 
-  constructor(public title: string, public description: string) {}
+  constructor(
+    public title: string,
+    public description: string
+  ) {}
 }
 
 export class LibraryInventory {
   public readonly id!: number;
 
-  constructor(public created: Date, public bookId: Book, public userId: User) {}
+  constructor(
+    public created: Date,
+    public bookId: number,
+    public userId?: number
+  ) {}
 }
 
 export const db = verse({
@@ -48,7 +49,7 @@ export const db = verse({
           active: boolean(),
           isAuthor: boolean(),
         },
-        (t) => {
+        t => {
           t.table("users");
           t.data(
             new User(
@@ -79,7 +80,7 @@ export const db = verse({
           title: string(),
           description: string(),
         },
-        (t) => {
+        t => {
           t.table("books");
           t.data(
             new Book("Dune", "Space politics about a desert planet"),
@@ -99,9 +100,9 @@ export const db = verse({
           bookId: int(),
           userId: int({ nullable: true }),
         },
-        (t) => {
+        t => {
           t.table("libraryInventory");
-          t.data(new LibraryInventory(new Date(), 1, null));
+          t.data(new LibraryInventory(new Date(), 1, undefined));
         }
       ),
     },

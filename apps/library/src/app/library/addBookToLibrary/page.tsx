@@ -14,7 +14,7 @@ async function addBookToLibrary(data: FormData) {
   }
   const uow = db.uow();
   let multipleObjectsCreated = new Array(quantity).fill(null).map(function () {
-    return new LibraryInventory(new Date(), bookId, null);
+    return new LibraryInventory(new Date(), bookId, undefined);
   });
 
   await uow.libraryInventory.add(...multipleObjectsCreated);
@@ -39,14 +39,12 @@ export default async function Page() {
         <h1 className="text-2xl">Add Book to Library</h1>
       </header>
       <form action={addBookToLibrary} className="flex gap-2 flex-col">
-        <label className="block mb-2 text-sm font-medium">
-          Select an option
-        </label>
+        <label className="block mb-2 text-sm font-medium">Select an option</label>
         <select
           name="book"
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         >
-          {bookList.map((book) => (
+          {bookList.map(book => (
             <option key={book.bookId} value={book.bookId}>
               {book.title}
             </option>
