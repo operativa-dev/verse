@@ -152,6 +152,18 @@ export const queryTests = (verse: Verse<typeof queryModel>) => {
     await snap(q("Miles Ahead"));
   });
 
+  test("empty template literal", async () => {
+    const q = verse.from.albums.limit(1).select(_ => ``);
+
+    await snap(q);
+  });
+
+  test("simple template literal", async () => {
+    const q = verse.from.albums.limit(1).select(_ => `hi!`);
+
+    await snap(q);
+  });
+
   test("select object literal", async () => {
     const q: ($title: string) => AsyncSequence<{ msg: string; sum: number }> = verse.compile(
       (from, $title: string) =>

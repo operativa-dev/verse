@@ -148,6 +148,8 @@ The `limit` operator is used to limit the number of elements in a sequence:
 const limit = await db.from.artists.limit(5).toArray();
 ```
 
+Limit queries are automatically parameterized to improve performance and security.
+
 ## max
 
 The `max` operator is an aggregate operator that calculates the maximum of a sequence of numbers:
@@ -220,4 +222,92 @@ The `offset` operator is used to skip a number of elements in a sequence:
 
 ```ts include ./apps/snippets/src/query.ts:offset showLineNumbers
 const offset = await db.from.artists.offset(5).toArray();
+```
+
+Offset queries are automatically parameterized to improve performance and security.
+
+## orderBy
+
+The `orderBy` operator is used to sort elements in a sequence:
+
+```ts include ./apps/snippets/src/query.ts:order-by showLineNumbers
+const ordered = await db.from.artists.orderBy(a => a.name).toArray();
+```
+
+## orderByDesc
+
+The `orderByDesc` operator is used to sort elements in a sequence in descending order:
+
+```ts include ./apps/snippets/src/query.ts:order-by-desc showLineNumbers
+const orderedDesc = await db.from.artists.orderByDesc(a => a.name).toArray();
+```
+
+## select
+
+The `select` operator is used to project elements in a sequence:
+
+```ts include ./apps/snippets/src/query.ts:select showLineNumbers
+const select = await db.from.artists.select(a => a.name).toArray();
+```
+
+Complex projections are supported:
+
+```ts include ./apps/snippets/src/query.ts:select-complex showLineNumbers
+const selectComplex = await db.from.albums
+  .select(a => ({
+    id: a.albumId,
+    desc: `Title: ${a.title}`,
+    props: [a.artistId],
+  }))
+  .toArray();
+```
+
+Verse will push down projection expressions to the database when possible (such as the template literal above).
+
+## single
+
+The `single` operator is used to get the only element of a sequence:
+
+```ts include ./apps/snippets/src/query.ts:single showLineNumbers
+let single = await db.from.artists.where(a => a.name === "AC/DC").single();
+```
+
+Single will throw if there are no elements in the sequence, or if there is more than one element.
+
+There is a shorthand for the common case above:
+
+```ts include ./apps/snippets/src/query.ts:single-pred showLineNumbers
+single = await db.from.artists.single(a => a.name === "AC/DC");
+```
+
+## sum
+
+The `sum` operator is an aggregate operator that calculates the sum of a sequence of numbers:
+
+```ts include ./apps/snippets/src/query.ts:sum showLineNumbers
+let sum = await db.from.artists.select(a => a.artistId).sum();
+```
+
+There is a shorthand for the common case above:
+
+```ts include ./apps/snippets/src/query.ts:sum-short showLineNumbers
+sum = await db.from.artists.sum(a => a.artistId);
+```
+
+## toArray
+
+Buffers the sequence into an array:
+
+```ts include ./apps/snippets/src/query.ts:to-array showLineNumbers
+const toArray = await db.from.artists.toArray();
+```
+
+By default, sequences are lazy and will not execute until the query is iterated, or a terminal operator like `toArray` is called.
+
+## where
+
+The `where` operator is used to filter elements in a sequence:
+
+```ts include ./apps/snippets/src/query.ts:where showLineNumbers
+const where = await db.from.artists.where(a => a.name === "AC/DC").toArray();
 ```

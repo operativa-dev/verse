@@ -1,4 +1,3 @@
-//import jsep from "jsep";
 import { afterEach, describe, expect, test } from "vitest";
 import { Expression, lex, nameof, parse, Token } from "../../src/query/parser.js";
 import { snap } from "../infra.js";
@@ -233,7 +232,8 @@ describe("parser", () => {
       "() => a+b",
       "(a, [b, _]) => a+b",
       "() => (a, b) => a+b",
-      "([_, al]) => al.title"
+      "([_, al]) => al.title",
+      "(al,) => al.title"
     );
   });
 

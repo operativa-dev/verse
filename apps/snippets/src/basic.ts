@@ -26,7 +26,7 @@ const Todo = entity(
 
 const db = verse({
   config: {
-    driver: sqlite("todos.sqlite"),
+    driver: sqlite(`${__dirname}/todos.sqlite`),
     logger: new PrettyConsoleLogger(),
   },
   model: {

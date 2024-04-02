@@ -1,3 +1,5 @@
+// noinspection JSUnusedLocalSymbols,JSUnusedAssignment
+
 import { verse } from "@operativa/verse";
 import { sqlite } from "@operativa/verse-sqlite";
 import { entity, int, string } from "@operativa/verse/model/builder";
@@ -26,7 +28,7 @@ const Artist = entity(
 
 const db = verse({
   config: {
-    driver: sqlite("Chinook_Sqlite.sqlite"),
+    driver: sqlite(`${__dirname}/Chinook_Sqlite.sqlite`),
     logger: new PrettyConsoleLogger(),
   },
   model: {
@@ -189,4 +191,50 @@ avg = await db.from.artists.min(a => a.artistId);
 
 /// offset
 const offset = await db.from.artists.offset(5).toArray();
+///
+
+/// order-by
+const ordered = await db.from.artists.orderBy(a => a.name).toArray();
+///
+
+/// order-by-desc
+const orderedDesc = await db.from.artists.orderByDesc(a => a.name).toArray();
+///
+
+/// select
+const select = await db.from.artists.select(a => a.name).toArray();
+///
+
+/// select-complex
+const selectComplex = await db.from.albums
+  .select(a => ({
+    id: a.albumId,
+    desc: `Title: ${a.title}`,
+    props: [a.artistId],
+  }))
+  .toArray();
+///
+
+/// single
+let single = await db.from.artists.where(a => a.name === "AC/DC").single();
+///
+
+/// single-pred
+single = await db.from.artists.single(a => a.name === "AC/DC");
+///
+
+/// sum
+let sum = await db.from.artists.select(a => a.artistId).sum();
+///
+
+/// sum-short
+sum = await db.from.artists.sum(a => a.artistId);
+///
+
+/// to-array
+const toArray = await db.from.artists.toArray();
+///
+
+/// where
+const where = await db.from.artists.where(a => a.name === "AC/DC").toArray();
 ///
