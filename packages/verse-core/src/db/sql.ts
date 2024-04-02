@@ -1687,6 +1687,8 @@ export function sqlStr(value: string, binding?: SqlBinding) {
 }
 
 export class SqlString extends SqlNode {
+  static readonly EMPTY = new SqlString("");
+
   constructor(
     readonly value: string,
     binding?: SqlBinding

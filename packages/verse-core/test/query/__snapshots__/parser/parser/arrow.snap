@@ -122,4 +122,26 @@
     ],
     "type": "ArrowFunctionExpression",
   },
+  {
+    "body": {
+      "computed": false,
+      "object": {
+        "name": "al",
+        "type": "IdentifierExpression",
+      },
+      "optional": undefined,
+      "property": {
+        "name": "title",
+        "type": "IdentifierExpression",
+      },
+      "type": "MemberExpression",
+    },
+    "params": [
+      {
+        "name": "al",
+        "type": "IdentifierExpression",
+      },
+    ],
+    "type": "ArrowFunctionExpression",
+  },
 ]

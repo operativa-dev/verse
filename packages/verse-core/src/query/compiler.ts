@@ -33,6 +33,7 @@ import {
   SqlSelect,
   SqlStar,
   sqlStr,
+  SqlString,
   SqlTimestamp,
   SqlType,
 } from "../db/sql.js";
@@ -288,9 +289,9 @@ export class CompilationContext {
 export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
   static readonly #AGGREGATES = ImmutableSet.of("min", "max", "avg", "sum");
 
-  #scopes: Stack<[Expression[], SqlNode]> = Stack();
-
+  #scopes: Stack<[args: Expression[], projection: SqlNode]> = Stack();
   #locals: Stack<any[]> = Stack();
+
   #localParams: List<any> = List();
   #conversions: Map<number, Converter> = Map();
   #configuration?: QueryOptions | undefined;
@@ -447,7 +448,7 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
     }
   }
 
-  #resolve(scope: [Expression[], SqlNode], name: string): SqlNode | undefined {
+  #resolve(scope: [Expression[], SqlNode], name: string) {
     const [expressions, projection] = scope;
     const index = this.#nameIndex(expressions, name);
 
@@ -915,7 +916,7 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
           }
 
           if (op === "count" && arity0) {
-            if (this.#scopes.size === 0) {
+            if (this.#scopes.isEmpty()) {
               this.#cardinality = "one";
             }
 
@@ -938,7 +939,7 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
               }
             }
 
-            if (this.#scopes.size === 0) {
+            if (this.#scopes.isEmpty()) {
               this.#cardinality = "one";
             }
 
@@ -949,7 +950,7 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
           }
 
           if (op === "any" && (arity0 || arity1or2)) {
-            if (this.#scopes.size === 0) {
+            if (this.#scopes.isEmpty()) {
               this.#cardinality = "one";
             }
 
@@ -971,7 +972,7 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
           }
 
           if (op === "all" && arity1or2) {
-            if (this.#scopes.size === 0) {
+            if (this.#scopes.isEmpty()) {
               this.#cardinality = "one";
             }
 
@@ -1069,7 +1070,7 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
           }
 
           if (op === "first" && (arity0 || arity1or2)) {
-            if (this.#scopes.size === 0) {
+            if (this.#scopes.isEmpty()) {
               this.#cardinality = "one";
             } else {
               throw new Error(
@@ -1089,7 +1090,7 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
           }
 
           if (op === "maybeFirst" && (arity0 || arity1or2)) {
-            if (this.#scopes.size === 0) {
+            if (this.#scopes.isEmpty()) {
               this.#cardinality = "optional";
             }
 
@@ -1104,7 +1105,7 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
           }
 
           if (op === "single" && (arity0 || arity1or2)) {
-            if (this.#scopes.size === 0) {
+            if (this.#scopes.isEmpty()) {
               this.#cardinality = "one";
             } else {
               throw new Error(
@@ -1124,7 +1125,7 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
           }
 
           if (op === "maybeSingle" && (arity0 || arity1or2)) {
-            if (this.#scopes.size === 0) {
+            if (this.#scopes.isEmpty()) {
               this.#cardinality = "optional";
             }
 
@@ -1381,13 +1382,18 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
   }
 
   protected override visitTemplateLiteralExpression(expr: TemplateLiteralExpression) {
-    return expr.quasis
+    const parts = expr.quasis
       .map((te, i) => {
         const quasi = te.value.cooked.length > 0 ? this.visit(te) : undefined;
         const e = i < expr.expressions.length ? this.visit(expr.expressions[i]) : undefined;
+
         return quasi && e ? sqlBin(quasi, "||", e) : (quasi ?? e)!;
       })
-      .reduce((acc: SqlNode, next) => (acc ? sqlBin(acc, "||", next) : next));
+      .filter(p => p !== undefined);
+
+    return parts.length > 0
+      ? parts.reduce((acc: SqlNode, next) => (acc ? sqlBin(acc, "||", next) : acc))
+      : SqlString.EMPTY;
   }
 
   protected override visitTaggedTemplateExpression(expr: TaggedTemplateExpression) {
