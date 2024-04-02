@@ -238,3 +238,26 @@ const toArray = await db.from.artists.toArray();
 /// where
 const where = await db.from.artists.where(a => a.name === "AC/DC").toArray();
 ///
+
+/// from-parameter
+const amount = 3; // usually from user input
+
+const albums = await db.from.artists
+  .where(
+    (ar, $count, from) =>
+      from.albums.where(al => ar.artistId === al.artistId).count() > $count,
+    amount
+  )
+  .toArray();
+///
+
+/// compiled
+const artistsQuery = db.compile((from, $count: number) =>
+  from.artists.where(
+    ar => from.albums.where(al => ar.artistId === al.artistId).count() > $count
+  )
+);
+
+const result1 = await artistsQuery(3).toArray();
+const result2 = await artistsQuery(5).toArray();
+///

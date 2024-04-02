@@ -263,6 +263,14 @@ const selectComplex = await db.from.albums
 ```
 
 Verse will push down projection expressions to the database when possible (such as the template literal above).
+The example above will be translated to SQL as:
+
+```sql showLineNumbers
+select "t1"."AlbumId", 'Title: ' || "t1"."Title" as "c0", "t1"."ArtistId"
+from "Album" as "t1"
+```
+
+The rest of the required projection processing (i.e creating each result object) will be performed on the client side.
 
 ## single
 
