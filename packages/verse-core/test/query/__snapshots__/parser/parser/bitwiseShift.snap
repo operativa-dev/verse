@@ -1,0 +1,38 @@
+[
+  {
+    "left": {
+      "type": "LiteralExpression",
+      "value": 123,
+    },
+    "operator": "<<",
+    "right": {
+      "type": "LiteralExpression",
+      "value": 456,
+    },
+    "type": "BinaryExpression",
+  },
+  {
+    "left": {
+      "type": "LiteralExpression",
+      "value": 123,
+    },
+    "operator": ">>",
+    "right": {
+      "type": "LiteralExpression",
+      "value": 456,
+    },
+    "type": "BinaryExpression",
+  },
+  {
+    "left": {
+      "type": "LiteralExpression",
+      "value": 123,
+    },
+    "operator": ">>>",
+    "right": {
+      "type": "LiteralExpression",
+      "value": 456,
+    },
+    "type": "BinaryExpression",
+  },
+]

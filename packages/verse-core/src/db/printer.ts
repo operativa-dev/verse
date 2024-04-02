@@ -21,6 +21,7 @@ import {
   SqlForeignKey,
   SqlFunction,
   SqlIdentifier,
+  SqlIn,
   SqlInsert,
   SqlIsNotNull,
   SqlIsNull,
@@ -234,6 +235,10 @@ export class SqlPrinter extends SqlVisitor<string> {
 
   override visitExists(exists: SqlExists): string {
     return `exists ${this.#parens(exists.select)}`;
+  }
+
+  override visitIn(inNode: SqlIn): string {
+    return `${inNode.operand.accept(this)} in (${inNode.values.accept(this)})`;
   }
 
   override visitOrderBy(orderBy: SqlOrderBy): string {

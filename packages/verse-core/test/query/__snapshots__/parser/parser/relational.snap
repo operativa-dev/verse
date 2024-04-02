@@ -1,0 +1,59 @@
+[
+  {
+    "left": {
+      "type": "LiteralExpression",
+      "value": 123,
+    },
+    "operator": "<",
+    "right": {
+      "computed": false,
+      "object": {
+        "name": "foo",
+        "type": "IdentifierExpression",
+      },
+      "optional": undefined,
+      "property": {
+        "name": "bar",
+        "type": "IdentifierExpression",
+      },
+      "type": "MemberExpression",
+    },
+    "type": "BinaryExpression",
+  },
+  {
+    "left": {
+      "type": "LiteralExpression",
+      "value": 123,
+    },
+    "operator": ">",
+    "right": {
+      "type": "LiteralExpression",
+      "value": 456,
+    },
+    "type": "BinaryExpression",
+  },
+  {
+    "left": {
+      "type": "LiteralExpression",
+      "value": 123,
+    },
+    "operator": "<=",
+    "right": {
+      "type": "LiteralExpression",
+      "value": "abc",
+    },
+    "type": "BinaryExpression",
+  },
+  {
+    "left": {
+      "name": "bar",
+      "type": "IdentifierExpression",
+    },
+    "operator": ">=",
+    "right": {
+      "type": "LiteralExpression",
+      "value": 456,
+    },
+    "type": "BinaryExpression",
+  },
+]

@@ -1,0 +1,20 @@
+[
+  {
+    "argument": {
+      "name": "foo",
+      "type": "IdentifierExpression",
+    },
+    "operator": "++",
+    "prefix": false,
+    "type": "UnaryExpression",
+  },
+  {
+    "argument": {
+      "name": "abc",
+      "type": "IdentifierExpression",
+    },
+    "operator": "--",
+    "prefix": false,
+    "type": "UnaryExpression",
+  },
+]

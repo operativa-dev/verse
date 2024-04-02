@@ -1,0 +1,35 @@
+[
+  {
+    "type": "number",
+    "value": 0,
+  },
+  {
+    "type": "number",
+    "value": 1,
+  },
+  {
+    "type": "number",
+    "value": 15,
+  },
+  {
+    "type": "-",
+  },
+  {
+    "type": "number",
+    "value": 15,
+  },
+  {
+    "type": "+",
+  },
+  {
+    "type": "number",
+    "value": 170,
+  },
+  {
+    "type": "number",
+    "value": 5n,
+  },
+  {
+    "type": "eof",
+  },
+]

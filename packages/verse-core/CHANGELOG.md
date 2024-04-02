@@ -1,5 +1,17 @@
 # @operativa/verse
 
+## 0.7.6
+
+### Patch Changes
+
+- Removed jsep dependency
+
+## 0.7.5
+
+### Patch Changes
+
+- Mar 26 point release
+
 ## 0.7.4
 
 ### Patch Changes

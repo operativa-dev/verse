@@ -1,0 +1,34 @@
+[
+  {
+    "left": {
+      "type": "LiteralExpression",
+      "value": 123,
+    },
+    "operator": "&&",
+    "right": {
+      "type": "LiteralExpression",
+      "value": 456,
+    },
+    "type": "BinaryExpression",
+  },
+  {
+    "left": {
+      "name": "foo",
+      "type": "IdentifierExpression",
+    },
+    "operator": "||",
+    "right": {
+      "left": {
+        "name": "bar",
+        "type": "IdentifierExpression",
+      },
+      "operator": "&&",
+      "right": {
+        "name": "baz",
+        "type": "IdentifierExpression",
+      },
+      "type": "BinaryExpression",
+    },
+    "type": "BinaryExpression",
+  },
+]

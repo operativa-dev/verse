@@ -1,0 +1,33 @@
+[
+  {
+    "type": "number",
+    "value": 4,
+  },
+  {
+    "type": "number",
+    "value": 1000000,
+  },
+  {
+    "type": "number",
+    "value": 100000000000,
+  },
+  {
+    "type": "number",
+    "value": 12.34,
+  },
+  {
+    "type": "number",
+    "value": 0.555,
+  },
+  {
+    "type": "number",
+    "value": 63,
+  },
+  {
+    "type": "number",
+    "value": 255,
+  },
+  {
+    "type": "eof",
+  },
+]

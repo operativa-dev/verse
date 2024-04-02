@@ -1,0 +1,83 @@
+[
+  {
+    "arguments": [],
+    "callee": {
+      "name": "foo",
+      "type": "IdentifierExpression",
+    },
+    "type": "CallExpression",
+  },
+  {
+    "arguments": [],
+    "callee": {
+      "computed": false,
+      "object": {
+        "name": "foo",
+        "type": "IdentifierExpression",
+      },
+      "optional": undefined,
+      "property": {
+        "name": "bar",
+        "type": "IdentifierExpression",
+      },
+      "type": "MemberExpression",
+    },
+    "type": "CallExpression",
+  },
+  {
+    "computed": true,
+    "object": {
+      "arguments": [],
+      "callee": {
+        "computed": false,
+        "object": {
+          "name": "foo",
+          "type": "IdentifierExpression",
+        },
+        "optional": undefined,
+        "property": {
+          "name": "bar",
+          "type": "IdentifierExpression",
+        },
+        "type": "MemberExpression",
+      },
+      "type": "CallExpression",
+    },
+    "optional": undefined,
+    "property": {
+      "arguments": [],
+      "callee": {
+        "computed": false,
+        "object": {
+          "name": "baz",
+          "type": "IdentifierExpression",
+        },
+        "optional": true,
+        "property": {
+          "name": "qux",
+          "type": "IdentifierExpression",
+        },
+        "type": "MemberExpression",
+      },
+      "type": "CallExpression",
+    },
+    "type": "MemberExpression",
+  },
+  {
+    "arguments": [
+      {
+        "type": "LiteralExpression",
+        "value": 12,
+      },
+      {
+        "name": "abc",
+        "type": "IdentifierExpression",
+      },
+    ],
+    "callee": {
+      "name": "foo",
+      "type": "IdentifierExpression",
+    },
+    "type": "CallExpression",
+  },
+]

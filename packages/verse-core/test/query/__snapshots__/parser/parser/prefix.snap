@@ -1,0 +1,56 @@
+[
+  {
+    "argument": {
+      "type": "LiteralExpression",
+      "value": 123,
+    },
+    "operator": "+",
+    "prefix": true,
+    "type": "UnaryExpression",
+  },
+  {
+    "argument": {
+      "name": "abc",
+      "type": "IdentifierExpression",
+    },
+    "operator": "+",
+    "prefix": true,
+    "type": "UnaryExpression",
+  },
+  {
+    "argument": {
+      "name": "abc",
+      "type": "IdentifierExpression",
+    },
+    "operator": "-",
+    "prefix": true,
+    "type": "UnaryExpression",
+  },
+  {
+    "argument": {
+      "name": "abc",
+      "type": "IdentifierExpression",
+    },
+    "operator": "!",
+    "prefix": true,
+    "type": "UnaryExpression",
+  },
+  {
+    "argument": {
+      "name": "foo",
+      "type": "IdentifierExpression",
+    },
+    "operator": "-",
+    "prefix": true,
+    "type": "UnaryExpression",
+  },
+  {
+    "argument": {
+      "name": "foo",
+      "type": "IdentifierExpression",
+    },
+    "operator": "~",
+    "prefix": true,
+    "type": "UnaryExpression",
+  },
+]

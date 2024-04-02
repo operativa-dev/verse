@@ -13,7 +13,7 @@ npm install @operativa/verse @operativa/verse-sqlite
 
 Now, create a new file called `index.ts` and add the following code:
 
-```ts include ./apps/snippets/src/basic.ts:1-20 showLineNumbers
+```ts include ./apps/snippets/src/basic.ts:setup-model showLineNumbers
 import { verse } from "@operativa/verse";
 import { sqlite } from "@operativa/verse-sqlite";
 import { boolean, entity, int, string } from "@operativa/verse/model/builder";
@@ -36,7 +36,14 @@ const Todo = entity(
 );
 ```
 
-Here, we have created a simple `Todo` class with a `title` and `completed` property. We marked the `id` property as `readonly` to indicate that it is an identifier and should not be modified - Verse will take care of managing the identifier for us.
+Here, we have created a simple `Todo` entity with a `title` and `completed` property.
+
+Verse uses a simple builder pattern to define the model, which makes it easy to define rich models in a natural way,
+all in pure TypeScript. We also added seed data to the `todos` entity using the `data` method on the `builder` passed
+to an optional configuration function.
+
+The `id` property will be treated as the primary key by convention and Verse will take care of managing the identifier
+for us.
 
 :::info
 
@@ -46,7 +53,7 @@ In Verse, entities can also be classes. You can do this by passing a class const
 
 Next, we will configure Verse, define our model and add some seed data. Add the following code to the `index.ts` file:
 
-```ts include ./apps/snippets/src/basic.ts:22-34 showLineNumbers
+```ts include ./apps/snippets/src/basic.ts:setup-verse showLineNumbers
 // Setup our Verse instance.
 
 const db = verse({
@@ -62,14 +69,16 @@ const db = verse({
 });
 ```
 
-This code configures Verse to use the `@operativa/verse-sqlite` package as the database driver and sets up a simple model with a single entity labelled `todos` (labels are used to refer to entities in queries and other operations). Verse uses a simple builder pattern to define the model, which makes it easy to define rich models in a natural way, all in pure TypeScript. We also added seed data to the `todos` entity using the `data` method on the `builder` passed to an optional configuration function.
+This code configures Verse to use the `@operativa/verse-sqlite` package as the database driver and sets up
+our simple model with a single entity labelled `todos` (labels are used to refer to entities in queries and other operations).
+
 
 Now, we need to create the `todo.sqlite` database schema we configured above. Add the following:
 
 <Tabs>
   <TabItem value="ts" label="Typescript" default>
 
-```ts include ./apps/snippets/src/basic.ts:38-38 showLineNumbers
+```ts include ./apps/snippets/src/basic.ts:recreate showLineNumbers
 await db.database.recreate();
 ```
 
@@ -106,12 +115,12 @@ Next, we will write our first query to retrieve all the todos from the database.
 <Tabs>
   <TabItem value="ts" label="Typescript" default>
 
-```ts include ./apps/snippets/src/basic.ts:50-54 showLineNumbers
-const query = db.from.todos.where(todo => todo.title.like("%dog%"));
+```ts include ./apps/snippets/src/basic.ts:query-all showLineNumbers
+const todos = await db.from.todos.toArray();
 
-for await (const todo of query) {
+todos.forEach(todo => {
   console.log(`${todo.id}: ${todo.title} (completed: ${todo.completed})`);
-}
+});
 ```
   </TabItem>
   <TabItem value="out" label="Output">
@@ -141,7 +150,7 @@ We can also write more complex queries using the query API. For example, let's w
 <Tabs>
   <TabItem value="ts" label="Typescript" default>
 
-```ts include ./apps/snippets/src/basic.ts:50-54 showLineNumbers
+```ts include ./apps/snippets/src/basic.ts:query-like showLineNumbers
 const query = db.from.todos.where(todo => todo.title.like("%dog%"));
 
 for await (const todo of query) {
@@ -177,7 +186,7 @@ Now let's see how easy it is to modify data using Verse. For example, let's mark
 <Tabs>
   <TabItem value="ts" label="Typescript" default>
 
-```ts include ./apps/snippets/src/basic.ts:56-66 showLineNumbers
+```ts include ./apps/snippets/src/basic.ts:update showLineNumbers
 // Modify a todo and save the changes.
 
 const uow = db.uow();

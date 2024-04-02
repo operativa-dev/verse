@@ -1,53 +1,7 @@
-import * as fs from "fs";
+import { existsSync } from "fs";
+import { readFile, writeFile } from "fs/promises";
 import { glob } from "glob";
-import * as path from "path";
-
-type Annotation = {
-  filename: string;
-  start: number;
-  end: number;
-};
-
-const tryParseAnnotation = (text: string): Annotation | undefined => {
-  const match = text.match(/^```ts include ([^:]+)(?::([0-9]+)-([0-9]+))?/);
-
-  if (!match) {
-    return undefined;
-  }
-
-  return {
-    filename: match[1] ?? "",
-    start: Number(match[2] ?? 1),
-    end: Number(match[3] ?? 400),
-  };
-};
-
-const extractSnippet = (annotation: Annotation) => {
-  const srcLines = fs.readFileSync(annotation.filename, "utf-8").split("\n");
-
-  return srcLines.slice(annotation.start - 1, annotation.end);
-};
-
-const trimEmptyLines = (lines: string[]) => {
-  let start = 0;
-  while (start < lines.length && (lines[start] ?? "").trim() === "") {
-    start++;
-  }
-
-  let end = lines.length;
-  while (end > 0 && (lines[end - 1] ?? "").trim() === "") {
-    end--;
-  }
-
-  return lines.slice(start, end);
-};
-
-const getCodeBlockEscape = (snippet: string[]) => {
-  return snippet.reduce((acc, line) => {
-    const match = line.match(/^`{3,}$/);
-    return match && match[0].length >= acc.length ? match[0] + "`" : acc;
-  }, "```");
-};
+import path from "node:path";
 
 const rootDir = path.join(process.cwd(), "../..");
 
@@ -56,103 +10,51 @@ const files = await glob(["**/*.md", "**/*.mdx"], {
   ignore: ["packages/scripts/**", "node_modules/**"],
 });
 
-const watched = process.argv.includes("--watch") ? new Set<string>() : undefined;
-const wrote = new Set<string>();
+const codeRegex = /^(```ts include ([^:\n]+)(?::([a-z-0-9]+)[^\n]*)?\n)(.*?)```/gms;
 
-function run() {
-  files.forEach(file => {
-    const filePath = path.join(rootDir, file);
+for (const file of files) {
+  const filePath = path.join(rootDir, file);
+  const content = await readFile(filePath, { encoding: "utf8" });
 
-    //watched?.add(filePath);
+  let match;
+  let newContent = content;
 
-    const lines = fs.readFileSync(filePath, "utf-8").split("\n");
+  while ((match = codeRegex.exec(content)) !== null) {
+    const src = match[2]!;
+    const name = match[3]!;
+    const srcPath = path.resolve(rootDir, src);
 
-    let lineIndex = 0;
-    let modified = false;
+    if (!existsSync(srcPath)) {
+      console.error(`Source file '${srcPath}' not found! Referenced in: ${filePath}`);
+      process.exit(1);
+    }
 
-    while (lineIndex < lines.length) {
-      const [, codeBlockMarker] = (lines[lineIndex] ?? "").match(/^(`{3,})/) ?? [];
+    let snippet = await readFile(srcPath, "utf8");
 
-      if (!codeBlockMarker) {
-        lineIndex++;
-        continue;
-      }
+    if (name) {
+      const snippetRegex = new RegExp(`\\/\\/\\/ ${name}\\n([\\s\\S]+?)\\/\\/\\/`, "gm");
 
-      const annotation = tryParseAnnotation(lines[lineIndex] ?? "");
+      const snippetMatch = snippetRegex.exec(snippet);
 
-      if (!annotation) {
-        lineIndex++;
-        continue;
-      }
-
-      let endBlockIndex = lines.slice(lineIndex + 1).findIndex(l => l === codeBlockMarker);
-
-      if (endBlockIndex === -1) {
-        throw new Error(`Could not find end of code block in ${filePath}#L${lineIndex + 1}.`);
-      }
-
-      endBlockIndex += lineIndex + 1;
-
-      const resolvedFilename = path.resolve(rootDir, annotation.filename);
-
-      if (!fs.existsSync(resolvedFilename)) {
+      if (!snippetMatch) {
         console.error(
-          `Source file (${resolvedFilename}) not found from annotation ${JSON.stringify(
-            annotation
-          )} in ${filePath}#L${lineIndex + 1}.`
+          `Snippet '${name}' not found in '${srcPath.replace(rootDir, "")}'. ` +
+            `Referenced in: '${filePath.replace(rootDir, "")}' at '${match[0].split("\n")[0]}'`
         );
         process.exit(1);
       }
 
-      watched?.add(resolvedFilename);
-
-      const snippet = trimEmptyLines(extractSnippet({ ...annotation, filename: resolvedFilename }));
-
-      // handle escaping of backticks inside the snippet
-      const blockBraces = getCodeBlockEscape(snippet);
-      lines[lineIndex] = (lines[lineIndex] ?? codeBlockMarker).replace(
-        codeBlockMarker,
-        blockBraces
-      );
-      lines[endBlockIndex] = (lines[endBlockIndex] ?? codeBlockMarker).replace(
-        codeBlockMarker,
-        blockBraces
-      );
-
-      // replace the code block with the snippet
-      lines.splice(lineIndex + 1, endBlockIndex - lineIndex - 1, ...snippet);
-
-      modified = true;
-      lineIndex += snippet.length + 1;
-    }
-
-    if (modified) {
-      fs.writeFileSync(filePath, lines.join("\n"), "utf-8");
-
-      console.info(`Updated: ${filePath}`);
-
-      wrote.add(file);
-    }
-  });
-}
-
-wrote.clear();
-
-run();
-
-if (watched) {
-  console.info("\nWatching for changes...");
-
-  const chokidar = await import("chokidar");
-
-  let watcher = chokidar.watch([...watched], { cwd: rootDir, ignoreInitial: true });
-
-  watcher.on("change", async file => {
-    if (wrote.has(file)) {
-      wrote.delete(file);
+      snippet = snippetMatch[1]!;
     } else {
-      console.info(`Detected change in '${file}', updating...`);
-      run();
+      snippet = snippet.replace(/\/\/\/ ?[a-z-0-9]*\n/g, "");
     }
-  });
+
+    newContent = newContent.replace(match[0]!, match[1] + snippet + "```");
+  }
+
+  if (newContent !== content) {
+    await writeFile(filePath, newContent);
+
+    console.log(`Updated ${filePath}`);
+  }
 }

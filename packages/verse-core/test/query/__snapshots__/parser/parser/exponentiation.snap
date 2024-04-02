@@ -1,0 +1,22 @@
+[
+  {
+    "left": {
+      "type": "LiteralExpression",
+      "value": 123,
+    },
+    "operator": "**",
+    "right": {
+      "left": {
+        "type": "LiteralExpression",
+        "value": 456,
+      },
+      "operator": "**",
+      "right": {
+        "type": "LiteralExpression",
+        "value": 789,
+      },
+      "type": "BinaryExpression",
+    },
+    "type": "BinaryExpression",
+  },
+]

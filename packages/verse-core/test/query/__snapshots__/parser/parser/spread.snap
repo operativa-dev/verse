@@ -1,0 +1,64 @@
+[
+  {
+    "argument": {
+      "name": "foo",
+      "type": "IdentifierExpression",
+    },
+    "type": "SpreadExpression",
+  },
+  {
+    "argument": {
+      "computed": false,
+      "object": {
+        "name": "foo",
+        "type": "IdentifierExpression",
+      },
+      "optional": undefined,
+      "property": {
+        "name": "bar",
+        "type": "IdentifierExpression",
+      },
+      "type": "MemberExpression",
+    },
+    "type": "SpreadExpression",
+  },
+  {
+    "arguments": [
+      {
+        "argument": {
+          "name": "bar",
+          "type": "IdentifierExpression",
+        },
+        "type": "SpreadExpression",
+      },
+    ],
+    "callee": {
+      "name": "foo",
+      "type": "IdentifierExpression",
+    },
+    "type": "CallExpression",
+  },
+  {
+    "arguments": [
+      {
+        "argument": {
+          "name": "bar",
+          "type": "IdentifierExpression",
+        },
+        "type": "SpreadExpression",
+      },
+      {
+        "argument": {
+          "name": "baz",
+          "type": "IdentifierExpression",
+        },
+        "type": "SpreadExpression",
+      },
+    ],
+    "callee": {
+      "name": "foo",
+      "type": "IdentifierExpression",
+    },
+    "type": "CallExpression",
+  },
+]

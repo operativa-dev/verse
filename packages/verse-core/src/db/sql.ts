@@ -22,13 +22,11 @@ export class SqlBindingState {
   type?: SqlType | undefined;
   element?: SqlNode | undefined;
   model?: AbstractModel | undefined;
-
-  /**
-   * @ignore
-   */
-  load?: LoadNode | undefined;
-
   eager?: boolean | undefined;
+  join?: boolean | undefined;
+
+  /** @ignore */
+  load?: LoadNode | undefined;
 }
 
 export class SqlBinding {
@@ -67,6 +65,10 @@ export class SqlBinding {
 
   get eager() {
     return this.state.eager;
+  }
+
+  get join() {
+    return this.state.join;
   }
 
   withType(type?: SqlType) {
@@ -667,6 +669,10 @@ export type SqlType =
 export namespace SqlType {
   export function isNumeric(type?: SqlType) {
     return type === "integer" || type?.startsWith("numeric");
+  }
+
+  export function isText(type?: SqlType) {
+    return type === "text" || type?.startsWith("varchar");
   }
 }
 
@@ -1496,6 +1502,41 @@ export class SqlExists extends SqlNode {
   }
 }
 
+export class SqlIn extends SqlNode {
+  constructor(
+    readonly operand: SqlNode,
+    readonly values: SqlNode
+  ) {
+    super();
+  }
+
+  override accept<T, S = unknown>(visitor: SqlVisitor<T>, state?: S) {
+    return visitor.visitIn(this, state);
+  }
+
+  override rewrite(rewriter: SqlRewriter): SqlNode {
+    const newOperand = this.operand.accept(rewriter);
+    const newValues = this.values.accept(rewriter);
+
+    if (this.operand !== newOperand || this.values !== newValues) {
+      return new SqlIn(newOperand, newValues);
+    }
+
+    return this;
+  }
+
+  override equals(other: unknown) {
+    return (
+      this === other ||
+      (other instanceof SqlIn && is(this.operand, other.operand) && is(this.values, other.values))
+    );
+  }
+
+  override hashCode() {
+    return (hash(this.operand) * 27) ^ (hash(this.values) * 27);
+  }
+}
+
 export class SqlLike extends SqlNode {
   constructor(
     readonly operand: SqlNode,
@@ -1646,6 +1687,8 @@ export function sqlStr(value: string, binding?: SqlBinding) {
 }
 
 export class SqlString extends SqlNode {
+  static readonly EMPTY = new SqlString("");
+
   constructor(
     readonly value: string,
     binding?: SqlBinding
@@ -1661,6 +1704,10 @@ export class SqlString extends SqlNode {
 
   override identify(aliaser: (n: SqlNode) => SqlNode): SqlNode {
     return aliaser(this);
+  }
+
+  override get type(): SqlType | undefined {
+    return "text";
   }
 
   override accept<T, S = unknown>(visitor: SqlVisitor<T>, state?: S) {
@@ -1710,7 +1757,7 @@ export class SqlNumber extends SqlNode {
   static readonly ONE = new SqlNumber(1);
 
   constructor(
-    readonly value: number,
+    readonly value: number | bigint,
     binding?: SqlBinding
   ) {
     super(binding);
@@ -1948,10 +1995,6 @@ export class SqlComposite extends SqlNode {
     binding?: SqlBinding
   ) {
     super(binding);
-  }
-
-  record() {
-    return this.map(n => (n instanceof SqlAlias ? n.alias.bind(n.binding!) : n));
   }
 
   override bind(binding: SqlBinding): SqlNode {

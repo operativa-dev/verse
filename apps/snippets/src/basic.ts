@@ -1,3 +1,4 @@
+/// setup-model
 import { verse } from "@operativa/verse";
 import { sqlite } from "@operativa/verse-sqlite";
 import { boolean, entity, int, string } from "@operativa/verse/model/builder";
@@ -18,12 +19,14 @@ const Todo = entity(
     );
   }
 );
+///
 
+/// setup-verse
 // Setup our Verse instance.
 
 const db = verse({
   config: {
-    driver: sqlite("todos.sqlite"),
+    driver: sqlite(`${__dirname}/todos.sqlite`),
     logger: new PrettyConsoleLogger(),
   },
   model: {
@@ -32,27 +35,35 @@ const db = verse({
     },
   },
 });
+///
 
 // Create a clean database schema. In a real app, this would be done using migrations.
 
+/// recreate
 await db.database.recreate();
+///
 
 // Query all the todos from the database.
 
+/// query-all
 const todos = await db.from.todos.toArray();
 
 todos.forEach(todo => {
   console.log(`${todo.id}: ${todo.title} (completed: ${todo.completed})`);
 });
+///
 
 // Query todos about dogs.
 
+/// query-like
 const query = db.from.todos.where(todo => todo.title.like("%dog%"));
 
 for await (const todo of query) {
   console.log(`${todo.id}: ${todo.title} (completed: ${todo.completed})`);
 }
+///
 
+/// update
 // Modify a todo and save the changes.
 
 const uow = db.uow();
@@ -64,6 +75,7 @@ const todo = await uow.todos
 todo.completed = true;
 
 await uow.commit();
+///
 
 // Now we can remove the todo from the database.
 

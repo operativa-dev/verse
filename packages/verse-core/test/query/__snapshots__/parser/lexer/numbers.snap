@@ -1,0 +1,73 @@
+[
+  {
+    "type": "number",
+    "value": 123,
+  },
+  {
+    "type": "-",
+  },
+  {
+    "type": "number",
+    "value": 123.456,
+  },
+  {
+    "type": "number",
+    "value": 0.456,
+  },
+  {
+    "type": "number",
+    "value": 0.456,
+  },
+  {
+    "type": "number",
+    "value": 1.23e+47,
+  },
+  {
+    "type": "number",
+    "value": 1.23e+47,
+  },
+  {
+    "type": "number",
+    "value": 1.23e-43,
+  },
+  {
+    "type": "number",
+    "value": 1,
+  },
+  {
+    "type": "+",
+  },
+  {
+    "type": "number",
+    "value": 42.4,
+  },
+  {
+    "type": "-",
+  },
+  {
+    "type": "number",
+    "value": 69000000000000,
+  },
+  {
+    "type": "number",
+    "value": 0.0000034,
+  },
+  {
+    "type": "number",
+    "value": 123456789123456780,
+  },
+  {
+    "type": "number",
+    "value": 123456789123456789n,
+  },
+  {
+    "type": "-",
+  },
+  {
+    "type": "number",
+    "value": 123n,
+  },
+  {
+    "type": "eof",
+  },
+]

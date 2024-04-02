@@ -8,10 +8,10 @@
     "build": "tsc && pnpm tsx inject.ts"
   },
   "dependencies": {
-    "chokidar": "^3.6.0",
     "glob": "^10.3.10"
   },
   "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
     "snippets": "workspace:*",
     "tsconfig": "workspace:*",
     "tsx": "^4.7.1",

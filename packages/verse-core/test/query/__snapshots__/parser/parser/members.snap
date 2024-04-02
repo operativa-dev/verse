@@ -1,0 +1,128 @@
+[
+  {
+    "computed": true,
+    "object": {
+      "name": "a",
+      "type": "IdentifierExpression",
+    },
+    "optional": undefined,
+    "property": {
+      "type": "LiteralExpression",
+      "value": 10,
+    },
+    "type": "MemberExpression",
+  },
+  {
+    "computed": false,
+    "object": {
+      "type": "ThisExpression",
+    },
+    "optional": undefined,
+    "property": {
+      "name": "foo",
+      "type": "IdentifierExpression",
+    },
+    "type": "MemberExpression",
+  },
+  {
+    "computed": false,
+    "object": {
+      "computed": false,
+      "object": {
+        "name": "foo",
+        "type": "IdentifierExpression",
+      },
+      "optional": undefined,
+      "property": {
+        "name": "bar",
+        "type": "IdentifierExpression",
+      },
+      "type": "MemberExpression",
+    },
+    "optional": undefined,
+    "property": {
+      "name": "baz",
+      "type": "IdentifierExpression",
+    },
+    "type": "MemberExpression",
+  },
+  {
+    "computed": false,
+    "object": {
+      "computed": false,
+      "object": {
+        "name": "foo",
+        "type": "IdentifierExpression",
+      },
+      "optional": true,
+      "property": {
+        "name": "bar",
+        "type": "IdentifierExpression",
+      },
+      "type": "MemberExpression",
+    },
+    "optional": true,
+    "property": {
+      "name": "baz",
+      "type": "IdentifierExpression",
+    },
+    "type": "MemberExpression",
+  },
+  {
+    "computed": true,
+    "object": {
+      "name": "foo",
+      "type": "IdentifierExpression",
+    },
+    "optional": undefined,
+    "property": {
+      "name": "bar",
+      "type": "IdentifierExpression",
+    },
+    "type": "MemberExpression",
+  },
+  {
+    "computed": false,
+    "object": {
+      "computed": true,
+      "object": {
+        "name": "foo",
+        "type": "IdentifierExpression",
+      },
+      "optional": undefined,
+      "property": {
+        "name": "bar",
+        "type": "IdentifierExpression",
+      },
+      "type": "MemberExpression",
+    },
+    "optional": true,
+    "property": {
+      "name": "baz",
+      "type": "IdentifierExpression",
+    },
+    "type": "MemberExpression",
+  },
+  {
+    "computed": true,
+    "object": {
+      "name": "foo",
+      "type": "IdentifierExpression",
+    },
+    "optional": undefined,
+    "property": {
+      "expressions": [
+        {
+          "name": "a",
+          "type": "IdentifierExpression",
+        },
+        {
+          "name": "b",
+          "type": "IdentifierExpression",
+        },
+      ],
+      "type": "CommaExpression",
+    },
+    "type": "MemberExpression",
+  },
+]

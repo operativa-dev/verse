@@ -1,0 +1,30 @@
+[
+  {
+    "type": "regex",
+    "value": /foo/,
+  },
+  {
+    "type": ",",
+  },
+  {
+    "type": "regex",
+    "value": /fo\\/o/,
+  },
+  {
+    "type": ",",
+  },
+  {
+    "type": "regex",
+    "value": /fo\\\[\[/a\\\]\]a\\/\]o\\\\/,
+  },
+  {
+    "type": ",",
+  },
+  {
+    "type": "regex",
+    "value": /abc/gimsuy,
+  },
+  {
+    "type": "eof",
+  },
+]

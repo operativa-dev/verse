@@ -20,5 +20,6 @@
     <inspection_tool class="SqlDialectInspection" enabled="true" level="WARNING" enabled_by_default="true">
       <scope name="Tests" level="INFORMATION" enabled="true" editorAttributes="INFORMATION_ATTRIBUTES" />
     </inspection_tool>
+    <inspection_tool class="TypeScriptValidateJSTypes" enabled="true" level="INFORMATION" enabled_by_default="true" />
   </profile>
 </component>
