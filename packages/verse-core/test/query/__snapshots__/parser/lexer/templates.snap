@@ -1,6 +1,10 @@
 [
   {
-    "type": "${",
+    "type": "identifier",
+    "value": "$",
+  },
+  {
+    "type": "{",
   },
   {
     "type": "`",
