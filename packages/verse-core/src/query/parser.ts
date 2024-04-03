@@ -39,7 +39,6 @@ export enum TokenType {
   StarStar,
   StarStarEq,
   Tilde,
-
   LParen,
   RParen,
   LBracket,
@@ -50,7 +49,6 @@ export enum TokenType {
   Semicolon,
   Backtick,
   DollarBrace,
-
   Await,
   Delete,
   False,
@@ -64,14 +62,10 @@ export enum TokenType {
   Typeof,
   Undefined,
   Void,
-
   Identifier,
   Number,
   String,
   Regex,
-
-  Comment,
-  WhiteSpace,
   Eof,
 }
 
@@ -121,7 +115,6 @@ export const tokenNames = [
   "**",
   "**=",
   "~",
-
   "(",
   ")",
   "[",
@@ -132,7 +125,6 @@ export const tokenNames = [
   ";",
   "`",
   "${",
-
   "await",
   "delete",
   "false",
@@ -146,552 +138,636 @@ export const tokenNames = [
   "typeof",
   "undefined",
   "void",
-
   "identifier",
   "number",
   "string",
   "regex",
-
-  "comment",
-  "ws",
   "eof",
 ];
 
-const keywords = new Map([
-  ["await", TokenType.Await],
-  ["delete", TokenType.Delete],
-  ["false", TokenType.False],
-  ["in", TokenType.In],
-  ["instanceof", TokenType.InstanceOf],
-  ["new", TokenType.New],
-  ["null", TokenType.Null],
-  ["super", TokenType.Super],
-  ["this", TokenType.This],
-  ["true", TokenType.True],
-  ["typeof", TokenType.Typeof],
-  ["undefined", TokenType.Undefined],
-  ["void", TokenType.Void],
-]);
+const Tokens = {
+  And: { type: TokenType.And },
+  AndAnd: { type: TokenType.AndAnd },
+  Caret: { type: TokenType.Caret },
+  Colon: { type: TokenType.Colon },
+  Dot: { type: TokenType.Dot },
+  DotDotDot: { type: TokenType.DotDotDot },
+  Eq: { type: TokenType.Eq },
+  EqEq: { type: TokenType.EqEq },
+  EqEqEq: { type: TokenType.EqEqEq },
+  EqGt: { type: TokenType.EqGt },
+  Gt: { type: TokenType.Gt },
+  GtEq: { type: TokenType.GtEq },
+  GtGt: { type: TokenType.GtGt },
+  GtGtGt: { type: TokenType.GtGtGt },
+  Lt: { type: TokenType.Lt },
+  LtEq: { type: TokenType.LtEq },
+  LtLt: { type: TokenType.LtLt },
+  Minus: { type: TokenType.Minus },
+  MinusEq: { type: TokenType.MinusEq },
+  MinusMinus: { type: TokenType.MinusMinus },
+  Not: { type: TokenType.Not },
+  NotEq: { type: TokenType.NotEq },
+  NotEqEq: { type: TokenType.NotEqEq },
+  Percent: { type: TokenType.Percent },
+  PercentEq: { type: TokenType.PercentEq },
+  Pipe: { type: TokenType.Pipe },
+  PipePipe: { type: TokenType.PipePipe },
+  Plus: { type: TokenType.Plus },
+  PlusEq: { type: TokenType.PlusEq },
+  PlusPlus: { type: TokenType.PlusPlus },
+  Question: { type: TokenType.Question },
+  QuestionDot: { type: TokenType.QuestionDot },
+  QuestionQuestion: { type: TokenType.QuestionQuestion },
+  Slash: { type: TokenType.Slash },
+  SlashEq: { type: TokenType.SlashEq },
+  Star: { type: TokenType.Star },
+  StarEq: { type: TokenType.StarEq },
+  StarStar: { type: TokenType.StarStar },
+  StarStarEq: { type: TokenType.StarStarEq },
+  Tilde: { type: TokenType.Tilde },
+  LParen: { type: TokenType.LParen },
+  RParen: { type: TokenType.RParen },
+  LBracket: { type: TokenType.LBracket },
+  RBracket: { type: TokenType.RBracket },
+  LBrace: { type: TokenType.LBrace },
+  RBrace: { type: TokenType.RBrace },
+  Comma: { type: TokenType.Comma },
+  Semicolon: { type: TokenType.Semicolon },
+  Backtick: { type: TokenType.Backtick },
+  DollarBrace: { type: TokenType.DollarBrace },
+  Await: { type: TokenType.Await },
+  Delete: { type: TokenType.Delete },
+  False: { type: TokenType.False },
+  In: { type: TokenType.In },
+  InstanceOf: { type: TokenType.InstanceOf },
+  New: { type: TokenType.New },
+  Null: { type: TokenType.Null },
+  Super: { type: TokenType.Super },
+  This: { type: TokenType.This },
+  True: { type: TokenType.True },
+  Typeof: { type: TokenType.Typeof },
+  Undefined: { type: TokenType.Undefined },
+  Void: { type: TokenType.Void },
+  Eof: { type: TokenType.Eof },
+};
 
 export function nameof(token: TokenType) {
   return tokenNames[token];
 }
 
-const idStart = /[$_\p{ID_Start}]/u;
-const idContinue = /[$_\p{ID_Continue}]/u;
-const ws = /\p{White_Space}/u;
-const digit = /\d/;
-const octal = /[0-7]/;
-const hex = /[0-9a-fA-F]/;
-const reFlags = /[gimsuy]/;
+function ws(cp: number) {
+  return (
+    cp === 0x20 ||
+    cp === 0x09 ||
+    cp === 0x0b ||
+    cp === 0x0c ||
+    cp === 0xa0 ||
+    (cp >= 0x1680 &&
+      [
+        0x1680, 0x2000, 0x2001, 0x2002, 0x2003, 0x2004, 0x2005, 0x2006, 0x2007, 0x2008, 0x2009,
+        0x200a, 0x202f, 0x205f, 0x3000, 0xfeff,
+      ].indexOf(cp) >= 0)
+  );
+}
 
-export function* lex(expr: string) {
+function lt(cp: number) {
+  return cp === 0x0a || cp === 0x0d || cp === 0x2028 || cp === 0x2029;
+}
+
+function digit(cp: number) {
+  return cp >= 0x30 && cp <= 0x39;
+}
+
+function octal(cp: number) {
+  return cp >= 0x30 && cp <= 0x37;
+}
+
+function hex(cp: number) {
+  return (cp >= 0x30 && cp <= 0x39) || (cp >= 0x41 && cp <= 0x46) || (cp >= 0x61 && cp <= 0x66);
+}
+
+function regexFlag(cp: number) {
+  return cp === 0x67 || cp === 0x69 || cp === 0x6d || cp === 0x75 || cp === 0x73 || cp === 0x79;
+}
+
+function char(cp: number) {
+  return cp < 0x10000
+    ? String.fromCharCode(cp)
+    : String.fromCharCode(0xd800 + ((cp - 0x10000) >> 10)) +
+        String.fromCharCode(0xdc00 + ((cp - 0x10000) & 1023));
+}
+
+const ID_START = /\p{ID_Start}/u;
+
+function idStart(cp: number) {
+  return (
+    cp === 0x24 ||
+    cp === 0x5f ||
+    (cp >= 0x41 && cp <= 0x5a) ||
+    (cp >= 0x61 && cp <= 0x7a) ||
+    (cp >= 0x80 && ID_START.test(char(cp)))
+  );
+}
+
+const ID_CONTINUE = /\p{ID_Continue}/u;
+
+function idContinue(cp: number) {
+  return (
+    cp === 0x24 ||
+    cp === 0x5f ||
+    (cp >= 0x41 && cp <= 0x5a) ||
+    (cp >= 0x61 && cp <= 0x7a) ||
+    (cp >= 0x30 && cp <= 0x39) ||
+    (cp >= 0x80 && ID_CONTINUE.test(char(cp)))
+  );
+}
+
+function keyword(id: string) {
+  switch (id.length) {
+    case 2:
+      return id === "in" ? Tokens.In : undefined;
+    case 3:
+      return id === "new" ? Tokens.New : undefined;
+    case 4:
+      return id === "true"
+        ? Tokens.True
+        : id === "null"
+          ? Tokens.Null
+          : id === "this"
+            ? Tokens.This
+            : id === "void"
+              ? Tokens.Void
+              : undefined;
+    case 5:
+      return id === "false"
+        ? Tokens.False
+        : id === "super"
+          ? Tokens.Super
+          : id === "await"
+            ? Tokens.Await
+            : undefined;
+    case 6:
+      return id === "typeof" ? Tokens.Typeof : id === "delete" ? Tokens.Delete : undefined;
+    case 9:
+      return id === "undefined" ? Tokens.Undefined : undefined;
+    case 10:
+      return id === "instanceof" ? Tokens.InstanceOf : undefined;
+    default:
+      return undefined;
+  }
+}
+
+export function lex(expr: string): ReadonlyArray<Readonly<Token>> {
   if (!expr || expr.trim() === "") {
     throw new Error("Empty expression.");
   }
 
+  const tokens: Token[] = [];
+
   let i = 0;
-  let type: TokenType;
-  let last: TokenType | undefined;
+
+  let token: Token | undefined;
+  let last: Token | undefined;
   let value: string | number | RegExp | bigint | undefined;
   let template = [false];
-  let braces = [];
+  let braces: boolean[] = [];
 
   while (i < expr.length) {
-    const char = expr[i]!;
+    const cp = expr.charCodeAt(i);
 
-    switch (char) {
-      case "=":
-        if (expr[i + 1] === "=") {
-          if (expr[i + 2] === "=") {
-            type = TokenType.EqEqEq;
-            i += 2;
+    if (ws(cp) || lt(cp)) {
+      i++;
+      continue;
+    }
+
+    if (idStart(cp)) {
+      if (template.at(-1) && expr.charCodeAt(i + 1) === 0x7b) {
+        token = Tokens.DollarBrace;
+        i++;
+        template.push(false);
+        braces.push(true);
+      } else {
+        const start = i;
+
+        while (i < expr.length && idContinue(expr.charCodeAt(i + 1))) {
+          i++;
+        }
+
+        const value = expr.slice(start, i + 1);
+        token = { type: TokenType.Identifier, value };
+
+        if (value.length > 1) {
+          const newToken = keyword(value);
+
+          if (newToken) {
+            token = newToken;
+          }
+        }
+      }
+    } else if (cp === 0x28) {
+      token = Tokens.LParen;
+    } else if (cp === 0x29) {
+      token = Tokens.RParen;
+    } else if (cp === 0x3b) {
+      token = Tokens.Semicolon;
+    } else if (cp === 0x22 || cp == 0x27) {
+      [value, i] = lexString(expr, i, expr.charCodeAt(i));
+      token = { type: TokenType.String, value };
+    } else if (digit(cp)) {
+      [value, i] = lexNumber(cp, expr, i);
+      token = { type: TokenType.Number, value };
+    } else {
+      const cp1 = expr.charCodeAt(i + 1);
+      const cp2 = expr.charCodeAt(i + 2);
+
+      switch (cp) {
+        case 0x3a:
+          token = Tokens.Colon;
+          break;
+
+        case 0x2c:
+          token = Tokens.Comma;
+          break;
+
+        case 0x5b:
+          token = Tokens.LBracket;
+          break;
+
+        case 0x5d:
+          token = Tokens.RBracket;
+          break;
+
+        case 0x7b:
+          token = Tokens.LBrace;
+          braces.push(false);
+          break;
+
+        case 0x7d:
+          const brace = braces.pop();
+
+          if (brace) {
+            template.pop();
+          }
+
+          if (template.at(-1)) {
+            [value, i] = lexString(expr, i, 0x60);
+            tokens.push(Tokens.RBrace);
+            token = { type: TokenType.String, value };
           } else {
-            type = TokenType.EqEq;
-            i++;
+            token = Tokens.RBrace;
           }
-        } else if (expr[i + 1] === ">") {
-          type = TokenType.EqGt;
-          i++;
-        } else {
-          type = TokenType.Eq;
-        }
-        break;
 
-      case ".":
-        if (expr[i + 1] === "." && expr[i + 2] === ".") {
-          type = TokenType.DotDotDot;
-          i += 2;
-        } else if (i + 1 < expr.length && digit.test(expr[i + 1]!)) {
-          [value, i] = lexNumber(char, expr, i, true);
-          type = TokenType.Number;
-        } else {
-          type = TokenType.Dot;
-        }
-        break;
+          break;
 
-      case '"':
-      case "'":
-        [value, i] = lexString(expr, i, char);
-        type = TokenType.String;
-        break;
-
-      case "`":
-        template[template.length - 1] = !template.at(-1);
-        type = TokenType.Backtick;
-
-        if (template.at(-1)) {
-          [value, i] = lexString(expr, i, char);
-          yield { type };
-          type = TokenType.String;
-        }
-
-        break;
-
-      case "+":
-        if (expr[i + 1] === "+") {
-          type = TokenType.PlusPlus;
-          i++;
-        } else if (expr[i + 1] === "=") {
-          type = TokenType.PlusEq;
-          i++;
-        } else {
-          type = TokenType.Plus;
-        }
-        break;
-
-      case "-":
-        if (expr[i + 1] === "-") {
-          type = TokenType.MinusMinus;
-          i++;
-        } else if (expr[i + 1] === "=") {
-          type = TokenType.MinusEq;
-          i++;
-        } else {
-          type = TokenType.Minus;
-        }
-        break;
-
-      case "*":
-        if (expr[i + 1] === "*") {
-          if (expr[i + 2] === "=") {
-            type = TokenType.StarStarEq;
-            i += 2;
-          } else {
-            type = TokenType.StarStar;
-            i++;
-          }
-        } else if (expr[i + 1] === "=") {
-          type = TokenType.StarEq;
-          i++;
-        } else {
-          type = TokenType.Star;
-        }
-        break;
-
-      case "/":
-        if (expr[i + 1] === "/") {
-          type = TokenType.Comment;
-          i++;
-
-          outer: while (true) {
-            if (i + 1 === expr.length) {
-              break;
-            }
-
-            switch (expr[i + 1]) {
-              case "\n":
-              case "\r":
-              case "\u2028":
-              case "\u2029":
-                break outer;
-            }
-
-            i++;
-          }
-        } else if (expr[i + 1] === "*") {
-          type = TokenType.Comment;
-          i++;
-
-          while (true) {
-            if (i + 2 >= expr.length) {
-              break;
-            }
-
-            if (expr[i + 1] === "*") {
-              if (expr[i + 2] === "/") {
-                i += 2;
-                break;
-              }
-            }
-
-            i++;
-          }
-        } else if (expr[i + 1] === "=") {
-          type = TokenType.SlashEq;
-          i++;
-        } else {
-          // noinspection JSUnusedAssignment
-          if (
-            last === undefined ||
-            last === TokenType.LParen ||
-            last === TokenType.Comma ||
-            last === TokenType.Eq ||
-            last === TokenType.Colon ||
-            last === TokenType.LBracket ||
-            last === TokenType.Not ||
-            last === TokenType.And ||
-            last === TokenType.Pipe ||
-            last === TokenType.Question ||
-            last === TokenType.LBrace ||
-            last === TokenType.RBrace ||
-            last === TokenType.Semicolon
-          ) {
-            type = TokenType.Regex;
-            i++;
-            value = "";
-            let inSet = false;
-
-            while (true) {
-              const next = expr[i];
-
-              if (
-                next === undefined ||
-                next === "\n" ||
-                next === "\r" ||
-                next === "\u2028" ||
-                next === "\u2029"
-              ) {
-                throw new Error("Unterminated regular expression literal.");
-              }
-
-              if (next === "\\") {
-                value += "\\";
-                i++;
-              } else if (next === "[") {
-                inSet = true;
-              } else if (next === "]") {
-                inSet = false;
-              } else if (!inSet && next === "/") {
-                break;
-              }
-
-              value += expr[i++];
-            }
-
-            let flags = "";
-
-            while (true) {
-              const next = expr[i + 1];
-
-              if (next === undefined || !reFlags.test(next)) {
-                break;
-              }
-
-              flags += next;
+        case 0x3d:
+          if (cp1 === 0x3d) {
+            if (cp2 === 0x3d) {
+              token = Tokens.EqEqEq;
+              i += 2;
+            } else {
+              token = Tokens.EqEq;
               i++;
             }
-
-            value = new RegExp(value, flags);
+          } else if (cp1 === 0x3e) {
+            token = Tokens.EqGt;
+            i++;
           } else {
-            type = TokenType.Slash;
+            token = Tokens.Eq;
           }
-        }
-        break;
+          break;
 
-      case "&":
-        if (expr[i + 1] === "&") {
-          type = TokenType.AndAnd;
-          i++;
-        } else {
-          type = TokenType.And;
-        }
-        break;
-
-      case "|":
-        if (expr[i + 1] === "|") {
-          type = TokenType.PipePipe;
-          i++;
-        } else {
-          type = TokenType.Pipe;
-        }
-        break;
-
-      case "<":
-        if (expr[i + 1] === "=") {
-          type = TokenType.LtEq;
-          i++;
-        } else if (expr[i + 1] === "<") {
-          type = TokenType.LtLt;
-          i++;
-        } else {
-          type = TokenType.Lt;
-        }
-        break;
-
-      case ">":
-        if (expr[i + 1] === "=") {
-          type = TokenType.GtEq;
-          i++;
-        } else if (expr[i + 1] === ">") {
-          if (expr[i + 2] === ">") {
-            type = TokenType.GtGtGt;
+        case 0x2e:
+          if (cp1 === 0x2e && cp2 === 0x2e) {
+            token = Tokens.DotDotDot;
             i += 2;
+          } else if (i + 1 < expr.length && digit(cp1)) {
+            [value, i] = lexNumber(cp, expr, i, true);
+            token = { type: TokenType.Number, value };
           } else {
-            type = TokenType.GtGt;
-            i++;
+            token = Tokens.Dot;
           }
-        } else {
-          type = TokenType.Gt;
-        }
-        break;
+          break;
 
-      case "!":
-        if (expr[i + 1] === "=") {
-          if (expr[i + 2] === "=") {
-            type = TokenType.NotEqEq;
+        case 0x60:
+          template[template.length - 1] = !template.at(-1);
+
+          if (template.at(-1)) {
+            [value, i] = lexString(expr, i, expr.charCodeAt(i));
+            tokens.push(Tokens.Backtick);
+            token = { type: TokenType.String, value };
+          } else {
+            token = Tokens.Backtick;
+          }
+
+          break;
+
+        case 0x2b:
+          if (cp1 === 0x2b) {
+            token = Tokens.PlusPlus;
+            i++;
+          } else if (cp1 === 0x3d) {
+            token = Tokens.PlusEq;
+            i++;
+          } else {
+            token = Tokens.Plus;
+          }
+          break;
+
+        case 0x2d:
+          if (cp1 === 0x2d) {
+            token = Tokens.MinusMinus;
+            i++;
+          } else if (cp1 === 0x3d) {
+            token = Tokens.MinusEq;
+            i++;
+          } else {
+            token = Tokens.Minus;
+          }
+          break;
+
+        case 0x2a:
+          if (cp1 === 0x2a) {
+            if (cp2 === 0x3d) {
+              token = Tokens.StarStarEq;
+              i += 2;
+            } else {
+              token = Tokens.StarStar;
+              i++;
+            }
+          } else if (cp1 === 0x3d) {
+            token = Tokens.StarEq;
+            i++;
+          } else {
+            token = Tokens.Star;
+          }
+          break;
+
+        case 0x2f:
+          if (cp1 === 0x2f) {
+            i++;
+            while (++i < expr.length && !lt(expr.charCodeAt(i))) {}
+            continue;
+          } else if (cp1 === 0x2a) {
+            i++;
+            while (
+              ++i + 1 < expr.length &&
+              !(expr.charCodeAt(i) === 0x2a && expr.charCodeAt(i + 1) === 0x2f)
+            ) {}
             i += 2;
+            continue;
+          } else if (cp1 === 0x3d) {
+            token = Tokens.SlashEq;
+            i++;
           } else {
-            type = TokenType.NotEq;
-            i++;
-          }
-        } else {
-          type = TokenType.Not;
-        }
-        break;
+            // noinspection JSUnusedAssignment
+            if (
+              last === undefined ||
+              last === Tokens.LParen ||
+              last === Tokens.Comma ||
+              last === Tokens.Eq ||
+              last === Tokens.Colon ||
+              last === Tokens.LBracket ||
+              last === Tokens.Not ||
+              last === Tokens.And ||
+              last === Tokens.Pipe ||
+              last === Tokens.Question ||
+              last === Tokens.LBrace ||
+              last === Tokens.RBrace ||
+              last === Tokens.Semicolon
+            ) {
+              i++;
+              value = "";
+              let inSet = false;
 
-      case "%":
-        if (expr[i + 1] === "=") {
-          type = TokenType.PercentEq;
-          i++;
-        } else {
-          type = TokenType.Percent;
-        }
-        break;
+              while (true) {
+                const cp = expr.charCodeAt(i);
 
-      case "?":
-        if (expr[i + 1] === "?") {
-          type = TokenType.QuestionQuestion;
-          i++;
-        } else if (expr[i + 1] === ".") {
-          type = TokenType.QuestionDot;
-          i++;
-        } else {
-          type = TokenType.Question;
-        }
-        break;
+                if (isNaN(cp) || lt(cp)) {
+                  throw new Error("Unterminated regular expression literal.");
+                }
 
-      case ":":
-        type = TokenType.Colon;
-        break;
+                if (cp === 0x5c) {
+                  value += "\\";
+                  i++;
+                } else if (cp === 0x5b) {
+                  inSet = true;
+                } else if (cp === 0x5d) {
+                  inSet = false;
+                } else if (!inSet && cp === 0x2f) {
+                  break;
+                }
 
-      case ",":
-        type = TokenType.Comma;
-        break;
+                value += expr[i++];
+              }
 
-      case ";":
-        type = TokenType.Semicolon;
-        break;
+              let flags = "";
 
-      case "(":
-        type = TokenType.LParen;
-        break;
+              while (true) {
+                const next = expr.charCodeAt(i + 1);
 
-      case ")":
-        type = TokenType.RParen;
-        break;
+                if (next === undefined || !regexFlag(next)) {
+                  break;
+                }
 
-      case "[":
-        type = TokenType.LBracket;
-        break;
+                flags += expr[++i];
+              }
 
-      case "]":
-        type = TokenType.RBracket;
-        break;
-
-      case "{":
-        type = TokenType.LBrace;
-        braces.push("{");
-        break;
-
-      case "}":
-        type = TokenType.RBrace;
-
-        const brace = braces.pop();
-
-        if (brace === "${") {
-          template.pop();
-        }
-
-        if (template.at(-1)) {
-          [value, i] = lexString(expr, i, "`");
-          yield { type };
-          type = TokenType.String;
-        }
-
-        break;
-
-      case "~":
-        type = TokenType.Tilde;
-        break;
-
-      case "^":
-        type = TokenType.Caret;
-        break;
-
-      default:
-        if (ws.test(char)) {
-          type = TokenType.WhiteSpace;
-
-          while (true) {
-            const next = expr[i + 1];
-
-            if (next === undefined || !ws.test(next)) {
-              break;
+              token = { type: TokenType.Regex, value: new RegExp(value, flags) };
+            } else {
+              token = Tokens.Slash;
             }
-
-            i++;
           }
-
           break;
-        }
 
-        if (idStart.test(char)) {
-          if (expr[i + 1] === "{") {
-            type = TokenType.DollarBrace;
+        case 0x26:
+          if (cp1 === 0x26) {
+            token = Tokens.AndAnd;
             i++;
-            template.push(false);
-            braces.push("${");
-            break;
-          }
-
-          value = char;
-
-          while (true) {
-            const next = expr[i + 1];
-
-            if (next === undefined || !idContinue.test(expr[i + 1]!)) {
-              break;
-            }
-
-            value += next;
-            i++;
-          }
-
-          const t = keywords.get(value);
-
-          if (t) {
-            type = t;
-            value = undefined;
           } else {
-            type = TokenType.Identifier;
+            token = Tokens.And;
           }
-
           break;
-        }
 
-        if (digit.test(char)) {
-          [value, i] = lexNumber(char, expr, i, false);
-          type = TokenType.Number;
-
+        case 0x7c:
+          if (cp1 === 0x7c) {
+            token = Tokens.PipePipe;
+            i++;
+          } else {
+            token = Tokens.Pipe;
+          }
           break;
-        }
 
-        throw new Error(`Unexpected character: ${char}`);
+        case 0x3c:
+          if (cp1 === 0x3d) {
+            token = Tokens.LtEq;
+            i++;
+          } else if (cp1 === 0x3c) {
+            token = Tokens.LtLt;
+            i++;
+          } else {
+            token = Tokens.Lt;
+          }
+          break;
+
+        case 0x3e:
+          if (cp1 === 0x3d) {
+            token = Tokens.GtEq;
+            i++;
+          } else if (cp1 === 0x3e) {
+            if (cp2 === 0x3e) {
+              token = Tokens.GtGtGt;
+              i += 2;
+            } else {
+              token = Tokens.GtGt;
+              i++;
+            }
+          } else {
+            token = Tokens.Gt;
+          }
+          break;
+
+        case 0x21:
+          if (cp1 === 0x3d) {
+            if (cp2 === 0x3d) {
+              token = Tokens.NotEqEq;
+              i += 2;
+            } else {
+              token = Tokens.NotEq;
+              i++;
+            }
+          } else {
+            token = Tokens.Not;
+          }
+          break;
+
+        case 0x25:
+          if (cp1 === 0x3d) {
+            token = Tokens.PercentEq;
+            i++;
+          } else {
+            token = Tokens.Percent;
+          }
+          break;
+
+        case 0x3f:
+          if (cp1 === 0x3f) {
+            token = Tokens.QuestionQuestion;
+            i++;
+          } else if (cp1 === 0x2e) {
+            token = Tokens.QuestionDot;
+            i++;
+          } else {
+            token = Tokens.Question;
+          }
+          break;
+
+        case 0x7e:
+          token = Tokens.Tilde;
+          break;
+
+        case 0x5e:
+          token = Tokens.Caret;
+          break;
+
+        default:
+          throw new Error(`Unexpected character: ${expr[i]}`);
+      }
     }
 
-    if (type !== TokenType.WhiteSpace && type !== TokenType.Comment) {
-      yield value !== undefined ? { type, value } : { type };
-      last = type;
-    }
-
-    value = undefined;
+    tokens.push(token!);
+    last = token;
+    token = undefined;
     i++;
   }
 
-  yield { type: TokenType.Eof };
+  tokens.push(Tokens.Eof);
+
+  return tokens;
 }
 
-function lexString(expr: string, i: number, char: string) {
+function lexString(expr: string, i: number, char: number) {
   let value = "";
-  const template = char === "`";
+  const template = char === 0x60;
 
   while (true) {
-    let next = expr[++i];
+    let code = expr.charCodeAt(++i);
 
-    if (next === undefined || next === "\n" || next === "\r") {
+    if (isNaN(code) || code === 0x0a || code === 0x0d) {
       throw new Error("Unterminated string literal.");
     }
 
-    if (next === char) {
+    if (code === char) {
       if (template) {
         i--;
       }
       break;
     }
 
-    if (next === "\\") {
-      next = expr[++i];
+    let next = expr[i];
 
-      switch (next) {
-        case "b":
-          value += "\b";
-          break;
+    if (code === 0x5c) {
+      code = expr.charCodeAt(++i);
 
-        case "f":
-          value += "\f";
-          break;
-
-        case "n":
+      switch (code) {
+        case 0x6e:
           value += "\n";
           break;
 
-        case "r":
-          value += "\r";
-          break;
-
-        case "t":
+        case 0x74:
           value += "\t";
           break;
 
-        case "v":
+        case 0x62:
+          value += "\b";
+          break;
+
+        case 0x66:
+          value += "\f";
+          break;
+
+        case 0x72:
+          value += "\r";
+          break;
+
+        case 0x76:
           value += "\v";
           break;
 
-        case "0":
+        case 0x30:
           value += "\0";
           break;
 
-        case "\n":
-        case "\r":
-        case "\u2028":
-        case "\u2029":
+        case 0x0a:
+        case 0x0d:
+        case 0x2028:
+        case 0x2029:
           break;
 
-        case "x":
+        case 0x78:
           if (i + 3 >= expr.length) {
             throw new Error("Hexadecimal digit expected.");
           }
 
-          const first = expr[++i]!;
-          const second = expr[++i]!;
+          const first = expr.charCodeAt(++i);
+          const second = expr.charCodeAt(++i);
 
-          if (!hex.test(first) || !hex.test(second)) {
+          if (!hex(first) || !hex(second)) {
             throw new Error("Hexadecimal digit expected.");
           }
 
-          value += String.fromCharCode(parseInt(first + second, 16));
+          value += String.fromCharCode(parseInt(expr[i - 2]! + expr[i - 1]!, 16));
 
           break;
 
-        case "u":
+        case 0x75:
           if (i + 2 >= expr.length) {
             throw new Error("Hexadecimal digit expected.");
           }
 
-          next = expr[i + 1]!;
+          code = expr.charCodeAt(i + 1);
 
-          if (hex.test(next)) {
+          if (hex(code)) {
             if (i + 5 >= expr.length) {
               throw new Error("Hexadecimal digit expected.");
             }
@@ -701,30 +777,35 @@ function lexString(expr: string, i: number, char: string) {
             const third = expr[++i]!;
             const fourth = expr[++i]!;
 
-            if (!hex.test(first) || !hex.test(second) || !hex.test(third) || !hex.test(fourth)) {
+            if (
+              !hex(first.charCodeAt(0)) ||
+              !hex(second.charCodeAt(0)) ||
+              !hex(third.charCodeAt(0)) ||
+              !hex(fourth.charCodeAt(0))
+            ) {
               throw new Error("Hexadecimal digit expected.");
             }
 
             value += String.fromCharCode(parseInt(first + second + third + fourth, 16));
-          } else if (next === "{") {
-            let code = "";
+          } else if (code === 0x7b) {
+            let cp = "";
             i++;
 
             while (true) {
-              next = expr[++i]!;
+              code = expr.charCodeAt(++i);
 
-              if (next === "}") {
+              if (code === 0x7d) {
                 break;
               }
 
-              if (next === undefined || !hex.test(next)) {
+              if (!hex(code)) {
                 throw new Error("Unterminated Unicode escape sequence.");
               }
 
-              code += next;
+              cp += expr[i];
             }
 
-            const point = parseInt(code, 16);
+            const point = parseInt(cp, 16);
 
             if (point > 0x10ffff) {
               throw new Error(
@@ -738,9 +819,9 @@ function lexString(expr: string, i: number, char: string) {
           break;
 
         default:
-          value += next;
+          value += expr[i];
       }
-    } else if (template && next === "$" && expr[i + 1] === "{") {
+    } else if (template && code === 0x24 && expr.codePointAt(i + 1) === 0x7b) {
       i--;
       break;
     } else {
@@ -750,70 +831,77 @@ function lexString(expr: string, i: number, char: string) {
   return [value, i] as const;
 }
 
-function lexNumber(value: string, expr: string, i: number, seenDot: boolean) {
+function lexNumber(cp: number, expr: string, i: number, seenDot = false) {
+  let value = expr[i]!;
+
   if (!seenDot) {
-    if (value === "0") {
-      if (expr[i + 1] === "x" || expr[i + 1] === "X") {
+    const cp1 = expr.charCodeAt(i + 1);
+
+    if (cp === 0x30) {
+      if (cp1 === 0x78 || cp1 === 0x58) {
         return lexHex("", expr, i + 1);
       }
 
-      if (expr[i + 1] === "b" || expr[i + 1] === "B") {
+      if (cp1 === 0x62 || cp1 === 0x42) {
         return lexBinary("", expr, i + 1);
       }
 
-      if (expr[i + 1] === "o" || expr[i + 1] === "O") {
+      if (cp1 === 0x6f || cp1 === 0x4f) {
         return lexOctal("", expr, i + 1);
       }
     }
 
-    if ((value === "-" || value === "+") && expr[i + 1] === "0") {
-      if (expr[i + 2] === "x" || expr[i + 2] === "X") {
+    if ((cp === 0x2d || cp === 0x2b) && cp1 === 0x30) {
+      const cp2 = expr.charCodeAt(i + 2);
+
+      if (cp2 === 0x78 || cp2 === 0x58) {
         return lexHex(value, expr, i + 2);
       }
 
-      if (expr[i + 2] === "o" || expr[i + 2] === "O") {
+      if (cp2 === 0x62 || cp2 === 0x42) {
         return lexOctal(value, expr, i + 2);
       }
 
-      if (expr[i + 2] === "b" || expr[i + 2] === "B") {
+      if (cp2 === 0x6f || cp2 === 0x4f) {
         return lexBinary(value, expr, i + 2);
       }
     }
   }
 
   let seenE = false;
-  let sepAllowed = digit.test(value);
+  let sepAllowed = digit(cp);
 
   while (true) {
-    const next = expr[i + 1];
+    let code = expr.charCodeAt(i + 1);
 
-    if (next === undefined) {
+    if (isNaN(code)) {
       break;
     }
-    if (!digit.test(next)) {
-      if (!seenDot && !seenE && next === ".") {
+
+    const next = expr[i + 1];
+
+    if (!digit(code)) {
+      if (!seenDot && !seenE && code === 0x2e) {
         value += next;
         i++;
         seenDot = true;
         continue;
-      } else if (!seenE) {
-        if (next === "e" || next === "E") {
-          value += next;
-          i++;
-          seenE = true;
-          continue;
-        }
-      } else if (next === "+" || next === "-") {
+      } else if (!seenE && (code === 0x65 || code === 0x45)) {
+        value += next;
+        i++;
+        seenE = true;
+        continue;
+      } else if (code === 0x2b || code === 0x2d) {
         value += next;
         i++;
         continue;
       }
 
-      if (next === "n") {
+      if (code === 0x6e) {
         return [BigInt(value), i + 1] as const;
       }
 
-      if (sepAllowed && next === "_" && i + 2 < expr.length && digit.test(expr[i + 2]!)) {
+      if (sepAllowed && code === 0x5f && digit(expr.charCodeAt(i + 2))) {
         sepAllowed = false;
         i++;
         continue;
@@ -832,15 +920,15 @@ function lexNumber(value: string, expr: string, i: number, seenDot: boolean) {
 }
 
 function lexBinary(value: string, expr: string, i: number) {
-  return based(value, expr, i, 2, "0b", c => c === "0" || c === "1");
+  return based(value, expr, i, 2, "0b", cp => cp === 0x30 || cp === 0x31);
 }
 
 function lexOctal(value: string, expr: string, i: number) {
-  return based(value, expr, i, 8, "0o", c => octal.test(c));
+  return based(value, expr, i, 8, "0o", cp => octal(cp));
 }
 
 function lexHex(value: string, expr: string, i: number) {
-  return based(value, expr, i, 16, "0x", c => hex.test(c));
+  return based(value, expr, i, 16, "0x", cp => hex(cp));
 }
 
 function based(
@@ -849,24 +937,20 @@ function based(
   i: number,
   base: number,
   prefix: string,
-  test: (s: string) => boolean
+  test: (cp: number) => boolean
 ) {
-  let sepAllowed = false;
+  let sep = false;
 
-  while (true) {
-    const next = expr[i + 1];
+  while (i + 1 < expr.length) {
+    const cp = expr.charCodeAt(i + 1);
 
-    if (next === undefined) {
-      break;
-    }
-
-    if (!test(next)) {
-      if (next === "n") {
+    if (!test(cp)) {
+      if (cp === 0x6e) {
         return [BigInt(prefix + value), i + 1] as const;
       }
 
-      if (sepAllowed && next === "_" && i + 2 < expr.length && test(expr[i + 2]!)) {
-        sepAllowed = false;
+      if (sep && cp === 0x5f && test(expr.charCodeAt(i + 2))) {
+        sep = false;
         i++;
       } else {
         break;
@@ -874,7 +958,7 @@ function based(
     }
 
     value += expr[++i];
-    sepAllowed = true;
+    sep = true;
   }
 
   return [parseInt(value, base), i] as const;
@@ -998,6 +1082,10 @@ export interface ThisExpression extends Expression {
   type: "ThisExpression";
 }
 
+export interface SuperExpression extends Expression {
+  type: "SuperExpression";
+}
+
 export interface UnaryExpression extends Expression {
   type: "UnaryExpression";
   operator: string;
@@ -1009,8 +1097,19 @@ export function parse(expression: string) {
   return new Parser(expression).parse();
 }
 
+const Expressions = {
+  False: { type: "LiteralExpression", value: false },
+  True: { type: "LiteralExpression", value: true },
+  Undefined: { type: "LiteralExpression", value: undefined },
+  Null: { type: "LiteralExpression", value: null },
+  This: { type: "ThisExpression" },
+  Super: { type: "SuperExpression" },
+};
+
 class Parser {
-  #tokens: Generator<Token>;
+  readonly #tokens: ReadonlyArray<Token>;
+
+  #pos = 0;
   #cur: Token;
   #prev!: Token;
   #la1: Token | undefined;
@@ -1018,7 +1117,7 @@ class Parser {
 
   constructor(expression: string) {
     this.#tokens = lex(expression);
-    this.#cur = this.#tokens.next().value;
+    this.#cur = this.#tokens[this.#pos++]!;
   }
 
   parse() {
@@ -1289,7 +1388,7 @@ class Parser {
         operator: nameof(op.type),
         argument: expr,
         prefix: false,
-      };
+      } as UnaryExpression;
     }
 
     return expr;
@@ -1346,7 +1445,7 @@ class Parser {
           object: expr,
           optional,
           property,
-        };
+        } as MemberExpression;
       } else if (this.#check(TokenType.LParen)) {
         this.#consume(TokenType.LParen, "Expected '(' before arguments.");
 
@@ -1364,7 +1463,7 @@ class Parser {
 
         this.#consume(TokenType.RParen, "Expected ')' after arguments.");
 
-        expr = { type: "CallExpression", callee: expr, arguments: args };
+        expr = { type: "CallExpression", callee: expr, arguments: args } as CallExpression;
       } else if (this.#check(TokenType.Backtick)) {
         const template = this.#primary() as TemplateLiteralExpression;
 
@@ -1372,7 +1471,7 @@ class Parser {
           type: "TaggedTemplateExpression",
           tag: expr,
           quasi: template,
-        };
+        } as TaggedTemplateExpression;
       } else {
         break;
       }
@@ -1387,27 +1486,15 @@ class Parser {
     }
 
     if (this.#match(TokenType.False)) {
-      return { type: "LiteralExpression", value: false };
+      return Expressions.False;
     }
 
     if (this.#match(TokenType.True)) {
-      return { type: "LiteralExpression", value: true };
-    }
-
-    if (this.#match(TokenType.Null)) {
-      return { type: "LiteralExpression", value: null };
+      return Expressions.True;
     }
 
     if (this.#match(TokenType.Undefined)) {
-      return { type: "LiteralExpression", value: undefined };
-    }
-
-    if (this.#match(TokenType.This)) {
-      return { type: "ThisExpression" };
-    }
-
-    if (this.#match(TokenType.Super)) {
-      return { type: "IdentifierExpression", name: "super" };
+      return Expressions.Undefined;
     }
 
     if (this.#match(TokenType.Number, TokenType.String, TokenType.Regex)) {
@@ -1514,6 +1601,18 @@ class Parser {
       };
     }
 
+    if (this.#match(TokenType.Null)) {
+      return Expressions.Null;
+    }
+
+    if (this.#match(TokenType.This)) {
+      return Expressions.This;
+    }
+
+    if (this.#match(TokenType.Super)) {
+      return Expressions.Super;
+    }
+
     throw new Error(`Unexpected token: '${nameof(this.#cur.type)}'.`);
   }
 
@@ -1541,29 +1640,23 @@ class Parser {
   }
 
   #next() {
-    if (!this.#eof) {
-      this.#prev = this.#cur;
-      this.#cur = this.#la1 ?? this.#tokens.next().value;
-      this.#la1 = this.#la2;
-      this.#la2 = undefined;
-    }
+    this.#prev = this.#cur;
+    this.#cur = this.#la1 ?? this.#tokens[this.#pos++]!;
+    this.#la1 = this.#la2;
+    this.#la2 = undefined;
 
     return this.#prev;
   }
 
   #peek() {
-    if (this.#eof) {
-      return this.#cur;
-    }
-
     if (!this.#la1) {
-      this.#la1 = this.#tokens.next().value;
+      this.#la1 = this.#tokens[this.#pos++];
 
       return this.#la1;
     }
 
     if (!this.#la2) {
-      this.#la2 = this.#tokens.next().value;
+      this.#la2 = this.#tokens[this.#pos++];
     }
 
     return this.#la2;
