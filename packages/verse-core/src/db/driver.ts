@@ -8,6 +8,7 @@
 
 import { List } from "immutable";
 import { Convention } from "../conventions/convention.js";
+import { Model } from "../model/model.js";
 import { Logger } from "../utils/logging.js";
 import { SqlNode } from "./sql.js";
 
@@ -159,6 +160,13 @@ export interface Driver {
    * @return A Promise resolving to a boolean value indicating whether the table exists.
    */
   tableExists(name: string): Promise<boolean>;
+
+  /**
+   * Performs driver-specific validation of the model.
+   *
+   * @param model The model to validate.
+   */
+  validate(model: Model): void;
 }
 
 /**

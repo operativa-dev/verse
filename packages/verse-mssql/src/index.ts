@@ -40,9 +40,11 @@ import {
   sqlStr,
   SqlType,
 } from "@operativa/verse/db/sql";
-import { KeyModel } from "@operativa/verse/model/model";
+import { KeyModel, Model, ScalarPropertyModel } from "@operativa/verse/model/model";
+import { ModelRewriter } from "@operativa/verse/model/rewriter";
 import { notEmpty, notNull } from "@operativa/verse/utils/check";
 import { logBatch, Logger, logSql } from "@operativa/verse/utils/logging";
+import { error } from "@operativa/verse/utils/utils";
 import { List } from "immutable";
 import { config, connect, ConnectionPool, ISOLATION_LEVEL } from "mssql";
 
@@ -58,6 +60,11 @@ export class MssqlDriver implements Driver {
     notNull({ config });
 
     config.arrayRowMode = true;
+  }
+
+  // @ts-ignore
+  validate(model: Model) {
+    model.accept(new Validator());
   }
 
   get info() {
@@ -546,5 +553,18 @@ class MssqlPrinter extends SqlPrinter {
 
   override visitParameter(parameter: SqlParameter) {
     return `@p${parameter.id}`;
+  }
+}
+
+class Validator extends ModelRewriter {
+  override visitScalarProperty(scalarProperty: ScalarPropertyModel) {
+    if (scalarProperty.generate?.using === "seqhilo") {
+      throw error(
+        `Scalar property '${scalarProperty.name}' cannot use 'seqhilo' generator.
+        SQL Server does not support sequences.`
+      );
+    }
+
+    return super.visitScalarProperty(scalarProperty);
   }
 }

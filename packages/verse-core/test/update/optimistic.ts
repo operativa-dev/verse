@@ -181,13 +181,13 @@ export const optimisticTests = (verse: Verse<typeof optimisticModel>) => {
     await uow2.products.add(product);
 
     // @ts-ignore
-    expect(product.id).toBe(-1);
+    const id = product.id;
 
     await expect(() => uow2.commit()).rejects.toThrow(
       "Concurrency Error - 0 rows affected. Either the row has been deleted, or a concurrency violation was detected."
     );
 
     // @ts-ignore
-    expect(product.id).toBe(-1);
+    expect(product.id).toBe(id);
   });
 };

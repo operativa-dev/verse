@@ -26,8 +26,11 @@ import {
   SqlSelect,
   sqlStr,
 } from "@operativa/verse/db/sql";
+import { Model, ScalarPropertyModel } from "@operativa/verse/model/model";
+import { ModelRewriter } from "@operativa/verse/model/rewriter";
 import { notEmpty } from "@operativa/verse/utils/check";
 import { logBatch, Logger, logSql } from "@operativa/verse/utils/logging";
+import { error } from "@operativa/verse/utils/utils";
 import Database, { Statement } from "better-sqlite3";
 import { existsSync } from "fs";
 import { unlink } from "fs/promises";
@@ -43,6 +46,10 @@ export class SqliteDriver implements Driver {
 
   constructor(readonly connectionString: string) {
     notEmpty({ connectionString });
+  }
+
+  validate(model: Model) {
+    model.accept(new Validator());
   }
 
   get info() {
@@ -300,5 +307,18 @@ class SqlitePrinter extends SqlPrinter {
 
   protected override visitOffset(offset: SqlNode) {
     return `\nlimit -1 offset ${offset.accept(this)}`;
+  }
+}
+
+class Validator extends ModelRewriter {
+  override visitScalarProperty(scalarProperty: ScalarPropertyModel) {
+    if (scalarProperty.generate?.using === "seqhilo") {
+      throw error(
+        `Scalar property '${scalarProperty.name}' cannot use 'seqhilo' generator.
+        SQLite does not support sequences.`
+      );
+    }
+
+    return super.visitScalarProperty(scalarProperty);
   }
 }

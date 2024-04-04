@@ -29,6 +29,7 @@
     "./test/db/*": "./dist/test/db/*.js",
     "./test/identity/*": "./dist/test/identity/*.js",
     "./test/infra": "./dist/test/infra.js",
+    "./test/model/*": "./dist/test/model/*.js",
     "./test/mapping/*": "./dist/test/mapping/*.js",
     "./test/query/*": "./dist/test/query/*.js",
     "./test/update/*": "./dist/test/update/*.js"
