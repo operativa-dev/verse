@@ -1,3 +1,5 @@
+import { DeepReadonly } from "ts-essentials";
+
 export enum TokenType {
   And,
   AndAnd,
@@ -1084,7 +1086,7 @@ export interface UnaryExpression extends Expression {
   prefix: boolean;
 }
 
-export function parse(expression: string) {
+export function parse(expression: string): DeepReadonly<Expression> {
   return new Parser(expression).parse();
 }
 
@@ -1121,7 +1123,7 @@ class Parser {
     return expr;
   }
 
-  #expr() {
+  #expr(): Readonly<Expression> {
     return this.#comma();
   }
 

@@ -6,7 +6,7 @@
 
 import { is, List, Map as ImmutableMap, OrderedMap, Seq } from "immutable";
 
-import { ExecuteResult, IsolationLevel } from "./db/driver.js";
+import { ExecuteResult, ExecuteStatement, IsolationLevel } from "./db/driver.js";
 import {
   sqlBin,
   SqlBinding,
@@ -488,7 +488,7 @@ type Operation = {
   sql: SqlNode;
   args?: unknown[];
   onCommit?: ((result: ExecuteResult) => void) | undefined;
-};
+} & ExecuteStatement;
 
 const generators = new Map<ScalarPropertyModel, IdGenerator<unknown>>();
 
@@ -698,7 +698,7 @@ export class UnitOfWorkImpl {
           break;
 
         case "removed":
-          deletes.get(entry.model)!.push(...this.#delete(entry));
+          deletes.get(entry.model)!.push(this.#delete(entry));
           break;
       }
     }
@@ -818,11 +818,11 @@ export class UnitOfWorkImpl {
       args,
       onBeforeExecute,
       onAfterExecute,
-      onCommit: (r: ExecuteResult) => {
+      onCommit: r => {
         onCommit?.(r);
         entry.commit();
       },
-    };
+    } as Operation;
   }
 
   #update(entry: EntityEntry) {
@@ -856,29 +856,23 @@ export class UnitOfWorkImpl {
         this.#where(entry, args)
       ),
       args,
-      onCommit: (r: ExecuteResult) => {
-        this.#checkConcurrency(r);
+      onAfterExecute: r => this.#checkConcurrency(r),
+      onCommit: r => {
         onCommit?.(r);
         entry.commit();
       },
-    };
+    } as Operation;
   }
 
   #delete(entry: EntityEntry) {
-    const ops: Operation[] = [];
-
     const args: unknown[] = [];
 
-    ops.push({
+    return {
       sql: new SqlDelete(sqlId(entry.model.table!), this.#where(entry, args)),
       args,
-      onCommit: (r: ExecuteResult) => {
-        this.#checkConcurrency(r);
-        this.#tracker.evict(entry);
-      },
-    });
-
-    return ops;
+      onAfterExecute: r => this.#checkConcurrency(r),
+      onCommit: _ => this.#tracker.evict(entry),
+    } as Operation;
   }
 
   #checkConcurrency(r: ExecuteResult) {
