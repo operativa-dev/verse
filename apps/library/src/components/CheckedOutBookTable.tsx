@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ReturnBookButton } from "./ReturnBookButton";
 export async function CheckedOutBookTable() {
   const checkOutBooks = await db.from.libraryInventory
-    .where((i) => i.userId !== 0)
+    .where(i => i.userId !== 0)
     .join(Book, (lib, book) => lib.bookId === book.bookId)
     .join(User, (lib, _, user) => lib.userId === user.userId)
     .select((lib, book, user) => ({
@@ -14,7 +14,7 @@ export async function CheckedOutBookTable() {
       created: lib.created,
     }))
     .toArray();
-    
+
   return (
     <>
       <header className="flex justify-between items-center mb-4">

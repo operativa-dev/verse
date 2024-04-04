@@ -53,13 +53,13 @@ export const db = verse({
           t.table("users");
           t.data(
             new User(
-              "Will",
+              "Alice",
               new Date(new Date().setFullYear(new Date().getFullYear() - 20)),
               true,
               false
             ),
             new User(
-              "Ben",
+              "Bob",
               new Date(new Date().setFullYear(new Date().getFullYear() - 19)),
               true,
               false

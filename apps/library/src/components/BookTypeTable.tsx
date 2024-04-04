@@ -23,7 +23,7 @@ export async function BookTypeTable() {
           </tr>
         </thead>
         <tbody>
-          {books.map((book) => (
+          {books.map(book => (
             <tr key={book.bookId}>
               <td>{book.title}</td>
               <td>{book.description}</td>

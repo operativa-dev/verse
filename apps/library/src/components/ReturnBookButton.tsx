@@ -15,7 +15,7 @@ export function ReturnBookButton({ id }: { id: number }) {
       <Button
         variant="solid"
         color="neutral"
-        onClick={(e) => handleChange(id)}
+        onClick={e => handleChange(id)}
         disabled={!checkedOut}
         className="text-slate-600 bg-slate-300 hover:bg-slate-200 "
       >

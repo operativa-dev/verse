@@ -24,7 +24,7 @@ export function CustomerTable({ users }: { users: Array<User> }) {
           </tr>
         </thead>
         <tbody>
-          {users.map((user) => (
+          {users.map(user => (
             <tr key={user.userId}>
               <td>{user.firstName}</td>
               <td>{user.birthday.toDateString()}</td>

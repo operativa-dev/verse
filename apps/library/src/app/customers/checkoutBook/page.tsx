@@ -11,10 +11,7 @@ async function checkoutBook(data: FormData) {
   const uow = db.uow();
 
   const book = await uow.libraryInventory
-    .where(
-      (a, $bookId: number) => a.id === $bookId && a.userId === null,
-      bookId
-    )
+    .where((a, $bookId: number) => a.id === $bookId && a.userId === null, bookId)
     .single();
   book.userId = userId;
   await uow.commit();
@@ -24,9 +21,9 @@ async function checkoutBook(data: FormData) {
 export default async function Page() {
   const users = await db.from.users.toArray();
   const availableBooks = await db.from.libraryInventory
-    .where((i) => i.userId === null)
+    .where(i => i.userId === null)
     .join(Book, (lib, book) => lib.bookId === book.bookId)
-    .select((lib,book) => [lib.id, book.title, book.description])
+    .select((lib, book) => [lib.id, book.title, book.description])
     .toArray();
   return (
     <>
@@ -34,14 +31,12 @@ export default async function Page() {
         <h1 className="text-2xl">Checkout a book</h1>
       </header>
       <form action={checkoutBook} className="flex gap-2 flex-col">
-        <label className="block mb-2 text-sm font-medium">
-          Select a customer
-        </label>
+        <label className="block mb-2 text-sm font-medium">Select a customer</label>
         <select
           name="userId"
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         >
-          {users.map((user) => (
+          {users.map(user => (
             <option key={user.userId} value={user.userId}>
               {user.firstName}
             </option>
@@ -52,7 +47,7 @@ export default async function Page() {
           name="bookId"
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         >
-          {availableBooks.map((book) => (
+          {availableBooks.map(book => (
             <option key={book[0]} value={book[0]}>
               {book[1]}
             </option>
