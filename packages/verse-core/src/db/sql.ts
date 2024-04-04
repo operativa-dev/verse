@@ -767,6 +767,24 @@ export class SqlSelect extends SqlNode {
     super(binding);
   }
 
+  onlyHas(...clauses: (keyof SqlSelectState)[]) {
+    let result = true;
+
+    for (const key of Object.keys(this.state) as (keyof SqlSelectState)[]) {
+      if (
+        key != "projection" &&
+        key != "from" &&
+        !clauses.includes(key) &&
+        this.state[key] !== undefined
+      ) {
+        result = false;
+        break;
+      }
+    }
+
+    return result;
+  }
+
   get projection() {
     return this.state.projection;
   }

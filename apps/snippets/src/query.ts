@@ -299,7 +299,7 @@ for await (const artist of eager) {
 const name = "AC/DC"; // usually from user input, parameterized
 
 const sql = await db.from.artists
-  .sql`select * from Artist where Name = ${name}`.toArray();
+  .sql`SELECT * FROM Artist WHERE Name = ${name}`.toArray();
 ///
 
 /// with-multiple-1
@@ -313,5 +313,13 @@ const artistAlbumsTracks = db.from.artists
 const trackAlbumArtist = db.from.tracks
   .limit(1)
   .with(t => t.album.artist)
+  .toArray();
+///
+
+/// sql-composition
+const composed = db.from.artists.sql`SELECT * FROM Artist`
+  .where(a => a.name.like("A%"))
+  .orderBy(a => a.name)
+  .limit(5)
   .toArray();
 ///

@@ -296,7 +296,7 @@ The `sql` operator is used to execute a raw SQL query:
 const name = "AC/DC"; // usually from user input, parameterized
 
 const sql = await db.from.artists
-  .sql`select * from Artist where Name = ${name}`.toArray();
+  .sql`SELECT * FROM Artist WHERE Name = ${name}`.toArray();
 ```
 
 It is a useful escape hatch for when you need to execute a query that is not supported by the Verse query API.
