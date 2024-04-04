@@ -2,10 +2,10 @@ import { afterEach, describe, expect, test } from "vitest";
 import { Expression, lex, nameof, parse, Token } from "../../src/query/parser.js";
 import { snap } from "../infra.js";
 
-let $tokens: Token[] = [];
+let $tokens: readonly Readonly<Token>[];
 
 function testLex(expr: string) {
-  $tokens = [...lex(expr)];
+  $tokens = lex(expr);
 }
 
 describe("lexer", () => {

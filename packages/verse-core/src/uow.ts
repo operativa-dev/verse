@@ -425,7 +425,7 @@ export interface UnitOfWorkApi extends AsyncDisposable {
    *
    * await uow.add(blog1, blog2);
    */
-  add(...entities: object[]): Promise<void>;
+  add(...entities: readonly object[]): Promise<void>;
 
   /**
    * Adds one or more entities in this unit of work. The entities will be inserted into the database when the
@@ -452,7 +452,7 @@ export interface UnitOfWorkApi extends AsyncDisposable {
    *
    * await uow.add("Blog", blog1, blog2);
    */
-  add(entityName: string, ...entities: object[]): Promise<void>;
+  add(entityName: string, ...entities: readonly object[]): Promise<void>;
 
   /**
    * Removes one or more entities in this unit of work. The entities will be deleted from the database when the
@@ -463,7 +463,7 @@ export interface UnitOfWorkApi extends AsyncDisposable {
    * @example
    * await uow.remove(blog1, blog2);
    */
-  remove(...entities: object[]): void;
+  remove(...entities: readonly object[]): void;
 
   /**
    * Commits all changes made in this unit of work to the database.
@@ -509,18 +509,20 @@ export class UnitOfWorkImpl {
     return this.#tracker.entry(entity);
   }
 
-  add(...entities: object[]): Promise<void>;
-  add(entityName: string, ...entities: object[]): Promise<void>;
-  async add(...maybeNameAndEntities: any[]) {
+  add(...entities: readonly object[]): Promise<void>;
+  add(entityName: string, ...entities: readonly object[]): Promise<void>;
+  async add(...maybeNameAndEntities: readonly any[]) {
     notNull({ maybeNameAndEntities });
 
     let entityName = Object.name;
+    let start = 0;
 
     if (typeof maybeNameAndEntities[0] === "string") {
-      entityName = maybeNameAndEntities.shift();
+      entityName = maybeNameAndEntities[0];
+      start = 1;
     }
 
-    for (let i = 0; i < maybeNameAndEntities.length; i++) {
+    for (let i = start; i < maybeNameAndEntities.length; i++) {
       const entity = maybeNameAndEntities[i]!;
 
       entityName = entity.constructor === Object ? entityName : entity.constructor.name;
@@ -648,7 +650,7 @@ export class UnitOfWorkImpl {
     return key;
   }
 
-  remove(...entities: object[]) {
+  remove(...entities: readonly object[]) {
     notNull({ entities });
 
     entities.forEach(e => {
@@ -712,7 +714,11 @@ export class UnitOfWorkImpl {
     await this.executeBatch(operations, start, isolation);
   }
 
-  protected async executeBatch(batch: Operation[], start: number, isolation?: IsolationLevel) {
+  protected async executeBatch(
+    batch: readonly Operation[],
+    start: number,
+    isolation?: IsolationLevel
+  ) {
     if (batch.length > 0) {
       await this.#metadata.config.driver.execute(
         batch,
@@ -950,7 +956,11 @@ export class UnitOfWorkSpy extends UnitOfWorkImpl {
     return this.#operations;
   }
 
-  protected override async executeBatch(batch: Operation[], _: number, __?: IsolationLevel) {
+  protected override async executeBatch(
+    batch: readonly Operation[],
+    _: number,
+    __?: IsolationLevel
+  ) {
     this.#operations.push(...batch);
   }
 }

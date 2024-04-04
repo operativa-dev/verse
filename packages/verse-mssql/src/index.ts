@@ -91,7 +91,7 @@ export class MssqlDriver implements Driver {
     if (!hasInParameter(sql)) {
       const query = sql.accept(new DialectRewriter()).accept(printer);
 
-      return (args: unknown[]) => {
+      return (args: readonly unknown[]) => {
         return this.#query(query, args);
       };
     }
@@ -103,7 +103,7 @@ export class MssqlDriver implements Driver {
     };
   }
 
-  async *#query(sql: string, args: unknown[]): AsyncIterable<unknown[]> {
+  async *#query(sql: string, args: readonly unknown[]): AsyncIterable<readonly unknown[]> {
     logSql(sql, args, this.#logger);
 
     const pool = await this.pool();
@@ -119,9 +119,9 @@ export class MssqlDriver implements Driver {
   }
 
   async execute(
-    statements: ExecuteStatement[],
+    statements: readonly ExecuteStatement[],
     isolation?: IsolationLevel,
-    onBeforeCommit?: (results: ExecuteResult[]) => void
+    onBeforeCommit?: (results: readonly ExecuteResult[]) => void
   ) {
     const batch = this.#createBatch(statements);
 
@@ -160,7 +160,7 @@ export class MssqlDriver implements Driver {
     return results;
   }
 
-  #createBatch(statements: ExecuteStatement[]) {
+  #createBatch(statements: readonly ExecuteStatement[]) {
     const dialect = new DialectRewriter();
     const printer = new MssqlPrinter();
 
@@ -200,7 +200,7 @@ export class MssqlDriver implements Driver {
     return new SqlSet("identity_insert", table, new SqlRaw(List.of(value)));
   }
 
-  script(statements: ExecuteStatement[]) {
+  script(statements: readonly ExecuteStatement[]) {
     const dialect = new DialectRewriter();
     const printer = new MssqlPrinter();
 

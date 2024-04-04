@@ -50,7 +50,7 @@ export interface Logger {
  * @param args The optional arguments to log.
  * @param logger The logger instance to use.
  */
-export function logSql(sql: string, args: unknown[], logger?: Logger) {
+export function logSql(sql: string, args: readonly unknown[], logger?: Logger) {
   logger?.sql(logMsg(sql, args));
 }
 
@@ -60,11 +60,11 @@ export function logSql(sql: string, args: unknown[], logger?: Logger) {
  * @param statements The SQL statements to log.
  * @param logger The logger instance to use.
  */
-export function logBatch(statements: { sql: string; args: unknown[] }[], logger?: Logger) {
+export function logBatch(statements: { sql: string; args: readonly unknown[] }[], logger?: Logger) {
   statements.map(({ sql, args }) => logSql(sql, args, logger));
 }
 
-function logMsg(sql: string, args: unknown[]) {
+function logMsg(sql: string, args: readonly unknown[]) {
   return `-- Executing SQL: Parameters: [${args
     .map((p, i) => `$${i + 1}=${formatParameter(p)}`)
     .join(", ")}]\n${sql}`;

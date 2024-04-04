@@ -106,7 +106,7 @@ class DifferUnitOfWork extends UnitOfWorkSpy {
     super(metadata);
   }
 
-  protected override createParameter(value: Primitive | Date, _: unknown[]) {
+  protected override createParameter(value: Primitive | Date, _: readonly unknown[]) {
     return primitiveToSql(value)[0];
   }
 }

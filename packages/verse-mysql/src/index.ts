@@ -89,7 +89,7 @@ export class MySqlDriver implements Driver, AsyncDisposable {
 
       const query = sql.accept(dialect).accept(printer);
 
-      return (args: unknown[]) => {
+      return (args: readonly unknown[]) => {
         return this.#query(query, args, printer.argsMap, dialect.coerceArgs);
       };
     }
@@ -106,10 +106,10 @@ export class MySqlDriver implements Driver, AsyncDisposable {
 
   async *#query(
     sql: string,
-    args: unknown[],
-    argsMap: number[],
+    args: readonly unknown[],
+    argsMap: readonly number[],
     coerceArgs: Set<number>
-  ): AsyncIterable<unknown[]> {
+  ): AsyncIterable<readonly unknown[]> {
     logSql(sql, args, this.#logger);
 
     const [rows, _] = await this.#pool.execute(
@@ -123,9 +123,9 @@ export class MySqlDriver implements Driver, AsyncDisposable {
   }
 
   async execute(
-    statements: ExecuteStatement[],
+    statements: readonly ExecuteStatement[],
     isolation?: IsolationLevel,
-    onBeforeCommit?: (results: ExecuteResult[]) => void
+    onBeforeCommit?: (results: readonly ExecuteResult[]) => void
   ) {
     const dialect = new DialectRewriter();
 
@@ -254,7 +254,7 @@ export class MySqlDriver implements Driver, AsyncDisposable {
     return [node];
   }
 
-  script(statements: ExecuteStatement[]) {
+  script(statements: readonly ExecuteStatement[]) {
     const dialect = new DialectRewriter();
     const printer = new MySqlPrinter();
 
@@ -438,7 +438,7 @@ class MySqlPrinter extends SqlPrinter {
     super(prettySelect);
   }
 
-  get argsMap(): number[] {
+  get argsMap(): readonly number[] {
     return this.#argsMap;
   }
 

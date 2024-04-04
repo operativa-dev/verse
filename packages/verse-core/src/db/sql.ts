@@ -799,7 +799,7 @@ export class SqlSelect extends SqlNode {
     return this.state.joins;
   }
 
-  addJoins(...joins: SqlJoin[]) {
+  addJoins(...joins: readonly SqlJoin[]) {
     if (joins.length === 0) {
       return this;
     }
@@ -1856,7 +1856,7 @@ export function primitiveToSql(
   value: unknown,
   model?: Model,
   raw?: string
-): [SqlNode, ConversionModel | undefined] {
+): readonly [SqlNode, ConversionModel | undefined] {
   if (value === null || value === undefined) {
     return [SqlNull.INSTANCE, undefined];
   }
@@ -2060,7 +2060,7 @@ export class SqlComposite extends SqlNode {
     return undefined;
   }
 
-  getByName(property: string): [SqlNode, number] {
+  getByName(property: string): readonly [SqlNode, number] {
     for (let i = 0; i < this.nodes.size; i++) {
       if (this.nodes.get(i)?.binding?.name === property) {
         return [this.nodes.get(i)!, i];

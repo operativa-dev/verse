@@ -165,7 +165,7 @@ export interface EntityBuilder<T extends object, O extends object = any> {
    * @param key One or more properties to use as the key.
    * @return A chainable EntityBuilder instance.
    */
-  key(...key: (keyof T)[]): EntityBuilder<T>;
+  key(...key: readonly (keyof T)[]): EntityBuilder<T>;
 
   /**
    * Configures a foreign key reference to another entity.
@@ -178,7 +178,7 @@ export interface EntityBuilder<T extends object, O extends object = any> {
    */
   references<R extends object>(
     entityClassOrName: Newable<R> | string,
-    properties?: keyof T | (keyof T)[],
+    properties?: keyof T | readonly (keyof T)[],
     options?: ForeignKeyOptions
   ): EntityBuilder<T>;
 
@@ -197,7 +197,7 @@ export interface EntityBuilder<T extends object, O extends object = any> {
 
   references<R extends object>(
     entityClassOrName: Newable<R> | string,
-    propertiesOrOptions?: (keyof T | (keyof T)[]) | ForeignKeyOptions,
+    propertiesOrOptions?: (keyof T | readonly (keyof T)[]) | ForeignKeyOptions,
     options?: ForeignKeyOptions
   ): EntityBuilder<T>;
 
@@ -233,7 +233,7 @@ export interface EntityBuilder<T extends object, O extends object = any> {
    * @param data The initial data.
    * @returns A chainable EntityBuilder instance.
    */
-  data(...data: Partial<O>[]): EntityBuilder<T>;
+  data(...data: readonly Partial<O>[]): EntityBuilder<T>;
 }
 
 /**
@@ -250,11 +250,11 @@ export class EntityBuilderImpl<T extends object, O extends object = any>
   implements EntityBuilder<T>
 {
   #properties?: List<PropertyModel> | undefined;
-  #key?: (keyof T)[] | undefined;
+  #key?: readonly (keyof T)[] | undefined;
   #table?: string;
   #foreignKeys: List<{
     entity: string;
-    properties?: (keyof T)[] | undefined;
+    properties?: readonly (keyof T)[] | undefined;
     onDelete?: OnDelete | undefined;
   }> = List();
   #conditions: List<Condition> = List();
@@ -274,7 +274,7 @@ export class EntityBuilderImpl<T extends object, O extends object = any>
     );
   }
 
-  key(...key: (keyof T)[]) {
+  key(...key: readonly (keyof T)[]) {
     notEmpty({ key });
 
     this.#key = array(key);
@@ -284,7 +284,7 @@ export class EntityBuilderImpl<T extends object, O extends object = any>
 
   references<R extends object>(
     entityClassOrName: Newable<R> | string,
-    propertiesOrOptions?: (keyof T | (keyof T)[]) | ForeignKeyOptions,
+    propertiesOrOptions?: (keyof T | readonly (keyof T)[]) | ForeignKeyOptions,
     options?: ForeignKeyOptions
   ) {
     notNull({ entityClassOrName });
@@ -292,7 +292,7 @@ export class EntityBuilderImpl<T extends object, O extends object = any>
     const entity =
       typeof entityClassOrName === "function" ? entityClassOrName.name : entityClassOrName;
 
-    let properties: (keyof T)[] | undefined;
+    let properties: readonly (keyof T)[] | undefined;
 
     if (typeof propertiesOrOptions === "object") {
       options = propertiesOrOptions as ForeignKeyOptions;
@@ -333,7 +333,7 @@ export class EntityBuilderImpl<T extends object, O extends object = any>
     return this;
   }
 
-  data(...data: Partial<O>[]) {
+  data(...data: readonly Partial<O>[]) {
     this.#data = List(data);
 
     return this;
@@ -714,7 +714,7 @@ export type ManyOptions<T extends object> = {
   /**
    * The foreign key properties that reference the target entity.
    */
-  foreignKey?: (keyof T | string | (keyof T | string)[]) | undefined;
+  foreignKey?: (keyof T | string | readonly (keyof T | string)[]) | undefined;
 
   /**
    * A default order by expression for the collection.
@@ -753,7 +753,7 @@ export type OneOptions<T extends object> = {
   /**
    * The foreign key properties that reference the target entity.
    */
-  foreignKey?: (keyof T | string | (keyof T | string)[]) | undefined;
+  foreignKey?: (keyof T | string | readonly (keyof T | string)[]) | undefined;
 
   /**
    * The nullability of the property.
