@@ -83,7 +83,10 @@ export class QueryCompiler {
     private readonly from: From
   ) {}
 
-  compile<A extends unknown[]>(query: (from: From, ...args: A) => unknown, localParams = true) {
+  compile<A extends readonly unknown[]>(
+    query: (from: From, ...args: A) => unknown,
+    localParams = true
+  ) {
     const queryJS = query.toString();
     const arrowExpr = parse(queryJS) as ArrowFunctionExpression;
 
@@ -112,11 +115,11 @@ export class QueryCompiler {
     const rows = this.#rows(sql, argsMap.size - 1, locals, conversions, this.metadata.model);
 
     if (cardinality !== "many") {
-      return async (args: A[], cache?: QueryCache) =>
+      return async (args: readonly A[], cache?: QueryCache) =>
         this.#one(args, rows, shaper, cardinality, cache);
     }
 
-    return (args: A[], cache?: QueryCache) =>
+    return (args: readonly A[], cache?: QueryCache) =>
       new AsyncSequenceImpl(this.#many(args, rows, shaper, cache));
   }
 
@@ -129,7 +132,7 @@ export class QueryCompiler {
   ) {
     const rows = this.metadata.config.driver.rows(sql);
 
-    return (args: unknown[]) => {
+    return (args: readonly unknown[]) => {
       const allArgs: any[] = [];
 
       args.forEach(arg => allArgs.push(arg ?? null));
@@ -153,8 +156,8 @@ export class QueryCompiler {
   }
 
   async #one(
-    args: unknown[],
-    rows: (args: unknown[]) => AsyncIterable<unknown[]>,
+    args: readonly unknown[],
+    rows: (args: readonly unknown[]) => AsyncIterable<readonly unknown[]>,
     shaper: Shaper,
     cardinality: Cardinality,
     cache?: QueryCache
@@ -192,8 +195,8 @@ export class QueryCompiler {
   }
 
   async *#many(
-    args: unknown[],
-    rows: (args: unknown[]) => AsyncIterable<unknown[]>,
+    args: readonly unknown[],
+    rows: (args: readonly unknown[]) => AsyncIterable<readonly unknown[]>,
     shaper: Shaper,
     cache?: QueryCache
   ) {
@@ -218,15 +221,15 @@ export class QueryCompiler {
   }
 }
 
-export class RowIterator implements AsyncIterator<unknown[]> {
-  private iterator: AsyncIterator<unknown[]>;
-  private nextValue?: Promise<IteratorResult<unknown[]>> | undefined;
+export class RowIterator implements AsyncIterator<readonly unknown[]> {
+  private iterator: AsyncIterator<readonly unknown[]>;
+  private nextValue?: Promise<IteratorResult<readonly unknown[]>> | undefined;
 
-  constructor(iterator: AsyncIterator<unknown[]>) {
+  constructor(iterator: AsyncIterator<readonly unknown[]>) {
     this.iterator = iterator;
   }
 
-  async peek(): Promise<IteratorResult<unknown[]>> {
+  async peek() {
     if (!this.nextValue) {
       this.nextValue = this.iterator.next();
     }
@@ -234,7 +237,7 @@ export class RowIterator implements AsyncIterator<unknown[]> {
     return this.nextValue;
   }
 
-  async next(): Promise<IteratorResult<unknown[]>> {
+  async next() {
     if (this.nextValue) {
       const result = this.nextValue;
       this.nextValue = undefined;
@@ -289,8 +292,8 @@ export class CompilationContext {
 export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
   static readonly #AGGREGATES = ImmutableSet.of("min", "max", "avg", "sum");
 
-  #scopes: Stack<[args: Expression[], projection: SqlNode]> = Stack();
-  #locals: Stack<any[]> = Stack();
+  #scopes: Stack<[args: readonly Expression[], projection: SqlNode]> = Stack();
+  #locals: Stack<readonly any[]> = Stack();
 
   #localParams: List<any> = List();
   #conversions: Map<number, Converter> = Map();
@@ -410,7 +413,7 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
     );
   }
 
-  #nameIndex(expressions: Expression[], name: string): number {
+  #nameIndex(expressions: readonly Expression[], name: string): number {
     let i = 0;
 
     while (i < expressions.length) {
@@ -448,7 +451,7 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
     }
   }
 
-  #resolve(scope: [Expression[], SqlNode], name: string) {
+  #resolve(scope: readonly [readonly Expression[], SqlNode], name: string) {
     const [expressions, projection] = scope;
     const index = this.#nameIndex(expressions, name);
 

@@ -1,28 +1,52 @@
 // noinspection JSUnusedLocalSymbols,JSUnusedAssignment
 
-import { verse } from "@operativa/verse";
+import { EntityType, verse } from "@operativa/verse";
 import { sqlite } from "@operativa/verse-sqlite";
-import { entity, int, string } from "@operativa/verse/model/builder";
+import { entity, int, many, one, string } from "@operativa/verse/model/builder";
 import { PrettyConsoleLogger } from "@operativa/verse/utils/logging";
+
+const Track = entity({
+  trackId: int(),
+  name: string(),
+  albumId: int(),
+  genreId: int(),
+  composer: string({ nullable: true }),
+  album: one<AlbumType>("Album"),
+});
+
+type TrackType = EntityType<typeof Track>;
+
+type AlbumType = {
+  albumId: number;
+  title: string;
+  artistId: number;
+  artist: ArtistType;
+  tracks: TrackType[];
+};
+
+const Artist = entity(
+  {
+    artistId: int(),
+    name: string(),
+    albums: many<AlbumType>("Album"),
+  },
+  builder => {
+    builder.table("Artist");
+  }
+);
+
+type ArtistType = EntityType<typeof Artist>;
 
 const Album = entity(
   {
     albumId: int(),
     title: string(),
     artistId: int(),
+    tracks: many(Track),
+    artist: one(Artist),
   },
   builder => {
     builder.table("Album");
-  }
-);
-
-const Artist = entity(
-  {
-    artistId: int(),
-    name: string(),
-  },
-  builder => {
-    builder.table("Artist");
   }
 );
 
@@ -35,6 +59,7 @@ const db = verse({
     entities: {
       albums: Album,
       artists: Artist,
+      tracks: Track,
     },
   },
 });
@@ -237,4 +262,56 @@ const toArray = await db.from.artists.toArray();
 
 /// where
 const where = await db.from.artists.where(a => a.name === "AC/DC").toArray();
+///
+
+/// from-parameter
+const amount = 3; // usually from user input
+
+const albums = await db.from.artists
+  .where(
+    (ar, $count, from) =>
+      from.albums.where(al => ar.artistId === al.artistId).count() > $count,
+    amount
+  )
+  .toArray();
+///
+
+/// compiled
+const artistsQuery = db.compile((from, $count: number) =>
+  from.artists.where(
+    ar => from.albums.where(al => ar.artistId === al.artistId).count() > $count
+  )
+);
+
+const result1 = await artistsQuery(3).toArray();
+const result2 = await artistsQuery(5).toArray();
+///
+
+/// with
+let eager = db.from.artists.limit(1).with(a => a.albums);
+
+for await (const artist of eager) {
+  console.log(artist);
+}
+///
+
+/// sql
+const name = "AC/DC"; // usually from user input, parameterized
+
+const sql = await db.from.artists
+  .sql`select * from Artist where Name = ${name}`.toArray();
+///
+
+/// with-multiple-1
+const artistAlbumsTracks = db.from.artists
+  .limit(1)
+  .with(ar => ar.albums.with(al => al.tracks))
+  .toArray();
+///
+
+/// with-multiple-2
+const trackAlbumArtist = db.from.tracks
+  .limit(1)
+  .with(t => t.album.artist)
+  .toArray();
 ///

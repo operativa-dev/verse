@@ -19,8 +19,7 @@
     "type": "ThisExpression",
   },
   {
-    "name": "super",
-    "type": "IdentifierExpression",
+    "type": "SuperExpression",
   },
   {
     "type": "LiteralExpression",

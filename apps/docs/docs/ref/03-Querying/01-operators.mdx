@@ -263,6 +263,14 @@ const selectComplex = await db.from.albums
 ```
 
 Verse will push down projection expressions to the database when possible (such as the template literal above).
+The example above will be translated to SQL as:
+
+```sql showLineNumbers
+select "t1"."AlbumId", 'Title: ' || "t1"."Title" as "c0", "t1"."ArtistId"
+from "Album" as "t1"
+```
+
+The rest of the required projection processing (i.e creating each result object) will be performed on the client side.
 
 ## single
 
@@ -279,6 +287,19 @@ There is a shorthand for the common case above:
 ```ts include ./apps/snippets/src/query.ts:single-pred showLineNumbers
 single = await db.from.artists.single(a => a.name === "AC/DC");
 ```
+
+## sql
+
+The `sql` operator is used to execute a raw SQL query:
+
+```ts include ./apps/snippets/src/query.ts:sql showLineNumbers
+const name = "AC/DC"; // usually from user input, parameterized
+
+const sql = await db.from.artists
+  .sql`select * from Artist where Name = ${name}`.toArray();
+```
+
+It is a useful escape hatch for when you need to execute a query that is not supported by the Verse query API.
 
 ## sum
 
@@ -311,3 +332,17 @@ The `where` operator is used to filter elements in a sequence:
 ```ts include ./apps/snippets/src/query.ts:where showLineNumbers
 const where = await db.from.artists.where(a => a.name === "AC/DC").toArray();
 ```
+
+## with
+
+The `with` operator is used to specify one or more navigation properties that should be eager loaded:
+
+```ts include ./apps/snippets/src/query.ts:with showLineNumbers
+let eager = db.from.artists.limit(1).with(a => a.albums);
+
+for await (const artist of eager) {
+  console.log(artist);
+}
+```
+
+See the [Eager Loading](./eager-loading) section for more information.

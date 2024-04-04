@@ -89,7 +89,7 @@ export class DB {
     this.#op(new SqlRenameColumn(sqlId(table), sqlId(oldName), sqlId(newName)));
   }
 
-  createIndex(name: string, table: string, ...columns: string[]) {
+  createIndex(name: string, table: string, ...columns: readonly string[]) {
     this.#op(new SqlCreateIndex(sqlId(name), sqlId(table), List(columns.map(c => sqlId(c)))));
   }
 
@@ -105,7 +105,7 @@ export class DB {
     this.#op(new SqlDropSequence(sqlId(name)));
   }
 
-  insert(table: string, columns: string[], ...rows: Literal[][]) {
+  insert(table: string, columns: readonly string[], ...rows: readonly Literal[][]) {
     rows.forEach(row => {
       this.#op(
         new SqlInsert(
@@ -176,7 +176,7 @@ export type MigrationStatus = {
   directory: string;
   directoryExists: boolean;
   tableExists: boolean;
-  migrations: MigrationInfo[];
+  migrations: readonly MigrationInfo[];
 };
 
 class DbMigration {
@@ -337,7 +337,7 @@ export class Migrator {
 
   async #migrateCore<T>(
     create: (driver: Driver) => Promise<void>,
-    execute: (driver: Driver, statements: ExecuteStatement[]) => Promise<T>,
+    execute: (driver: Driver, statements: readonly ExecuteStatement[]) => Promise<T>,
     onApplied: (result: T, migration?: MigrationInfo) => void
   ) {
     const status = await this.status();

@@ -84,7 +84,7 @@ export interface Driver {
    * @returns A function that can execute the given SQL query.
    *
    */
-  rows(sql: SqlNode): (args: unknown[]) => AsyncIterable<unknown[]>;
+  rows(sql: SqlNode): (args: unknown[]) => AsyncIterable<readonly unknown[]>;
 
   /**
    * Executes one or more SQL statements and returns the results.
@@ -97,10 +97,10 @@ export interface Driver {
    *          results of executing the statements.
    */
   execute(
-    statements: ExecuteStatement[],
+    statements: readonly ExecuteStatement[],
     isolation?: IsolationLevel,
-    onBeforeCommit?: (results: ExecuteResult[]) => void
-  ): Promise<ExecuteResult[]>;
+    onBeforeCommit?: (results: readonly ExecuteResult[]) => void
+  ): Promise<readonly ExecuteResult[]>;
 
   /**
    * Generate a SQL script for the given statements.
@@ -108,7 +108,7 @@ export interface Driver {
    * @param statements The SQL statements to generate the script for.
    * @returns An array of strings representing the SQL script.
    */
-  script(statements: ExecuteStatement[]): string[];
+  script(statements: readonly ExecuteStatement[]): string[];
 
   /**
    * Checks if the target database exists.

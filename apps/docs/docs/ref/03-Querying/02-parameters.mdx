@@ -29,4 +29,36 @@ When a query takes parameters, Verse will create SQL query parameters to ensure 
 escaped and quoted, and to prevent SQL injection attacks. Additionally, Verse will used prepared statements when available
 to ensure that the query can be efficiently executed multiple times with different parameter values.
 
-Verse offers a second way to pass parameters to a query, _Compiled Queries_, which we will cover in a later section.
+Verse offers a second way to pass parameters to a query, [_Compiled Queries_](./compiled-queries), which we will cover in a later section.
+
+## Sub-queries and the `from` parameter
+
+In the previous examples, we have used the `from` property of the `db` object to start a query. This works well when
+we are querying at the top level, but what if we want to perform a sub-query, for example to filter or join data from
+a related table?
+
+In this case, we can use a `from` parameter to easily create a sub-query. The `from` parameter is a special parameter
+that can optionally be passed as the last parameter to an arrow function expression, and is used to start a new query.
+
+For example, the following query finds all artists who have more than a certain number of albums:
+
+```ts include ./apps/snippets/src/query.ts:from-parameter showLineNumbers
+const amount = 3; // usually from user input
+
+const albums = await db.from.artists
+  .where(
+    (ar, $count, from) =>
+      from.albums.where(al => ar.artistId === al.artistId).count() > $count,
+    amount
+  )
+  .toArray();
+```
+
+:::note
+
+The parameter does not have to be called "from", but is a common convention to make it clear that the value is a sub-query.
+
+:::
+
+As mentioned above, Verse also supports [_Compiled Queries_](./compiled-queries) as a way to pass parameters to a query. With compiled queries,
+sub-queries can be created in an even more natural way, and we will cover this in a later section.

@@ -40,7 +40,7 @@ export class ShaperContext {
   }
 }
 
-export type Shaper = (row: unknown[], context: ShaperContext, useCache?: boolean) => any;
+export type Shaper = (row: readonly unknown[], context: ShaperContext, useCache?: boolean) => any;
 
 type CompilerResult = {
   fn: Shaper;
@@ -63,7 +63,7 @@ export class ShaperCompiler extends SqlVisitor<CompilerResult, number> {
       const shaper = node.binding.element!.accept(this, 0);
 
       return {
-        fn: async (row: unknown[], context: ShaperContext) => {
+        fn: async (row: readonly unknown[], context: ShaperContext) => {
           const value = row[offset];
 
           if (!value) {
@@ -88,7 +88,7 @@ export class ShaperCompiler extends SqlVisitor<CompilerResult, number> {
       const shaper = node.binding.element!.accept(this, 0);
 
       return {
-        fn: async (row: unknown[], context: ShaperContext) => {
+        fn: async (row: readonly unknown[], context: ShaperContext) => {
           const value = row[offset];
 
           if (!value) {
@@ -117,14 +117,15 @@ export class ShaperCompiler extends SqlVisitor<CompilerResult, number> {
 
     if (conversion) {
       return {
-        fn: (row: unknown[], _: ShaperContext) =>
+        fn: (row: readonly unknown[], _: ShaperContext) =>
           conversion!.read(row[offset] === null ? undefined : row[offset]),
         offset: offset + 1,
       };
     }
 
     return {
-      fn: (row: unknown[], _: ShaperContext) => (row[offset] === null ? undefined : row[offset]),
+      fn: (row: readonly unknown[], _: ShaperContext) =>
+        row[offset] === null ? undefined : row[offset],
       offset: offset + 1,
     };
   }
@@ -153,7 +154,7 @@ export class ShaperCompiler extends SqlVisitor<CompilerResult, number> {
         const entity = composite.binding.model as EntityModel;
         const keyProperties = entity?.key!.properties.map(p => p.name);
 
-        let keyFn: (row: unknown[], context: ShaperContext) => EntityKey | undefined;
+        let keyFn: (row: readonly unknown[], context: ShaperContext) => EntityKey | undefined;
 
         if (keyProperties) {
           const keyShapers = keyProperties.map(name => {
@@ -162,7 +163,7 @@ export class ShaperCompiler extends SqlVisitor<CompilerResult, number> {
             return shapers[index];
           });
 
-          keyFn = (row: unknown[], context: ShaperContext) => {
+          keyFn = (row: readonly unknown[], context: ShaperContext) => {
             const values = [];
 
             for (const shaper of keyShapers) {
@@ -181,17 +182,17 @@ export class ShaperCompiler extends SqlVisitor<CompilerResult, number> {
 
         const navigations = entity?.navigations ?? [];
 
-        let factory: (row: unknown[], context: ShaperContext) => any;
+        let factory: (row: readonly unknown[], context: ShaperContext) => any;
 
         if (entity.derived.isEmpty()) {
-          factory = (_: unknown[], __: ShaperContext) => new ctor();
+          factory = (_: readonly unknown[], __: ShaperContext) => new ctor();
         } else {
           const { property, map } = new TypeConditionAnalyzer().analyze(entity);
           const conditionIndex = composite.nodes.findIndex(n => n.binding?.name === property);
 
           const conditionShaper = shapers[conditionIndex];
 
-          factory = async (row: unknown[], context: ShaperContext) => {
+          factory = async (row: readonly unknown[], context: ShaperContext) => {
             const value = await conditionShaper!(row, context);
             const ctor = map.get(value)!;
 
@@ -200,7 +201,7 @@ export class ShaperCompiler extends SqlVisitor<CompilerResult, number> {
         }
 
         let shaper = {
-          fn: async (row: unknown[], context: ShaperContext, useCache?: boolean) => {
+          fn: async (row: readonly unknown[], context: ShaperContext, useCache?: boolean) => {
             if (!row) {
               return undefined;
             }
@@ -258,7 +259,7 @@ export class ShaperCompiler extends SqlVisitor<CompilerResult, number> {
           let fn: Shaper | undefined;
 
           if (load.allOnes()) {
-            fn = async (row: unknown[], context: ShaperContext) =>
+            fn = async (row: readonly unknown[], context: ShaperContext) =>
               onesShaper(row, context, await shaperFn(row, context, true), load);
           } else {
             let allMany = true;
@@ -289,9 +290,9 @@ export class ShaperCompiler extends SqlVisitor<CompilerResult, number> {
             }
 
             fn = allMany
-              ? async (row: unknown[], context: ShaperContext) =>
+              ? async (row: readonly unknown[], context: ShaperContext) =>
                   manysShaper(row, context, await shaperFn(row, context), manys)
-              : async (row: unknown[], context: ShaperContext) =>
+              : async (row: readonly unknown[], context: ShaperContext) =>
                   mixedShaper(row, context, shaperFn, load);
           }
 
@@ -302,7 +303,7 @@ export class ShaperCompiler extends SqlVisitor<CompilerResult, number> {
       }
 
       return {
-        fn: async (row: unknown[], context: ShaperContext) => {
+        fn: async (row: readonly unknown[], context: ShaperContext) => {
           let obj = new ctor() as any;
 
           for (const binding of bindings) {
@@ -317,7 +318,7 @@ export class ShaperCompiler extends SqlVisitor<CompilerResult, number> {
     }
 
     return {
-      fn: async (row: unknown[], context: ShaperContext) => {
+      fn: async (row: readonly unknown[], context: ShaperContext) => {
         const result = [];
 
         for (const shaper of shapers) {
@@ -411,7 +412,12 @@ class TypeConditionAnalyzer extends ExpressionVisitor {
   }
 }
 
-async function onesShaper(row: unknown[], context: ShaperContext, parent: any, load: LoadNode) {
+async function onesShaper(
+  row: readonly unknown[],
+  context: ShaperContext,
+  parent: any,
+  load: LoadNode
+) {
   for (const edge of load.edges) {
     const item = await edge.shaper(row, context, true);
 
@@ -425,7 +431,12 @@ async function onesShaper(row: unknown[], context: ShaperContext, parent: any, l
   return parent;
 }
 
-async function manysShaper(row: unknown[], context: ShaperContext, root: any, manys: LoadNode[]) {
+async function manysShaper(
+  row: readonly unknown[],
+  context: ShaperContext,
+  root: any,
+  manys: readonly LoadNode[]
+) {
   const arrays: any[] = [];
   const tracking = context.useCache;
 
@@ -516,7 +527,12 @@ async function manysShaper(row: unknown[], context: ShaperContext, root: any, ma
   return root;
 }
 
-async function mixedShaper(row: unknown[], context: ShaperContext, shaper: Shaper, load: LoadNode) {
+async function mixedShaper(
+  row: readonly unknown[],
+  context: ShaperContext,
+  shaper: Shaper,
+  load: LoadNode
+) {
   const root = await shaper(row, context, true);
 
   await rowShaper(row, context, root, load);
@@ -541,7 +557,12 @@ async function mixedShaper(row: unknown[], context: ShaperContext, shaper: Shape
   return root;
 }
 
-async function rowShaper(row: unknown[], context: ShaperContext, parent: any, load: LoadNode) {
+async function rowShaper(
+  row: readonly unknown[],
+  context: ShaperContext,
+  parent: any,
+  load: LoadNode
+) {
   const tracking = context.useCache;
 
   for (const edge of load.edges) {

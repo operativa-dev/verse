@@ -2,10 +2,10 @@ import { afterEach, describe, expect, test } from "vitest";
 import { Expression, lex, nameof, parse, Token } from "../../src/query/parser.js";
 import { snap } from "../infra.js";
 
-let $tokens: Token[] = [];
+let $tokens: readonly Readonly<Token>[];
 
 function testLex(expr: string) {
-  $tokens = [...lex(expr)];
+  $tokens = lex(expr);
 }
 
 describe("lexer", () => {
@@ -109,11 +109,14 @@ describe("lexer", () => {
   });
 
   test("line comments", () => {
-    testLex("// foo\n// bar\r// baz qux");
+    testLex("// foo\n42 // bar\r// baz qux");
   });
 
   test("block comments", () => {
-    testLex("/* foo */ /* bar\n\nabc */ /*** baz qux **/ /*\\*/ /*/*/");
+    testLex(
+      "1 /* foo */ 2 /* bar\n\nabc */ 3 /*** baz qux **/ " +
+        "4 /*\\*/ 5 /*/*/ 6 /**/ 7 /* /*  \\*\\/ */ 8"
+    );
   });
 
   test("regexes", () => {
