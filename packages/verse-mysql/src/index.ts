@@ -36,9 +36,11 @@ import {
   sqlStr,
   SqlString,
 } from "@operativa/verse/db/sql";
-import { KeyModel } from "@operativa/verse/model/model";
+import { KeyModel, Model, ScalarPropertyModel } from "@operativa/verse/model/model";
+import { ModelRewriter } from "@operativa/verse/model/rewriter";
 import { notEmpty } from "@operativa/verse/utils/check";
 import { logBatch, Logger, logSql } from "@operativa/verse/utils/logging";
+import { error } from "@operativa/verse/utils/utils";
 import { List } from "immutable";
 import my, { ConnectionConfig, ResultSetHeader } from "mysql2/promise.js";
 
@@ -59,6 +61,11 @@ export class MySqlDriver implements Driver, AsyncDisposable {
       rowsAsArray: true,
       timezone: "Z",
     });
+  }
+
+  // @ts-ignore
+  validate(model: Model) {
+    model.accept(new Validator());
   }
 
   get info() {
@@ -476,5 +483,18 @@ class MySqlPrinter extends SqlPrinter {
 
   protected override escapeString(str: string) {
     return str.replace(/(['\\])/g, "\\$1");
+  }
+}
+
+class Validator extends ModelRewriter {
+  override visitScalarProperty(scalarProperty: ScalarPropertyModel) {
+    if (scalarProperty.generate?.using === "seqhilo") {
+      throw error(
+        `Scalar property '${scalarProperty.name}' cannot use 'seqhilo' generator.
+        MySQL does not support sequences.`
+      );
+    }
+
+    return super.visitScalarProperty(scalarProperty);
   }
 }

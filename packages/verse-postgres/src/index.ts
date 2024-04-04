@@ -32,6 +32,7 @@ import {
   SqlType,
   SqlTypeAlias,
 } from "@operativa/verse/db/sql";
+import { Model } from "@operativa/verse/model/model";
 import { notEmpty } from "@operativa/verse/utils/check";
 import { logBatch, Logger, logSql } from "@operativa/verse/utils/logging";
 import { List } from "immutable";
@@ -57,6 +58,9 @@ export class PostgresDriver implements Driver, AsyncDisposable {
       connection: {},
     });
   }
+
+  // @ts-ignore
+  validate(model: Model) {}
 
   get info() {
     return {

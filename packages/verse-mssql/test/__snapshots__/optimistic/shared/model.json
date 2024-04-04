@@ -84,6 +84,36 @@
       "concurrency": {
         "version": "token"
       }
+    },
+    {
+      "name": "Product",
+      "properties": [
+        {
+          "name": "id",
+          "column": "Id",
+          "type": "integer",
+          "nullable": false,
+          "generate": {
+            "using": "identity"
+          },
+          "kind": "int"
+        },
+        {
+          "name": "name",
+          "column": "Name",
+          "type": "varchar(255)",
+          "nullable": false,
+          "kind": "string",
+          "maxLength": 255
+        }
+      ],
+      "label": "products",
+      "table": "Product",
+      "key": [
+        "id"
+      ],
+      "foreignKeys": [],
+      "conditions": []
     }
   ],
   "values": [],
