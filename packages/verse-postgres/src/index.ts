@@ -77,10 +77,11 @@ export class PostgresDriver implements Driver, AsyncDisposable {
   rows(sql: SqlNode) {
     const printer = new PgSqlPrinter();
 
+    // noinspection DuplicatedCode
     if (!hasInParameter(sql)) {
       const query = sql.accept(new DialectRewriter()).accept(printer);
 
-      return (args: unknown[]) => {
+      return (args: readonly unknown[]) => {
         return this.#query(query, args);
       };
     }
@@ -92,20 +93,20 @@ export class PostgresDriver implements Driver, AsyncDisposable {
     };
   }
 
-  async *#query(sql: string, args: unknown[]) {
+  async *#query(sql: string, args: readonly unknown[]) {
     logSql(sql, args, this.#logger);
 
     const values = await this.#pg.unsafe(sql, args as any[]).values();
 
     for await (const r of values) {
-      yield r;
+      yield r as readonly unknown[];
     }
   }
 
   async execute(
-    statements: ExecuteStatement[],
+    statements: readonly ExecuteStatement[],
     isolation?: IsolationLevel,
-    onBeforeCommit?: (results: ExecuteResult[]) => void
+    onBeforeCommit?: (results: readonly ExecuteResult[]) => void
   ) {
     const batch = statements.map(stmt => ({
       ...stmt,
@@ -148,7 +149,7 @@ export class PostgresDriver implements Driver, AsyncDisposable {
     return results;
   }
 
-  script(statements: ExecuteStatement[]) {
+  script(statements: readonly ExecuteStatement[]) {
     const printer = new PgSqlPrinter();
 
     return statements.map(stmt => stmt.sql.accept(printer));

@@ -123,9 +123,9 @@ export interface AsyncSequence<T> extends AsyncIterable<T> {
   toArray(): Promise<T[]>;
 }
 
-type Expr<E> = E extends (...args: [infer H, ...infer T]) => infer R
+type Expr<E> = E extends (...args: readonly [infer H, ...infer T]) => infer R
   ? H extends JoinResult<infer K>
-    ? (...args: [...K, ...T]) => R
+    ? (...args: readonly [...K, ...T]) => R
     : E
   : E;
 
@@ -143,7 +143,7 @@ export type JoinCondition<T, S> = Expr<(left: T, right: S) => boolean>;
  * Represents a predicate expression used to filter a sequence.
  */
 export type AsyncPredicateExpr<E extends Entities, T, A extends unknown[] = []> = Expr<
-  (obj: T, ...args: [...A, From<E>]) => boolean
+  (obj: T, ...args: readonly [...A, From<E>]) => boolean
 >;
 
 export type PredicateExpr<T, A extends unknown[] = []> = Expr<(obj: T, ...args: A) => boolean>;
@@ -457,7 +457,7 @@ export class QueryableRoot<T> extends Queryable<T> {
    * @returns The queryable result of the injected SQL query.
    */
   // @ts-ignore
-  sql(strings: TemplateStringsArray, ...values: any[]) {
+  sql(strings: TemplateStringsArray, ...values: readonly any[]) {
     return this;
   }
 
@@ -508,10 +508,10 @@ export class AsyncQueryable<T, E extends Entities> implements AsyncSequence<T> {
    * @param args Additional arguments to be passed to the projector.
    * @returns The queryable result of the select operation.
    */
-  select<P extends Expr<(obj: T, ...args: [...A, From<E>]) => unknown>, A extends unknown[]>(
-    projector: P,
-    ...args: A
-  ) {
+  select<
+    P extends Expr<(obj: T, ...args: readonly [...A, From<E>]) => unknown>,
+    A extends unknown[],
+  >(projector: P, ...args: A) {
     this.op("select", parse(projector.toString()), args);
 
     return this as unknown as AsyncQueryable<ReturnType<P>, E>;
@@ -911,7 +911,7 @@ export class AsyncQueryable<T, E extends Entities> implements AsyncSequence<T> {
   }
 
   /** @ignore */
-  protected op(name: string, expressions?: Expression | Expression[], args?: unknown[]) {
+  protected op(name: string, expressions?: Expression | Expression[], args?: readonly unknown[]) {
     if (!Array.isArray(expressions)) {
       expressions = expressions ? [expressions] : [];
     }
@@ -999,7 +999,7 @@ export class AsyncQueryableRoot<T, E extends Entities> extends AsyncQueryable<T,
    * @param values The values to be inserted into the query.
    * @returns The queryable result of the injected SQL query.
    */
-  sql(strings: TemplateStringsArray, ...values: any[]) {
+  sql(strings: TemplateStringsArray, ...values: readonly any[]) {
     this.op("sql", [constant(strings), constant(values)]);
 
     return this;

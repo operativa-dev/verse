@@ -14,7 +14,7 @@ import {
 import { SqlVisitor } from "@operativa/verse/db/visitor";
 
 export class CodeGenerator extends SqlVisitor<string> {
-  generate(ops: SqlNode[]) {
+  generate(ops: readonly SqlNode[]) {
     let code = ops.map(op => op.accept(this)).join("\n  ");
 
     if (code.length === 0) {

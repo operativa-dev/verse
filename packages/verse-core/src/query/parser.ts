@@ -318,7 +318,7 @@ function keyword(id: string) {
   }
 }
 
-export function lex(expr: string): ReadonlyArray<Readonly<Token>> {
+export function lex(expr: string): readonly Readonly<Token>[] {
   if (!expr || expr.trim() === "") {
     throw new Error("Empty expression.");
   }
@@ -687,55 +687,61 @@ export function lex(expr: string): ReadonlyArray<Readonly<Token>> {
 }
 
 function lexString(expr: string, i: number, char: number) {
-  let value = "";
+  let s = "";
+  let j = i + 1;
+
   const template = char === 0x60;
 
   while (true) {
-    let code = expr.charCodeAt(++i);
+    let cp = expr.charCodeAt(++i);
 
-    if (isNaN(code) || code === 0x0a || code === 0x0d) {
+    if (isNaN(cp) || cp === 0x0a || cp === 0x0d) {
       throw new Error("Unterminated string literal.");
     }
 
-    if (code === char) {
+    if (cp === char) {
+      if (i > j) {
+        s += expr.slice(j, i);
+      }
       if (template) {
         i--;
       }
       break;
     }
 
-    let next = expr[i];
+    if (cp === 0x5c) {
+      if (i > j) {
+        s += expr.slice(j, i);
+      }
+      cp = expr.charCodeAt(++i);
 
-    if (code === 0x5c) {
-      code = expr.charCodeAt(++i);
-
-      switch (code) {
+      switch (cp) {
         case 0x6e:
-          value += "\n";
+          s += "\n";
           break;
 
         case 0x74:
-          value += "\t";
+          s += "\t";
           break;
 
         case 0x62:
-          value += "\b";
+          s += "\b";
           break;
 
         case 0x66:
-          value += "\f";
+          s += "\f";
           break;
 
         case 0x72:
-          value += "\r";
+          s += "\r";
           break;
 
         case 0x76:
-          value += "\v";
+          s += "\v";
           break;
 
         case 0x30:
-          value += "\0";
+          s += "\0";
           break;
 
         case 0x0a:
@@ -745,19 +751,11 @@ function lexString(expr: string, i: number, char: number) {
           break;
 
         case 0x78:
-          if (i + 3 >= expr.length) {
+          if (i + 3 >= expr.length || !hex(expr.charCodeAt(++i)) || !hex(expr.charCodeAt(++i))) {
             throw new Error("Hexadecimal digit expected.");
           }
 
-          const first = expr.charCodeAt(++i);
-          const second = expr.charCodeAt(++i);
-
-          if (!hex(first) || !hex(second)) {
-            throw new Error("Hexadecimal digit expected.");
-          }
-
-          value += String.fromCharCode(parseInt(expr[i - 2]! + expr[i - 1]!, 16));
-
+          s += String.fromCharCode(parseInt(expr.slice(i - 2, i), 16));
           break;
 
         case 0x75:
@@ -765,47 +763,36 @@ function lexString(expr: string, i: number, char: number) {
             throw new Error("Hexadecimal digit expected.");
           }
 
-          code = expr.charCodeAt(i + 1);
+          cp = expr.charCodeAt(++i);
 
-          if (hex(code)) {
-            if (i + 5 >= expr.length) {
-              throw new Error("Hexadecimal digit expected.");
-            }
-
-            const first = expr[++i]!;
-            const second = expr[++i]!;
-            const third = expr[++i]!;
-            const fourth = expr[++i]!;
-
+          if (hex(cp)) {
             if (
-              !hex(first.charCodeAt(0)) ||
-              !hex(second.charCodeAt(0)) ||
-              !hex(third.charCodeAt(0)) ||
-              !hex(fourth.charCodeAt(0))
+              i + 5 >= expr.length ||
+              !hex(cp) ||
+              !hex(expr.charCodeAt(++i)) ||
+              !hex(expr.charCodeAt(++i)) ||
+              !hex(expr.charCodeAt(++i))
             ) {
               throw new Error("Hexadecimal digit expected.");
             }
 
-            value += String.fromCharCode(parseInt(first + second + third + fourth, 16));
-          } else if (code === 0x7b) {
-            let cp = "";
-            i++;
+            s += String.fromCharCode(parseInt(expr.slice(i - 3, i + 1), 16));
+          } else if (cp === 0x7b) {
+            let j = i + 1;
 
             while (true) {
-              code = expr.charCodeAt(++i);
+              cp = expr.charCodeAt(++i);
 
-              if (code === 0x7d) {
+              if (cp === 0x7d) {
                 break;
               }
 
-              if (!hex(code)) {
+              if (!hex(cp)) {
                 throw new Error("Unterminated Unicode escape sequence.");
               }
-
-              cp += expr[i];
             }
 
-            const point = parseInt(cp, 16);
+            const point = parseInt(expr.slice(j, i), 16);
 
             if (point > 0x10ffff) {
               throw new Error(
@@ -813,22 +800,26 @@ function lexString(expr: string, i: number, char: number) {
               );
             }
 
-            value += String.fromCodePoint(point);
+            s += String.fromCodePoint(point);
           }
 
           break;
 
         default:
-          value += expr[i];
+          s += expr[i];
       }
-    } else if (template && code === 0x24 && expr.codePointAt(i + 1) === 0x7b) {
+
+      j = i + 1;
+    } else if (template && cp === 0x24 && expr.codePointAt(i + 1) === 0x7b) {
+      if (i > j) {
+        s += expr.slice(j, i);
+      }
       i--;
       break;
-    } else {
-      value += next;
     }
   }
-  return [value, i] as const;
+
+  return [s, i] as const;
 }
 
 function lexNumber(cp: number, expr: string, i: number, seenDot = false) {
@@ -872,36 +863,36 @@ function lexNumber(cp: number, expr: string, i: number, seenDot = false) {
   let sepAllowed = digit(cp);
 
   while (true) {
-    let code = expr.charCodeAt(i + 1);
+    let cp = expr.charCodeAt(i + 1);
 
-    if (isNaN(code)) {
+    if (isNaN(cp)) {
       break;
     }
 
     const next = expr[i + 1];
 
-    if (!digit(code)) {
-      if (!seenDot && !seenE && code === 0x2e) {
+    if (!digit(cp)) {
+      if (!seenDot && !seenE && cp === 0x2e) {
         value += next;
         i++;
         seenDot = true;
         continue;
-      } else if (!seenE && (code === 0x65 || code === 0x45)) {
+      } else if (!seenE && (cp === 0x65 || cp === 0x45)) {
         value += next;
         i++;
         seenE = true;
         continue;
-      } else if (code === 0x2b || code === 0x2d) {
+      } else if (cp === 0x2b || cp === 0x2d) {
         value += next;
         i++;
         continue;
       }
 
-      if (code === 0x6e) {
+      if (cp === 0x6e) {
         return [BigInt(value), i + 1] as const;
       }
 
-      if (sepAllowed && code === 0x5f && digit(expr.charCodeAt(i + 2))) {
+      if (sepAllowed && cp === 0x5f && digit(expr.charCodeAt(i + 2))) {
         sepAllowed = false;
         i++;
         continue;
@@ -982,14 +973,14 @@ export interface Expression {
 
 export interface ArrowFunctionExpression extends Expression {
   type: "ArrowFunctionExpression";
-  params: Expression[] | null;
+  params: readonly Expression[] | null;
   body: Expression;
   async?: boolean;
 }
 
 export interface ArrayExpression extends Expression {
   type: "ArrayExpression";
-  elements: Expression[];
+  elements: readonly Expression[];
 }
 
 export interface BinaryExpression extends Expression {
@@ -1001,13 +992,13 @@ export interface BinaryExpression extends Expression {
 
 export interface CallExpression extends Expression {
   type: "CallExpression";
-  arguments: Expression[];
+  arguments: readonly Expression[];
   callee: Expression;
 }
 
 export interface CommaExpression extends Expression {
   type: "CommaExpression";
-  expressions: Expression[];
+  expressions: readonly Expression[];
 }
 
 export interface ConditionalExpression extends Expression {
@@ -1038,7 +1029,7 @@ export interface MemberExpression extends Expression {
 
 export interface NewExpression extends Expression {
   type: "NewExpression";
-  arguments: Expression[];
+  arguments: readonly Expression[];
   callee: Expression;
 }
 
@@ -1068,8 +1059,8 @@ export interface TaggedTemplateExpression extends Expression {
 
 export interface TemplateLiteralExpression extends Expression {
   type: "TemplateLiteralExpression";
-  quasis: TemplateExpression[];
-  expressions: Expression[];
+  quasis: readonly TemplateExpression[];
+  expressions: readonly Expression[];
 }
 
 export interface TemplateExpression extends Expression {
@@ -1155,7 +1146,7 @@ class Parser {
 
   #arrow(): Expression {
     let expr: Expression;
-    let params: Expression[] | undefined;
+    let params: readonly Expression[] | undefined;
 
     if (this.#check(TokenType.LParen) && this.#peek()?.type === TokenType.RParen) {
       this.#next();
@@ -1616,7 +1607,7 @@ class Parser {
     throw new Error(`Unexpected token: '${nameof(this.#cur.type)}'.`);
   }
 
-  #match(...types: TokenType[]) {
+  #match(...types: readonly TokenType[]) {
     for (const type of types) {
       if (this.#check(type)) {
         this.#next();

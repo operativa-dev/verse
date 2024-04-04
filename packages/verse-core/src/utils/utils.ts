@@ -1,9 +1,9 @@
-export function array<T>(value?: T | T[]): T[] | undefined {
+export function array<T>(value?: T | readonly T[]): readonly T[] | undefined {
   if (!value) {
     return undefined;
   }
 
-  return Array.isArray(value) ? value : [value];
+  return Array.isArray(value) ? value : ([value] as readonly T[]);
 }
 
 export function error(message: string) {

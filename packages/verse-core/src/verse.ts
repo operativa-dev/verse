@@ -132,7 +132,7 @@ export type QueryOptions = {
    * const q =
    *   db.from.products.options({ disabledConditions: ["soft delete"] });
    */
-  disabledConditions?: "all" | string[];
+  disabledConditions?: "all" | readonly string[];
 };
 
 /**
@@ -170,7 +170,7 @@ export type RootQueryOperations<TQueryable> = {
    * @param values The values to be inserted into the query.
    * @returns The queryable result of the injected SQL query.
    */
-  sql(strings: TemplateStringsArray, ...values: any[]): TQueryable;
+  sql(strings: TemplateStringsArray, ...values: readonly any[]): TQueryable;
 
   /**
    * Set query options that affect the behaviour of the query.
@@ -198,7 +198,7 @@ export type EntitySet<T extends object> = {
    * @returns A promise that resolves when the entities have been successfully
    * added to the unit of work.
    */
-  add(...entities: (T extends FromClass<T> ? Unbrand<T> : Partial<T>)[]): Promise<void>;
+  add(...entities: readonly (T extends FromClass<T> ? Unbrand<T> : Partial<T>)[]): Promise<void>;
 
   /**
    * Removes one or more entities from the current unit of work. The entities will be tracked in the
@@ -207,7 +207,7 @@ export type EntitySet<T extends object> = {
    *
    * @param entities The entities to be removed from the unit of work.
    */
-  remove(...entities: Unbrand<T>[]): void;
+  remove(...entities: readonly Unbrand<T>[]): void;
 };
 
 /**
@@ -253,7 +253,7 @@ export type ModelBuilder<TEntities extends Entities> = {
   /**
    * Zero or more value objects models.
    */
-  values?: ValueObjectModel[];
+  values?: readonly ValueObjectModel[];
 };
 
 /**
@@ -394,12 +394,14 @@ export class Verse<TEntities extends Entities = any> {
    *
    * const album = query(42);
    */
-  compile<R, A extends unknown[]>(query: (from: From<TEntities>, ...args: A) => R) {
+  compile<R, A extends readonly unknown[]>(query: (from: From<TEntities>, ...args: A) => R) {
     notNull({ query });
 
     const compiled = this.#compiler.compile(query, false);
 
-    return ((...args: A) => compiled((args as A[]) ?? [])) as (...args: A) => QueryResult<R>;
+    return ((...args: A) => compiled((args as readonly A[]) ?? [])) as (
+      ...args: A
+    ) => QueryResult<R>;
   }
 
   /**
@@ -421,12 +423,12 @@ export class Verse<TEntities extends Entities = any> {
    * const uow = db.uow();
    * const album = query(uow, 42);
    */
-  compileUow<R, A extends unknown[]>(query: (from: From<TEntities>, ...args: A) => R) {
+  compileUow<R, A extends readonly unknown[]>(query: (from: From<TEntities>, ...args: A) => R) {
     notNull({ query });
 
     const compiled = this.#compiler.compile(query, false);
 
-    return ((uow: UnitOfWorkImpl, ...args: A) => compiled((args as A[]) ?? [], uow)) as (
+    return ((uow: UnitOfWorkImpl, ...args: A) => compiled((args as readonly A[]) ?? [], uow)) as (
       uow: UnitOfWork<TEntities>,
       ...args: A
     ) => QueryResult<R>;
@@ -600,11 +602,11 @@ class QueryableSet<T extends object, E extends Entities>
     this.#entity = entity;
   }
 
-  async add(...entities: Partial<T>[]) {
+  async add(...entities: readonly Partial<T>[]) {
     await this.uow.add(this.#entity, ...entities);
   }
 
-  remove(...entities: T[]) {
+  remove(...entities: readonly T[]) {
     this.uow.remove(...entities);
   }
 

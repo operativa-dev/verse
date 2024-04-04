@@ -84,7 +84,7 @@ export class SqliteDriver implements Driver {
       const printer = new SqlitePrinter();
       const stmt = this.#prepare(sql, new DialectRewriter(), printer);
 
-      return (args: unknown[]) => this.#query(stmt, args, printer.argsMap);
+      return (args: readonly unknown[]) => this.#query(stmt, args, printer.argsMap);
     }
 
     return (args: unknown[]) => {
@@ -106,18 +106,18 @@ export class SqliteDriver implements Driver {
     }
   }
 
-  async *#query(stmt: Statement, args: unknown[], argsMap: number[]) {
+  async *#query(stmt: Statement, args: readonly unknown[], argsMap: readonly number[]) {
     logSql(stmt.source, args, this.#logger);
 
     for (const row of stmt.iterate(argsMap.map(i => args[i]))) {
-      yield row as unknown[];
+      yield row as readonly unknown[];
     }
   }
 
   async execute(
-    statements: ExecuteStatement[],
+    statements: readonly ExecuteStatement[],
     isolation?: IsolationLevel,
-    onBeforeCommit?: (results: ExecuteResult[]) => void
+    onBeforeCommit?: (results: readonly ExecuteResult[]) => void
   ) {
     const batch = statements.map(stmt => {
       const printer = new SqlitePrinter();
@@ -194,7 +194,7 @@ export class SqliteDriver implements Driver {
     return results;
   }
 
-  script(statements: ExecuteStatement[]) {
+  script(statements: readonly ExecuteStatement[]) {
     const dialect = new DialectRewriter([]);
     const printer = new SqlitePrinter();
 
@@ -288,7 +288,7 @@ class SqlitePrinter extends SqlPrinter {
     super();
   }
 
-  get argsMap(): number[] {
+  get argsMap(): readonly number[] {
     return this.#argsMap;
   }
 
