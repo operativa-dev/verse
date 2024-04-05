@@ -23,8 +23,10 @@ export default async function Page() {
   const availableBooks = await db.from.libraryInventory
     .where(i => i.userId === null)
     .join(Book, (lib, book) => lib.bookId === book.bookId)
-    // .select((lib, book) => [lib.id, book.title, book.description])
-    .select((lib, book) => (lib[0].id, lib[1].title, lib[1].description), [])
+    .select((lib, book) => ({
+      id: lib.id,
+      title: book.title,
+    }))
     .toArray();
   return (
     <>
@@ -49,8 +51,8 @@ export default async function Page() {
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         >
           {availableBooks.map(book => (
-            <option key={book[0]} value={book[0]}>
-              {book[1]}
+            <option key={book.id} value={book.id}>
+              {book.title}
             </option>
           ))}
         </select>

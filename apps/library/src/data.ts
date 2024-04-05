@@ -51,6 +51,7 @@ export const db = verse({
         },
         t => {
           t.table("users");
+          t.key("userId");
           t.data(
             new User(
               "Alice",
@@ -82,6 +83,7 @@ export const db = verse({
         },
         t => {
           t.table("books");
+          t.key("bookId");
           t.data(
             new Book("Dune", "Space politics about a desert planet"),
             new Book("Moby-Dick", "An epic hunt for the white whale"),
