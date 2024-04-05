@@ -9,9 +9,9 @@ const uow = db.uow();
 
 type Todo = EntityType<typeof db.entities.todos>;
 
-// const todo: Partial<Todo> = { title: "Buy milk", completed: false };
+const todo: Partial<Todo> = { title: "Buy milk", completed: false };
 
-// await uow.todos.add(todo, { title: "Buy eggs", completed: false });
+await uow.todos.add(todo, { title: "Buy eggs", completed: false });
 
 await uow.commit();
 

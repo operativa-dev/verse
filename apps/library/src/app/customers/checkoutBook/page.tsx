@@ -23,7 +23,8 @@ export default async function Page() {
   const availableBooks = await db.from.libraryInventory
     .where(i => i.userId === null)
     .join(Book, (lib, book) => lib.bookId === book.bookId)
-    .select((lib, book) => [lib.id, book.title, book.description])
+    // .select((lib, book) => [lib.id, book.title, book.description])
+    .select((lib, book) => (lib[0].id, lib[1].title, lib[1].description), [])
     .toArray();
   return (
     <>
