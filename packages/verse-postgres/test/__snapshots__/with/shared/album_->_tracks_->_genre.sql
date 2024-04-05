@@ -2,11 +2,7 @@
 select "t4"."AlbumId", "t4"."Title", "t4"."ArtistId", "t6"."TrackId", "t6"."Name", "t6"."AlbumId", "t6"."GenreId", "t6"."Composer", "t8"."GenreId", "t8"."Name"
 from (
    select "t3"."AlbumId", "t3"."Title", "t3"."ArtistId"
-   from (
-      select "t2"."AlbumId", "t2"."Title", "t2"."ArtistId"
-      from "Album" as "t2"
-      order by "t2"."Title"
-   ) as "t3"
+   from "Album" as "t3"
    order by "t3"."Title"
    limit $1
 ) as "t4" 

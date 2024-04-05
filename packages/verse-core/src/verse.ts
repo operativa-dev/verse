@@ -70,7 +70,7 @@ export type Config = {
   /**
    * A logger instance.
    */
-  readonly logger: Logger;
+  readonly logger?: Logger;
 
   /**
    * The default transaction isolation level.
@@ -336,6 +336,8 @@ export class Verse<TEntities extends Entities = any> {
     );
 
     model.accept(new ModelValidator(this.#inheritance));
+
+    this.config.driver.validate(model);
 
     this.metadata = {
       config: this.config,

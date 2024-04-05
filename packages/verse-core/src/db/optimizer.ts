@@ -1,4 +1,4 @@
-import { is } from "immutable";
+import { is, List } from "immutable";
 import { SqlRewriter } from "./rewriter.js";
 import {
   SqlAlias,
@@ -8,6 +8,7 @@ import {
   SqlJoin,
   SqlMember,
   SqlNode,
+  SqlRaw,
   SqlSelect,
 } from "./sql.js";
 
@@ -17,7 +18,97 @@ export class SqlOptimizer {
       .accept(new IdentitySelectRemover())
       .accept(new JoinLifter())
       .accept(new OuterQueryEliminator())
+      .accept(new InnerQueryEliminator())
       .accept(new ScalarSubqueryEliminator());
+  }
+}
+
+class InnerQueryEliminator extends SqlRewriter {
+  override visitSelect(select: SqlSelect) {
+    let outerSelect = super.visitSelect(select) as SqlSelect;
+
+    if (outerSelect.onlyHas("distinct", "orderBy", "limit", "offset")) {
+      if (outerSelect.from instanceof SqlAlias) {
+        const outerAlias = outerSelect.from;
+
+        if (outerAlias.target instanceof SqlSelect) {
+          const innerSelect = outerAlias.target;
+
+          if (innerSelect.from instanceof SqlAlias) {
+            const innerAlias = innerSelect.from as SqlAlias;
+
+            if (
+              innerSelect.onlyHas("where", "orderBy") &&
+              (!innerSelect.orderBy || this.#orderBysEqual(outerSelect, innerSelect)) &&
+              this.#projectionsEqual(outerSelect, innerSelect)
+            ) {
+              return outerSelect
+                .withFrom(new SqlAlias(innerAlias.target, outerAlias.alias))
+                .withWhere(
+                  innerSelect.where?.accept(new AliasReplacer(innerAlias.alias, outerAlias.alias))
+                );
+            }
+          }
+        }
+      }
+    }
+
+    return outerSelect;
+  }
+
+  #orderBysEqual(outerSelect: SqlSelect, innerSelect: SqlSelect) {
+    const outerNodes = outerSelect.orderBy!.expressions.map(n => n.node);
+    const innerNodes = innerSelect.orderBy!.expressions.map(n => n.node);
+
+    return this.#membersEqual(outerNodes, innerNodes);
+  }
+
+  #projectionsEqual(outerSelect: SqlSelect, innerSelect: SqlSelect) {
+    const outerNodes = outerSelect.projection.reduce();
+    const innerNodes = innerSelect.projection.reduce();
+
+    return this.#membersEqual(outerNodes, innerNodes);
+  }
+
+  #membersEqual(outerNodes: List<SqlNode>, innerNodes: List<SqlNode>) {
+    if (outerNodes.size !== innerNodes.size) {
+      return false;
+    }
+
+    for (let i = 0; i < outerNodes.size; i++) {
+      const outer = outerNodes.get(i);
+      const inner = innerNodes.get(i);
+
+      if (!(outer instanceof SqlMember || !(inner instanceof SqlMember))) {
+        return false;
+      }
+
+      const outerIdentifier = (outer as SqlMember).member as SqlIdentifier;
+      const innerIdentifier = (inner as SqlMember).member as SqlIdentifier;
+
+      if (outerIdentifier.name !== innerIdentifier.name) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+}
+
+class AliasReplacer extends SqlRewriter {
+  constructor(
+    private oldAlias: SqlIdentifier,
+    private newAlias: SqlIdentifier
+  ) {
+    super();
+  }
+
+  override visitMember(member: SqlMember) {
+    if (is(member.object, this.oldAlias)) {
+      return new SqlMember(this.newAlias, member.member);
+    }
+
+    return member;
   }
 }
 
@@ -371,7 +462,7 @@ class IdentitySelectRemover extends SqlRewriter {
 
   #isIdentitySelect(innerAlias: SqlAlias, innerSelect: SqlSelect) {
     return (
-      innerAlias.target instanceof SqlIdentifier &&
+      (innerAlias.target instanceof SqlIdentifier || innerAlias.target instanceof SqlRaw) &&
       innerSelect.projection.reduce().every(n => n instanceof SqlMember) &&
       innerSelect.distinct === undefined &&
       !innerSelect.joins &&
