@@ -36,7 +36,7 @@ Multiple navigations can be specified as part of a single `with` operation. E.g.
 artist with their albums and tracks:
 
 ```ts include ./apps/snippets/src/query.ts:with-multiple-1 showLineNumbers
-const artistAlbumsTracks = db.from.artists
+const artistAlbumsTracks = await db.from.artists
   .limit(1)
   .with(ar => ar.albums.with(al => al.tracks))
   .toArray();
@@ -45,7 +45,7 @@ const artistAlbumsTracks = db.from.artists
 Or, load a track with its album and artist:
 
 ```ts include ./apps/snippets/src/query.ts:with-multiple-2 showLineNumbers
-const trackAlbumArtist = db.from.tracks
+const trackAlbumArtist = await db.from.tracks
   .limit(1)
   .with(t => t.album.artist)
   .toArray();

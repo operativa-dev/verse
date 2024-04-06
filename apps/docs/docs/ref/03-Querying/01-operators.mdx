@@ -226,6 +226,20 @@ const offset = await db.from.artists.offset(5).toArray();
 
 Offset queries are automatically parameterized to improve performance and security.
 
+## options
+
+The `options` operator is used to specify query options:
+
+```ts include ./apps/snippets/src/query.ts:options showLineNumbers
+const options = await db.from.artists
+  .options({ disabledConditions: "all" })
+  .where(a => a.name === "AC/DC")
+  .toArray();
+```
+
+It may only be used at the beginning of a query.
+
+
 ## orderBy
 
 The `orderBy` operator is used to sort elements in a sequence:

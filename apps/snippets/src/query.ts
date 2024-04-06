@@ -16,14 +16,6 @@ const Track = entity({
 
 type TrackType = EntityType<typeof Track>;
 
-type AlbumType = {
-  albumId: number;
-  title: string;
-  artistId: number;
-  artist: ArtistType;
-  tracks: TrackType[];
-};
-
 const Artist = entity(
   {
     artistId: int(),
@@ -36,6 +28,14 @@ const Artist = entity(
 );
 
 type ArtistType = EntityType<typeof Artist>;
+
+type AlbumType = {
+  albumId: number;
+  title: string;
+  artistId: number;
+  artist: ArtistType;
+  tracks: TrackType[];
+};
 
 const Album = entity(
   {
@@ -303,23 +303,50 @@ const sql = await db.from.artists
 ///
 
 /// with-multiple-1
-const artistAlbumsTracks = db.from.artists
+const artistAlbumsTracks = await db.from.artists
   .limit(1)
   .with(ar => ar.albums.with(al => al.tracks))
   .toArray();
 ///
 
 /// with-multiple-2
-const trackAlbumArtist = db.from.tracks
+const trackAlbumArtist = await db.from.tracks
   .limit(1)
   .with(t => t.album.artist)
   .toArray();
 ///
 
 /// sql-composition
-const composed = db.from.artists.sql`SELECT * FROM Artist`
+const composed = await db.from.artists.sql`SELECT * FROM Artist`
   .where(a => a.name.like("A%"))
   .orderBy(a => a.name)
   .limit(5)
+  .toArray();
+///
+
+/// options
+const options = await db.from.artists
+  .options({ disabledConditions: "all" })
+  .where(a => a.name === "AC/DC")
+  .toArray();
+///
+
+/// navigation
+const navigation = await db.from.artists
+  .where(a => a.albums.length > 1)
+  .toArray();
+///
+
+/// navigation-2
+const navigation2 = await db.from.tracks
+  .where(t => t.name === "Today")
+  .select(t => t.album.artist.name)
+  .toArray();
+///
+
+/// navigation-3
+const navigation3 = await db.from.albums
+  .select(a => ({ foo: { bar: a }, baz: a }))
+  .where(o => o.foo.bar.artist.name === "Alice In Chains")
   .toArray();
 ///

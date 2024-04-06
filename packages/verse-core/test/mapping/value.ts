@@ -3,8 +3,15 @@
 import { beforeAll, expect, test } from "vitest";
 import { Driver } from "../../src/db/driver.js";
 import { entity, int, string, value, valueObject } from "../../src/model/builder.js";
-import { Verse } from "../../src/verse.js";
+import { ValueObjectType, Verse } from "../../src/verse.js";
 import { dataTest, fixture } from "../infra.js";
+
+const Range = valueObject("Range", {
+  from: int(),
+  to: int(),
+});
+
+type RangeType = ValueObjectType<typeof Range>;
 
 export class Customer {
   readonly id!: number;
@@ -12,7 +19,8 @@ export class Customer {
   constructor(
     readonly name: string,
     public address: Address,
-    public shipTo: Address
+    public shipTo: Address,
+    public range: RangeType
   ) {}
 }
 
@@ -29,21 +37,19 @@ const valueModel = {
       id: int(),
       name: string(),
       address: value(Address),
-      shipTo: value(Address, a => {
-        a.properties({
-          street: string({ column: "ShipStreet" }),
-          city: string({ column: "ShipCity" }),
-        });
+      shipTo: value(Address, {
+        street: string({ column: "ShipStreet" }),
+        city: string({ column: "ShipCity" }),
       }),
+      range: value(Range),
     }),
   },
   values: [
-    valueObject(Address, a => {
-      a.properties({
-        street: string({ maxLength: 100 }),
-        city: string(),
-      });
+    valueObject(Address, {
+      street: string({ maxLength: 100 }),
+      city: string(),
     }),
+    Range,
   ],
 };
 
@@ -63,7 +69,8 @@ export const valueTests = (verse: Verse<typeof valueModel.entities>) => {
       new Customer(
         "John Snow",
         new Address("Castle Black", "The Wall"),
-        new Address("Riverrun", "Riverlands")
+        new Address("Riverrun", "Riverlands"),
+        { from: 1, to: 10 }
       )
     );
 

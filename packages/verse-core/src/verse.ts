@@ -119,6 +119,9 @@ export type Metadata = {
 export type EntityType<Model extends EntityModel> =
   Model extends EntityModel<infer Properties> ? UnwrapProperties<Properties> : never;
 
+export type ValueObjectType<Model extends ValueObjectModel> =
+  Model extends ValueObjectModel<infer Properties> ? UnwrapProperties<Properties> : never;
+
 /**
  * Settings that affect the behaviour of individual queries, such as disabling default entity
  * query conditions. Used in conjunction with the {@link RootQueryOperations.options} query operator.

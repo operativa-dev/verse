@@ -24,23 +24,19 @@ const shadowModel = {
         id: int(),
         name: string(),
         deleted: boolean({ generate: { default: false } }),
-        address: value(Address, a => {
-          a.properties({
-            street: string({ generate: { default: "Howick Ave" } }),
-            city: string({ generate: { default: "Johannesburg" } }),
-          });
+        address: value(Address, {
+          street: string({ generate: { default: "Howick Ave" } }),
+          city: string({ generate: { default: "Johannesburg" } }),
         }),
       },
       c => c.data(new Customer("Customer 1"))
     ),
   },
   values: [
-    valueObject(Address, a => {
-      a.properties({
-        street: string({ maxLength: 100 }),
-        city: string(),
-        country: string({ generate: { default: "South Africa" } }),
-      });
+    valueObject(Address, {
+      street: string({ maxLength: 100 }),
+      city: string(),
+      country: string({ generate: { default: "South Africa" } }),
     }),
   ],
 };

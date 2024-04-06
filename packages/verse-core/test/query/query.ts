@@ -61,6 +61,14 @@ export const queryFixture = (driver: Driver, logger?: Logger) => {
 export const queryTests = (verse: Verse<typeof queryModel>) => {
   const snap = dataTest(verse);
 
+  test("options compile", async () => {
+    const q = verse.compile((from, $limit: number) =>
+      from.albums.options({ disabledConditions: "all" }).limit($limit)
+    );
+
+    await snap(q(5));
+  });
+
   test("sub-query with parameter not compiled scalar projection", async () => {
     const q = verse.from.artists
       .select(a => a.artistId)

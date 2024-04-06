@@ -1016,7 +1016,7 @@ export class AsyncQueryableRoot<T, E extends Entities> extends AsyncQueryable<T,
    * @returns The queryable with the specified options applied.
    */
   options(options: QueryOptions) {
-    this.op("configure", constant(options));
+    this.op("options", constant(options));
 
     return this;
   }

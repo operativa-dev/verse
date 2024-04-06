@@ -63,13 +63,13 @@ export type UnwrapProperties<T> = {
     ? R extends { [key: string]: unknown }
       ? UnwrapProperties<R>
       : R
-    : never;
+    : T[K];
 } & {
   [K in Exclude<keyof T, OptionalProperties<T>>]: T[K] extends Property<infer R>
     ? R extends { [key: string]: unknown }
       ? UnwrapProperties<R>
       : R
-    : never;
+    : T[K];
 };
 
 /**
@@ -83,6 +83,7 @@ export type FromClass<T> = Brand<T, "class">;
 
 /**
  * Builds an {@link EntityModel} based on a Class.
+ * @template C - The class type.
  *
  * @param klass The class of the entity.
  * @param properties The properties of the entity.
@@ -91,11 +92,11 @@ export type FromClass<T> = Brand<T, "class">;
  *
  * @includeExample ../../apps/snippets/src/building.ts:1-33
  */
-export function entity<T extends object, P extends Properties<T>>(
-  klass: Newable<T>,
+export function entity<C extends object, P extends Properties<C>>(
+  klass: Newable<C>,
   properties: NonEmptyObject<P>,
-  build?: (builder: EntityBuilder<P, T>) => void
-): EntityModel<P, FromClass<T>>;
+  build?: (builder: EntityBuilder<P, C>) => void
+): EntityModel<P, FromClass<C>>;
 
 /**
  * Builds an {@link EntityModel} based on an Object. The type of the entity can be inferred using
@@ -107,7 +108,7 @@ export function entity<T extends object, P extends Properties<T>>(
  *
  * @includeExample ../../apps/snippets/src/building.ts:35-50
  */
-export function entity<T extends object, P extends Properties<T>>(
+export function entity<O extends object, P extends Properties<O>>(
   properties: NonEmptyObject<P>,
   build?: (builder: EntityBuilder<P, UnwrapProperties<P>>) => void
 ): EntityModel<P, UnwrapProperties<P>>;
@@ -117,13 +118,13 @@ export function entity<T extends object, P extends Properties<T>>(
   propertiesOrBuild?: P | ((builder: EntityBuilder<P>) => void),
   build?: (builder: EntityBuilder<P>) => void
 ) {
-  let klass: Newable<any>;
+  let klass: Newable<unknown>;
   let properties: P | undefined;
 
   if (typeof klassOrProperties === "function") {
     klass = klassOrProperties;
   } else {
-    klass = Object as Newable<any>;
+    klass = Object as Newable<unknown>;
     properties = klassOrProperties;
   }
 
@@ -140,6 +141,53 @@ export function entity<T extends object, P extends Properties<T>>(
   if (typeof build === "function") {
     build(builder);
   }
+
+  return builder.build(klass);
+}
+
+/**
+ * Builds a {@link ValueObjectModel} based on a Class.
+ * @template C - The class type.
+ *
+ * @param klass The class of the value object.
+ * @param properties The properties of the value object.
+ * @returns The created value object model.
+ */
+export function valueObject<C extends object, P extends Properties<C>>(
+  klass: Newable<C>,
+  properties: NonEmptyObject<P>
+): ValueObjectModel;
+
+/**
+ * Builds a {@link ValueObjectModel} based on an Object.
+ *
+ * @param name The name of the value object.
+ * @param properties The properties of the entity.
+ * @returns The created value object model.
+ */
+export function valueObject<O extends object, P extends Properties<O>>(
+  name: string,
+  properties: NonEmptyObject<P>
+): ValueObjectModel;
+
+export function valueObject<T extends object, P extends Properties<T>>(
+  klassOrName: Newable<T> | string,
+  properties: P
+) {
+  let klass: Newable<unknown>;
+  let name: string;
+
+  if (typeof klassOrName === "function") {
+    klass = klassOrName;
+    name = klass.name;
+  } else {
+    klass = Object as Newable<unknown>;
+    name = klassOrName;
+  }
+
+  const builder = new ValueObjectBuilderImpl<P>(name);
+
+  builder.properties(properties as P);
 
   return builder.build(klass);
 }
@@ -396,18 +444,12 @@ export class EntityBuilderImpl<T extends object, O extends object = any>
 }
 
 /**
- * Fluent API for configuring an value object metadata model.
- * @template T - The value object type.
- */
-export interface ValueObjectBuilder<T extends object> {
-  properties(properties: Properties<T>): ValueObjectBuilder<T>;
-}
-
-/**
  * @ignore
  */
-export class ValueObjectBuilderImpl<T extends object> implements ValueObjectBuilder<T> {
+export class ValueObjectBuilderImpl<T extends object> {
   #properties?: List<PropertyModel>;
+
+  constructor(private name: string) {}
 
   properties(properties: Properties<T>) {
     this.#properties = List<PropertyModel>().withMutations(l =>
@@ -421,15 +463,14 @@ export class ValueObjectBuilderImpl<T extends object> implements ValueObjectBuil
   }
 
   build(klass: Newable<unknown>) {
-    const name = klass.name;
     const properties = this.#properties;
 
     if (!properties || properties.isEmpty()) {
-      throw new Error(`Value Object '${name}' must have one or more properties defined.`);
+      throw new Error(`Value Object '${this.name}' must have one or more properties defined.`);
     }
 
     return new ValueObjectModel({
-      name,
+      name: this.name,
       klass,
       properties,
     });
@@ -440,7 +481,7 @@ export class ValueObjectBuilderImpl<T extends object> implements ValueObjectBuil
  * Options shared by all scalar properties.
  * @template T - The property type.
  */
-export type ScalarOptions<T = unknown> = {
+export type ScalarOptions<T> = {
   /**
    * The name of the property.
    */
@@ -560,24 +601,6 @@ export type ConversionOptions = {
   write: Converter;
 };
 
-/**
- * Builds a {@link ValueObjectModel} based on a Class.
- * @template T - The class type.
- *
- * @param value The class of the value object.
- * @param build A configuration builder function.
- */
-export function valueObject<T extends object>(
-  value: Newable<T>,
-  build: (builder: ValueObjectBuilder<T>) => void
-): ValueObjectModel {
-  const builder = new ValueObjectBuilderImpl<T>();
-
-  build(builder);
-
-  return builder.build(value);
-}
-
 const generatorModel = (options?: GeneratorOptions) =>
   options ? new GeneratorModel(options) : undefined;
 
@@ -590,7 +613,7 @@ const conversionModel = (options?: ConversionOptions) =>
  * @param options The options for the property.
  */
 export function int(
-  options: { nullable: true } & Omit<ScalarOptions, "name">
+  options: { nullable: true } & Omit<ScalarOptions<number>, "name">
 ): Property<number | undefined | null>;
 
 /**
@@ -598,9 +621,9 @@ export function int(
  *
  * @param options The options for the property.
  */
-export function int(options?: Omit<ScalarOptions, "name">): Property<number>;
+export function int(options?: Omit<ScalarOptions<number>, "name">): Property<number>;
 
-export function int(options?: Omit<ScalarOptions, "name">) {
+export function int(options?: Omit<ScalarOptions<number>, "name">) {
   return (name: string) =>
     new IntPropertyModel({
       ...options,
@@ -697,6 +720,7 @@ export function date(
  * @param options The options for the property.
  */
 export function date(options?: Omit<ScalarOptions<Date>, "name">): Property<Date>;
+
 export function date(options?: Omit<ScalarOptions<Date>, "name">) {
   return (name: string) =>
     new DatePropertyModel({
@@ -802,23 +826,43 @@ export function one<T extends object>(
 
 /**
  * Adds a value object property to the entity and allows for configuration of the property.
- * @param value The value object class.
- * @param build A configuration builder function.
+ * @param klass The value object class.
+ * @param properties The properties of the value object.
  */
-export const value = <T extends object>(
-  value: Newable<T>,
-  build?: (builder: ValueObjectBuilder<T>) => void
-) =>
-  ((name: string) => {
-    let config: ValueObjectModel | undefined;
+export function value<C extends object, P extends Properties<C>>(
+  klass: Newable<C>,
+  properties?: NonEmptyObject<P>
+): Property<P>;
 
-    if (build) {
-      const builder = new ValueObjectBuilderImpl<T>();
+export function value<O extends object, P extends Properties<O>>(
+  valueObjectModel: ValueObjectModel,
+  properties?: NonEmptyObject<P>
+): Property<P>;
 
-      build(builder);
+export function value<T extends object, P extends Properties<T>>(
+  klassOrModel: Newable<T> | ValueObjectModel,
+  properties?: NonEmptyObject<P>
+) {
+  return ((name: string) => {
+    let klass: Newable<unknown>;
+    let targetName: string;
 
-      config = builder.build(value);
+    if (typeof klassOrModel === "function") {
+      klass = klassOrModel;
+      targetName = klass.name;
+    } else {
+      klass = Object as Newable<unknown>;
+      targetName = klassOrModel.name;
     }
 
-    return new ValueObjectPropertyModel({ name, targetName: value.name, config });
-  }) as Property<T>;
+    const builder = new ValueObjectBuilderImpl<T>(name);
+    let config: ValueObjectModel | undefined;
+
+    if (properties) {
+      builder.properties(properties);
+      config = builder.build(klass);
+    }
+
+    return new ValueObjectPropertyModel({ name, targetName, config });
+  }) as Property<P>;
+}

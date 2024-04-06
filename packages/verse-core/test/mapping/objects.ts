@@ -79,6 +79,12 @@ export const objectsTests = (verse: Verse<typeof objectsModel.entities>) => {
     await snap(ctx, await q.toArray());
   });
 
+  test("select scalar nav", async ctx => {
+    const q = verse.from.albums.select(a => a.artist?.name);
+
+    await snap(ctx, await q.toArray());
+  });
+
   test("join", async ctx => {
     const q = verse.from.albums.join(verse.from.artists, (a, ar) => a.artistId === ar.id);
 
