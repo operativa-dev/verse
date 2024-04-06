@@ -131,17 +131,13 @@ const creationModel = {
     customers: entity(Customer, {
       id: int(),
       name: string(),
-      address: value(Address, a => {
-        a.properties({ city: string({ nullable: true }) });
-      }),
+      address: value(Address, { city: string({ nullable: true }) }),
     }),
   },
   values: [
-    valueObject(Address, a => {
-      a.properties({
-        street: string(),
-        city: string(),
-      });
+    valueObject(Address, {
+      street: string(),
+      city: string(),
     }),
   ],
 };
