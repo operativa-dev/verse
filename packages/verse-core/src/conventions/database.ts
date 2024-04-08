@@ -94,7 +94,7 @@ export class TableFromEntityName extends AbstractConvention {
 export const TYPE_CONDITION = "type";
 export const TYPE_COLUMN = "__verse_type";
 
-export class TablePerHierarchy extends AbstractConvention {
+export class UseSingleTableInheritance extends AbstractConvention {
   #model?: Model;
   #conditions = new Map<Newable<unknown>, [root: boolean, conditions: Set<string>]>();
 
@@ -578,16 +578,6 @@ export class BooleansToOneOrZero extends AbstractConvention {
     }
 
     return model;
-  }
-}
-
-export class BooleanPropertyToOneOrZero extends AbstractConvention {
-  override visitBooleanProperty(booleanProperty: BooleanPropertyModel) {
-    if (!booleanProperty.convert) {
-      return booleanProperty.withConvert(new ConversionModel(boolToOneOrZero));
-    }
-
-    return booleanProperty;
   }
 }
 
