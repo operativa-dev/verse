@@ -1,11 +1,6 @@
 import { Book, db } from "@/data";
 
 export default async function Home() {
-  const exists = await db.database.exists();
-
-  if (!exists) {
-    await db.database.recreate();
-  }
   const libraryInventoryCount = await db.from.libraryInventory.count();
   const usersCount = await db.from.users.count();
   const libraryInventoryAvailable = await db.from.libraryInventory

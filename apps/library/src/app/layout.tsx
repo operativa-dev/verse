@@ -8,12 +8,16 @@ import "./globals.css";
 import TopMenu from "./layout/TopMenu";
 
 import SideMenu from "./layout/SideMenu";
+import { db } from "@/data";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Todo App",
 };
-
+const exists = await db.database.exists();
+if (!exists) {
+  await db.database.recreate();
+}
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
