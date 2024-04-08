@@ -1,0 +1,25 @@
+import { EditOrder } from "@/components/EditOrder";
+import { db } from "@/data";
+type Props = {
+  id: string;
+};
+export default async function Orders({ params }: { params: Props }) {
+  const order = await db.from.orders
+    .where((order, $orderIdIn: number) => order.orderId === $orderIdIn, parseInt(params.id))
+    .single();
+  let productList = await db.from.products.toArray();
+  const items = await db.from.items
+    .where((item, $orderIdIn: number) => item.orderId === $orderIdIn, parseInt(params.id))
+    .toArray();
+
+  return (
+    <>
+      <EditOrder
+        orderId={parseInt(params.id)}
+        orderIn={JSON.parse(JSON.stringify(order))}
+        itemsIn={JSON.parse(JSON.stringify(items))}
+        products={JSON.parse(JSON.stringify(productList))}
+      />
+    </>
+  );
+}
