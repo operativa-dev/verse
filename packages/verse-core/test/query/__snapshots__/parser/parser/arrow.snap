@@ -9,6 +9,23 @@
         "name": "foo",
         "type": "IdentifierExpression",
       },
+      {
+        "name": "baz",
+        "type": "IdentifierExpression",
+      },
+    ],
+    "type": "ArrowFunctionExpression",
+  },
+  {
+    "body": {
+      "name": "bar",
+      "type": "IdentifierExpression",
+    },
+    "params": [
+      {
+        "name": "foo",
+        "type": "IdentifierExpression",
+      },
     ],
     "type": "ArrowFunctionExpression",
   },
@@ -25,7 +42,7 @@
       },
       "type": "BinaryExpression",
     },
-    "params": null,
+    "params": [],
     "type": "ArrowFunctionExpression",
   },
   {
@@ -88,7 +105,7 @@
       ],
       "type": "ArrowFunctionExpression",
     },
-    "params": null,
+    "params": [],
     "type": "ArrowFunctionExpression",
   },
   {

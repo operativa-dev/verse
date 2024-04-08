@@ -27,7 +27,7 @@ class ExpressionPrinter extends ExpressionVisitor<string> {
   }
 
   protected override visitArrowExpression(expr: ArrowFunctionExpression) {
-    return `(${expr.params?.map(p => this.visit(p)).join(", ")}) => ${this.visit(expr.body)}`;
+    return `(${expr.params.map(p => this.visit(p)).join(", ")}) => ${this.visit(expr.body)}`;
   }
 
   protected override visitBinaryExpression(expr: BinaryExpression) {
