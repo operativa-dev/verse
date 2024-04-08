@@ -1,0 +1,113 @@
+# Overview
+
+Verse configuration involves specifying things like a database driver and connection information, as well
+as defining a _metadata model_ that describes the structure of your application's data, and how it maps
+to your database schema. Verse is a pure runtime library, so there is no code generation step to slow down
+your development process. Instead, you define your metadata model in code, and then use it to interact with
+your database.
+
+# Verse Object
+
+A `Verse` object is the main entry point for using the framework. There is normally a single `Verse` object per
+application, scoped at the top level of your application code.
+
+```ts include ./apps/snippets/src/config.ts:verse-object showLineNumbers
+const db = verse({
+  config: {
+    //...
+  },
+  model: {
+    //...
+  },
+});
+```
+
+The [`verse`](../../api/verse/functions/verse) function is used to create a new `Verse` object.
+It takes an object with two properties:
+
+- `config`: An object that specifies configuration such as the database driver to use.
+- `model`: An object that specifies the metadata model for the application.
+
+# Config
+
+The [`config`](../../api/verse/type-aliases/Config) object is used like this:
+
+```ts include ./apps/snippets/src/config.ts:config showLineNumbers
+const db = verse({
+  config: {
+    driver: sqlite(`Chinook_Sqlite.sqlite`),
+    logger: new PrettyConsoleLogger(),
+  },
+  model: {
+    //...
+  },
+});
+```
+
+Here we are using the `sqlite` driver to connect to a SQLite database file named `Chinook_Sqlite.sqlite`. We
+are also enabling logging to the console using the `PrettyConsoleLogger`, which is a built-in logger that
+formats log messages in a human-readable way.
+
+# Model
+
+The `model` object is used to define the metadata model for the application. The model is primarily a collection of
+_entity_ models, which represent the concepts in your application domain. Each entity has a name, and a set of properties
+that describe the structure of the entity. The model can also define _value objects_, which are simple objects that are
+used to represent data that doesn't have an identity of its own, and _sequences_, which are used to generate unique identifiers.
+
+```ts include ./apps/snippets/src/config.ts:model showLineNumbers
+const db = verse({
+  config: {
+    //...
+  },
+  model: {
+    entities: {
+      artists: entity(
+        {
+          artistId: int(),
+          name: string(),
+        },
+        builder => {
+          builder.table("Artist");
+        }
+      ),
+    },
+  },
+});
+```
+
+Here we are defining an entity that represents artists in a music database. The entity has two properties: `artistId` and `name`.
+Each entity is given a label in the model, in this case `artists`, which is used to refer to the entity in queries. We also
+use the optional `builder` function to specify that the entity maps to a table named `Artist` in the database.
+
+These configuration objects are of course just plain JavaScript objects, so you can define them in any
+ way that is convenient for you.
+
+For example, you could define the entity configuration separately and then reference it in the model. In fact, this is
+sometimes necessary when you have circular references between entities.
+
+```ts include ./apps/snippets/src/config.ts:separate-config showLineNumbers
+const Artist = entity(
+  {
+    artistId: int(),
+    name: string(),
+  },
+  builder => {
+    builder.table("Artist");
+  }
+);
+
+const db = verse({
+  config: {
+    //...
+  },
+  model: {
+    entities: {
+      artists: Artist,
+    },
+  },
+});
+```
+
+In the next sections, we will drill down into the details of the configuration objects that can be used to define
+the metadata model.

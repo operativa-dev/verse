@@ -49,6 +49,12 @@ for (const file of files) {
       snippet = snippet.replace(/\/\/\/ ?[a-z-0-9]*\n/g, "");
     }
 
+    if (snippet.startsWith("  ")) {
+      snippet = snippet.replace(/^ {2}/gm, "");
+    }
+
+    snippet = snippet.replace(/ +\/\/ @ts-ignore\n/g, "");
+
     newContent = newContent.replace(match[0]!, match[1] + snippet + "```");
   }
 
