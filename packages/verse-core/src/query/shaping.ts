@@ -361,7 +361,7 @@ class TypeConditionAnalyzer extends ExpressionVisitor {
   }
 
   protected override visitArrowExpression(expr: ArrowFunctionExpression) {
-    if (expr.params?.length !== 1) {
+    if (expr.params.length !== 1) {
       throw new Error(`Type condition must have exactly one parameter.`);
     }
 
