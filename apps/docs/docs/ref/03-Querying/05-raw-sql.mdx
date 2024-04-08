@@ -23,7 +23,7 @@ use raw SQL queries as building blocks for more complex queries.
 For example, chaining additional operators to a raw SQL query is as simple as chaining them to any other query:
 
 ```ts include ./apps/snippets/src/query.ts:sql-composition showLineNumbers
-const composed = db.from.artists.sql`SELECT * FROM Artist`
+const composed = await db.from.artists.sql`SELECT * FROM Artist`
   .where(a => a.name.like("A%"))
   .orderBy(a => a.name)
   .limit(5)

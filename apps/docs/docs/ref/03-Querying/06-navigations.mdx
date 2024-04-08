@@ -1,0 +1,47 @@
+# Navigations
+
+Navigation properties may be used to easily construct queries that span entity relationships, avoiding
+the need to manually join entities based on foreign keys relationships. This a powerful feature that allows you to
+work with your data in a more natural way.
+
+For example, we can query artists that have at least one album.
+
+```ts include ./apps/snippets/src/query.ts:navigation showLineNumbers
+const navigation = await db.from.artists
+  .where(a => a.albums.length > 1)
+  .toArray();
+```
+
+In this example, the `albums` property is a navigation property that allows us to query albums related to an artist,
+Verse understands the `length` property and generates the appropriate SQL query.
+
+```sql showLineNumbers
+select "t1"."ArtistId", "t1"."Name"
+from "Artist" as "t1"
+where (
+   select count(*)
+   from "Album" as "t2"
+   where "t1"."ArtistId" = "t2"."ArtistId"
+) > 1
+```
+
+What if we want to query the names of any artists that have a track called "Today"?
+
+```ts include ./apps/snippets/src/query.ts:navigation-2 showLineNumbers
+const navigation2 = await db.from.tracks
+  .where(t => t.name === "Today")
+  .select(t => t.album.artist.name)
+  .toArray();
+```
+
+Navigations work anywhere you have a reference to an entity, so you can even do things like this:
+
+```ts include ./apps/snippets/src/query.ts:navigation-3 showLineNumbers
+const navigation3 = await db.from.albums
+  .select(a => ({ foo: { bar: a }, baz: a }))
+  .where(o => o.foo.bar.artist.name === "Alice In Chains")
+  .toArray();
+```
+
+Here, even though we are putting each album into the `foo.bar` property of an intermediate object, we are still able to
+navigate to the related artist and filter on their name.

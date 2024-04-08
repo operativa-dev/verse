@@ -297,7 +297,7 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
 
   #localParams: List<any> = List();
   #conversions: Map<number, Converter> = Map();
-  #configuration?: QueryOptions | undefined;
+  #options?: QueryOptions | undefined;
 
   #paramCount = 0;
 
@@ -632,10 +632,12 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
         const projection = select.projection as SqlComposite;
         const pks = property.foreignKey.references.key!.properties;
         const fks = property.foreignKey.properties;
+        const lhs = property.many ? pks : fks;
+        const rhs = property.many ? fks : pks;
 
-        const condition = pks
-          .zip(fks)
-          .map(([pk, fk]) => sqlBin(node.resolve(pk.name)!, "=", projection.resolve(fk.name)!))
+        const condition = lhs
+          .zip(rhs)
+          .map(([l, r]) => sqlBin(node.resolve(l.name)!, "=", projection.resolve(r.name)!))
           .reduce((acc: SqlNode, next) => (acc ? sqlBin(acc, "and", next) : next));
 
         return select
@@ -662,7 +664,7 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
 
     let predicate: SqlNode | undefined;
 
-    const disabledConditions = this.#configuration?.disabledConditions ?? [];
+    const disabledConditions = this.#options?.disabledConditions ?? [];
 
     if (disabledConditions !== "all") {
       predicate = entity.conditions
@@ -730,12 +732,12 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
 
         let noopCall = false;
 
-        if (op === "configure" && arity1) {
-          if (this.#configuration) {
-            throw new Error("Query configuration can only be applied once.");
+        if (op === "options" && arity1) {
+          if (this.#options) {
+            throw new Error("Query options can only be applied once.");
           }
 
-          this.#configuration = (expr.arguments[0] as ConstantExpression).value as QueryOptions;
+          this.#options = (expr.arguments[0] as ConstantExpression).value as QueryOptions;
 
           noopCall = true;
         }
