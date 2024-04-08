@@ -35,7 +35,7 @@ export class LibraryInventory {
 
 export const db = verse({
   config: {
-    driver: sqlite("basic.sqlite"),
+    driver: sqlite("library.sqlite"),
     logger: new PrettyConsoleLogger(),
   },
   model: {
