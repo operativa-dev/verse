@@ -53,7 +53,7 @@ for (const file of files) {
       snippet = snippet.replace(/^ {2}/gm, "");
     }
 
-    snippet = snippet.replace(/ +\/\/ @ts-ignore\n/g, "");
+    snippet = snippet.replace(/ *\/\/ @ts-ignore\n/g, "");
 
     newContent = newContent.replace(match[0]!, match[1] + snippet + "```");
   }

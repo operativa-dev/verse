@@ -1,4 +1,4 @@
-# Conventions
+# Overview
 
 Verse employs the concept of "convention over configuration" to reduce the amount of boilerplate configuration that needs
 to be written. This means that the framework makes assumptions about how your application is structured, and provides
@@ -48,6 +48,10 @@ method. This convention is used when that target database does not directly supp
 For databases that support sequences, properties can be configured to use a sequence as the default value via
 Verse's built-in support for the hi-lo pattern ("seqhilo"). This convention creates the database sequence that
 will be used by default.
+
+## EntityNameFromLabel
+
+Sets the default entity name for an object-based entity to be the singularized, pascal-cased label of the entity.
 
 ## ForeignKeyFromEntityNameAndPrimaryKeyName
 
