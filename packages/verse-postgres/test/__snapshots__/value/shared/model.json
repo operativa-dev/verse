@@ -29,6 +29,10 @@
         {
           "name": "shipTo",
           "target": "Address"
+        },
+        {
+          "name": "range",
+          "target": "Range"
         }
       ],
       "label": "customers",
@@ -59,6 +63,25 @@
           "nullable": false,
           "kind": "string",
           "maxLength": 255
+        }
+      ]
+    },
+    {
+      "name": "Range",
+      "properties": [
+        {
+          "name": "from",
+          "column": "From",
+          "type": "integer",
+          "nullable": false,
+          "kind": "int"
+        },
+        {
+          "name": "to",
+          "column": "To",
+          "type": "integer",
+          "nullable": false,
+          "kind": "int"
         }
       ]
     }

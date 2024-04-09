@@ -26,6 +26,7 @@
     "./model/*": "./dist/src/model/*.js",
     "./query/*": "./dist/src/query/*.js",
     "./utils/*": "./dist/src/utils/*.js",
+    "./test/conventions/*": "./dist/test/conventions/*.js",
     "./test/db/*": "./dist/test/db/*.js",
     "./test/identity/*": "./dist/test/identity/*.js",
     "./test/infra": "./dist/test/infra.js",

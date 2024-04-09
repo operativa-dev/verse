@@ -76,6 +76,11 @@ export type Config = {
    * The default transaction isolation level.
    */
   readonly isolation?: IsolationLevel | undefined;
+
+  /**
+   * An optional function that allows you to add or customize conventions.
+   */
+  readonly conventions?: ((conventions: Convention[]) => Convention[]) | undefined;
 };
 
 /**
@@ -307,7 +312,7 @@ export class Verse<TEntities extends Entities = any> {
 
     config.driver.logger = config.logger;
 
-    this.#conventions = List.of(
+    let conventions = [
       new EntityNameFromLabel(),
       new ColumnFromPascalCasedPropertyName(),
       new TableFromEntityName(),
@@ -323,8 +328,14 @@ export class Verse<TEntities extends Entities = any> {
       new MaxLengthDefault(),
       new PrecisionScaleDefaults(),
       new VersionProperty(),
-      ...(this.config.driver.conventions ?? [])
-    );
+      ...(this.config.driver.conventions ?? []),
+    ];
+
+    if (this.config.conventions) {
+      conventions = this.config.conventions(conventions);
+    }
+
+    this.#conventions = List(conventions);
 
     const entities = builder.entities;
 
