@@ -19,7 +19,7 @@ import {
   PrimaryKeyFromProperty,
   PropertiesAreNotNullable,
   TableFromEntityName,
-  TablePerHierarchy,
+  UseSingleTableInheritance,
   VersionProperty,
 } from "./conventions/database.js";
 import { EntityNameFromLabel } from "./conventions/model.js";
@@ -311,7 +311,7 @@ export class Verse<TEntities extends Entities = any> {
       new EntityNameFromLabel(),
       new ColumnFromPascalCasedPropertyName(),
       new TableFromEntityName(),
-      new TablePerHierarchy(),
+      new UseSingleTableInheritance(),
       new PrimaryKeyFromProperty(),
       new ForeignKeyFromNavigation(),
       new ForeignKeyFromPrimaryKeyName(),

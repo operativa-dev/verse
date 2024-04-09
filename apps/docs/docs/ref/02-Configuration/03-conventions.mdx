@@ -1,0 +1,121 @@
+# Conventions
+
+Verse employs the concept of "convention over configuration" to reduce the amount of boilerplate configuration that needs
+to be written. This means that the framework makes assumptions about how your application is structured, and provides
+sensible defaults for these assumptions. This allows you to focus on writing the code that is unique to your application,
+rather than spending time on boilerplate code.
+
+The conventions that Verse uses are as follows:
+
+## BooleansToOneOrZero
+
+When a boolean property is defined on an entity, it is assumed that this property is mapped
+to a column in the database that will represent this boolean as a 1 or 0. This convention is
+used when the target database does not directly support a boolean type.
+
+## ColumnFromPascalCasedPropertyName
+
+When a property is defined on an entity, the column name that this property is mapped to in the database
+is assumed to be the pascal-cased version of the property name. For example, a property named `firstName`
+will be mapped to a column named `FirstName`.
+
+## ColumnTypeFromProperties
+
+The type of the column in the database is inferred from the values of various properties on the entity. For example,
+if a property is of type `string` and has a `maxLength` attribute with a value of 50, then the column in the database
+will be of type `VARCHAR(50)`.
+
+## DateAsTimestamp
+
+When a property is of type `Date`, it is assumed that this property is mapped to a column in the database that
+will represent this date as a `timestamp`. This convention is used when the target database does not directly support
+a date type.
+
+## DateAsTimestampWithTimeZone
+
+When a property is of type `Date`, it is assumed that this property is mapped to a column in the database that
+will represent this date as a `timestamp with time zone`. This convention is used instead of `DateAsTimestamp` when
+the target database supports timezones.
+
+## DatePropertyToISOString
+
+When a property is of type `Date`, it is assumed that this property should be serialized to and deserialized from
+a string in the format `YYYY-MM-DDTHH:mm:ss.sssZ`. This is the format that is used by the `Date` object's `toISOString`
+method. This convention is used when that target database does not directly support a date type.
+
+## DefaultSequence
+
+For databases that support sequences, properties can be configured to use a sequence as the default value via
+Verse's built-in support for the hi-lo pattern ("seqhilo"). This convention creates the database sequence that
+will be used by default.
+
+## ForeignKeyFromEntityNameAndPrimaryKeyName
+
+When two entities have a relationship, the foreign key column in the database is assumed to be named after the
+name of the entity that the foreign key references, followed by the name of the primary key column on that entity.
+E.g. if an entity named `Album` has a relationship to an entity named `Artist`, and the primary key of `Artist`
+is `id`, then the foreign key column on the `Album` table will be named `ArtistId`.
+
+## ForeignKeyFromPrimaryKeyName
+
+When two entities have a relationship, the foreign key column in the database is assumed to be named after the
+name of the primary key column on the entity that the foreign key references. E.g. if an entity named `Album`
+has a relationship to an entity named `Artist`, and the primary key of `Artist` is `albumId`, then the foreign key
+column on the `Album` table will be named `albumId`.
+
+## ForeignKeyOnDelete
+
+Sets the default behavior for the `ON DELETE` clause of foreign key constraints. If any property of the foreign key
+is required, the `ON DELETE` clause will be set to `CASCADE`. Otherwise, it will be set to `SET NULL`.
+
+## IdentityKey
+
+Sets the default identity generation strategy for a single, numeric key column to "identity". This convention is used
+when the target database supports identity columns.
+
+## MaxLengthDefault
+
+Sets the default maximum length for a string property to 255, or 36 if the string property is being used to
+store a UUID.
+
+## NavigationForeignKeyFromDependent
+
+Configures the foreign key used by navigation properties between entities. If there is a single foreign key set up
+between the two entities, set it as the foreign key for the navigation properties.
+
+## PrecisionScaleDefaults
+
+Sets the default precision and scale for numeric (non-integer) properties to 18 and 4, respectively.
+
+## PrimaryKeyFromProperty
+
+Tries to discover the primary key property of an entity by looking for a property named `id` or `<entityName>Id`.
+
+## PropertiesAreNotNullable
+
+Makes all properties on an entity not nullable by default.
+
+## SeqHiloKey
+
+Sets the default identity generation strategy for a single, numeric key column to `seqhilo`. This convention is used
+when the target database supports sequences. Depends on the `DefaultSequence` convention to create the sequence.
+
+## TableFromEntityName
+
+Sets the default table name for an entity to be entity name.
+
+## UseSingleTableInheritance
+
+Sets the default inheritance strategy to "single table inheritance". Entity inheritance hierarchies are mapped
+to a single table in the database, with a discriminator column to differentiate between the different types of entities.
+
+## UuidPropertyToBuffer
+
+When a property's configure column type is `uuid`, it is assumed that this property should be serialized
+to and deserialized from a `Buffer`. This convention is used when the target database does not directly
+support a UUID type, but is instead using a `BINARY(16)` column to store the UUID.
+
+## VersionProperty
+
+Looks for an integer property named `version` on an entity and sets it as the version property for
+optimistic concurrency.
