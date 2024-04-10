@@ -102,6 +102,7 @@ export async function updateOrderServer(
   forceUpdate: boolean
 ) {
   // if forceUpdate we need to remove version from items
+  // set version to the latest version rather than removing it
   if (forceUpdate) {
     items.forEach(item => {
       if (item.version) {
@@ -123,6 +124,8 @@ export async function updateOrderServer(
         .maybeFirst();
       if (dbItem) {
         uow.entry(dbItem)?.update(item);
+      } else {
+        uow.items.add(item);
       }
     } else {
       uow.items.add(item);
@@ -134,8 +137,10 @@ export async function updateOrderServer(
   for (const itemId of itemsRemoved) {
     const dbItem = await uow.items
       .where((item, $itemId) => item.itemId === $itemId, itemId)
-      .single();
-    uow.items.remove(dbItem);
+      .maybeFirst();
+    if (dbItem) {
+      uow.items.remove(dbItem);
+    }
   }
 
   // We want to update the order's last updated.

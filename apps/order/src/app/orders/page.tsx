@@ -6,7 +6,7 @@ export default async function Orders() {
 
   return (
     <>
-      <OrdersTable orders={JSON.parse(JSON.stringify(orders))} />
+      <OrdersTable orders={orders} />
     </>
   );
 }

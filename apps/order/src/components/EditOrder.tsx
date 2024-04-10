@@ -18,10 +18,11 @@ export function EditOrder({
   orderId: number;
   itemsIn: Array<Item>;
 }) {
-  const [originalItems, setOriginalItems] = useState<Item[]>([]);
+  const [originalItems, setOriginalItems] = useState<Item[]>([JSON.parse(JSON.stringify(itemsIn))]);
   const [items, setItems] = useState<Item[]>(itemsIn);
   const [order, setOrder] = useState<Order>(orderIn);
   const [serverItemsDelta, setServerItemsDelta] = useState<Item[]>([]);
+  const [serverItemsRemoved, setServerItemsRemoved] = useState<Item[]>([]);
   const [currentItemsDelta, setCurrentItemsDelta] = useState<Item[]>([]);
   const [itemsRemoved, setItemsRemoved] = useState<number[]>([]);
   const [editMode, setEditMode] = useState(true);
@@ -64,6 +65,7 @@ export function EditOrder({
     const tempItems = items.filter(item => item.itemId !== itemId);
     setItems(tempItems);
     setUpdateCount(updateCount + 1);
+    // if the item has a positive ID (on the server), we need to add it to the itemsRemoved array
     if (itemId > 0) {
       setItemsRemoved([...itemsRemoved, itemId]);
     }
@@ -100,6 +102,7 @@ export function EditOrder({
       }
       setCurrentItemsDelta(returnDelta(response.currentChange, response.serverChange));
       setServerItemsDelta(returnDelta(response.serverChange, []));
+      setServerItemsRemoved(itemsRemovedDelta(response.serverChange));
     });
   };
 
@@ -134,12 +137,10 @@ export function EditOrder({
   };
 
   const returnDelta = (itemsIn: Array<Item>, serverChanges: Array<Item>) => {
-    // we need to get the list of items that were removed in serverChanges from originalItems
+    // return the delta between the original items and the items we are looking at (current/server)
+    // original items are items that were in the order when we started editing
 
-    // return the delta between the original items and the current items
-    // original items are originalItems
-    // current items are itemsIn
-    let delta = [];
+    let delta: Array<Item> = [];
     for (let i = 0; i < itemsIn.length; i++) {
       let found = false;
       for (let j = 0; j < originalItems.length; j++) {
@@ -167,6 +168,15 @@ export function EditOrder({
       );
       let itemsTemp: Array<Item> = [];
       itemsThatWereRemoved.forEach(function (part, index, theArray) {
+        // check if the item was also removed by the user
+        if (itemsRemoved.includes(part.itemId)) {
+          return;
+        }
+        // check if part was edited by the user:
+        if (delta.findIndex(x => x.itemId === part.itemId) !== -1) {
+          return;
+        }
+
         itemsTemp.push({
           itemId: -part.itemId,
           productId: part.productId,
@@ -176,6 +186,26 @@ export function EditOrder({
         });
       });
       delta.push(...itemsTemp);
+    }
+
+    return delta;
+  };
+  const itemsRemovedDelta = (itemsIn: Array<Item>) => {
+    // return the delta between the original items and the items we are looking at (current/server)
+    // original items are items that were in the order when we started editing
+
+    //return items that are in originalItems but not in itemsIn
+    let delta = [];
+    for (let i = 0; i < originalItems.length; i++) {
+      let found = false;
+      for (let j = 0; j < itemsIn.length; j++) {
+        if (originalItems[i].itemId == itemsIn[j].itemId) {
+          found = true;
+        }
+      }
+      if (!found) {
+        delta.push(originalItems[i]);
+      }
     }
 
     return delta;
@@ -208,7 +238,7 @@ export function EditOrder({
     <>
       <header className="flex justify-between items-center mb-4">
         <h1 className="text-2xl">
-          {order?.token} Order {orderId} - {order?.lastUpdated + ""}
+          {order?.token} Order {orderId} - {(order?.lastUpdated + "").substr(0, 10)}
         </h1>
         <Button onClick={() => updateOrder()}>Save</Button>
       </header>
@@ -279,6 +309,19 @@ export function EditOrder({
                 <ItemDeltaTable
                   title="Server changes"
                   items={serverItemsDelta}
+                  editMode={editMode}
+                  deltaMode={true}
+                  updateCount={updateCount}
+                  removeItem={removeItem}
+                  productsNameDict={productsNameDict}
+                  productsPriceDict={productsPriceDict}
+                  getOriginalValue={getOriginalValue}
+                  updateValue={updateValue}
+                  products={products}
+                />
+                <ItemDeltaTable
+                  title="Items removed from server"
+                  items={serverItemsRemoved}
                   editMode={editMode}
                   deltaMode={true}
                   updateCount={updateCount}
