@@ -14,6 +14,7 @@ export function ItemDeltaTable({
   getOriginalValue,
   updateValue,
   products,
+  isCurrent,
 }: {
   title: string;
   items: Array<Item>;
@@ -26,6 +27,7 @@ export function ItemDeltaTable({
   getOriginalValue: Function;
   updateValue: Function;
   products: Array<Product>;
+  isCurrent: boolean;
 }) {
   return (
     <>
@@ -75,7 +77,9 @@ export function ItemDeltaTable({
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-24 inline-block"
                       defaultValue={obj.productId + ""}
                       disabled={!editMode}
-                      onChange={e => updateValue("productId", obj.itemId, parseInt(e.target.value))}
+                      onChange={e =>
+                        updateValue("productId", obj.itemId, parseInt(e.target.value), isCurrent)
+                      }
                     >
                       {products.map(product => (
                         <option key={product.productId} value={product.productId}>
@@ -109,7 +113,12 @@ export function ItemDeltaTable({
                       className="border border-slate-300 bg-transparent rounded px-2 py-1 outline-none focus-within:border-slate-100 w-12 inline-block"
                       tabIndex={0}
                       onBlur={e => {
-                        updateValue("overridePrice", obj.itemId, parseInt(e.target.value));
+                        updateValue(
+                          "overridePrice",
+                          obj.itemId,
+                          parseInt(e.target.value),
+                          isCurrent
+                        );
                       }}
                     />
                   </td>
@@ -128,7 +137,7 @@ export function ItemDeltaTable({
                       className="border border-slate-300 bg-transparent rounded px-2 py-1 outline-none focus-within:border-slate-100 w-12 inline-block"
                       tabIndex={0}
                       onBlur={e => {
-                        updateValue("quantity", obj.itemId, parseInt(e.target.value));
+                        updateValue("quantity", obj.itemId, parseInt(e.target.value), isCurrent);
                       }}
                     />
                   </td>

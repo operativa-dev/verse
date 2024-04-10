@@ -37,6 +37,10 @@ export function EditOrder({
     refreshItemsFromServer(orderId);
   }, []);
 
+  useEffect(() => {
+    setUpdateCount(updateCount + 1);
+  }, [items]);
+
   const refreshItemsFromServer = (orderId: number) => {
     fetchItems(orderId).then(data => {
       setItems(data);
@@ -70,8 +74,13 @@ export function EditOrder({
       setItemsRemoved([...itemsRemoved, itemId]);
     }
   };
-  const updateValue = (property: string, itemId: number, value: number) => {
-    const tempItems = items;
+  const updateValue = (property: string, itemId: number, value: number, isCurrent: boolean) => {
+    console.log("updateValue isCurrent", isCurrent);
+    let tempItems = items;
+    if (!isCurrent) {
+      tempItems = serverItemsDelta;
+    }
+    console.log("updateValue serverItemsDelta", serverItemsDelta);
     var index = tempItems.findIndex(obj => {
       return obj.itemId === itemId;
     });
@@ -84,13 +93,21 @@ export function EditOrder({
       });
       tempItems[index].overridePrice = products[propIndex].price;
     }
-    setItems(tempItems);
+    if (isCurrent) {
+      setItems(tempItems);
+    } else {
+      setServerItemsDelta(tempItems);
+    }
+
     setUpdateCount(updateCount + 1);
+    console.log("updateValue called property", property);
+    console.log("updateValue itemId ", itemId);
+    console.log("updateValue number ", value);
   };
 
   const updateOrder = () => {
     // let response = updateOrderServer(items, order, itemsRemoved);
-    updateOrderServer(items, order, itemsRemoved, false).then(response => {
+    updateOrderServer(items, order, itemsRemoved, false, []).then(response => {
       if (response?.error) {
         setErrorMessage(response.error);
       } else {
@@ -122,18 +139,21 @@ export function EditOrder({
       itemsToRemoveIds = [...itemsRemoved, ...itemsToRemoveIds];
     }
 
-    updateOrderServer(updatedItems, order, itemsToRemoveIds, true).then(response => {
-      if (response?.error) {
-        setErrorMessage(response.error);
-      } else {
-        setErrorMessage("");
+    updateOrderServer(updatedItems, order, itemsToRemoveIds, true, serverItemsDelta).then(
+      response => {
+        if (response?.error) {
+          setErrorMessage(response.error);
+          setServerItemsDelta(returnDelta(response.serverChange, []));
+          setUpdateCount(updateCount + 1);
+        } else {
+          setErrorMessage("");
+          setCurrentItemsDelta(returnDelta(response.currentChange, response.serverChange));
+          setServerItemsDelta(returnDelta(response.serverChange, []));
+          setOpenModal(false);
+          refreshItemsFromServer(orderId);
+        }
       }
-      setCurrentItemsDelta(returnDelta(response.currentChange, response.serverChange));
-      setServerItemsDelta(returnDelta(response.serverChange, []));
-      setOpenModal(false);
-
-      refreshItemsFromServer(orderId);
-    });
+    );
   };
 
   const returnDelta = (itemsIn: Array<Item>, serverChanges: Array<Item>) => {
@@ -297,6 +317,7 @@ export function EditOrder({
                   getOriginalValue={getOriginalValue}
                   updateValue={updateValue}
                   products={products}
+                  isCurrent={true}
                 />
               </div>
 
@@ -318,11 +339,12 @@ export function EditOrder({
                   getOriginalValue={getOriginalValue}
                   updateValue={updateValue}
                   products={products}
+                  isCurrent={false}
                 />
                 <ItemDeltaTable
                   title="Items removed from server"
                   items={serverItemsRemoved}
-                  editMode={editMode}
+                  editMode={false}
                   deltaMode={true}
                   updateCount={updateCount}
                   removeItem={removeItem}
@@ -331,6 +353,7 @@ export function EditOrder({
                   getOriginalValue={getOriginalValue}
                   updateValue={updateValue}
                   products={products}
+                  isCurrent={false}
                 />
               </div>
             </div>
@@ -347,6 +370,7 @@ export function EditOrder({
         productsPriceDict={productsPriceDict}
         updateValue={updateValue}
         products={products}
+        isCurrent={true}
       />
       {editMode && <Button onClick={() => addEmptyItem()}>Add</Button>}
     </>

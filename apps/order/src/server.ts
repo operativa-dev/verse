@@ -99,14 +99,21 @@ export async function updateOrderServer(
   items: Array<Item>,
   order: Order,
   itemsRemoved: Array<number>,
-  forceUpdate: boolean
+  forceUpdate: boolean,
+  serverItems: Array<Item>
 ) {
   // if forceUpdate we need to remove version from items
   // set version to the latest version rather than removing it
   if (forceUpdate) {
     items.forEach(item => {
+      // check if item is in
       if (item.version) {
-        delete item.version;
+        const serverItem = serverItems.find(serverItem => serverItem.itemId === item.itemId);
+        if (serverItem) {
+          item.version = serverItem.version;
+        } else {
+          delete item.version;
+        }
       }
     });
   }

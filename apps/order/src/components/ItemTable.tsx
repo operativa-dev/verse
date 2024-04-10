@@ -11,6 +11,7 @@ export function ItemTable({
   productsPriceDict,
   updateValue,
   products,
+  isCurrent,
 }: {
   title: string;
   items: Array<Item>;
@@ -20,6 +21,7 @@ export function ItemTable({
   productsPriceDict: { [key: number]: number };
   updateValue: Function;
   products: Array<Product>;
+  isCurrent: boolean;
 }) {
   return (
     <>
@@ -54,7 +56,9 @@ export function ItemTable({
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       defaultValue={obj.productId + ""}
                       disabled={!editMode}
-                      onChange={e => updateValue("productId", obj.itemId, parseInt(e.target.value))}
+                      onChange={e =>
+                        updateValue("productId", obj.itemId, parseInt(e.target.value), isCurrent)
+                      }
                     >
                       {products.map(product => (
                         <option key={product.productId} value={product.productId}>
@@ -81,7 +85,12 @@ export function ItemTable({
                       className="border border-slate-300 bg-transparent rounded px-2 py-1 outline-none focus-within:border-slate-100"
                       tabIndex={0}
                       onBlur={e => {
-                        updateValue("overridePrice", obj.itemId, parseInt(e.target.value));
+                        updateValue(
+                          "overridePrice",
+                          obj.itemId,
+                          parseInt(e.target.value),
+                          isCurrent
+                        );
                       }}
                     />
                   </td>
@@ -94,7 +103,7 @@ export function ItemTable({
                       className="border border-slate-300 bg-transparent rounded px-2 py-1 outline-none focus-within:border-slate-100"
                       tabIndex={0}
                       onBlur={e => {
-                        updateValue("quantity", obj.itemId, parseInt(e.target.value));
+                        updateValue("quantity", obj.itemId, parseInt(e.target.value), isCurrent);
                       }}
                     />
                   </td>
