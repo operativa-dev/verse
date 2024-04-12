@@ -40,6 +40,11 @@ const optimisticModel = {
       o.concurrency({ version: "token" });
     }
   ),
+
+  products: entity({
+    id: int(),
+    name: string(),
+  }),
 };
 
 export const optimisticFixture = (driver: Driver) => {
@@ -150,5 +155,39 @@ export const optimisticTests = (verse: Verse<typeof optimisticModel>) => {
     await expect(() => uow2.commit()).rejects.toThrow(
       "Concurrency Error - 0 rows affected. Either the row has been deleted, or a concurrency violation was detected."
     );
+  });
+
+  test("version mismatch rollback", async () => {
+    const uow1 = verse.uow();
+
+    await uow1.add(new Customer(49, "Existing customer 2"));
+    await uow1.commit();
+
+    const customer1 = await uow1.customers.where(c => c.id === 49).single();
+    customer1.name = "Updated customer again";
+
+    const uow2 = verse.uow();
+
+    const customer2 = await uow2.customers.where(c => c.id === 49).single();
+
+    expect(customer1).not.toBe(customer2);
+
+    await uow1.commit();
+
+    customer2.name = "Updated customer yet again";
+
+    const product = { name: "Product 1" };
+
+    await uow2.products.add(product);
+
+    // @ts-ignore
+    const id = product.id;
+
+    await expect(() => uow2.commit()).rejects.toThrow(
+      "Concurrency Error - 0 rows affected. Either the row has been deleted, or a concurrency violation was detected."
+    );
+
+    // @ts-ignore
+    expect(product.id).toBe(id);
   });
 };

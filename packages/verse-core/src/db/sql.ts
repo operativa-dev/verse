@@ -22,13 +22,11 @@ export class SqlBindingState {
   type?: SqlType | undefined;
   element?: SqlNode | undefined;
   model?: AbstractModel | undefined;
-
-  /**
-   * @ignore
-   */
-  load?: LoadNode | undefined;
-
   eager?: boolean | undefined;
+  join?: boolean | undefined;
+
+  /** @ignore */
+  load?: LoadNode | undefined;
 }
 
 export class SqlBinding {
@@ -67,6 +65,10 @@ export class SqlBinding {
 
   get eager() {
     return this.state.eager;
+  }
+
+  get join() {
+    return this.state.join;
   }
 
   withType(type?: SqlType) {
@@ -668,6 +670,10 @@ export namespace SqlType {
   export function isNumeric(type?: SqlType) {
     return type === "integer" || type?.startsWith("numeric");
   }
+
+  export function isText(type?: SqlType) {
+    return type === "text" || type?.startsWith("varchar");
+  }
 }
 
 export class SqlColumn extends SqlNode {
@@ -761,6 +767,24 @@ export class SqlSelect extends SqlNode {
     super(binding);
   }
 
+  onlyHas(...clauses: (keyof SqlSelectState)[]) {
+    let result = true;
+
+    for (const key of Object.keys(this.state) as (keyof SqlSelectState)[]) {
+      if (
+        key != "projection" &&
+        key != "from" &&
+        !clauses.includes(key) &&
+        this.state[key] !== undefined
+      ) {
+        result = false;
+        break;
+      }
+    }
+
+    return result;
+  }
+
   get projection() {
     return this.state.projection;
   }
@@ -793,7 +817,7 @@ export class SqlSelect extends SqlNode {
     return this.state.joins;
   }
 
-  addJoins(...joins: SqlJoin[]) {
+  addJoins(...joins: readonly SqlJoin[]) {
     if (joins.length === 0) {
       return this;
     }
@@ -1496,6 +1520,41 @@ export class SqlExists extends SqlNode {
   }
 }
 
+export class SqlIn extends SqlNode {
+  constructor(
+    readonly operand: SqlNode,
+    readonly values: SqlNode
+  ) {
+    super();
+  }
+
+  override accept<T, S = unknown>(visitor: SqlVisitor<T>, state?: S) {
+    return visitor.visitIn(this, state);
+  }
+
+  override rewrite(rewriter: SqlRewriter): SqlNode {
+    const newOperand = this.operand.accept(rewriter);
+    const newValues = this.values.accept(rewriter);
+
+    if (this.operand !== newOperand || this.values !== newValues) {
+      return new SqlIn(newOperand, newValues);
+    }
+
+    return this;
+  }
+
+  override equals(other: unknown) {
+    return (
+      this === other ||
+      (other instanceof SqlIn && is(this.operand, other.operand) && is(this.values, other.values))
+    );
+  }
+
+  override hashCode() {
+    return (hash(this.operand) * 27) ^ (hash(this.values) * 27);
+  }
+}
+
 export class SqlLike extends SqlNode {
   constructor(
     readonly operand: SqlNode,
@@ -1646,6 +1705,8 @@ export function sqlStr(value: string, binding?: SqlBinding) {
 }
 
 export class SqlString extends SqlNode {
+  static readonly EMPTY = new SqlString("");
+
   constructor(
     readonly value: string,
     binding?: SqlBinding
@@ -1661,6 +1722,10 @@ export class SqlString extends SqlNode {
 
   override identify(aliaser: (n: SqlNode) => SqlNode): SqlNode {
     return aliaser(this);
+  }
+
+  override get type(): SqlType | undefined {
+    return "text";
   }
 
   override accept<T, S = unknown>(visitor: SqlVisitor<T>, state?: S) {
@@ -1710,7 +1775,7 @@ export class SqlNumber extends SqlNode {
   static readonly ONE = new SqlNumber(1);
 
   constructor(
-    readonly value: number,
+    readonly value: number | bigint,
     binding?: SqlBinding
   ) {
     super(binding);
@@ -1809,7 +1874,7 @@ export function primitiveToSql(
   value: unknown,
   model?: Model,
   raw?: string
-): [SqlNode, ConversionModel | undefined] {
+): readonly [SqlNode, ConversionModel | undefined] {
   if (value === null || value === undefined) {
     return [SqlNull.INSTANCE, undefined];
   }
@@ -1950,10 +2015,6 @@ export class SqlComposite extends SqlNode {
     super(binding);
   }
 
-  record() {
-    return this.map(n => (n instanceof SqlAlias ? n.alias.bind(n.binding!) : n));
-  }
-
   override bind(binding: SqlBinding): SqlNode {
     return new SqlComposite(this.nodes, this.binding?.merge(binding) ?? binding);
   }
@@ -2017,7 +2078,7 @@ export class SqlComposite extends SqlNode {
     return undefined;
   }
 
-  getByName(property: string): [SqlNode, number] {
+  getByName(property: string): readonly [SqlNode, number] {
     for (let i = 0; i < this.nodes.size; i++) {
       if (this.nodes.get(i)?.binding?.name === property) {
         return [this.nodes.get(i)!, i];

@@ -19,7 +19,7 @@ import {
   PrimaryKeyFromProperty,
   PropertiesAreNotNullable,
   TableFromEntityName,
-  TablePerHierarchy,
+  UseSingleTableInheritance,
   VersionProperty,
 } from "./conventions/database.js";
 import { EntityNameFromLabel } from "./conventions/model.js";
@@ -33,7 +33,6 @@ import { EntityModel, Model, ValueObjectModel } from "./model/model.js";
 import { ModelValidator } from "./model/validator.js";
 import { QueryCompiler } from "./query/compiler.js";
 import {
-  AbstractQueryable,
   AsyncQueryable,
   AsyncQueryableRoot,
   AsyncSequence,
@@ -71,12 +70,17 @@ export type Config = {
   /**
    * A logger instance.
    */
-  readonly logger: Logger;
+  readonly logger?: Logger;
 
   /**
    * The default transaction isolation level.
    */
   readonly isolation?: IsolationLevel | undefined;
+
+  /**
+   * An optional function that allows you to add or customize conventions.
+   */
+  readonly conventions?: ((conventions: Convention[]) => Convention[]) | undefined;
 };
 
 /**
@@ -120,6 +124,9 @@ export type Metadata = {
 export type EntityType<Model extends EntityModel> =
   Model extends EntityModel<infer Properties> ? UnwrapProperties<Properties> : never;
 
+export type ValueObjectType<Model extends ValueObjectModel> =
+  Model extends ValueObjectModel<infer Properties> ? UnwrapProperties<Properties> : never;
+
 /**
  * Settings that affect the behaviour of individual queries, such as disabling default entity
  * query conditions. Used in conjunction with the {@link RootQueryOperations.options} query operator.
@@ -133,7 +140,7 @@ export type QueryOptions = {
    * const q =
    *   db.from.products.options({ disabledConditions: ["soft delete"] });
    */
-  disabledConditions?: "all" | string[];
+  disabledConditions?: "all" | readonly string[];
 };
 
 /**
@@ -152,11 +159,11 @@ export type From<TEntities extends { [Key in keyof TEntities]: EntityModel } = a
  * See {@link AsyncQueryable} for a list of available query operators.
  */
 export type AsyncFrom<TEntities extends { [Key in keyof TEntities]: EntityModel }> = {
-  [Key in keyof TEntities]: AsyncQueryable<EntityType<TEntities[Key]>> &
-    RootQueryOperations<AsyncQueryable<EntityType<TEntities[Key]>>>;
+  [Key in keyof TEntities]: AsyncQueryable<EntityType<TEntities[Key]>, TEntities> &
+    RootQueryOperations<AsyncQueryable<EntityType<TEntities[Key]>, TEntities>>;
 };
 
-export type RootQueryOperations<TQueryable extends AbstractQueryable> = {
+export type RootQueryOperations<TQueryable> = {
   /**
    * Inject a raw SQL query using tagged template literals. The returned queryable may be further
    * composed with additional query operators.
@@ -171,7 +178,7 @@ export type RootQueryOperations<TQueryable extends AbstractQueryable> = {
    * @param values The values to be inserted into the query.
    * @returns The queryable result of the injected SQL query.
    */
-  sql(strings: TemplateStringsArray, ...values: any[]): TQueryable;
+  sql(strings: TemplateStringsArray, ...values: readonly any[]): TQueryable;
 
   /**
    * Set query options that affect the behaviour of the query.
@@ -199,7 +206,7 @@ export type EntitySet<T extends object> = {
    * @returns A promise that resolves when the entities have been successfully
    * added to the unit of work.
    */
-  add(...entities: (T extends FromClass<T> ? Unbrand<T> : Partial<T>)[]): Promise<void>;
+  add(...entities: readonly (T extends FromClass<T> ? Unbrand<T> : Partial<T>)[]): Promise<void>;
 
   /**
    * Removes one or more entities from the current unit of work. The entities will be tracked in the
@@ -208,7 +215,7 @@ export type EntitySet<T extends object> = {
    *
    * @param entities The entities to be removed from the unit of work.
    */
-  remove(...entities: Unbrand<T>[]): void;
+  remove(...entities: readonly Unbrand<T>[]): void;
 };
 
 /**
@@ -221,9 +228,9 @@ export type EntityObject<Model extends EntityModel> =
  * Labelled access to strongly-typed entity query and unit of work operations.
  */
 export type EntitySets<TEntities extends { [Key in keyof TEntities]: EntityModel }> = {
-  [Key in keyof TEntities]: AsyncQueryable<EntityType<TEntities[Key]>> &
+  [Key in keyof TEntities]: AsyncQueryable<EntityType<TEntities[Key]>, TEntities> &
     EntitySet<EntityObject<TEntities[Key]>> &
-    RootQueryOperations<AsyncQueryable<EntityType<TEntities[Key]>>>;
+    RootQueryOperations<AsyncQueryable<EntityType<TEntities[Key]>, TEntities>>;
 };
 
 /**
@@ -254,7 +261,7 @@ export type ModelBuilder<TEntities extends Entities> = {
   /**
    * Zero or more value objects models.
    */
-  values?: ValueObjectModel[];
+  values?: readonly ValueObjectModel[];
 };
 
 /**
@@ -305,11 +312,11 @@ export class Verse<TEntities extends Entities = any> {
 
     config.driver.logger = config.logger;
 
-    this.#conventions = List.of(
+    let conventions = [
       new EntityNameFromLabel(),
       new ColumnFromPascalCasedPropertyName(),
       new TableFromEntityName(),
-      new TablePerHierarchy(),
+      new UseSingleTableInheritance(),
       new PrimaryKeyFromProperty(),
       new ForeignKeyFromNavigation(),
       new ForeignKeyFromPrimaryKeyName(),
@@ -321,8 +328,14 @@ export class Verse<TEntities extends Entities = any> {
       new MaxLengthDefault(),
       new PrecisionScaleDefaults(),
       new VersionProperty(),
-      ...(this.config.driver.conventions ?? [])
-    );
+      ...(this.config.driver.conventions ?? []),
+    ];
+
+    if (this.config.conventions) {
+      conventions = this.config.conventions(conventions);
+    }
+
+    this.#conventions = List(conventions);
 
     const entities = builder.entities;
 
@@ -337,6 +350,8 @@ export class Verse<TEntities extends Entities = any> {
     );
 
     model.accept(new ModelValidator(this.#inheritance));
+
+    this.config.driver.validate(model);
 
     this.metadata = {
       config: this.config,
@@ -359,8 +374,7 @@ export class Verse<TEntities extends Entities = any> {
       this.metadata,
       this.#labelled<From<TEntities>>(
         entities,
-        label => () =>
-          new QueryableRoot(model.entityByLabel(label).name) as From<TEntities>[typeof label]
+        label => () => new QueryableRoot() as From<TEntities>[typeof label]
       )
     );
 
@@ -396,12 +410,14 @@ export class Verse<TEntities extends Entities = any> {
    *
    * const album = query(42);
    */
-  compile<R, A extends unknown[]>(query: (from: From<TEntities>, ...args: A) => R) {
+  compile<R, A extends readonly unknown[]>(query: (from: From<TEntities>, ...args: A) => R) {
     notNull({ query });
 
     const compiled = this.#compiler.compile(query, false);
 
-    return ((...args: A) => compiled((args as A[]) ?? [])) as (...args: A) => QueryResult<R>;
+    return ((...args: A) => compiled((args as readonly A[]) ?? [])) as (
+      ...args: A
+    ) => QueryResult<R>;
   }
 
   /**
@@ -423,12 +439,12 @@ export class Verse<TEntities extends Entities = any> {
    * const uow = db.uow();
    * const album = query(uow, 42);
    */
-  compileUow<R, A extends unknown[]>(query: (from: From<TEntities>, ...args: A) => R) {
+  compileUow<R, A extends readonly unknown[]>(query: (from: From<TEntities>, ...args: A) => R) {
     notNull({ query });
 
     const compiled = this.#compiler.compile(query, false);
 
-    return ((uow: UnitOfWorkImpl, ...args: A) => compiled((args as A[]) ?? [], uow)) as (
+    return ((uow: UnitOfWorkImpl, ...args: A) => compiled((args as readonly A[]) ?? [], uow)) as (
       uow: UnitOfWork<TEntities>,
       ...args: A
     ) => QueryResult<R>;
@@ -586,7 +602,10 @@ export class DbOperations {
   }
 }
 
-class QueryableSet<T extends object> extends AsyncQueryableRoot<T> implements EntitySet<T> {
+class QueryableSet<T extends object, E extends Entities>
+  extends AsyncQueryableRoot<T, E>
+  implements EntitySet<T>
+{
   readonly #entity: string;
 
   constructor(
@@ -599,11 +618,11 @@ class QueryableSet<T extends object> extends AsyncQueryableRoot<T> implements En
     this.#entity = entity;
   }
 
-  async add(...entities: Partial<T>[]) {
+  async add(...entities: readonly Partial<T>[]) {
     await this.uow.add(this.#entity, ...entities);
   }
 
-  remove(...entities: T[]) {
+  remove(...entities: readonly T[]) {
     this.uow.remove(...entities);
   }
 

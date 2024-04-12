@@ -81,7 +81,7 @@ class QueryCommand implements CommandModule {
 
     const verse = await loadVerse();
 
-    let results = [];
+    let results: readonly any[] = [];
 
     try {
       results = await fn(verse).toArray();
@@ -92,8 +92,8 @@ class QueryCommand implements CommandModule {
     const format = (value: any) =>
       Array.isArray(value) || value instanceof Object ? JSON.stringify(value, null, " ") : value;
 
-    let head: string[] = ["0 rows"];
-    let rows: string[][] = [];
+    let head: readonly string[] = ["0 rows"];
+    let rows: readonly string[][] = [];
 
     if (results.length > 0) {
       const row = results[0];
@@ -108,7 +108,7 @@ class QueryCommand implements CommandModule {
     }
 
     const table = new Table({
-      head,
+      head: head as string[],
       style: { head: ["cyan"] },
     });
 

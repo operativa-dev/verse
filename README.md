@@ -124,6 +124,23 @@ uow.todos.remove(todo);
 await uow.commit();
 ```
 
+### Samples
+
+The following steps will get you up and running with the Verse samples:
+In the verse root directory run these commands:
+
+**`pnpm install`**: bootstraps the entire project, symlinks all dependencies for
+cross-component development and builds all components.
+
+**`turbo build`**: run build for all component packages.
+
+You can then navigate to a sample and run it with:
+
+```
+cd apps/basic/
+pnpm dev
+```
+
 ## Development Status
 
 Please note that "Verse" is in its early development and the presented version is an alpha release. It's intended to be

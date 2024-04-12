@@ -9,6 +9,7 @@ import {
   ExecuteStatement,
   IsolationLevel,
 } from "@operativa/verse/db/driver";
+import { explodeIn, hasInParameter } from "@operativa/verse/db/in";
 import { SqlPrinter } from "@operativa/verse/db/printer";
 import { SqlRewriter } from "@operativa/verse/db/rewriter";
 import {
@@ -21,6 +22,7 @@ import {
   SqlFunction,
   sqlId,
   SqlIdentifier,
+  SqlIn,
   SqlMember,
   SqlNode,
   SqlNumber,
@@ -30,10 +32,12 @@ import {
   SqlType,
   SqlTypeAlias,
 } from "@operativa/verse/db/sql";
+import { Model } from "@operativa/verse/model/model";
 import { notEmpty } from "@operativa/verse/utils/check";
 import { logBatch, Logger, logSql } from "@operativa/verse/utils/logging";
 import { List } from "immutable";
 import pg from "postgres";
+import isNumeric = SqlType.isNumeric;
 
 export function postgres(connectionString: string) {
   return new PostgresDriver(connectionString);
@@ -55,6 +59,9 @@ export class PostgresDriver implements Driver, AsyncDisposable {
     });
   }
 
+  // @ts-ignore
+  validate(model: Model) {}
+
   get info() {
     return {
       name: "postgresql",
@@ -72,24 +79,38 @@ export class PostgresDriver implements Driver, AsyncDisposable {
   }
 
   rows(sql: SqlNode) {
-    return (args: unknown[]) =>
-      this.#query(sql.accept(new DialectRewriter()).accept(new PgSqlPrinter()), args);
+    const printer = new PgSqlPrinter();
+
+    // noinspection DuplicatedCode
+    if (!hasInParameter(sql)) {
+      const query = sql.accept(new DialectRewriter()).accept(printer);
+
+      return (args: readonly unknown[]) => {
+        return this.#query(query, args);
+      };
+    }
+
+    return (args: unknown[]) => {
+      const query = sql.accept(new DialectRewriter(args)).accept(printer);
+
+      return this.#query(query, args);
+    };
   }
 
-  async *#query(sql: string, args: unknown[]) {
+  async *#query(sql: string, args: readonly unknown[]) {
     logSql(sql, args, this.#logger);
 
     const values = await this.#pg.unsafe(sql, args as any[]).values();
 
     for await (const r of values) {
-      yield r;
+      yield r as readonly unknown[];
     }
   }
 
   async execute(
-    statements: ExecuteStatement[],
+    statements: readonly ExecuteStatement[],
     isolation?: IsolationLevel,
-    onBeforeCommit?: (results: ExecuteResult[]) => void
+    onBeforeCommit?: (results: readonly ExecuteResult[]) => void
   ) {
     const batch = statements.map(stmt => ({
       ...stmt,
@@ -132,7 +153,7 @@ export class PostgresDriver implements Driver, AsyncDisposable {
     return results;
   }
 
-  script(statements: ExecuteStatement[]) {
+  script(statements: readonly ExecuteStatement[]) {
     const printer = new PgSqlPrinter();
 
     return statements.map(stmt => stmt.sql.accept(printer));
@@ -239,6 +260,10 @@ export class PostgresDriver implements Driver, AsyncDisposable {
 }
 
 class DialectRewriter extends SqlRewriter {
+  constructor(private args: unknown[] = []) {
+    super();
+  }
+
   override visitFunction(func: SqlFunction) {
     const newFunction = super.visitFunction(func) as SqlFunction;
 
@@ -259,8 +284,8 @@ class DialectRewriter extends SqlRewriter {
     if (
       (SqlBinaryOperator.isComparison(newBinary.op) ||
         SqlBinaryOperator.isArithmetic(newBinary.op)) &&
-      !SqlType.isNumeric(newBinary.left.type) &&
-      SqlType.isNumeric(newBinary.right.type)
+      !isNumeric(newBinary.left.type) &&
+      isNumeric(newBinary.right.type)
     ) {
       return sqlBin(
         new SqlFunction("cast", List.of(new SqlTypeAlias(newBinary.left, newBinary.right.type!))),
@@ -271,6 +296,14 @@ class DialectRewriter extends SqlRewriter {
     }
 
     return newBinary;
+  }
+
+  override visitIn(_in: SqlIn) {
+    if (this.args.length > 0) {
+      return explodeIn(_in, this.args);
+    }
+
+    return _in;
   }
 }
 

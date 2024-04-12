@@ -1,0 +1,43 @@
+# Raw SQL
+
+Sometimes Verse's powerful query operators aren't enough. If this happens, you can drop down
+and write raw SQL queries. This is done using the special tagged template literal `sql` function, available
+at the start of any query.
+
+For example, a simple raw SQL query might look like this:
+
+```ts include ./apps/snippets/src/query.ts:sql showLineNumbers
+const name = "AC/DC"; // usually from user input, parameterized
+
+const sql = await db.from.artists
+  .sql`SELECT * FROM Artist WHERE Name = ${name}`.toArray();
+```
+
+This will execute the raw SQL query `select * from Artist where Name = ?` with the parameter `AC/DC`.
+
+## Composition
+
+A powerful feature of raw SQL queries is that they can be composed with other operators. This allows you to
+use raw SQL queries as building blocks for more complex queries.
+
+For example, chaining additional operators to a raw SQL query is as simple as chaining them to any other query:
+
+```ts include ./apps/snippets/src/query.ts:sql-composition showLineNumbers
+const composed = await db.from.artists.sql`SELECT * FROM Artist`
+  .where(a => a.name.like("A%"))
+  .orderBy(a => a.name)
+  .limit(5)
+  .toArray();
+```
+
+which will produce the following SQL query:
+
+```sql showLineNumbers
+select "t4"."ArtistId", "t4"."Name"
+from (
+   SELECT * FROM Artist
+) as "t4"
+where "t4"."Name" like 'A%'
+order by "t4"."Name"
+limit ?
+```

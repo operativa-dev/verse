@@ -1,0 +1,43 @@
+[
+  {
+    "alternate": {
+      "name": "baz",
+      "type": "IdentifierExpression",
+    },
+    "consequent": {
+      "name": "bar",
+      "type": "IdentifierExpression",
+    },
+    "test": {
+      "name": "foo",
+      "type": "IdentifierExpression",
+    },
+    "type": "ConditionalExpression",
+  },
+  {
+    "alternate": {
+      "alternate": {
+        "name": "quux",
+        "type": "IdentifierExpression",
+      },
+      "consequent": {
+        "name": "qux",
+        "type": "IdentifierExpression",
+      },
+      "test": {
+        "name": "baz",
+        "type": "IdentifierExpression",
+      },
+      "type": "ConditionalExpression",
+    },
+    "consequent": {
+      "name": "bar",
+      "type": "IdentifierExpression",
+    },
+    "test": {
+      "name": "foo",
+      "type": "IdentifierExpression",
+    },
+    "type": "ConditionalExpression",
+  },
+]

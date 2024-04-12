@@ -1029,7 +1029,7 @@ type ValueObjectModelState = StructuralModelState;
 /**
  * Models a value object.
  */
-export class ValueObjectModel extends StructuralModel {
+export class ValueObjectModel<T extends object = any> extends StructuralModel {
   constructor(state: Readonly<ValueObjectModelState>) {
     super(state);
 
@@ -1039,7 +1039,7 @@ export class ValueObjectModel extends StructuralModel {
   }
 
   protected override withProperties(properties: List<PropertyModel>) {
-    return new ValueObjectModel({ ...this.state, properties });
+    return new ValueObjectModel<T>({ ...this.state, properties });
   }
 
   protected override get state() {
@@ -1056,15 +1056,15 @@ export class ValueObjectModel extends StructuralModel {
     });
   }
 
-  override accept<T, S = unknown>(visitor: ModelVisitor<T, S>, state?: S) {
+  override accept<T, S = unknown>(visitor: ModelVisitor<T, S>, state?: S): T {
     return visitor.visitValueObject(this, state);
   }
 
-  override rewrite(rewriter: ModelRewriter) {
+  override rewrite(rewriter: ModelRewriter): ValueObjectModel<T> {
     const properties = rewriter.rewriteList(this.properties);
 
     return this.properties !== properties
-      ? new ValueObjectModel({ ...this.state, properties })
+      ? new ValueObjectModel<T>({ ...this.state, properties })
       : this;
   }
 
@@ -1084,7 +1084,7 @@ export abstract class PropertyModel extends AbstractModel {
   }
 }
 
-export type ScalarPropertyModelState = Omit<ScalarOptions, "generate" | "convert"> & {
+export type ScalarPropertyModelState = Omit<ScalarOptions<unknown>, "generate" | "convert"> & {
   generate?: GeneratorModel | undefined;
   convert?: ConversionModel | undefined;
 };

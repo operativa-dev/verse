@@ -9,6 +9,7 @@ import {
   ExecuteStatement,
   IsolationLevel,
 } from "@operativa/verse/db/driver";
+import { explodeIn, hasInParameter } from "@operativa/verse/db/in";
 import { SqlPrinter } from "@operativa/verse/db/printer";
 import { SqlRewriter } from "@operativa/verse/db/rewriter";
 import {
@@ -22,6 +23,7 @@ import {
   SqlFunction,
   sqlId,
   SqlIdentifier,
+  SqlIn,
   SqlInsert,
   SqlMember,
   SqlNode,
@@ -38,9 +40,11 @@ import {
   sqlStr,
   SqlType,
 } from "@operativa/verse/db/sql";
-import { KeyModel } from "@operativa/verse/model/model";
+import { KeyModel, Model, ScalarPropertyModel } from "@operativa/verse/model/model";
+import { ModelRewriter } from "@operativa/verse/model/rewriter";
 import { notEmpty, notNull } from "@operativa/verse/utils/check";
 import { logBatch, Logger, logSql } from "@operativa/verse/utils/logging";
+import { error } from "@operativa/verse/utils/utils";
 import { List } from "immutable";
 import { config, connect, ConnectionPool, ISOLATION_LEVEL } from "mssql";
 
@@ -56,6 +60,11 @@ export class MssqlDriver implements Driver {
     notNull({ config });
 
     config.arrayRowMode = true;
+  }
+
+  // @ts-ignore
+  validate(model: Model) {
+    model.accept(new Validator());
   }
 
   get info() {
@@ -84,12 +93,24 @@ export class MssqlDriver implements Driver {
 
   rows(sql: SqlNode) {
     const printer = new MssqlPrinter();
-    const query = sql.accept(new DialectRewriter()).accept(printer);
 
-    return (args: unknown[]) => this.#query(query, args);
+    // noinspection DuplicatedCode
+    if (!hasInParameter(sql)) {
+      const query = sql.accept(new DialectRewriter()).accept(printer);
+
+      return (args: readonly unknown[]) => {
+        return this.#query(query, args);
+      };
+    }
+
+    return (args: unknown[]) => {
+      const query = sql.accept(new DialectRewriter(args)).accept(printer);
+
+      return this.#query(query, args);
+    };
   }
 
-  async *#query(sql: string, args: unknown[]): AsyncIterable<unknown[]> {
+  async *#query(sql: string, args: readonly unknown[]): AsyncIterable<readonly unknown[]> {
     logSql(sql, args, this.#logger);
 
     const pool = await this.pool();
@@ -105,9 +126,9 @@ export class MssqlDriver implements Driver {
   }
 
   async execute(
-    statements: ExecuteStatement[],
+    statements: readonly ExecuteStatement[],
     isolation?: IsolationLevel,
-    onBeforeCommit?: (results: ExecuteResult[]) => void
+    onBeforeCommit?: (results: readonly ExecuteResult[]) => void
   ) {
     const batch = this.#createBatch(statements);
 
@@ -146,7 +167,7 @@ export class MssqlDriver implements Driver {
     return results;
   }
 
-  #createBatch(statements: ExecuteStatement[]) {
+  #createBatch(statements: readonly ExecuteStatement[]) {
     const dialect = new DialectRewriter();
     const printer = new MssqlPrinter();
 
@@ -186,7 +207,7 @@ export class MssqlDriver implements Driver {
     return new SqlSet("identity_insert", table, new SqlRaw(List.of(value)));
   }
 
-  script(statements: ExecuteStatement[]) {
+  script(statements: readonly ExecuteStatement[]) {
     const dialect = new DialectRewriter();
     const printer = new MssqlPrinter();
 
@@ -300,6 +321,18 @@ export class MssqlDriver implements Driver {
 
 class DialectRewriter extends SqlRewriter {
   #selectDepth = 0;
+
+  constructor(private args: unknown[] = []) {
+    super();
+  }
+
+  override visitIn(_in: SqlIn) {
+    if (this.args.length > 0) {
+      return explodeIn(_in, this.args);
+    }
+
+    return _in;
+  }
 
   override visitSelect(select: SqlSelect) {
     this.#selectDepth++;
@@ -520,5 +553,18 @@ class MssqlPrinter extends SqlPrinter {
 
   override visitParameter(parameter: SqlParameter) {
     return `@p${parameter.id}`;
+  }
+}
+
+class Validator extends ModelRewriter {
+  override visitScalarProperty(scalarProperty: ScalarPropertyModel) {
+    if (scalarProperty.generate?.using === "seqhilo") {
+      throw error(
+        `Scalar property '${scalarProperty.name}' cannot use 'seqhilo' generator.
+        SQL Server does not support sequences.`
+      );
+    }
+
+    return super.visitScalarProperty(scalarProperty);
   }
 }

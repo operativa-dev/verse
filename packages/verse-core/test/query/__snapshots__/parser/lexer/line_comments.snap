@@ -1,0 +1,9 @@
+[
+  {
+    "type": "number",
+    "value": 42,
+  },
+  {
+    "type": "eof",
+  },
+]

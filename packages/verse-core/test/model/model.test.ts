@@ -180,10 +180,8 @@ describe("value objects", () => {
     address: value(Address),
   });
 
-  const address = valueObject(Address, a => {
-    a.properties({
-      street: string(),
-    });
+  const address = valueObject(Address, {
+    street: string(),
   });
 
   test("model", () => {

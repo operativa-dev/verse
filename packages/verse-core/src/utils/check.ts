@@ -8,9 +8,9 @@ export function notNull<T>(args: { [key: string]: T }) {
   });
 }
 
-export function notEmpty<T extends string | List<unknown> | unknown[] | undefined | null>(args: {
-  [key: string]: T;
-}) {
+export function notEmpty<
+  T extends string | List<unknown> | unknown[] | readonly unknown[] | undefined | null,
+>(args: { [key: string]: T }) {
   Object.entries(args).forEach(([arg, value]) => {
     if (value === undefined || value === null) {
       throw new Error(`Argument '${arg}' cannot be undefined or null!`);

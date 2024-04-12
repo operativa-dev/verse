@@ -1,6 +1,7 @@
 import { List } from "immutable";
 import path from "node:path";
 import { afterEach, beforeAll, beforeEach, Custom, TaskContext, test, Test } from "vitest";
+import { Convention } from "../src/conventions/convention.js";
 import { Driver } from "../src/db/driver.js";
 import { ModelBinder } from "../src/model/binder.js";
 import { EntityModel, Model, StructuralModel, ValueObjectModel } from "../src/model/model.js";
@@ -105,14 +106,20 @@ export function boundModelOf(...types: StructuralModel[]) {
 export const fixture = <TEntities extends Entities>(
   driver: Driver,
   entitiesOrModel: TEntities | ModelBuilder<TEntities>,
-  logger?: Logger
+  logger?: Logger,
+  conventions?: ((conventions: Convention[]) => Convention[]) | undefined
 ) => {
   if (!("entities" in entitiesOrModel)) {
     entitiesOrModel = { entities: entitiesOrModel };
   }
 
   return verse({
-    config: { driver, logger: logger ?? new SqlSpy(), isolation: "read committed" },
+    config: {
+      driver,
+      logger: logger ?? new SqlSpy(),
+      isolation: "read committed",
+      conventions,
+    },
     model: entitiesOrModel as ModelBuilder<TEntities>,
   });
 };

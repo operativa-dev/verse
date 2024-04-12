@@ -1,0 +1,37 @@
+[
+  {
+    "type": "identifier",
+    "value": "foo",
+  },
+  {
+    "type": "identifier",
+    "value": "$bar",
+  },
+  {
+    "type": "identifier",
+    "value": "_baz",
+  },
+  {
+    "type": "identifier",
+    "value": "$123",
+  },
+  {
+    "type": "identifier",
+    "value": "_456",
+  },
+  {
+    "type": "identifier",
+    "value": "$",
+  },
+  {
+    "type": "identifier",
+    "value": "_",
+  },
+  {
+    "type": "identifier",
+    "value": "abc123",
+  },
+  {
+    "type": "eof",
+  },
+]

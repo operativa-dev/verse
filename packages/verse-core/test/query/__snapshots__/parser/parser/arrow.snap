@@ -1,0 +1,164 @@
+[
+  {
+    "body": {
+      "name": "bar",
+      "type": "IdentifierExpression",
+    },
+    "params": [
+      {
+        "name": "foo",
+        "type": "IdentifierExpression",
+      },
+      {
+        "name": "baz",
+        "type": "IdentifierExpression",
+      },
+    ],
+    "type": "ArrowFunctionExpression",
+  },
+  {
+    "body": {
+      "name": "bar",
+      "type": "IdentifierExpression",
+    },
+    "params": [
+      {
+        "name": "foo",
+        "type": "IdentifierExpression",
+      },
+    ],
+    "type": "ArrowFunctionExpression",
+  },
+  {
+    "body": {
+      "left": {
+        "name": "a",
+        "type": "IdentifierExpression",
+      },
+      "operator": "+",
+      "right": {
+        "name": "b",
+        "type": "IdentifierExpression",
+      },
+      "type": "BinaryExpression",
+    },
+    "params": [],
+    "type": "ArrowFunctionExpression",
+  },
+  {
+    "body": {
+      "left": {
+        "name": "a",
+        "type": "IdentifierExpression",
+      },
+      "operator": "+",
+      "right": {
+        "name": "b",
+        "type": "IdentifierExpression",
+      },
+      "type": "BinaryExpression",
+    },
+    "params": [
+      {
+        "name": "a",
+        "type": "IdentifierExpression",
+      },
+      {
+        "elements": [
+          {
+            "name": "b",
+            "type": "IdentifierExpression",
+          },
+          {
+            "name": "_",
+            "type": "IdentifierExpression",
+          },
+        ],
+        "type": "ArrayExpression",
+      },
+    ],
+    "type": "ArrowFunctionExpression",
+  },
+  {
+    "body": {
+      "body": {
+        "left": {
+          "name": "a",
+          "type": "IdentifierExpression",
+        },
+        "operator": "+",
+        "right": {
+          "name": "b",
+          "type": "IdentifierExpression",
+        },
+        "type": "BinaryExpression",
+      },
+      "params": [
+        {
+          "name": "a",
+          "type": "IdentifierExpression",
+        },
+        {
+          "name": "b",
+          "type": "IdentifierExpression",
+        },
+      ],
+      "type": "ArrowFunctionExpression",
+    },
+    "params": [],
+    "type": "ArrowFunctionExpression",
+  },
+  {
+    "body": {
+      "computed": false,
+      "object": {
+        "name": "al",
+        "type": "IdentifierExpression",
+      },
+      "optional": undefined,
+      "property": {
+        "name": "title",
+        "type": "IdentifierExpression",
+      },
+      "type": "MemberExpression",
+    },
+    "params": [
+      {
+        "elements": [
+          {
+            "name": "_",
+            "type": "IdentifierExpression",
+          },
+          {
+            "name": "al",
+            "type": "IdentifierExpression",
+          },
+        ],
+        "type": "ArrayExpression",
+      },
+    ],
+    "type": "ArrowFunctionExpression",
+  },
+  {
+    "body": {
+      "computed": false,
+      "object": {
+        "name": "al",
+        "type": "IdentifierExpression",
+      },
+      "optional": undefined,
+      "property": {
+        "name": "title",
+        "type": "IdentifierExpression",
+      },
+      "type": "MemberExpression",
+    },
+    "params": [
+      {
+        "name": "al",
+        "type": "IdentifierExpression",
+      },
+    ],
+    "type": "ArrowFunctionExpression",
+  },
+]

@@ -1,0 +1,628 @@
+[
+  {
+    "type": "LiteralExpression",
+    "value": false,
+  },
+  {
+    "type": "LiteralExpression",
+    "value": true,
+  },
+  {
+    "type": "LiteralExpression",
+    "value": null,
+  },
+  {
+    "type": "LiteralExpression",
+    "value": undefined,
+  },
+  {
+    "type": "ThisExpression",
+  },
+  {
+    "type": "SuperExpression",
+  },
+  {
+    "type": "LiteralExpression",
+    "value": 123,
+  },
+  {
+    "type": "LiteralExpression",
+    "value": "abc",
+  },
+  {
+    "type": "LiteralExpression",
+    "value": /foo/,
+  },
+  {
+    "type": "LiteralExpression",
+    "value": 123,
+  },
+  {
+    "elements": [
+      {
+        "type": "LiteralExpression",
+        "value": 123,
+      },
+    ],
+    "type": "ArrayExpression",
+  },
+  {
+    "elements": [
+      {
+        "type": "LiteralExpression",
+        "value": 123,
+      },
+    ],
+    "type": "ArrayExpression",
+  },
+  {
+    "elements": [
+      {
+        "type": "LiteralExpression",
+        "value": 123,
+      },
+      {
+        "type": "LiteralExpression",
+        "value": 456,
+      },
+    ],
+    "type": "ArrayExpression",
+  },
+  {
+    "elements": [],
+    "type": "ArrayExpression",
+  },
+  {
+    "elements": [
+      {
+        "name": "_",
+        "type": "IdentifierExpression",
+      },
+      {
+        "name": "al",
+        "type": "IdentifierExpression",
+      },
+    ],
+    "type": "ArrayExpression",
+  },
+  {
+    "properties": [],
+    "type": "ObjectExpression",
+  },
+  {
+    "properties": [
+      {
+        "computed": false,
+        "key": {
+          "name": "foo",
+          "type": "IdentifierExpression",
+        },
+        "shorthand": true,
+        "type": "PropertyExpression",
+        "value": {
+          "name": "foo",
+          "type": "IdentifierExpression",
+        },
+      },
+    ],
+    "type": "ObjectExpression",
+  },
+  {
+    "properties": [
+      {
+        "computed": false,
+        "key": {
+          "name": "foo",
+          "type": "IdentifierExpression",
+        },
+        "shorthand": true,
+        "type": "PropertyExpression",
+        "value": {
+          "name": "foo",
+          "type": "IdentifierExpression",
+        },
+      },
+      {
+        "computed": false,
+        "key": {
+          "name": "bar",
+          "type": "IdentifierExpression",
+        },
+        "shorthand": true,
+        "type": "PropertyExpression",
+        "value": {
+          "name": "bar",
+          "type": "IdentifierExpression",
+        },
+      },
+    ],
+    "type": "ObjectExpression",
+  },
+  {
+    "properties": [
+      {
+        "computed": false,
+        "key": {
+          "name": "foo",
+          "type": "IdentifierExpression",
+        },
+        "shorthand": false,
+        "type": "PropertyExpression",
+        "value": {
+          "type": "LiteralExpression",
+          "value": 123,
+        },
+      },
+    ],
+    "type": "ObjectExpression",
+  },
+  {
+    "properties": [
+      {
+        "computed": false,
+        "key": {
+          "type": "LiteralExpression",
+          "value": 1,
+        },
+        "shorthand": false,
+        "type": "PropertyExpression",
+        "value": {
+          "type": "LiteralExpression",
+          "value": "foo",
+        },
+      },
+    ],
+    "type": "ObjectExpression",
+  },
+  {
+    "properties": [
+      {
+        "computed": false,
+        "key": {
+          "type": "LiteralExpression",
+          "value": "foo:bar",
+        },
+        "shorthand": false,
+        "type": "PropertyExpression",
+        "value": {
+          "type": "LiteralExpression",
+          "value": 42,
+        },
+      },
+    ],
+    "type": "ObjectExpression",
+  },
+  {
+    "properties": [
+      {
+        "argument": {
+          "name": "foo",
+          "type": "IdentifierExpression",
+        },
+        "type": "SpreadExpression",
+      },
+    ],
+    "type": "ObjectExpression",
+  },
+  {
+    "properties": [
+      {
+        "computed": false,
+        "key": {
+          "name": "foo",
+          "type": "IdentifierExpression",
+        },
+        "shorthand": false,
+        "type": "PropertyExpression",
+        "value": {
+          "properties": [
+            {
+              "computed": false,
+              "key": {
+                "name": "bar",
+                "type": "IdentifierExpression",
+              },
+              "shorthand": true,
+              "type": "PropertyExpression",
+              "value": {
+                "name": "bar",
+                "type": "IdentifierExpression",
+              },
+            },
+          ],
+          "type": "ObjectExpression",
+        },
+      },
+    ],
+    "type": "ObjectExpression",
+  },
+  {
+    "properties": [
+      {
+        "computed": false,
+        "key": {
+          "name": "album",
+          "type": "IdentifierExpression",
+        },
+        "shorthand": false,
+        "type": "PropertyExpression",
+        "value": {
+          "computed": false,
+          "object": {
+            "name": "a",
+            "type": "IdentifierExpression",
+          },
+          "optional": undefined,
+          "property": {
+            "name": "title",
+            "type": "IdentifierExpression",
+          },
+          "type": "MemberExpression",
+        },
+      },
+      {
+        "computed": false,
+        "key": {
+          "name": "artist",
+          "type": "IdentifierExpression",
+        },
+        "shorthand": false,
+        "type": "PropertyExpression",
+        "value": {
+          "computed": false,
+          "object": {
+            "name": "ar",
+            "type": "IdentifierExpression",
+          },
+          "optional": undefined,
+          "property": {
+            "name": "name",
+            "type": "IdentifierExpression",
+          },
+          "type": "MemberExpression",
+        },
+      },
+      {
+        "computed": false,
+        "key": {
+          "name": "track",
+          "type": "IdentifierExpression",
+        },
+        "shorthand": false,
+        "type": "PropertyExpression",
+        "value": {
+          "computed": false,
+          "object": {
+            "name": "t",
+            "type": "IdentifierExpression",
+          },
+          "optional": undefined,
+          "property": {
+            "name": "name",
+            "type": "IdentifierExpression",
+          },
+          "type": "MemberExpression",
+        },
+      },
+    ],
+    "type": "ObjectExpression",
+  },
+  {
+    "expressions": [],
+    "quasis": [
+      {
+        "tail": true,
+        "type": "TemplateExpression",
+        "value": {
+          "cooked": "",
+        },
+      },
+    ],
+    "type": "TemplateLiteralExpression",
+  },
+  {
+    "expressions": [],
+    "quasis": [
+      {
+        "tail": true,
+        "type": "TemplateExpression",
+        "value": {
+          "cooked": "abc",
+        },
+      },
+    ],
+    "type": "TemplateLiteralExpression",
+  },
+  {
+    "expressions": [
+      {
+        "name": "foo",
+        "type": "IdentifierExpression",
+      },
+    ],
+    "quasis": [
+      {
+        "tail": false,
+        "type": "TemplateExpression",
+        "value": {
+          "cooked": "",
+        },
+      },
+      {
+        "tail": true,
+        "type": "TemplateExpression",
+        "value": {
+          "cooked": "",
+        },
+      },
+    ],
+    "type": "TemplateLiteralExpression",
+  },
+  {
+    "expressions": [],
+    "quasis": [
+      {
+        "tail": true,
+        "type": "TemplateExpression",
+        "value": {
+          "cooked": "$",
+        },
+      },
+    ],
+    "type": "TemplateLiteralExpression",
+  },
+  {
+    "expressions": [],
+    "quasis": [
+      {
+        "tail": true,
+        "type": "TemplateExpression",
+        "value": {
+          "cooked": "${",
+        },
+      },
+    ],
+    "type": "TemplateLiteralExpression",
+  },
+  {
+    "expressions": [
+      {
+        "expressions": [
+          {
+            "name": "b",
+            "type": "IdentifierExpression",
+          },
+        ],
+        "quasis": [
+          {
+            "tail": false,
+            "type": "TemplateExpression",
+            "value": {
+              "cooked": "a",
+            },
+          },
+          {
+            "tail": true,
+            "type": "TemplateExpression",
+            "value": {
+              "cooked": "c",
+            },
+          },
+        ],
+        "type": "TemplateLiteralExpression",
+      },
+    ],
+    "quasis": [
+      {
+        "tail": false,
+        "type": "TemplateExpression",
+        "value": {
+          "cooked": "",
+        },
+      },
+      {
+        "tail": true,
+        "type": "TemplateExpression",
+        "value": {
+          "cooked": "",
+        },
+      },
+    ],
+    "type": "TemplateLiteralExpression",
+  },
+  {
+    "quasi": {
+      "expressions": [],
+      "quasis": [
+        {
+          "tail": true,
+          "type": "TemplateExpression",
+          "value": {
+            "cooked": "foo",
+          },
+        },
+      ],
+      "type": "TemplateLiteralExpression",
+    },
+    "tag": {
+      "name": "tag",
+      "type": "IdentifierExpression",
+    },
+    "type": "TaggedTemplateExpression",
+  },
+  {
+    "quasi": {
+      "expressions": [],
+      "quasis": [
+        {
+          "tail": true,
+          "type": "TemplateExpression",
+          "value": {
+            "cooked": "select * from table",
+          },
+        },
+      ],
+      "type": "TemplateLiteralExpression",
+    },
+    "tag": {
+      "name": "sql",
+      "type": "IdentifierExpression",
+    },
+    "type": "TaggedTemplateExpression",
+  },
+  {
+    "expressions": [
+      {
+        "properties": [
+          {
+            "computed": false,
+            "key": {
+              "name": "$id",
+              "type": "IdentifierExpression",
+            },
+            "shorthand": true,
+            "type": "PropertyExpression",
+            "value": {
+              "name": "$id",
+              "type": "IdentifierExpression",
+            },
+          },
+        ],
+        "type": "ObjectExpression",
+      },
+    ],
+    "quasis": [
+      {
+        "tail": false,
+        "type": "TemplateExpression",
+        "value": {
+          "cooked": "",
+        },
+      },
+      {
+        "tail": true,
+        "type": "TemplateExpression",
+        "value": {
+          "cooked": "",
+        },
+      },
+    ],
+    "type": "TemplateLiteralExpression",
+  },
+  {
+    "expressions": [
+      {
+        "properties": [
+          {
+            "computed": false,
+            "key": {
+              "name": "id",
+              "type": "IdentifierExpression",
+            },
+            "shorthand": false,
+            "type": "PropertyExpression",
+            "value": {
+              "properties": [],
+              "type": "ObjectExpression",
+            },
+          },
+        ],
+        "type": "ObjectExpression",
+      },
+    ],
+    "quasis": [
+      {
+        "tail": false,
+        "type": "TemplateExpression",
+        "value": {
+          "cooked": "",
+        },
+      },
+      {
+        "tail": true,
+        "type": "TemplateExpression",
+        "value": {
+          "cooked": "",
+        },
+      },
+    ],
+    "type": "TemplateLiteralExpression",
+  },
+  {
+    "computed": false,
+    "object": {
+      "quasi": {
+        "expressions": [],
+        "quasis": [
+          {
+            "tail": true,
+            "type": "TemplateExpression",
+            "value": {
+              "cooked": "",
+            },
+          },
+        ],
+        "type": "TemplateLiteralExpression",
+      },
+      "tag": {
+        "name": "sql",
+        "type": "IdentifierExpression",
+      },
+      "type": "TaggedTemplateExpression",
+    },
+    "optional": undefined,
+    "property": {
+      "name": "f",
+      "type": "IdentifierExpression",
+    },
+    "type": "MemberExpression",
+  },
+  {
+    "properties": [
+      {
+        "computed": false,
+        "key": {
+          "name": "a",
+          "type": "IdentifierExpression",
+        },
+        "shorthand": false,
+        "type": "PropertyExpression",
+        "value": {
+          "expressions": [
+            {
+              "computed": false,
+              "object": {
+                "name": "a",
+                "type": "IdentifierExpression",
+              },
+              "optional": undefined,
+              "property": {
+                "name": "title",
+                "type": "IdentifierExpression",
+              },
+              "type": "MemberExpression",
+            },
+          ],
+          "quasis": [
+            {
+              "tail": false,
+              "type": "TemplateExpression",
+              "value": {
+                "cooked": "",
+              },
+            },
+            {
+              "tail": true,
+              "type": "TemplateExpression",
+              "value": {
+                "cooked": "!",
+              },
+            },
+          ],
+          "type": "TemplateLiteralExpression",
+        },
+      },
+    ],
+    "type": "ObjectExpression",
+  },
+]

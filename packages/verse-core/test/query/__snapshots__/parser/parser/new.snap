@@ -1,0 +1,36 @@
+[
+  {
+    "arguments": [],
+    "callee": {
+      "name": "Foo",
+      "type": "IdentifierExpression",
+    },
+    "type": "NewExpression",
+  },
+  {
+    "arguments": [
+      {
+        "type": "LiteralExpression",
+        "value": 123,
+      },
+    ],
+    "callee": {
+      "name": "Foo",
+      "type": "IdentifierExpression",
+    },
+    "type": "NewExpression",
+  },
+  {
+    "arguments": [
+      {
+        "name": "y",
+        "type": "IdentifierExpression",
+      },
+    ],
+    "callee": {
+      "name": "x",
+      "type": "IdentifierExpression",
+    },
+    "type": "NewExpression",
+  },
+]

@@ -1,0 +1,34 @@
+[
+  {
+    "left": {
+      "name": "foo",
+      "type": "IdentifierExpression",
+    },
+    "operator": "??",
+    "right": {
+      "name": "bar",
+      "type": "IdentifierExpression",
+    },
+    "type": "BinaryExpression",
+  },
+  {
+    "left": {
+      "left": {
+        "name": "foo",
+        "type": "IdentifierExpression",
+      },
+      "operator": "??",
+      "right": {
+        "name": "bar",
+        "type": "IdentifierExpression",
+      },
+      "type": "BinaryExpression",
+    },
+    "operator": "??",
+    "right": {
+      "name": "baz",
+      "type": "IdentifierExpression",
+    },
+    "type": "BinaryExpression",
+  },
+]

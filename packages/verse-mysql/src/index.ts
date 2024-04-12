@@ -11,6 +11,7 @@ import {
   ExecuteStatement,
   IsolationLevel,
 } from "@operativa/verse/db/driver";
+import { explodeIn, hasInParameter } from "@operativa/verse/db/in";
 import { SqlPrinter } from "@operativa/verse/db/printer";
 import { SqlRewriter } from "@operativa/verse/db/rewriter";
 import {
@@ -25,6 +26,7 @@ import {
   SqlFunction,
   sqlId,
   SqlIdentifier,
+  SqlIn,
   SqlInsert,
   SqlMember,
   SqlNode,
@@ -34,9 +36,11 @@ import {
   sqlStr,
   SqlString,
 } from "@operativa/verse/db/sql";
-import { KeyModel } from "@operativa/verse/model/model";
+import { KeyModel, Model, ScalarPropertyModel } from "@operativa/verse/model/model";
+import { ModelRewriter } from "@operativa/verse/model/rewriter";
 import { notEmpty } from "@operativa/verse/utils/check";
 import { logBatch, Logger, logSql } from "@operativa/verse/utils/logging";
+import { error } from "@operativa/verse/utils/utils";
 import { List } from "immutable";
 import my, { ConnectionConfig, ResultSetHeader } from "mysql2/promise.js";
 
@@ -57,6 +61,11 @@ export class MySqlDriver implements Driver, AsyncDisposable {
       rowsAsArray: true,
       timezone: "Z",
     });
+  }
+
+  // @ts-ignore
+  validate(model: Model) {
+    model.accept(new Validator());
   }
 
   get info() {
@@ -81,20 +90,33 @@ export class MySqlDriver implements Driver, AsyncDisposable {
   }
 
   rows(sql: SqlNode) {
-    const printer = new MySqlPrinter();
-    const dialect = new DialectRewriter();
+    if (!hasInParameter(sql)) {
+      const printer = new MySqlPrinter();
+      const dialect = new DialectRewriter();
 
-    const query = sql.accept(dialect).accept(printer);
+      const query = sql.accept(dialect).accept(printer);
 
-    return (args: unknown[]) => this.#query(query, args, printer.argsMap, dialect.coerceArgs);
+      return (args: readonly unknown[]) => {
+        return this.#query(query, args, printer.argsMap, dialect.coerceArgs);
+      };
+    }
+
+    return (args: unknown[]) => {
+      const printer = new MySqlPrinter();
+      const dialect = new DialectRewriter(args);
+
+      const query = sql.accept(dialect).accept(printer);
+
+      return this.#query(query, args, printer.argsMap, dialect.coerceArgs);
+    };
   }
 
   async *#query(
     sql: string,
-    args: unknown[],
-    argsMap: number[],
+    args: readonly unknown[],
+    argsMap: readonly number[],
     coerceArgs: Set<number>
-  ): AsyncIterable<unknown[]> {
+  ): AsyncIterable<readonly unknown[]> {
     logSql(sql, args, this.#logger);
 
     const [rows, _] = await this.#pool.execute(
@@ -108,9 +130,9 @@ export class MySqlDriver implements Driver, AsyncDisposable {
   }
 
   async execute(
-    statements: ExecuteStatement[],
+    statements: readonly ExecuteStatement[],
     isolation?: IsolationLevel,
-    onBeforeCommit?: (results: ExecuteResult[]) => void
+    onBeforeCommit?: (results: readonly ExecuteResult[]) => void
   ) {
     const dialect = new DialectRewriter();
 
@@ -239,7 +261,7 @@ export class MySqlDriver implements Driver, AsyncDisposable {
     return [node];
   }
 
-  script(statements: ExecuteStatement[]) {
+  script(statements: readonly ExecuteStatement[]) {
     const dialect = new DialectRewriter();
     const printer = new MySqlPrinter();
 
@@ -342,6 +364,10 @@ export class MySqlDriver implements Driver, AsyncDisposable {
 class DialectRewriter extends SqlRewriter {
   #coerceArgs: Set<number> = new Set<number>();
 
+  constructor(private args: unknown[] = []) {
+    super();
+  }
+
   get coerceArgs() {
     return this.#coerceArgs;
   }
@@ -402,6 +428,14 @@ class DialectRewriter extends SqlRewriter {
 
     return newColumn;
   }
+
+  override visitIn(_in: SqlIn) {
+    if (this.args.length > 0) {
+      return explodeIn(_in, this.args);
+    }
+
+    return _in;
+  }
 }
 
 class MySqlPrinter extends SqlPrinter {
@@ -411,7 +445,7 @@ class MySqlPrinter extends SqlPrinter {
     super(prettySelect);
   }
 
-  get argsMap(): number[] {
+  get argsMap(): readonly number[] {
     return this.#argsMap;
   }
 
@@ -449,5 +483,18 @@ class MySqlPrinter extends SqlPrinter {
 
   protected override escapeString(str: string) {
     return str.replace(/(['\\])/g, "\\$1");
+  }
+}
+
+class Validator extends ModelRewriter {
+  override visitScalarProperty(scalarProperty: ScalarPropertyModel) {
+    if (scalarProperty.generate?.using === "seqhilo") {
+      throw error(
+        `Scalar property '${scalarProperty.name}' cannot use 'seqhilo' generator.
+        MySQL does not support sequences.`
+      );
+    }
+
+    return super.visitScalarProperty(scalarProperty);
   }
 }

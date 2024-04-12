@@ -7,7 +7,7 @@ write, and to have excellent tooling support and type safety.
 
 For example:
 
-```ts include ./apps/snippets/src/query.ts:40-43 showLineNumbers
+```ts include ./apps/snippets/src/query.ts:basic-query showLineNumbers
 const artists = await db.from.artists
   .where(a => a.name.like("A%"))
   .select(a => a.name)
@@ -22,19 +22,19 @@ results to only include artists whose name starts with "A", and then we apply th
 Instead of buffering with `toArray`, you can also use a `for await` loop to iterate over the results in a streaming
 fashion, which can be more efficient for large result sets:
 
-```ts include ./apps/snippets/src/query.ts:45-51 showLineNumbers
+```ts include ./apps/snippets/src/query.ts:for-await showLineNumbers
 const query = db.from.artists.where(a => a.name.like("A%")).select(a => a.name);
 
 for await (const name of query) {
   console.log(name);
 }
-
-const acdc = await db.from.artists.where(a => a.name === "AC/DC").first();
 ```
 
 We can also use the `first` operator to get the first result, or `single` to get the only result:
 
-```ts include ./apps/snippets/src/query.ts:53-59 showLineNumbers
+```ts include ./apps/snippets/src/query.ts:first-or-single showLineNumbers
+const acdc = await db.from.artists.where(a => a.name === "AC/DC").first();
+
 const alanis = await db.from.artists
   .where(a => a.name === "Alanis Morissette")
   .single();
@@ -49,4 +49,5 @@ we can use the `maybeFirst` or `maybeSingle` operators.
 
 :::
 
-Verse supports a wide range of other operators, including `orderBy`, `groupBy`, `join`, `limit`, `offset`, among others. We'll cover these in more detail in the following sections.
+Verse supports a wide range of other operators, including `orderBy`, `groupBy`, `join`, `limit`, `offset`, among others.
+We'll cover these in more detail in the following sections.

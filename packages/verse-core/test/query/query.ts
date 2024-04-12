@@ -1,7 +1,7 @@
 import { expect, test } from "vitest";
 import { Driver } from "../../src/db/driver.js";
 import { entity, int, string } from "../../src/model/builder.js";
-import { AsyncSequence, Queryable } from "../../src/query/queryable.js";
+import { AsyncSequence } from "../../src/query/queryable.js";
 import { Logger } from "../../src/utils/logging.js";
 import { Verse } from "../../src/verse.js";
 import { dataTest, fixture } from "../infra.js";
@@ -61,6 +61,73 @@ export const queryFixture = (driver: Driver, logger?: Logger) => {
 export const queryTests = (verse: Verse<typeof queryModel>) => {
   const snap = dataTest(verse);
 
+  test("options compile", async () => {
+    const q = verse.compile((from, $limit: number) =>
+      from.albums.options({ disabledConditions: "all" }).limit($limit)
+    );
+
+    await snap(q(5));
+  });
+
+  test("sub-query with parameter not compiled scalar projection", async () => {
+    const q = verse.from.artists
+      .select(a => a.artistId)
+      .select((ar, $limit, from) => from.albums.limit($limit).where(a => a.artistId === ar), 1);
+
+    await snap(q);
+  });
+
+  test("sub-query with limit parameter not compiled", async () => {
+    const q = verse.from.artists.select(
+      (_, $limit, from) => from.albums.limit($limit).maybeFirst(),
+      1
+    );
+
+    await snap(q);
+  });
+
+  test("sub-query select not compiled", async () => {
+    const q = verse.from.artists.select((_, from) => from.albums.limit(1).maybeFirst());
+
+    await snap(q);
+  });
+
+  test("select parameter", async () => {
+    const q = verse.from.albums.select((a, $foo) => [a.title, $foo], "bar");
+
+    await snap(q);
+  });
+
+  test("includes", async () => {
+    const q = verse.from.albums.where(a => [1, 2].includes(a.artistId));
+
+    await snap(q);
+  });
+
+  test("includes parameter", async () => {
+    const q = verse.from.albums.where(
+      (a, $title, $ids) => a.title.like($title) && $ids.includes(a.artistId),
+      "B%",
+      [2, 12]
+    );
+
+    await snap(q);
+  });
+
+  test("not includes", async () => {
+    const q = verse.from.albums.where(a => ![1, 2].includes(a.artistId));
+
+    await snap(q);
+  });
+
+  test("includes compiled", async () => {
+    const q = verse.compile((from, $title: string, $ids: number[]) =>
+      from.albums.where(a => a.title.like($title) && $ids.includes(a.artistId))
+    );
+
+    await snap(q("B%", [2, 12]));
+  });
+
   test("identity", async () => {
     const q = verse.from.albums;
 
@@ -91,6 +158,18 @@ export const queryTests = (verse: Verse<typeof queryModel>) => {
     );
 
     await snap(q("Miles Ahead"));
+  });
+
+  test("empty template literal", async () => {
+    const q = verse.from.albums.limit(1).select(_ => ``);
+
+    await snap(q);
+  });
+
+  test("simple template literal", async () => {
+    const q = verse.from.albums.limit(1).select(_ => `hi!`);
+
+    await snap(q);
   });
 
   test("select object literal", async () => {
@@ -427,6 +506,32 @@ export const queryTests = (verse: Verse<typeof queryModel>) => {
     await snap(q);
   });
 
+  test("avg no args", async () => {
+    const q = verse.from.albums.select(a => a.albumId).avg();
+
+    await snap(q);
+  });
+
+  test("avg no args indexer", async () => {
+    const q = verse.from.albums
+      .select(a => [a.albumId])
+      .select(t => t[0])
+      .avg();
+
+    await snap(q);
+  });
+
+  test("avg no args object", async () => {
+    const q = verse.from.albums
+      .select(a => ({
+        foo: a.albumId,
+      }))
+      .select(o => o.foo)
+      .avg();
+
+    await snap(q);
+  });
+
   test("functions select substr", async () => {
     const q = verse.from.albums.select(a => a.title.substring(3));
 
@@ -469,8 +574,26 @@ export const queryTests = (verse: Verse<typeof queryModel>) => {
     await snap(q);
   });
 
+  test("like concat", async () => {
+    const q = verse.from.albums.where((a, $p) => a.title.like("%" + $p + "%"), "a");
+
+    await snap(q);
+  });
+
   test("not like", async () => {
     const q = verse.from.albums.where(a => !a.title.like("M%"));
+
+    await snap(q);
+  });
+
+  test("concat", async () => {
+    const q = verse.from.albums.select(_ => "a" + "b");
+
+    await snap(q);
+  });
+
+  test("concat columns", async () => {
+    const q = verse.from.albums.select(a => a.title + a.title);
 
     await snap(q);
   });
@@ -813,57 +936,11 @@ export const queryTests = (verse: Verse<typeof queryModel>) => {
     await snap(albums);
   });
 
-  test("composition compiled", async () => {
-    let albums = new Queryable<Album>(Album.name);
-
-    albums = albums.where(a => a.albumId > 5);
-
-    const q = verse.compile((_, $maxId: number) => albums.where(a => a.albumId < $maxId));
-
-    await snap(q(10));
-  });
-
   test("composition callable terminating", async () => {
     const albums = verse.from.albums;
     const maxed = albums.where(a => a.albumId > 5).max(a => a.albumId);
 
     await snap(maxed);
-  });
-
-  test("composition builder", async () => {
-    const q = verse.compile(from => {
-      return from.albums;
-    });
-
-    await snap(q());
-  });
-
-  test("composition builder dynamic", async () => {
-    const q = verse.compile(from => {
-      let albums = from.albums;
-
-      if (Math.floor(Math.random()) % 1 === 0) {
-        albums = albums.where(a => a.albumId > 5);
-      }
-
-      return albums;
-    });
-
-    await snap(q());
-  });
-
-  test("composition builder dynamic terminating", async () => {
-    const q = verse.compile(from => {
-      let albums = from.albums;
-
-      if (Math.floor(Math.random()) % 1 === 0) {
-        albums = albums.where(a => a.albumId > 5);
-      }
-
-      return albums.max(a => a.albumId);
-    });
-
-    await snap(q());
   });
 
   test("join", async () => {
@@ -908,16 +985,16 @@ export const queryTests = (verse: Verse<typeof queryModel>) => {
     await snap(q);
   });
 
-  test("limit parameter compiled", async () => {
+  test("limit parameter", async () => {
     const q: ($count: number) => AsyncSequence<Album> = verse.compile((from, $count: number) =>
-      from.albums.limit({ $count })
+      from.albums.limit($count)
     );
 
     await snap(q(5));
   });
 
   test("offset parameter", async () => {
-    const q = verse.compile((from, $offset: number) => from.albums.offset({ $offset }).limit(5));
+    const q = verse.compile((from, $offset: number) => from.albums.offset($offset).limit(5));
 
     await snap(q(3));
   });
@@ -977,14 +1054,6 @@ export const queryTests = (verse: Verse<typeof queryModel>) => {
   test("sub-query with limit parameter", async () => {
     const q = verse.compile((from, $limit: number) =>
       from.artists.select(_ => from.albums.limit($limit).maybeFirst())
-    );
-
-    await snap(q(1));
-  });
-
-  test("sub-query with limit parameter object", async () => {
-    const q = verse.compile((from, $limit: number) =>
-      from.artists.select(_ => from.albums.limit({ $limit }).maybeFirst())
     );
 
     await snap(q(1));
@@ -1130,5 +1199,17 @@ export const queryErrorTests = (verse: Verse<typeof queryModel>) => {
         from.albums.where(a => a.title.like(`%${params.title}%`))
       )
     ).toThrow("Complex parameter objects are not supported: 'params.title'.");
+  });
+
+  test("aggregate not scalar", async () => {
+    expect(() => verse.from.albums.avg()).toThrow(
+      "Aggregate function 'avg' requires a scalar numeric input expression."
+    );
+  });
+
+  test("aggregate not numeric", async () => {
+    expect(() => verse.from.albums.select(a => a.title).avg()).toThrow(
+      "Aggregate function 'avg' requires a scalar numeric input expression."
+    );
   });
 };

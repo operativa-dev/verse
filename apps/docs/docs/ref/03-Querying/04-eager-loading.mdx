@@ -1,0 +1,58 @@
+# Eager Loading
+
+Eager loading allows you to efficiently load graphs of related objects in a single Verse query. It is useful
+when you know that you will need access to the related objects as part of a single operation, such as rendering
+a view. Eager loading can be used to avoid the N+1 query problem.
+
+Eager loading in Verse is specified using the `with` query operator. The `with` operator takes an expression that
+specifies the related navigations to load. E.g.
+
+```ts include ./apps/snippets/src/query.ts:with showLineNumbers
+let eager = db.from.artists.limit(1).with(a => a.albums);
+
+for await (const artist of eager) {
+  console.log(artist);
+}
+```
+
+In this example, the `albums` navigation property will be eagerly loaded with the artist. It outputs:
+
+```js
+{
+  artistId: 1,
+  name: 'AC/DC',
+  albums: [
+    {
+      albumId: 1,
+      title: 'For Those About To Rock We Salute You',
+      artistId: 1
+    },
+    { albumId: 4, title: 'Let There Be Rock', artistId: 1 }
+  ]
+}
+```
+
+Multiple navigations can be specified as part of a single `with` operation. E.g. load an
+artist with their albums and tracks:
+
+```ts include ./apps/snippets/src/query.ts:with-multiple-1 showLineNumbers
+const artistAlbumsTracks = await db.from.artists
+  .limit(1)
+  .with(ar => ar.albums.with(al => al.tracks))
+  .toArray();
+```
+
+Or, load a track with its album and artist:
+
+```ts include ./apps/snippets/src/query.ts:with-multiple-2 showLineNumbers
+const trackAlbumArtist = await db.from.tracks
+  .limit(1)
+  .with(t => t.album.artist)
+  .toArray();
+```
+
+:::note
+
+Verse uses a single query to load the related objects. This strategy is known as _Left Join Fetching_.
+
+:::

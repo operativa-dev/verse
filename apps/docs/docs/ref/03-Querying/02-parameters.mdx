@@ -1,0 +1,64 @@
+# Parameters
+
+Queries often need to be parameterized based on user input and Verse provides a simple, intuitive and type-safe way
+to do this, building upon our use of arrow function expressions in query operators.
+
+Put simply, any query operator that takes an arrow function expression can also take parameters. These parameters are
+defined as additional arguments to the arrow function expression, and are used in the same way as any other argument.
+Parameter values are passed to the query operator after the arrow function expression.
+
+```ts include ./apps/snippets/src/query.ts:parameterized showLineNumbers
+const artist = "Audioslave"; // usually from user input
+
+const parameterized = await db.from.artists
+  .where((a, $artist) => a.name === $artist, artist)
+  .single();
+```
+
+In the example above, the `where` operator takes an arrow function expression with an additional parameter `$artist`.
+A value for this parameter is then passed to the query operator as the second argument, after the arrow function expression.
+This pattern should be familiar to anyone who has used a printf-style format function in other languages.
+
+:::note
+
+The `$` prefix on the parameter name is not required, but is a common convention to make it clear that the value is a parameter.
+
+:::
+
+When a query takes parameters, Verse will create SQL query parameters to ensure that the parameter values are correctly
+escaped and quoted, and to prevent SQL injection attacks. Additionally, Verse will used prepared statements when available
+to ensure that the query can be efficiently executed multiple times with different parameter values.
+
+Verse offers a second way to pass parameters to a query, [_Compiled Queries_](./compiled-queries), which we will cover in a later section.
+
+## Sub-queries and the `from` parameter
+
+In the previous examples, we have used the `from` property of the `db` object to start a query. This works well when
+we are querying at the top level, but what if we want to perform a sub-query, for example to filter or join data from
+a related table?
+
+In this case, we can use a `from` parameter to easily create a sub-query. The `from` parameter is a special parameter
+that can optionally be passed as the last parameter to an arrow function expression, and is used to start a new query.
+
+For example, the following query finds all artists who have more than a certain number of albums:
+
+```ts include ./apps/snippets/src/query.ts:from-parameter showLineNumbers
+const amount = 3; // usually from user input
+
+const albums = await db.from.artists
+  .where(
+    (ar, $count, from) =>
+      from.albums.where(al => ar.artistId === al.artistId).count() > $count,
+    amount
+  )
+  .toArray();
+```
+
+:::note
+
+The parameter does not have to be called "from", but is a common convention to make it clear that the value is a sub-query.
+
+:::
+
+As mentioned above, Verse also supports [_Compiled Queries_](./compiled-queries) as a way to pass parameters to a query. With compiled queries,
+sub-queries can be created in an even more natural way, and we will cover this in a later section.
