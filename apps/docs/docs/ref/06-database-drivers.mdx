@@ -33,8 +33,13 @@ npm install @operativa/verse-sqlite
 
 You would then add the import for the driver and initilize it in your verse function:
 
-```ts include ./apps/snippets/src/basic.ts:22-34 showLineNumbers
+```ts include ./apps/snippets/src/sqlite-provider.ts:setup-verse showLineNumbers
+import { verse } from "@operativa/verse";
 import { sqlite } from "@operativa/verse-sqlite";
+import { boolean, entity, int, string } from "@operativa/verse/model/builder";
+import { PrettyConsoleLogger } from "@operativa/verse/utils/logging";
+
+// Setup our Verse instance.
 
 const db = verse({
   config: {
@@ -43,7 +48,11 @@ const db = verse({
   },
   model: {
     entities: {
-      todos: Todo,
+      todos: entity({
+        id: int(),
+        title: string(),
+        completed: boolean(),
+      }),
     },
   },
 });
