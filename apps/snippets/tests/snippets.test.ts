@@ -12,4 +12,8 @@ describe("sample snippets", () => {
   test("query", async () => {
     await import("../src/query.js");
   });
+
+  test("sqlite provider", async () => {
+    await import("../src/sqlite-provider.js");
+  });
 });
