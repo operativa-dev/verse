@@ -1,5 +1,5 @@
 "use client";
-import { ItemType, Product } from "@/data";
+import { ItemType, ProductType } from "@/data";
 import { Button, Input, Table } from "@mui/joy";
 
 export function ItemTable({
@@ -20,7 +20,7 @@ export function ItemTable({
   removeItem: Function;
   productsPriceDict: { [key: number]: number };
   updateValue: Function;
-  products: Array<Product>;
+  products: Array<ProductType>;
   isCurrent: boolean;
 }) {
   return (

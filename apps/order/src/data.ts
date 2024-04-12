@@ -9,14 +9,7 @@ export type ProductType = {
   description: string;
   price: number;
 };
-const populateProducts: Array<ProductType> = [
-  {
-    productId: 1,
-    name: "Potato",
-    description: "Fresh from the farm",
-    price: 10,
-  },
-];
+
 const Product = entity(
   {
     productId: int(),
@@ -27,7 +20,6 @@ const Product = entity(
   builder => {
     builder.table("products");
     builder.key("productId");
-    builder.data(...populateProducts);
   }
 );
 
@@ -39,16 +31,7 @@ export type OrderType = {
   lastUpdated: Date;
   lock: boolean;
 };
-const populateOrders: Array<OrderType> = [
-  {
-    orderId: 1,
-    token: 1,
-    userId: 1,
-    created: new Date(),
-    lastUpdated: new Date(),
-    lock: false,
-  },
-];
+
 const Order = entity(
   {
     orderId: int(),
@@ -61,7 +44,6 @@ const Order = entity(
   builder => {
     builder.table("orders");
     builder.key("orderId");
-    builder.data(...populateOrders);
     builder.concurrency({ version: "token" });
   }
 );
@@ -74,16 +56,7 @@ export type ItemType = {
   quantity: number;
   overridePrice: number;
 };
-const populateItems: Array<ItemType> = [
-  {
-    itemId: 1,
-    version: 1,
-    orderId: 1,
-    productId: 1,
-    quantity: 2,
-    overridePrice: 8,
-  },
-];
+
 const Item = entity(
   {
     itemId: int(),
@@ -96,7 +69,6 @@ const Item = entity(
   builder => {
     builder.table("items");
     builder.key("itemId");
-    builder.data(...populateItems);
   }
 );
 
@@ -104,10 +76,7 @@ export type UserType = {
   userId: number;
   firstName: string;
 };
-const populateUsers: Array<UserType> = [
-  { userId: -1, firstName: "Will" },
-  { userId: -2, firstName: "Ben" },
-];
+
 const User = entity(
   {
     userId: int(),
@@ -116,7 +85,6 @@ const User = entity(
   builder => {
     builder.table("users");
     builder.key("userId");
-    builder.data(...populateUsers);
   }
 );
 

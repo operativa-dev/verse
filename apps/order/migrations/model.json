@@ -1,0 +1,226 @@
+{
+  "entities": [
+    {
+      "name": "User",
+      "properties": [
+        {
+          "name": "userId",
+          "column": "UserId",
+          "type": "integer",
+          "nullable": false,
+          "generate": {
+            "using": "identity"
+          },
+          "kind": "int"
+        },
+        {
+          "name": "firstName",
+          "column": "FirstName",
+          "type": "varchar(255)",
+          "nullable": false,
+          "kind": "string",
+          "maxLength": 255
+        }
+      ],
+      "label": "users",
+      "table": "users",
+      "key": [
+        "userId"
+      ],
+      "foreignKeys": [],
+      "conditions": []
+    },
+    {
+      "name": "Product",
+      "properties": [
+        {
+          "name": "productId",
+          "column": "ProductId",
+          "type": "integer",
+          "nullable": false,
+          "generate": {
+            "using": "identity"
+          },
+          "kind": "int"
+        },
+        {
+          "name": "name",
+          "column": "Name",
+          "type": "varchar(255)",
+          "nullable": false,
+          "kind": "string",
+          "maxLength": 255
+        },
+        {
+          "name": "description",
+          "column": "Description",
+          "type": "varchar(255)",
+          "nullable": false,
+          "kind": "string",
+          "maxLength": 255
+        },
+        {
+          "name": "price",
+          "column": "Price",
+          "type": "integer",
+          "nullable": false,
+          "kind": "int"
+        }
+      ],
+      "label": "products",
+      "table": "products",
+      "key": [
+        "productId"
+      ],
+      "foreignKeys": [],
+      "conditions": []
+    },
+    {
+      "name": "Order",
+      "properties": [
+        {
+          "name": "orderId",
+          "column": "OrderId",
+          "type": "integer",
+          "nullable": false,
+          "generate": {
+            "using": "identity"
+          },
+          "kind": "int"
+        },
+        {
+          "name": "token",
+          "column": "Token",
+          "type": "integer",
+          "nullable": false,
+          "generate": {
+            "default": 1
+          },
+          "kind": "int"
+        },
+        {
+          "name": "userId",
+          "column": "UserId",
+          "type": "integer",
+          "nullable": false,
+          "kind": "int"
+        },
+        {
+          "name": "created",
+          "column": "Created",
+          "type": "timestamp",
+          "nullable": false,
+          "convert": {
+            "read": "(s) => (s ? new Date(s) : s)",
+            "write": "(d) => (d ? d.toISOString() : d)"
+          }
+        },
+        {
+          "name": "lastUpdated",
+          "column": "LastUpdated",
+          "type": "timestamp",
+          "nullable": false,
+          "convert": {
+            "read": "(s) => (s ? new Date(s) : s)",
+            "write": "(d) => (d ? d.toISOString() : d)"
+          }
+        },
+        {
+          "name": "lock",
+          "column": "Lock",
+          "type": "boolean",
+          "nullable": false,
+          "convert": {
+            "read": "(v) => (v === 1 ? true : v === 0 ? false : v)",
+            "write": "(v) => (v === true ? 1 : v === false ? 0 : v)"
+          },
+          "kind": "boolean"
+        }
+      ],
+      "label": "orders",
+      "table": "orders",
+      "key": [
+        "orderId"
+      ],
+      "foreignKeys": [],
+      "conditions": [],
+      "concurrency": {
+        "version": "token"
+      }
+    },
+    {
+      "name": "Item",
+      "properties": [
+        {
+          "name": "itemId",
+          "column": "ItemId",
+          "type": "integer",
+          "nullable": false,
+          "generate": {
+            "using": "identity"
+          },
+          "kind": "int"
+        },
+        {
+          "name": "version",
+          "column": "_version",
+          "type": "integer",
+          "nullable": false,
+          "generate": {
+            "default": 1
+          },
+          "kind": "int"
+        },
+        {
+          "name": "orderId",
+          "column": "OrderId",
+          "type": "integer",
+          "nullable": false,
+          "kind": "int"
+        },
+        {
+          "name": "productId",
+          "column": "ProductId",
+          "type": "integer",
+          "nullable": false,
+          "kind": "int"
+        },
+        {
+          "name": "quantity",
+          "column": "Quantity",
+          "type": "integer",
+          "nullable": false,
+          "kind": "int"
+        },
+        {
+          "name": "overridePrice",
+          "column": "OverridePrice",
+          "type": "integer",
+          "nullable": false,
+          "kind": "int"
+        }
+      ],
+      "label": "items",
+      "table": "items",
+      "key": [
+        "itemId"
+      ],
+      "foreignKeys": [],
+      "conditions": [],
+      "concurrency": {
+        "version": "version"
+      }
+    }
+  ],
+  "values": [],
+  "sequences": [],
+  "conversions": [
+    [
+      null,
+      {
+        "read": "(v) => (v === 1 ? true : v === 0 ? false : v)",
+        "write": "(v) => (v === true ? 1 : v === false ? 0 : v)"
+      }
+    ]
+  ]
+}
