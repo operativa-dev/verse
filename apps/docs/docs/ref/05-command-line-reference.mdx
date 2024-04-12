@@ -1,0 +1,46 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+# Verse Command Line Reference
+
+The Verse cli helps with design-time development and deployment tasks. It's primarily used to manage Migrations.
+
+## Installing the Verse CLI
+
+You should install the Verse cli locally as a dev dependency. The Verse cli can be installed by:
+
+```bash npm2yarn
+npm install @operativa/verse-cli --save-dev
+```
+
+Verify your installation by running:
+
+```bash npm2yarn
+npx verse
+```
+
+The output of the command will return the following help message:
+
+```bash
+
+  ██╗   ██╗ ███████╗ ██████╗  ███████╗ ███████╗
+  ██║   ██║ ██╔════╝ ██╔══██╗ ██╔════╝ ██╔════╝
+  ██║   ██║ █████╗   ██████╔╝ ███████╗ █████╗  
+  ╚██╗ ██╔╝ ██╔══╝   ██╔══██╗ ╚════██║ ██╔══╝  
+   ╚████╔╝  ███████╗ ██║  ██║ ███████║ ███████╗
+    ╚═══╝   ╚══════╝ ╚═╝  ╚═╝ ╚══════╝ ╚══════╝
+
+Usage: verse <command> [options]
+
+Commands:
+  verse migrations    Commands for managing migrations for the target database.
+  verse query <expr>  Executes a verse query expression and outputs the results.
+  verse model         Outputs a JSON representation of the model.
+
+Options:
+  -h, --help  Show help  [boolean]
+
+```
+
+
+
