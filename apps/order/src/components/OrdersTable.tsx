@@ -1,8 +1,8 @@
-import { Order } from "@/data";
+import { OrderType } from "@/data";
 import { Table } from "@mui/joy";
 import Link from "next/link";
 
-export function OrdersTable({ orders }: { orders: Array<Order> }) {
+export function OrdersTable({ orders }: { orders: Array<OrderType> }) {
   return (
     <>
       <header className="flex justify-between items-center mb-4">

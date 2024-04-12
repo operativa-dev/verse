@@ -1,5 +1,5 @@
 "use client";
-import { Item, Product } from "@/data";
+import { ItemType, Product } from "@/data";
 import { Button, Input, Table } from "@mui/joy";
 
 export function ItemTable({
@@ -14,7 +14,7 @@ export function ItemTable({
   isCurrent,
 }: {
   title: string;
-  items: Array<Item>;
+  items: Array<ItemType>;
   editMode: boolean;
   updateCount: number;
   removeItem: Function;
@@ -42,7 +42,7 @@ export function ItemTable({
               </tr>
             </thead>
             <tbody>
-              {items.map((obj: Item) => (
+              {items.map((obj: ItemType) => (
                 <tr key={"key" + obj.itemId + updateCount}>
                   <td>
                     <Button onClick={() => removeItem(obj.itemId)} disabled={!editMode}>

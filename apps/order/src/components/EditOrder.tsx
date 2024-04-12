@@ -1,11 +1,11 @@
 "use client";
-import { Item, Order, Product } from "@/data";
-import { fetchItems, fetchOrder, updateOrderServer } from "@/server";
-import { Button, Modal, ModalClose, Sheet, Typography } from "@mui/joy";
+import { ItemType, OrderType, ProductType } from "@/data";
+import { fetchItems, fetchOrder, lockOrderServer, updateOrderServer } from "@/server";
+import { Button, IconButton, Modal, ModalClose, Sheet, Typography } from "@mui/joy";
 import { useEffect, useState } from "react";
 import { ItemDeltaTable } from "./ItemDeltaTable";
 import { ItemTable } from "./ItemTable";
-type ItemType = Omit<Item, "itemId" | "version">;
+import { Edit, FavoriteBorder, SaveAs, Lock, LockOpen } from "@mui/icons-material";
 
 export function EditOrder({
   products,
@@ -13,17 +13,19 @@ export function EditOrder({
   orderId,
   itemsIn,
 }: {
-  products: Array<Product>;
-  orderIn: Order;
+  products: Array<ProductType>;
+  orderIn: OrderType;
   orderId: number;
-  itemsIn: Array<Item>;
+  itemsIn: Array<ItemType>;
 }) {
-  const [originalItems, setOriginalItems] = useState<Item[]>([JSON.parse(JSON.stringify(itemsIn))]);
-  const [items, setItems] = useState<Item[]>(itemsIn);
-  const [order, setOrder] = useState<Order>(orderIn);
-  const [serverItemsDelta, setServerItemsDelta] = useState<Item[]>([]);
-  const [serverItemsRemoved, setServerItemsRemoved] = useState<Item[]>([]);
-  const [currentItemsDelta, setCurrentItemsDelta] = useState<Item[]>([]);
+  const [originalItems, setOriginalItems] = useState<ItemType[]>([
+    JSON.parse(JSON.stringify(itemsIn)),
+  ]);
+  const [items, setItems] = useState<ItemType[]>(itemsIn);
+  const [order, setOrder] = useState<OrderType>(orderIn);
+  const [serverItemsDelta, setServerItemsDelta] = useState<ItemType[]>([]);
+  const [serverItemsRemoved, setServerItemsRemoved] = useState<ItemType[]>([]);
+  const [currentItemsDelta, setCurrentItemsDelta] = useState<ItemType[]>([]);
   const [itemsRemoved, setItemsRemoved] = useState<number[]>([]);
   const [editMode, setEditMode] = useState(true);
   const [updateCount, setUpdateCount] = useState(1);
@@ -41,6 +43,14 @@ export function EditOrder({
     setUpdateCount(updateCount + 1);
   }, [items]);
 
+  useEffect(() => {
+    if (order.lock) {
+      setEditMode(false);
+    } else {
+      setEditMode(true);
+    }
+  }, [order.lock]);
+
   const refreshItemsFromServer = (orderId: number) => {
     fetchItems(orderId).then(data => {
       setItems(data);
@@ -48,6 +58,11 @@ export function EditOrder({
     });
     fetchOrder(orderId).then(data => {
       setOrder(data);
+    });
+  };
+  const refreshOrderFromServer = (orderId: number) => {
+    fetchOrder(orderId).then(data => {
+      setOrder({ ...order, lock: data.lock });
     });
   };
   const addEmptyItem = () => {
@@ -75,12 +90,10 @@ export function EditOrder({
     }
   };
   const updateValue = (property: string, itemId: number, value: number, isCurrent: boolean) => {
-    console.log("updateValue isCurrent", isCurrent);
     let tempItems = items;
     if (!isCurrent) {
       tempItems = serverItemsDelta;
     }
-    console.log("updateValue serverItemsDelta", serverItemsDelta);
     var index = tempItems.findIndex(obj => {
       return obj.itemId === itemId;
     });
@@ -100,18 +113,27 @@ export function EditOrder({
     }
 
     setUpdateCount(updateCount + 1);
-    console.log("updateValue called property", property);
-    console.log("updateValue itemId ", itemId);
-    console.log("updateValue number ", value);
   };
 
+  const lockOrder = (toLock: boolean) => {
+    lockOrderServer(order, toLock).then(response => {
+      setErrorMessage(response);
+      refreshOrderFromServer(orderId);
+    });
+  };
   const updateOrder = () => {
     // let response = updateOrderServer(items, order, itemsRemoved);
-    updateOrderServer(items, order, itemsRemoved, false, []).then(response => {
+    updateOrderServer(items, order, itemsRemoved, false, [], originalItems).then(response => {
       if (response?.error) {
         setErrorMessage(response.error);
+        if (response?.orderLocked) {
+          fetchOrder(orderId).then(data => {
+            setOrder(data);
+          });
+        }
       } else {
         refreshItemsFromServer(orderId);
+        setErrorMessage("Successfully updated order");
       }
 
       if (response.currentChange && response.currentChange.length !== 0) {
@@ -124,8 +146,8 @@ export function EditOrder({
   };
 
   const updateOrderWithDelta = (
-    updatedItems: Array<Item>,
-    deltaItemsToRemove: Array<Item>,
+    updatedItems: Array<ItemType>,
+    deltaItemsToRemove: Array<ItemType>,
     keepCurrentDelta: boolean
   ) => {
     // we must remove items from the other delta
@@ -139,28 +161,33 @@ export function EditOrder({
       itemsToRemoveIds = [...itemsRemoved, ...itemsToRemoveIds];
     }
 
-    updateOrderServer(updatedItems, order, itemsToRemoveIds, true, serverItemsDelta).then(
-      response => {
-        if (response?.error) {
-          setErrorMessage(response.error);
-          setServerItemsDelta(returnDelta(response.serverChange, []));
-          setUpdateCount(updateCount + 1);
-        } else {
-          setErrorMessage("");
-          setCurrentItemsDelta(returnDelta(response.currentChange, response.serverChange));
-          setServerItemsDelta(returnDelta(response.serverChange, []));
-          setOpenModal(false);
-          refreshItemsFromServer(orderId);
-        }
+    updateOrderServer(
+      updatedItems,
+      order,
+      itemsToRemoveIds,
+      true,
+      serverItemsDelta,
+      originalItems
+    ).then(response => {
+      if (response?.error) {
+        setErrorMessage(response.error);
+        setServerItemsDelta(returnDelta(response.serverChange, []));
+        setUpdateCount(updateCount + 1);
+      } else {
+        setErrorMessage("");
+        setCurrentItemsDelta(returnDelta(response.currentChange, response.serverChange));
+        setServerItemsDelta(returnDelta(response.serverChange, []));
+        setOpenModal(false);
+        refreshItemsFromServer(orderId);
       }
-    );
+    });
   };
 
-  const returnDelta = (itemsIn: Array<Item>, serverChanges: Array<Item>) => {
+  const returnDelta = (itemsIn: Array<ItemType>, serverChanges: Array<ItemType>) => {
     // return the delta between the original items and the items we are looking at (current/server)
     // original items are items that were in the order when we started editing
 
-    let delta: Array<Item> = [];
+    let delta: Array<ItemType> = [];
     for (let i = 0; i < itemsIn.length; i++) {
       let found = false;
       for (let j = 0; j < originalItems.length; j++) {
@@ -186,7 +213,7 @@ export function EditOrder({
       let itemsThatWereRemoved = originalItems.filter(
         x => !serverChanges.map(y => y.itemId).includes(x.itemId)
       );
-      let itemsTemp: Array<Item> = [];
+      let itemsTemp: Array<ItemType> = [];
       itemsThatWereRemoved.forEach(function (part, index, theArray) {
         // check if the item was also removed by the user
         if (itemsRemoved.includes(part.itemId)) {
@@ -210,7 +237,7 @@ export function EditOrder({
 
     return delta;
   };
-  const itemsRemovedDelta = (itemsIn: Array<Item>) => {
+  const itemsRemovedDelta = (itemsIn: Array<ItemType>) => {
     // return the delta between the original items and the items we are looking at (current/server)
     // original items are items that were in the order when we started editing
 
@@ -260,12 +287,32 @@ export function EditOrder({
         <h1 className="text-2xl">
           {order?.token} Order {orderId} - {(order?.lastUpdated + "").substr(0, 10)}
         </h1>
-        <Button onClick={() => updateOrder()}>Save</Button>
+        <div>
+          <IconButton onClick={() => updateOrder()}>
+            <SaveAs /> Save
+          </IconButton>
+          <IconButton className="mx-5" disabled={order.lock} onClick={() => setEditMode(!editMode)}>
+            <Edit /> Edit
+          </IconButton>
+          {!order.lock && (
+            <IconButton disabled={order.lock} onClick={() => lockOrder(true)}>
+              <Lock />
+              Lock
+            </IconButton>
+          )}
+          {order.lock && (
+            <IconButton
+              hidden={!order.lock}
+              disabled={!order.lock}
+              onClick={() => lockOrder(false)}
+            >
+              <LockOpen />
+              Unlock
+            </IconButton>
+          )}
+        </div>
       </header>
-      <header className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl"> </h1>
-        <Button onClick={() => setEditMode(!editMode)}>Edit</Button>
-      </header>
+
       <p>{errorMessage}</p>
 
       <Modal

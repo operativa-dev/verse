@@ -1,22 +1,22 @@
 "use client";
-import { Item, Product } from "@/data";
+import { ItemType, ProductType } from "@/data";
 import { createOrderServer } from "@/server";
 import { Button, Input, Table } from "@mui/joy";
 import { useState } from "react";
 
-type ItemType = Omit<Item, "itemId" | "version">;
-
-export function CreateOrder({ products }: { products: Array<Product> }) {
+export function CreateOrder({ products }: { products: Array<ProductType> }) {
   const getFirstProduct = products[0];
   const productsPriceDict = Object.fromEntries(products.map(x => [x.productId, x.price]));
-  const initialItem: Item = {
+
+  const initialItem: ItemType = {
     itemId: 1,
     productId: getFirstProduct.productId,
     overridePrice: productsPriceDict[getFirstProduct.productId],
     quantity: 1,
     orderId: -1,
   };
-  const [items, setItems] = useState<Item[]>([initialItem]);
+
+  const [items, setItems] = useState<ItemType[]>([initialItem]);
   const [updateCount, setUpdateCount] = useState(1);
 
   const addEmptyItem = () => {
@@ -78,7 +78,7 @@ export function CreateOrder({ products }: { products: Array<Product> }) {
           </tr>
         </thead>
         <tbody>
-          {items.map((obj: Item) => (
+          {items.map((obj: ItemType) => (
             <tr key={"key" + obj.itemId + updateCount}>
               <td>
                 <Button onClick={() => removeItem(obj.itemId)}>Remove</Button>{" "}

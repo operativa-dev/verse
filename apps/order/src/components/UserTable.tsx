@@ -1,8 +1,8 @@
-import { User } from "@/data";
+import { UserType } from "@/data";
 import { Table } from "@mui/joy";
 import Link from "next/link";
 
-export function UserTable({ users }: { users: Array<User> }) {
+export function UserTable({ users }: { users: Array<UserType> }) {
   return (
     <>
       <header className="flex justify-between items-center mb-4">

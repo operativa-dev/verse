@@ -1,5 +1,5 @@
 "use client";
-import { Item, Product } from "@/data";
+import { ItemType, ProductType } from "@/data";
 import { Input, Table } from "@mui/joy";
 
 export function ItemDeltaTable({
@@ -17,7 +17,7 @@ export function ItemDeltaTable({
   isCurrent,
 }: {
   title: string;
-  items: Array<Item>;
+  items: Array<ItemType>;
   editMode: boolean;
   deltaMode: boolean;
   updateCount: number;
@@ -26,7 +26,7 @@ export function ItemDeltaTable({
   productsPriceDict: { [key: number]: number };
   getOriginalValue: Function;
   updateValue: Function;
-  products: Array<Product>;
+  products: Array<ProductType>;
   isCurrent: boolean;
 }) {
   return (
@@ -47,7 +47,7 @@ export function ItemDeltaTable({
               </tr>
             </thead>
             <tbody>
-              {items.map((obj: Item) => (
+              {items.map((obj: ItemType) => (
                 <tr key={"key" + obj.itemId + updateCount}>
                   <td>
                     {deltaMode && getOriginalValue(obj.itemId, "itemId", obj.itemId) && (

@@ -1,4 +1,4 @@
-import { Product, db } from "@/data";
+import { ProductType, db } from "@/data";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
@@ -15,7 +15,7 @@ async function addProduct(data: FormData) {
   }
 
   const uow = db.uow();
-  await uow.products.add(new Product(name, description, price));
+  await uow.products.add({ name: name, description: description, price: price } as ProductType);
   await uow.commit();
 
   redirect("/products");

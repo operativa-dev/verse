@@ -1,4 +1,4 @@
-import { User, db } from "@/data";
+import { UserType, db } from "@/data";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
@@ -13,7 +13,7 @@ async function addUser(data: FormData) {
   }
 
   const uow = db.uow();
-  await uow.users.add(new User(name));
+  await uow.users.add({ firstName: name } as UserType);
   await uow.commit();
 
   redirect("/users");

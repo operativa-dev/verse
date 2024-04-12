@@ -1,21 +1,7 @@
 "use server";
 
-import { Item, Order, Product, db } from "@/data";
+import { ItemType, OrderType, ProductType, db } from "@/data";
 import { redirect } from "next/navigation";
-type ProductType = Omit<Product, "productId" | "version">;
-
-export async function addItem(data: FormData) {
-  const orderId = parseInt(data.get("orderId")?.valueOf() + "");
-  const productId = parseInt(data.get("productId")?.valueOf() + "");
-  const quantity = parseInt(data.get("quantity")?.valueOf() + "");
-  const price = parseInt(data.get("price")?.valueOf() + "");
-
-  const uow = db.uow();
-  await uow.items.add(new Item(orderId, productId, quantity, price));
-  await uow.commit();
-
-  redirect("/orders/" + orderId);
-}
 
 export async function removeItem($itemId: number, currentOrderId: number) {
   const uow = db.uow();
@@ -42,17 +28,23 @@ export async function fetchOrder(currentOrderId: number) {
 
 export async function createOrderServer(data: any) {
   const uow = db.uow();
-  const order = new Order(1, new Date(), new Date());
-  await uow.add(order);
+  const order = {
+    userId: 1,
+    created: new Date(),
+    lastUpdated: new Date(),
+    lock: false,
+  } as OrderType;
+  await uow.orders.add(order);
+
   await uow.commit();
   // iterate through data and add items
   let multipleObjectsCreated = new Array(data.length).fill(null).map((x, index) => {
-    return new Item(
-      order.orderId,
-      data[index].productId,
-      data[index].quantity,
-      data[index].overridePrice
-    );
+    return {
+      orderId: order.orderId,
+      productId: data[index].productId,
+      quantity: data[index].quantity,
+      overridePrice: data[index].overridePrice,
+    } as ItemType;
   });
   await uow.items.add(...multipleObjectsCreated);
   await uow.commit();
@@ -61,8 +53,9 @@ export async function createOrderServer(data: any) {
 }
 type ErrorObj = {
   error: string;
-  currentChange: Array<Item>;
-  serverChange: Array<Item>;
+  currentChange: Array<ItemType>;
+  serverChange: Array<ItemType>;
+  orderLocked: boolean;
 };
 export async function getProductsResults(offset: number, limit: number, search: string) {
   "use server";
@@ -88,20 +81,49 @@ export async function updateProduct(attribute: string, id: number, value: string
     .single();
   let dict: any = {};
   dict[attribute as keyof ProductType] = value;
-  // let dict: Product = {};
-  // dict[attribute as keyof ProductType] = value;
   uow.entry(product)?.update(dict);
   await uow.commit();
   redirect("/products");
 }
 
+export async function lockOrderServer(order: OrderType, toLock: boolean) {
+  const uow = db.uow();
+  const orderServer = await uow.orders
+    .where((order, $currentOrderId) => order.orderId === $currentOrderId, order.orderId)
+    .single();
+  uow.entry(orderServer)?.update({ lock: toLock });
+
+  try {
+    await uow.commit();
+  } catch (e) {
+    // check if e has property message
+    const error = e as { message: string };
+
+    return error.message;
+  }
+  if (toLock) {
+    return "Locked";
+  }
+
+  return "Unlocked";
+}
+
 export async function updateOrderServer(
-  items: Array<Item>,
-  order: Order,
+  items: Array<ItemType>,
+  order: OrderType,
   itemsRemoved: Array<number>,
   forceUpdate: boolean,
-  serverItems: Array<Item>
+  serverItems: Array<ItemType>,
+  originalItems: Array<ItemType>
 ) {
+  if (order.lock) {
+    return {
+      error: "Order is Locked",
+      currentChange: [],
+      serverChange: [],
+      orderLocked: true,
+    } as ErrorObj;
+  }
   // if forceUpdate we need to remove version from items
   // set version to the latest version rather than removing it
   if (forceUpdate) {
@@ -156,9 +178,18 @@ export async function updateOrderServer(
     .where((order, $currentOrderId) => order.orderId === $currentOrderId, order.orderId)
     .single();
 
+  if (orderServer.lock) {
+    return {
+      error: "Order is Locked",
+      currentChange: [],
+      serverChange: [],
+      orderLocked: true,
+    } as ErrorObj;
+  }
+
   // if we are forcing an update we dont include token (which checks for concurrency issues)
   if (forceUpdate) {
-    uow.entry(orderServer)?.update({ lastUpdated: new Date() });
+    uow.entry(orderServer)?.update({ lastUpdated: new Date(), token: orderServer.token });
   } else {
     uow.entry(orderServer)?.update({ lastUpdated: new Date(), token: order.token });
   }
@@ -167,6 +198,7 @@ export async function updateOrderServer(
     error: "",
     currentChange: [],
     serverChange: [],
+    orderLocked: false,
   };
   try {
     await uow.commit();
@@ -174,23 +206,33 @@ export async function updateOrderServer(
     // check if e has property message
     const error = e as { message: string };
 
-    // if (typeof error === "string") {
-    //   throw new Error("Invalid Title");
-    // }
-    // if (error.hasOwnProperty("message")) {
-    console.error("error", error); // from creation or business logic
-    // }
     const uow2 = db.uow();
     const serverItems = await uow2.items
       .where((item, $orderId) => item.orderId === $orderId, order.orderId)
       .toArray();
-
-    returnObject = {
-      error: error.message,
-      currentChange: items,
-      serverChange: JSON.parse(JSON.stringify(serverItems)),
-    };
-    return returnObject;
+    // check if originalItems and serverItems are the same
+    let itemsChanged = false;
+    if (originalItems.length == serverItems.length) {
+      for (let i = 0; i < serverItems.length; i++) {
+        if (serverItems[i].itemId !== originalItems[i].itemId) {
+          itemsChanged = true;
+          break;
+        }
+      }
+    } else {
+      itemsChanged = true;
+    }
+    if (itemsChanged) {
+      returnObject = {
+        error: error.message,
+        currentChange: items,
+        serverChange: JSON.parse(JSON.stringify(serverItems)),
+        orderLocked: order.lock,
+      };
+      return returnObject;
+    } else {
+      updateOrderServer(items, orderServer, itemsRemoved, true, serverItems, originalItems);
+    }
   }
 
   return returnObject;
