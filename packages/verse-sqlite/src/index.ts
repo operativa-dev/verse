@@ -1,8 +1,8 @@
-import { Convention } from "@operativa/verse/conventions/convention";
 import {
   BooleansToOneOrZero,
   DateAsTimestamp,
   DatePropertyToISOString,
+  DatesToISOStrings,
   IdentityKey,
 } from "@operativa/verse/conventions/database";
 import {
@@ -64,12 +64,13 @@ export class SqliteDriver implements Driver {
     this.#logger = logger;
   }
 
-  get conventions(): List<Convention> {
+  get conventions() {
     return List.of(
       new IdentityKey(),
       new BooleansToOneOrZero(),
       new DateAsTimestamp(),
-      new DatePropertyToISOString()
+      new DatePropertyToISOString(),
+      new DatesToISOStrings()
     );
   }
 
@@ -124,7 +125,7 @@ export class SqliteDriver implements Driver {
   async execute(
     statements: readonly ExecuteStatement[],
     isolation?: IsolationLevel,
-    onBeforeCommit?: (results: readonly ExecuteResult[]) => void
+    onCommit?: (results: readonly ExecuteResult[]) => void
   ) {
     const batch = statements.map(stmt => {
       const printer = new SqlitePrinter();
@@ -168,8 +169,6 @@ export class SqliteDriver implements Driver {
 
         op.onAfterExecute?.(result);
       });
-
-      onBeforeCommit?.(results);
     });
 
     switch (isolation) {
@@ -197,6 +196,8 @@ export class SqliteDriver implements Driver {
       default:
         tx();
     }
+
+    onCommit?.(results);
 
     return results;
   }

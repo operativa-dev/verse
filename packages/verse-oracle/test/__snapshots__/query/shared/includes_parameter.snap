@@ -1,0 +1,17 @@
+[
+  Album {
+    "albumId": 2,
+    "artistId": 2,
+    "title": "Balls to the Wall",
+  },
+  Album {
+    "albumId": 16,
+    "artistId": 12,
+    "title": "Black Sabbath",
+  },
+  Album {
+    "albumId": 17,
+    "artistId": 12,
+    "title": "Black Sabbath Vol. 4 (Remaster)",
+  },
+]

@@ -84,7 +84,7 @@ export const optimisticTests = (verse: Verse<typeof optimisticModel>) => {
     const uow = verse.uow();
 
     await uow.add(new Customer(41, "Existing customer"));
-    await uow.commit("read uncommitted");
+    await uow.commit("read committed");
 
     const customer = await uow.customers.where(c => c.id === 41).single();
 
@@ -113,7 +113,7 @@ export const optimisticTests = (verse: Verse<typeof optimisticModel>) => {
     const uow1 = verse.uow();
 
     await uow1.add(new Customer(42, "Existing customer 2"));
-    await uow1.commit("serializable");
+    await uow1.commit();
 
     const customer1 = await uow1.customers.where(c => c.id === 42).single();
     customer1.name = "Updated customer again";

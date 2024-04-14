@@ -1,0 +1,35 @@
+[
+  [
+    Album {
+      "albumId": 226,
+      "artistId": 147,
+      "title": "Battlestar Galactica: The Story So Far",
+    },
+    Artist {
+      "artistId": 147,
+      "name": "Battlestar Galactica",
+    },
+  ],
+  [
+    Album {
+      "albumId": 227,
+      "artistId": 147,
+      "title": "Battlestar Galactica, Season 3",
+    },
+    Artist {
+      "artistId": 147,
+      "name": "Battlestar Galactica",
+    },
+  ],
+  [
+    Album {
+      "albumId": 228,
+      "artistId": 148,
+      "title": "Heroes, Season 1",
+    },
+    Artist {
+      "artistId": 148,
+      "name": "Heroes",
+    },
+  ],
+]

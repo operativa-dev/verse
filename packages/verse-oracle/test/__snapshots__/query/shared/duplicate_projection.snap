@@ -1,0 +1,52 @@
+[
+  [
+    Artist {
+      "artistId": 250,
+      "name": "Christopher O'Riley",
+    },
+    Artist {
+      "artistId": 250,
+      "name": "Christopher O'Riley",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 251,
+      "name": "Fretwork",
+    },
+    Artist {
+      "artistId": 251,
+      "name": "Fretwork",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 252,
+      "name": "Amy Winehouse",
+    },
+    Artist {
+      "artistId": 252,
+      "name": "Amy Winehouse",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 253,
+      "name": "Calexico",
+    },
+    Artist {
+      "artistId": 253,
+      "name": "Calexico",
+    },
+  ],
+  [
+    Artist {
+      "artistId": 254,
+      "name": "Otto Klemperer & Philharmonia Orchestra",
+    },
+    Artist {
+      "artistId": 254,
+      "name": "Otto Klemperer & Philharmonia Orchestra",
+    },
+  ],
+]

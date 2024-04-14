@@ -24,11 +24,13 @@ import {
   SqlIdentifier,
   SqlIn,
   SqlMember,
+  SqlNextValue,
   SqlNode,
   SqlNumber,
   SqlParameter,
   SqlSelect,
   sqlStr,
+  SqlTimestamp,
   SqlType,
   SqlTypeAlias,
 } from "@operativa/verse/db/sql";
@@ -110,7 +112,7 @@ export class PostgresDriver implements Driver, AsyncDisposable {
   async execute(
     statements: readonly ExecuteStatement[],
     isolation?: IsolationLevel,
-    onBeforeCommit?: (results: readonly ExecuteResult[]) => void
+    onCommit?: (results: readonly ExecuteResult[]) => void
   ) {
     const batch = statements.map(stmt => ({
       ...stmt,
@@ -146,9 +148,9 @@ export class PostgresDriver implements Driver, AsyncDisposable {
 
         op.onAfterExecute?.(result);
       }
-
-      onBeforeCommit?.(results);
     });
+
+    onCommit?.(results);
 
     return results;
   }
@@ -171,8 +173,10 @@ export class PostgresDriver implements Driver, AsyncDisposable {
     return `isolation level ${isolation}`;
   }
 
-  exists() {
-    return this.#usingSystemDb(async pg => this.#exists(pg));
+  async exists() {
+    await using pg = this.#systemDb();
+
+    return await this.#exists(pg);
   }
 
   static readonly #EXISTS = new SqlSelect({
@@ -212,39 +216,27 @@ export class PostgresDriver implements Driver, AsyncDisposable {
   }
 
   async create() {
-    return this.#usingSystemDb(async pg => {
-      const sql = new SqlCreateDatabase(sqlId(this.#pg.options.database)).accept(
-        new PgSqlPrinter()
-      );
+    await using pg = this.#systemDb();
 
-      logSql(sql, [], this.#logger);
+    const sql = new SqlCreateDatabase(sqlId(this.#pg.options.database)).accept(new PgSqlPrinter());
 
-      await pg.#pg.unsafe(sql);
-    });
+    logSql(sql, [], this.#logger);
+
+    await pg.#pg.unsafe(sql);
   }
 
   async drop() {
-    return this.#usingSystemDb(async pg => {
-      if (!(await this.#exists(pg))) {
-        return;
-      }
+    await using pg = this.#systemDb();
 
-      const sql = new SqlDropDatabase(sqlId(this.#pg.options.database)).accept(new PgSqlPrinter());
-
-      logSql(sql, [], this.#logger);
-
-      await pg.#pg.unsafe(sql);
-    });
-  }
-
-  async #usingSystemDb<T>(block: (pg: PostgresDriver) => Promise<T>) {
-    const db = this.#systemDb();
-
-    try {
-      return await block(db);
-    } finally {
-      await db[Symbol.asyncDispose]();
+    if (!(await this.#exists(pg))) {
+      return;
     }
+
+    const sql = new SqlDropDatabase(sqlId(this.#pg.options.database)).accept(new PgSqlPrinter());
+
+    logSql(sql, [], this.#logger);
+
+    await pg.#pg.unsafe(sql);
   }
 
   #systemDb() {
@@ -305,6 +297,10 @@ class DialectRewriter extends SqlRewriter {
 
     return _in;
   }
+
+  override visitNextValue(nextValue: SqlNextValue) {
+    return new SqlFunction("nextval", List.of(sqlStr(nextValue.sequence.name)));
+  }
 }
 
 class PgSqlPrinter extends SqlPrinter {
@@ -328,5 +324,9 @@ class PgSqlPrinter extends SqlPrinter {
     }
 
     return sql;
+  }
+
+  override visitTimestamp(timestamp: SqlTimestamp) {
+    return "TIMESTAMP " + super.visitTimestamp(timestamp);
   }
 }

@@ -1,0 +1,50 @@
+[
+  SqlInsert {
+    "columns": Immutable.List [
+      SqlIdentifier {
+        "name": "Name",
+      },
+      SqlIdentifier {
+        "name": "Dob",
+      },
+    ],
+    "returning": Immutable.List [],
+    "table": SqlIdentifier {
+      "name": "Customer",
+    },
+    "values": Immutable.List [
+      SqlString {
+        "value": "B",
+      },
+      SqlTimestamp {
+        "value": 2000-01-31T22:00:00.000Z,
+      },
+    ],
+  },
+  SqlInsert {
+    "columns": Immutable.List [
+      SqlIdentifier {
+        "name": "Id",
+      },
+      SqlIdentifier {
+        "name": "Name",
+      },
+      SqlIdentifier {
+        "name": "Dob",
+      },
+    ],
+    "returning": Immutable.List [],
+    "table": SqlIdentifier {
+      "name": "Customer",
+    },
+    "values": Immutable.List [
+      SqlNumber {
+        "value": 1,
+      },
+      SqlString {
+        "value": "A",
+      },
+      SqlNull {},
+    ],
+  },
+]

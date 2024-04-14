@@ -1,0 +1,2196 @@
+[
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 15,
+          "artist": undefined,
+          "artistId": 11,
+          "title": "Alcohol Fueled Brewtality Live! [Disc 2]",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 14,
+          "artist": undefined,
+          "artistId": 11,
+          "title": "Alcohol Fueled Brewtality Live! [Disc 1]",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 17,
+          "artist": undefined,
+          "artistId": 12,
+          "title": "Black Sabbath Vol. 4 (Remaster)",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 16,
+          "artist": undefined,
+          "artistId": 12,
+          "title": "Black Sabbath",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 22,
+          "artist": undefined,
+          "artistId": 16,
+          "title": "Sozinho Remix Ao Vivo",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 21,
+          "artist": undefined,
+          "artistId": 16,
+          "title": "Prenda Minha",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 25,
+          "artist": undefined,
+          "artistId": 18,
+          "title": "Da Lama Ao Caos",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 24,
+          "artist": undefined,
+          "artistId": 18,
+          "title": "Afrociberdelia",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 27,
+          "artist": undefined,
+          "artistId": 19,
+          "title": "Cidade Negra - Hits",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 26,
+          "artist": undefined,
+          "artistId": 19,
+          "title": "Acústico MTV [Live]",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 29,
+          "artist": undefined,
+          "artistId": 21,
+          "title": "Axé Bahia 2001",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 32,
+          "artist": undefined,
+          "artistId": 21,
+          "title": "Carnaval 2001",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 45,
+          "artist": undefined,
+          "artistId": 21,
+          "title": "Sambas De Enredo 2001",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 53,
+          "artist": undefined,
+          "artistId": 21,
+          "title": "Vozes do MPB",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 129,
+          "artist": undefined,
+          "artistId": 22,
+          "title": "Houses Of The Holy",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 135,
+          "artist": undefined,
+          "artistId": 22,
+          "title": "Physical Graffiti [Disc 2]",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 30,
+          "artist": undefined,
+          "artistId": 22,
+          "title": "BBC Sessions [Disc 1] [Live]",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 128,
+          "artist": undefined,
+          "artistId": 22,
+          "title": "Coda",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 127,
+          "artist": undefined,
+          "artistId": 22,
+          "title": "BBC Sessions [Disc 2] [Live]",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 138,
+          "artist": undefined,
+          "artistId": 22,
+          "title": "The Song Remains The Same (Disc 2)",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 137,
+          "artist": undefined,
+          "artistId": 22,
+          "title": "The Song Remains The Same (Disc 1)",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 136,
+          "artist": undefined,
+          "artistId": 22,
+          "title": "Presence",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 44,
+          "artist": undefined,
+          "artistId": 22,
+          "title": "Physical Graffiti [Disc 1]",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 134,
+          "artist": undefined,
+          "artistId": 22,
+          "title": "Led Zeppelin III",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 133,
+          "artist": undefined,
+          "artistId": 22,
+          "title": "Led Zeppelin II",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 132,
+          "artist": undefined,
+          "artistId": 22,
+          "title": "Led Zeppelin I",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 131,
+          "artist": undefined,
+          "artistId": 22,
+          "title": "IV",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 130,
+          "artist": undefined,
+          "artistId": 22,
+          "title": "In Through The Out Door",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 85,
+          "artist": undefined,
+          "artistId": 27,
+          "title": "As Canções de Eu Tu Eles",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 86,
+          "artist": undefined,
+          "artistId": 27,
+          "title": "Quanta Gente Veio Ver (Live)",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 87,
+          "artist": undefined,
+          "artistId": 27,
+          "title": "Quanta Gente Veio ver--Bônus De Carnaval",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 159,
+          "artist": undefined,
+          "artistId": 42,
+          "title": "Minas",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 158,
+          "artist": undefined,
+          "artistId": 42,
+          "title": "Milton Nascimento Ao Vivo",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 148,
+          "artist": undefined,
+          "artistId": 50,
+          "title": "Black Album",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 152,
+          "artist": undefined,
+          "artistId": 50,
+          "title": "Master Of Puppets",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 156,
+          "artist": undefined,
+          "artistId": 50,
+          "title": "...And Justice For All",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 155,
+          "artist": undefined,
+          "artistId": 50,
+          "title": "St. Anger",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 154,
+          "artist": undefined,
+          "artistId": 50,
+          "title": "Ride The Lightning",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 153,
+          "artist": undefined,
+          "artistId": 50,
+          "title": "ReLoad",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 35,
+          "artist": undefined,
+          "artistId": 50,
+          "title": "Garage Inc. (Disc 1)",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 151,
+          "artist": undefined,
+          "artistId": 50,
+          "title": "Load",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 150,
+          "artist": undefined,
+          "artistId": 50,
+          "title": "Kill 'Em All",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 149,
+          "artist": undefined,
+          "artistId": 50,
+          "title": "Garage Inc. (Disc 2)",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 185,
+          "artist": undefined,
+          "artistId": 51,
+          "title": "Greatest Hits I",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 186,
+          "artist": undefined,
+          "artistId": 51,
+          "title": "News Of The World",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 36,
+          "artist": undefined,
+          "artistId": 51,
+          "title": "Greatest Hits II",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 37,
+          "artist": undefined,
+          "artistId": 52,
+          "title": "Greatest Kiss",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 126,
+          "artist": undefined,
+          "artistId": 52,
+          "title": "Unplugged [Live]",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 38,
+          "artist": undefined,
+          "artistId": 53,
+          "title": "Heart of the Night",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 204,
+          "artist": undefined,
+          "artistId": 53,
+          "title": "Morning Dance",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 39,
+          "artist": undefined,
+          "artistId": 54,
+          "title": "International Superhits",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 89,
+          "artist": undefined,
+          "artistId": 54,
+          "title": "American Idiot",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 65,
+          "artist": undefined,
+          "artistId": 58,
+          "title": "Stormbringer",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 64,
+          "artist": undefined,
+          "artistId": 58,
+          "title": "Slaves And Masters",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 63,
+          "artist": undefined,
+          "artistId": 58,
+          "title": "Purpendicular",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 62,
+          "artist": undefined,
+          "artistId": 58,
+          "title": "Machine Head",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 61,
+          "artist": undefined,
+          "artistId": 58,
+          "title": "Knocking at Your Back Door: The Best Of Deep Purple in the 80's",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 60,
+          "artist": undefined,
+          "artistId": 58,
+          "title": "Fireball",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 59,
+          "artist": undefined,
+          "artistId": 58,
+          "title": "Deep Purple In Rock",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 58,
+          "artist": undefined,
+          "artistId": 58,
+          "title": "Come Taste The Band",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 50,
+          "artist": undefined,
+          "artistId": 58,
+          "title": "The Final Concerts (Disc 2)",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 43,
+          "artist": undefined,
+          "artistId": 58,
+          "title": "MK III The Final Concerts [Disc 1]",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 66,
+          "artist": undefined,
+          "artistId": 58,
+          "title": "The Battle Rages On",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 197,
+          "artist": undefined,
+          "artistId": 59,
+          "title": "Santana - As Years Go By",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 198,
+          "artist": undefined,
+          "artistId": 59,
+          "title": "Santana Live",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 46,
+          "artist": undefined,
+          "artistId": 59,
+          "title": "Supernatural",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 157,
+          "artist": undefined,
+          "artistId": 68,
+          "title": "Miles Ahead",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 48,
+          "artist": undefined,
+          "artistId": 68,
+          "title": "The Essential Miles Davis [Disc 1]",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 49,
+          "artist": undefined,
+          "artistId": 68,
+          "title": "The Essential Miles Davis [Disc 2]",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 55,
+          "artist": undefined,
+          "artistId": 76,
+          "title": "Chronicle, Vol. 2",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 54,
+          "artist": undefined,
+          "artistId": 76,
+          "title": "Chronicle, Vol. 1",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 57,
+          "artist": undefined,
+          "artistId": 77,
+          "title": "Cássia Eller - Sem Limite [Disc 1]",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 56,
+          "artist": undefined,
+          "artistId": 77,
+          "title": "Cássia Eller - Coleção Sem Limite [Disc 2]",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 70,
+          "artist": undefined,
+          "artistId": 80,
+          "title": "Djavan Ao Vivo - Vol. 1",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 69,
+          "artist": undefined,
+          "artistId": 80,
+          "title": "Djavan Ao Vivo - Vol. 02",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 73,
+          "artist": undefined,
+          "artistId": 81,
+          "title": "Unplugged",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 72,
+          "artist": undefined,
+          "artistId": 81,
+          "title": "The Cream Of Clapton",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 74,
+          "artist": undefined,
+          "artistId": 82,
+          "title": "Album Of The Year",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 75,
+          "artist": undefined,
+          "artistId": 82,
+          "title": "Angel Dust",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 76,
+          "artist": undefined,
+          "artistId": 82,
+          "title": "King For A Day Fool For A Lifetime",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 77,
+          "artist": undefined,
+          "artistId": 82,
+          "title": "The Real Thing",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 79,
+          "artist": undefined,
+          "artistId": 84,
+          "title": "In Your Honor [Disc 1]",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 80,
+          "artist": undefined,
+          "artistId": 84,
+          "title": "In Your Honor [Disc 2]",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 81,
+          "artist": undefined,
+          "artistId": 84,
+          "title": "One By One",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 82,
+          "artist": undefined,
+          "artistId": 84,
+          "title": "The Colour And The Shape",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 90,
+          "artist": undefined,
+          "artistId": 88,
+          "title": "Appetite for Destruction",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 91,
+          "artist": undefined,
+          "artistId": 88,
+          "title": "Use Your Illusion I",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 92,
+          "artist": undefined,
+          "artistId": 88,
+          "title": "Use Your Illusion II",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 94,
+          "artist": undefined,
+          "artistId": 90,
+          "title": "A Matter of Life and Death",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 95,
+          "artist": undefined,
+          "artistId": 90,
+          "title": "A Real Dead One",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 113,
+          "artist": undefined,
+          "artistId": 90,
+          "title": "The X Factor",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 112,
+          "artist": undefined,
+          "artistId": 90,
+          "title": "The Number of The Beast",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 111,
+          "artist": undefined,
+          "artistId": 90,
+          "title": "Somewhere in Time",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 110,
+          "artist": undefined,
+          "artistId": 90,
+          "title": "Seventh Son of a Seventh Son",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 109,
+          "artist": undefined,
+          "artistId": 90,
+          "title": "Rock In Rio [CD2]",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 108,
+          "artist": undefined,
+          "artistId": 90,
+          "title": "Rock In Rio [CD1]",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 107,
+          "artist": undefined,
+          "artistId": 90,
+          "title": "Powerslave",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 106,
+          "artist": undefined,
+          "artistId": 90,
+          "title": "Piece Of Mind",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 105,
+          "artist": undefined,
+          "artistId": 90,
+          "title": "No Prayer For The Dying",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 104,
+          "artist": undefined,
+          "artistId": 90,
+          "title": "Live At Donington 1992 (Disc 2)",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 103,
+          "artist": undefined,
+          "artistId": 90,
+          "title": "Live At Donington 1992 (Disc 1)",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 102,
+          "artist": undefined,
+          "artistId": 90,
+          "title": "Live After Death",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 101,
+          "artist": undefined,
+          "artistId": 90,
+          "title": "Killers",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 100,
+          "artist": undefined,
+          "artistId": 90,
+          "title": "Iron Maiden",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 99,
+          "artist": undefined,
+          "artistId": 90,
+          "title": "Fear Of The Dark",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 98,
+          "artist": undefined,
+          "artistId": 90,
+          "title": "Dance Of Death",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 97,
+          "artist": undefined,
+          "artistId": 90,
+          "title": "Brave New World",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 96,
+          "artist": undefined,
+          "artistId": 90,
+          "title": "A Real Live One",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 114,
+          "artist": undefined,
+          "artistId": 90,
+          "title": "Virtual XI",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 116,
+          "artist": undefined,
+          "artistId": 92,
+          "title": "Emergency On Planet Earth",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 117,
+          "artist": undefined,
+          "artistId": 92,
+          "title": "Synkronized",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 118,
+          "artist": undefined,
+          "artistId": 92,
+          "title": "The Return Of The Space Cowboy",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 140,
+          "artist": undefined,
+          "artistId": 99,
+          "title": "Mais Do Mesmo",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 139,
+          "artist": undefined,
+          "artistId": 99,
+          "title": "A TempestadeTempestade Ou O Livro Dos Dias",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 142,
+          "artist": undefined,
+          "artistId": 101,
+          "title": "Lulu Santos - RCA 100 Anos De Música - Álbum 01",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 143,
+          "artist": undefined,
+          "artistId": 101,
+          "title": "Lulu Santos - RCA 100 Anos De Música - Álbum 02",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 163,
+          "artist": undefined,
+          "artistId": 110,
+          "title": "From The Muddy Banks Of The Wishkah [Live]",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 164,
+          "artist": undefined,
+          "artistId": 110,
+          "title": "Nevermind",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 167,
+          "artist": undefined,
+          "artistId": 113,
+          "title": "Acústico MTV",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 169,
+          "artist": undefined,
+          "artistId": 113,
+          "title": "Arquivo Os Paralamas Do Sucesso",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 168,
+          "artist": undefined,
+          "artistId": 113,
+          "title": "Arquivo II",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 170,
+          "artist": undefined,
+          "artistId": 114,
+          "title": "Bark at the Moon (Remastered)",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 256,
+          "artist": undefined,
+          "artistId": 114,
+          "title": "Speak of the Devil",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 174,
+          "artist": undefined,
+          "artistId": 114,
+          "title": "Tribute",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 173,
+          "artist": undefined,
+          "artistId": 114,
+          "title": "No More Tears (Remastered)",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 172,
+          "artist": undefined,
+          "artistId": 114,
+          "title": "Diary of a Madman (Remastered)",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 171,
+          "artist": undefined,
+          "artistId": 114,
+          "title": "Blizzard of Ozz",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 178,
+          "artist": undefined,
+          "artistId": 118,
+          "title": "Live On Two Legs [Live]",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 180,
+          "artist": undefined,
+          "artistId": 118,
+          "title": "Riot Act",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 179,
+          "artist": undefined,
+          "artistId": 118,
+          "title": "Pearl Jam",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 181,
+          "artist": undefined,
+          "artistId": 118,
+          "title": "Ten",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 182,
+          "artist": undefined,
+          "artistId": 118,
+          "title": "Vs.",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 189,
+          "artist": undefined,
+          "artistId": 124,
+          "title": "New Adventures In Hi-Fi",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 188,
+          "artist": undefined,
+          "artistId": 124,
+          "title": "Green",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 190,
+          "artist": undefined,
+          "artistId": 124,
+          "title": "The Best Of R.E.M.: The IRS Years",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 195,
+          "artist": undefined,
+          "artistId": 127,
+          "title": "Californication",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 193,
+          "artist": undefined,
+          "artistId": 127,
+          "title": "Blood Sugar Sex Magik",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 194,
+          "artist": undefined,
+          "artistId": 127,
+          "title": "By The Way",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 200,
+          "artist": undefined,
+          "artistId": 130,
+          "title": "O Samba Poconé",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 199,
+          "artist": undefined,
+          "artistId": 130,
+          "title": "Maquinarama",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 202,
+          "artist": undefined,
+          "artistId": 131,
+          "title": "Rotten Apples: Greatest Hits",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 201,
+          "artist": undefined,
+          "artistId": 131,
+          "title": "Judas 0: B-Sides and Rarities",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 210,
+          "artist": undefined,
+          "artistId": 137,
+          "title": "Live [Disc 2]",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 209,
+          "artist": undefined,
+          "artistId": 137,
+          "title": "Live [Disc 1]",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 212,
+          "artist": undefined,
+          "artistId": 139,
+          "title": "Beyond Good And Evil",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 213,
+          "artist": undefined,
+          "artistId": 139,
+          "title": "Pure Cult: The Best Of The Cult (For Rockers, Ravers, Lovers & Sinners) [UK]",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 218,
+          "artist": undefined,
+          "artistId": 142,
+          "title": "Voodoo Lounge",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 217,
+          "artist": undefined,
+          "artistId": 142,
+          "title": "No Security",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 216,
+          "artist": undefined,
+          "artistId": 142,
+          "title": "Hot Rocks, 1964-1971 (Disc 1)",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 220,
+          "artist": undefined,
+          "artistId": 143,
+          "title": "Transmission",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 219,
+          "artist": undefined,
+          "artistId": 143,
+          "title": "Tangents",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 223,
+          "artist": undefined,
+          "artistId": 145,
+          "title": "Serie Sem Limite (Disc 2)",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 222,
+          "artist": undefined,
+          "artistId": 145,
+          "title": "Serie Sem Limite (Disc 1)",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 225,
+          "artist": undefined,
+          "artistId": 146,
+          "title": "Volume Dois",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 224,
+          "artist": undefined,
+          "artistId": 146,
+          "title": "Acústico",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 226,
+          "artist": undefined,
+          "artistId": 147,
+          "title": "Battlestar Galactica: The Story So Far",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 227,
+          "artist": undefined,
+          "artistId": 147,
+          "title": "Battlestar Galactica, Season 3",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 261,
+          "artist": undefined,
+          "artistId": 149,
+          "title": "LOST, Season 4",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 229,
+          "artist": undefined,
+          "artistId": 149,
+          "title": "Lost, Season 3",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 230,
+          "artist": undefined,
+          "artistId": 149,
+          "title": "Lost, Season 1",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 231,
+          "artist": undefined,
+          "artistId": 149,
+          "title": "Lost, Season 2",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 240,
+          "artist": undefined,
+          "artistId": 150,
+          "title": "Zooropa",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 255,
+          "artist": undefined,
+          "artistId": 150,
+          "title": "Instant Karma: The Amnesty International Campaign to Save Darfur",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 238,
+          "artist": undefined,
+          "artistId": 150,
+          "title": "The Best Of 1980-1990",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 239,
+          "artist": undefined,
+          "artistId": 150,
+          "title": "War",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 237,
+          "artist": undefined,
+          "artistId": 150,
+          "title": "Rattle And Hum",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 236,
+          "artist": undefined,
+          "artistId": 150,
+          "title": "Pop",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 235,
+          "artist": undefined,
+          "artistId": 150,
+          "title": "How To Dismantle An Atomic Bomb",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 234,
+          "artist": undefined,
+          "artistId": 150,
+          "title": "B-Sides 1980-1990",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 233,
+          "artist": undefined,
+          "artistId": 150,
+          "title": "All That You Can't Leave Behind",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 232,
+          "artist": undefined,
+          "artistId": 150,
+          "title": "Achtung Baby",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 244,
+          "artist": undefined,
+          "artistId": 152,
+          "title": "Van Halen",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 243,
+          "artist": undefined,
+          "artistId": 152,
+          "title": "The Best Of Van Halen, Vol. I",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 242,
+          "artist": undefined,
+          "artistId": 152,
+          "title": "Diver Down",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 245,
+          "artist": undefined,
+          "artistId": 152,
+          "title": "Van Halen III",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 249,
+          "artist": undefined,
+          "artistId": 156,
+          "title": "The Office, Season 1",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 251,
+          "artist": undefined,
+          "artistId": 156,
+          "title": "The Office, Season 3",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 250,
+          "artist": undefined,
+          "artistId": 156,
+          "title": "The Office, Season 2",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 315,
+          "artist": undefined,
+          "artistId": 208,
+          "title": "Handel: Music for the Royal Fireworks (Original Version 1749)",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 274,
+          "artist": undefined,
+          "artistId": 208,
+          "title": "Pachelbel: Canon & Gigue",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 343,
+          "artist": undefined,
+          "artistId": 226,
+          "title": "Respighi:Pines of Rome",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 292,
+          "artist": undefined,
+          "artistId": 226,
+          "title": "Holst: The Planets, Op. 32 & Vaughan Williams: Fantasies",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 311,
+          "artist": undefined,
+          "artistId": 226,
+          "title": "Strauss: Waltzes",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 312,
+          "artist": undefined,
+          "artistId": 245,
+          "title": "Berlioz: Symphonie Fantastique",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 310,
+          "artist": undefined,
+          "artistId": 245,
+          "title": "Prokofiev: Romeo & Juliet",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 336,
+          "artist": undefined,
+          "artistId": 248,
+          "title": "Prokofiev: Symphony No.5 & Stravinksy: Le Sacre Du Printemps",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 316,
+          "artist": undefined,
+          "artistId": 248,
+          "title": "Grieg: Peer Gynt Suites & Sibelius: Pelléas et Mélisande",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 320,
+          "artist": undefined,
+          "artistId": 248,
+          "title": "Mozart: Symphonies Nos. 40 & 41",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+  [
+    {
+      "key": [
+        Album {
+          "albumId": 322,
+          "artist": undefined,
+          "artistId": 252,
+          "title": "Frank",
+          "tracks": [],
+        },
+      ],
+    },
+    {
+      "key": [
+        Album {
+          "albumId": 321,
+          "artist": undefined,
+          "artistId": 252,
+          "title": "Back to Black",
+          "tracks": [],
+        },
+      ],
+    },
+  ],
+]

@@ -1,3 +1,5 @@
+import { List } from "immutable";
+import { OnDelete } from "../model/model.js";
 import { indent } from "../utils/utils.js";
 import {
   SqlAddColumn,
@@ -145,10 +147,12 @@ export class SqlPrinter extends SqlVisitor<string> {
     return `insert into ${insert.table.accept(this)} (${insert.columns
       .map(c => c.accept(this))
       .join(", ")}) values (${insert.values.map(c => c.accept(this)).join(", ")})${
-      !insert.returning.isEmpty()
-        ? ` returning ${insert.returning.map(r => r.accept(this)).join(", ")}`
-        : ""
+      !insert.returning.isEmpty() ? this.visitReturning(insert) : ""
     }`;
+  }
+
+  protected visitReturning(insert: SqlInsert) {
+    return ` returning ${insert.returning.map(r => r.accept(this)).join(", ")}`;
   }
 
   override visitUpdate(update: SqlUpdate): string {
@@ -174,7 +178,11 @@ export class SqlPrinter extends SqlVisitor<string> {
       .map(c => c.accept(this))
       .join(", ")}) references ${foreignKey.references.accept(this)} (${foreignKey.referencedColumns
       .map(c => c.accept(this))
-      .join(", ")})${foreignKey.onDelete ? ` on delete ${foreignKey.onDelete}` : ""}`;
+      .join(", ")})${this.visitOnDelete(foreignKey.onDelete)}`;
+  }
+
+  protected visitOnDelete(onDelete?: OnDelete) {
+    return onDelete ? ` on delete ${onDelete}` : "";
   }
 
   override visitColumn(column: SqlColumn): string {
@@ -188,10 +196,10 @@ export class SqlPrinter extends SqlVisitor<string> {
   }
 
   override visitSelect(select: SqlSelect): string {
-    let sql = `select${select.distinct ? " distinct " : " "}${this.#parens(select.projection)}`;
+    let sql = `select${select.distinct ? " distinct " : " "}${this.parens(select.projection)}`;
 
     if (select.from) {
-      sql += `${this.#clauseSep}from ${this.#parens(select.from)}`;
+      sql += `${this.#clauseSep}from ${this.parens(select.from)}`;
     }
 
     if (select.joins) {
@@ -199,7 +207,7 @@ export class SqlPrinter extends SqlVisitor<string> {
     }
 
     if (select.where) {
-      sql += `${this.#clauseSep}where ${this.#parens(select.where)}`;
+      sql += `${this.#clauseSep}where ${this.parens(select.where)}`;
     }
 
     if (select.orderBy) {
@@ -234,7 +242,7 @@ export class SqlPrinter extends SqlVisitor<string> {
   }
 
   override visitExists(exists: SqlExists): string {
-    return `exists ${this.#parens(exists.select)}`;
+    return `exists ${this.parens(exists.select)}`;
   }
 
   override visitIn(inNode: SqlIn): string {
@@ -256,20 +264,20 @@ export class SqlPrinter extends SqlVisitor<string> {
   }
 
   override visitOrdering(ordering: SqlOrdering): string {
-    return `${this.#parens(ordering.node)}${ordering.desc ? " desc" : ""}`;
+    return `${this.parens(ordering.node)}${ordering.desc ? " desc" : ""}`;
   }
 
   override visitAlias(alias: SqlAlias): string {
-    return `${this.#parens(alias.target)} as ${alias.alias.accept(this)}`;
+    return `${this.parens(alias.target)} as ${alias.alias.accept(this)}`;
   }
 
   override visitTypeAlias(typeAlias: SqlTypeAlias): string {
-    return `${this.#parens(typeAlias.target)} as ${typeAlias.type}`;
+    return `${this.parens(typeAlias.target)} as ${typeAlias.type}`;
   }
 
   override visitBinary(binary: SqlBinary): string {
-    let left = this.#parens(binary.left);
-    let right = this.#parens(binary.right);
+    let left = this.parens(binary.left);
+    let right = this.parens(binary.right);
 
     if (binary.left instanceof SqlBinary) {
       left = `(${left})`;
@@ -283,7 +291,11 @@ export class SqlPrinter extends SqlVisitor<string> {
   }
 
   override visitFunction(func: SqlFunction): string {
-    return `${func.name}(${func.args.map(n => this.#parens(n)).join(", ")})`;
+    return `${func.name}(${this.visitFunctionArgs(func.args)})`;
+  }
+
+  protected visitFunctionArgs(args: List<SqlNode>) {
+    return args.map(n => this.parens(n)).join(", ");
   }
 
   override visitIdentifier(identifier: SqlIdentifier) {
@@ -337,11 +349,11 @@ export class SqlPrinter extends SqlVisitor<string> {
   }
 
   override visitIsNull(isNull: SqlIsNull): string {
-    return `${this.#parens(isNull.operand)} is null`;
+    return `${this.parens(isNull.operand)} is null`;
   }
 
   override visitIsNotNull(isNotNull: SqlIsNotNull): string {
-    return `${this.#parens(isNotNull.operand)} is not null`;
+    return `${this.parens(isNotNull.operand)} is not null`;
   }
 
   override visitString(str: SqlString) {
@@ -370,8 +382,8 @@ export class SqlPrinter extends SqlVisitor<string> {
     return sql;
   }
 
-  override visitCase(cas: SqlCase) {
-    return `case when ${cas.when} then ${cas.then} else ${cas.elseThen} end`;
+  override visitCase(cas: SqlCase): string {
+    return `case when ${cas.when.accept(this)} then ${cas.then.accept(this)} else ${cas.elseThen.accept(this)} end`;
   }
 
   protected escapeIdent(identifier: string) {
@@ -382,7 +394,7 @@ export class SqlPrinter extends SqlVisitor<string> {
     return str.replace(/(['\\])/g, "$1$1");
   }
 
-  #parens(node: SqlNode) {
+  protected parens(node: SqlNode) {
     const nested = node instanceof SqlSelect || node instanceof SqlRaw;
     let sql = "";
 

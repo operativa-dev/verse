@@ -52,36 +52,20 @@ export const conversionTests = (verse: Verse<typeof conversionModel.entities>) =
     await uow.commit();
 
     const uuid = uuidv4();
+    const date = new Date("1976-10-11 12:13:14+02");
 
     const result = await verse.from.entities
       .where((e, $num) => e.num === $num && e.bool!, 41)
       .select(
-        (e, $uuid, $b) => [
-          true,
-          false,
-          e.bool,
-          undefined,
-          null,
-          $uuid,
-          new Date("1976-10-11 12:13:14+02"),
-          $b,
-        ],
+        (e, $uuid, $date, $b) => [true, false, e.bool, undefined, null, $uuid, $date, $b],
         uuid,
+        date,
         true
       )
       .where((e, $b) => e[0] === $b && e[2] === true, true)
       .single();
 
-    expect(result).toStrictEqual([
-      true,
-      false,
-      true,
-      undefined,
-      undefined,
-      uuid,
-      "1976-10-11T10:13:14.000Z",
-      true,
-    ]);
+    expect(result).toStrictEqual([true, false, true, undefined, undefined, uuid, date, true]);
   });
 
   test("number to string parameter and boolean true", async () => {

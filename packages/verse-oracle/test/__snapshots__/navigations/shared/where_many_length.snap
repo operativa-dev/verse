@@ -1,0 +1,282 @@
+[
+  Artist {
+    "albums": [],
+    "artistId": 1,
+    "name": "AC/DC",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 2,
+    "name": "Accept",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 6,
+    "name": "Antônio Carlos Jobim",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 8,
+    "name": "Audioslave",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 11,
+    "name": "Black Label Society",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 12,
+    "name": "Black Sabbath",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 16,
+    "name": "Caetano Veloso",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 18,
+    "name": "Chico Science & Nação Zumbi",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 19,
+    "name": "Cidade Negra",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 21,
+    "name": "Various Artists",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 22,
+    "name": "Led Zeppelin",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 27,
+    "name": "Gilberto Gil",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 42,
+    "name": "Milton Nascimento",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 50,
+    "name": "Metallica",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 51,
+    "name": "Queen",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 52,
+    "name": "Kiss",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 53,
+    "name": "Spyro Gyra",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 54,
+    "name": "Green Day",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 58,
+    "name": "Deep Purple",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 59,
+    "name": "Santana",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 68,
+    "name": "Miles Davis",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 76,
+    "name": "Creedence Clearwater Revival",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 77,
+    "name": "Cássia Eller",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 80,
+    "name": "Djavan",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 81,
+    "name": "Eric Clapton",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 82,
+    "name": "Faith No More",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 84,
+    "name": "Foo Fighters",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 88,
+    "name": "Guns N' Roses",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 90,
+    "name": "Iron Maiden",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 92,
+    "name": "Jamiroquai",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 99,
+    "name": "Legião Urbana",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 101,
+    "name": "Lulu Santos",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 110,
+    "name": "Nirvana",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 113,
+    "name": "Os Paralamas Do Sucesso",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 114,
+    "name": "Ozzy Osbourne",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 118,
+    "name": "Pearl Jam",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 124,
+    "name": "R.E.M.",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 127,
+    "name": "Red Hot Chili Peppers",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 130,
+    "name": "Skank",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 131,
+    "name": "Smashing Pumpkins",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 137,
+    "name": "The Black Crowes",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 139,
+    "name": "The Cult",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 142,
+    "name": "The Rolling Stones",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 143,
+    "name": "The Tea Party",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 145,
+    "name": "Tim Maia",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 146,
+    "name": "Titãs",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 147,
+    "name": "Battlestar Galactica",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 149,
+    "name": "Lost",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 150,
+    "name": "U2",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 152,
+    "name": "Van Halen",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 156,
+    "name": "The Office",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 208,
+    "name": "English Concert & Trevor Pinnock",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 226,
+    "name": "Eugene Ormandy",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 245,
+    "name": "Michael Tilson Thomas & San Francisco Symphony",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 248,
+    "name": "Berliner Philharmoniker & Herbert Von Karajan",
+  },
+  Artist {
+    "albums": [],
+    "artistId": 252,
+    "name": "Amy Winehouse",
+  },
+]
