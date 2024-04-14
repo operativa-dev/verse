@@ -1,0 +1,27 @@
+[
+  Album {
+    "albumId": 229,
+    "artistId": 149,
+    "title": "Lost, Season 3",
+  },
+  Album {
+    "albumId": 230,
+    "artistId": 149,
+    "title": "Lost, Season 1",
+  },
+  Album {
+    "albumId": 231,
+    "artistId": 149,
+    "title": "Lost, Season 2",
+  },
+  Album {
+    "albumId": 232,
+    "artistId": 150,
+    "title": "Achtung Baby",
+  },
+  Album {
+    "albumId": 233,
+    "artistId": 150,
+    "title": "All That You Can't Leave Behind",
+  },
+]

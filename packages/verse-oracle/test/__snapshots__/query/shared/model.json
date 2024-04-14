@@ -1,0 +1,143 @@
+{
+  "entities": [
+    {
+      "name": "Album",
+      "properties": [
+        {
+          "name": "albumId",
+          "column": "AlbumId",
+          "type": "integer",
+          "nullable": false,
+          "generate": {
+            "using": "seqhilo",
+            "sequence": "__verse_seqhilo"
+          },
+          "kind": "int"
+        },
+        {
+          "name": "title",
+          "column": "Title",
+          "type": "varchar(255)",
+          "nullable": false,
+          "kind": "string",
+          "maxLength": 255
+        },
+        {
+          "name": "artistId",
+          "column": "ArtistId",
+          "type": "integer",
+          "nullable": false,
+          "kind": "int"
+        }
+      ],
+      "label": "albums",
+      "table": "Album",
+      "key": [
+        "albumId"
+      ],
+      "foreignKeys": [],
+      "conditions": []
+    },
+    {
+      "name": "Artist",
+      "properties": [
+        {
+          "name": "artistId",
+          "column": "ArtistId",
+          "type": "integer",
+          "nullable": false,
+          "generate": {
+            "using": "seqhilo",
+            "sequence": "__verse_seqhilo"
+          },
+          "kind": "int"
+        },
+        {
+          "name": "name",
+          "column": "Name",
+          "type": "varchar(255)",
+          "nullable": false,
+          "kind": "string",
+          "maxLength": 255
+        }
+      ],
+      "label": "artists",
+      "table": "Artist",
+      "key": [
+        "artistId"
+      ],
+      "foreignKeys": [],
+      "conditions": []
+    },
+    {
+      "name": "Track",
+      "properties": [
+        {
+          "name": "trackId",
+          "column": "TrackId",
+          "type": "integer",
+          "nullable": false,
+          "generate": {
+            "using": "seqhilo",
+            "sequence": "__verse_seqhilo"
+          },
+          "kind": "int"
+        },
+        {
+          "name": "name",
+          "column": "Name",
+          "type": "varchar(255)",
+          "nullable": false,
+          "kind": "string",
+          "maxLength": 255
+        },
+        {
+          "name": "theAlbumId",
+          "column": "AlbumId",
+          "type": "integer",
+          "nullable": false,
+          "kind": "int"
+        },
+        {
+          "name": "genreId",
+          "column": "GenreId",
+          "type": "integer",
+          "nullable": false,
+          "kind": "int"
+        },
+        {
+          "name": "composer",
+          "column": "Composer",
+          "type": "varchar(255)",
+          "nullable": true,
+          "kind": "string",
+          "maxLength": 255
+        }
+      ],
+      "label": "tracks",
+      "table": "Track",
+      "key": [
+        "trackId"
+      ],
+      "foreignKeys": [],
+      "conditions": []
+    }
+  ],
+  "values": [],
+  "sequences": [
+    {
+      "name": "__verse_seqhilo",
+      "start": 1,
+      "increment": 10
+    }
+  ],
+  "conversions": [
+    [
+      null,
+      {
+        "read": "(v) => (v === 1 ? true : v === 0 ? false : v)",
+        "write": "(v) => (v === true ? 1 : v === false ? 0 : v)"
+      }
+    ]
+  ]
+}

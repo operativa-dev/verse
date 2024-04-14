@@ -1,0 +1,62 @@
+[
+  Album {
+    "albumId": 270,
+    "artistId": 205,
+    "title": "Carry On",
+  },
+  Album {
+    "albumId": 5,
+    "artistId": 3,
+    "title": "Big Ones",
+  },
+  Album {
+    "albumId": 7,
+    "artistId": 5,
+    "title": "Facelift",
+  },
+  Album {
+    "albumId": 28,
+    "artistId": 20,
+    "title": "Na Pista",
+  },
+  Album {
+    "albumId": 60,
+    "artistId": 58,
+    "title": "Fireball",
+  },
+  Album {
+    "albumId": 68,
+    "artistId": 79,
+    "title": "Outbreak",
+  },
+  Album {
+    "albumId": 88,
+    "artistId": 87,
+    "title": "Faceless",
+  },
+  Album {
+    "albumId": 119,
+    "artistId": 93,
+    "title": "Get Born",
+  },
+  Album {
+    "albumId": 136,
+    "artistId": 22,
+    "title": "Presence",
+  },
+  Album {
+    "albumId": 180,
+    "artistId": 118,
+    "title": "Riot Act",
+  },
+  Album {
+    "albumId": 219,
+    "artistId": 143,
+    "title": "Tangents",
+  },
+  Album {
+    "albumId": 224,
+    "artistId": 146,
+    "title": "Acústico",
+  },
+]

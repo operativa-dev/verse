@@ -1,0 +1,28 @@
+[
+  SqlInsert {
+    "columns": Immutable.List [
+      SqlIdentifier {
+        "name": "Id",
+      },
+      SqlIdentifier {
+        "name": "Name",
+      },
+      SqlIdentifier {
+        "name": "Dob",
+      },
+    ],
+    "returning": Immutable.List [],
+    "table": SqlIdentifier {
+      "name": "Customer",
+    },
+    "values": Immutable.List [
+      SqlNumber {
+        "value": 3,
+      },
+      SqlString {
+        "value": "C",
+      },
+      SqlNull {},
+    ],
+  },
+]

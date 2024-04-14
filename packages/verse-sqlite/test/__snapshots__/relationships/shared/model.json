@@ -138,6 +138,13 @@
         "read": "(v) => (v === 1 ? true : v === 0 ? false : v)",
         "write": "(v) => (v === true ? 1 : v === false ? 0 : v)"
       }
+    ],
+    [
+      null,
+      {
+        "read": "(s) => (s ? new Date(s) : s)",
+        "write": "(d) => (d ? d.toISOString() : d)"
+      }
     ]
   ]
 }

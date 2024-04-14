@@ -59,7 +59,7 @@ export const migrationsTests = (
     expect(await verse.database.exists()).toEqual(true);
   });
 
-  test("don't create database when exists", async () => {
+  test("dont create database when exists", async () => {
     await verse.config.driver.create();
     await migrator.migrate();
   });

@@ -28,6 +28,7 @@ import {
   SqlLike,
   SqlMember,
   SqlNegation,
+  SqlNextValue,
   SqlNode,
   SqlNot,
   SqlNotLike,
@@ -184,6 +185,11 @@ export abstract class SqlRewriter extends SqlVisitor<SqlNode> {
   override visitIdentifier(identifier: SqlIdentifier) {
     this.beforeVisit(identifier);
     return identifier.rewrite(this);
+  }
+
+  override visitNextValue(nextValue: SqlNextValue) {
+    this.beforeVisit(nextValue);
+    return nextValue.rewrite(this);
   }
 
   override visitFunction(func: SqlFunction) {

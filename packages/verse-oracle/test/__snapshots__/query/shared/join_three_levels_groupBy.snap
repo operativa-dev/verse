@@ -1,0 +1,273 @@
+[
+  {
+    "items": [
+      [
+        Track {
+          "album": undefined,
+          "composer": "Arnaldo Baptista - Rita Lee",
+          "genreId": 4,
+          "name": "Balada Do Louco",
+          "theAlbumId": 42,
+          "trackId": 529,
+        },
+        Album {
+          "albumId": 42,
+          "artistId": 57,
+          "title": "Minha História",
+        },
+        Artist {
+          "artistId": 57,
+          "name": "Os Mutantes",
+        },
+      ],
+      [
+        Track {
+          "album": undefined,
+          "composer": "Arnaldo Baptista - Rita Lee - Sérgio Dias",
+          "genreId": 4,
+          "name": "Meu Refrigerador Não Funciona",
+          "theAlbumId": 42,
+          "trackId": 542,
+        },
+        Album {
+          "albumId": 42,
+          "artistId": 57,
+          "title": "Minha História",
+        },
+        Artist {
+          "artistId": 57,
+          "name": "Os Mutantes",
+        },
+      ],
+      [
+        Track {
+          "album": undefined,
+          "composer": "B. de Filippi - F. Migliaci - Versão: Fred Jorge",
+          "genreId": 4,
+          "name": "Banho De Lua",
+          "theAlbumId": 42,
+          "trackId": 541,
+        },
+        Album {
+          "albumId": 42,
+          "artistId": 57,
+          "title": "Minha História",
+        },
+        Artist {
+          "artistId": 57,
+          "name": "Os Mutantes",
+        },
+      ],
+      [
+        Track {
+          "album": undefined,
+          "composer": "Arnaldo Baptista - Rita Lee - Arnolpho Lima Filho",
+          "genreId": 4,
+          "name": "Posso Perder Minha Mulher, Minha Mãe, Desde Que Eu Tenha O Rock And Roll",
+          "theAlbumId": 42,
+          "trackId": 540,
+        },
+        Album {
+          "albumId": 42,
+          "artistId": 57,
+          "title": "Minha História",
+        },
+        Artist {
+          "artistId": 57,
+          "name": "Os Mutantes",
+        },
+      ],
+      [
+        Track {
+          "album": undefined,
+          "composer": "Arnaldo Baptista/Rita Lee/Sérgio Dias",
+          "genreId": 4,
+          "name": "Rita Lee",
+          "theAlbumId": 42,
+          "trackId": 539,
+        },
+        Album {
+          "albumId": 42,
+          "artistId": 57,
+          "title": "Minha História",
+        },
+        Artist {
+          "artistId": 57,
+          "name": "Os Mutantes",
+        },
+      ],
+      [
+        Track {
+          "album": undefined,
+          "composer": "Arnaldo Baptista - Rita Lee",
+          "genreId": 4,
+          "name": "Desculpe Babe",
+          "theAlbumId": 42,
+          "trackId": 538,
+        },
+        Album {
+          "albumId": 42,
+          "artistId": 57,
+          "title": "Minha História",
+        },
+        Artist {
+          "artistId": 57,
+          "name": "Os Mutantes",
+        },
+      ],
+      [
+        Track {
+          "album": undefined,
+          "composer": "Gilberto Gil - Caetano Veloso",
+          "genreId": 4,
+          "name": "Bat Macumba",
+          "theAlbumId": 42,
+          "trackId": 537,
+        },
+        Album {
+          "albumId": 42,
+          "artistId": 57,
+          "title": "Minha História",
+        },
+        Artist {
+          "artistId": 57,
+          "name": "Os Mutantes",
+        },
+      ],
+      [
+        Track {
+          "album": undefined,
+          "composer": "Rita Lee - Arnaldo Baptista - Sérgio Baptista",
+          "genreId": 4,
+          "name": "Vida De Cachorro",
+          "theAlbumId": 42,
+          "trackId": 536,
+        },
+        Album {
+          "albumId": 42,
+          "artistId": 57,
+          "title": "Minha História",
+        },
+        Artist {
+          "artistId": 57,
+          "name": "Os Mutantes",
+        },
+      ],
+      [
+        Track {
+          "album": undefined,
+          "composer": "Orestes Barbosa-Sílvio Caldas",
+          "genreId": 4,
+          "name": "Chão De Estrelas",
+          "theAlbumId": 42,
+          "trackId": 535,
+        },
+        Album {
+          "albumId": 42,
+          "artistId": 57,
+          "title": "Minha História",
+        },
+        Artist {
+          "artistId": 57,
+          "name": "Os Mutantes",
+        },
+      ],
+      [
+        Track {
+          "album": undefined,
+          "composer": "Caetano Veloso - Gilberto Gil",
+          "genreId": 4,
+          "name": "Panis Et Circenses",
+          "theAlbumId": 42,
+          "trackId": 534,
+        },
+        Album {
+          "albumId": 42,
+          "artistId": 57,
+          "title": "Minha História",
+        },
+        Artist {
+          "artistId": 57,
+          "name": "Os Mutantes",
+        },
+      ],
+      [
+        Track {
+          "album": undefined,
+          "composer": "Mutantes",
+          "genreId": 4,
+          "name": "A E O Z",
+          "theAlbumId": 42,
+          "trackId": 533,
+        },
+        Album {
+          "albumId": 42,
+          "artistId": 57,
+          "title": "Minha História",
+        },
+        Artist {
+          "artistId": 57,
+          "name": "Os Mutantes",
+        },
+      ],
+      [
+        Track {
+          "album": undefined,
+          "composer": "Caetano Veloso",
+          "genreId": 4,
+          "name": "Baby",
+          "theAlbumId": 42,
+          "trackId": 532,
+        },
+        Album {
+          "albumId": 42,
+          "artistId": 57,
+          "title": "Minha História",
+        },
+        Artist {
+          "artistId": 57,
+          "name": "Os Mutantes",
+        },
+      ],
+      [
+        Track {
+          "album": undefined,
+          "composer": "Os Mutantes - Arnolpho Lima Filho",
+          "genreId": 4,
+          "name": "Top Top",
+          "theAlbumId": 42,
+          "trackId": 531,
+        },
+        Album {
+          "albumId": 42,
+          "artistId": 57,
+          "title": "Minha História",
+        },
+        Artist {
+          "artistId": 57,
+          "name": "Os Mutantes",
+        },
+      ],
+      [
+        Track {
+          "album": undefined,
+          "composer": "Arnaldo Baptista - Rita Lee -  Sérgio Dias",
+          "genreId": 4,
+          "name": "Ando Meio Desligado",
+          "theAlbumId": 42,
+          "trackId": 530,
+        },
+        Album {
+          "albumId": 42,
+          "artistId": 57,
+          "title": "Minha História",
+        },
+        Artist {
+          "artistId": 57,
+          "name": "Os Mutantes",
+        },
+      ],
+    ],
+    "key": 57,
+  },
+]

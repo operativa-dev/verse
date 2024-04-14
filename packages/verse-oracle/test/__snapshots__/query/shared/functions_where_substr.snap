@@ -1,0 +1,12 @@
+[
+  Album {
+    "albumId": 157,
+    "artistId": 68,
+    "title": "Miles Ahead",
+  },
+  Album {
+    "albumId": 158,
+    "artistId": 42,
+    "title": "Milton Nascimento Ao Vivo",
+  },
+]

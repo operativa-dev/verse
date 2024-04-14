@@ -39,6 +39,8 @@
       <excludeFolder url="file://$MODULE_DIR$/apps/docs/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/apps/docs/build" />
       <excludeFolder url="file://$MODULE_DIR$/packages/scripts/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/verse-oracle/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/verse-oracle/dist" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
