@@ -16,9 +16,9 @@ export default async function Orders({ params }: { params: Props }) {
     <>
       <EditOrder
         orderId={parseInt(params.id)}
-        orderIn={JSON.parse(JSON.stringify(order))}
-        itemsIn={JSON.parse(JSON.stringify(items))}
-        products={JSON.parse(JSON.stringify(productList))}
+        orderIn={order}
+        itemsIn={items}
+        products={productList}
       />
     </>
   );

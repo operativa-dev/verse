@@ -16,14 +16,14 @@ export async function fetchItems(currentOrderId: number) {
   const items = await uow.items
     .where((item, $currentOrderId) => item.orderId === $currentOrderId, currentOrderId)
     .toArray();
-  return JSON.parse(JSON.stringify(items));
+  return items;
 }
 export async function fetchOrder(currentOrderId: number) {
   "use server";
   const order = await db.from.orders
     .where((order, $orderIdIn: number) => order.orderId === $orderIdIn, currentOrderId)
     .single();
-  return JSON.parse(JSON.stringify(order));
+  return order;
 }
 
 export async function createOrderServer(data: any) {
@@ -71,6 +71,7 @@ export async function getProductsResults(offset: number, limit: number, search: 
   );
   return {
     count: await productsQueryParamsCount(search),
+    // body: await productsQueryParams(offset, limit, search).toArray(),
     body: JSON.parse(JSON.stringify(await productsQueryParams(offset, limit, search).toArray())),
   };
 }
@@ -226,7 +227,7 @@ export async function updateOrderServer(
       returnObject = {
         error: error.message,
         currentChange: items,
-        serverChange: JSON.parse(JSON.stringify(serverItems)),
+        serverChange: serverItems,
         orderLocked: order.lock,
       };
       return returnObject;

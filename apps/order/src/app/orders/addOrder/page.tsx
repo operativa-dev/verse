@@ -6,7 +6,7 @@ export default async function Page() {
 
   return (
     <>
-      <CreateOrder products={JSON.parse(JSON.stringify(products))} />
+      <CreateOrder products={products} />
     </>
   );
 }
