@@ -14,6 +14,6 @@
   "devDependencies": {
     "@operativa/verse-cli": "workspace:*",
     "@operativa/verse-migrations": "workspace:*",
-    "tsx": "^4.7.1"
+    "tsx": "^4.7.2"
   }
 }
