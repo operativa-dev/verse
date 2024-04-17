@@ -1,113 +1,5 @@
 [
   Artist {
-    "artistId": 250,
-    "name": "Christopher O'Riley",
-  },
-  Artist {
-    "artistId": 251,
-    "name": "Fretwork",
-  },
-  Artist {
-    "artistId": 252,
-    "name": "Amy Winehouse",
-  },
-  Artist {
-    "artistId": 252,
-    "name": "Amy Winehouse",
-  },
-  Artist {
-    "artistId": 253,
-    "name": "Calexico",
-  },
-  Artist {
-    "artistId": 254,
-    "name": "Otto Klemperer & Philharmonia Orchestra",
-  },
-  Artist {
-    "artistId": 255,
-    "name": "Yehudi Menuhin",
-  },
-  Artist {
-    "artistId": 256,
-    "name": "Philharmonia Orchestra & Sir Neville Marriner",
-  },
-  Artist {
-    "artistId": 257,
-    "name": "Academy of St. Martin in the Fields, Sir Neville Marriner & Thurston Dart",
-  },
-  Artist {
-    "artistId": 258,
-    "name": "Les Arts Florissants & William Christie",
-  },
-  Artist {
-    "artistId": 259,
-    "name": "The 12 Cellists of The Berlin Philharmonic",
-  },
-  Artist {
-    "artistId": 260,
-    "name": "Adrian Leaper & Doreen de Feis",
-  },
-  Artist {
-    "artistId": 261,
-    "name": "Roger Norrington, London Classical Players",
-  },
-  Artist {
-    "artistId": 262,
-    "name": "Charles Dutoit & L'Orchestre Symphonique de Montréal",
-  },
-  Artist {
-    "artistId": 263,
-    "name": "Equale Brass Ensemble, John Eliot Gardiner & Munich Monteverdi Orchestra and Choir",
-  },
-  Artist {
-    "artistId": 264,
-    "name": "Kent Nagano and Orchestre de l'Opéra de Lyon",
-  },
-  Artist {
-    "artistId": 265,
-    "name": "Julian Bream",
-  },
-  Artist {
-    "artistId": 266,
-    "name": "Martin Roscoe",
-  },
-  Artist {
-    "artistId": 267,
-    "name": "Göteborgs Symfoniker & Neeme Järvi",
-  },
-  Artist {
-    "artistId": 268,
-    "name": "Itzhak Perlman",
-  },
-  Artist {
-    "artistId": 269,
-    "name": "Michele Campanella",
-  },
-  Artist {
-    "artistId": 270,
-    "name": "Gerald Moore",
-  },
-  Artist {
-    "artistId": 271,
-    "name": "Mela Tenenbaum, Pro Musica Prague & Richard Kapp",
-  },
-  Artist {
-    "artistId": 272,
-    "name": "Emerson String Quartet",
-  },
-  Artist {
-    "artistId": 273,
-    "name": "C. Monteverdi, Nigel Rogers - Chiaroscuro; London Baroque; London Cornett & Sackbu",
-  },
-  Artist {
-    "artistId": 274,
-    "name": "Nash Ensemble",
-  },
-  Artist {
-    "artistId": 275,
-    "name": "Philip Glass Ensemble",
-  },
-  Artist {
     "artistId": 1,
     "name": "AC/DC",
   },
@@ -1386,5 +1278,113 @@
   Artist {
     "artistId": 249,
     "name": "Sir Georg Solti, Sumi Jo & Wiener Philharmoniker",
+  },
+  Artist {
+    "artistId": 250,
+    "name": "Christopher O'Riley",
+  },
+  Artist {
+    "artistId": 251,
+    "name": "Fretwork",
+  },
+  Artist {
+    "artistId": 252,
+    "name": "Amy Winehouse",
+  },
+  Artist {
+    "artistId": 252,
+    "name": "Amy Winehouse",
+  },
+  Artist {
+    "artistId": 253,
+    "name": "Calexico",
+  },
+  Artist {
+    "artistId": 254,
+    "name": "Otto Klemperer & Philharmonia Orchestra",
+  },
+  Artist {
+    "artistId": 255,
+    "name": "Yehudi Menuhin",
+  },
+  Artist {
+    "artistId": 256,
+    "name": "Philharmonia Orchestra & Sir Neville Marriner",
+  },
+  Artist {
+    "artistId": 257,
+    "name": "Academy of St. Martin in the Fields, Sir Neville Marriner & Thurston Dart",
+  },
+  Artist {
+    "artistId": 258,
+    "name": "Les Arts Florissants & William Christie",
+  },
+  Artist {
+    "artistId": 259,
+    "name": "The 12 Cellists of The Berlin Philharmonic",
+  },
+  Artist {
+    "artistId": 260,
+    "name": "Adrian Leaper & Doreen de Feis",
+  },
+  Artist {
+    "artistId": 261,
+    "name": "Roger Norrington, London Classical Players",
+  },
+  Artist {
+    "artistId": 262,
+    "name": "Charles Dutoit & L'Orchestre Symphonique de Montréal",
+  },
+  Artist {
+    "artistId": 263,
+    "name": "Equale Brass Ensemble, John Eliot Gardiner & Munich Monteverdi Orchestra and Choir",
+  },
+  Artist {
+    "artistId": 264,
+    "name": "Kent Nagano and Orchestre de l'Opéra de Lyon",
+  },
+  Artist {
+    "artistId": 265,
+    "name": "Julian Bream",
+  },
+  Artist {
+    "artistId": 266,
+    "name": "Martin Roscoe",
+  },
+  Artist {
+    "artistId": 267,
+    "name": "Göteborgs Symfoniker & Neeme Järvi",
+  },
+  Artist {
+    "artistId": 268,
+    "name": "Itzhak Perlman",
+  },
+  Artist {
+    "artistId": 269,
+    "name": "Michele Campanella",
+  },
+  Artist {
+    "artistId": 270,
+    "name": "Gerald Moore",
+  },
+  Artist {
+    "artistId": 271,
+    "name": "Mela Tenenbaum, Pro Musica Prague & Richard Kapp",
+  },
+  Artist {
+    "artistId": 272,
+    "name": "Emerson String Quartet",
+  },
+  Artist {
+    "artistId": 273,
+    "name": "C. Monteverdi, Nigel Rogers - Chiaroscuro; London Baroque; London Cornett & Sackbu",
+  },
+  Artist {
+    "artistId": 274,
+    "name": "Nash Ensemble",
+  },
+  Artist {
+    "artistId": 275,
+    "name": "Philip Glass Ensemble",
   },
 ]

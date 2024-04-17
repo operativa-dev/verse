@@ -1,575 +1,5 @@
 [
   Album {
-    "albumId": 226,
-    "artistId": 147,
-    "title": "Battlestar Galactica: The Story So Far",
-  },
-  Album {
-    "albumId": 227,
-    "artistId": 147,
-    "title": "Battlestar Galactica, Season 3",
-  },
-  Album {
-    "albumId": 228,
-    "artistId": 148,
-    "title": "Heroes, Season 1",
-  },
-  Album {
-    "albumId": 229,
-    "artistId": 149,
-    "title": "Lost, Season 3",
-  },
-  Album {
-    "albumId": 230,
-    "artistId": 149,
-    "title": "Lost, Season 1",
-  },
-  Album {
-    "albumId": 231,
-    "artistId": 149,
-    "title": "Lost, Season 2",
-  },
-  Album {
-    "albumId": 232,
-    "artistId": 150,
-    "title": "Achtung Baby",
-  },
-  Album {
-    "albumId": 233,
-    "artistId": 150,
-    "title": "All That You Can't Leave Behind",
-  },
-  Album {
-    "albumId": 234,
-    "artistId": 150,
-    "title": "B-Sides 1980-1990",
-  },
-  Album {
-    "albumId": 235,
-    "artistId": 150,
-    "title": "How To Dismantle An Atomic Bomb",
-  },
-  Album {
-    "albumId": 236,
-    "artistId": 150,
-    "title": "Pop",
-  },
-  Album {
-    "albumId": 237,
-    "artistId": 150,
-    "title": "Rattle And Hum",
-  },
-  Album {
-    "albumId": 238,
-    "artistId": 150,
-    "title": "The Best Of 1980-1990",
-  },
-  Album {
-    "albumId": 239,
-    "artistId": 150,
-    "title": "War",
-  },
-  Album {
-    "albumId": 240,
-    "artistId": 150,
-    "title": "Zooropa",
-  },
-  Album {
-    "albumId": 241,
-    "artistId": 151,
-    "title": "UB40 The Best Of - Volume Two [UK]",
-  },
-  Album {
-    "albumId": 242,
-    "artistId": 152,
-    "title": "Diver Down",
-  },
-  Album {
-    "albumId": 243,
-    "artistId": 152,
-    "title": "The Best Of Van Halen, Vol. I",
-  },
-  Album {
-    "albumId": 244,
-    "artistId": 152,
-    "title": "Van Halen",
-  },
-  Album {
-    "albumId": 245,
-    "artistId": 152,
-    "title": "Van Halen III",
-  },
-  Album {
-    "albumId": 246,
-    "artistId": 153,
-    "title": "Contraband",
-  },
-  Album {
-    "albumId": 247,
-    "artistId": 72,
-    "title": "Vinicius De Moraes",
-  },
-  Album {
-    "albumId": 248,
-    "artistId": 155,
-    "title": "Ao Vivo [IMPORT]",
-  },
-  Album {
-    "albumId": 249,
-    "artistId": 156,
-    "title": "The Office, Season 1",
-  },
-  Album {
-    "albumId": 250,
-    "artistId": 156,
-    "title": "The Office, Season 2",
-  },
-  Album {
-    "albumId": 251,
-    "artistId": 156,
-    "title": "The Office, Season 3",
-  },
-  Album {
-    "albumId": 252,
-    "artistId": 157,
-    "title": "Un-Led-Ed",
-  },
-  Album {
-    "albumId": 253,
-    "artistId": 158,
-    "title": "Battlestar Galactica (Classic), Season 1",
-  },
-  Album {
-    "albumId": 254,
-    "artistId": 159,
-    "title": "Aquaman",
-  },
-  Album {
-    "albumId": 255,
-    "artistId": 150,
-    "title": "Instant Karma: The Amnesty International Campaign to Save Darfur",
-  },
-  Album {
-    "albumId": 256,
-    "artistId": 114,
-    "title": "Speak of the Devil",
-  },
-  Album {
-    "albumId": 257,
-    "artistId": 179,
-    "title": "20th Century Masters - The Millennium Collection: The Best of Scorpions",
-  },
-  Album {
-    "albumId": 258,
-    "artistId": 180,
-    "title": "House of Pain",
-  },
-  Album {
-    "albumId": 259,
-    "artistId": 36,
-    "title": "Radio Brasil (O Som da Jovem Vanguarda) - Seleccao de Henrique Amaro",
-  },
-  Album {
-    "albumId": 260,
-    "artistId": 196,
-    "title": "Cake: B-Sides and Rarities",
-  },
-  Album {
-    "albumId": 261,
-    "artistId": 149,
-    "title": "LOST, Season 4",
-  },
-  Album {
-    "albumId": 262,
-    "artistId": 197,
-    "title": "Quiet Songs",
-  },
-  Album {
-    "albumId": 264,
-    "artistId": 199,
-    "title": "Realize",
-  },
-  Album {
-    "albumId": 265,
-    "artistId": 200,
-    "title": "Every Kind of Light",
-  },
-  Album {
-    "albumId": 266,
-    "artistId": 201,
-    "title": "Duos II",
-  },
-  Album {
-    "albumId": 267,
-    "artistId": 202,
-    "title": "Worlds",
-  },
-  Album {
-    "albumId": 268,
-    "artistId": 203,
-    "title": "The Best of Beethoven",
-  },
-  Album {
-    "albumId": 269,
-    "artistId": 204,
-    "title": "Temple of the Dog",
-  },
-  Album {
-    "albumId": 270,
-    "artistId": 205,
-    "title": "Carry On",
-  },
-  Album {
-    "albumId": 271,
-    "artistId": 8,
-    "title": "Revelations",
-  },
-  Album {
-    "albumId": 272,
-    "artistId": 206,
-    "title": "Adorate Deum: Gregorian Chant from the Proper of the Mass",
-  },
-  Album {
-    "albumId": 273,
-    "artistId": 207,
-    "title": "Allegri: Miserere",
-  },
-  Album {
-    "albumId": 274,
-    "artistId": 208,
-    "title": "Pachelbel: Canon & Gigue",
-  },
-  Album {
-    "albumId": 275,
-    "artistId": 209,
-    "title": "Vivaldi: The Four Seasons",
-  },
-  Album {
-    "albumId": 276,
-    "artistId": 210,
-    "title": "Bach: Violin Concertos",
-  },
-  Album {
-    "albumId": 277,
-    "artistId": 211,
-    "title": "Bach: Goldberg Variations",
-  },
-  Album {
-    "albumId": 278,
-    "artistId": 212,
-    "title": "Bach: The Cello Suites",
-  },
-  Album {
-    "albumId": 279,
-    "artistId": 213,
-    "title": "Handel: The Messiah (Highlights)",
-  },
-  Album {
-    "albumId": 280,
-    "artistId": 214,
-    "title": "The World of Classical Favourites",
-  },
-  Album {
-    "albumId": 281,
-    "artistId": 215,
-    "title": "Sir Neville Marriner: A Celebration",
-  },
-  Album {
-    "albumId": 283,
-    "artistId": 217,
-    "title": "Haydn: Symphonies 99 - 104",
-  },
-  Album {
-    "albumId": 284,
-    "artistId": 218,
-    "title": "Beethoven: Symhonies Nos. 5 & 6",
-  },
-  Album {
-    "albumId": 285,
-    "artistId": 219,
-    "title": "A Soprano Inspired",
-  },
-  Album {
-    "albumId": 286,
-    "artistId": 220,
-    "title": "Great Opera Choruses",
-  },
-  Album {
-    "albumId": 287,
-    "artistId": 221,
-    "title": "Wagner: Favourite Overtures",
-  },
-  Album {
-    "albumId": 288,
-    "artistId": 222,
-    "title": "Fauré: Requiem, Ravel: Pavane & Others",
-  },
-  Album {
-    "albumId": 289,
-    "artistId": 223,
-    "title": "Tchaikovsky: The Nutcracker",
-  },
-  Album {
-    "albumId": 290,
-    "artistId": 224,
-    "title": "The Last Night of the Proms",
-  },
-  Album {
-    "albumId": 291,
-    "artistId": 225,
-    "title": "Puccini: Madama Butterfly - Highlights",
-  },
-  Album {
-    "albumId": 292,
-    "artistId": 226,
-    "title": "Holst: The Planets, Op. 32 & Vaughan Williams: Fantasies",
-  },
-  Album {
-    "albumId": 293,
-    "artistId": 227,
-    "title": "Pavarotti's Opera Made Easy",
-  },
-  Album {
-    "albumId": 294,
-    "artistId": 228,
-    "title": "Great Performances - Barber's Adagio and Other Romantic Favorites for Strings",
-  },
-  Album {
-    "albumId": 295,
-    "artistId": 229,
-    "title": "Carmina Burana",
-  },
-  Album {
-    "albumId": 296,
-    "artistId": 230,
-    "title": "A Copland Celebration, Vol. I",
-  },
-  Album {
-    "albumId": 297,
-    "artistId": 231,
-    "title": "Bach: Toccata & Fugue in D Minor",
-  },
-  Album {
-    "albumId": 298,
-    "artistId": 232,
-    "title": "Prokofiev: Symphony No.1",
-  },
-  Album {
-    "albumId": 299,
-    "artistId": 233,
-    "title": "Scheherazade",
-  },
-  Album {
-    "albumId": 300,
-    "artistId": 234,
-    "title": "Bach: The Brandenburg Concertos",
-  },
-  Album {
-    "albumId": 301,
-    "artistId": 235,
-    "title": "Chopin: Piano Concertos Nos. 1 & 2",
-  },
-  Album {
-    "albumId": 303,
-    "artistId": 237,
-    "title": "Sibelius: Finlandia",
-  },
-  Album {
-    "albumId": 304,
-    "artistId": 238,
-    "title": "Beethoven Piano Sonatas: Moonlight & Pastorale",
-  },
-  Album {
-    "albumId": 305,
-    "artistId": 240,
-    "title": "Great Recordings of the Century - Mahler: Das Lied von der Erde",
-  },
-  Album {
-    "albumId": 306,
-    "artistId": 241,
-    "title": "Elgar: Cello Concerto & Vaughan Williams: Fantasias",
-  },
-  Album {
-    "albumId": 307,
-    "artistId": 242,
-    "title": "Adams, John: The Chairman Dances",
-  },
-  Album {
-    "albumId": 308,
-    "artistId": 243,
-    "title": "Tchaikovsky: 1812 Festival Overture, Op.49, Capriccio Italien & Beethoven: Wellington's Victory",
-  },
-  Album {
-    "albumId": 309,
-    "artistId": 244,
-    "title": "Palestrina: Missa Papae Marcelli & Allegri: Miserere",
-  },
-  Album {
-    "albumId": 310,
-    "artistId": 245,
-    "title": "Prokofiev: Romeo & Juliet",
-  },
-  Album {
-    "albumId": 311,
-    "artistId": 226,
-    "title": "Strauss: Waltzes",
-  },
-  Album {
-    "albumId": 312,
-    "artistId": 245,
-    "title": "Berlioz: Symphonie Fantastique",
-  },
-  Album {
-    "albumId": 313,
-    "artistId": 246,
-    "title": "Bizet: Carmen Highlights",
-  },
-  Album {
-    "albumId": 314,
-    "artistId": 247,
-    "title": "English Renaissance",
-  },
-  Album {
-    "albumId": 315,
-    "artistId": 208,
-    "title": "Handel: Music for the Royal Fireworks (Original Version 1749)",
-  },
-  Album {
-    "albumId": 316,
-    "artistId": 248,
-    "title": "Grieg: Peer Gynt Suites & Sibelius: Pelléas et Mélisande",
-  },
-  Album {
-    "albumId": 318,
-    "artistId": 250,
-    "title": "SCRIABIN: Vers la flamme",
-  },
-  Album {
-    "albumId": 319,
-    "artistId": 251,
-    "title": "Armada: Music from the Courts of England and Spain",
-  },
-  Album {
-    "albumId": 321,
-    "artistId": 252,
-    "title": "Back to Black",
-  },
-  Album {
-    "albumId": 322,
-    "artistId": 252,
-    "title": "Frank",
-  },
-  Album {
-    "albumId": 323,
-    "artistId": 253,
-    "title": "Carried to Dust (Bonus Track Version)",
-  },
-  Album {
-    "albumId": 324,
-    "artistId": 254,
-    "title": "Beethoven: Symphony No. 6 'Pastoral' Etc.",
-  },
-  Album {
-    "albumId": 325,
-    "artistId": 255,
-    "title": "Bartok: Violin & Viola Concertos",
-  },
-  Album {
-    "albumId": 327,
-    "artistId": 257,
-    "title": "Bach: Orchestral Suites Nos. 1 - 4",
-  },
-  Album {
-    "albumId": 328,
-    "artistId": 258,
-    "title": "Charpentier: Divertissements, Airs & Concerts",
-  },
-  Album {
-    "albumId": 329,
-    "artistId": 259,
-    "title": "South American Getaway",
-  },
-  Album {
-    "albumId": 330,
-    "artistId": 260,
-    "title": "Górecki: Symphony No. 3",
-  },
-  Album {
-    "albumId": 331,
-    "artistId": 261,
-    "title": "Purcell: The Fairy Queen",
-  },
-  Album {
-    "albumId": 332,
-    "artistId": 262,
-    "title": "The Ultimate Relexation Album",
-  },
-  Album {
-    "albumId": 333,
-    "artistId": 263,
-    "title": "Purcell: Music for the Queen Mary",
-  },
-  Album {
-    "albumId": 334,
-    "artistId": 264,
-    "title": "Weill: The Seven Deadly Sins",
-  },
-  Album {
-    "albumId": 335,
-    "artistId": 265,
-    "title": "J.S. Bach: Chaconne, Suite in E Minor, Partita in E Major & Prelude, Fugue and Allegro",
-  },
-  Album {
-    "albumId": 336,
-    "artistId": 248,
-    "title": "Prokofiev: Symphony No.5 & Stravinksy: Le Sacre Du Printemps",
-  },
-  Album {
-    "albumId": 337,
-    "artistId": 266,
-    "title": "Szymanowski: Piano Works, Vol. 1",
-  },
-  Album {
-    "albumId": 338,
-    "artistId": 267,
-    "title": "Nielsen: The Six Symphonies",
-  },
-  Album {
-    "albumId": 339,
-    "artistId": 268,
-    "title": "Great Recordings of the Century: Paganini's 24 Caprices",
-  },
-  Album {
-    "albumId": 340,
-    "artistId": 269,
-    "title": "Liszt - 12 Études D'Execution Transcendante",
-  },
-  Album {
-    "albumId": 341,
-    "artistId": 270,
-    "title": "Great Recordings of the Century - Shubert: Schwanengesang, 4 Lieder",
-  },
-  Album {
-    "albumId": 342,
-    "artistId": 271,
-    "title": "Locatelli: Concertos for Violin, Strings and Continuo, Vol. 3",
-  },
-  Album {
-    "albumId": 343,
-    "artistId": 226,
-    "title": "Respighi:Pines of Rome",
-  },
-  Album {
-    "albumId": 344,
-    "artistId": 272,
-    "title": "Schubert: The Late String Quartets & String Quintet (3 CD's)",
-  },
-  Album {
-    "albumId": 347,
-    "artistId": 275,
-    "title": "Koyaanisqatsi (Soundtrack from the Motion Picture)",
-  },
-  Album {
     "albumId": 1,
     "artistId": 1,
     "title": "For Those About To Rock We Salute You",
@@ -1608,5 +1038,575 @@
     "albumId": 225,
     "artistId": 146,
     "title": "Volume Dois",
+  },
+  Album {
+    "albumId": 226,
+    "artistId": 147,
+    "title": "Battlestar Galactica: The Story So Far",
+  },
+  Album {
+    "albumId": 227,
+    "artistId": 147,
+    "title": "Battlestar Galactica, Season 3",
+  },
+  Album {
+    "albumId": 228,
+    "artistId": 148,
+    "title": "Heroes, Season 1",
+  },
+  Album {
+    "albumId": 229,
+    "artistId": 149,
+    "title": "Lost, Season 3",
+  },
+  Album {
+    "albumId": 230,
+    "artistId": 149,
+    "title": "Lost, Season 1",
+  },
+  Album {
+    "albumId": 231,
+    "artistId": 149,
+    "title": "Lost, Season 2",
+  },
+  Album {
+    "albumId": 232,
+    "artistId": 150,
+    "title": "Achtung Baby",
+  },
+  Album {
+    "albumId": 233,
+    "artistId": 150,
+    "title": "All That You Can't Leave Behind",
+  },
+  Album {
+    "albumId": 234,
+    "artistId": 150,
+    "title": "B-Sides 1980-1990",
+  },
+  Album {
+    "albumId": 235,
+    "artistId": 150,
+    "title": "How To Dismantle An Atomic Bomb",
+  },
+  Album {
+    "albumId": 236,
+    "artistId": 150,
+    "title": "Pop",
+  },
+  Album {
+    "albumId": 237,
+    "artistId": 150,
+    "title": "Rattle And Hum",
+  },
+  Album {
+    "albumId": 238,
+    "artistId": 150,
+    "title": "The Best Of 1980-1990",
+  },
+  Album {
+    "albumId": 239,
+    "artistId": 150,
+    "title": "War",
+  },
+  Album {
+    "albumId": 240,
+    "artistId": 150,
+    "title": "Zooropa",
+  },
+  Album {
+    "albumId": 241,
+    "artistId": 151,
+    "title": "UB40 The Best Of - Volume Two [UK]",
+  },
+  Album {
+    "albumId": 242,
+    "artistId": 152,
+    "title": "Diver Down",
+  },
+  Album {
+    "albumId": 243,
+    "artistId": 152,
+    "title": "The Best Of Van Halen, Vol. I",
+  },
+  Album {
+    "albumId": 244,
+    "artistId": 152,
+    "title": "Van Halen",
+  },
+  Album {
+    "albumId": 245,
+    "artistId": 152,
+    "title": "Van Halen III",
+  },
+  Album {
+    "albumId": 246,
+    "artistId": 153,
+    "title": "Contraband",
+  },
+  Album {
+    "albumId": 247,
+    "artistId": 72,
+    "title": "Vinicius De Moraes",
+  },
+  Album {
+    "albumId": 248,
+    "artistId": 155,
+    "title": "Ao Vivo [IMPORT]",
+  },
+  Album {
+    "albumId": 249,
+    "artistId": 156,
+    "title": "The Office, Season 1",
+  },
+  Album {
+    "albumId": 250,
+    "artistId": 156,
+    "title": "The Office, Season 2",
+  },
+  Album {
+    "albumId": 251,
+    "artistId": 156,
+    "title": "The Office, Season 3",
+  },
+  Album {
+    "albumId": 252,
+    "artistId": 157,
+    "title": "Un-Led-Ed",
+  },
+  Album {
+    "albumId": 253,
+    "artistId": 158,
+    "title": "Battlestar Galactica (Classic), Season 1",
+  },
+  Album {
+    "albumId": 254,
+    "artistId": 159,
+    "title": "Aquaman",
+  },
+  Album {
+    "albumId": 255,
+    "artistId": 150,
+    "title": "Instant Karma: The Amnesty International Campaign to Save Darfur",
+  },
+  Album {
+    "albumId": 256,
+    "artistId": 114,
+    "title": "Speak of the Devil",
+  },
+  Album {
+    "albumId": 257,
+    "artistId": 179,
+    "title": "20th Century Masters - The Millennium Collection: The Best of Scorpions",
+  },
+  Album {
+    "albumId": 258,
+    "artistId": 180,
+    "title": "House of Pain",
+  },
+  Album {
+    "albumId": 259,
+    "artistId": 36,
+    "title": "Radio Brasil (O Som da Jovem Vanguarda) - Seleccao de Henrique Amaro",
+  },
+  Album {
+    "albumId": 260,
+    "artistId": 196,
+    "title": "Cake: B-Sides and Rarities",
+  },
+  Album {
+    "albumId": 261,
+    "artistId": 149,
+    "title": "LOST, Season 4",
+  },
+  Album {
+    "albumId": 262,
+    "artistId": 197,
+    "title": "Quiet Songs",
+  },
+  Album {
+    "albumId": 264,
+    "artistId": 199,
+    "title": "Realize",
+  },
+  Album {
+    "albumId": 265,
+    "artistId": 200,
+    "title": "Every Kind of Light",
+  },
+  Album {
+    "albumId": 266,
+    "artistId": 201,
+    "title": "Duos II",
+  },
+  Album {
+    "albumId": 267,
+    "artistId": 202,
+    "title": "Worlds",
+  },
+  Album {
+    "albumId": 268,
+    "artistId": 203,
+    "title": "The Best of Beethoven",
+  },
+  Album {
+    "albumId": 269,
+    "artistId": 204,
+    "title": "Temple of the Dog",
+  },
+  Album {
+    "albumId": 270,
+    "artistId": 205,
+    "title": "Carry On",
+  },
+  Album {
+    "albumId": 271,
+    "artistId": 8,
+    "title": "Revelations",
+  },
+  Album {
+    "albumId": 272,
+    "artistId": 206,
+    "title": "Adorate Deum: Gregorian Chant from the Proper of the Mass",
+  },
+  Album {
+    "albumId": 273,
+    "artistId": 207,
+    "title": "Allegri: Miserere",
+  },
+  Album {
+    "albumId": 274,
+    "artistId": 208,
+    "title": "Pachelbel: Canon & Gigue",
+  },
+  Album {
+    "albumId": 275,
+    "artistId": 209,
+    "title": "Vivaldi: The Four Seasons",
+  },
+  Album {
+    "albumId": 276,
+    "artistId": 210,
+    "title": "Bach: Violin Concertos",
+  },
+  Album {
+    "albumId": 277,
+    "artistId": 211,
+    "title": "Bach: Goldberg Variations",
+  },
+  Album {
+    "albumId": 278,
+    "artistId": 212,
+    "title": "Bach: The Cello Suites",
+  },
+  Album {
+    "albumId": 279,
+    "artistId": 213,
+    "title": "Handel: The Messiah (Highlights)",
+  },
+  Album {
+    "albumId": 280,
+    "artistId": 214,
+    "title": "The World of Classical Favourites",
+  },
+  Album {
+    "albumId": 281,
+    "artistId": 215,
+    "title": "Sir Neville Marriner: A Celebration",
+  },
+  Album {
+    "albumId": 283,
+    "artistId": 217,
+    "title": "Haydn: Symphonies 99 - 104",
+  },
+  Album {
+    "albumId": 284,
+    "artistId": 218,
+    "title": "Beethoven: Symhonies Nos. 5 & 6",
+  },
+  Album {
+    "albumId": 285,
+    "artistId": 219,
+    "title": "A Soprano Inspired",
+  },
+  Album {
+    "albumId": 286,
+    "artistId": 220,
+    "title": "Great Opera Choruses",
+  },
+  Album {
+    "albumId": 287,
+    "artistId": 221,
+    "title": "Wagner: Favourite Overtures",
+  },
+  Album {
+    "albumId": 288,
+    "artistId": 222,
+    "title": "Fauré: Requiem, Ravel: Pavane & Others",
+  },
+  Album {
+    "albumId": 289,
+    "artistId": 223,
+    "title": "Tchaikovsky: The Nutcracker",
+  },
+  Album {
+    "albumId": 290,
+    "artistId": 224,
+    "title": "The Last Night of the Proms",
+  },
+  Album {
+    "albumId": 291,
+    "artistId": 225,
+    "title": "Puccini: Madama Butterfly - Highlights",
+  },
+  Album {
+    "albumId": 292,
+    "artistId": 226,
+    "title": "Holst: The Planets, Op. 32 & Vaughan Williams: Fantasies",
+  },
+  Album {
+    "albumId": 293,
+    "artistId": 227,
+    "title": "Pavarotti's Opera Made Easy",
+  },
+  Album {
+    "albumId": 294,
+    "artistId": 228,
+    "title": "Great Performances - Barber's Adagio and Other Romantic Favorites for Strings",
+  },
+  Album {
+    "albumId": 295,
+    "artistId": 229,
+    "title": "Carmina Burana",
+  },
+  Album {
+    "albumId": 296,
+    "artistId": 230,
+    "title": "A Copland Celebration, Vol. I",
+  },
+  Album {
+    "albumId": 297,
+    "artistId": 231,
+    "title": "Bach: Toccata & Fugue in D Minor",
+  },
+  Album {
+    "albumId": 298,
+    "artistId": 232,
+    "title": "Prokofiev: Symphony No.1",
+  },
+  Album {
+    "albumId": 299,
+    "artistId": 233,
+    "title": "Scheherazade",
+  },
+  Album {
+    "albumId": 300,
+    "artistId": 234,
+    "title": "Bach: The Brandenburg Concertos",
+  },
+  Album {
+    "albumId": 301,
+    "artistId": 235,
+    "title": "Chopin: Piano Concertos Nos. 1 & 2",
+  },
+  Album {
+    "albumId": 303,
+    "artistId": 237,
+    "title": "Sibelius: Finlandia",
+  },
+  Album {
+    "albumId": 304,
+    "artistId": 238,
+    "title": "Beethoven Piano Sonatas: Moonlight & Pastorale",
+  },
+  Album {
+    "albumId": 305,
+    "artistId": 240,
+    "title": "Great Recordings of the Century - Mahler: Das Lied von der Erde",
+  },
+  Album {
+    "albumId": 306,
+    "artistId": 241,
+    "title": "Elgar: Cello Concerto & Vaughan Williams: Fantasias",
+  },
+  Album {
+    "albumId": 307,
+    "artistId": 242,
+    "title": "Adams, John: The Chairman Dances",
+  },
+  Album {
+    "albumId": 308,
+    "artistId": 243,
+    "title": "Tchaikovsky: 1812 Festival Overture, Op.49, Capriccio Italien & Beethoven: Wellington's Victory",
+  },
+  Album {
+    "albumId": 309,
+    "artistId": 244,
+    "title": "Palestrina: Missa Papae Marcelli & Allegri: Miserere",
+  },
+  Album {
+    "albumId": 310,
+    "artistId": 245,
+    "title": "Prokofiev: Romeo & Juliet",
+  },
+  Album {
+    "albumId": 311,
+    "artistId": 226,
+    "title": "Strauss: Waltzes",
+  },
+  Album {
+    "albumId": 312,
+    "artistId": 245,
+    "title": "Berlioz: Symphonie Fantastique",
+  },
+  Album {
+    "albumId": 313,
+    "artistId": 246,
+    "title": "Bizet: Carmen Highlights",
+  },
+  Album {
+    "albumId": 314,
+    "artistId": 247,
+    "title": "English Renaissance",
+  },
+  Album {
+    "albumId": 315,
+    "artistId": 208,
+    "title": "Handel: Music for the Royal Fireworks (Original Version 1749)",
+  },
+  Album {
+    "albumId": 316,
+    "artistId": 248,
+    "title": "Grieg: Peer Gynt Suites & Sibelius: Pelléas et Mélisande",
+  },
+  Album {
+    "albumId": 318,
+    "artistId": 250,
+    "title": "SCRIABIN: Vers la flamme",
+  },
+  Album {
+    "albumId": 319,
+    "artistId": 251,
+    "title": "Armada: Music from the Courts of England and Spain",
+  },
+  Album {
+    "albumId": 321,
+    "artistId": 252,
+    "title": "Back to Black",
+  },
+  Album {
+    "albumId": 322,
+    "artistId": 252,
+    "title": "Frank",
+  },
+  Album {
+    "albumId": 323,
+    "artistId": 253,
+    "title": "Carried to Dust (Bonus Track Version)",
+  },
+  Album {
+    "albumId": 324,
+    "artistId": 254,
+    "title": "Beethoven: Symphony No. 6 'Pastoral' Etc.",
+  },
+  Album {
+    "albumId": 325,
+    "artistId": 255,
+    "title": "Bartok: Violin & Viola Concertos",
+  },
+  Album {
+    "albumId": 327,
+    "artistId": 257,
+    "title": "Bach: Orchestral Suites Nos. 1 - 4",
+  },
+  Album {
+    "albumId": 328,
+    "artistId": 258,
+    "title": "Charpentier: Divertissements, Airs & Concerts",
+  },
+  Album {
+    "albumId": 329,
+    "artistId": 259,
+    "title": "South American Getaway",
+  },
+  Album {
+    "albumId": 330,
+    "artistId": 260,
+    "title": "Górecki: Symphony No. 3",
+  },
+  Album {
+    "albumId": 331,
+    "artistId": 261,
+    "title": "Purcell: The Fairy Queen",
+  },
+  Album {
+    "albumId": 332,
+    "artistId": 262,
+    "title": "The Ultimate Relexation Album",
+  },
+  Album {
+    "albumId": 333,
+    "artistId": 263,
+    "title": "Purcell: Music for the Queen Mary",
+  },
+  Album {
+    "albumId": 334,
+    "artistId": 264,
+    "title": "Weill: The Seven Deadly Sins",
+  },
+  Album {
+    "albumId": 335,
+    "artistId": 265,
+    "title": "J.S. Bach: Chaconne, Suite in E Minor, Partita in E Major & Prelude, Fugue and Allegro",
+  },
+  Album {
+    "albumId": 336,
+    "artistId": 248,
+    "title": "Prokofiev: Symphony No.5 & Stravinksy: Le Sacre Du Printemps",
+  },
+  Album {
+    "albumId": 337,
+    "artistId": 266,
+    "title": "Szymanowski: Piano Works, Vol. 1",
+  },
+  Album {
+    "albumId": 338,
+    "artistId": 267,
+    "title": "Nielsen: The Six Symphonies",
+  },
+  Album {
+    "albumId": 339,
+    "artistId": 268,
+    "title": "Great Recordings of the Century: Paganini's 24 Caprices",
+  },
+  Album {
+    "albumId": 340,
+    "artistId": 269,
+    "title": "Liszt - 12 Études D'Execution Transcendante",
+  },
+  Album {
+    "albumId": 341,
+    "artistId": 270,
+    "title": "Great Recordings of the Century - Shubert: Schwanengesang, 4 Lieder",
+  },
+  Album {
+    "albumId": 342,
+    "artistId": 271,
+    "title": "Locatelli: Concertos for Violin, Strings and Continuo, Vol. 3",
+  },
+  Album {
+    "albumId": 343,
+    "artistId": 226,
+    "title": "Respighi:Pines of Rome",
+  },
+  Album {
+    "albumId": 344,
+    "artistId": 272,
+    "title": "Schubert: The Late String Quartets & String Quintet (3 CD's)",
+  },
+  Album {
+    "albumId": 347,
+    "artistId": 275,
+    "title": "Koyaanisqatsi (Soundtrack from the Motion Picture)",
   },
 ]

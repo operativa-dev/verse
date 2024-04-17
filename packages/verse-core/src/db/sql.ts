@@ -4,7 +4,7 @@
  * @packageDocumentation
  */
 
-import { hash, is, List, ValueObject } from "immutable";
+import { hash, is, List, Set as ImmutableSet, ValueObject } from "immutable";
 import invariant from "tiny-invariant";
 import { Newable } from "ts-essentials";
 
@@ -156,6 +156,10 @@ export abstract class SqlNode implements ValueObject {
     return 1;
   }
 
+  isAggregate() {
+    return false;
+  }
+
   // @ts-ignore
   accept<T, S = unknown>(visitor: SqlVisitor<T>, state?: S): T {
     throw new Error("Not implemented");
@@ -165,8 +169,8 @@ export abstract class SqlNode implements ValueObject {
   rewrite(rewriter: SqlRewriter): SqlNode {
     return this;
   }
-
   abstract equals(other: unknown): boolean;
+
   abstract hashCode(): number;
 }
 
@@ -1249,6 +1253,10 @@ export class SqlAlias extends SqlNode {
     return node;
   }
 
+  override isAggregate() {
+    return this.target.isAggregate();
+  }
+
   override accept<T, S = unknown>(visitor: SqlVisitor<T>, state?: S) {
     return visitor.visitAlias(this, state);
   }
@@ -1353,6 +1361,19 @@ export class SqlFunction extends SqlNode {
 
   override bind(binding: SqlBinding) {
     return new SqlFunction(this.name, this.args, binding);
+  }
+
+  static readonly #AGGREGATES = ImmutableSet.of(
+    "count",
+    "min",
+    "max",
+    "avg",
+    "sum",
+    "json_arrayagg"
+  );
+
+  override isAggregate() {
+    return SqlFunction.#AGGREGATES.has(this.name);
   }
 
   override accept<T, S = unknown>(visitor: SqlVisitor<T>, state?: S) {
@@ -2118,6 +2139,10 @@ export class SqlComposite extends SqlNode {
 
   override get size() {
     return this.nodes.reduce((acc, n) => acc + n.size, 0);
+  }
+
+  override isAggregate() {
+    return this.nodes.some(n => n.isAggregate());
   }
 
   override accept<T, S = unknown>(visitor: SqlVisitor<T>, state?: S) {

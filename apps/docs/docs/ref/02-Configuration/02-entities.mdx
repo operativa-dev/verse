@@ -1,3 +1,260 @@
 # Entities
 
-Entity models are created using the [`entity`](../../api/model/builder/functions/entity) configuration function.
+Entities are the primary building blocks of a model, and correspond to the core concepts in your application domain,
+such as users, products, orders, etc. Entities have identity, and are uniquely identifiable by their primary key. They
+are made up of fields, which represent the properties of the entity, and relationships, which represent the associations
+between entities.
+
+In Verse, entity models are created using the [`entity`](../../api/model/builder/functions/entity) configuration function,
+which is used, along with other configuration functions, to define a complete entity model. The following example
+demonstrates how to define a simple entity model for a user:
+
+```ts include ./apps/snippets/src/entities.ts:user showLineNumbers
+const User = entity({
+  id: int(),
+  name: string(),
+  email: string(),
+});
+```
+
+Once created, we can add it to the model by simply adding it to the `entities` object in the model configuration:
+
+```ts include ./apps/snippets/src/entities.ts:model showLineNumbers
+const db = verse({
+  config: {
+    // ...
+  },
+  model: {
+    entities: {
+      users: User,
+    },
+  },
+});
+```
+
+:::note
+
+We could have just as easily defined the entity directly in the model configuration, but it's often better to
+define it separately, especially when the model is large or the entity is involved in relationships.
+
+:::
+
+Observe that when we add an entity to the model, we associate it with a `label`, in this case `users`. This label is used
+to refer to the entity when we are doing things like querying data.
+
+E.g. it lets us write queries like `db.from.users.where(u => u.name === 'Alice')`.
+
+## Properties
+
+As shown above, properties are specified by passing a configuration object to the `entity` function. The configuration
+object keys are the names of the properties, and the values are calls to type-specific configuration functions. In this
+case, we used the [`int`](../../api/model/builder/functions/int) and [`string`](../../api/model/builder/functions/string)
+functions to define the `id`, `name`, and `email` properties. There are also configuration functions for defining
+other types of properties, such as `boolean`, `date` and `number`.
+
+These scalar property configuration functions are also used to define how the property behaves and how it should be
+mapped to the database.
+
+For example we can can override the default column name for a property:
+
+```ts include ./apps/snippets/src/entities.ts:column showLineNumbers
+const User = entity({
+  id: int({ column: "user_id" }),
+  name: string(),
+  email: string(),
+});
+```
+
+Or set the maximum length of a string property:
+
+```ts include ./apps/snippets/src/entities.ts:length showLineNumbers
+const User = entity({
+  id: int(),
+  name: string({ maxLength: 255 }),
+  email: string(),
+});
+```
+
+## Navigations
+
+Navigations are entity properties that reference other entities. They are used to represent relationships between
+entities so that we can enjoy a rich and natural programming model that reflects the data structure of our application domain.
+Specifically, they allow us to do things like: eager load related data, query across relations without the need for manual joins,
+and update aggregate roots with their children in a single transaction.
+
+For example, a `User` entity might have a `posts` navigation property that references a collection of `Post`
+entities that the user has created.
+
+```ts include ./apps/snippets/src/entities.ts:navigations showLineNumbers
+const Post = entity({
+  id: int(),
+  title: string(),
+  content: string(),
+});
+
+const User = entity({
+  id: int(),
+  name: string(),
+  email: string(),
+  posts: many(Post),
+});
+```
+
+We use the [`many`](../../api/model/builder/functions/many) function to define a navigation property that references a
+collection of entities. We can also use the [`one`](../../api/model/builder/functions/one) function to define a navigation
+property that references a single entity.
+
+## Key
+
+Entities have a primary key, which is a unique identifier for the entity. By default, Verse tries to infer the primary
+key based on the properties of the entity using [conventions](Conventions/overview). However, you can, of course,
+explicitly specify the primary key using configuration:
+
+```ts include ./apps/snippets/src/entities.ts:key showLineNumbers
+const User = entity(
+  {
+    id: int(),
+    name: string(),
+    email: string(),
+  },
+  e => e.key("id")
+);
+```
+
+In this case, we explicitly specify that the `id` property is the primary key of the entity by calling the `key` method
+on an entity configuration builder object. We pass a function that takes the entity configuration builder as the second
+argument to the `entity` function.
+
+## Foreign Keys
+
+Foreign keys are used to define relationships between entities at the database level, and underpin things like navigations
+and cascading updates. In Verse, foreign keys are defined using the `references` method on the entity configuration builder:
+
+```ts include ./apps/snippets/src/entities.ts:fks-1 showLineNumbers
+const User = entity({
+  id: int(),
+  //...
+});
+
+const Post = entity(
+  {
+    id: int(),
+    userId: int(),
+    //...
+  },
+  e => e.references(User)
+);
+```
+
+Observe that, in this case, we don't need to specify the column name for the foreign key property, as Verse will infer it
+using conventions. However, we can override the default behavior by specifying the column name explicitly:
+
+```ts include ./apps/snippets/src/entities.ts:fks-2 showLineNumbers
+const User = entity({
+  id: int(),
+  //...
+});
+
+const Post = entity(
+  {
+    id: int(),
+    userFk: int(),
+    //...
+  },
+  e => e.references(User, "userFk")
+);
+```
+
+Here, the foreign key property is named `userFk`, and so will not be automatically inferred by Verse. We need to specify
+the column name explicitly when calling the `references` method.
+
+## Table
+
+We can also specify the table name for an entity, using the same fluent configuration builder function:
+
+```ts include ./apps/snippets/src/entities.ts:table showLineNumbers
+const User = entity(
+  {
+    id: int(),
+    name: string(),
+    email: string(),
+  },
+  e => e.table("users")
+);
+```
+
+:::note
+
+In Verse, explicit configuration is often not necessary, as the framework can infer most of the configuration from
+conventions. However, explicit configuration can be useful when you need to override the default behavior.
+
+:::
+
+## Concurrency
+
+Entities can also have a concurrency property, which is used to implement _optimistic concurrency_ control. This is a
+mechanism to prevent lost updates in a multi-user environment. When an entity has a concurrency property, Verse will
+automatically include it in the `WHERE` clause of `UPDATE` and `DELETE` statements, and check that the value has not
+changed since the entity was last read.
+
+To specify a concurrency property, we can use the `concurrency` method on the entity configuration builder:
+
+```ts include ./apps/snippets/src/entities.ts:concurrency showLineNumbers
+const User = entity(
+  {
+    //...
+    token: int(),
+  },
+  e => e.concurrency({ version: "token" })
+);
+```
+
+Here, we specify that the `token` property is the concurrency property for the entity. The `version` option is used to
+specify that we are using the _version_ strategy for concurrency control. This means that the property is expected to
+be a monotonically increasing value, and will be incremented by one each time the entity is updated. Verse will
+manage this for us automatically.
+
+## Conditions
+
+Entities can also have conditions, which are filters that are automatically applied to any queries for that entity.
+Conditions are specified using the `condition` method on the entity configuration builder:
+
+```ts include ./apps/snippets/src/entities.ts:condition showLineNumbers
+const User = entity(
+  {
+    //...
+    deleted: boolean(),
+  },
+  e => e.condition(user => !user.deleted)
+);
+```
+
+Conditions are useful for implementing cross-cutting concerns, such as soft deletes, where entities are not actually
+deleted from the database, but are instead marked as deleted by setting a `deleted` flag to `true`. By adding a
+condition to the entity, we can ensure that developers do not have to remember to filter out deleted entities in their
+queries.
+
+## Seed Data
+
+Entities can also have seed data, which is initial data, defined at the model level. Verse will automatically insert
+this data into the database when the database is created. Seed data is specified using the `data` method on the entity
+configuration builder:
+
+```ts include ./apps/snippets/src/entities.ts:seed-data showLineNumbers
+const User = entity(
+  {
+    id: int(),
+    name: string(),
+    email: string(),
+  },
+  e =>
+    e.data(
+      { id: 1, name: "John", email: "john@example.com" },
+      { id: 2, name: "Jane", email: "jane@example.com" }
+    )
+);
+```
+
+Seed data is useful for populating the database with initial data, such as reference data, that is required for the
+application to function correctly. It can also be used for testing purposes, to ensure that the database is in a known
+state before running tests.

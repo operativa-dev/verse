@@ -5,22 +5,24 @@ import { entity, int, many, one } from "../../src/model/builder.js";
 import { Verse } from "../../src/verse.js";
 import { dbTest, fixture } from "../infra.js";
 
+const Parent = entity(
+  {
+    parentPk: int(),
+    children1: many("Child", { foreignKey: "parentFk1" }),
+  },
+  c => {
+    c.key("parentPk");
+    c.data(
+      { parentPk: 1, children1: [] },
+      { parentPk: 2, children1: [] },
+      { parentPk: 3, children1: [] },
+      { parentPk: 4, children1: [] }
+    );
+  }
+);
+
 const relationshipsModel = {
-  parents: entity(
-    {
-      parentPk: int(),
-      children1: many("Child", { foreignKey: "parentFk1" }),
-    },
-    c => {
-      c.key("parentPk");
-      c.data(
-        { parentPk: 1, children1: [] },
-        { parentPk: 2, children1: [] },
-        { parentPk: 3, children1: [] },
-        { parentPk: 4, children1: [] }
-      );
-    }
-  ),
+  parents: Parent,
   children: entity(
     {
       childPk: int(),
@@ -36,7 +38,7 @@ const relationshipsModel = {
         { childPk: 3, parentFk1: 2, parentFk2: 1 },
         { childPk: 4, parentFk1: 2 }
       );
-      o.references("Parent", "parentFk2", { onDelete: "no action" });
+      o.references(Parent, "parentFk2", { onDelete: "no action" });
     }
   ),
 };

@@ -61,6 +61,12 @@ export const queryFixture = (driver: Driver, logger?: Logger) => {
 export const queryTests = (verse: Verse<typeof queryModel>) => {
   const snap = dataTest(verse);
 
+  test("count limit", async () => {
+    const q = verse.from.albums.limit(7).count();
+
+    await snap(q);
+  });
+
   test("options compile", async () => {
     const q = verse.compile((from, $limit: number) =>
       from.albums.options({ disabledConditions: "all" }).limit($limit)

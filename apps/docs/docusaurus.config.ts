@@ -3,9 +3,8 @@ import type { Config } from "@docusaurus/types";
 import { themes as prismThemes } from "prism-react-renderer";
 
 const config: Config = {
-  title: "@operativa/verse",
-  tagline:
-    "Verse is an experimental package to provide a next-gen Typescript ORM. It is subject to change and intended only for evaluation purposes.",
+  title: "Verse",
+  tagline: "Beautiful TypeScript data access",
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here
@@ -73,7 +72,7 @@ const config: Config = {
     image: "img/icon.png",
 
     navbar: {
-      title: "@operativa/verse",
+      title: "Verse",
       logo: {
         alt: "Operativa Logo",
         src: "img/icon.svg",
@@ -95,15 +94,6 @@ const config: Config = {
           sidebarId: "apiSidebar",
           position: "left",
           label: "API Reference",
-        },
-        {
-          href: "#",
-          label: "⚠️ Experimental package work in progress ⚠️",
-          position: "right",
-          style: {
-            color: "#dc9234",
-            fontWeight: "bold",
-          },
         },
         {
           href: "https://github.com/operativa-dev/verse",

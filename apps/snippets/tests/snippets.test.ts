@@ -13,7 +13,11 @@ describe("sample snippets", () => {
     await import("../src/query.js");
   });
 
-  test("sqlite provider", async () => {
-    await import("../src/sqlite-provider.js");
+  test("drivers", async () => {
+    await import("../src/drivers.js");
+  });
+
+  test("entities", async () => {
+    await import("../src/entities.js");
   });
 });
