@@ -1,10 +1,13 @@
-import { verse } from "@operativa/verse";
+// noinspection JSUnusedLocalSymbols
+
+import { EntityType, verse } from "@operativa/verse";
 import { sqlite } from "@operativa/verse-sqlite";
 import {
   boolean,
   entity,
   int,
   many,
+  one,
   string,
 } from "@operativa/verse/model/builder";
 
@@ -16,9 +19,12 @@ const User = entity({
 });
 ///
 
+/// type
+type UserType = EntityType<typeof db.entities.users>;
+///
+
 /// model
 const db = verse({
-  // @ts-ignore
   config: {
     driver: sqlite("todos.sqlite"), // ...
   },
@@ -166,6 +172,77 @@ const db = verse({
       //...
     },
     e => e.references(User, "userFk")
+  );
+  ///
+}
+
+{
+  /// class
+  class User {
+    constructor(
+      readonly id: number,
+      public name: string,
+      public email: string
+    ) {}
+  }
+
+  const user = entity(User, {
+    id: int(),
+    name: string(),
+    email: string(),
+  });
+  ///
+}
+
+{
+  /// circular
+  type PostType = {
+    readonly id: number;
+    userId: number;
+  };
+
+  const User = entity({
+    id: int(),
+    posts: many<PostType>("Post"),
+  });
+
+  const Post = entity({
+    id: int(),
+    userId: int(),
+    user: one(User),
+  });
+
+  const db = verse({
+    config: {
+      driver: sqlite("todos.sqlite"), // ...
+    },
+    model: {
+      entities: {
+        users: User,
+        posts: Post,
+      },
+    },
+  });
+  ///
+}
+
+{
+  /// shadow
+  class User {
+    constructor(
+      readonly id: number,
+      public name: string
+    ) {}
+  }
+
+  const user = entity(
+    User,
+    {
+      id: int(),
+      name: string(),
+      version: int(),
+    },
+    e => e.concurrency({ version: "version" })
   );
   ///
 }

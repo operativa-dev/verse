@@ -44,6 +44,105 @@ to refer to the entity when we are doing things like querying data.
 
 E.g. it lets us write queries like `db.from.users.where(u => u.name === 'Alice')`.
 
+## Objects vs. Classes
+
+At runtime, Verse entities can either be plain objects or class instances. By default, entities are plain objects, but
+you can also use classes to represent entities. This can be useful when you want to add methods to your entities, or when
+you want to use inheritance to define common behavior.
+
+To use a a class to define an entity, you can simply pass the class constructor to the `entity` function:
+
+```ts include ./apps/snippets/src/entities.ts:class showLineNumbers
+class User {
+  constructor(
+    readonly id: number,
+    public name: string,
+    public email: string
+  ) {}
+}
+
+const user = entity(User, {
+  id: int(),
+  name: string(),
+  email: string(),
+});
+```
+
+In this case, we define a `User` class with a constructor that takes the properties of the entity as arguments. We then
+pass the class constructor to the `entity` function, along with the configuration object that defines the properties of
+the entity.
+
+:::note
+
+All configuration APIs that accept entity types can also accept class constructors.
+
+:::
+
+Whether or not you use classes to define entities is largely a matter of personal preference, but there are some things
+that you can do with classes that you can't do with plain objects:
+
+* Use inheritance to define common behavior.
+* Create entities with stricter APIs. e.g. by making properties read-only.
+* Use _shadow properties_ to represent properties that are not present in the class definition.
+* Easily create circular references between entities.
+* Perform in-line model configuration.
+
+## Entity Types
+
+When using plain objects to define entities, we would like a type that represents the shape of the entity. Verse
+provides a utility type, [`EntityType`](../../api/verse/type-aliases/EntityType), that generates a type for an
+entity. This type can be used to type-check entities and queries, and to provide additional tooling support.
+
+```ts include ./apps/snippets/src/entities.ts:type showLineNumbers
+type UserType = EntityType<typeof db.entities.users>;
+```
+
+## Circular References
+
+Entities can have relationships with other entities, and these relationships can form a graph of entities that reference
+each other. This is known as a _circular reference_, and can be useful for representing complex relationships between
+entities. When using class-based entities, this is not a problem, as classes can reference each other directly. However,
+when using plain objects, we need to use a different approach to handle circular references, because TypeScript does not
+perform type-inference for types containing circular references.
+
+The pattern we need to use looks like this:
+
+```ts include ./apps/snippets/src/entities.ts:circular showLineNumbers
+type PostType = {
+  readonly id: number;
+  userId: number;
+};
+
+const User = entity({
+  id: int(),
+  posts: many<PostType>("Post"),
+});
+
+const Post = entity({
+  id: int(),
+  userId: int(),
+  user: one(User),
+});
+
+const db = verse({
+  config: {
+    // ...
+  },
+  model: {
+    entities: {
+      users: User,
+      posts: Post,
+    },
+  },
+});
+```
+
+We can see that the main difference is that we have had to explicitly define the type of the `Post` entity, and then
+pass it to the `many` function when defining the `posts` navigation property on the `User` entity. Additionally, we
+have had to pass the name of the `Post` entity to the `many` function, so that Verse can resolve the entity that the
+navigation is referencing. The name of an entity is just the singularized, pascal-cased version of the entity label,
+and is used internally by Verse to identify entities.
+
 ## Properties
 
 As shown above, properties are specified by passing a configuration object to the `entity` function. The configuration
@@ -74,6 +173,37 @@ const User = entity({
   email: string(),
 });
 ```
+
+## Shadow Properties
+
+When using class-based entities, we can define _shadow properties_ on the entity to represent properties that are not
+present in the class definition, but are used by the entity model. Shadow properties are useful for things like
+optimistic concurrency control, where we need to store a version number for the entity, but don't want to expose it
+as a property on the class.
+
+For example, we can define a shadow property for the `User` entity to represent the version number:
+
+```ts include ./apps/snippets/src/entities.ts:shadow showLineNumbers
+class User {
+  constructor(
+    readonly id: number,
+    public name: string
+  ) {}
+}
+
+const user = entity(
+  User,
+  {
+    id: int(),
+    name: string(),
+    version: int(),
+  },
+  e => e.concurrency({ version: "version" })
+);
+```
+
+Verse will treat the `version` property just like any other property, but it will not be present in the type of the
+entity, and so will not be visible to consumers of the entity.
 
 ## Navigations
 
