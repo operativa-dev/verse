@@ -375,28 +375,6 @@
   ],
   [
     Album {
-      "albumId": 127,
-      "artistId": 22,
-      "title": "BBC Sessions [Disc 2] [Live]",
-    },
-    Artist {
-      "artistId": 22,
-      "name": "Led Zeppelin",
-    },
-  ],
-  [
-    Album {
-      "albumId": 128,
-      "artistId": 22,
-      "title": "Coda",
-    },
-    Artist {
-      "artistId": 22,
-      "name": "Led Zeppelin",
-    },
-  ],
-  [
-    Album {
       "albumId": 129,
       "artistId": 22,
       "title": "Houses Of The Holy",
@@ -441,9 +419,9 @@
   ],
   [
     Album {
-      "albumId": 44,
+      "albumId": 133,
       "artistId": 22,
-      "title": "Physical Graffiti [Disc 1]",
+      "title": "Led Zeppelin II",
     },
     Artist {
       "artistId": 22,
@@ -463,9 +441,9 @@
   ],
   [
     Album {
-      "albumId": 135,
+      "albumId": 44,
       "artistId": 22,
-      "title": "Physical Graffiti [Disc 2]",
+      "title": "Physical Graffiti [Disc 1]",
     },
     Artist {
       "artistId": 22,
@@ -507,6 +485,28 @@
   ],
   [
     Album {
+      "albumId": 127,
+      "artistId": 22,
+      "title": "BBC Sessions [Disc 2] [Live]",
+    },
+    Artist {
+      "artistId": 22,
+      "name": "Led Zeppelin",
+    },
+  ],
+  [
+    Album {
+      "albumId": 128,
+      "artistId": 22,
+      "title": "Coda",
+    },
+    Artist {
+      "artistId": 22,
+      "name": "Led Zeppelin",
+    },
+  ],
+  [
+    Album {
       "albumId": 30,
       "artistId": 22,
       "title": "BBC Sessions [Disc 1] [Live]",
@@ -518,9 +518,9 @@
   ],
   [
     Album {
-      "albumId": 133,
+      "albumId": 135,
       "artistId": 22,
-      "title": "Led Zeppelin II",
+      "title": "Physical Graffiti [Disc 2]",
     },
     Artist {
       "artistId": 22,
@@ -892,39 +892,6 @@
   ],
   [
     Album {
-      "albumId": 62,
-      "artistId": 58,
-      "title": "Machine Head",
-    },
-    Artist {
-      "artistId": 58,
-      "name": "Deep Purple",
-    },
-  ],
-  [
-    Album {
-      "albumId": 63,
-      "artistId": 58,
-      "title": "Purpendicular",
-    },
-    Artist {
-      "artistId": 58,
-      "name": "Deep Purple",
-    },
-  ],
-  [
-    Album {
-      "albumId": 64,
-      "artistId": 58,
-      "title": "Slaves And Masters",
-    },
-    Artist {
-      "artistId": 58,
-      "name": "Deep Purple",
-    },
-  ],
-  [
-    Album {
       "albumId": 65,
       "artistId": 58,
       "title": "Stormbringer",
@@ -1005,6 +972,39 @@
       "albumId": 61,
       "artistId": 58,
       "title": "Knocking at Your Back Door: The Best Of Deep Purple in the 80's",
+    },
+    Artist {
+      "artistId": 58,
+      "name": "Deep Purple",
+    },
+  ],
+  [
+    Album {
+      "albumId": 62,
+      "artistId": 58,
+      "title": "Machine Head",
+    },
+    Artist {
+      "artistId": 58,
+      "name": "Deep Purple",
+    },
+  ],
+  [
+    Album {
+      "albumId": 63,
+      "artistId": 58,
+      "title": "Purpendicular",
+    },
+    Artist {
+      "artistId": 58,
+      "name": "Deep Purple",
+    },
+  ],
+  [
+    Album {
+      "albumId": 64,
+      "artistId": 58,
+      "title": "Slaves And Masters",
     },
     Artist {
       "artistId": 58,
@@ -1772,9 +1772,9 @@
   ],
   [
     Album {
-      "albumId": 143,
+      "albumId": 142,
       "artistId": 101,
-      "title": "Lulu Santos - RCA 100 Anos De Música - Álbum 02",
+      "title": "Lulu Santos - RCA 100 Anos De Música - Álbum 01",
     },
     Artist {
       "artistId": 101,
@@ -1783,9 +1783,9 @@
   ],
   [
     Album {
-      "albumId": 142,
+      "albumId": 143,
       "artistId": 101,
-      "title": "Lulu Santos - RCA 100 Anos De Música - Álbum 01",
+      "title": "Lulu Santos - RCA 100 Anos De Música - Álbum 02",
     },
     Artist {
       "artistId": 101,
@@ -1871,9 +1871,9 @@
   ],
   [
     Album {
-      "albumId": 164,
+      "albumId": 163,
       "artistId": 110,
-      "title": "Nevermind",
+      "title": "From The Muddy Banks Of The Wishkah [Live]",
     },
     Artist {
       "artistId": 110,
@@ -1882,9 +1882,9 @@
   ],
   [
     Album {
-      "albumId": 163,
+      "albumId": 164,
       "artistId": 110,
-      "title": "From The Muddy Banks Of The Wishkah [Live]",
+      "title": "Nevermind",
     },
     Artist {
       "artistId": 110,
@@ -1915,17 +1915,6 @@
   ],
   [
     Album {
-      "albumId": 169,
-      "artistId": 113,
-      "title": "Arquivo Os Paralamas Do Sucesso",
-    },
-    Artist {
-      "artistId": 113,
-      "name": "Os Paralamas Do Sucesso",
-    },
-  ],
-  [
-    Album {
       "albumId": 167,
       "artistId": 113,
       "title": "Acústico MTV",
@@ -1948,42 +1937,20 @@
   ],
   [
     Album {
+      "albumId": 169,
+      "artistId": 113,
+      "title": "Arquivo Os Paralamas Do Sucesso",
+    },
+    Artist {
+      "artistId": 113,
+      "name": "Os Paralamas Do Sucesso",
+    },
+  ],
+  [
+    Album {
       "albumId": 170,
       "artistId": 114,
       "title": "Bark at the Moon (Remastered)",
-    },
-    Artist {
-      "artistId": 114,
-      "name": "Ozzy Osbourne",
-    },
-  ],
-  [
-    Album {
-      "albumId": 174,
-      "artistId": 114,
-      "title": "Tribute",
-    },
-    Artist {
-      "artistId": 114,
-      "name": "Ozzy Osbourne",
-    },
-  ],
-  [
-    Album {
-      "albumId": 173,
-      "artistId": 114,
-      "title": "No More Tears (Remastered)",
-    },
-    Artist {
-      "artistId": 114,
-      "name": "Ozzy Osbourne",
-    },
-  ],
-  [
-    Album {
-      "albumId": 256,
-      "artistId": 114,
-      "title": "Speak of the Devil",
     },
     Artist {
       "artistId": 114,
@@ -2006,6 +1973,39 @@
       "albumId": 172,
       "artistId": 114,
       "title": "Diary of a Madman (Remastered)",
+    },
+    Artist {
+      "artistId": 114,
+      "name": "Ozzy Osbourne",
+    },
+  ],
+  [
+    Album {
+      "albumId": 173,
+      "artistId": 114,
+      "title": "No More Tears (Remastered)",
+    },
+    Artist {
+      "artistId": 114,
+      "name": "Ozzy Osbourne",
+    },
+  ],
+  [
+    Album {
+      "albumId": 174,
+      "artistId": 114,
+      "title": "Tribute",
+    },
+    Artist {
+      "artistId": 114,
+      "name": "Ozzy Osbourne",
+    },
+  ],
+  [
+    Album {
+      "albumId": 256,
+      "artistId": 114,
+      "title": "Speak of the Devil",
     },
     Artist {
       "artistId": 114,
@@ -2047,9 +2047,9 @@
   ],
   [
     Album {
-      "albumId": 181,
+      "albumId": 178,
       "artistId": 118,
-      "title": "Ten",
+      "title": "Live On Two Legs [Live]",
     },
     Artist {
       "artistId": 118,
@@ -2058,9 +2058,20 @@
   ],
   [
     Album {
-      "albumId": 180,
+      "albumId": 182,
       "artistId": 118,
-      "title": "Riot Act",
+      "title": "Vs.",
+    },
+    Artist {
+      "artistId": 118,
+      "name": "Pearl Jam",
+    },
+  ],
+  [
+    Album {
+      "albumId": 181,
+      "artistId": 118,
+      "title": "Ten",
     },
     Artist {
       "artistId": 118,
@@ -2080,20 +2091,9 @@
   ],
   [
     Album {
-      "albumId": 178,
+      "albumId": 180,
       "artistId": 118,
-      "title": "Live On Two Legs [Live]",
-    },
-    Artist {
-      "artistId": 118,
-      "name": "Pearl Jam",
-    },
-  ],
-  [
-    Album {
-      "albumId": 182,
-      "artistId": 118,
-      "title": "Vs.",
+      "title": "Riot Act",
     },
     Artist {
       "artistId": 118,
@@ -2135,17 +2135,6 @@
   ],
   [
     Album {
-      "albumId": 188,
-      "artistId": 124,
-      "title": "Green",
-    },
-    Artist {
-      "artistId": 124,
-      "name": "R.E.M.",
-    },
-  ],
-  [
-    Album {
       "albumId": 189,
       "artistId": 124,
       "title": "New Adventures In Hi-Fi",
@@ -2160,6 +2149,17 @@
       "albumId": 190,
       "artistId": 124,
       "title": "The Best Of R.E.M.: The IRS Years",
+    },
+    Artist {
+      "artistId": 124,
+      "name": "R.E.M.",
+    },
+  ],
+  [
+    Album {
+      "albumId": 188,
+      "artistId": 124,
+      "title": "Green",
     },
     Artist {
       "artistId": 124,
@@ -2190,9 +2190,9 @@
   ],
   [
     Album {
-      "albumId": 193,
+      "albumId": 195,
       "artistId": 127,
-      "title": "Blood Sugar Sex Magik",
+      "title": "Californication",
     },
     Artist {
       "artistId": 127,
@@ -2212,9 +2212,9 @@
   ],
   [
     Album {
-      "albumId": 195,
+      "albumId": 193,
       "artistId": 127,
-      "title": "Californication",
+      "title": "Blood Sugar Sex Magik",
     },
     Artist {
       "artistId": 127,
@@ -2234,17 +2234,6 @@
   ],
   [
     Album {
-      "albumId": 199,
-      "artistId": 130,
-      "title": "Maquinarama",
-    },
-    Artist {
-      "artistId": 130,
-      "name": "Skank",
-    },
-  ],
-  [
-    Album {
       "albumId": 200,
       "artistId": 130,
       "title": "O Samba Poconé",
@@ -2256,9 +2245,20 @@
   ],
   [
     Album {
-      "albumId": 201,
+      "albumId": 199,
+      "artistId": 130,
+      "title": "Maquinarama",
+    },
+    Artist {
+      "artistId": 130,
+      "name": "Skank",
+    },
+  ],
+  [
+    Album {
+      "albumId": 202,
       "artistId": 131,
-      "title": "Judas 0: B-Sides and Rarities",
+      "title": "Rotten Apples: Greatest Hits",
     },
     Artist {
       "artistId": 131,
@@ -2267,9 +2267,9 @@
   ],
   [
     Album {
-      "albumId": 202,
+      "albumId": 201,
       "artistId": 131,
-      "title": "Rotten Apples: Greatest Hits",
+      "title": "Judas 0: B-Sides and Rarities",
     },
     Artist {
       "artistId": 131,
@@ -2333,9 +2333,9 @@
   ],
   [
     Album {
-      "albumId": 209,
+      "albumId": 210,
       "artistId": 137,
-      "title": "Live [Disc 1]",
+      "title": "Live [Disc 2]",
     },
     Artist {
       "artistId": 137,
@@ -2344,9 +2344,9 @@
   ],
   [
     Album {
-      "albumId": 210,
+      "albumId": 209,
       "artistId": 137,
-      "title": "Live [Disc 2]",
+      "title": "Live [Disc 1]",
     },
     Artist {
       "artistId": 137,
@@ -2410,6 +2410,17 @@
   ],
   [
     Album {
+      "albumId": 218,
+      "artistId": 142,
+      "title": "Voodoo Lounge",
+    },
+    Artist {
+      "artistId": 142,
+      "name": "The Rolling Stones",
+    },
+  ],
+  [
+    Album {
       "albumId": 216,
       "artistId": 142,
       "title": "Hot Rocks, 1964-1971 (Disc 1)",
@@ -2432,20 +2443,9 @@
   ],
   [
     Album {
-      "albumId": 218,
-      "artistId": 142,
-      "title": "Voodoo Lounge",
-    },
-    Artist {
-      "artistId": 142,
-      "name": "The Rolling Stones",
-    },
-  ],
-  [
-    Album {
-      "albumId": 219,
+      "albumId": 220,
       "artistId": 143,
-      "title": "Tangents",
+      "title": "Transmission",
     },
     Artist {
       "artistId": 143,
@@ -2454,9 +2454,9 @@
   ],
   [
     Album {
-      "albumId": 220,
+      "albumId": 219,
       "artistId": 143,
-      "title": "Transmission",
+      "title": "Tangents",
     },
     Artist {
       "artistId": 143,
@@ -2498,9 +2498,9 @@
   ],
   [
     Album {
-      "albumId": 224,
+      "albumId": 225,
       "artistId": 146,
-      "title": "Acústico",
+      "title": "Volume Dois",
     },
     Artist {
       "artistId": 146,
@@ -2509,9 +2509,9 @@
   ],
   [
     Album {
-      "albumId": 225,
+      "albumId": 224,
       "artistId": 146,
-      "title": "Volume Dois",
+      "title": "Acústico",
     },
     Artist {
       "artistId": 146,
@@ -2564,17 +2564,6 @@
   ],
   [
     Album {
-      "albumId": 229,
-      "artistId": 149,
-      "title": "Lost, Season 3",
-    },
-    Artist {
-      "artistId": 149,
-      "name": "Lost",
-    },
-  ],
-  [
-    Album {
       "albumId": 231,
       "artistId": 149,
       "title": "Lost, Season 2",
@@ -2597,35 +2586,13 @@
   ],
   [
     Album {
-      "albumId": 237,
-      "artistId": 150,
-      "title": "Rattle And Hum",
+      "albumId": 229,
+      "artistId": 149,
+      "title": "Lost, Season 3",
     },
     Artist {
-      "artistId": 150,
-      "name": "U2",
-    },
-  ],
-  [
-    Album {
-      "albumId": 238,
-      "artistId": 150,
-      "title": "The Best Of 1980-1990",
-    },
-    Artist {
-      "artistId": 150,
-      "name": "U2",
-    },
-  ],
-  [
-    Album {
-      "albumId": 239,
-      "artistId": 150,
-      "title": "War",
-    },
-    Artist {
-      "artistId": 150,
-      "name": "U2",
+      "artistId": 149,
+      "name": "Lost",
     },
   ],
   [
@@ -2633,39 +2600,6 @@
       "albumId": 240,
       "artistId": 150,
       "title": "Zooropa",
-    },
-    Artist {
-      "artistId": 150,
-      "name": "U2",
-    },
-  ],
-  [
-    Album {
-      "albumId": 235,
-      "artistId": 150,
-      "title": "How To Dismantle An Atomic Bomb",
-    },
-    Artist {
-      "artistId": 150,
-      "name": "U2",
-    },
-  ],
-  [
-    Album {
-      "albumId": 234,
-      "artistId": 150,
-      "title": "B-Sides 1980-1990",
-    },
-    Artist {
-      "artistId": 150,
-      "name": "U2",
-    },
-  ],
-  [
-    Album {
-      "albumId": 233,
-      "artistId": 150,
-      "title": "All That You Can't Leave Behind",
     },
     Artist {
       "artistId": 150,
@@ -2685,9 +2619,75 @@
   ],
   [
     Album {
+      "albumId": 233,
+      "artistId": 150,
+      "title": "All That You Can't Leave Behind",
+    },
+    Artist {
+      "artistId": 150,
+      "name": "U2",
+    },
+  ],
+  [
+    Album {
+      "albumId": 234,
+      "artistId": 150,
+      "title": "B-Sides 1980-1990",
+    },
+    Artist {
+      "artistId": 150,
+      "name": "U2",
+    },
+  ],
+  [
+    Album {
+      "albumId": 235,
+      "artistId": 150,
+      "title": "How To Dismantle An Atomic Bomb",
+    },
+    Artist {
+      "artistId": 150,
+      "name": "U2",
+    },
+  ],
+  [
+    Album {
       "albumId": 236,
       "artistId": 150,
       "title": "Pop",
+    },
+    Artist {
+      "artistId": 150,
+      "name": "U2",
+    },
+  ],
+  [
+    Album {
+      "albumId": 237,
+      "artistId": 150,
+      "title": "Rattle And Hum",
+    },
+    Artist {
+      "artistId": 150,
+      "name": "U2",
+    },
+  ],
+  [
+    Album {
+      "albumId": 239,
+      "artistId": 150,
+      "title": "War",
+    },
+    Artist {
+      "artistId": 150,
+      "name": "U2",
+    },
+  ],
+  [
+    Album {
+      "albumId": 238,
+      "artistId": 150,
+      "title": "The Best Of 1980-1990",
     },
     Artist {
       "artistId": 150,
@@ -2718,9 +2718,9 @@
   ],
   [
     Album {
-      "albumId": 245,
+      "albumId": 244,
       "artistId": 152,
-      "title": "Van Halen III",
+      "title": "Van Halen",
     },
     Artist {
       "artistId": 152,
@@ -2729,9 +2729,9 @@
   ],
   [
     Album {
-      "albumId": 244,
+      "albumId": 245,
       "artistId": 152,
-      "title": "Van Halen",
+      "title": "Van Halen III",
     },
     Artist {
       "artistId": 152,
@@ -2784,6 +2784,17 @@
   ],
   [
     Album {
+      "albumId": 249,
+      "artistId": 156,
+      "title": "The Office, Season 1",
+    },
+    Artist {
+      "artistId": 156,
+      "name": "The Office",
+    },
+  ],
+  [
+    Album {
       "albumId": 250,
       "artistId": 156,
       "title": "The Office, Season 2",
@@ -2798,17 +2809,6 @@
       "albumId": 251,
       "artistId": 156,
       "title": "The Office, Season 3",
-    },
-    Artist {
-      "artistId": 156,
-      "name": "The Office",
-    },
-  ],
-  [
-    Album {
-      "albumId": 249,
-      "artistId": 156,
-      "title": "The Office, Season 1",
     },
     Artist {
       "artistId": 156,

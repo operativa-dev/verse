@@ -79,7 +79,7 @@ class InnerQueryEliminator extends SqlRewriter {
       const outer = outerNodes.get(i);
       const inner = innerNodes.get(i);
 
-      if (!(outer instanceof SqlMember || !(inner instanceof SqlMember))) {
+      if (!(outer instanceof SqlMember) || !(inner instanceof SqlMember)) {
         return false;
       }
 
@@ -242,7 +242,9 @@ class OuterQueryEliminator extends SqlRewriter {
       !outerSelect.where &&
       !outerSelect.orderBy &&
       !outerSelect.groupBy &&
-      ((!outerSelect.limit && !outerSelect.offset) || (!innerSelect.limit && !innerSelect.offset))
+      ((!outerSelect.limit && !outerSelect.offset) ||
+        (!innerSelect.limit && !innerSelect.offset)) &&
+      (!outerSelect.projection.isAggregate() || (!innerSelect.limit && !innerSelect.offset))
     ) {
       aliases.push(outerAlias);
     }

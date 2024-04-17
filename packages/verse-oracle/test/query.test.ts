@@ -2,7 +2,7 @@ import { queryErrorTests, queryFixture, queryTests } from "@operativa/verse/test
 import { describe } from "vitest";
 import { testDb } from "./infra.js";
 
-const fixture = queryFixture(testDb("`"));
+const fixture = queryFixture(testDb("chinook"));
 
 describe("shared", () => {
   queryTests(fixture);

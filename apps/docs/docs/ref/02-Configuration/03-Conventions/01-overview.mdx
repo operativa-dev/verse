@@ -37,6 +37,11 @@ When a property is of type `Date`, it is assumed that this property is mapped to
 will represent this date as a `timestamp with time zone`. This convention is used instead of `DateAsTimestamp` when
 the target database supports timezones.
 
+## DatesToISOStrings
+
+Sets up a model-level conversion so that all `Date` properties are serialized to and deserialized from
+a string in the format `YYYY-MM-DDTHH:mm:ss.sssZ`. This is the format that is used by the `Date` object's `toISOString`.
+
 ## DatePropertyToISOString
 
 When a property is of type `Date`, it is assumed that this property should be serialized to and deserialized from

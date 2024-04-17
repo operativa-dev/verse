@@ -1,860 +1,6 @@
 [
   [
     Artist {
-      "artistId": 147,
-      "name": "Battlestar Galactica",
-    },
-    "Battlestar Galactica: The Story So Far",
-  ],
-  [
-    Artist {
-      "artistId": 147,
-      "name": "Battlestar Galactica",
-    },
-    "Battlestar Galactica, Season 3",
-  ],
-  [
-    Artist {
-      "artistId": 148,
-      "name": "Heroes",
-    },
-    "Heroes, Season 1",
-  ],
-  [
-    Artist {
-      "artistId": 149,
-      "name": "Lost",
-    },
-    "Lost, Season 3",
-  ],
-  [
-    Artist {
-      "artistId": 149,
-      "name": "Lost",
-    },
-    "Lost, Season 1",
-  ],
-  [
-    Artist {
-      "artistId": 149,
-      "name": "Lost",
-    },
-    "Lost, Season 2",
-  ],
-  [
-    Artist {
-      "artistId": 150,
-      "name": "U2",
-    },
-    "Achtung Baby",
-  ],
-  [
-    Artist {
-      "artistId": 150,
-      "name": "U2",
-    },
-    "All That You Can't Leave Behind",
-  ],
-  [
-    Artist {
-      "artistId": 150,
-      "name": "U2",
-    },
-    "B-Sides 1980-1990",
-  ],
-  [
-    Artist {
-      "artistId": 150,
-      "name": "U2",
-    },
-    "How To Dismantle An Atomic Bomb",
-  ],
-  [
-    Artist {
-      "artistId": 150,
-      "name": "U2",
-    },
-    "Pop",
-  ],
-  [
-    Artist {
-      "artistId": 150,
-      "name": "U2",
-    },
-    "Rattle And Hum",
-  ],
-  [
-    Artist {
-      "artistId": 150,
-      "name": "U2",
-    },
-    "The Best Of 1980-1990",
-  ],
-  [
-    Artist {
-      "artistId": 150,
-      "name": "U2",
-    },
-    "War",
-  ],
-  [
-    Artist {
-      "artistId": 150,
-      "name": "U2",
-    },
-    "Zooropa",
-  ],
-  [
-    Artist {
-      "artistId": 151,
-      "name": "UB40",
-    },
-    "UB40 The Best Of - Volume Two [UK]",
-  ],
-  [
-    Artist {
-      "artistId": 152,
-      "name": "Van Halen",
-    },
-    "Diver Down",
-  ],
-  [
-    Artist {
-      "artistId": 152,
-      "name": "Van Halen",
-    },
-    "The Best Of Van Halen, Vol. I",
-  ],
-  [
-    Artist {
-      "artistId": 152,
-      "name": "Van Halen",
-    },
-    "Van Halen",
-  ],
-  [
-    Artist {
-      "artistId": 152,
-      "name": "Van Halen",
-    },
-    "Van Halen III",
-  ],
-  [
-    Artist {
-      "artistId": 153,
-      "name": "Velvet Revolver",
-    },
-    "Contraband",
-  ],
-  [
-    Artist {
-      "artistId": 72,
-      "name": "Vinícius De Moraes",
-    },
-    "Vinicius De Moraes",
-  ],
-  [
-    Artist {
-      "artistId": 155,
-      "name": "Zeca Pagodinho",
-    },
-    "Ao Vivo [IMPORT]",
-  ],
-  [
-    Artist {
-      "artistId": 156,
-      "name": "The Office",
-    },
-    "The Office, Season 1",
-  ],
-  [
-    Artist {
-      "artistId": 156,
-      "name": "The Office",
-    },
-    "The Office, Season 2",
-  ],
-  [
-    Artist {
-      "artistId": 156,
-      "name": "The Office",
-    },
-    "The Office, Season 3",
-  ],
-  [
-    Artist {
-      "artistId": 157,
-      "name": "Dread Zeppelin",
-    },
-    "Un-Led-Ed",
-  ],
-  [
-    Artist {
-      "artistId": 158,
-      "name": "Battlestar Galactica (Classic)",
-    },
-    "Battlestar Galactica (Classic), Season 1",
-  ],
-  [
-    Artist {
-      "artistId": 159,
-      "name": "Aquaman",
-    },
-    "Aquaman",
-  ],
-  [
-    Artist {
-      "artistId": 150,
-      "name": "U2",
-    },
-    "Instant Karma: The Amnesty International Campaign to Save Darfur",
-  ],
-  [
-    Artist {
-      "artistId": 114,
-      "name": "Ozzy Osbourne",
-    },
-    "Speak of the Devil",
-  ],
-  [
-    Artist {
-      "artistId": 179,
-      "name": "Scorpions",
-    },
-    "20th Century Masters - The Millennium Collection: The Best of Scorpions",
-  ],
-  [
-    Artist {
-      "artistId": 180,
-      "name": "House Of Pain",
-    },
-    "House of Pain",
-  ],
-  [
-    Artist {
-      "artistId": 36,
-      "name": "O Rappa",
-    },
-    "Radio Brasil (O Som da Jovem Vanguarda) - Seleccao de Henrique Amaro",
-  ],
-  [
-    Artist {
-      "artistId": 196,
-      "name": "Cake",
-    },
-    "Cake: B-Sides and Rarities",
-  ],
-  [
-    Artist {
-      "artistId": 149,
-      "name": "Lost",
-    },
-    "LOST, Season 4",
-  ],
-  [
-    Artist {
-      "artistId": 197,
-      "name": "Aisha Duo",
-    },
-    "Quiet Songs",
-  ],
-  [
-    Artist {
-      "artistId": 198,
-      "name": "Habib Koité and Bamada",
-    },
-    "Muso Ko",
-  ],
-  [
-    Artist {
-      "artistId": 199,
-      "name": "Karsh Kale",
-    },
-    "Realize",
-  ],
-  [
-    Artist {
-      "artistId": 200,
-      "name": "The Posies",
-    },
-    "Every Kind of Light",
-  ],
-  [
-    Artist {
-      "artistId": 201,
-      "name": "Luciana Souza/Romero Lubambo",
-    },
-    "Duos II",
-  ],
-  [
-    Artist {
-      "artistId": 202,
-      "name": "Aaron Goldberg",
-    },
-    "Worlds",
-  ],
-  [
-    Artist {
-      "artistId": 203,
-      "name": "Nicolaus Esterhazy Sinfonia",
-    },
-    "The Best of Beethoven",
-  ],
-  [
-    Artist {
-      "artistId": 204,
-      "name": "Temple of the Dog",
-    },
-    "Temple of the Dog",
-  ],
-  [
-    Artist {
-      "artistId": 205,
-      "name": "Chris Cornell",
-    },
-    "Carry On",
-  ],
-  [
-    Artist {
-      "artistId": 8,
-      "name": "Audioslave",
-    },
-    "Revelations",
-  ],
-  [
-    Artist {
-      "artistId": 206,
-      "name": "Alberto Turco & Nova Schola Gregoriana",
-    },
-    "Adorate Deum: Gregorian Chant from the Proper of the Mass",
-  ],
-  [
-    Artist {
-      "artistId": 207,
-      "name": "Richard Marlow & The Choir of Trinity College, Cambridge",
-    },
-    "Allegri: Miserere",
-  ],
-  [
-    Artist {
-      "artistId": 208,
-      "name": "English Concert & Trevor Pinnock",
-    },
-    "Pachelbel: Canon & Gigue",
-  ],
-  [
-    Artist {
-      "artistId": 209,
-      "name": "Anne-Sophie Mutter, Herbert Von Karajan & Wiener Philharmoniker",
-    },
-    "Vivaldi: The Four Seasons",
-  ],
-  [
-    Artist {
-      "artistId": 210,
-      "name": "Hilary Hahn, Jeffrey Kahane, Los Angeles Chamber Orchestra & Margaret Batjer",
-    },
-    "Bach: Violin Concertos",
-  ],
-  [
-    Artist {
-      "artistId": 211,
-      "name": "Wilhelm Kempff",
-    },
-    "Bach: Goldberg Variations",
-  ],
-  [
-    Artist {
-      "artistId": 212,
-      "name": "Yo-Yo Ma",
-    },
-    "Bach: The Cello Suites",
-  ],
-  [
-    Artist {
-      "artistId": 213,
-      "name": "Scholars Baroque Ensemble",
-    },
-    "Handel: The Messiah (Highlights)",
-  ],
-  [
-    Artist {
-      "artistId": 214,
-      "name": "Academy of St. Martin in the Fields & Sir Neville Marriner",
-    },
-    "The World of Classical Favourites",
-  ],
-  [
-    Artist {
-      "artistId": 215,
-      "name": "Academy of St. Martin in the Fields Chamber Ensemble & Sir Neville Marriner",
-    },
-    "Sir Neville Marriner: A Celebration",
-  ],
-  [
-    Artist {
-      "artistId": 216,
-      "name": "Berliner Philharmoniker, Claudio Abbado & Sabine Meyer",
-    },
-    "Mozart: Wind Concertos",
-  ],
-  [
-    Artist {
-      "artistId": 217,
-      "name": "Royal Philharmonic Orchestra & Sir Thomas Beecham",
-    },
-    "Haydn: Symphonies 99 - 104",
-  ],
-  [
-    Artist {
-      "artistId": 218,
-      "name": "Orchestre Révolutionnaire et Romantique & John Eliot Gardiner",
-    },
-    "Beethoven: Symhonies Nos. 5 & 6",
-  ],
-  [
-    Artist {
-      "artistId": 219,
-      "name": "Britten Sinfonia, Ivor Bolton & Lesley Garrett",
-    },
-    "A Soprano Inspired",
-  ],
-  [
-    Artist {
-      "artistId": 220,
-      "name": "Chicago Symphony Chorus, Chicago Symphony Orchestra & Sir Georg Solti",
-    },
-    "Great Opera Choruses",
-  ],
-  [
-    Artist {
-      "artistId": 221,
-      "name": "Sir Georg Solti & Wiener Philharmoniker",
-    },
-    "Wagner: Favourite Overtures",
-  ],
-  [
-    Artist {
-      "artistId": 222,
-      "name": "Academy of St. Martin in the Fields, John Birch, Sir Neville Marriner & Sylvia McNair",
-    },
-    "Fauré: Requiem, Ravel: Pavane & Others",
-  ],
-  [
-    Artist {
-      "artistId": 223,
-      "name": "London Symphony Orchestra & Sir Charles Mackerras",
-    },
-    "Tchaikovsky: The Nutcracker",
-  ],
-  [
-    Artist {
-      "artistId": 224,
-      "name": "Barry Wordsworth & BBC Concert Orchestra",
-    },
-    "The Last Night of the Proms",
-  ],
-  [
-    Artist {
-      "artistId": 225,
-      "name": "Herbert Von Karajan, Mirella Freni & Wiener Philharmoniker",
-    },
-    "Puccini: Madama Butterfly - Highlights",
-  ],
-  [
-    Artist {
-      "artistId": 226,
-      "name": "Eugene Ormandy",
-    },
-    "Holst: The Planets, Op. 32 & Vaughan Williams: Fantasies",
-  ],
-  [
-    Artist {
-      "artistId": 227,
-      "name": "Luciano Pavarotti",
-    },
-    "Pavarotti's Opera Made Easy",
-  ],
-  [
-    Artist {
-      "artistId": 228,
-      "name": "Leonard Bernstein & New York Philharmonic",
-    },
-    "Great Performances - Barber's Adagio and Other Romantic Favorites for Strings",
-  ],
-  [
-    Artist {
-      "artistId": 229,
-      "name": "Boston Symphony Orchestra & Seiji Ozawa",
-    },
-    "Carmina Burana",
-  ],
-  [
-    Artist {
-      "artistId": 230,
-      "name": "Aaron Copland & London Symphony Orchestra",
-    },
-    "A Copland Celebration, Vol. I",
-  ],
-  [
-    Artist {
-      "artistId": 231,
-      "name": "Ton Koopman",
-    },
-    "Bach: Toccata & Fugue in D Minor",
-  ],
-  [
-    Artist {
-      "artistId": 232,
-      "name": "Sergei Prokofiev & Yuri Temirkanov",
-    },
-    "Prokofiev: Symphony No.1",
-  ],
-  [
-    Artist {
-      "artistId": 233,
-      "name": "Chicago Symphony Orchestra & Fritz Reiner",
-    },
-    "Scheherazade",
-  ],
-  [
-    Artist {
-      "artistId": 234,
-      "name": "Orchestra of The Age of Enlightenment",
-    },
-    "Bach: The Brandenburg Concertos",
-  ],
-  [
-    Artist {
-      "artistId": 235,
-      "name": "Emanuel Ax, Eugene Ormandy & Philadelphia Orchestra",
-    },
-    "Chopin: Piano Concertos Nos. 1 & 2",
-  ],
-  [
-    Artist {
-      "artistId": 236,
-      "name": "James Levine",
-    },
-    "Mascagni: Cavalleria Rusticana",
-  ],
-  [
-    Artist {
-      "artistId": 237,
-      "name": "Berliner Philharmoniker & Hans Rosbaud",
-    },
-    "Sibelius: Finlandia",
-  ],
-  [
-    Artist {
-      "artistId": 238,
-      "name": "Maurizio Pollini",
-    },
-    "Beethoven Piano Sonatas: Moonlight & Pastorale",
-  ],
-  [
-    Artist {
-      "artistId": 240,
-      "name": "Gustav Mahler",
-    },
-    "Great Recordings of the Century - Mahler: Das Lied von der Erde",
-  ],
-  [
-    Artist {
-      "artistId": 241,
-      "name": "Felix Schmidt, London Symphony Orchestra & Rafael Frühbeck de Burgos",
-    },
-    "Elgar: Cello Concerto & Vaughan Williams: Fantasias",
-  ],
-  [
-    Artist {
-      "artistId": 242,
-      "name": "Edo de Waart & San Francisco Symphony",
-    },
-    "Adams, John: The Chairman Dances",
-  ],
-  [
-    Artist {
-      "artistId": 243,
-      "name": "Antal Doráti & London Symphony Orchestra",
-    },
-    "Tchaikovsky: 1812 Festival Overture, Op.49, Capriccio Italien & Beethoven: Wellington's Victory",
-  ],
-  [
-    Artist {
-      "artistId": 244,
-      "name": "Choir Of Westminster Abbey & Simon Preston",
-    },
-    "Palestrina: Missa Papae Marcelli & Allegri: Miserere",
-  ],
-  [
-    Artist {
-      "artistId": 245,
-      "name": "Michael Tilson Thomas & San Francisco Symphony",
-    },
-    "Prokofiev: Romeo & Juliet",
-  ],
-  [
-    Artist {
-      "artistId": 226,
-      "name": "Eugene Ormandy",
-    },
-    "Strauss: Waltzes",
-  ],
-  [
-    Artist {
-      "artistId": 245,
-      "name": "Michael Tilson Thomas & San Francisco Symphony",
-    },
-    "Berlioz: Symphonie Fantastique",
-  ],
-  [
-    Artist {
-      "artistId": 246,
-      "name": "Chor der Wiener Staatsoper, Herbert Von Karajan & Wiener Philharmoniker",
-    },
-    "Bizet: Carmen Highlights",
-  ],
-  [
-    Artist {
-      "artistId": 247,
-      "name": "The King's Singers",
-    },
-    "English Renaissance",
-  ],
-  [
-    Artist {
-      "artistId": 208,
-      "name": "English Concert & Trevor Pinnock",
-    },
-    "Handel: Music for the Royal Fireworks (Original Version 1749)",
-  ],
-  [
-    Artist {
-      "artistId": 248,
-      "name": "Berliner Philharmoniker & Herbert Von Karajan",
-    },
-    "Grieg: Peer Gynt Suites & Sibelius: Pelléas et Mélisande",
-  ],
-  [
-    Artist {
-      "artistId": 249,
-      "name": "Sir Georg Solti, Sumi Jo & Wiener Philharmoniker",
-    },
-    "Mozart Gala: Famous Arias",
-  ],
-  [
-    Artist {
-      "artistId": 250,
-      "name": "Christopher O'Riley",
-    },
-    "SCRIABIN: Vers la flamme",
-  ],
-  [
-    Artist {
-      "artistId": 251,
-      "name": "Fretwork",
-    },
-    "Armada: Music from the Courts of England and Spain",
-  ],
-  [
-    Artist {
-      "artistId": 248,
-      "name": "Berliner Philharmoniker & Herbert Von Karajan",
-    },
-    "Mozart: Symphonies Nos. 40 & 41",
-  ],
-  [
-    Artist {
-      "artistId": 252,
-      "name": "Amy Winehouse",
-    },
-    "Back to Black",
-  ],
-  [
-    Artist {
-      "artistId": 252,
-      "name": "Amy Winehouse",
-    },
-    "Frank",
-  ],
-  [
-    Artist {
-      "artistId": 253,
-      "name": "Calexico",
-    },
-    "Carried to Dust (Bonus Track Version)",
-  ],
-  [
-    Artist {
-      "artistId": 254,
-      "name": "Otto Klemperer & Philharmonia Orchestra",
-    },
-    "Beethoven: Symphony No. 6 'Pastoral' Etc.",
-  ],
-  [
-    Artist {
-      "artistId": 255,
-      "name": "Yehudi Menuhin",
-    },
-    "Bartok: Violin & Viola Concertos",
-  ],
-  [
-    Artist {
-      "artistId": 256,
-      "name": "Philharmonia Orchestra & Sir Neville Marriner",
-    },
-    "Mendelssohn: A Midsummer Night's Dream",
-  ],
-  [
-    Artist {
-      "artistId": 257,
-      "name": "Academy of St. Martin in the Fields, Sir Neville Marriner & Thurston Dart",
-    },
-    "Bach: Orchestral Suites Nos. 1 - 4",
-  ],
-  [
-    Artist {
-      "artistId": 258,
-      "name": "Les Arts Florissants & William Christie",
-    },
-    "Charpentier: Divertissements, Airs & Concerts",
-  ],
-  [
-    Artist {
-      "artistId": 259,
-      "name": "The 12 Cellists of The Berlin Philharmonic",
-    },
-    "South American Getaway",
-  ],
-  [
-    Artist {
-      "artistId": 260,
-      "name": "Adrian Leaper & Doreen de Feis",
-    },
-    "Górecki: Symphony No. 3",
-  ],
-  [
-    Artist {
-      "artistId": 261,
-      "name": "Roger Norrington, London Classical Players",
-    },
-    "Purcell: The Fairy Queen",
-  ],
-  [
-    Artist {
-      "artistId": 262,
-      "name": "Charles Dutoit & L'Orchestre Symphonique de Montréal",
-    },
-    "The Ultimate Relexation Album",
-  ],
-  [
-    Artist {
-      "artistId": 263,
-      "name": "Equale Brass Ensemble, John Eliot Gardiner & Munich Monteverdi Orchestra and Choir",
-    },
-    "Purcell: Music for the Queen Mary",
-  ],
-  [
-    Artist {
-      "artistId": 264,
-      "name": "Kent Nagano and Orchestre de l'Opéra de Lyon",
-    },
-    "Weill: The Seven Deadly Sins",
-  ],
-  [
-    Artist {
-      "artistId": 265,
-      "name": "Julian Bream",
-    },
-    "J.S. Bach: Chaconne, Suite in E Minor, Partita in E Major & Prelude, Fugue and Allegro",
-  ],
-  [
-    Artist {
-      "artistId": 248,
-      "name": "Berliner Philharmoniker & Herbert Von Karajan",
-    },
-    "Prokofiev: Symphony No.5 & Stravinksy: Le Sacre Du Printemps",
-  ],
-  [
-    Artist {
-      "artistId": 266,
-      "name": "Martin Roscoe",
-    },
-    "Szymanowski: Piano Works, Vol. 1",
-  ],
-  [
-    Artist {
-      "artistId": 267,
-      "name": "Göteborgs Symfoniker & Neeme Järvi",
-    },
-    "Nielsen: The Six Symphonies",
-  ],
-  [
-    Artist {
-      "artistId": 268,
-      "name": "Itzhak Perlman",
-    },
-    "Great Recordings of the Century: Paganini's 24 Caprices",
-  ],
-  [
-    Artist {
-      "artistId": 269,
-      "name": "Michele Campanella",
-    },
-    "Liszt - 12 Études D'Execution Transcendante",
-  ],
-  [
-    Artist {
-      "artistId": 270,
-      "name": "Gerald Moore",
-    },
-    "Great Recordings of the Century - Shubert: Schwanengesang, 4 Lieder",
-  ],
-  [
-    Artist {
-      "artistId": 271,
-      "name": "Mela Tenenbaum, Pro Musica Prague & Richard Kapp",
-    },
-    "Locatelli: Concertos for Violin, Strings and Continuo, Vol. 3",
-  ],
-  [
-    Artist {
-      "artistId": 226,
-      "name": "Eugene Ormandy",
-    },
-    "Respighi:Pines of Rome",
-  ],
-  [
-    Artist {
-      "artistId": 272,
-      "name": "Emerson String Quartet",
-    },
-    "Schubert: The Late String Quartets & String Quintet (3 CD's)",
-  ],
-  [
-    Artist {
-      "artistId": 273,
-      "name": "C. Monteverdi, Nigel Rogers - Chiaroscuro; London Baroque; London Cornett & Sackbu",
-    },
-    "Monteverdi: L'Orfeo",
-  ],
-  [
-    Artist {
-      "artistId": 274,
-      "name": "Nash Ensemble",
-    },
-    "Mozart: Chamber Music",
-  ],
-  [
-    Artist {
-      "artistId": 275,
-      "name": "Philip Glass Ensemble",
-    },
-    "Koyaanisqatsi (Soundtrack from the Motion Picture)",
-  ],
-  [
-    Artist {
       "artistId": 1,
       "name": "AC/DC",
     },
@@ -2427,5 +1573,859 @@
       "name": "Titãs",
     },
     "Volume Dois",
+  ],
+  [
+    Artist {
+      "artistId": 147,
+      "name": "Battlestar Galactica",
+    },
+    "Battlestar Galactica: The Story So Far",
+  ],
+  [
+    Artist {
+      "artistId": 147,
+      "name": "Battlestar Galactica",
+    },
+    "Battlestar Galactica, Season 3",
+  ],
+  [
+    Artist {
+      "artistId": 148,
+      "name": "Heroes",
+    },
+    "Heroes, Season 1",
+  ],
+  [
+    Artist {
+      "artistId": 149,
+      "name": "Lost",
+    },
+    "Lost, Season 3",
+  ],
+  [
+    Artist {
+      "artistId": 149,
+      "name": "Lost",
+    },
+    "Lost, Season 1",
+  ],
+  [
+    Artist {
+      "artistId": 149,
+      "name": "Lost",
+    },
+    "Lost, Season 2",
+  ],
+  [
+    Artist {
+      "artistId": 150,
+      "name": "U2",
+    },
+    "Achtung Baby",
+  ],
+  [
+    Artist {
+      "artistId": 150,
+      "name": "U2",
+    },
+    "All That You Can't Leave Behind",
+  ],
+  [
+    Artist {
+      "artistId": 150,
+      "name": "U2",
+    },
+    "B-Sides 1980-1990",
+  ],
+  [
+    Artist {
+      "artistId": 150,
+      "name": "U2",
+    },
+    "How To Dismantle An Atomic Bomb",
+  ],
+  [
+    Artist {
+      "artistId": 150,
+      "name": "U2",
+    },
+    "Pop",
+  ],
+  [
+    Artist {
+      "artistId": 150,
+      "name": "U2",
+    },
+    "Rattle And Hum",
+  ],
+  [
+    Artist {
+      "artistId": 150,
+      "name": "U2",
+    },
+    "The Best Of 1980-1990",
+  ],
+  [
+    Artist {
+      "artistId": 150,
+      "name": "U2",
+    },
+    "War",
+  ],
+  [
+    Artist {
+      "artistId": 150,
+      "name": "U2",
+    },
+    "Zooropa",
+  ],
+  [
+    Artist {
+      "artistId": 151,
+      "name": "UB40",
+    },
+    "UB40 The Best Of - Volume Two [UK]",
+  ],
+  [
+    Artist {
+      "artistId": 152,
+      "name": "Van Halen",
+    },
+    "Diver Down",
+  ],
+  [
+    Artist {
+      "artistId": 152,
+      "name": "Van Halen",
+    },
+    "The Best Of Van Halen, Vol. I",
+  ],
+  [
+    Artist {
+      "artistId": 152,
+      "name": "Van Halen",
+    },
+    "Van Halen",
+  ],
+  [
+    Artist {
+      "artistId": 152,
+      "name": "Van Halen",
+    },
+    "Van Halen III",
+  ],
+  [
+    Artist {
+      "artistId": 153,
+      "name": "Velvet Revolver",
+    },
+    "Contraband",
+  ],
+  [
+    Artist {
+      "artistId": 72,
+      "name": "Vinícius De Moraes",
+    },
+    "Vinicius De Moraes",
+  ],
+  [
+    Artist {
+      "artistId": 155,
+      "name": "Zeca Pagodinho",
+    },
+    "Ao Vivo [IMPORT]",
+  ],
+  [
+    Artist {
+      "artistId": 156,
+      "name": "The Office",
+    },
+    "The Office, Season 1",
+  ],
+  [
+    Artist {
+      "artistId": 156,
+      "name": "The Office",
+    },
+    "The Office, Season 2",
+  ],
+  [
+    Artist {
+      "artistId": 156,
+      "name": "The Office",
+    },
+    "The Office, Season 3",
+  ],
+  [
+    Artist {
+      "artistId": 157,
+      "name": "Dread Zeppelin",
+    },
+    "Un-Led-Ed",
+  ],
+  [
+    Artist {
+      "artistId": 158,
+      "name": "Battlestar Galactica (Classic)",
+    },
+    "Battlestar Galactica (Classic), Season 1",
+  ],
+  [
+    Artist {
+      "artistId": 159,
+      "name": "Aquaman",
+    },
+    "Aquaman",
+  ],
+  [
+    Artist {
+      "artistId": 150,
+      "name": "U2",
+    },
+    "Instant Karma: The Amnesty International Campaign to Save Darfur",
+  ],
+  [
+    Artist {
+      "artistId": 114,
+      "name": "Ozzy Osbourne",
+    },
+    "Speak of the Devil",
+  ],
+  [
+    Artist {
+      "artistId": 179,
+      "name": "Scorpions",
+    },
+    "20th Century Masters - The Millennium Collection: The Best of Scorpions",
+  ],
+  [
+    Artist {
+      "artistId": 180,
+      "name": "House Of Pain",
+    },
+    "House of Pain",
+  ],
+  [
+    Artist {
+      "artistId": 36,
+      "name": "O Rappa",
+    },
+    "Radio Brasil (O Som da Jovem Vanguarda) - Seleccao de Henrique Amaro",
+  ],
+  [
+    Artist {
+      "artistId": 196,
+      "name": "Cake",
+    },
+    "Cake: B-Sides and Rarities",
+  ],
+  [
+    Artist {
+      "artistId": 149,
+      "name": "Lost",
+    },
+    "LOST, Season 4",
+  ],
+  [
+    Artist {
+      "artistId": 197,
+      "name": "Aisha Duo",
+    },
+    "Quiet Songs",
+  ],
+  [
+    Artist {
+      "artistId": 198,
+      "name": "Habib Koité and Bamada",
+    },
+    "Muso Ko",
+  ],
+  [
+    Artist {
+      "artistId": 199,
+      "name": "Karsh Kale",
+    },
+    "Realize",
+  ],
+  [
+    Artist {
+      "artistId": 200,
+      "name": "The Posies",
+    },
+    "Every Kind of Light",
+  ],
+  [
+    Artist {
+      "artistId": 201,
+      "name": "Luciana Souza/Romero Lubambo",
+    },
+    "Duos II",
+  ],
+  [
+    Artist {
+      "artistId": 202,
+      "name": "Aaron Goldberg",
+    },
+    "Worlds",
+  ],
+  [
+    Artist {
+      "artistId": 203,
+      "name": "Nicolaus Esterhazy Sinfonia",
+    },
+    "The Best of Beethoven",
+  ],
+  [
+    Artist {
+      "artistId": 204,
+      "name": "Temple of the Dog",
+    },
+    "Temple of the Dog",
+  ],
+  [
+    Artist {
+      "artistId": 205,
+      "name": "Chris Cornell",
+    },
+    "Carry On",
+  ],
+  [
+    Artist {
+      "artistId": 8,
+      "name": "Audioslave",
+    },
+    "Revelations",
+  ],
+  [
+    Artist {
+      "artistId": 206,
+      "name": "Alberto Turco & Nova Schola Gregoriana",
+    },
+    "Adorate Deum: Gregorian Chant from the Proper of the Mass",
+  ],
+  [
+    Artist {
+      "artistId": 207,
+      "name": "Richard Marlow & The Choir of Trinity College, Cambridge",
+    },
+    "Allegri: Miserere",
+  ],
+  [
+    Artist {
+      "artistId": 208,
+      "name": "English Concert & Trevor Pinnock",
+    },
+    "Pachelbel: Canon & Gigue",
+  ],
+  [
+    Artist {
+      "artistId": 209,
+      "name": "Anne-Sophie Mutter, Herbert Von Karajan & Wiener Philharmoniker",
+    },
+    "Vivaldi: The Four Seasons",
+  ],
+  [
+    Artist {
+      "artistId": 210,
+      "name": "Hilary Hahn, Jeffrey Kahane, Los Angeles Chamber Orchestra & Margaret Batjer",
+    },
+    "Bach: Violin Concertos",
+  ],
+  [
+    Artist {
+      "artistId": 211,
+      "name": "Wilhelm Kempff",
+    },
+    "Bach: Goldberg Variations",
+  ],
+  [
+    Artist {
+      "artistId": 212,
+      "name": "Yo-Yo Ma",
+    },
+    "Bach: The Cello Suites",
+  ],
+  [
+    Artist {
+      "artistId": 213,
+      "name": "Scholars Baroque Ensemble",
+    },
+    "Handel: The Messiah (Highlights)",
+  ],
+  [
+    Artist {
+      "artistId": 214,
+      "name": "Academy of St. Martin in the Fields & Sir Neville Marriner",
+    },
+    "The World of Classical Favourites",
+  ],
+  [
+    Artist {
+      "artistId": 215,
+      "name": "Academy of St. Martin in the Fields Chamber Ensemble & Sir Neville Marriner",
+    },
+    "Sir Neville Marriner: A Celebration",
+  ],
+  [
+    Artist {
+      "artistId": 216,
+      "name": "Berliner Philharmoniker, Claudio Abbado & Sabine Meyer",
+    },
+    "Mozart: Wind Concertos",
+  ],
+  [
+    Artist {
+      "artistId": 217,
+      "name": "Royal Philharmonic Orchestra & Sir Thomas Beecham",
+    },
+    "Haydn: Symphonies 99 - 104",
+  ],
+  [
+    Artist {
+      "artistId": 218,
+      "name": "Orchestre Révolutionnaire et Romantique & John Eliot Gardiner",
+    },
+    "Beethoven: Symhonies Nos. 5 & 6",
+  ],
+  [
+    Artist {
+      "artistId": 219,
+      "name": "Britten Sinfonia, Ivor Bolton & Lesley Garrett",
+    },
+    "A Soprano Inspired",
+  ],
+  [
+    Artist {
+      "artistId": 220,
+      "name": "Chicago Symphony Chorus, Chicago Symphony Orchestra & Sir Georg Solti",
+    },
+    "Great Opera Choruses",
+  ],
+  [
+    Artist {
+      "artistId": 221,
+      "name": "Sir Georg Solti & Wiener Philharmoniker",
+    },
+    "Wagner: Favourite Overtures",
+  ],
+  [
+    Artist {
+      "artistId": 222,
+      "name": "Academy of St. Martin in the Fields, John Birch, Sir Neville Marriner & Sylvia McNair",
+    },
+    "Fauré: Requiem, Ravel: Pavane & Others",
+  ],
+  [
+    Artist {
+      "artistId": 223,
+      "name": "London Symphony Orchestra & Sir Charles Mackerras",
+    },
+    "Tchaikovsky: The Nutcracker",
+  ],
+  [
+    Artist {
+      "artistId": 224,
+      "name": "Barry Wordsworth & BBC Concert Orchestra",
+    },
+    "The Last Night of the Proms",
+  ],
+  [
+    Artist {
+      "artistId": 225,
+      "name": "Herbert Von Karajan, Mirella Freni & Wiener Philharmoniker",
+    },
+    "Puccini: Madama Butterfly - Highlights",
+  ],
+  [
+    Artist {
+      "artistId": 226,
+      "name": "Eugene Ormandy",
+    },
+    "Holst: The Planets, Op. 32 & Vaughan Williams: Fantasies",
+  ],
+  [
+    Artist {
+      "artistId": 227,
+      "name": "Luciano Pavarotti",
+    },
+    "Pavarotti's Opera Made Easy",
+  ],
+  [
+    Artist {
+      "artistId": 228,
+      "name": "Leonard Bernstein & New York Philharmonic",
+    },
+    "Great Performances - Barber's Adagio and Other Romantic Favorites for Strings",
+  ],
+  [
+    Artist {
+      "artistId": 229,
+      "name": "Boston Symphony Orchestra & Seiji Ozawa",
+    },
+    "Carmina Burana",
+  ],
+  [
+    Artist {
+      "artistId": 230,
+      "name": "Aaron Copland & London Symphony Orchestra",
+    },
+    "A Copland Celebration, Vol. I",
+  ],
+  [
+    Artist {
+      "artistId": 231,
+      "name": "Ton Koopman",
+    },
+    "Bach: Toccata & Fugue in D Minor",
+  ],
+  [
+    Artist {
+      "artistId": 232,
+      "name": "Sergei Prokofiev & Yuri Temirkanov",
+    },
+    "Prokofiev: Symphony No.1",
+  ],
+  [
+    Artist {
+      "artistId": 233,
+      "name": "Chicago Symphony Orchestra & Fritz Reiner",
+    },
+    "Scheherazade",
+  ],
+  [
+    Artist {
+      "artistId": 234,
+      "name": "Orchestra of The Age of Enlightenment",
+    },
+    "Bach: The Brandenburg Concertos",
+  ],
+  [
+    Artist {
+      "artistId": 235,
+      "name": "Emanuel Ax, Eugene Ormandy & Philadelphia Orchestra",
+    },
+    "Chopin: Piano Concertos Nos. 1 & 2",
+  ],
+  [
+    Artist {
+      "artistId": 236,
+      "name": "James Levine",
+    },
+    "Mascagni: Cavalleria Rusticana",
+  ],
+  [
+    Artist {
+      "artistId": 237,
+      "name": "Berliner Philharmoniker & Hans Rosbaud",
+    },
+    "Sibelius: Finlandia",
+  ],
+  [
+    Artist {
+      "artistId": 238,
+      "name": "Maurizio Pollini",
+    },
+    "Beethoven Piano Sonatas: Moonlight & Pastorale",
+  ],
+  [
+    Artist {
+      "artistId": 240,
+      "name": "Gustav Mahler",
+    },
+    "Great Recordings of the Century - Mahler: Das Lied von der Erde",
+  ],
+  [
+    Artist {
+      "artistId": 241,
+      "name": "Felix Schmidt, London Symphony Orchestra & Rafael Frühbeck de Burgos",
+    },
+    "Elgar: Cello Concerto & Vaughan Williams: Fantasias",
+  ],
+  [
+    Artist {
+      "artistId": 242,
+      "name": "Edo de Waart & San Francisco Symphony",
+    },
+    "Adams, John: The Chairman Dances",
+  ],
+  [
+    Artist {
+      "artistId": 243,
+      "name": "Antal Doráti & London Symphony Orchestra",
+    },
+    "Tchaikovsky: 1812 Festival Overture, Op.49, Capriccio Italien & Beethoven: Wellington's Victory",
+  ],
+  [
+    Artist {
+      "artistId": 244,
+      "name": "Choir Of Westminster Abbey & Simon Preston",
+    },
+    "Palestrina: Missa Papae Marcelli & Allegri: Miserere",
+  ],
+  [
+    Artist {
+      "artistId": 245,
+      "name": "Michael Tilson Thomas & San Francisco Symphony",
+    },
+    "Prokofiev: Romeo & Juliet",
+  ],
+  [
+    Artist {
+      "artistId": 226,
+      "name": "Eugene Ormandy",
+    },
+    "Strauss: Waltzes",
+  ],
+  [
+    Artist {
+      "artistId": 245,
+      "name": "Michael Tilson Thomas & San Francisco Symphony",
+    },
+    "Berlioz: Symphonie Fantastique",
+  ],
+  [
+    Artist {
+      "artistId": 246,
+      "name": "Chor der Wiener Staatsoper, Herbert Von Karajan & Wiener Philharmoniker",
+    },
+    "Bizet: Carmen Highlights",
+  ],
+  [
+    Artist {
+      "artistId": 247,
+      "name": "The King's Singers",
+    },
+    "English Renaissance",
+  ],
+  [
+    Artist {
+      "artistId": 208,
+      "name": "English Concert & Trevor Pinnock",
+    },
+    "Handel: Music for the Royal Fireworks (Original Version 1749)",
+  ],
+  [
+    Artist {
+      "artistId": 248,
+      "name": "Berliner Philharmoniker & Herbert Von Karajan",
+    },
+    "Grieg: Peer Gynt Suites & Sibelius: Pelléas et Mélisande",
+  ],
+  [
+    Artist {
+      "artistId": 249,
+      "name": "Sir Georg Solti, Sumi Jo & Wiener Philharmoniker",
+    },
+    "Mozart Gala: Famous Arias",
+  ],
+  [
+    Artist {
+      "artistId": 250,
+      "name": "Christopher O'Riley",
+    },
+    "SCRIABIN: Vers la flamme",
+  ],
+  [
+    Artist {
+      "artistId": 251,
+      "name": "Fretwork",
+    },
+    "Armada: Music from the Courts of England and Spain",
+  ],
+  [
+    Artist {
+      "artistId": 248,
+      "name": "Berliner Philharmoniker & Herbert Von Karajan",
+    },
+    "Mozart: Symphonies Nos. 40 & 41",
+  ],
+  [
+    Artist {
+      "artistId": 252,
+      "name": "Amy Winehouse",
+    },
+    "Back to Black",
+  ],
+  [
+    Artist {
+      "artistId": 252,
+      "name": "Amy Winehouse",
+    },
+    "Frank",
+  ],
+  [
+    Artist {
+      "artistId": 253,
+      "name": "Calexico",
+    },
+    "Carried to Dust (Bonus Track Version)",
+  ],
+  [
+    Artist {
+      "artistId": 254,
+      "name": "Otto Klemperer & Philharmonia Orchestra",
+    },
+    "Beethoven: Symphony No. 6 'Pastoral' Etc.",
+  ],
+  [
+    Artist {
+      "artistId": 255,
+      "name": "Yehudi Menuhin",
+    },
+    "Bartok: Violin & Viola Concertos",
+  ],
+  [
+    Artist {
+      "artistId": 256,
+      "name": "Philharmonia Orchestra & Sir Neville Marriner",
+    },
+    "Mendelssohn: A Midsummer Night's Dream",
+  ],
+  [
+    Artist {
+      "artistId": 257,
+      "name": "Academy of St. Martin in the Fields, Sir Neville Marriner & Thurston Dart",
+    },
+    "Bach: Orchestral Suites Nos. 1 - 4",
+  ],
+  [
+    Artist {
+      "artistId": 258,
+      "name": "Les Arts Florissants & William Christie",
+    },
+    "Charpentier: Divertissements, Airs & Concerts",
+  ],
+  [
+    Artist {
+      "artistId": 259,
+      "name": "The 12 Cellists of The Berlin Philharmonic",
+    },
+    "South American Getaway",
+  ],
+  [
+    Artist {
+      "artistId": 260,
+      "name": "Adrian Leaper & Doreen de Feis",
+    },
+    "Górecki: Symphony No. 3",
+  ],
+  [
+    Artist {
+      "artistId": 261,
+      "name": "Roger Norrington, London Classical Players",
+    },
+    "Purcell: The Fairy Queen",
+  ],
+  [
+    Artist {
+      "artistId": 262,
+      "name": "Charles Dutoit & L'Orchestre Symphonique de Montréal",
+    },
+    "The Ultimate Relexation Album",
+  ],
+  [
+    Artist {
+      "artistId": 263,
+      "name": "Equale Brass Ensemble, John Eliot Gardiner & Munich Monteverdi Orchestra and Choir",
+    },
+    "Purcell: Music for the Queen Mary",
+  ],
+  [
+    Artist {
+      "artistId": 264,
+      "name": "Kent Nagano and Orchestre de l'Opéra de Lyon",
+    },
+    "Weill: The Seven Deadly Sins",
+  ],
+  [
+    Artist {
+      "artistId": 265,
+      "name": "Julian Bream",
+    },
+    "J.S. Bach: Chaconne, Suite in E Minor, Partita in E Major & Prelude, Fugue and Allegro",
+  ],
+  [
+    Artist {
+      "artistId": 248,
+      "name": "Berliner Philharmoniker & Herbert Von Karajan",
+    },
+    "Prokofiev: Symphony No.5 & Stravinksy: Le Sacre Du Printemps",
+  ],
+  [
+    Artist {
+      "artistId": 266,
+      "name": "Martin Roscoe",
+    },
+    "Szymanowski: Piano Works, Vol. 1",
+  ],
+  [
+    Artist {
+      "artistId": 267,
+      "name": "Göteborgs Symfoniker & Neeme Järvi",
+    },
+    "Nielsen: The Six Symphonies",
+  ],
+  [
+    Artist {
+      "artistId": 268,
+      "name": "Itzhak Perlman",
+    },
+    "Great Recordings of the Century: Paganini's 24 Caprices",
+  ],
+  [
+    Artist {
+      "artistId": 269,
+      "name": "Michele Campanella",
+    },
+    "Liszt - 12 Études D'Execution Transcendante",
+  ],
+  [
+    Artist {
+      "artistId": 270,
+      "name": "Gerald Moore",
+    },
+    "Great Recordings of the Century - Shubert: Schwanengesang, 4 Lieder",
+  ],
+  [
+    Artist {
+      "artistId": 271,
+      "name": "Mela Tenenbaum, Pro Musica Prague & Richard Kapp",
+    },
+    "Locatelli: Concertos for Violin, Strings and Continuo, Vol. 3",
+  ],
+  [
+    Artist {
+      "artistId": 226,
+      "name": "Eugene Ormandy",
+    },
+    "Respighi:Pines of Rome",
+  ],
+  [
+    Artist {
+      "artistId": 272,
+      "name": "Emerson String Quartet",
+    },
+    "Schubert: The Late String Quartets & String Quintet (3 CD's)",
+  ],
+  [
+    Artist {
+      "artistId": 273,
+      "name": "C. Monteverdi, Nigel Rogers - Chiaroscuro; London Baroque; London Cornett & Sackbu",
+    },
+    "Monteverdi: L'Orfeo",
+  ],
+  [
+    Artist {
+      "artistId": 274,
+      "name": "Nash Ensemble",
+    },
+    "Mozart: Chamber Music",
+  ],
+  [
+    Artist {
+      "artistId": 275,
+      "name": "Philip Glass Ensemble",
+    },
+    "Koyaanisqatsi (Soundtrack from the Motion Picture)",
   ],
 ]

@@ -9,12 +9,13 @@ Verse supports many different databases through database driver plugins.
 
 Verse currently supports the following database drivers:
 
-| Database    | package                     | function    |
+| Database    | Package                     | Function    |
 | ----------- | --------------------------- | ----------- |
 | PostgreSQL  | `@operativa/verse-postgres` | `postgres`  |
 | MySQL       | `@operativa/verse-mysql`    | `mysql`     |
 | SQLite      | `@operativa/verse-sqlite`   | `sqlite`    |
 | SQL Server  | `@operativa/verse-mssql`    | `mssql`     |
+| Oracle      | `@operativa/verse-oracle`   | `oracle`    |
 
 ## Using a Database Driver
 
@@ -31,20 +32,16 @@ You would install the SQLite driver, `@operativa/verse-sqlite`:
 npm install @operativa/verse-sqlite
 ```
 
-You would then add the import for the driver and initilize it in your verse function:
+You would then add the import for the driver and initialize it in your verse function:
 
-```ts include ./apps/snippets/src/sqlite-provider.ts:setup-verse showLineNumbers
+```ts include ./apps/snippets/src/drivers.ts:setup showLineNumbers
 import { verse } from "@operativa/verse";
 import { sqlite } from "@operativa/verse-sqlite";
 import { boolean, entity, int, string } from "@operativa/verse/model/builder";
-import { PrettyConsoleLogger } from "@operativa/verse/utils/logging";
-
-// Setup our Verse instance.
 
 const db = verse({
   config: {
     driver: sqlite("todos.sqlite"),
-    logger: new PrettyConsoleLogger(),
   },
   model: {
     entities: {

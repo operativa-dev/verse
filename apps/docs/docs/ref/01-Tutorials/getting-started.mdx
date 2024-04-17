@@ -5,7 +5,9 @@ import TabItem from "@theme/TabItem";
 
 Let's get started with the basics of Verse by creating a simple todo list application that uses a SQLite database.
 
-For this example, we will use SqlLite with the `@operativa/verse-sqlite` driver. Verse supports many database drivers, including PostgreSQL, MySQL, and SQLite. You can find the list of supported drivers in the [Database drivers](/docs/ref/database-drivers) section.
+For this example, we will use SqlLite with the `@operativa/verse-sqlite` driver. Verse supports many database drivers,
+including PostgreSQL, MySQL, and SQLite. You can find the list of supported drivers in the
+[database drivers](/docs/ref/drivers) section.
 
 Create a new directory for your project and install the packages:
 
@@ -47,7 +49,7 @@ to an optional configuration function.
 The `id` property will be treated as the primary key by convention and Verse will take care of managing the identifier
 for us.
 
-:::info
+:::note
 
 In Verse, entities can also be classes. You can do this by passing a class constructor to the `entity` function. This is useful when you want to define methods and other behavior on your entities.
 

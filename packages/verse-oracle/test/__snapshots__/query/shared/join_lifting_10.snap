@@ -177,9 +177,9 @@
   ],
   [
     Album {
-      "albumId": 321,
+      "albumId": 322,
       "artistId": 252,
-      "title": "Back to Black",
+      "title": "Frank",
     },
     Artist {
       "artistId": 252,
@@ -188,9 +188,9 @@
   ],
   [
     Album {
-      "albumId": 322,
+      "albumId": 321,
       "artistId": 252,
-      "title": "Frank",
+      "title": "Back to Black",
     },
     Artist {
       "artistId": 252,
@@ -221,9 +221,9 @@
   ],
   [
     Album {
-      "albumId": 34,
+      "albumId": 8,
       "artistId": 6,
-      "title": "Chill: Brazil (Disc 2)",
+      "title": "Warner 25 Anos",
     },
     Artist {
       "artistId": 6,
@@ -232,9 +232,9 @@
   ],
   [
     Album {
-      "albumId": 8,
+      "albumId": 34,
       "artistId": 6,
-      "title": "Warner 25 Anos",
+      "title": "Chill: Brazil (Disc 2)",
     },
     Artist {
       "artistId": 6,
@@ -320,9 +320,9 @@
   ],
   [
     Album {
-      "albumId": 226,
+      "albumId": 227,
       "artistId": 147,
-      "title": "Battlestar Galactica: The Story So Far",
+      "title": "Battlestar Galactica, Season 3",
     },
     Artist {
       "artistId": 147,
@@ -331,9 +331,9 @@
   ],
   [
     Album {
-      "albumId": 227,
+      "albumId": 226,
       "artistId": 147,
-      "title": "Battlestar Galactica, Season 3",
+      "title": "Battlestar Galactica: The Story So Far",
     },
     Artist {
       "artistId": 147,
@@ -441,9 +441,9 @@
   ],
   [
     Album {
-      "albumId": 16,
+      "albumId": 17,
       "artistId": 12,
-      "title": "Black Sabbath",
+      "title": "Black Sabbath Vol. 4 (Remaster)",
     },
     Artist {
       "artistId": 12,
@@ -452,9 +452,9 @@
   ],
   [
     Album {
-      "albumId": 17,
+      "albumId": 16,
       "artistId": 12,
-      "title": "Black Sabbath Vol. 4 (Remaster)",
+      "title": "Black Sabbath",
     },
     Artist {
       "artistId": 12,
@@ -529,9 +529,9 @@
   ],
   [
     Album {
-      "albumId": 22,
+      "albumId": 21,
       "artistId": 16,
-      "title": "Sozinho Remix Ao Vivo",
+      "title": "Prenda Minha",
     },
     Artist {
       "artistId": 16,
@@ -540,9 +540,9 @@
   ],
   [
     Album {
-      "albumId": 21,
+      "albumId": 22,
       "artistId": 16,
-      "title": "Prenda Minha",
+      "title": "Sozinho Remix Ao Vivo",
     },
     Artist {
       "artistId": 16,
@@ -617,9 +617,9 @@
   ],
   [
     Album {
-      "albumId": 25,
+      "albumId": 24,
       "artistId": 18,
-      "title": "Da Lama Ao Caos",
+      "title": "Afrociberdelia",
     },
     Artist {
       "artistId": 18,
@@ -628,9 +628,9 @@
   ],
   [
     Album {
-      "albumId": 24,
+      "albumId": 25,
       "artistId": 18,
-      "title": "Afrociberdelia",
+      "title": "Da Lama Ao Caos",
     },
     Artist {
       "artistId": 18,
@@ -683,9 +683,9 @@
   ],
   [
     Album {
-      "albumId": 26,
+      "albumId": 27,
       "artistId": 19,
-      "title": "Acústico MTV [Live]",
+      "title": "Cidade Negra - Hits",
     },
     Artist {
       "artistId": 19,
@@ -694,9 +694,9 @@
   ],
   [
     Album {
-      "albumId": 27,
+      "albumId": 26,
       "artistId": 19,
-      "title": "Cidade Negra - Hits",
+      "title": "Acústico MTV [Live]",
     },
     Artist {
       "artistId": 19,
@@ -716,9 +716,9 @@
   ],
   [
     Album {
-      "albumId": 54,
+      "albumId": 55,
       "artistId": 76,
-      "title": "Chronicle, Vol. 1",
+      "title": "Chronicle, Vol. 2",
     },
     Artist {
       "artistId": 76,
@@ -727,9 +727,9 @@
   ],
   [
     Album {
-      "albumId": 55,
+      "albumId": 54,
       "artistId": 76,
-      "title": "Chronicle, Vol. 2",
+      "title": "Chronicle, Vol. 1",
     },
     Artist {
       "artistId": 76,
@@ -771,9 +771,9 @@
   ],
   [
     Album {
-      "albumId": 62,
+      "albumId": 43,
       "artistId": 58,
-      "title": "Machine Head",
+      "title": "MK III The Final Concerts [Disc 1]",
     },
     Artist {
       "artistId": 58,
@@ -818,17 +818,6 @@
       "albumId": 63,
       "artistId": 58,
       "title": "Purpendicular",
-    },
-    Artist {
-      "artistId": 58,
-      "name": "Deep Purple",
-    },
-  ],
-  [
-    Album {
-      "albumId": 43,
-      "artistId": 58,
-      "title": "MK III The Final Concerts [Disc 1]",
     },
     Artist {
       "artistId": 58,
@@ -892,6 +881,17 @@
   ],
   [
     Album {
+      "albumId": 62,
+      "artistId": 58,
+      "title": "Machine Head",
+    },
+    Artist {
+      "artistId": 58,
+      "name": "Deep Purple",
+    },
+  ],
+  [
+    Album {
       "albumId": 67,
       "artistId": 78,
       "title": "Vault: Def Leppard's Greatest Hits",
@@ -914,9 +914,9 @@
   ],
   [
     Album {
-      "albumId": 69,
+      "albumId": 70,
       "artistId": 80,
-      "title": "Djavan Ao Vivo - Vol. 02",
+      "title": "Djavan Ao Vivo - Vol. 1",
     },
     Artist {
       "artistId": 80,
@@ -925,9 +925,9 @@
   ],
   [
     Album {
-      "albumId": 70,
+      "albumId": 69,
       "artistId": 80,
-      "title": "Djavan Ao Vivo - Vol. 1",
+      "title": "Djavan Ao Vivo - Vol. 02",
     },
     Artist {
       "artistId": 80,
@@ -1035,17 +1035,6 @@
   ],
   [
     Album {
-      "albumId": 73,
-      "artistId": 81,
-      "title": "Unplugged",
-    },
-    Artist {
-      "artistId": 81,
-      "name": "Eric Clapton",
-    },
-  ],
-  [
-    Album {
       "albumId": 72,
       "artistId": 81,
       "title": "The Cream Of Clapton",
@@ -1057,9 +1046,20 @@
   ],
   [
     Album {
-      "albumId": 311,
+      "albumId": 73,
+      "artistId": 81,
+      "title": "Unplugged",
+    },
+    Artist {
+      "artistId": 81,
+      "name": "Eric Clapton",
+    },
+  ],
+  [
+    Album {
+      "albumId": 343,
       "artistId": 226,
-      "title": "Strauss: Waltzes",
+      "title": "Respighi:Pines of Rome",
     },
     Artist {
       "artistId": 226,
@@ -1079,9 +1079,9 @@
   ],
   [
     Album {
-      "albumId": 343,
+      "albumId": 311,
       "artistId": 226,
-      "title": "Respighi:Pines of Rome",
+      "title": "Strauss: Waltzes",
     },
     Artist {
       "artistId": 226,
@@ -1090,20 +1090,9 @@
   ],
   [
     Album {
-      "albumId": 77,
+      "albumId": 74,
       "artistId": 82,
-      "title": "The Real Thing",
-    },
-    Artist {
-      "artistId": 82,
-      "name": "Faith No More",
-    },
-  ],
-  [
-    Album {
-      "albumId": 76,
-      "artistId": 82,
-      "title": "King For A Day Fool For A Lifetime",
+      "title": "Album Of The Year",
     },
     Artist {
       "artistId": 82,
@@ -1123,9 +1112,20 @@
   ],
   [
     Album {
-      "albumId": 74,
+      "albumId": 76,
       "artistId": 82,
-      "title": "Album Of The Year",
+      "title": "King For A Day Fool For A Lifetime",
+    },
+    Artist {
+      "artistId": 82,
+      "name": "Faith No More",
+    },
+  ],
+  [
+    Album {
+      "albumId": 77,
+      "artistId": 82,
+      "title": "The Real Thing",
     },
     Artist {
       "artistId": 82,
@@ -1156,9 +1156,9 @@
   ],
   [
     Album {
-      "albumId": 82,
+      "albumId": 79,
       "artistId": 84,
-      "title": "The Colour And The Shape",
+      "title": "In Your Honor [Disc 1]",
     },
     Artist {
       "artistId": 84,
@@ -1167,9 +1167,9 @@
   ],
   [
     Album {
-      "albumId": 79,
+      "albumId": 82,
       "artistId": 84,
-      "title": "In Your Honor [Disc 1]",
+      "title": "The Colour And The Shape",
     },
     Artist {
       "artistId": 84,
@@ -1266,9 +1266,9 @@
   ],
   [
     Album {
-      "albumId": 85,
+      "albumId": 87,
       "artistId": 27,
-      "title": "As Canções de Eu Tu Eles",
+      "title": "Quanta Gente Veio ver--Bônus De Carnaval",
     },
     Artist {
       "artistId": 27,
@@ -1277,9 +1277,9 @@
   ],
   [
     Album {
-      "albumId": 87,
+      "albumId": 85,
       "artistId": 27,
-      "title": "Quanta Gente Veio ver--Bônus De Carnaval",
+      "title": "As Canções de Eu Tu Eles",
     },
     Artist {
       "artistId": 27,
@@ -1321,17 +1321,6 @@
   ],
   [
     Album {
-      "albumId": 89,
-      "artistId": 54,
-      "title": "American Idiot",
-    },
-    Artist {
-      "artistId": 54,
-      "name": "Green Day",
-    },
-  ],
-  [
-    Album {
       "albumId": 39,
       "artistId": 54,
       "title": "International Superhits",
@@ -1343,13 +1332,13 @@
   ],
   [
     Album {
-      "albumId": 92,
-      "artistId": 88,
-      "title": "Use Your Illusion II",
+      "albumId": 89,
+      "artistId": 54,
+      "title": "American Idiot",
     },
     Artist {
-      "artistId": 88,
-      "name": "Guns N' Roses",
+      "artistId": 54,
+      "name": "Green Day",
     },
   ],
   [
@@ -1368,6 +1357,17 @@
       "albumId": 91,
       "artistId": 88,
       "title": "Use Your Illusion I",
+    },
+    Artist {
+      "artistId": 88,
+      "name": "Guns N' Roses",
+    },
+  ],
+  [
+    Album {
+      "albumId": 92,
+      "artistId": 88,
+      "title": "Use Your Illusion II",
     },
     Artist {
       "artistId": 88,
@@ -1460,17 +1460,6 @@
     Artist {
       "artistId": 89,
       "name": "Incognito",
-    },
-  ],
-  [
-    Album {
-      "albumId": 103,
-      "artistId": 90,
-      "title": "Live At Donington 1992 (Disc 1)",
-    },
-    Artist {
-      "artistId": 90,
-      "name": "Iron Maiden",
     },
   ],
   [
@@ -1574,9 +1563,9 @@
   ],
   [
     Album {
-      "albumId": 114,
+      "albumId": 103,
       "artistId": 90,
-      "title": "Virtual XI",
+      "title": "Live At Donington 1992 (Disc 1)",
     },
     Artist {
       "artistId": 90,
@@ -1695,6 +1684,17 @@
   ],
   [
     Album {
+      "albumId": 114,
+      "artistId": 90,
+      "title": "Virtual XI",
+    },
+    Artist {
+      "artistId": 90,
+      "name": "Iron Maiden",
+    },
+  ],
+  [
+    Album {
       "albumId": 339,
       "artistId": 268,
       "title": "Great Recordings of the Century: Paganini's 24 Caprices",
@@ -1739,9 +1739,9 @@
   ],
   [
     Album {
-      "albumId": 117,
+      "albumId": 116,
       "artistId": 92,
-      "title": "Synkronized",
+      "title": "Emergency On Planet Earth",
     },
     Artist {
       "artistId": 92,
@@ -1750,9 +1750,9 @@
   ],
   [
     Album {
-      "albumId": 116,
+      "albumId": 117,
       "artistId": 92,
-      "title": "Emergency On Planet Earth",
+      "title": "Synkronized",
     },
     Artist {
       "artistId": 92,
@@ -1893,6 +1893,28 @@
   ],
   [
     Album {
+      "albumId": 30,
+      "artistId": 22,
+      "title": "BBC Sessions [Disc 1] [Live]",
+    },
+    Artist {
+      "artistId": 22,
+      "name": "Led Zeppelin",
+    },
+  ],
+  [
+    Album {
+      "albumId": 44,
+      "artistId": 22,
+      "title": "Physical Graffiti [Disc 1]",
+    },
+    Artist {
+      "artistId": 22,
+      "name": "Led Zeppelin",
+    },
+  ],
+  [
+    Album {
       "albumId": 138,
       "artistId": 22,
       "title": "The Song Remains The Same (Disc 2)",
@@ -1904,9 +1926,9 @@
   ],
   [
     Album {
-      "albumId": 135,
+      "albumId": 137,
       "artistId": 22,
-      "title": "Physical Graffiti [Disc 2]",
+      "title": "The Song Remains The Same (Disc 1)",
     },
     Artist {
       "artistId": 22,
@@ -1926,9 +1948,9 @@
   ],
   [
     Album {
-      "albumId": 137,
+      "albumId": 135,
       "artistId": 22,
-      "title": "The Song Remains The Same (Disc 1)",
+      "title": "Physical Graffiti [Disc 2]",
     },
     Artist {
       "artistId": 22,
@@ -1992,31 +2014,9 @@
   ],
   [
     Album {
-      "albumId": 30,
+      "albumId": 129,
       "artistId": 22,
-      "title": "BBC Sessions [Disc 1] [Live]",
-    },
-    Artist {
-      "artistId": 22,
-      "name": "Led Zeppelin",
-    },
-  ],
-  [
-    Album {
-      "albumId": 44,
-      "artistId": 22,
-      "title": "Physical Graffiti [Disc 1]",
-    },
-    Artist {
-      "artistId": 22,
-      "name": "Led Zeppelin",
-    },
-  ],
-  [
-    Album {
-      "albumId": 127,
-      "artistId": 22,
-      "title": "BBC Sessions [Disc 2] [Live]",
+      "title": "Houses Of The Holy",
     },
     Artist {
       "artistId": 22,
@@ -2036,9 +2036,9 @@
   ],
   [
     Album {
-      "albumId": 129,
+      "albumId": 127,
       "artistId": 22,
-      "title": "Houses Of The Holy",
+      "title": "BBC Sessions [Disc 2] [Live]",
     },
     Artist {
       "artistId": 22,
@@ -2047,9 +2047,9 @@
   ],
   [
     Album {
-      "albumId": 139,
+      "albumId": 140,
       "artistId": 99,
-      "title": "A TempestadeTempestade Ou O Livro Dos Dias",
+      "title": "Mais Do Mesmo",
     },
     Artist {
       "artistId": 99,
@@ -2058,9 +2058,9 @@
   ],
   [
     Album {
-      "albumId": 140,
+      "albumId": 139,
       "artistId": 99,
-      "title": "Mais Do Mesmo",
+      "title": "A TempestadeTempestade Ou O Livro Dos Dias",
     },
     Artist {
       "artistId": 99,
@@ -2113,28 +2113,6 @@
   ],
   [
     Album {
-      "albumId": 261,
-      "artistId": 149,
-      "title": "LOST, Season 4",
-    },
-    Artist {
-      "artistId": 149,
-      "name": "Lost",
-    },
-  ],
-  [
-    Album {
-      "albumId": 231,
-      "artistId": 149,
-      "title": "Lost, Season 2",
-    },
-    Artist {
-      "artistId": 149,
-      "name": "Lost",
-    },
-  ],
-  [
-    Album {
       "albumId": 229,
       "artistId": 149,
       "title": "Lost, Season 3",
@@ -2149,6 +2127,28 @@
       "albumId": 230,
       "artistId": 149,
       "title": "Lost, Season 1",
+    },
+    Artist {
+      "artistId": 149,
+      "name": "Lost",
+    },
+  ],
+  [
+    Album {
+      "albumId": 261,
+      "artistId": 149,
+      "title": "LOST, Season 4",
+    },
+    Artist {
+      "artistId": 149,
+      "name": "Lost",
+    },
+  ],
+  [
+    Album {
+      "albumId": 231,
+      "artistId": 149,
+      "title": "Lost, Season 2",
     },
     Artist {
       "artistId": 149,
@@ -2179,9 +2179,9 @@
   ],
   [
     Album {
-      "albumId": 143,
+      "albumId": 142,
       "artistId": 101,
-      "title": "Lulu Santos - RCA 100 Anos De Música - Álbum 02",
+      "title": "Lulu Santos - RCA 100 Anos De Música - Álbum 01",
     },
     Artist {
       "artistId": 101,
@@ -2190,9 +2190,9 @@
   ],
   [
     Album {
-      "albumId": 142,
+      "albumId": 143,
       "artistId": 101,
-      "title": "Lulu Santos - RCA 100 Anos De Música - Álbum 01",
+      "title": "Lulu Santos - RCA 100 Anos De Música - Álbum 02",
     },
     Artist {
       "artistId": 101,
@@ -2289,9 +2289,9 @@
   ],
   [
     Album {
-      "albumId": 35,
+      "albumId": 156,
       "artistId": 50,
-      "title": "Garage Inc. (Disc 1)",
+      "title": "...And Justice For All",
     },
     Artist {
       "artistId": 50,
@@ -2311,64 +2311,9 @@
   ],
   [
     Album {
-      "albumId": 156,
+      "albumId": 154,
       "artistId": 50,
-      "title": "...And Justice For All",
-    },
-    Artist {
-      "artistId": 50,
-      "name": "Metallica",
-    },
-  ],
-  [
-    Album {
-      "albumId": 148,
-      "artistId": 50,
-      "title": "Black Album",
-    },
-    Artist {
-      "artistId": 50,
-      "name": "Metallica",
-    },
-  ],
-  [
-    Album {
-      "albumId": 149,
-      "artistId": 50,
-      "title": "Garage Inc. (Disc 2)",
-    },
-    Artist {
-      "artistId": 50,
-      "name": "Metallica",
-    },
-  ],
-  [
-    Album {
-      "albumId": 150,
-      "artistId": 50,
-      "title": "Kill 'Em All",
-    },
-    Artist {
-      "artistId": 50,
-      "name": "Metallica",
-    },
-  ],
-  [
-    Album {
-      "albumId": 151,
-      "artistId": 50,
-      "title": "Load",
-    },
-    Artist {
-      "artistId": 50,
-      "name": "Metallica",
-    },
-  ],
-  [
-    Album {
-      "albumId": 152,
-      "artistId": 50,
-      "title": "Master Of Puppets",
+      "title": "Ride The Lightning",
     },
     Artist {
       "artistId": 50,
@@ -2388,9 +2333,9 @@
   ],
   [
     Album {
-      "albumId": 154,
+      "albumId": 152,
       "artistId": 50,
-      "title": "Ride The Lightning",
+      "title": "Master Of Puppets",
     },
     Artist {
       "artistId": 50,
@@ -2399,9 +2344,64 @@
   ],
   [
     Album {
-      "albumId": 310,
+      "albumId": 151,
+      "artistId": 50,
+      "title": "Load",
+    },
+    Artist {
+      "artistId": 50,
+      "name": "Metallica",
+    },
+  ],
+  [
+    Album {
+      "albumId": 150,
+      "artistId": 50,
+      "title": "Kill 'Em All",
+    },
+    Artist {
+      "artistId": 50,
+      "name": "Metallica",
+    },
+  ],
+  [
+    Album {
+      "albumId": 149,
+      "artistId": 50,
+      "title": "Garage Inc. (Disc 2)",
+    },
+    Artist {
+      "artistId": 50,
+      "name": "Metallica",
+    },
+  ],
+  [
+    Album {
+      "albumId": 148,
+      "artistId": 50,
+      "title": "Black Album",
+    },
+    Artist {
+      "artistId": 50,
+      "name": "Metallica",
+    },
+  ],
+  [
+    Album {
+      "albumId": 35,
+      "artistId": 50,
+      "title": "Garage Inc. (Disc 1)",
+    },
+    Artist {
+      "artistId": 50,
+      "name": "Metallica",
+    },
+  ],
+  [
+    Album {
+      "albumId": 312,
       "artistId": 245,
-      "title": "Prokofiev: Romeo & Juliet",
+      "title": "Berlioz: Symphonie Fantastique",
     },
     Artist {
       "artistId": 245,
@@ -2410,9 +2410,9 @@
   ],
   [
     Album {
-      "albumId": 312,
+      "albumId": 310,
       "artistId": 245,
-      "title": "Berlioz: Symphonie Fantastique",
+      "title": "Prokofiev: Romeo & Juliet",
     },
     Artist {
       "artistId": 245,
@@ -2432,9 +2432,9 @@
   ],
   [
     Album {
-      "albumId": 48,
+      "albumId": 49,
       "artistId": 68,
-      "title": "The Essential Miles Davis [Disc 1]",
+      "title": "The Essential Miles Davis [Disc 2]",
     },
     Artist {
       "artistId": 68,
@@ -2443,9 +2443,9 @@
   ],
   [
     Album {
-      "albumId": 49,
+      "albumId": 48,
       "artistId": 68,
-      "title": "The Essential Miles Davis [Disc 2]",
+      "title": "The Essential Miles Davis [Disc 1]",
     },
     Artist {
       "artistId": 68,
@@ -2465,9 +2465,9 @@
   ],
   [
     Album {
-      "albumId": 158,
+      "albumId": 159,
       "artistId": 42,
-      "title": "Milton Nascimento Ao Vivo",
+      "title": "Minas",
     },
     Artist {
       "artistId": 42,
@@ -2476,9 +2476,9 @@
   ],
   [
     Album {
-      "albumId": 159,
+      "albumId": 158,
       "artistId": 42,
-      "title": "Minas",
+      "title": "Milton Nascimento Ao Vivo",
     },
     Artist {
       "artistId": 42,
@@ -2542,9 +2542,9 @@
   ],
   [
     Album {
-      "albumId": 164,
+      "albumId": 163,
       "artistId": 110,
-      "title": "Nevermind",
+      "title": "From The Muddy Banks Of The Wishkah [Live]",
     },
     Artist {
       "artistId": 110,
@@ -2553,9 +2553,9 @@
   ],
   [
     Album {
-      "albumId": 163,
+      "albumId": 164,
       "artistId": 110,
-      "title": "From The Muddy Banks Of The Wishkah [Live]",
+      "title": "Nevermind",
     },
     Artist {
       "artistId": 110,
@@ -2674,42 +2674,9 @@
   ],
   [
     Album {
-      "albumId": 173,
+      "albumId": 256,
       "artistId": 114,
-      "title": "No More Tears (Remastered)",
-    },
-    Artist {
-      "artistId": 114,
-      "name": "Ozzy Osbourne",
-    },
-  ],
-  [
-    Album {
-      "albumId": 170,
-      "artistId": 114,
-      "title": "Bark at the Moon (Remastered)",
-    },
-    Artist {
-      "artistId": 114,
-      "name": "Ozzy Osbourne",
-    },
-  ],
-  [
-    Album {
-      "albumId": 171,
-      "artistId": 114,
-      "title": "Blizzard of Ozz",
-    },
-    Artist {
-      "artistId": 114,
-      "name": "Ozzy Osbourne",
-    },
-  ],
-  [
-    Album {
-      "albumId": 172,
-      "artistId": 114,
-      "title": "Diary of a Madman (Remastered)",
+      "title": "Speak of the Devil",
     },
     Artist {
       "artistId": 114,
@@ -2729,9 +2696,42 @@
   ],
   [
     Album {
-      "albumId": 256,
+      "albumId": 172,
       "artistId": 114,
-      "title": "Speak of the Devil",
+      "title": "Diary of a Madman (Remastered)",
+    },
+    Artist {
+      "artistId": 114,
+      "name": "Ozzy Osbourne",
+    },
+  ],
+  [
+    Album {
+      "albumId": 171,
+      "artistId": 114,
+      "title": "Blizzard of Ozz",
+    },
+    Artist {
+      "artistId": 114,
+      "name": "Ozzy Osbourne",
+    },
+  ],
+  [
+    Album {
+      "albumId": 170,
+      "artistId": 114,
+      "title": "Bark at the Moon (Remastered)",
+    },
+    Artist {
+      "artistId": 114,
+      "name": "Ozzy Osbourne",
+    },
+  ],
+  [
+    Album {
+      "albumId": 173,
+      "artistId": 114,
+      "title": "No More Tears (Remastered)",
     },
     Artist {
       "artistId": 114,
@@ -2773,9 +2773,31 @@
   ],
   [
     Album {
+      "albumId": 179,
+      "artistId": 118,
+      "title": "Pearl Jam",
+    },
+    Artist {
+      "artistId": 118,
+      "name": "Pearl Jam",
+    },
+  ],
+  [
+    Album {
       "albumId": 178,
       "artistId": 118,
       "title": "Live On Two Legs [Live]",
+    },
+    Artist {
+      "artistId": 118,
+      "name": "Pearl Jam",
+    },
+  ],
+  [
+    Album {
+      "albumId": 180,
+      "artistId": 118,
+      "title": "Riot Act",
     },
     Artist {
       "artistId": 118,
@@ -2798,28 +2820,6 @@
       "albumId": 181,
       "artistId": 118,
       "title": "Ten",
-    },
-    Artist {
-      "artistId": 118,
-      "name": "Pearl Jam",
-    },
-  ],
-  [
-    Album {
-      "albumId": 180,
-      "artistId": 118,
-      "title": "Riot Act",
-    },
-    Artist {
-      "artistId": 118,
-      "name": "Pearl Jam",
-    },
-  ],
-  [
-    Album {
-      "albumId": 179,
-      "artistId": 118,
-      "title": "Pearl Jam",
     },
     Artist {
       "artistId": 118,
@@ -2905,9 +2905,9 @@
   ],
   [
     Album {
-      "albumId": 190,
+      "albumId": 188,
       "artistId": 124,
-      "title": "The Best Of R.E.M.: The IRS Years",
+      "title": "Green",
     },
     Artist {
       "artistId": 124,
@@ -2927,9 +2927,9 @@
   ],
   [
     Album {
-      "albumId": 188,
+      "albumId": 190,
       "artistId": 124,
-      "title": "Green",
+      "title": "The Best Of R.E.M.: The IRS Years",
     },
     Artist {
       "artistId": 124,
@@ -2971,9 +2971,9 @@
   ],
   [
     Album {
-      "albumId": 195,
+      "albumId": 193,
       "artistId": 127,
-      "title": "Californication",
+      "title": "Blood Sugar Sex Magik",
     },
     Artist {
       "artistId": 127,
@@ -2982,9 +2982,9 @@
   ],
   [
     Album {
-      "albumId": 193,
+      "albumId": 195,
       "artistId": 127,
-      "title": "Blood Sugar Sex Magik",
+      "title": "Californication",
     },
     Artist {
       "artistId": 127,
@@ -3048,9 +3048,9 @@
   ],
   [
     Album {
-      "albumId": 198,
+      "albumId": 46,
       "artistId": 59,
-      "title": "Santana Live",
+      "title": "Supernatural",
     },
     Artist {
       "artistId": 59,
@@ -3070,9 +3070,9 @@
   ],
   [
     Album {
-      "albumId": 46,
+      "albumId": 198,
       "artistId": 59,
-      "title": "Supernatural",
+      "title": "Santana Live",
     },
     Artist {
       "artistId": 59,
@@ -3158,9 +3158,9 @@
   ],
   [
     Album {
-      "albumId": 201,
+      "albumId": 202,
       "artistId": 131,
-      "title": "Judas 0: B-Sides and Rarities",
+      "title": "Rotten Apples: Greatest Hits",
     },
     Artist {
       "artistId": 131,
@@ -3169,9 +3169,9 @@
   ],
   [
     Album {
-      "albumId": 202,
+      "albumId": 201,
       "artistId": 131,
-      "title": "Rotten Apples: Greatest Hits",
+      "title": "Judas 0: B-Sides and Rarities",
     },
     Artist {
       "artistId": 131,
@@ -3191,9 +3191,9 @@
   ],
   [
     Album {
-      "albumId": 38,
+      "albumId": 204,
       "artistId": 53,
-      "title": "Heart of the Night",
+      "title": "Morning Dance",
     },
     Artist {
       "artistId": 53,
@@ -3202,9 +3202,9 @@
   ],
   [
     Album {
-      "albumId": 204,
+      "albumId": 38,
       "artistId": 53,
-      "title": "Morning Dance",
+      "title": "Heart of the Night",
     },
     Artist {
       "artistId": 53,
@@ -3411,17 +3411,6 @@
   ],
   [
     Album {
-      "albumId": 218,
-      "artistId": 142,
-      "title": "Voodoo Lounge",
-    },
-    Artist {
-      "artistId": 142,
-      "name": "The Rolling Stones",
-    },
-  ],
-  [
-    Album {
       "albumId": 217,
       "artistId": 142,
       "title": "No Security",
@@ -3444,9 +3433,20 @@
   ],
   [
     Album {
-      "albumId": 220,
+      "albumId": 218,
+      "artistId": 142,
+      "title": "Voodoo Lounge",
+    },
+    Artist {
+      "artistId": 142,
+      "name": "The Rolling Stones",
+    },
+  ],
+  [
+    Album {
+      "albumId": 219,
       "artistId": 143,
-      "title": "Transmission",
+      "title": "Tangents",
     },
     Artist {
       "artistId": 143,
@@ -3455,9 +3455,9 @@
   ],
   [
     Album {
-      "albumId": 219,
+      "albumId": 220,
       "artistId": 143,
-      "title": "Tangents",
+      "title": "Transmission",
     },
     Artist {
       "artistId": 143,
@@ -3675,9 +3675,9 @@
   ],
   [
     Album {
-      "albumId": 243,
+      "albumId": 245,
       "artistId": 152,
-      "title": "The Best Of Van Halen, Vol. I",
+      "title": "Van Halen III",
     },
     Artist {
       "artistId": 152,
@@ -3697,9 +3697,9 @@
   ],
   [
     Album {
-      "albumId": 245,
+      "albumId": 243,
       "artistId": 152,
-      "title": "Van Halen III",
+      "title": "The Best Of Van Halen, Vol. I",
     },
     Artist {
       "artistId": 152,
@@ -3730,9 +3730,9 @@
   ],
   [
     Album {
-      "albumId": 29,
+      "albumId": 32,
       "artistId": 21,
-      "title": "Axé Bahia 2001",
+      "title": "Carnaval 2001",
     },
     Artist {
       "artistId": 21,
@@ -3741,9 +3741,9 @@
   ],
   [
     Album {
-      "albumId": 32,
+      "albumId": 29,
       "artistId": 21,
-      "title": "Carnaval 2001",
+      "title": "Axé Bahia 2001",
     },
     Artist {
       "artistId": 21,
