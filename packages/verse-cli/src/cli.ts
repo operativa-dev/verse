@@ -10,6 +10,7 @@ import { highlight } from "cli-highlight";
 import Table from "cli-table";
 import * as console from "console";
 import * as fs from "fs";
+import path from "path";
 import yargs, { ArgumentsCamelCase, Argv, CommandModule } from "yargs";
 import { hideBin } from "yargs/helpers";
 
@@ -21,9 +22,92 @@ const logo =
   "   ╚████╔╝  ███████╗ ██║  ██║ ███████║ ███████╗\n" +
   "    ╚═══╝   ╚══════╝ ╚═╝  ╚═╝ ╚══════╝ ╚══════╝\n";
 
-const modelDesc = "Outputs a JSON representation of the model.";
 const useHelp = " Use --help for more information.";
 
+const initDesc = "Initializes the package with the base Verse model.";
+class InitCommand implements CommandModule {
+  command = "init";
+  describe = initDesc;
+
+  builder(args: Argv) {
+    return args.usage(`${initDesc}\n\nUsage: $0 init`).strict();
+  }
+
+  static async #canCreateModel() {
+    try {
+      await loadVerse();
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
+
+  async handler(args: ArgumentsCamelCase) {
+    if (!(await help(args))) {
+      if (await InitCommand.#canCreateModel()) {
+        throw new Error("A Verse model already exists in the package.");
+      }
+
+      // The load of verse may have failed, but still have an existing config file.
+      // We should prefer that the dev fixes or deletes it. We should not overwrite it.
+      const cwd = process.cwd();
+      const configPath = `${cwd}/verse.config.ts`;
+      if (fs.existsSync(configPath)) {
+        throw new Error(`A config already exists at ${configPath}.`);
+      }
+
+      // The load of verse may have failed, but still have an existing model index file.
+      // We should prefer that the dev makes necessary adjustments. We should not overwrite it.
+      const modelPath = `${cwd}/src/model/index.ts`;
+      if (fs.existsSync(modelPath)) {
+        throw new Error(`A file already exists at ${modelPath}.`);
+      }
+
+      fs.mkdirSync(`${cwd}/src/model`, { recursive: true });
+      fs.writeFileSync(
+        modelPath,
+        `
+import { verse } from "@operativa/verse";
+import { PrettyConsoleLogger } from "@operativa/verse/utils/logging";
+// TODO: Import the driver for the target database.
+
+const db = verse({
+  config: {
+    // TODO: Set the driver for the target database and provide any necessary configuration.
+    // driver: sqlite("basic.sqlite"),
+    logger: new PrettyConsoleLogger(),
+  },
+  model: {
+    entities: {
+      // TODO: Define the entities for the model.
+      // todos: entity(
+      //   {
+      //     id: int(),
+      //     title: string(),
+      //     completed: boolean(),
+      //   },
+      //   t => {
+      //     t.table("todos");
+      //     t.data(
+      //       { title: "My first todo", completed: true },
+      //       { title: "My second todo", completed: false }
+      //     );
+      //   }
+      // ),
+    },
+  },
+});
+
+export default {
+  verse: db,
+};
+`
+      );
+    }
+  }
+}
+
+const modelDesc = "Outputs a JSON representation of the model.";
 class ModelCommand implements CommandModule {
   command = "model";
   describe = modelDesc;
@@ -306,6 +390,7 @@ const parser = yargs(hideBin(process.argv))
   .version(false)
   .fail(false)
   .command(new DefaultCommand())
+  .command(new InitCommand())
   .command(new MigrationsCommand())
   .command(new QueryCommand())
   .command(new ModelCommand())
@@ -350,19 +435,23 @@ async function createMigrator(verbose?: boolean) {
   );
 }
 
-async function loadVerse() {
-  const cwd = process.cwd();
-  const path = `${cwd}/verse.config.ts`;
+async function loadVerse(filepath?: string) {
+  const configFilename = "verse.config.ts";
+  const defaultModelPath = "/src/model/index.ts";
+  let module: { default: { verse?: Verse } };
 
-  if (!fs.existsSync(path)) {
-    throw new Error("No 'verse.config.ts' file found in the current directory.");
+  const fullpath = path.resolve(process.cwd(), filepath ?? `./${configFilename}`);
+  if (fs.existsSync(fullpath)) {
+    module = await import(fullpath);
+  } else if (!fullpath.endsWith(defaultModelPath)) {
+    module = { default: { verse: await loadVerse(`.${defaultModelPath}`) } };
+  } else {
+    module = { default: {} };
   }
 
-  const config = await import(path);
-
-  if (!config.default.verse || !(config.default.verse instanceof Verse)) {
-    throw new Error("No verse instance found in verse.config.ts");
+  if (!module.default.verse || !(module.default.verse instanceof Verse)) {
+    throw new Error("No verse instance found.");
   }
 
-  return config.default.verse as Verse;
+  return module.default.verse as Verse;
 }
