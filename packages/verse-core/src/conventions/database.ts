@@ -276,10 +276,15 @@ export abstract class AbstractForeignKeyConvention extends AbstractConvention {
             n => n.targetName === principalName && !n.foreignKeyNames && !n.many
           );
 
+          const foreignKeys = dependent.foreignKeys.filter(
+            fk => fk.targetName === principalName && fk.names.isEmpty()
+          );
+
           if (
             (manyNavigations.size === 1 && oneNavigations.size === 1) ||
             (manyNavigations.size === 1 && oneNavigations.size === 0) ||
-            (manyNavigations.size === 0 && oneNavigations.size === 1)
+            (manyNavigations.size === 0 && oneNavigations.size === 1) ||
+            foreignKeys.size === 1
           ) {
             const manyNavigation = manyNavigations.first();
             const oneNavigation = oneNavigations.first();
@@ -360,7 +365,7 @@ export class ForeignKeyOnDelete extends AbstractConvention {
 
   override visitForeignKey(foreignKey: ForeignKeyModel) {
     if (!foreignKey.onDelete) {
-      const properties = foreignKey.names?.map(n => this.#entity.scalar(n))!;
+      const properties = foreignKey.names.map(n => this.#entity.scalar(n))!;
       const required = properties.some(p => p.nullable === false);
 
       return foreignKey.withOnDelete(required ? "cascade" : "set null");
@@ -404,7 +409,7 @@ export class NavigationForeignKeyFromDependent extends AbstractConvention {
       const candidates = dependent.foreignKeys.filter(fk => fk.targetName === principal.name);
 
       if (candidates.size === 1) {
-        return navigation.withForeignKey(candidates.first()!.names!);
+        return navigation.withForeignKey(candidates.first()!.names);
       }
     }
 

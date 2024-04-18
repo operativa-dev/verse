@@ -203,4 +203,40 @@ describe("foreign key conventions", () => {
 
     $model = new ForeignKeyFromPrimaryKeyName().apply(model);
   });
+
+  test("fk no navigation", () => {
+    class A {
+      aKey!: number;
+    }
+
+    class B {
+      id!: number;
+      aKey!: number;
+    }
+
+    const model = modelOf(
+      entity(
+        A,
+        {
+          aKey: int(),
+        },
+        a => {
+          a.key("aKey");
+        }
+      ),
+      entity(
+        B,
+        {
+          id: int(),
+          aKey: int(),
+        },
+        b => {
+          b.key("id");
+          b.references("A");
+        }
+      )
+    );
+
+    $model = new ForeignKeyFromPrimaryKeyName().apply(model);
+  });
 });

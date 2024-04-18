@@ -1,982 +1,6 @@
 [
   [
     Album {
-      "albumId": 226,
-      "artistId": 147,
-      "title": "Battlestar Galactica: The Story So Far",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 227,
-      "artistId": 147,
-      "title": "Battlestar Galactica, Season 3",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 228,
-      "artistId": 148,
-      "title": "Heroes, Season 1",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 229,
-      "artistId": 149,
-      "title": "Lost, Season 3",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 230,
-      "artistId": 149,
-      "title": "Lost, Season 1",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 231,
-      "artistId": 149,
-      "title": "Lost, Season 2",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 232,
-      "artistId": 150,
-      "title": "Achtung Baby",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 233,
-      "artistId": 150,
-      "title": "All That You Can't Leave Behind",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 234,
-      "artistId": 150,
-      "title": "B-Sides 1980-1990",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 235,
-      "artistId": 150,
-      "title": "How To Dismantle An Atomic Bomb",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 236,
-      "artistId": 150,
-      "title": "Pop",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 237,
-      "artistId": 150,
-      "title": "Rattle And Hum",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 238,
-      "artistId": 150,
-      "title": "The Best Of 1980-1990",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 239,
-      "artistId": 150,
-      "title": "War",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 240,
-      "artistId": 150,
-      "title": "Zooropa",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 241,
-      "artistId": 151,
-      "title": "UB40 The Best Of - Volume Two [UK]",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 242,
-      "artistId": 152,
-      "title": "Diver Down",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 243,
-      "artistId": 152,
-      "title": "The Best Of Van Halen, Vol. I",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 244,
-      "artistId": 152,
-      "title": "Van Halen",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 245,
-      "artistId": 152,
-      "title": "Van Halen III",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 246,
-      "artistId": 153,
-      "title": "Contraband",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 247,
-      "artistId": 72,
-      "title": "Vinicius De Moraes",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 248,
-      "artistId": 155,
-      "title": "Ao Vivo [IMPORT]",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 249,
-      "artistId": 156,
-      "title": "The Office, Season 1",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 250,
-      "artistId": 156,
-      "title": "The Office, Season 2",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 251,
-      "artistId": 156,
-      "title": "The Office, Season 3",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 252,
-      "artistId": 157,
-      "title": "Un-Led-Ed",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 253,
-      "artistId": 158,
-      "title": "Battlestar Galactica (Classic), Season 1",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 254,
-      "artistId": 159,
-      "title": "Aquaman",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 255,
-      "artistId": 150,
-      "title": "Instant Karma: The Amnesty International Campaign to Save Darfur",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 256,
-      "artistId": 114,
-      "title": "Speak of the Devil",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 257,
-      "artistId": 179,
-      "title": "20th Century Masters - The Millennium Collection: The Best of Scorpions",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 258,
-      "artistId": 180,
-      "title": "House of Pain",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 259,
-      "artistId": 36,
-      "title": "Radio Brasil (O Som da Jovem Vanguarda) - Seleccao de Henrique Amaro",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 260,
-      "artistId": 196,
-      "title": "Cake: B-Sides and Rarities",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 261,
-      "artistId": 149,
-      "title": "LOST, Season 4",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 262,
-      "artistId": 197,
-      "title": "Quiet Songs",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 263,
-      "artistId": 198,
-      "title": "Muso Ko",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 264,
-      "artistId": 199,
-      "title": "Realize",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 265,
-      "artistId": 200,
-      "title": "Every Kind of Light",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 266,
-      "artistId": 201,
-      "title": "Duos II",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 267,
-      "artistId": 202,
-      "title": "Worlds",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 268,
-      "artistId": 203,
-      "title": "The Best of Beethoven",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 269,
-      "artistId": 204,
-      "title": "Temple of the Dog",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 270,
-      "artistId": 205,
-      "title": "Carry On",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 271,
-      "artistId": 8,
-      "title": "Revelations",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 272,
-      "artistId": 206,
-      "title": "Adorate Deum: Gregorian Chant from the Proper of the Mass",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 273,
-      "artistId": 207,
-      "title": "Allegri: Miserere",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 274,
-      "artistId": 208,
-      "title": "Pachelbel: Canon & Gigue",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 275,
-      "artistId": 209,
-      "title": "Vivaldi: The Four Seasons",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 276,
-      "artistId": 210,
-      "title": "Bach: Violin Concertos",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 277,
-      "artistId": 211,
-      "title": "Bach: Goldberg Variations",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 278,
-      "artistId": 212,
-      "title": "Bach: The Cello Suites",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 279,
-      "artistId": 213,
-      "title": "Handel: The Messiah (Highlights)",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 280,
-      "artistId": 214,
-      "title": "The World of Classical Favourites",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 281,
-      "artistId": 215,
-      "title": "Sir Neville Marriner: A Celebration",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 282,
-      "artistId": 216,
-      "title": "Mozart: Wind Concertos",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 283,
-      "artistId": 217,
-      "title": "Haydn: Symphonies 99 - 104",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 284,
-      "artistId": 218,
-      "title": "Beethoven: Symhonies Nos. 5 & 6",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 285,
-      "artistId": 219,
-      "title": "A Soprano Inspired",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 286,
-      "artistId": 220,
-      "title": "Great Opera Choruses",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 287,
-      "artistId": 221,
-      "title": "Wagner: Favourite Overtures",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 288,
-      "artistId": 222,
-      "title": "Fauré: Requiem, Ravel: Pavane & Others",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 289,
-      "artistId": 223,
-      "title": "Tchaikovsky: The Nutcracker",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 290,
-      "artistId": 224,
-      "title": "The Last Night of the Proms",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 291,
-      "artistId": 225,
-      "title": "Puccini: Madama Butterfly - Highlights",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 292,
-      "artistId": 226,
-      "title": "Holst: The Planets, Op. 32 & Vaughan Williams: Fantasies",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 293,
-      "artistId": 227,
-      "title": "Pavarotti's Opera Made Easy",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 294,
-      "artistId": 228,
-      "title": "Great Performances - Barber's Adagio and Other Romantic Favorites for Strings",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 295,
-      "artistId": 229,
-      "title": "Carmina Burana",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 296,
-      "artistId": 230,
-      "title": "A Copland Celebration, Vol. I",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 297,
-      "artistId": 231,
-      "title": "Bach: Toccata & Fugue in D Minor",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 298,
-      "artistId": 232,
-      "title": "Prokofiev: Symphony No.1",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 299,
-      "artistId": 233,
-      "title": "Scheherazade",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 300,
-      "artistId": 234,
-      "title": "Bach: The Brandenburg Concertos",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 301,
-      "artistId": 235,
-      "title": "Chopin: Piano Concertos Nos. 1 & 2",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 302,
-      "artistId": 236,
-      "title": "Mascagni: Cavalleria Rusticana",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 303,
-      "artistId": 237,
-      "title": "Sibelius: Finlandia",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 304,
-      "artistId": 238,
-      "title": "Beethoven Piano Sonatas: Moonlight & Pastorale",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 305,
-      "artistId": 240,
-      "title": "Great Recordings of the Century - Mahler: Das Lied von der Erde",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 306,
-      "artistId": 241,
-      "title": "Elgar: Cello Concerto & Vaughan Williams: Fantasias",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 307,
-      "artistId": 242,
-      "title": "Adams, John: The Chairman Dances",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 308,
-      "artistId": 243,
-      "title": "Tchaikovsky: 1812 Festival Overture, Op.49, Capriccio Italien & Beethoven: Wellington's Victory",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 309,
-      "artistId": 244,
-      "title": "Palestrina: Missa Papae Marcelli & Allegri: Miserere",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 310,
-      "artistId": 245,
-      "title": "Prokofiev: Romeo & Juliet",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 311,
-      "artistId": 226,
-      "title": "Strauss: Waltzes",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 312,
-      "artistId": 245,
-      "title": "Berlioz: Symphonie Fantastique",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 313,
-      "artistId": 246,
-      "title": "Bizet: Carmen Highlights",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 314,
-      "artistId": 247,
-      "title": "English Renaissance",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 315,
-      "artistId": 208,
-      "title": "Handel: Music for the Royal Fireworks (Original Version 1749)",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 316,
-      "artistId": 248,
-      "title": "Grieg: Peer Gynt Suites & Sibelius: Pelléas et Mélisande",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 317,
-      "artistId": 249,
-      "title": "Mozart Gala: Famous Arias",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 318,
-      "artistId": 250,
-      "title": "SCRIABIN: Vers la flamme",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 319,
-      "artistId": 251,
-      "title": "Armada: Music from the Courts of England and Spain",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 320,
-      "artistId": 248,
-      "title": "Mozart: Symphonies Nos. 40 & 41",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 321,
-      "artistId": 252,
-      "title": "Back to Black",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 322,
-      "artistId": 252,
-      "title": "Frank",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 323,
-      "artistId": 253,
-      "title": "Carried to Dust (Bonus Track Version)",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 324,
-      "artistId": 254,
-      "title": "Beethoven: Symphony No. 6 'Pastoral' Etc.",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 325,
-      "artistId": 255,
-      "title": "Bartok: Violin & Viola Concertos",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 326,
-      "artistId": 256,
-      "title": "Mendelssohn: A Midsummer Night's Dream",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 327,
-      "artistId": 257,
-      "title": "Bach: Orchestral Suites Nos. 1 - 4",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 328,
-      "artistId": 258,
-      "title": "Charpentier: Divertissements, Airs & Concerts",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 329,
-      "artistId": 259,
-      "title": "South American Getaway",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 330,
-      "artistId": 260,
-      "title": "Górecki: Symphony No. 3",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 331,
-      "artistId": 261,
-      "title": "Purcell: The Fairy Queen",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 332,
-      "artistId": 262,
-      "title": "The Ultimate Relexation Album",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 333,
-      "artistId": 263,
-      "title": "Purcell: Music for the Queen Mary",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 334,
-      "artistId": 264,
-      "title": "Weill: The Seven Deadly Sins",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 335,
-      "artistId": 265,
-      "title": "J.S. Bach: Chaconne, Suite in E Minor, Partita in E Major & Prelude, Fugue and Allegro",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 336,
-      "artistId": 248,
-      "title": "Prokofiev: Symphony No.5 & Stravinksy: Le Sacre Du Printemps",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 337,
-      "artistId": 266,
-      "title": "Szymanowski: Piano Works, Vol. 1",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 338,
-      "artistId": 267,
-      "title": "Nielsen: The Six Symphonies",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 339,
-      "artistId": 268,
-      "title": "Great Recordings of the Century: Paganini's 24 Caprices",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 340,
-      "artistId": 269,
-      "title": "Liszt - 12 Études D'Execution Transcendante",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 341,
-      "artistId": 270,
-      "title": "Great Recordings of the Century - Shubert: Schwanengesang, 4 Lieder",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 342,
-      "artistId": 271,
-      "title": "Locatelli: Concertos for Violin, Strings and Continuo, Vol. 3",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 343,
-      "artistId": 226,
-      "title": "Respighi:Pines of Rome",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 344,
-      "artistId": 272,
-      "title": "Schubert: The Late String Quartets & String Quintet (3 CD's)",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 345,
-      "artistId": 273,
-      "title": "Monteverdi: L'Orfeo",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 346,
-      "artistId": 274,
-      "title": "Mozart: Chamber Music",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
-      "albumId": 347,
-      "artistId": 275,
-      "title": "Koyaanisqatsi (Soundtrack from the Motion Picture)",
-    },
-    "Miles Ahead",
-  ],
-  [
-    Album {
       "albumId": 1,
       "artistId": 1,
       "title": "For Those About To Rock We Salute You",
@@ -2772,6 +1796,982 @@
       "albumId": 225,
       "artistId": 146,
       "title": "Volume Dois",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 226,
+      "artistId": 147,
+      "title": "Battlestar Galactica: The Story So Far",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 227,
+      "artistId": 147,
+      "title": "Battlestar Galactica, Season 3",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 228,
+      "artistId": 148,
+      "title": "Heroes, Season 1",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 229,
+      "artistId": 149,
+      "title": "Lost, Season 3",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 230,
+      "artistId": 149,
+      "title": "Lost, Season 1",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 231,
+      "artistId": 149,
+      "title": "Lost, Season 2",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 232,
+      "artistId": 150,
+      "title": "Achtung Baby",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 233,
+      "artistId": 150,
+      "title": "All That You Can't Leave Behind",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 234,
+      "artistId": 150,
+      "title": "B-Sides 1980-1990",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 235,
+      "artistId": 150,
+      "title": "How To Dismantle An Atomic Bomb",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 236,
+      "artistId": 150,
+      "title": "Pop",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 237,
+      "artistId": 150,
+      "title": "Rattle And Hum",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 238,
+      "artistId": 150,
+      "title": "The Best Of 1980-1990",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 239,
+      "artistId": 150,
+      "title": "War",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 240,
+      "artistId": 150,
+      "title": "Zooropa",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 241,
+      "artistId": 151,
+      "title": "UB40 The Best Of - Volume Two [UK]",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 242,
+      "artistId": 152,
+      "title": "Diver Down",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 243,
+      "artistId": 152,
+      "title": "The Best Of Van Halen, Vol. I",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 244,
+      "artistId": 152,
+      "title": "Van Halen",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 245,
+      "artistId": 152,
+      "title": "Van Halen III",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 246,
+      "artistId": 153,
+      "title": "Contraband",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 247,
+      "artistId": 72,
+      "title": "Vinicius De Moraes",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 248,
+      "artistId": 155,
+      "title": "Ao Vivo [IMPORT]",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 249,
+      "artistId": 156,
+      "title": "The Office, Season 1",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 250,
+      "artistId": 156,
+      "title": "The Office, Season 2",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 251,
+      "artistId": 156,
+      "title": "The Office, Season 3",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 252,
+      "artistId": 157,
+      "title": "Un-Led-Ed",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 253,
+      "artistId": 158,
+      "title": "Battlestar Galactica (Classic), Season 1",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 254,
+      "artistId": 159,
+      "title": "Aquaman",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 255,
+      "artistId": 150,
+      "title": "Instant Karma: The Amnesty International Campaign to Save Darfur",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 256,
+      "artistId": 114,
+      "title": "Speak of the Devil",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 257,
+      "artistId": 179,
+      "title": "20th Century Masters - The Millennium Collection: The Best of Scorpions",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 258,
+      "artistId": 180,
+      "title": "House of Pain",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 259,
+      "artistId": 36,
+      "title": "Radio Brasil (O Som da Jovem Vanguarda) - Seleccao de Henrique Amaro",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 260,
+      "artistId": 196,
+      "title": "Cake: B-Sides and Rarities",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 261,
+      "artistId": 149,
+      "title": "LOST, Season 4",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 262,
+      "artistId": 197,
+      "title": "Quiet Songs",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 263,
+      "artistId": 198,
+      "title": "Muso Ko",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 264,
+      "artistId": 199,
+      "title": "Realize",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 265,
+      "artistId": 200,
+      "title": "Every Kind of Light",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 266,
+      "artistId": 201,
+      "title": "Duos II",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 267,
+      "artistId": 202,
+      "title": "Worlds",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 268,
+      "artistId": 203,
+      "title": "The Best of Beethoven",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 269,
+      "artistId": 204,
+      "title": "Temple of the Dog",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 270,
+      "artistId": 205,
+      "title": "Carry On",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 271,
+      "artistId": 8,
+      "title": "Revelations",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 272,
+      "artistId": 206,
+      "title": "Adorate Deum: Gregorian Chant from the Proper of the Mass",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 273,
+      "artistId": 207,
+      "title": "Allegri: Miserere",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 274,
+      "artistId": 208,
+      "title": "Pachelbel: Canon & Gigue",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 275,
+      "artistId": 209,
+      "title": "Vivaldi: The Four Seasons",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 276,
+      "artistId": 210,
+      "title": "Bach: Violin Concertos",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 277,
+      "artistId": 211,
+      "title": "Bach: Goldberg Variations",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 278,
+      "artistId": 212,
+      "title": "Bach: The Cello Suites",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 279,
+      "artistId": 213,
+      "title": "Handel: The Messiah (Highlights)",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 280,
+      "artistId": 214,
+      "title": "The World of Classical Favourites",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 281,
+      "artistId": 215,
+      "title": "Sir Neville Marriner: A Celebration",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 282,
+      "artistId": 216,
+      "title": "Mozart: Wind Concertos",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 283,
+      "artistId": 217,
+      "title": "Haydn: Symphonies 99 - 104",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 284,
+      "artistId": 218,
+      "title": "Beethoven: Symhonies Nos. 5 & 6",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 285,
+      "artistId": 219,
+      "title": "A Soprano Inspired",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 286,
+      "artistId": 220,
+      "title": "Great Opera Choruses",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 287,
+      "artistId": 221,
+      "title": "Wagner: Favourite Overtures",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 288,
+      "artistId": 222,
+      "title": "Fauré: Requiem, Ravel: Pavane & Others",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 289,
+      "artistId": 223,
+      "title": "Tchaikovsky: The Nutcracker",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 290,
+      "artistId": 224,
+      "title": "The Last Night of the Proms",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 291,
+      "artistId": 225,
+      "title": "Puccini: Madama Butterfly - Highlights",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 292,
+      "artistId": 226,
+      "title": "Holst: The Planets, Op. 32 & Vaughan Williams: Fantasies",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 293,
+      "artistId": 227,
+      "title": "Pavarotti's Opera Made Easy",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 294,
+      "artistId": 228,
+      "title": "Great Performances - Barber's Adagio and Other Romantic Favorites for Strings",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 295,
+      "artistId": 229,
+      "title": "Carmina Burana",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 296,
+      "artistId": 230,
+      "title": "A Copland Celebration, Vol. I",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 297,
+      "artistId": 231,
+      "title": "Bach: Toccata & Fugue in D Minor",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 298,
+      "artistId": 232,
+      "title": "Prokofiev: Symphony No.1",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 299,
+      "artistId": 233,
+      "title": "Scheherazade",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 300,
+      "artistId": 234,
+      "title": "Bach: The Brandenburg Concertos",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 301,
+      "artistId": 235,
+      "title": "Chopin: Piano Concertos Nos. 1 & 2",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 302,
+      "artistId": 236,
+      "title": "Mascagni: Cavalleria Rusticana",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 303,
+      "artistId": 237,
+      "title": "Sibelius: Finlandia",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 304,
+      "artistId": 238,
+      "title": "Beethoven Piano Sonatas: Moonlight & Pastorale",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 305,
+      "artistId": 240,
+      "title": "Great Recordings of the Century - Mahler: Das Lied von der Erde",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 306,
+      "artistId": 241,
+      "title": "Elgar: Cello Concerto & Vaughan Williams: Fantasias",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 307,
+      "artistId": 242,
+      "title": "Adams, John: The Chairman Dances",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 308,
+      "artistId": 243,
+      "title": "Tchaikovsky: 1812 Festival Overture, Op.49, Capriccio Italien & Beethoven: Wellington's Victory",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 309,
+      "artistId": 244,
+      "title": "Palestrina: Missa Papae Marcelli & Allegri: Miserere",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 310,
+      "artistId": 245,
+      "title": "Prokofiev: Romeo & Juliet",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 311,
+      "artistId": 226,
+      "title": "Strauss: Waltzes",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 312,
+      "artistId": 245,
+      "title": "Berlioz: Symphonie Fantastique",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 313,
+      "artistId": 246,
+      "title": "Bizet: Carmen Highlights",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 314,
+      "artistId": 247,
+      "title": "English Renaissance",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 315,
+      "artistId": 208,
+      "title": "Handel: Music for the Royal Fireworks (Original Version 1749)",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 316,
+      "artistId": 248,
+      "title": "Grieg: Peer Gynt Suites & Sibelius: Pelléas et Mélisande",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 317,
+      "artistId": 249,
+      "title": "Mozart Gala: Famous Arias",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 318,
+      "artistId": 250,
+      "title": "SCRIABIN: Vers la flamme",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 319,
+      "artistId": 251,
+      "title": "Armada: Music from the Courts of England and Spain",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 320,
+      "artistId": 248,
+      "title": "Mozart: Symphonies Nos. 40 & 41",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 321,
+      "artistId": 252,
+      "title": "Back to Black",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 322,
+      "artistId": 252,
+      "title": "Frank",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 323,
+      "artistId": 253,
+      "title": "Carried to Dust (Bonus Track Version)",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 324,
+      "artistId": 254,
+      "title": "Beethoven: Symphony No. 6 'Pastoral' Etc.",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 325,
+      "artistId": 255,
+      "title": "Bartok: Violin & Viola Concertos",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 326,
+      "artistId": 256,
+      "title": "Mendelssohn: A Midsummer Night's Dream",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 327,
+      "artistId": 257,
+      "title": "Bach: Orchestral Suites Nos. 1 - 4",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 328,
+      "artistId": 258,
+      "title": "Charpentier: Divertissements, Airs & Concerts",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 329,
+      "artistId": 259,
+      "title": "South American Getaway",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 330,
+      "artistId": 260,
+      "title": "Górecki: Symphony No. 3",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 331,
+      "artistId": 261,
+      "title": "Purcell: The Fairy Queen",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 332,
+      "artistId": 262,
+      "title": "The Ultimate Relexation Album",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 333,
+      "artistId": 263,
+      "title": "Purcell: Music for the Queen Mary",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 334,
+      "artistId": 264,
+      "title": "Weill: The Seven Deadly Sins",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 335,
+      "artistId": 265,
+      "title": "J.S. Bach: Chaconne, Suite in E Minor, Partita in E Major & Prelude, Fugue and Allegro",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 336,
+      "artistId": 248,
+      "title": "Prokofiev: Symphony No.5 & Stravinksy: Le Sacre Du Printemps",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 337,
+      "artistId": 266,
+      "title": "Szymanowski: Piano Works, Vol. 1",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 338,
+      "artistId": 267,
+      "title": "Nielsen: The Six Symphonies",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 339,
+      "artistId": 268,
+      "title": "Great Recordings of the Century: Paganini's 24 Caprices",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 340,
+      "artistId": 269,
+      "title": "Liszt - 12 Études D'Execution Transcendante",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 341,
+      "artistId": 270,
+      "title": "Great Recordings of the Century - Shubert: Schwanengesang, 4 Lieder",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 342,
+      "artistId": 271,
+      "title": "Locatelli: Concertos for Violin, Strings and Continuo, Vol. 3",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 343,
+      "artistId": 226,
+      "title": "Respighi:Pines of Rome",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 344,
+      "artistId": 272,
+      "title": "Schubert: The Late String Quartets & String Quintet (3 CD's)",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 345,
+      "artistId": 273,
+      "title": "Monteverdi: L'Orfeo",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 346,
+      "artistId": 274,
+      "title": "Mozart: Chamber Music",
+    },
+    "Miles Ahead",
+  ],
+  [
+    Album {
+      "albumId": 347,
+      "artistId": 275,
+      "title": "Koyaanisqatsi (Soundtrack from the Motion Picture)",
     },
     "Miles Ahead",
   ],

@@ -10,7 +10,7 @@ import styles from "./index.module.css";
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
   return (
-    <header className={clsx("hero hero--primary", styles.heroBanner)}>
+    <header className={clsx("hero--ifm-color-primary-darkest", styles.heroBanner)}>
       <div className="container">
         <Heading as="h1" className="hero__title">
           {siteConfig.title}
@@ -21,7 +21,7 @@ function HomepageHeader() {
             className="button button--secondary button--lg"
             to="/docs/ref/Tutorials/getting-started"
           >
-            Read the docs ⏰ (WIP) 🐟
+            Get Started
           </Link>
         </div>
       </div>
@@ -32,10 +32,7 @@ function HomepageHeader() {
 export default function Home(): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
   return (
-    <Layout
-      title={`${siteConfig.title}`}
-      description="Verse is an experimental package to provide a next-gen Typescript ORM. It is subject to change and intended only for evaluation purposes."
-    >
+    <Layout title={`${siteConfig.title}`} description="Verse is TypeScript data access done right.">
       <HomepageHeader />
       <main>
         <HomepageFeatures />

@@ -1,0 +1,50 @@
+{
+  "entities": [
+    {
+      "name": "A",
+      "properties": [
+        {
+          "name": "aKey",
+          "kind": "int"
+        }
+      ],
+      "key": [
+        "aKey"
+      ],
+      "foreignKeys": [],
+      "conditions": []
+    },
+    {
+      "name": "B",
+      "properties": [
+        {
+          "name": "id",
+          "kind": "int"
+        },
+        {
+          "name": "aKey",
+          "kind": "int"
+        }
+      ],
+      "key": [
+        "id"
+      ],
+      "foreignKeys": [
+        {
+          "references": "A",
+          "properties": []
+        },
+        {
+          "references": "A",
+          "properties": [
+            "aKey"
+          ]
+        }
+      ],
+      "conditions": []
+    }
+  ],
+  "values": [],
+  "sequences": [],
+  "conversions": []
+}

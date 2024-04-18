@@ -47,6 +47,6 @@
     "@types/yargs": "^17.0.32",
     "eslint-config-custom": "workspace:*",
     "tsconfig": "workspace:*",
-    "tsx": "^4.7.1"
+    "tsx": "^4.7.2"
   }
 }
