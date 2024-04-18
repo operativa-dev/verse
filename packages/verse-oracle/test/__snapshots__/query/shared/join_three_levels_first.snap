@@ -1,0 +1,21 @@
+[
+  [
+    Track {
+      "album": undefined,
+      "composer": "Cornell, Commerford, Morello, Wilk",
+      "genreId": 4,
+      "name": "Doesn't Remind Me",
+      "theAlbumId": 11,
+      "trackId": 102,
+    },
+    Album {
+      "albumId": 11,
+      "artistId": 8,
+      "title": "Out Of Exile",
+    },
+    Artist {
+      "artistId": 8,
+      "name": "Audioslave",
+    },
+  ],
+]

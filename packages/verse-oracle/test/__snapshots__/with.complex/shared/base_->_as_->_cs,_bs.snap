@@ -1,0 +1,106 @@
+[
+  Base {
+    "as": [
+      BranchA {
+        "aId": 1,
+        "baseId": 1,
+        "cs": [
+          LeafC {
+            "aId": 1,
+            "cId": 1,
+          },
+        ],
+      },
+      BranchA {
+        "aId": 2,
+        "baseId": 1,
+        "cs": [
+          LeafC {
+            "aId": 2,
+            "cId": 2,
+          },
+        ],
+      },
+    ],
+    "baseId": 1,
+    "bs": [
+      BranchB {
+        "bId": 1,
+        "baseId": 1,
+      },
+    ],
+  },
+  Base {
+    "as": [
+      BranchA {
+        "aId": 3,
+        "baseId": 2,
+        "cs": [
+          LeafC {
+            "aId": 3,
+            "cId": 3,
+          },
+        ],
+      },
+    ],
+    "baseId": 2,
+    "bs": [
+      BranchB {
+        "bId": 2,
+        "baseId": 2,
+      },
+    ],
+  },
+  Base {
+    "as": [
+      BranchA {
+        "aId": 4,
+        "baseId": 3,
+        "cs": [
+          LeafC {
+            "aId": 4,
+            "cId": 4,
+          },
+        ],
+      },
+    ],
+    "baseId": 3,
+    "bs": [
+      BranchB {
+        "bId": 3,
+        "baseId": 3,
+      },
+    ],
+  },
+  Base {
+    "as": [],
+    "baseId": 4,
+    "bs": [
+      BranchB {
+        "bId": 4,
+        "baseId": 4,
+      },
+    ],
+  },
+  Base {
+    "as": [
+      BranchA {
+        "aId": 5,
+        "baseId": 5,
+        "cs": [
+          LeafC {
+            "aId": 5,
+            "cId": 5,
+          },
+        ],
+      },
+    ],
+    "baseId": 5,
+    "bs": [
+      BranchB {
+        "bId": 5,
+        "baseId": 5,
+      },
+    ],
+  },
+]

@@ -1,0 +1,27 @@
+[
+  Album {
+    "albumId": 231,
+    "artistId": 149,
+    "title": "Lost, Season 2",
+  },
+  Album {
+    "albumId": 232,
+    "artistId": 150,
+    "title": "Achtung Baby",
+  },
+  Album {
+    "albumId": 233,
+    "artistId": 150,
+    "title": "All That You Can't Leave Behind",
+  },
+  Album {
+    "albumId": 234,
+    "artistId": 150,
+    "title": "B-Sides 1980-1990",
+  },
+  Album {
+    "albumId": 235,
+    "artistId": 150,
+    "title": "How To Dismantle An Atomic Bomb",
+  },
+]

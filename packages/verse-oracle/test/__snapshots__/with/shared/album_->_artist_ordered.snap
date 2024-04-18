@@ -1,0 +1,57 @@
+[
+  Album {
+    "albumId": 156,
+    "artist": Artist {
+      "albums": [],
+      "artistId": 50,
+      "name": "Metallica",
+    },
+    "artistId": 50,
+    "title": "...And Justice For All",
+    "tracks": [],
+  },
+  Album {
+    "albumId": 257,
+    "artist": Artist {
+      "albums": [],
+      "artistId": 179,
+      "name": "Scorpions",
+    },
+    "artistId": 179,
+    "title": "20th Century Masters - The Millennium Collection: The Best of Scorpions",
+    "tracks": [],
+  },
+  Album {
+    "albumId": 296,
+    "artist": Artist {
+      "albums": [],
+      "artistId": 230,
+      "name": "Aaron Copland & London Symphony Orchestra",
+    },
+    "artistId": 230,
+    "title": "A Copland Celebration, Vol. I",
+    "tracks": [],
+  },
+  Album {
+    "albumId": 94,
+    "artist": Artist {
+      "albums": [],
+      "artistId": 90,
+      "name": "Iron Maiden",
+    },
+    "artistId": 90,
+    "title": "A Matter of Life and Death",
+    "tracks": [],
+  },
+  Album {
+    "albumId": 95,
+    "artist": Artist {
+      "albums": [],
+      "artistId": 90,
+      "name": "Iron Maiden",
+    },
+    "artistId": 90,
+    "title": "A Real Dead One",
+    "tracks": [],
+  },
+]

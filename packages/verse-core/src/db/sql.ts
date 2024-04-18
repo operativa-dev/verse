@@ -1492,6 +1492,24 @@ export class SqlIdentifier extends SqlNode {
   }
 }
 
+export class SqlNextValue extends SqlNode {
+  constructor(readonly sequence: SqlIdentifier) {
+    super();
+  }
+
+  override accept<T, S = unknown>(visitor: SqlVisitor<T>, state?: S) {
+    return visitor.visitNextValue(this, state);
+  }
+
+  override equals(other: unknown) {
+    return this === other || (other instanceof SqlNextValue && is(this.sequence, other.sequence));
+  }
+
+  override hashCode() {
+    return hash(this.sequence) * 17;
+  }
+}
+
 export class SqlExists extends SqlNode {
   constructor(readonly select: SqlSelect) {
     super();

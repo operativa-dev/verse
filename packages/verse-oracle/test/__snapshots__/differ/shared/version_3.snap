@@ -1,0 +1,74 @@
+[
+  SqlDelete {
+    "table": SqlIdentifier {
+      "name": "Customer",
+    },
+    "where": SqlBinary {
+      "left": SqlBinary {
+        "left": SqlIdentifier {
+          "name": "Name",
+        },
+        "op": "=",
+        "right": SqlString {
+          "value": "B",
+        },
+      },
+      "op": "and",
+      "right": SqlBinary {
+        "left": SqlIdentifier {
+          "name": "Dob",
+        },
+        "op": "=",
+        "right": SqlString {
+          "value": "2000-01-31T22:00:00.000Z",
+        },
+      },
+    },
+  },
+  SqlUpdate {
+    "assignments": Immutable.List [
+      SqlBinary {
+        "left": SqlIdentifier {
+          "name": "Name",
+        },
+        "op": "=",
+        "right": SqlString {
+          "value": "D",
+        },
+      },
+      SqlBinary {
+        "left": SqlIdentifier {
+          "name": "Dob",
+        },
+        "op": "=",
+        "right": SqlNull {},
+      },
+    ],
+    "table": SqlIdentifier {
+      "name": "Customer",
+    },
+    "where": SqlBinary {
+      "left": SqlIdentifier {
+        "name": "Id",
+      },
+      "op": "=",
+      "right": SqlNumber {
+        "value": 3,
+      },
+    },
+  },
+  SqlDelete {
+    "table": SqlIdentifier {
+      "name": "Customer",
+    },
+    "where": SqlBinary {
+      "left": SqlIdentifier {
+        "name": "Id",
+      },
+      "op": "=",
+      "right": SqlNumber {
+        "value": 1,
+      },
+    },
+  },
+]

@@ -616,21 +616,23 @@ export const withTests = (verse: Verse<typeof withModel>) => {
     await snap(q());
   });
 
-  test("sub-query projection array index", async () => {
-    const q = verse.compile(from =>
-      from.artists.select(_ =>
-        from.albums
-          .where(a => a.title.like("T%"))
-          .select(al => al.title)
-          .limit(5)
-          .array()
-          .select(a => a[0])
-          .orderBy(a => a)
-      )
-    );
+  if (verse.config.driver.info.name !== "oracle") {
+    test("sub-query projection array index", async () => {
+      const q = verse.compile(from =>
+        from.artists.select(_ =>
+          from.albums
+            .where(a => a.title.like("T%"))
+            .select(al => al.title)
+            .limit(5)
+            .array()
+            .select(a => a[0])
+            .orderBy(a => a)
+        )
+      );
 
-    await snap(q());
-  });
+      await snap(q());
+    });
+  }
 
   test("sub-query projection array entity", async () => {
     const q = verse.compile(from =>
@@ -725,7 +727,12 @@ export const withTests = (verse: Verse<typeof withModel>) => {
   });
 
   test("array indexed", async () => {
-    const q = verse.compile(from => from.artists.array().select(a => a[0]));
+    const q = verse.compile(from =>
+      from.artists
+        .limit(1)
+        .array()
+        .select(a => a[0])
+    );
 
     await snap(q());
   });

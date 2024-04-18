@@ -1,0 +1,62 @@
+[
+  Track {
+    "album": Album {
+      "albumId": 174,
+      "artist": Artist {
+        "albums": [],
+        "artistId": 114,
+        "name": "Ozzy Osbourne",
+      },
+      "artistId": 114,
+      "title": "Tribute",
+      "tracks": [],
+    },
+    "albumId": 174,
+    "composer": "A. F. Iommi, W. Ward, T. Butler, J. Osbourne",
+    "genre": undefined,
+    "genreId": 3,
+    "name": "Iron Man",
+    "playlistTracks": [],
+    "trackId": 2107,
+  },
+  Track {
+    "album": Album {
+      "albumId": 174,
+      "artist": Artist {
+        "albums": [],
+        "artistId": 114,
+        "name": "Ozzy Osbourne",
+      },
+      "artistId": 114,
+      "title": "Tribute",
+      "tracks": [],
+    },
+    "albumId": 174,
+    "composer": "A. F. Iommi, W. Ward, T. Butler, J. Osbourne",
+    "genre": undefined,
+    "genreId": 3,
+    "name": "Children Of The Grave",
+    "playlistTracks": [],
+    "trackId": 2108,
+  },
+  Track {
+    "album": Album {
+      "albumId": 174,
+      "artist": Artist {
+        "albums": [],
+        "artistId": 114,
+        "name": "Ozzy Osbourne",
+      },
+      "artistId": 114,
+      "title": "Tribute",
+      "tracks": [],
+    },
+    "albumId": 174,
+    "composer": "A. F. Iommi, W. Ward, T. Butler, J. Osbourne",
+    "genre": undefined,
+    "genreId": 3,
+    "name": "Paranoid",
+    "playlistTracks": [],
+    "trackId": 2109,
+  },
+]

@@ -1,0 +1,14 @@
+[
+  Product {
+    "deleted": false,
+    "id": 1,
+    "name": "Bugatti Veyron",
+    "orders": [],
+  },
+  Product {
+    "deleted": true,
+    "id": 2,
+    "name": "Bugatti Chiron",
+    "orders": [],
+  },
+]

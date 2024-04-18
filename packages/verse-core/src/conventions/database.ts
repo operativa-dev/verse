@@ -613,15 +613,27 @@ export class BooleansToOneOrZero extends AbstractConvention {
   }
 }
 
+export class DatesToISOStrings extends AbstractConvention {
+  override visitModel(model: Model) {
+    model = super.visitModel(model);
+
+    if (!model.conversion(Date)) {
+      return model.withConversion(Date, new ConversionModel(datePropertyToISOString));
+    }
+
+    return model;
+  }
+}
+
+const datePropertyToISOString = {
+  read: (s: string) => (s ? new Date(s) : s),
+  write: (d: Date) => (d ? d.toISOString() : d),
+};
+
 export class DatePropertyToISOString extends AbstractConvention {
   override visitDateProperty(dateProperty: DatePropertyModel) {
     if (!dateProperty.convert && dateProperty.type === "timestamp") {
-      return dateProperty.withConvert(
-        new ConversionModel({
-          read: (s: string) => (s ? new Date(s) : s),
-          write: (d: Date) => (d ? d.toISOString() : d),
-        })
-      );
+      return dateProperty.withConvert(new ConversionModel(datePropertyToISOString));
     }
 
     return dateProperty;

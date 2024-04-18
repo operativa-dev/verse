@@ -1,0 +1,63 @@
+{
+  "entities": [
+    {
+      "name": "Customer",
+      "properties": [
+        {
+          "name": "id",
+          "column": "Id",
+          "type": "integer",
+          "nullable": false,
+          "generate": {
+            "using": "seqhilo",
+            "sequence": "__verse_seqhilo"
+          },
+          "kind": "int"
+        },
+        {
+          "name": "name",
+          "column": "Name",
+          "type": "varchar(255)",
+          "nullable": false,
+          "kind": "string",
+          "maxLength": 255
+        }
+      ],
+      "label": "customers",
+      "table": "Customer",
+      "key": [
+        "id"
+      ],
+      "foreignKeys": [],
+      "conditions": [],
+      "data": [
+        {
+          "name": "Customer 1"
+        },
+        {
+          "name": "Customer 2"
+        },
+        {
+          "name": "Customer 3"
+        }
+      ]
+    }
+  ],
+  "values": [],
+  "sequences": [
+    {
+      "name": "__verse_seqhilo",
+      "start": 1,
+      "increment": 10
+    }
+  ],
+  "conversions": [
+    [
+      null,
+      {
+        "read": "(v) => (v === 1 ? true : v === 0 ? false : v)",
+        "write": "(v) => (v === true ? 1 : v === false ? 0 : v)"
+      }
+    ]
+  ]
+}
