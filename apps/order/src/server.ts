@@ -134,8 +134,6 @@ export async function updateOrderServer(
         const serverItem = serverItems.find(serverItem => serverItem.itemId === item.itemId);
         if (serverItem) {
           item.version = serverItem.version;
-        } else {
-          delete item.version;
         }
       }
     });
@@ -216,6 +214,10 @@ export async function updateOrderServer(
     if (originalItems.length == serverItems.length) {
       for (let i = 0; i < serverItems.length; i++) {
         if (serverItems[i].itemId !== originalItems[i].itemId) {
+          itemsChanged = true;
+          break;
+        }
+        if (serverItems[i].version !== originalItems[i].version) {
           itemsChanged = true;
           break;
         }

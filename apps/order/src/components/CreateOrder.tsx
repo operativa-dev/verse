@@ -3,19 +3,22 @@ import { ItemType, ProductType } from "@/data";
 import { createOrderServer } from "@/server";
 import { Button, Input, Table } from "@mui/joy";
 import { useState } from "react";
-
-export function CreateOrder({ products }: { products: Array<ProductType> }) {
-  const getFirstProduct = products[0];
+export function CreateOrder({
+  products,
+  firstProductId,
+}: {
+  products: Array<ProductType>;
+  firstProductId: number;
+}) {
+  const getFirstProduct: ProductType = products[0];
   const productsPriceDict = Object.fromEntries(products.map(x => [x.productId, x.price]));
-
   const initialItem: ItemType = {
     itemId: 1,
-    productId: getFirstProduct.productId,
-    overridePrice: productsPriceDict[getFirstProduct.productId],
+    productId: firstProductId,
+    overridePrice: productsPriceDict[firstProductId],
     quantity: 1,
     orderId: -1,
   };
-
   const [items, setItems] = useState<ItemType[]>([initialItem]);
   const [updateCount, setUpdateCount] = useState(1);
 
@@ -56,15 +59,11 @@ export function CreateOrder({ products }: { products: Array<ProductType> }) {
     setUpdateCount(updateCount + 1);
   };
 
-  const createOrder = () => {
-    createOrderServer(items);
-  };
-
   return (
     <>
       <header className="flex justify-between items-center mb-4">
         <h1 className="text-2xl">New Order</h1>
-        <Button onClick={() => createOrder()}>Save</Button>
+        <Button onClick={() => createOrderServer(items)}>Save</Button>
       </header>
       <Table aria-label="basic table">
         <thead>

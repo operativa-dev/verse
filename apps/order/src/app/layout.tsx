@@ -1,13 +1,11 @@
-import Box from "@mui/joy/Box";
-import CssBaseline from "@mui/joy/CssBaseline";
-import { CssVarsProvider } from "@mui/joy/styles";
+import { db } from "@/data";
+import { Box, CssBaseline, CssVarsProvider } from "@mui/joy";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import React from "react";
 import "./globals.css";
 import SideMenu from "./layout/SideMenu";
 import TopMenu from "./layout/TopMenu";
-import { db } from "@/data";
 
 const inter = Inter({ subsets: ["latin"] });
 
