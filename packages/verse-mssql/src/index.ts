@@ -13,6 +13,7 @@ import { explodeIn, hasInParameter } from "@operativa/verse/db/in";
 import { SqlPrinter } from "@operativa/verse/db/printer";
 import { SqlRewriter } from "@operativa/verse/db/rewriter";
 import {
+  SqlAlterColumn,
   sqlBin,
   SqlBinary,
   SqlColumn,
@@ -29,6 +30,7 @@ import {
   SqlNextValue,
   SqlNode,
   SqlNot,
+  SqlNull,
   SqlNumber,
   SqlOrderBy,
   SqlOrdering,
@@ -307,7 +309,7 @@ export class MssqlDriver implements Driver, AsyncDisposable {
   }
 
   async [Symbol.asyncDispose]() {
-    return await this.#pool?.close();
+    return this.#pool?.close();
   }
 }
 
@@ -436,6 +438,7 @@ class DialectRewriter extends SqlRewriter {
       return sqlBin(newBinary.left, "+", newBinary.right);
     }
 
+    // noinspection DuplicatedCode
     if (newBinary.op === "and" || newBinary.op === "or") {
       const left = this.#whereBoolean(newBinary.left);
       const right = this.#whereBoolean(newBinary.right);
@@ -481,6 +484,15 @@ class MssqlPrinter extends SqlPrinter {
     super();
   }
 
+  override visitDropDatabase(dropDatabase: SqlDropDatabase): string {
+    let sql = super.visitDropDatabase(dropDatabase);
+
+    return (
+      `alter database ${dropDatabase.name.accept(this)} ` +
+      `set single_user with rollback immediate;\n${sql}`
+    );
+  }
+
   override visitDropIndex(dropIndex: SqlDropIndex): string {
     return `drop index ${dropIndex.table.accept(this)}.${dropIndex.name.accept(this)}`;
   }
@@ -513,6 +525,51 @@ class MssqlPrinter extends SqlPrinter {
     }
 
     return sql;
+  }
+
+  override visitAlterColumn(alterColumn: SqlAlterColumn): string {
+    let stmts = [];
+
+    const table = alterColumn.table;
+    const column = alterColumn.column;
+    const name = column.name.accept(this);
+    const base = `alter table ${table.accept(this)}`;
+
+    if (column.identity !== undefined) {
+      error(
+        "SQL Server does not support modifying identity for existing columns. Use raw SQL to recreate the column."
+      );
+    }
+
+    if (column.default === SqlNull.INSTANCE) {
+      stmts.push(`declare @name nvarchar(128)
+select @name = object_name(default_object_id) from sys.columns
+where object_id = object_id('${table.name}') and name = '${column.name.name}'
+exec('alter table ${table.accept(this)} drop constraint ' + @name)`);
+    }
+
+    if (column.type !== undefined || column.nullable !== undefined) {
+      if (!column.type) {
+        error(
+          `Column type is required in order to modify to column: '${table.name}.${column.name.name}'.`
+        );
+      }
+
+      stmts.push(
+        `${base} alter column ${name} ${column.type}` +
+          `${column.nullable == false ? " not null" : ""}`
+      );
+    }
+
+    if (column.default && column.default !== SqlNull.INSTANCE) {
+      stmts.push(
+        `${base} ` +
+          `add constraint "df_${table.name}_${column.name.name}" default ` +
+          `${column.default.accept(this)} for ${column.name.accept(this)}`
+      );
+    }
+
+    return stmts.join(";\n");
   }
 
   protected override visitType(type: SqlType) {
@@ -553,7 +610,7 @@ class MssqlPrinter extends SqlPrinter {
 class Validator extends ModelRewriter {
   override visitScalarProperty(scalarProperty: ScalarPropertyModel) {
     if (scalarProperty.generate?.using === "seqhilo") {
-      throw error(
+      error(
         `Scalar property '${scalarProperty.name}' cannot use 'seqhilo' generator.
         SQL Server does not support sequences.`
       );

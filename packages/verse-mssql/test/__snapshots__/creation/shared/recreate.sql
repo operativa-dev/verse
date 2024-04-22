@@ -4,6 +4,7 @@ from "sys"."databases"
 where "name" = @p0
 
 -- Executing SQL: Parameters: []
+alter database "creation" set single_user with rollback immediate;
 drop database "creation"
 
 -- Executing SQL: Parameters: []

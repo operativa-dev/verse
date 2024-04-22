@@ -32,11 +32,13 @@ insert into `__verse_migrations` (`Id`) values ('2023-11-16-08-42-Second')
 
 -- Executing SQL: Parameters: []
 create table `all_ops` (
-  `col1` integer
+  `col1` integer default 42,
+  `col9` varchar(12) not null,
+  primary key (`col1`)
 )
 
 -- Executing SQL: Parameters: []
-create index `idx1` on `all_ops` (`col1`)
+create index `idx1` on `all_ops` (`col9`)
 
 -- Executing SQL: Parameters: []
 drop index `idx1` on `all_ops`
@@ -46,6 +48,30 @@ alter table `all_ops` rename to `all_ops2`
 
 -- Executing SQL: Parameters: []
 alter table `all_ops2` add `col2` integer
+
+-- Executing SQL: Parameters: []
+alter table `all_ops2` add `col4` varchar(255)
+
+-- Executing SQL: Parameters: []
+alter table `all_ops2` alter `col1` drop default;
+alter table `all_ops2` modify column `col1` integer auto_increment
+
+-- Executing SQL: Parameters: []
+alter table `all_ops2` modify column `col1` integer
+
+-- Executing SQL: Parameters: []
+alter table `all_ops2` alter `col4` set default 'hello!';
+alter table `all_ops2` modify column `col4` varchar(255)
+
+-- Executing SQL: Parameters: []
+alter table `all_ops2` alter `col4` drop default;
+alter table `all_ops2` modify column `col4` varchar(256)
+
+-- Executing SQL: Parameters: []
+alter table `all_ops2` modify column `col9` varchar(45)
+
+-- Executing SQL: Parameters: []
+alter table `all_ops2` modify column `col9` varchar(45) not null
 
 -- Executing SQL: Parameters: []
 alter table `all_ops2` rename column `col2` to `col3`

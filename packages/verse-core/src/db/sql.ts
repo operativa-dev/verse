@@ -423,6 +423,32 @@ export class SqlAddColumn extends SqlNode {
   }
 }
 
+export class SqlAlterColumn extends SqlNode {
+  constructor(
+    readonly table: SqlIdentifier,
+    readonly column: SqlColumn
+  ) {
+    super();
+  }
+
+  override accept<T, S = unknown>(visitor: SqlVisitor<T>, state?: S) {
+    return visitor.visitAlterColumn(this, state);
+  }
+
+  override equals(other: unknown) {
+    return (
+      this === other ||
+      (other instanceof SqlAlterColumn &&
+        is(this.table, other.table) &&
+        is(this.column, other.column))
+    );
+  }
+
+  override hashCode() {
+    return (hash(this.table) * 31) ^ (hash(this.column) * 31);
+  }
+}
+
 export class SqlDropColumn extends SqlNode {
   constructor(
     readonly table: SqlIdentifier,
@@ -681,21 +707,30 @@ export namespace SqlType {
 }
 
 export class SqlColumn extends SqlNode {
-  readonly #type: SqlType;
-  readonly #nullable: boolean;
-  readonly #identity: boolean;
+  readonly #name: SqlIdentifier;
+  readonly #type?: SqlType | undefined;
+  readonly #nullable?: boolean | undefined;
+  readonly #identity?: boolean | undefined;
+  readonly #default?: SqlNode | undefined;
 
   constructor(
-    readonly name: SqlIdentifier,
-    type: SqlType,
-    nullable = true,
-    identity = false
+    name: SqlIdentifier,
+    type?: SqlType,
+    nullable?: boolean,
+    identity?: boolean,
+    defaultValue?: SqlNode
   ) {
     super();
 
+    this.#name = name;
     this.#type = type;
     this.#nullable = nullable;
     this.#identity = identity;
+    this.#default = defaultValue;
+  }
+
+  get name() {
+    return this.#name;
   }
 
   override get type() {
@@ -706,16 +741,20 @@ export class SqlColumn extends SqlNode {
     return this.#nullable;
   }
 
+  get identity() {
+    return this.#identity;
+  }
+
+  get default() {
+    return this.#default;
+  }
+
   withNullable(nullable: boolean) {
     if (nullable !== this.nullable) {
       return new SqlColumn(this.name, this.type, nullable, this.identity);
     }
 
     return this;
-  }
-
-  get identity() {
-    return this.#identity;
   }
 
   withType(type: SqlType) {
@@ -737,7 +776,8 @@ export class SqlColumn extends SqlNode {
         is(this.name, other.name) &&
         is(this.type, other.type) &&
         is(this.nullable, other.nullable) &&
-        is(this.identity, other.identity))
+        is(this.identity, other.identity) &&
+        is(this.default, other.default))
     );
   }
 
@@ -746,7 +786,8 @@ export class SqlColumn extends SqlNode {
       (hash(this.name) * 31) ^
       (hash(this.type) * 31) ^
       (hash(this.nullable) * 31) ^
-      (hash(this.identity) * 31)
+      (hash(this.identity) * 31) ^
+      (hash(this.default) * 31)
     );
   }
 }

@@ -2,6 +2,7 @@ import { List } from "immutable";
 import {
   SqlAddColumn,
   SqlAlias,
+  SqlAlterColumn,
   SqlBinary,
   SqlBoolean,
   SqlCase,
@@ -165,6 +166,11 @@ export abstract class SqlRewriter extends SqlVisitor<SqlNode> {
   override visitAddColumn(addColumn: SqlAddColumn) {
     this.beforeVisit(addColumn);
     return addColumn.rewrite(this);
+  }
+
+  override visitAlterColumn(alterColumn: SqlAlterColumn) {
+    this.beforeVisit(alterColumn);
+    return alterColumn.rewrite(this);
   }
 
   override visitDropColumn(dropColumn: SqlDropColumn) {

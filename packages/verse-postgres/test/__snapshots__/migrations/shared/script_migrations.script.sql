@@ -28,16 +28,45 @@ insert into "__verse_migrations" ("Id") values ('2023-11-16-08-42-Second');
 -- Migration: '2023-11-18-08-42-AllOperations'
 
 create table "all_ops" (
-  "col1" integer
+  "col1" integer default 42,
+  "col9" varchar(12) not null,
+  primary key ("col1")
 );
 
-create index "idx1" on "all_ops" ("col1");
+create index "idx1" on "all_ops" ("col9");
 
 drop index "idx1";
 
 alter table "all_ops" rename to "all_ops2";
 
 alter table "all_ops2" add "col2" integer;
+
+alter table "all_ops2" add "col4" varchar(255);
+
+alter table "all_ops2"
+  alter "col1" set default null,
+  alter "col1" add generated always as identity,
+  alter "col1" type integer;
+
+alter table "all_ops2"
+  alter "col1" drop identity,
+  alter "col1" type integer;
+
+alter table "all_ops2"
+  alter "col4" set default 'hello!',
+  alter "col4" type varchar(255);
+
+alter table "all_ops2"
+  alter "col4" set default null,
+  alter "col4" type varchar(256);
+
+alter table "all_ops2"
+  alter "col9" drop not null,
+  alter "col9" type varchar(45);
+
+alter table "all_ops2"
+  alter "col9" set not null,
+  alter "col9" type varchar(45);
 
 alter table "all_ops2" rename column "col2" to "col3";
 
