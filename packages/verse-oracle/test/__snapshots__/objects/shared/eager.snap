@@ -1,0 +1,170 @@
+[
+  {
+    "albumId": 10,
+    "artist": {
+      "albums": [
+        [Circular],
+        {
+          "albumId": 11,
+          "artist": [Circular],
+          "artistId": 1,
+          "title": "Atavachron",
+        },
+        {
+          "albumId": 12,
+          "artist": [Circular],
+          "artistId": 1,
+          "title": "Metal Fatigue",
+        },
+      ],
+      "id": 1,
+      "name": "Allan Holdsworth",
+    },
+    "artistId": 1,
+    "title": "The Sixteen Men of Tain",
+  },
+  {
+    "albumId": 11,
+    "artist": {
+      "albums": [
+        {
+          "albumId": 10,
+          "artist": [Circular],
+          "artistId": 1,
+          "title": "The Sixteen Men of Tain",
+        },
+        [Circular],
+        {
+          "albumId": 12,
+          "artist": [Circular],
+          "artistId": 1,
+          "title": "Metal Fatigue",
+        },
+      ],
+      "id": 1,
+      "name": "Allan Holdsworth",
+    },
+    "artistId": 1,
+    "title": "Atavachron",
+  },
+  {
+    "albumId": 12,
+    "artist": {
+      "albums": [
+        {
+          "albumId": 10,
+          "artist": [Circular],
+          "artistId": 1,
+          "title": "The Sixteen Men of Tain",
+        },
+        {
+          "albumId": 11,
+          "artist": [Circular],
+          "artistId": 1,
+          "title": "Atavachron",
+        },
+        [Circular],
+      ],
+      "id": 1,
+      "name": "Allan Holdsworth",
+    },
+    "artistId": 1,
+    "title": "Metal Fatigue",
+  },
+  {
+    "albumId": 10,
+    "artist": {
+      "albums": [
+        [Circular],
+        {
+          "albumId": 11,
+          "artist": [Circular],
+          "artistId": 1,
+          "title": "Atavachron",
+        },
+        {
+          "albumId": 12,
+          "artist": [Circular],
+          "artistId": 1,
+          "title": "Metal Fatigue",
+        },
+      ],
+      "id": 1,
+      "name": "Allan Holdsworth",
+    },
+    "artistId": 1,
+    "title": "The Sixteen Men of Tain",
+  },
+  {
+    "albumId": 12,
+    "artist": {
+      "albums": [
+        {
+          "albumId": 10,
+          "artist": [Circular],
+          "artistId": 1,
+          "title": "The Sixteen Men of Tain",
+        },
+        {
+          "albumId": 11,
+          "artist": [Circular],
+          "artistId": 1,
+          "title": "Atavachron",
+        },
+        [Circular],
+      ],
+      "id": 1,
+      "name": "Allan Holdsworth",
+    },
+    "artistId": 1,
+    "title": "Metal Fatigue",
+  },
+  {
+    "albumId": 10,
+    "artist": {
+      "albums": [
+        [Circular],
+        {
+          "albumId": 11,
+          "artist": [Circular],
+          "artistId": 1,
+          "title": "Atavachron",
+        },
+        {
+          "albumId": 12,
+          "artist": [Circular],
+          "artistId": 1,
+          "title": "Metal Fatigue",
+        },
+      ],
+      "id": 1,
+      "name": "Allan Holdsworth",
+    },
+    "artistId": 1,
+    "title": "The Sixteen Men of Tain",
+  },
+  {
+    "albumId": 11,
+    "artist": {
+      "albums": [
+        {
+          "albumId": 10,
+          "artist": [Circular],
+          "artistId": 1,
+          "title": "The Sixteen Men of Tain",
+        },
+        [Circular],
+        {
+          "albumId": 12,
+          "artist": [Circular],
+          "artistId": 1,
+          "title": "Metal Fatigue",
+        },
+      ],
+      "id": 1,
+      "name": "Allan Holdsworth",
+    },
+    "artistId": 1,
+    "title": "Atavachron",
+  },
+]

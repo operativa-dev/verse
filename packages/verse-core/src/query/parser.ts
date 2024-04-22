@@ -975,7 +975,7 @@ export interface Expression {
 
 export interface ArrowFunctionExpression extends Expression {
   type: "ArrowFunctionExpression";
-  params: readonly Expression[] | null;
+  params: readonly Expression[];
   body: Expression;
   async?: boolean;
 }
@@ -1103,559 +1103,448 @@ class Parser {
   readonly #tokens: ReadonlyArray<Token>;
 
   #pos = 0;
-  #cur: Token;
-  #prev!: Token;
-  #la1: Token | undefined;
-  #la2: Token | undefined;
 
   constructor(expression: string) {
     this.#tokens = lex(expression);
-    this.#cur = this.#tokens[this.#pos++]!;
   }
 
   parse() {
     const expr = this.#expr();
 
-    if (!this.#eof) {
+    if (this.#cur.type !== TokenType.Eof) {
       throw new Error(`Unexpected token: '${nameof(this.#cur.type)}'.`);
     }
 
     return expr;
   }
 
-  #expr(): Readonly<Expression> {
-    return this.#comma();
-  }
+  #expr(precedence = 0): Expression {
+    let token = this.#next();
+    let expr = this.#prefix(token);
 
-  #comma() {
-    let args = [this.#spread()];
-
-    while (this.#check(TokenType.Comma)) {
-      this.#next();
-      args.push(this.#spread());
-    }
-
-    return args.length === 1 ? args[0]! : { type: "CommaExpression", expressions: args };
-  }
-
-  #spread() {
-    if (this.#match(TokenType.DotDotDot)) {
-      return { type: "SpreadExpression", argument: this.#arrow() };
-    }
-
-    return this.#arrow();
-  }
-
-  #arrow(): Expression {
-    let expr: Expression;
-    let params: readonly Expression[] | undefined;
-
-    if (this.#check(TokenType.LParen) && this.#peek()?.type === TokenType.RParen) {
-      this.#next();
-      this.#next();
-      params = [];
-    }
-
-    if (!params) {
-      expr = this.#ternary();
-
-      if (expr.type === "CommaExpression") {
-        params = (expr as CommaExpression).expressions;
-      } else {
-        params = [expr];
-      }
-    }
-
-    if (
-      this.#check(TokenType.Comma) &&
-      this.#peek()?.type === TokenType.RParen &&
-      this.#peek()?.type === TokenType.EqGt
-    ) {
-      this.#next();
-    }
-
-    if (params && this.#match(TokenType.EqGt)) {
-      if (this.#check(TokenType.LBrace)) {
-        throw new Error("Unexpected token: '{'. Block bodied arrow functions are not supported.");
-      }
-
-      const body = this.#spread();
-
-      return {
-        type: "ArrowFunctionExpression",
-        params: params.length === 0 ? null : params,
-        body,
-      };
-    }
-
-    return expr!;
-  }
-
-  #ternary() {
-    let expr = this.#logicalOr();
-
-    if (this.#match(TokenType.Question)) {
-      const consequent = this.#spread();
-      this.#consume(TokenType.Colon, "Expected ':' after ternary operator.");
-      const alternate = this.#spread();
-
-      expr = { type: "ConditionalExpression", test: expr, consequent, alternate };
+    while (precedence < this.#precedence()) {
+      token = this.#next();
+      expr = this.#infix(token, expr);
     }
 
     return expr;
   }
 
-  #logicalOr() {
-    let expr = this.#logicalAnd();
+  #prefix(token: Token) {
+    switch (token.type) {
+      case TokenType.Identifier:
+        return { type: "IdentifierExpression", name: token.value };
 
-    while (this.#match(TokenType.PipePipe, TokenType.QuestionQuestion)) {
-      const op = this.#prev;
-      const right = this.#logicalAnd();
-      expr = { type: "BinaryExpression", operator: nameof(op.type), left: expr, right };
-    }
+      case TokenType.Undefined:
+        return Expressions.Undefined;
 
-    return expr;
-  }
+      case TokenType.String:
+      case TokenType.Number:
+      case TokenType.Regex:
+        return { type: "LiteralExpression", value: token.value };
 
-  #logicalAnd() {
-    let expr = this.#bitwiseOr();
+      case TokenType.Backtick:
+        const quasis: TemplateExpression[] = [];
+        const expressions: Expression[] = [];
 
-    while (this.#match(TokenType.AndAnd)) {
-      const right = this.#bitwiseOr();
-      expr = { type: "BinaryExpression", operator: "&&", left: expr, right };
-    }
+        while (!this.#check(TokenType.Backtick)) {
+          if (this.#match(TokenType.DollarBrace)) {
+            expressions.push(this.#expr(1));
+            this.#consume(TokenType.RBrace);
+          } else {
+            const expr = this.#consume(TokenType.String) as Token;
 
-    return expr;
-  }
-
-  #bitwiseOr() {
-    let expr = this.#bitwiseXor();
-
-    while (this.#match(TokenType.Pipe)) {
-      const right = this.#bitwiseXor();
-      expr = { type: "BinaryExpression", operator: "|", left: expr, right };
-    }
-
-    return expr;
-  }
-
-  #bitwiseXor() {
-    let expr = this.#bitwiseAnd();
-
-    while (this.#match(TokenType.Caret)) {
-      const right = this.#bitwiseAnd();
-      expr = { type: "BinaryExpression", operator: "^", left: expr, right };
-    }
-
-    return expr;
-  }
-
-  #bitwiseAnd() {
-    let expr = this.#equality();
-
-    while (this.#match(TokenType.And)) {
-      const right = this.#equality();
-      expr = { type: "BinaryExpression", operator: "&", left: expr, right };
-    }
-
-    return expr;
-  }
-
-  #equality() {
-    let expr = this.#relational();
-
-    while (this.#match(TokenType.EqEq, TokenType.EqEqEq, TokenType.NotEq, TokenType.NotEqEq)) {
-      const op = this.#prev;
-      const right = this.#relational();
-      expr = { type: "BinaryExpression", operator: nameof(op.type), left: expr, right };
-    }
-
-    return expr;
-  }
-
-  #relational() {
-    let expr = this.#bitwiseShift();
-
-    while (
-      this.#match(
-        TokenType.Lt,
-        TokenType.LtEq,
-        TokenType.Gt,
-        TokenType.GtEq,
-        TokenType.In,
-        TokenType.InstanceOf
-      )
-    ) {
-      const op = this.#prev;
-      const right = this.#bitwiseShift();
-      expr = { type: "BinaryExpression", operator: nameof(op.type), left: expr, right };
-    }
-
-    return expr;
-  }
-
-  #bitwiseShift() {
-    let expr = this.#additive();
-
-    while (this.#match(TokenType.LtLt, TokenType.GtGt, TokenType.GtGtGt)) {
-      const op = this.#prev;
-      const right = this.#additive();
-      expr = { type: "BinaryExpression", operator: nameof(op.type), left: expr, right };
-    }
-
-    return expr;
-  }
-
-  #additive() {
-    let expr = this.#multiplicative();
-
-    while (this.#match(TokenType.Plus, TokenType.Minus)) {
-      const op = this.#prev;
-      const right = this.#multiplicative();
-      expr = { type: "BinaryExpression", operator: nameof(op.type), left: expr, right };
-    }
-
-    return expr;
-  }
-
-  #multiplicative() {
-    let expr = this.#exponent();
-
-    while (this.#match(TokenType.Slash, TokenType.Star, TokenType.Percent)) {
-      const op = this.#prev;
-      const right = this.#exponent();
-      expr = { type: "BinaryExpression", operator: nameof(op.type), left: expr, right };
-    }
-
-    return expr;
-  }
-
-  #exponent(): Expression {
-    let left = this.#prefix();
-
-    if (this.#match(TokenType.StarStar)) {
-      const right = this.#exponent(); // right-associative
-      return { type: "BinaryExpression", operator: "**", left, right };
-    }
-
-    return left;
-  }
-
-  #prefix(): Expression {
-    if (
-      this.#match(
-        TokenType.PlusPlus,
-        TokenType.MinusMinus,
-        TokenType.Not,
-        TokenType.Tilde,
-        TokenType.Plus,
-        TokenType.Minus,
-        TokenType.Typeof,
-        TokenType.Void,
-        TokenType.Delete,
-        TokenType.Await
-      )
-    ) {
-      const op = this.#prev;
-      const argument = this.#member();
-
-      return {
-        type: "UnaryExpression",
-        operator: nameof(op.type),
-        argument,
-        prefix: true,
-      };
-    }
-
-    return this.#postfix();
-  }
-
-  #postfix() {
-    let expr = this.#new();
-
-    while (this.#match(TokenType.PlusPlus, TokenType.MinusMinus)) {
-      const op = this.#prev;
-
-      expr = {
-        type: "UnaryExpression",
-        operator: nameof(op.type),
-        argument: expr,
-        prefix: false,
-      } as UnaryExpression;
-    }
-
-    return expr;
-  }
-
-  #new() {
-    if (this.#match(TokenType.New)) {
-      const expr = this.#member();
-
-      if (expr.type !== "CallExpression") {
-        throw new Error("Expected '(' before arguments.");
-      }
-
-      const call = expr as CallExpression;
-
-      return {
-        type: "NewExpression",
-        callee: call.callee,
-        arguments: call.arguments,
-      };
-    }
-
-    return this.#member();
-  }
-
-  #member() {
-    let expr = this.#primary();
-
-    while (true) {
-      if (this.#match(TokenType.Dot, TokenType.QuestionDot, TokenType.LBracket)) {
-        let optional = undefined;
-        let computed = false;
-        let property: Expression;
-
-        if (this.#prev.type === TokenType.QuestionDot) {
-          optional = true;
+            quasis.push({
+              type: "TemplateExpression",
+              value: { cooked: expr.value as string },
+              tail: false,
+            });
+          }
         }
 
-        if (this.#prev.type === TokenType.LBracket) {
-          computed = true;
-          property = this.#expr();
-        } else {
-          const ident = this.#consume(TokenType.Identifier, "Expected property name after '.'.");
-          property = { type: "IdentifierExpression", name: ident.value as string };
+        quasis.at(-1)!.tail = true;
+
+        this.#consume(TokenType.Backtick);
+
+        return { type: "TemplateLiteralExpression", quasis, expressions };
+
+      case TokenType.LParen:
+        if (this.#cur.type === TokenType.RParen) {
+          this.#next();
+          return { type: "CommaExpression", expressions: [] };
         }
 
-        if (computed) {
-          this.#consume(TokenType.RBracket, "Expected ']' after computed property.");
-        }
+        const expr = this.#expr();
+        this.#consume(TokenType.RParen);
+        return expr;
 
-        expr = {
-          type: "MemberExpression",
-          computed,
-          object: expr,
-          optional,
-          property,
-        } as MemberExpression;
-      } else if (this.#check(TokenType.LParen)) {
-        this.#consume(TokenType.LParen, "Expected '(' before arguments.");
+      case TokenType.LBrace:
+        const properties: (PropertyExpression | SpreadExpression)[] = [];
 
-        const args: Expression[] = [];
+        while (!this.#check(TokenType.RBrace)) {
+          const expr = this.#expr(1);
 
-        while (!this.#check(TokenType.RParen) && !this.#eof) {
-          const expr = this.#spread();
+          if (this.#check(TokenType.Colon)) {
+            const key = expr;
+            this.#next();
+            const value = this.#expr(1);
 
-          args.push(expr);
+            properties.push({
+              type: "PropertyExpression",
+              key,
+              value,
+              shorthand: false,
+              computed: key.type === "ArrayExpression",
+            });
+          } else {
+            if (expr.type === "SpreadExpression") {
+              properties.push(expr as SpreadExpression);
+            } else if (expr.type !== "IdentifierExpression") {
+              throw new Error("':' expected.");
+            } else {
+              properties.push({
+                type: "PropertyExpression",
+                key: expr,
+                value: expr,
+                shorthand: true,
+                computed: false,
+              });
+            }
+          }
 
           if (this.#check(TokenType.Comma)) {
             this.#next();
           }
         }
 
-        this.#consume(TokenType.RParen, "Expected ')' after arguments.");
+        this.#consume(TokenType.RBrace);
 
-        expr = { type: "CallExpression", callee: expr, arguments: args } as CallExpression;
-      } else if (this.#check(TokenType.Backtick)) {
-        const template = this.#primary() as TemplateLiteralExpression;
+        return {
+          type: "ObjectExpression",
+          properties,
+        };
 
-        expr = {
-          type: "TaggedTemplateExpression",
-          tag: expr,
-          quasi: template,
-        } as TaggedTemplateExpression;
-      } else {
-        break;
-      }
-    }
+      case TokenType.LBracket:
+        const elements: Expression[] = [];
 
-    return expr;
-  }
+        while (!this.#check(TokenType.RBracket)) {
+          elements.push(this.#expr(1));
 
-  #primary() {
-    if (this.#match(TokenType.Identifier)) {
-      return { type: "IdentifierExpression", name: this.#prev.value as string };
-    }
-
-    if (this.#match(TokenType.False)) {
-      return Expressions.False;
-    }
-
-    if (this.#match(TokenType.True)) {
-      return Expressions.True;
-    }
-
-    if (this.#match(TokenType.Undefined)) {
-      return Expressions.Undefined;
-    }
-
-    if (this.#match(TokenType.Number, TokenType.String, TokenType.Regex)) {
-      return { type: "LiteralExpression", value: this.#prev.value };
-    }
-
-    if (this.#match(TokenType.Backtick)) {
-      const quasis: TemplateExpression[] = [];
-      const expressions: Expression[] = [];
-
-      while (!this.#check(TokenType.Backtick) && !this.#eof) {
-        if (this.#match(TokenType.DollarBrace)) {
-          const expr = this.#expr();
-
-          expressions.push(expr);
-
-          this.#consume(TokenType.RBrace, "Expected '}' after expression.");
-        } else {
-          const expr = this.#primary() as LiteralExpression;
-
-          quasis.push({
-            type: "TemplateExpression",
-            value: { cooked: expr.value as string },
-            tail: false,
-          });
-        }
-      }
-
-      quasis.at(-1)!.tail = true;
-
-      this.#consume(TokenType.Backtick, "Expected '`' after template literal.");
-
-      return { type: "TemplateLiteralExpression", quasis, expressions };
-    }
-
-    if (this.#match(TokenType.LParen)) {
-      const expr = this.#expr();
-      this.#consume(TokenType.RParen, "Expected ')' after expression.");
-      return expr;
-    }
-
-    if (this.#match(TokenType.LBracket)) {
-      const elements: Expression[] = [];
-
-      while (!this.#check(TokenType.RBracket) && !this.#eof) {
-        const expr = this.#spread();
-
-        elements.push(expr);
-
-        if (this.#check(TokenType.Comma)) {
-          this.#next();
-        }
-      }
-
-      this.#consume(TokenType.RBracket, "Expected ']' after array elements.");
-
-      return { type: "ArrayExpression", elements };
-    }
-
-    if (this.#match(TokenType.LBrace)) {
-      const properties: (PropertyExpression | SpreadExpression)[] = [];
-
-      while (!this.#check(TokenType.RBrace)) {
-        const expr = this.#spread();
-
-        if (this.#check(TokenType.Colon)) {
-          const key = expr;
-          this.#next();
-          const value = this.#spread();
-
-          properties.push({
-            type: "PropertyExpression",
-            key,
-            value,
-            shorthand: false,
-            computed: key.type === "ArrayExpression",
-          });
-        } else {
-          if (expr.type === "SpreadExpression") {
-            properties.push(expr as SpreadExpression);
-          } else if (expr.type !== "IdentifierExpression") {
-            throw new Error("':' expected.");
-          } else {
-            properties.push({
-              type: "PropertyExpression",
-              key: expr,
-              value: expr,
-              shorthand: true,
-              computed: false,
-            });
+          if (this.#check(TokenType.Comma)) {
+            this.#next();
           }
         }
 
-        if (this.#check(TokenType.Comma)) {
-          this.#next();
+        this.#consume(TokenType.RBracket);
+
+        return { type: "ArrayExpression", elements };
+
+      case TokenType.DotDotDot:
+        return { type: "SpreadExpression", argument: this.#expr(1) };
+
+      case TokenType.New:
+        const ctor = this.#expr(16);
+
+        if (ctor.type !== "CallExpression") {
+          throw new Error("Expected '(' before arguments.");
         }
-      }
 
-      this.#consume(TokenType.RBrace, "Expected '}' after object properties.");
+        const call = ctor as CallExpression;
 
-      return {
-        type: "ObjectExpression",
-        properties,
-      };
+        return {
+          type: "NewExpression",
+          callee: call.callee,
+          arguments: call.arguments,
+        };
+
+      case TokenType.True:
+        return Expressions.True;
+
+      case TokenType.False:
+        return Expressions.False;
+
+      case TokenType.Null:
+        return Expressions.Null;
+
+      case TokenType.This:
+        return Expressions.This;
+
+      case TokenType.PlusPlus:
+      case TokenType.MinusMinus:
+      case TokenType.Tilde:
+      case TokenType.Not:
+      case TokenType.Minus:
+      case TokenType.Await:
+      case TokenType.Plus:
+      case TokenType.Typeof:
+      case TokenType.Delete:
+      case TokenType.Void:
+        return {
+          type: "UnaryExpression",
+          operator: nameof(token.type),
+          argument: this.#expr(14),
+          prefix: true,
+        };
+
+      case TokenType.Super:
+        return Expressions.Super;
+
+      default:
+        throw new Error(`Unexpected token: '${nameof(token.type)}'.`);
     }
-
-    if (this.#match(TokenType.Null)) {
-      return Expressions.Null;
-    }
-
-    if (this.#match(TokenType.This)) {
-      return Expressions.This;
-    }
-
-    if (this.#match(TokenType.Super)) {
-      return Expressions.Super;
-    }
-
-    throw new Error(`Unexpected token: '${nameof(this.#cur.type)}'.`);
   }
 
-  #match(...types: readonly TokenType[]) {
-    for (const type of types) {
-      if (this.#check(type)) {
-        this.#next();
-        return true;
-      }
-    }
+  #infix(token: Token, expr: Expression) {
+    switch (token.type) {
+      case TokenType.LParen:
+        const args: Expression[] = [];
 
-    return false;
+        while (!this.#check(TokenType.RParen)) {
+          args.push(this.#expr(1));
+          if (this.#check(TokenType.Comma)) {
+            this.#next();
+          }
+        }
+
+        this.#consume(TokenType.RParen);
+
+        return { type: "CallExpression", callee: expr, arguments: args } as CallExpression;
+
+      case TokenType.QuestionDot:
+        return this.#member(expr, this.#expr(17), false, true);
+
+      case TokenType.LBracket:
+        const property = this.#expr();
+        this.#consume(TokenType.RBracket);
+        return this.#member(expr, property, true);
+
+      case TokenType.Dot:
+        return this.#member(expr, this.#expr(17));
+
+      case TokenType.AndAnd:
+        return this.#binary(expr, token, 4);
+
+      case TokenType.EqGt:
+        return {
+          type: "ArrowFunctionExpression",
+          params: expr.type === "CommaExpression" ? (expr as CommaExpression).expressions : [expr],
+          body: this.#expr(1),
+        };
+
+      case TokenType.EqEq:
+      case TokenType.EqEqEq:
+      case TokenType.NotEq:
+      case TokenType.NotEqEq:
+        return this.#binary(expr, token, 8);
+
+      case TokenType.PipePipe:
+      case TokenType.QuestionQuestion:
+        return this.#binary(expr, token, 3);
+
+      case TokenType.Question:
+        const consequent = this.#expr(1);
+        this.#consume(TokenType.Colon);
+        const alternate = this.#expr(1);
+        return { type: "ConditionalExpression", test: expr, consequent, alternate };
+
+      case TokenType.Lt:
+      case TokenType.LtEq:
+      case TokenType.Gt:
+      case TokenType.GtEq:
+        return this.#binary(expr, token, 9);
+
+      case TokenType.Plus:
+      case TokenType.Minus:
+        return this.#binary(expr, token, 11);
+
+      case TokenType.Star:
+      case TokenType.Slash:
+      case TokenType.Percent:
+        return this.#binary(expr, token, 12);
+
+      case TokenType.Backtick:
+        return {
+          type: "TaggedTemplateExpression",
+          tag: expr,
+          quasi: this.#prefix(token),
+        };
+
+      case TokenType.PlusPlus:
+      case TokenType.MinusMinus:
+        return {
+          type: "UnaryExpression",
+          operator: nameof(token.type),
+          argument: expr,
+          prefix: false,
+        };
+
+      case TokenType.LtLt:
+      case TokenType.GtGt:
+      case TokenType.GtGtGt:
+        return this.#binary(expr, token, 10);
+
+      case TokenType.StarStar:
+        return this.#binary(expr, token, 12);
+
+      case TokenType.Pipe:
+        return this.#binary(expr, token, 5);
+
+      case TokenType.Caret:
+        return this.#binary(expr, token, 6);
+
+      case TokenType.And:
+        return this.#binary(expr, token, 7);
+
+      case TokenType.Comma:
+        if (this.#check(TokenType.RParen) && this.#la?.type === TokenType.EqGt) {
+          return expr;
+        }
+
+        let expressions = [expr];
+
+        do {
+          expressions.push(this.#expr(1));
+        } while (this.#match(TokenType.Comma));
+
+        return { type: "CommaExpression", expressions };
+
+      default:
+        throw new Error(`Unexpected token: '${nameof(token.type)}'.`);
+    }
   }
 
-  #consume(type: TokenType, message: string) {
-    if (!this.#check(type)) {
-      throw new Error(message);
+  #binary(left: Expression, op: Token, precedence: number) {
+    return {
+      type: "BinaryExpression",
+      operator: nameof(op.type),
+      left,
+      right: this.#expr(precedence),
+    };
+  }
+
+  #member(
+    object: Expression,
+    property: Expression,
+    computed = false,
+    optional: boolean | undefined = undefined
+  ) {
+    return {
+      type: "MemberExpression",
+      computed,
+      object,
+      optional,
+      property,
+    };
+  }
+
+  #precedence() {
+    switch (this.#cur.type) {
+      case TokenType.Comma:
+        return 1;
+
+      case TokenType.DotDotDot:
+      case TokenType.EqGt:
+      case TokenType.Question:
+        return 2;
+
+      case TokenType.PipePipe:
+      case TokenType.QuestionQuestion:
+        return 3;
+
+      case TokenType.AndAnd:
+        return 4;
+
+      case TokenType.Pipe:
+        return 5;
+
+      case TokenType.Caret:
+        return 6;
+
+      case TokenType.And:
+        return 7;
+
+      case TokenType.EqEq:
+      case TokenType.EqEqEq:
+      case TokenType.NotEq:
+      case TokenType.NotEqEq:
+        return 8;
+
+      case TokenType.Lt:
+      case TokenType.LtEq:
+      case TokenType.Gt:
+      case TokenType.GtEq:
+      case TokenType.In:
+      case TokenType.InstanceOf:
+        return 9;
+
+      case TokenType.LtLt:
+      case TokenType.GtGt:
+      case TokenType.GtGtGt:
+        return 10;
+
+      case TokenType.Plus:
+      case TokenType.Minus:
+        return 11;
+
+      case TokenType.Star:
+      case TokenType.Slash:
+      case TokenType.Percent:
+        return 12;
+
+      case TokenType.StarStar:
+        return 13;
+
+      case TokenType.PlusPlus:
+      case TokenType.MinusMinus:
+        return 15;
+
+      case TokenType.Dot:
+      case TokenType.QuestionDot:
+      case TokenType.LBracket:
+      case TokenType.Backtick:
+      case TokenType.LParen:
+        return 17;
+
+      default:
+        return 0;
+    }
+  }
+
+  #match(expected: TokenType) {
+    const token = this.#cur;
+
+    if (token.type != expected) {
+      return false;
+    }
+
+    this.#next();
+
+    return true;
+  }
+
+  #consume(expected: TokenType) {
+    const token = this.#cur;
+
+    if (token.type != expected) {
+      throw new Error(`Expected token '${nameof(expected)}' but was '${nameof(token.type)}'.`);
     }
 
     return this.#next();
   }
 
   #check(type: TokenType) {
-    return this.#cur.type == type;
+    return this.#cur.type === type;
   }
 
   #next() {
-    this.#prev = this.#cur;
-    this.#cur = this.#la1 ?? this.#tokens[this.#pos++]!;
-    this.#la1 = this.#la2;
-    this.#la2 = undefined;
-
-    return this.#prev;
+    return this.#tokens[this.#pos++]!;
   }
 
-  #peek() {
-    if (!this.#la1) {
-      this.#la1 = this.#tokens[this.#pos++];
-
-      return this.#la1;
-    }
-
-    if (!this.#la2) {
-      this.#la2 = this.#tokens[this.#pos++];
-    }
-
-    return this.#la2;
+  get #cur() {
+    return this.#tokens[this.#pos]!;
   }
 
-  get #eof() {
-    return this.#cur.type === TokenType.Eof;
+  get #la() {
+    return this.#tokens[this.#pos + 1];
   }
 }

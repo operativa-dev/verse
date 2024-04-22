@@ -1,4 +1,3 @@
-import { Convention } from "@operativa/verse/conventions/convention";
 import {
   BooleansToOneOrZero,
   DateAsTimestamp,
@@ -80,7 +79,7 @@ export class MySqlDriver implements Driver, AsyncDisposable {
     this.#logger = logger;
   }
 
-  get conventions(): List<Convention> {
+  get conventions() {
     return List.of(
       new IdentityKey(),
       new UuidPropertyToBuffer(),
@@ -132,7 +131,7 @@ export class MySqlDriver implements Driver, AsyncDisposable {
   async execute(
     statements: readonly ExecuteStatement[],
     isolation?: IsolationLevel,
-    onBeforeCommit?: (results: readonly ExecuteResult[]) => void
+    onCommit?: (results: readonly ExecuteResult[]) => void
   ) {
     const dialect = new DialectRewriter();
 
@@ -213,9 +212,9 @@ export class MySqlDriver implements Driver, AsyncDisposable {
         op.onAfterExecute?.(result);
       }
 
-      onBeforeCommit?.(results);
-
       await conn.commit();
+
+      onCommit?.(results);
     } finally {
       conn.release();
     }
@@ -268,8 +267,10 @@ export class MySqlDriver implements Driver, AsyncDisposable {
     return statements.map(stmt => stmt.sql.accept(dialect).accept(printer));
   }
 
-  exists() {
-    return this.#usingSystemDb(async mysql => this.#exists(mysql));
+  async exists() {
+    await using mysql = this.#systemDb();
+
+    return await this.#exists(mysql);
   }
 
   static readonly #EXISTS = new SqlSelect({
@@ -309,37 +310,27 @@ export class MySqlDriver implements Driver, AsyncDisposable {
   }
 
   async create() {
-    return this.#usingSystemDb(async mysql => {
-      const sql = new SqlCreateDatabase(sqlId(this.#config.database!)).accept(new MySqlPrinter());
+    await using mysql = this.#systemDb();
 
-      logSql(sql, [], this.#logger);
+    const sql = new SqlCreateDatabase(sqlId(this.#config.database!)).accept(new MySqlPrinter());
 
-      await mysql.#pool.query(sql);
-    });
+    logSql(sql, [], this.#logger);
+
+    await mysql.#pool.query(sql);
   }
 
   async drop() {
-    return this.#usingSystemDb(async mysql => {
-      if (!(await this.#exists(mysql))) {
-        return;
-      }
+    await using mysql = this.#systemDb();
 
-      const sql = new SqlDropDatabase(sqlId(this.#config.database!)).accept(new MySqlPrinter());
-
-      logSql(sql, [], this.#logger);
-
-      await mysql.#pool.query(sql);
-    });
-  }
-
-  async #usingSystemDb<T>(block: (mysql: MySqlDriver) => Promise<T>): Promise<T> {
-    const db = this.#systemDb();
-
-    try {
-      return await block(db);
-    } finally {
-      await db[Symbol.asyncDispose]();
+    if (!(await this.#exists(mysql))) {
+      return;
     }
+
+    const sql = new SqlDropDatabase(sqlId(this.#config.database!)).accept(new MySqlPrinter());
+
+    logSql(sql, [], this.#logger);
+
+    await mysql.#pool.query(sql);
   }
 
   #systemDb() {

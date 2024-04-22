@@ -26,6 +26,7 @@ import {
   SqlIn,
   SqlInsert,
   SqlMember,
+  SqlNextValue,
   SqlNode,
   SqlNot,
   SqlNumber,
@@ -52,7 +53,7 @@ export function mssql(config: config) {
   return new MssqlDriver(config);
 }
 
-export class MssqlDriver implements Driver {
+export class MssqlDriver implements Driver, AsyncDisposable {
   #pool?: ConnectionPool;
   #logger?: Logger | undefined;
 
@@ -128,7 +129,7 @@ export class MssqlDriver implements Driver {
   async execute(
     statements: readonly ExecuteStatement[],
     isolation?: IsolationLevel,
-    onBeforeCommit?: (results: readonly ExecuteResult[]) => void
+    onCommit?: (results: readonly ExecuteResult[]) => void
   ) {
     const batch = this.#createBatch(statements);
 
@@ -162,7 +163,7 @@ export class MssqlDriver implements Driver {
 
     await transaction.commit();
 
-    onBeforeCommit?.(results);
+    onCommit?.(results);
 
     return results;
   }
@@ -231,8 +232,9 @@ export class MssqlDriver implements Driver {
     }
   }
 
-  exists() {
-    return this.#usingSystemDb(async db => this.#exists(db));
+  async exists() {
+    await using db = this.#systemDb();
+    return await this.#exists(db);
   }
 
   static readonly #EXISTS = new SqlSelect({
@@ -272,39 +274,29 @@ export class MssqlDriver implements Driver {
   }
 
   async create() {
-    return this.#usingSystemDb(async db => {
-      const sql = new SqlCreateDatabase(sqlId(this.config.database!)).accept(new MssqlPrinter());
+    await using db = this.#systemDb();
 
-      logSql(sql, [], this.#logger);
+    const sql = new SqlCreateDatabase(sqlId(this.config.database!)).accept(new MssqlPrinter());
 
-      const pool = await db.pool();
-      await pool.batch(sql);
-    });
+    logSql(sql, [], this.#logger);
+
+    const pool = await db.pool();
+    await pool.batch(sql);
   }
 
   async drop() {
-    return this.#usingSystemDb(async db => {
-      if (!(await this.#exists(db))) {
-        return;
-      }
+    await using db = this.#systemDb();
 
-      const sql = new SqlDropDatabase(sqlId(this.config.database!)).accept(new MssqlPrinter());
-
-      logSql(sql, [], this.#logger);
-
-      const pool = await db.pool();
-      await pool.batch(sql);
-    });
-  }
-
-  async #usingSystemDb<T>(block: (db: MssqlDriver) => Promise<T>) {
-    const db = this.#systemDb();
-
-    try {
-      return await block(db);
-    } finally {
-      await db[Symbol.asyncDispose]();
+    if (!(await this.#exists(db))) {
+      return;
     }
+
+    const sql = new SqlDropDatabase(sqlId(this.config.database!)).accept(new MssqlPrinter());
+
+    logSql(sql, [], this.#logger);
+
+    const pool = await db.pool();
+    await pool.batch(sql);
   }
 
   #systemDb() {
@@ -314,8 +306,8 @@ export class MssqlDriver implements Driver {
     return driver;
   }
 
-  [Symbol.asyncDispose]() {
-    return this.#pool?.close();
+  async [Symbol.asyncDispose]() {
+    return await this.#pool?.close();
   }
 }
 
@@ -343,9 +335,7 @@ class DialectRewriter extends SqlRewriter {
 
     const newProjection = newSelect.projection.map(n => this.#selectBoolean(n));
 
-    if (newProjection !== newSelect.projection) {
-      newSelect = newSelect.withProjection(newProjection);
-    }
+    newSelect = newSelect.withProjection(newProjection);
 
     if (newSelect.offset !== undefined || newSelect.limit !== undefined) {
       let orderBy = newSelect.orderBy;
@@ -553,6 +543,10 @@ class MssqlPrinter extends SqlPrinter {
 
   override visitParameter(parameter: SqlParameter) {
     return `@p${parameter.id}`;
+  }
+
+  override visitNextValue(nextValue: SqlNextValue): string {
+    return `next value for ${nextValue.sequence.accept(this)}`;
   }
 }
 

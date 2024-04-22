@@ -92,15 +92,15 @@ export interface Driver {
    *
    * @param statements The SQL statements to execute.
    * @param isolation The isolation level for the transaction.
-   * @param onBeforeCommit A callback function to be called before committing the transaction.
-   *                         Receives an array of {@link ExecuteResult} objects as parameter.
+   * @param onCommit A callback function to be called on committing the transaction.
+   *                 Receives an array of {@link ExecuteResult} objects as parameter.
    * @returns A Promise that resolves to an array of {@link ExecuteResult} objects representing the
    *          results of executing the statements.
    */
   execute(
     statements: readonly ExecuteStatement[],
     isolation?: IsolationLevel,
-    onBeforeCommit?: (results: readonly ExecuteResult[]) => void
+    onCommit?: (results: readonly ExecuteResult[]) => void
   ): Promise<readonly ExecuteResult[]>;
 
   /**

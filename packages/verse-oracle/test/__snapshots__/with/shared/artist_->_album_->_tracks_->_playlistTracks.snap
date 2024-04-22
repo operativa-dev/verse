@@ -1,0 +1,1462 @@
+[
+  Artist {
+    "albums": [
+      Album {
+        "albumId": 1,
+        "artist": undefined,
+        "artistId": 1,
+        "title": "For Those About To Rock We Salute You",
+        "tracks": [
+          Track {
+            "album": undefined,
+            "albumId": 1,
+            "composer": "Angus Young, Malcolm Young, Brian Johnson",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "For Those About To Rock (We Salute You)",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 1,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 1,
+              },
+              PlaylistTrack {
+                "playlistId": 17,
+                "trackId": 1,
+              },
+            ],
+            "trackId": 1,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 1,
+            "composer": "Angus Young, Malcolm Young, Brian Johnson",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Put The Finger On You",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 6,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 6,
+              },
+            ],
+            "trackId": 6,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 1,
+            "composer": "Angus Young, Malcolm Young, Brian Johnson",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Let's Get It Up",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 7,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 7,
+              },
+            ],
+            "trackId": 7,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 1,
+            "composer": "Angus Young, Malcolm Young, Brian Johnson",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Inject The Venom",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 8,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 8,
+              },
+            ],
+            "trackId": 8,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 1,
+            "composer": "Angus Young, Malcolm Young, Brian Johnson",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Snowballed",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 9,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 9,
+              },
+            ],
+            "trackId": 9,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 1,
+            "composer": "Angus Young, Malcolm Young, Brian Johnson",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Evil Walks",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 10,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 10,
+              },
+            ],
+            "trackId": 10,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 1,
+            "composer": "Angus Young, Malcolm Young, Brian Johnson",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "C.O.D.",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 11,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 11,
+              },
+            ],
+            "trackId": 11,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 1,
+            "composer": "Angus Young, Malcolm Young, Brian Johnson",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Breaking The Rules",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 12,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 12,
+              },
+            ],
+            "trackId": 12,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 1,
+            "composer": "Angus Young, Malcolm Young, Brian Johnson",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Night Of The Long Knives",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 13,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 13,
+              },
+            ],
+            "trackId": 13,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 1,
+            "composer": "Angus Young, Malcolm Young, Brian Johnson",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Spellbound",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 14,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 14,
+              },
+            ],
+            "trackId": 14,
+          },
+        ],
+      },
+      Album {
+        "albumId": 4,
+        "artist": undefined,
+        "artistId": 1,
+        "title": "Let There Be Rock",
+        "tracks": [
+          Track {
+            "album": undefined,
+            "albumId": 4,
+            "composer": "AC/DC",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Go Down",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 15,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 15,
+              },
+            ],
+            "trackId": 15,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 4,
+            "composer": "AC/DC",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Dog Eat Dog",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 16,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 16,
+              },
+            ],
+            "trackId": 16,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 4,
+            "composer": "AC/DC",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Let There Be Rock",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 17,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 17,
+              },
+            ],
+            "trackId": 17,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 4,
+            "composer": "AC/DC",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Bad Boy Boogie",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 18,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 18,
+              },
+            ],
+            "trackId": 18,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 4,
+            "composer": "AC/DC",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Problem Child",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 19,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 19,
+              },
+            ],
+            "trackId": 19,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 4,
+            "composer": "AC/DC",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Overdose",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 20,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 20,
+              },
+            ],
+            "trackId": 20,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 4,
+            "composer": "AC/DC",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Hell Ain't A Bad Place To Be",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 21,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 21,
+              },
+            ],
+            "trackId": 21,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 4,
+            "composer": "AC/DC",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Whole Lotta Rosie",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 22,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 22,
+              },
+            ],
+            "trackId": 22,
+          },
+        ],
+      },
+    ],
+    "artistId": 1,
+    "name": "AC/DC",
+  },
+  Artist {
+    "albums": [
+      Album {
+        "albumId": 2,
+        "artist": undefined,
+        "artistId": 2,
+        "title": "Balls to the Wall",
+        "tracks": [
+          Track {
+            "album": undefined,
+            "albumId": 2,
+            "composer": "U. Dirkschneider, W. Hoffmann, H. Frank, P. Baltes, S. Kaufmann, G. Hoffmann",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Balls to the Wall",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 2,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 2,
+              },
+              PlaylistTrack {
+                "playlistId": 17,
+                "trackId": 2,
+              },
+            ],
+            "trackId": 2,
+          },
+        ],
+      },
+      Album {
+        "albumId": 3,
+        "artist": undefined,
+        "artistId": 2,
+        "title": "Restless and Wild",
+        "tracks": [
+          Track {
+            "album": undefined,
+            "albumId": 3,
+            "composer": "F. Baltes, S. Kaufman, U. Dirkscneider & W. Hoffman",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Fast As a Shark",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 3,
+              },
+              PlaylistTrack {
+                "playlistId": 5,
+                "trackId": 3,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 3,
+              },
+              PlaylistTrack {
+                "playlistId": 17,
+                "trackId": 3,
+              },
+            ],
+            "trackId": 3,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 3,
+            "composer": "F. Baltes, R.A. Smith-Diesel, S. Kaufman, U. Dirkscneider & W. Hoffman",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Restless and Wild",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 4,
+              },
+              PlaylistTrack {
+                "playlistId": 17,
+                "trackId": 4,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 4,
+              },
+              PlaylistTrack {
+                "playlistId": 5,
+                "trackId": 4,
+              },
+            ],
+            "trackId": 4,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 3,
+            "composer": "Deaffy & R.A. Smith-Diesel",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Princess of the Dawn",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 5,
+              },
+              PlaylistTrack {
+                "playlistId": 5,
+                "trackId": 5,
+              },
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 5,
+              },
+              PlaylistTrack {
+                "playlistId": 17,
+                "trackId": 5,
+              },
+            ],
+            "trackId": 5,
+          },
+        ],
+      },
+    ],
+    "artistId": 2,
+    "name": "Accept",
+  },
+  Artist {
+    "albums": [
+      Album {
+        "albumId": 5,
+        "artist": undefined,
+        "artistId": 3,
+        "title": "Big Ones",
+        "tracks": [
+          Track {
+            "album": undefined,
+            "albumId": 5,
+            "composer": "Steven Tyler, Joe Perry, Jack Blades, Tommy Shaw",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Walk On Water",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 23,
+              },
+              PlaylistTrack {
+                "playlistId": 5,
+                "trackId": 23,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 23,
+              },
+            ],
+            "trackId": 23,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 5,
+            "composer": "Steven Tyler, Joe Perry",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Love In An Elevator",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 24,
+              },
+              PlaylistTrack {
+                "playlistId": 5,
+                "trackId": 24,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 24,
+              },
+            ],
+            "trackId": 24,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 5,
+            "composer": "Steven Tyler, Joe Perry, Jim Vallance, Holly Knight",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Rag Doll",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 25,
+              },
+              PlaylistTrack {
+                "playlistId": 5,
+                "trackId": 25,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 25,
+              },
+            ],
+            "trackId": 25,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 5,
+            "composer": "Steven Tyler, Joe Perry, Desmond Child",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "What It Takes",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 26,
+              },
+              PlaylistTrack {
+                "playlistId": 5,
+                "trackId": 26,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 26,
+              },
+            ],
+            "trackId": 26,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 5,
+            "composer": "Steven Tyler, Joe Perry, Desmond Child",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Dude (Looks Like A Lady)",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 27,
+              },
+              PlaylistTrack {
+                "playlistId": 5,
+                "trackId": 27,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 27,
+              },
+            ],
+            "trackId": 27,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 5,
+            "composer": "Steven Tyler, Tom Hamilton",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Janie's Got A Gun",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 28,
+              },
+              PlaylistTrack {
+                "playlistId": 5,
+                "trackId": 28,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 28,
+              },
+            ],
+            "trackId": 28,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 5,
+            "composer": "Steven Tyler, Joe Perry, Taylor Rhodes",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Cryin'",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 29,
+              },
+              PlaylistTrack {
+                "playlistId": 5,
+                "trackId": 29,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 29,
+              },
+            ],
+            "trackId": 29,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 5,
+            "composer": "Steven Tyler, Richie Supa",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Amazing",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 30,
+              },
+              PlaylistTrack {
+                "playlistId": 5,
+                "trackId": 30,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 30,
+              },
+            ],
+            "trackId": 30,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 5,
+            "composer": "Steven Tyler, Joe Perry, Taylor Rhodes",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Blind Man",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 31,
+              },
+              PlaylistTrack {
+                "playlistId": 5,
+                "trackId": 31,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 31,
+              },
+            ],
+            "trackId": 31,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 5,
+            "composer": "Steven Tyler, Jim Vallance",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Deuces Are Wild",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 32,
+              },
+              PlaylistTrack {
+                "playlistId": 5,
+                "trackId": 32,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 32,
+              },
+            ],
+            "trackId": 32,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 5,
+            "composer": "Steven Tyler, Jim Vallance",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "The Other Side",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 33,
+              },
+              PlaylistTrack {
+                "playlistId": 5,
+                "trackId": 33,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 33,
+              },
+            ],
+            "trackId": 33,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 5,
+            "composer": "Steven Tyler, Joe Perry, Desmond Child",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Crazy",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 34,
+              },
+              PlaylistTrack {
+                "playlistId": 5,
+                "trackId": 34,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 34,
+              },
+            ],
+            "trackId": 34,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 5,
+            "composer": "Steven Tyler, Joe Perry, Jim Vallance",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Eat The Rich",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 35,
+              },
+              PlaylistTrack {
+                "playlistId": 5,
+                "trackId": 35,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 35,
+              },
+            ],
+            "trackId": 35,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 5,
+            "composer": "Steven Tyler, Desmond Child",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Angel",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 36,
+              },
+              PlaylistTrack {
+                "playlistId": 5,
+                "trackId": 36,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 36,
+              },
+            ],
+            "trackId": 36,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 5,
+            "composer": "Steven Tyler, Joe Perry, Mark Hudson",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Livin' On The Edge",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 37,
+              },
+              PlaylistTrack {
+                "playlistId": 5,
+                "trackId": 37,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 37,
+              },
+            ],
+            "trackId": 37,
+          },
+        ],
+      },
+    ],
+    "artistId": 3,
+    "name": "Aerosmith",
+  },
+  Artist {
+    "albums": [
+      Album {
+        "albumId": 6,
+        "artist": undefined,
+        "artistId": 4,
+        "title": "Jagged Little Pill",
+        "tracks": [
+          Track {
+            "album": undefined,
+            "albumId": 6,
+            "composer": "Alanis Morissette & Glenn Ballard",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "All I Really Want",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 5,
+                "trackId": 38,
+              },
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 38,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 38,
+              },
+            ],
+            "trackId": 38,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 6,
+            "composer": "Alanis Morissette & Glenn Ballard",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "You Oughta Know",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 39,
+              },
+              PlaylistTrack {
+                "playlistId": 5,
+                "trackId": 39,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 39,
+              },
+            ],
+            "trackId": 39,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 6,
+            "composer": "Alanis Morissette & Glenn Ballard",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Perfect",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 5,
+                "trackId": 40,
+              },
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 40,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 40,
+              },
+            ],
+            "trackId": 40,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 6,
+            "composer": "Alanis Morissette & Glenn Ballard",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Hand In My Pocket",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 41,
+              },
+              PlaylistTrack {
+                "playlistId": 5,
+                "trackId": 41,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 41,
+              },
+            ],
+            "trackId": 41,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 6,
+            "composer": "Alanis Morissette & Glenn Ballard",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Right Through You",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 42,
+              },
+              PlaylistTrack {
+                "playlistId": 5,
+                "trackId": 42,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 42,
+              },
+            ],
+            "trackId": 42,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 6,
+            "composer": "Alanis Morissette & Glenn Ballard",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Forgiven",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 43,
+              },
+              PlaylistTrack {
+                "playlistId": 5,
+                "trackId": 43,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 43,
+              },
+            ],
+            "trackId": 43,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 6,
+            "composer": "Alanis Morissette & Glenn Ballard",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "You Learn",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 44,
+              },
+              PlaylistTrack {
+                "playlistId": 5,
+                "trackId": 44,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 44,
+              },
+            ],
+            "trackId": 44,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 6,
+            "composer": "Alanis Morissette & Glenn Ballard",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Head Over Feet",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 5,
+                "trackId": 45,
+              },
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 45,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 45,
+              },
+            ],
+            "trackId": 45,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 6,
+            "composer": "Alanis Morissette & Glenn Ballard",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Mary Jane",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 46,
+              },
+              PlaylistTrack {
+                "playlistId": 5,
+                "trackId": 46,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 46,
+              },
+            ],
+            "trackId": 46,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 6,
+            "composer": "Alanis Morissette & Glenn Ballard",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Ironic",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 5,
+                "trackId": 47,
+              },
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 47,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 47,
+              },
+            ],
+            "trackId": 47,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 6,
+            "composer": "Alanis Morissette & Glenn Ballard",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Not The Doctor",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 48,
+              },
+              PlaylistTrack {
+                "playlistId": 5,
+                "trackId": 48,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 48,
+              },
+            ],
+            "trackId": 48,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 6,
+            "composer": "Alanis Morissette & Glenn Ballard",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Wake Up",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 49,
+              },
+              PlaylistTrack {
+                "playlistId": 5,
+                "trackId": 49,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 49,
+              },
+            ],
+            "trackId": 49,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 6,
+            "composer": "Alanis Morissette & Glenn Ballard",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "You Oughta Know (Alternate)",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 50,
+              },
+              PlaylistTrack {
+                "playlistId": 5,
+                "trackId": 50,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 50,
+              },
+            ],
+            "trackId": 50,
+          },
+        ],
+      },
+    ],
+    "artistId": 4,
+    "name": "Alanis Morissette",
+  },
+  Artist {
+    "albums": [
+      Album {
+        "albumId": 7,
+        "artist": undefined,
+        "artistId": 5,
+        "title": "Facelift",
+        "tracks": [
+          Track {
+            "album": undefined,
+            "albumId": 7,
+            "composer": "Jerry Cantrell",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "We Die Young",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 5,
+                "trackId": 51,
+              },
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 51,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 51,
+              },
+            ],
+            "trackId": 51,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 7,
+            "composer": "Jerry Cantrell, Layne Staley",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Man In The Box",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 52,
+              },
+              PlaylistTrack {
+                "playlistId": 5,
+                "trackId": 52,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 52,
+              },
+              PlaylistTrack {
+                "playlistId": 16,
+                "trackId": 52,
+              },
+            ],
+            "trackId": 52,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 7,
+            "composer": "Jerry Cantrell",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Sea Of Sorrow",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 53,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 53,
+              },
+              PlaylistTrack {
+                "playlistId": 5,
+                "trackId": 53,
+              },
+            ],
+            "trackId": 53,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 7,
+            "composer": "Jerry Cantrell",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Bleed The Freak",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 54,
+              },
+              PlaylistTrack {
+                "playlistId": 5,
+                "trackId": 54,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 54,
+              },
+            ],
+            "trackId": 54,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 7,
+            "composer": "Jerry Cantrell, Layne Staley",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "I Can't Remember",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 5,
+                "trackId": 55,
+              },
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 55,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 55,
+              },
+            ],
+            "trackId": 55,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 7,
+            "composer": "Jerry Cantrell, Layne Staley",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Love, Hate, Love",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 5,
+                "trackId": 56,
+              },
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 56,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 56,
+              },
+            ],
+            "trackId": 56,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 7,
+            "composer": "Jerry Cantrell, Michael Starr, Sean Kinney",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "It Ain't Like That",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 5,
+                "trackId": 57,
+              },
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 57,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 57,
+              },
+            ],
+            "trackId": 57,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 7,
+            "composer": "Jerry Cantrell",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Sunshine",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 58,
+              },
+              PlaylistTrack {
+                "playlistId": 5,
+                "trackId": 58,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 58,
+              },
+            ],
+            "trackId": 58,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 7,
+            "composer": "Jerry Cantrell",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Put You Down",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 5,
+                "trackId": 59,
+              },
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 59,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 59,
+              },
+            ],
+            "trackId": 59,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 7,
+            "composer": "Jerry Cantrell, Michael Starr, Layne Staley",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Confusion",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 60,
+              },
+              PlaylistTrack {
+                "playlistId": 5,
+                "trackId": 60,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 60,
+              },
+            ],
+            "trackId": 60,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 7,
+            "composer": "Jerry Cantrell",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "I Know Somethin (Bout You)",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 61,
+              },
+              PlaylistTrack {
+                "playlistId": 5,
+                "trackId": 61,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 61,
+              },
+            ],
+            "trackId": 61,
+          },
+          Track {
+            "album": undefined,
+            "albumId": 7,
+            "composer": "Jerry Cantrell, Layne Staley",
+            "genre": undefined,
+            "genreId": 1,
+            "name": "Real Thing",
+            "playlistTracks": [
+              PlaylistTrack {
+                "playlistId": 1,
+                "trackId": 62,
+              },
+              PlaylistTrack {
+                "playlistId": 5,
+                "trackId": 62,
+              },
+              PlaylistTrack {
+                "playlistId": 8,
+                "trackId": 62,
+              },
+            ],
+            "trackId": 62,
+          },
+        ],
+      },
+    ],
+    "artistId": 5,
+    "name": "Alice In Chains",
+  },
+]

@@ -1,5 +1,13 @@
 # @operativa/verse-sqlite
 
+## 0.7.7
+
+### Patch Changes
+
+- April 09 point release
+- Updated dependencies
+  - @operativa/verse@0.7.7
+
 ## 0.7.6
 
 ### Patch Changes

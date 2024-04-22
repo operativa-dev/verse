@@ -846,7 +846,7 @@ export type OnDelete = "cascade" | "restrict" | "set null" | "set default" | "no
  */
 export class ForeignKeyModel extends AbstractModel {
   readonly #targetName: string;
-  readonly #names?: List<string> | undefined;
+  readonly #names: List<string>;
   readonly #onDelete?: OnDelete | undefined;
 
   #properties?: List<ScalarPropertyModel>;
@@ -854,7 +854,7 @@ export class ForeignKeyModel extends AbstractModel {
   #principal?: NavigationPropertyModel | undefined;
   #dependent?: NavigationPropertyModel | undefined;
 
-  constructor(targetName: string, names?: List<string>, onDelete?: OnDelete) {
+  constructor(targetName: string, names: List<string>, onDelete?: OnDelete) {
     super();
 
     notEmpty({ targetName });

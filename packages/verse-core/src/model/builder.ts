@@ -219,14 +219,14 @@ export interface EntityBuilder<T extends object, O extends object = any> {
    * Configures a foreign key reference to another entity.
    *
    * @template R The type of the referenced entity.
-   * @param entityClassOrName The referenced entity class or name.
+   * @param references The referenced entity class, model or name.
    * @param properties The referencing properties in the current entity.
    * @param options Options controlling the behavior of the foreign key.
    * @returns A chainable EntityBuilder instance.
    */
   references<R extends object>(
-    entityClassOrName: Newable<R> | string,
-    properties?: keyof T | readonly (keyof T)[],
+    references: Newable<R> | EntityModel<R> | string,
+    properties: keyof T | readonly (keyof T)[],
     options?: ForeignKeyOptions
   ): EntityBuilder<T>;
 
@@ -234,17 +234,17 @@ export interface EntityBuilder<T extends object, O extends object = any> {
    * Configures a foreign key reference to another entity.
    *
    * @template R The type of the referenced entity.
-   * @param entityClassOrName The referenced entity class or name.
+   * @param references The referenced entity class, model or name.
    * @param options Options controlling the behavior of the foreign key.
    * @returns A chainable EntityBuilder instance.
    */
   references<R extends object>(
-    entityClassOrName: Newable<R> | string,
+    references: Newable<R> | EntityModel<R> | string,
     options?: ForeignKeyOptions
   ): EntityBuilder<T>;
 
   references<R extends object>(
-    entityClassOrName: Newable<R> | string,
+    references: Newable<R> | EntityModel<R> | string,
     propertiesOrOptions?: (keyof T | readonly (keyof T)[]) | ForeignKeyOptions,
     options?: ForeignKeyOptions
   ): EntityBuilder<T>;
@@ -331,14 +331,13 @@ export class EntityBuilderImpl<T extends object, O extends object = any>
   }
 
   references<R extends object>(
-    entityClassOrName: Newable<R> | string,
+    references: Newable<R> | EntityModel<R> | string,
     propertiesOrOptions?: (keyof T | readonly (keyof T)[]) | ForeignKeyOptions,
     options?: ForeignKeyOptions
   ) {
-    notNull({ entityClassOrName });
+    notNull({ references });
 
-    const entity =
-      typeof entityClassOrName === "function" ? entityClassOrName.name : entityClassOrName;
+    const entity = typeof references === "string" ? references : references.name;
 
     let properties: readonly (keyof T)[] | undefined;
 
@@ -416,9 +415,11 @@ export class EntityBuilderImpl<T extends object, O extends object = any>
     }
 
     const foreignKeys = this.#foreignKeys.map(({ entity, properties, onDelete }) => {
-      const names = (properties ?? []).map(k => String(k));
-
-      return new ForeignKeyModel(entity, List(names), onDelete);
+      return new ForeignKeyModel(
+        entity,
+        properties ? List(properties).map(k => String(k)) : List(),
+        onDelete
+      );
     });
 
     let concurrency: ConcurrencyModel | undefined;

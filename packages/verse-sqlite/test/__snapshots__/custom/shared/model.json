@@ -1,0 +1,52 @@
+{
+  "entities": [
+    {
+      "name": "Customer",
+      "properties": [
+        {
+          "name": "id",
+          "column": "Id",
+          "type": "integer",
+          "nullable": false,
+          "generate": {
+            "using": "identity"
+          },
+          "kind": "int"
+        },
+        {
+          "name": "name",
+          "column": "Name",
+          "type": "varchar(100)",
+          "nullable": false,
+          "kind": "string",
+          "maxLength": 100
+        }
+      ],
+      "label": "customers",
+      "table": "Customer",
+      "key": [
+        "id"
+      ],
+      "foreignKeys": [],
+      "conditions": []
+    }
+  ],
+  "values": [],
+  "sequences": [],
+  "conversions": [
+    [
+      null,
+      {
+        "read": "(v) => (v === 1 ? true : v === 0 ? false : v)",
+        "write": "(v) => (v === true ? 1 : v === false ? 0 : v)"
+      }
+    ],
+    [
+      null,
+      {
+        "read": "(s) => (s ? new Date(s) : s)",
+        "write": "(d) => (d ? d.toISOString() : d)"
+      }
+    ]
+  ]
+}

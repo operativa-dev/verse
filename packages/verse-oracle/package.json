@@ -1,0 +1,44 @@
+{
+  "name": "@operativa/verse-oracle",
+  "version": "0.7.7",
+  "license": "Apache-2.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/operativa-dev/verse.git",
+    "directory": "packages/verse-oracle"
+  },
+  "bugs": {
+    "url": "https://github.com/operativa-dev/verse/issues"
+  },
+  "type": "module",
+  "main": "dist/src/index.js",
+  "module": "dist/src/index.js",
+  "exports": {
+    ".": "./dist/src/index.js"
+  },
+  "files": [
+    "dist/src"
+  ],
+  "scripts": {
+    "clean": "rimraf dist",
+    "test": "vitest run",
+    "build": "tsc"
+  },
+  "peerDependencies": {
+    "@operativa/verse": "workspace:*"
+  },
+  "dependencies": {
+    "immutable": "5.0.0-beta.5",
+    "oracledb": "^6.4.0"
+  },
+  "devDependencies": {
+    "@operativa/verse": "workspace:*",
+    "@operativa/verse-migrations": "workspace:*",
+    "@types/oracledb": "^6.4.0",
+    "eslint-config-custom": "workspace:*",
+    "tsconfig": "workspace:*"
+  }
+}

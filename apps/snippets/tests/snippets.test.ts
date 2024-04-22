@@ -12,4 +12,12 @@ describe("sample snippets", () => {
   test("query", async () => {
     await import("../src/query.js");
   });
+
+  test("drivers", async () => {
+    await import("../src/drivers.js");
+  });
+
+  test("entities", async () => {
+    await import("../src/entities.js");
+  });
 });

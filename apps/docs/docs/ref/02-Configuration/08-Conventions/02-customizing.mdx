@@ -1,0 +1,91 @@
+# Customizing
+
+Conventions can be customized to suit the standards and idioms of your project. This makes it easier to enforce a consistent
+style and structure across your codebase, greatly reducing configuration boilerplate and duplication.
+
+Customization can be achieved by modifying, replacing or removing the default conventions provided by the library, or by
+creating completely new conventions from scratch.
+
+## Customization Hook
+
+By now you should be familiar with the [Config](../../../api/verse/type-aliases/Config) object that is passed to the `verse`
+function on startup. This object has an optional `conventions` property that can be used to modify the conventions
+before they get added to the `verse` instance.
+
+```ts include ./apps/snippets/src/conventions.ts:on-adding-conventions showLineNumbers
+const db = verse({
+  config: {
+    conventions: (conventions: Convention[]) => {
+      // Modify the conventions here.
+      return conventions;
+    },
+  },
+});
+```
+
+## Customizing Existing Conventions
+
+Some built-in conventions can be customized by modifying their properties. For example, you can change the default
+max length of a string column by modifying the `maxLength` property of the `MaxLengthDefault` convention.
+
+Since conventions are often immutable, like in the case of the `MaxLengthDefault` convention, you can create a new
+instance of the convention with the desired properties, and then replace the existing convention with the new one.
+
+```ts include ./apps/snippets/src/conventions.ts:existing showLineNumbers
+const db = verse({
+  config: {
+    conventions: (conventions: Convention[]) => {
+      const index = conventions.findIndex(c => c instanceof MaxLengthDefault);
+
+      conventions[index] = new MaxLengthDefault(100);
+
+      return conventions;
+    },
+  },
+});
+```
+
+Now all string columns will have a default max length of 100 characters.
+
+## Creating New Conventions
+
+You can create a new convention by implementing the [`Convention`](../../../api/conventions/convention/interfaces/Convention)
+ interface or, more conveniently, by extending the
+[`AbstractConvention`](../../../api/conventions/convention/classes/AbstractConvention) class.
+
+Conventions work by visiting the metadata model, and making changes to it based on the rules defined in the convention.
+
+For example, let's create a convention that adds a prefix to all table names.
+
+```ts include ./apps/snippets/src/conventions.ts:custom-1 showLineNumbers
+class PrefixTables extends AbstractConvention {
+  constructor(readonly prefix = "tbl_") {
+    super();
+  }
+
+  override visitEntity(entity: EntityModel) {
+    return entity.withTable(this.prefix + entity.table);
+  }
+}
+```
+
+Because we are extending the `AbstractConvention` class, we only need to implement the `visitEntity` method. This method
+will be called for every entity in the metadata model, and we can modify the entity as needed.
+
+Now we can add this convention to the `verse` instance.
+
+```ts include ./apps/snippets/src/conventions.ts:custom-2 showLineNumbers
+const db = verse({
+  config: {
+    conventions: (conventions: Convention[]) => {
+      conventions.push(new PrefixTables());
+
+      return conventions;
+    },
+  },
+});
+```
+
+We add our new convention to the end of the list of conventions. This is important because the order of conventions
+matters. Conventions are applied in the order they are added, so later conventions can override or depend on changes
+made by earlier ones. In this case, we want to apply the prefix only after the table name has been initially set.

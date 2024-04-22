@@ -1,0 +1,20 @@
+[
+  {
+    "albumId": 10,
+    "artist": undefined,
+    "artistId": 1,
+    "title": "The Sixteen Men of Tain",
+  },
+  {
+    "albumId": 11,
+    "artist": undefined,
+    "artistId": 1,
+    "title": "Atavachron",
+  },
+  {
+    "albumId": 12,
+    "artist": undefined,
+    "artistId": 1,
+    "title": "Metal Fatigue",
+  },
+]

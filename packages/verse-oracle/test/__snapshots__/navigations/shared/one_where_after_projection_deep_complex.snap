@@ -1,0 +1,18 @@
+[
+  {
+    "baz": Album {
+      "albumId": 7,
+      "artist": undefined,
+      "artistId": 5,
+      "title": "Facelift",
+    },
+    "foo": {
+      "bar": Album {
+        "albumId": 7,
+        "artist": undefined,
+        "artistId": 5,
+        "title": "Facelift",
+      },
+    },
+  },
+]

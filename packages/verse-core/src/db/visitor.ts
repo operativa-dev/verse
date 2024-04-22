@@ -29,6 +29,7 @@ import {
   SqlLike,
   SqlMember,
   SqlNegation,
+  SqlNextValue,
   SqlNode,
   SqlNot,
   SqlNotLike,
@@ -159,6 +160,10 @@ export abstract class SqlVisitor<T, S = unknown> {
 
   public visitIdentifier(identifier: SqlIdentifier, state?: S): T {
     return this.visitNode(identifier, state);
+  }
+
+  public visitNextValue(nextValue: SqlNextValue, state?: S): T {
+    return this.visitNode(nextValue, state);
   }
 
   public visitForeignKey(foreignKey: SqlForeignKey, state?: S): T {

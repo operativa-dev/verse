@@ -1,0 +1,27 @@
+[
+  Album {
+    "albumId": 1,
+    "artistId": 1,
+    "title": "For Those About To Rock We Salute You",
+  },
+  Album {
+    "albumId": 2,
+    "artistId": 2,
+    "title": "Balls to the Wall",
+  },
+  Album {
+    "albumId": 3,
+    "artistId": 2,
+    "title": "Restless and Wild",
+  },
+  Album {
+    "albumId": 4,
+    "artistId": 1,
+    "title": "Let There Be Rock",
+  },
+  Album {
+    "albumId": 5,
+    "artistId": 3,
+    "title": "Big Ones",
+  },
+]

@@ -98,7 +98,7 @@ export class QueryCompiler {
 
     this.metadata.config.logger?.debug(expr);
 
-    const argsMap = List(arrowExpr.params?.map(e => (e as IdentifierExpression).name));
+    const argsMap = List(arrowExpr.params.map(e => (e as IdentifierExpression).name));
 
     const compiler = new ExpressionCompiler(
       new CompilationContext(this.metadata),
@@ -339,7 +339,7 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
 
   protected override visitArrowExpression(expr: ArrowFunctionExpression) {
     const oldProjection = this.#projection;
-    this.#scopes = this.#scopes.push([expr.params!, this.#projection]);
+    this.#scopes = this.#scopes.push([expr.params, this.#projection]);
 
     try {
       return this.scopedVisit(expr.body);
@@ -869,8 +869,8 @@ export class ExpressionCompiler extends ExpressionVisitor<SqlNode> {
 
             if (!selector) {
               const key = expr.arguments[0] as ArrowFunctionExpression;
-              const params = key.params!.map(p => (p as IdentifierExpression).name).join(", ");
-              const result = key.params!.length === 1 ? params : `[${params}]`;
+              const params = key.params.map(p => (p as IdentifierExpression).name).join(", ");
+              const result = key.params.length === 1 ? params : `[${params}]`;
 
               selector = parse(
                 `g => ({ key: g.key, items: g.array((${params}) => ${result}) })`
@@ -1447,7 +1447,7 @@ class WithParser extends ExpressionVisitor<List<NavigationPropertyModel>> {
   protected override visitArrowExpression(expr: ArrowFunctionExpression) {
     const oldScope = this.#scope;
 
-    this.#scope = (expr.params![0] as IdentifierExpression).name;
+    this.#scope = (expr.params[0] as IdentifierExpression).name;
 
     try {
       return this.visit(expr.body);

@@ -1,0 +1,22 @@
+[
+  Car {
+    "__verse_type": "Car",
+    "capacity": undefined,
+    "doors": undefined,
+    "id": 1,
+    "make": "Audi",
+    "model": "RS3",
+    "wheels": 4,
+    "year": 2018,
+  },
+  Truck {
+    "__verse_type": "Truck",
+    "capacity": 100,
+    "doors": 2,
+    "id": 2,
+    "make": "Freightliner",
+    "model": "New Cascadia",
+    "wheels": 18,
+    "year": undefined,
+  },
+]

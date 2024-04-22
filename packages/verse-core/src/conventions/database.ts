@@ -22,18 +22,30 @@ import {
 
 import { AbstractConvention } from "./convention.js";
 
+export const DEFAULT_SEQUENCE = "__verse_seqhilo";
+
 export class DefaultSequence extends AbstractConvention {
-  static readonly NAME = "__verse_seqhilo";
+  constructor(
+    readonly name = DEFAULT_SEQUENCE,
+    readonly start = 1,
+    readonly increment = 10
+  ) {
+    super();
+  }
 
   override visitModel(model: Model) {
-    if (!model.sequences.some(s => s.name === DefaultSequence.NAME)) {
-      return model.addSequence(new SequenceModel(DefaultSequence.NAME, 1, 10));
+    if (!model.sequences.some(s => s.name === this.name)) {
+      return model.addSequence(new SequenceModel(this.name, this.start, this.increment));
     }
     return model;
   }
 }
 
 export class SeqHiloKey extends AbstractConvention {
+  constructor(readonly sequence = DEFAULT_SEQUENCE) {
+    super();
+  }
+
   override visitEntity(entity: EntityModel) {
     if (entity.key && !entity.key.composite) {
       const property = entity.scalar(entity.key.names.first()!);
@@ -47,7 +59,7 @@ export class SeqHiloKey extends AbstractConvention {
               new GeneratorModel({
                 ...generate,
                 using: "seqhilo",
-                sequence: DefaultSequence.NAME,
+                sequence: this.sequence,
               })
             )
           );
@@ -94,9 +106,13 @@ export class TableFromEntityName extends AbstractConvention {
 export const TYPE_CONDITION = "type";
 export const TYPE_COLUMN = "__verse_type";
 
-export class TablePerHierarchy extends AbstractConvention {
+export class UseSingleTableInheritance extends AbstractConvention {
   #model?: Model;
   #conditions = new Map<Newable<unknown>, [root: boolean, conditions: Set<string>]>();
+
+  constructor(readonly typeColumn = TYPE_COLUMN) {
+    super();
+  }
 
   override visitModel(model: Model) {
     this.#model = model;
@@ -112,12 +128,12 @@ export class TablePerHierarchy extends AbstractConvention {
           const [root, conditions] = item;
 
           if (root) {
-            if (!e.properties.find(p => p.name === TYPE_COLUMN)) {
+            if (!e.properties.find(p => p.name === this.typeColumn)) {
               e = e.withProperty(
                 new StringPropertyModel({
-                  name: TYPE_COLUMN,
+                  name: this.typeColumn,
                   nullable: false,
-                  column: TYPE_COLUMN,
+                  column: this.typeColumn,
                   generate: new GeneratorModel({
                     default: (it: any) => it.constructor.name,
                   }),
@@ -127,7 +143,7 @@ export class TablePerHierarchy extends AbstractConvention {
           }
 
           const expression = `e => ${[...conditions]
-            .map(c => `e.${TYPE_COLUMN} == "${c}"`)
+            .map(c => `e.${this.typeColumn} == "${c}"`)
             .join(" || ")}`;
 
           e = e.withCondition({
@@ -260,10 +276,15 @@ export abstract class AbstractForeignKeyConvention extends AbstractConvention {
             n => n.targetName === principalName && !n.foreignKeyNames && !n.many
           );
 
+          const foreignKeys = dependent.foreignKeys.filter(
+            fk => fk.targetName === principalName && fk.names.isEmpty()
+          );
+
           if (
             (manyNavigations.size === 1 && oneNavigations.size === 1) ||
             (manyNavigations.size === 1 && oneNavigations.size === 0) ||
-            (manyNavigations.size === 0 && oneNavigations.size === 1)
+            (manyNavigations.size === 0 && oneNavigations.size === 1) ||
+            foreignKeys.size === 1
           ) {
             const manyNavigation = manyNavigations.first();
             const oneNavigation = oneNavigations.first();
@@ -344,7 +365,7 @@ export class ForeignKeyOnDelete extends AbstractConvention {
 
   override visitForeignKey(foreignKey: ForeignKeyModel) {
     if (!foreignKey.onDelete) {
-      const properties = foreignKey.names?.map(n => this.#entity.scalar(n))!;
+      const properties = foreignKey.names.map(n => this.#entity.scalar(n))!;
       const required = properties.some(p => p.nullable === false);
 
       return foreignKey.withOnDelete(required ? "cascade" : "set null");
@@ -388,7 +409,7 @@ export class NavigationForeignKeyFromDependent extends AbstractConvention {
       const candidates = dependent.foreignKeys.filter(fk => fk.targetName === principal.name);
 
       if (candidates.size === 1) {
-        return navigation.withForeignKey(candidates.first()!.names!);
+        return navigation.withForeignKey(candidates.first()!.names);
       }
     }
 
@@ -526,13 +547,20 @@ export class DateAsTimestamp extends AbstractConvention {
 }
 
 export class PrecisionScaleDefaults extends AbstractConvention {
+  constructor(
+    readonly precision = 18,
+    readonly scale = 4
+  ) {
+    super();
+  }
+
   override visitNumberProperty(numberProperty: NumberPropertyModel) {
     if (!numberProperty.precision) {
-      numberProperty = numberProperty.withPrecision(18);
+      numberProperty = numberProperty.withPrecision(this.precision);
     }
 
     if (!numberProperty.scale) {
-      numberProperty = numberProperty.withScale(4);
+      numberProperty = numberProperty.withScale(this.scale);
     }
 
     return numberProperty;
@@ -540,9 +568,18 @@ export class PrecisionScaleDefaults extends AbstractConvention {
 }
 
 export class MaxLengthDefault extends AbstractConvention {
+  constructor(
+    private readonly maxLength = 255,
+    private readonly uuidLength = 36
+  ) {
+    super();
+  }
+
   override visitStringProperty(stringProperty: StringPropertyModel) {
     if (!stringProperty.maxLength) {
-      stringProperty = stringProperty.withMaxLength(stringProperty.type === "uuid" ? 36 : 255);
+      stringProperty = stringProperty.withMaxLength(
+        stringProperty.type === "uuid" ? this.uuidLength : this.maxLength
+      );
     }
 
     return stringProperty;
@@ -581,25 +618,27 @@ export class BooleansToOneOrZero extends AbstractConvention {
   }
 }
 
-export class BooleanPropertyToOneOrZero extends AbstractConvention {
-  override visitBooleanProperty(booleanProperty: BooleanPropertyModel) {
-    if (!booleanProperty.convert) {
-      return booleanProperty.withConvert(new ConversionModel(boolToOneOrZero));
+export class DatesToISOStrings extends AbstractConvention {
+  override visitModel(model: Model) {
+    model = super.visitModel(model);
+
+    if (!model.conversion(Date)) {
+      return model.withConversion(Date, new ConversionModel(datePropertyToISOString));
     }
 
-    return booleanProperty;
+    return model;
   }
 }
+
+const datePropertyToISOString = {
+  read: (s: string) => (s ? new Date(s) : s),
+  write: (d: Date) => (d ? d.toISOString() : d),
+};
 
 export class DatePropertyToISOString extends AbstractConvention {
   override visitDateProperty(dateProperty: DatePropertyModel) {
     if (!dateProperty.convert && dateProperty.type === "timestamp") {
-      return dateProperty.withConvert(
-        new ConversionModel({
-          read: (s: string) => (s ? new Date(s) : s),
-          write: (d: Date) => (d ? d.toISOString() : d),
-        })
-      );
+      return dateProperty.withConvert(new ConversionModel(datePropertyToISOString));
     }
 
     return dateProperty;

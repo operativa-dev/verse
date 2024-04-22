@@ -61,6 +61,12 @@ export const queryFixture = (driver: Driver, logger?: Logger) => {
 export const queryTests = (verse: Verse<typeof queryModel>) => {
   const snap = dataTest(verse);
 
+  test("count limit", async () => {
+    const q = verse.from.albums.limit(7).count();
+
+    await snap(q);
+  });
+
   test("options compile", async () => {
     const q = verse.compile((from, $limit: number) =>
       from.albums.options({ disabledConditions: "all" }).limit($limit)
@@ -386,6 +392,7 @@ export const queryTests = (verse: Verse<typeof queryModel>) => {
 
   test("join three levels groupBy", async () => {
     const q = verse.from.tracks
+      .where(t => t.theAlbumId === 42)
       .join(Album, (tr, al) => tr.theAlbumId === al.albumId)
       .join(Artist, (_, al, ar) => al.artistId === ar.artistId)
       .groupBy((_, al, __) => al.artistId);

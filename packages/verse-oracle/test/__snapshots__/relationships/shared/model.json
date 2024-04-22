@@ -1,0 +1,151 @@
+{
+  "entities": [
+    {
+      "name": "Parent",
+      "properties": [
+        {
+          "name": "parentPk",
+          "column": "ParentPk",
+          "type": "integer",
+          "nullable": false,
+          "generate": {
+            "using": "seqhilo",
+            "sequence": "__verse_seqhilo"
+          },
+          "kind": "int"
+        },
+        {
+          "name": "children1",
+          "target": "Child",
+          "foreignKey": [
+            "parentFk1"
+          ],
+          "many": true,
+          "nullable": false
+        }
+      ],
+      "label": "parents",
+      "table": "Parent",
+      "key": [
+        "parentPk"
+      ],
+      "foreignKeys": [],
+      "conditions": [],
+      "data": [
+        {
+          "parentPk": 1,
+          "children1": []
+        },
+        {
+          "parentPk": 2,
+          "children1": []
+        },
+        {
+          "parentPk": 3,
+          "children1": []
+        },
+        {
+          "parentPk": 4,
+          "children1": []
+        }
+      ]
+    },
+    {
+      "name": "Child",
+      "properties": [
+        {
+          "name": "childPk",
+          "column": "ChildPk",
+          "type": "integer",
+          "nullable": false,
+          "generate": {
+            "using": "seqhilo",
+            "sequence": "__verse_seqhilo"
+          },
+          "kind": "int"
+        },
+        {
+          "name": "parentFk1",
+          "column": "ParentFk1",
+          "type": "integer",
+          "nullable": false,
+          "kind": "int"
+        },
+        {
+          "name": "parentFk2",
+          "column": "ParentFk2",
+          "type": "integer",
+          "nullable": true,
+          "kind": "int"
+        },
+        {
+          "name": "parent2",
+          "target": "Parent",
+          "foreignKey": [
+            "parentFk2"
+          ],
+          "many": false,
+          "nullable": false
+        }
+      ],
+      "label": "children",
+      "table": "Child",
+      "key": [
+        "childPk"
+      ],
+      "foreignKeys": [
+        {
+          "references": "Parent",
+          "properties": [
+            "parentFk2"
+          ],
+          "onDelete": "no action"
+        },
+        {
+          "references": "Parent",
+          "properties": [
+            "parentFk1"
+          ],
+          "onDelete": "cascade"
+        }
+      ],
+      "conditions": [],
+      "data": [
+        {
+          "childPk": 1,
+          "parentFk1": 1
+        },
+        {
+          "childPk": 2,
+          "parentFk1": 1
+        },
+        {
+          "childPk": 3,
+          "parentFk1": 2,
+          "parentFk2": 1
+        },
+        {
+          "childPk": 4,
+          "parentFk1": 2
+        }
+      ]
+    }
+  ],
+  "values": [],
+  "sequences": [
+    {
+      "name": "__verse_seqhilo",
+      "start": 1,
+      "increment": 10
+    }
+  ],
+  "conversions": [
+    [
+      null,
+      {
+        "read": "(v) => (v === 1 ? true : v === 0 ? false : v)",
+        "write": "(v) => (v === true ? 1 : v === false ? 0 : v)"
+      }
+    ]
+  ]
+}

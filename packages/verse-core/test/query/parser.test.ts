@@ -231,6 +231,7 @@ describe("parser", () => {
 
   test("arrow", () => {
     testParse(
+      "(foo,baz) => bar",
       "foo => bar",
       "() => a+b",
       "(a, [b, _]) => a+b",
@@ -354,13 +355,13 @@ describe("parser", () => {
 test("parser errors", () => {
   expect(() => testParse("(")).toThrow("Unexpected token: 'eof'.");
   expect(() => testParse("new Foo")).toThrow("Expected '(' before arguments.");
-  expect(() => testParse("new Foo(12")).toThrow("Expected ')' after arguments.");
-  expect(() => testParse("foo.")).toThrow("Expected property name after '.'.");
-  expect(() => testParse("foo[12")).toThrow("Expected ']' after computed property.");
-  expect(() => testParse("(12")).toThrow("Expected ')' after expression.");
+  expect(() => testParse("new Foo(12")).toThrow("Unexpected token: 'eof'.");
+  expect(() => testParse("foo.")).toThrow("Unexpected token: 'eof'.");
+  expect(() => testParse("foo[12")).toThrow("Expected token ']' but was 'eof'.");
+  expect(() => testParse("(12")).toThrow("Expected token ')' but was 'eof'.");
   expect(() => testParse("12,")).toThrow("Unexpected token: 'eof'.");
   expect(() => testParse("(12,)")).toThrow("Unexpected token: ')'.");
-  expect(() => testParse("foo(12")).toThrow("Expected ')' after arguments.");
+  expect(() => testParse("foo(12")).toThrow("Unexpected token: 'eof'.");
   expect(() => testParse("[,]")).toThrow("Unexpected token: ','.");
   expect(() => testParse("foo(,)")).toThrow("Unexpected token: ','.");
   expect(() => testParse("{12}")).toThrow("':' expected.");

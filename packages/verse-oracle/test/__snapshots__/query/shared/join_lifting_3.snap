@@ -1,0 +1,2431 @@
+[
+  [
+    Artist {
+      "artistId": 1,
+      "name": "AC/DC",
+    },
+    2,
+  ],
+  [
+    Artist {
+      "artistId": 1,
+      "name": "AC/DC",
+    },
+    2,
+  ],
+  [
+    Artist {
+      "artistId": 2,
+      "name": "Accept",
+    },
+    3,
+  ],
+  [
+    Artist {
+      "artistId": 2,
+      "name": "Accept",
+    },
+    3,
+  ],
+  [
+    Artist {
+      "artistId": 3,
+      "name": "Aerosmith",
+    },
+    4,
+  ],
+  [
+    Artist {
+      "artistId": 4,
+      "name": "Alanis Morissette",
+    },
+    5,
+  ],
+  [
+    Artist {
+      "artistId": 5,
+      "name": "Alice In Chains",
+    },
+    6,
+  ],
+  [
+    Artist {
+      "artistId": 6,
+      "name": "Antônio Carlos Jobim",
+    },
+    7,
+  ],
+  [
+    Artist {
+      "artistId": 6,
+      "name": "Antônio Carlos Jobim",
+    },
+    7,
+  ],
+  [
+    Artist {
+      "artistId": 7,
+      "name": "Apocalyptica",
+    },
+    8,
+  ],
+  [
+    Artist {
+      "artistId": 8,
+      "name": "Audioslave",
+    },
+    9,
+  ],
+  [
+    Artist {
+      "artistId": 8,
+      "name": "Audioslave",
+    },
+    9,
+  ],
+  [
+    Artist {
+      "artistId": 8,
+      "name": "Audioslave",
+    },
+    9,
+  ],
+  [
+    Artist {
+      "artistId": 9,
+      "name": "BackBeat",
+    },
+    10,
+  ],
+  [
+    Artist {
+      "artistId": 10,
+      "name": "Billy Cobham",
+    },
+    11,
+  ],
+  [
+    Artist {
+      "artistId": 11,
+      "name": "Black Label Society",
+    },
+    12,
+  ],
+  [
+    Artist {
+      "artistId": 11,
+      "name": "Black Label Society",
+    },
+    12,
+  ],
+  [
+    Artist {
+      "artistId": 12,
+      "name": "Black Sabbath",
+    },
+    13,
+  ],
+  [
+    Artist {
+      "artistId": 12,
+      "name": "Black Sabbath",
+    },
+    13,
+  ],
+  [
+    Artist {
+      "artistId": 13,
+      "name": "Body Count",
+    },
+    14,
+  ],
+  [
+    Artist {
+      "artistId": 14,
+      "name": "Bruce Dickinson",
+    },
+    15,
+  ],
+  [
+    Artist {
+      "artistId": 15,
+      "name": "Buddy Guy",
+    },
+    16,
+  ],
+  [
+    Artist {
+      "artistId": 16,
+      "name": "Caetano Veloso",
+    },
+    17,
+  ],
+  [
+    Artist {
+      "artistId": 16,
+      "name": "Caetano Veloso",
+    },
+    17,
+  ],
+  [
+    Artist {
+      "artistId": 17,
+      "name": "Chico Buarque",
+    },
+    18,
+  ],
+  [
+    Artist {
+      "artistId": 18,
+      "name": "Chico Science & Nação Zumbi",
+    },
+    19,
+  ],
+  [
+    Artist {
+      "artistId": 18,
+      "name": "Chico Science & Nação Zumbi",
+    },
+    19,
+  ],
+  [
+    Artist {
+      "artistId": 19,
+      "name": "Cidade Negra",
+    },
+    20,
+  ],
+  [
+    Artist {
+      "artistId": 19,
+      "name": "Cidade Negra",
+    },
+    20,
+  ],
+  [
+    Artist {
+      "artistId": 20,
+      "name": "Cláudio Zoli",
+    },
+    21,
+  ],
+  [
+    Artist {
+      "artistId": 21,
+      "name": "Various Artists",
+    },
+    22,
+  ],
+  [
+    Artist {
+      "artistId": 21,
+      "name": "Various Artists",
+    },
+    22,
+  ],
+  [
+    Artist {
+      "artistId": 21,
+      "name": "Various Artists",
+    },
+    22,
+  ],
+  [
+    Artist {
+      "artistId": 21,
+      "name": "Various Artists",
+    },
+    22,
+  ],
+  [
+    Artist {
+      "artistId": 22,
+      "name": "Led Zeppelin",
+    },
+    23,
+  ],
+  [
+    Artist {
+      "artistId": 22,
+      "name": "Led Zeppelin",
+    },
+    23,
+  ],
+  [
+    Artist {
+      "artistId": 22,
+      "name": "Led Zeppelin",
+    },
+    23,
+  ],
+  [
+    Artist {
+      "artistId": 22,
+      "name": "Led Zeppelin",
+    },
+    23,
+  ],
+  [
+    Artist {
+      "artistId": 22,
+      "name": "Led Zeppelin",
+    },
+    23,
+  ],
+  [
+    Artist {
+      "artistId": 22,
+      "name": "Led Zeppelin",
+    },
+    23,
+  ],
+  [
+    Artist {
+      "artistId": 22,
+      "name": "Led Zeppelin",
+    },
+    23,
+  ],
+  [
+    Artist {
+      "artistId": 22,
+      "name": "Led Zeppelin",
+    },
+    23,
+  ],
+  [
+    Artist {
+      "artistId": 22,
+      "name": "Led Zeppelin",
+    },
+    23,
+  ],
+  [
+    Artist {
+      "artistId": 22,
+      "name": "Led Zeppelin",
+    },
+    23,
+  ],
+  [
+    Artist {
+      "artistId": 22,
+      "name": "Led Zeppelin",
+    },
+    23,
+  ],
+  [
+    Artist {
+      "artistId": 22,
+      "name": "Led Zeppelin",
+    },
+    23,
+  ],
+  [
+    Artist {
+      "artistId": 22,
+      "name": "Led Zeppelin",
+    },
+    23,
+  ],
+  [
+    Artist {
+      "artistId": 22,
+      "name": "Led Zeppelin",
+    },
+    23,
+  ],
+  [
+    Artist {
+      "artistId": 23,
+      "name": "Frank Zappa & Captain Beefheart",
+    },
+    24,
+  ],
+  [
+    Artist {
+      "artistId": 24,
+      "name": "Marcos Valle",
+    },
+    25,
+  ],
+  [
+    Artist {
+      "artistId": 27,
+      "name": "Gilberto Gil",
+    },
+    28,
+  ],
+  [
+    Artist {
+      "artistId": 27,
+      "name": "Gilberto Gil",
+    },
+    28,
+  ],
+  [
+    Artist {
+      "artistId": 27,
+      "name": "Gilberto Gil",
+    },
+    28,
+  ],
+  [
+    Artist {
+      "artistId": 36,
+      "name": "O Rappa",
+    },
+    37,
+  ],
+  [
+    Artist {
+      "artistId": 37,
+      "name": "Ed Motta",
+    },
+    38,
+  ],
+  [
+    Artist {
+      "artistId": 41,
+      "name": "Elis Regina",
+    },
+    42,
+  ],
+  [
+    Artist {
+      "artistId": 42,
+      "name": "Milton Nascimento",
+    },
+    43,
+  ],
+  [
+    Artist {
+      "artistId": 42,
+      "name": "Milton Nascimento",
+    },
+    43,
+  ],
+  [
+    Artist {
+      "artistId": 46,
+      "name": "Jorge Ben",
+    },
+    47,
+  ],
+  [
+    Artist {
+      "artistId": 50,
+      "name": "Metallica",
+    },
+    51,
+  ],
+  [
+    Artist {
+      "artistId": 50,
+      "name": "Metallica",
+    },
+    51,
+  ],
+  [
+    Artist {
+      "artistId": 50,
+      "name": "Metallica",
+    },
+    51,
+  ],
+  [
+    Artist {
+      "artistId": 50,
+      "name": "Metallica",
+    },
+    51,
+  ],
+  [
+    Artist {
+      "artistId": 50,
+      "name": "Metallica",
+    },
+    51,
+  ],
+  [
+    Artist {
+      "artistId": 50,
+      "name": "Metallica",
+    },
+    51,
+  ],
+  [
+    Artist {
+      "artistId": 50,
+      "name": "Metallica",
+    },
+    51,
+  ],
+  [
+    Artist {
+      "artistId": 50,
+      "name": "Metallica",
+    },
+    51,
+  ],
+  [
+    Artist {
+      "artistId": 50,
+      "name": "Metallica",
+    },
+    51,
+  ],
+  [
+    Artist {
+      "artistId": 50,
+      "name": "Metallica",
+    },
+    51,
+  ],
+  [
+    Artist {
+      "artistId": 51,
+      "name": "Queen",
+    },
+    52,
+  ],
+  [
+    Artist {
+      "artistId": 51,
+      "name": "Queen",
+    },
+    52,
+  ],
+  [
+    Artist {
+      "artistId": 51,
+      "name": "Queen",
+    },
+    52,
+  ],
+  [
+    Artist {
+      "artistId": 52,
+      "name": "Kiss",
+    },
+    53,
+  ],
+  [
+    Artist {
+      "artistId": 52,
+      "name": "Kiss",
+    },
+    53,
+  ],
+  [
+    Artist {
+      "artistId": 53,
+      "name": "Spyro Gyra",
+    },
+    54,
+  ],
+  [
+    Artist {
+      "artistId": 53,
+      "name": "Spyro Gyra",
+    },
+    54,
+  ],
+  [
+    Artist {
+      "artistId": 54,
+      "name": "Green Day",
+    },
+    55,
+  ],
+  [
+    Artist {
+      "artistId": 54,
+      "name": "Green Day",
+    },
+    55,
+  ],
+  [
+    Artist {
+      "artistId": 55,
+      "name": "David Coverdale",
+    },
+    56,
+  ],
+  [
+    Artist {
+      "artistId": 56,
+      "name": "Gonzaguinha",
+    },
+    57,
+  ],
+  [
+    Artist {
+      "artistId": 57,
+      "name": "Os Mutantes",
+    },
+    58,
+  ],
+  [
+    Artist {
+      "artistId": 58,
+      "name": "Deep Purple",
+    },
+    59,
+  ],
+  [
+    Artist {
+      "artistId": 58,
+      "name": "Deep Purple",
+    },
+    59,
+  ],
+  [
+    Artist {
+      "artistId": 58,
+      "name": "Deep Purple",
+    },
+    59,
+  ],
+  [
+    Artist {
+      "artistId": 58,
+      "name": "Deep Purple",
+    },
+    59,
+  ],
+  [
+    Artist {
+      "artistId": 58,
+      "name": "Deep Purple",
+    },
+    59,
+  ],
+  [
+    Artist {
+      "artistId": 58,
+      "name": "Deep Purple",
+    },
+    59,
+  ],
+  [
+    Artist {
+      "artistId": 58,
+      "name": "Deep Purple",
+    },
+    59,
+  ],
+  [
+    Artist {
+      "artistId": 58,
+      "name": "Deep Purple",
+    },
+    59,
+  ],
+  [
+    Artist {
+      "artistId": 58,
+      "name": "Deep Purple",
+    },
+    59,
+  ],
+  [
+    Artist {
+      "artistId": 58,
+      "name": "Deep Purple",
+    },
+    59,
+  ],
+  [
+    Artist {
+      "artistId": 58,
+      "name": "Deep Purple",
+    },
+    59,
+  ],
+  [
+    Artist {
+      "artistId": 59,
+      "name": "Santana",
+    },
+    60,
+  ],
+  [
+    Artist {
+      "artistId": 59,
+      "name": "Santana",
+    },
+    60,
+  ],
+  [
+    Artist {
+      "artistId": 59,
+      "name": "Santana",
+    },
+    60,
+  ],
+  [
+    Artist {
+      "artistId": 68,
+      "name": "Miles Davis",
+    },
+    69,
+  ],
+  [
+    Artist {
+      "artistId": 68,
+      "name": "Miles Davis",
+    },
+    69,
+  ],
+  [
+    Artist {
+      "artistId": 68,
+      "name": "Miles Davis",
+    },
+    69,
+  ],
+  [
+    Artist {
+      "artistId": 69,
+      "name": "Gene Krupa",
+    },
+    70,
+  ],
+  [
+    Artist {
+      "artistId": 70,
+      "name": "Toquinho & Vinícius",
+    },
+    71,
+  ],
+  [
+    Artist {
+      "artistId": 72,
+      "name": "Vinícius De Moraes",
+    },
+    73,
+  ],
+  [
+    Artist {
+      "artistId": 76,
+      "name": "Creedence Clearwater Revival",
+    },
+    77,
+  ],
+  [
+    Artist {
+      "artistId": 76,
+      "name": "Creedence Clearwater Revival",
+    },
+    77,
+  ],
+  [
+    Artist {
+      "artistId": 77,
+      "name": "Cássia Eller",
+    },
+    78,
+  ],
+  [
+    Artist {
+      "artistId": 77,
+      "name": "Cássia Eller",
+    },
+    78,
+  ],
+  [
+    Artist {
+      "artistId": 78,
+      "name": "Def Leppard",
+    },
+    79,
+  ],
+  [
+    Artist {
+      "artistId": 79,
+      "name": "Dennis Chambers",
+    },
+    80,
+  ],
+  [
+    Artist {
+      "artistId": 80,
+      "name": "Djavan",
+    },
+    81,
+  ],
+  [
+    Artist {
+      "artistId": 80,
+      "name": "Djavan",
+    },
+    81,
+  ],
+  [
+    Artist {
+      "artistId": 81,
+      "name": "Eric Clapton",
+    },
+    82,
+  ],
+  [
+    Artist {
+      "artistId": 81,
+      "name": "Eric Clapton",
+    },
+    82,
+  ],
+  [
+    Artist {
+      "artistId": 82,
+      "name": "Faith No More",
+    },
+    83,
+  ],
+  [
+    Artist {
+      "artistId": 82,
+      "name": "Faith No More",
+    },
+    83,
+  ],
+  [
+    Artist {
+      "artistId": 82,
+      "name": "Faith No More",
+    },
+    83,
+  ],
+  [
+    Artist {
+      "artistId": 82,
+      "name": "Faith No More",
+    },
+    83,
+  ],
+  [
+    Artist {
+      "artistId": 83,
+      "name": "Falamansa",
+    },
+    84,
+  ],
+  [
+    Artist {
+      "artistId": 84,
+      "name": "Foo Fighters",
+    },
+    85,
+  ],
+  [
+    Artist {
+      "artistId": 84,
+      "name": "Foo Fighters",
+    },
+    85,
+  ],
+  [
+    Artist {
+      "artistId": 84,
+      "name": "Foo Fighters",
+    },
+    85,
+  ],
+  [
+    Artist {
+      "artistId": 84,
+      "name": "Foo Fighters",
+    },
+    85,
+  ],
+  [
+    Artist {
+      "artistId": 85,
+      "name": "Frank Sinatra",
+    },
+    86,
+  ],
+  [
+    Artist {
+      "artistId": 86,
+      "name": "Funk Como Le Gusta",
+    },
+    87,
+  ],
+  [
+    Artist {
+      "artistId": 87,
+      "name": "Godsmack",
+    },
+    88,
+  ],
+  [
+    Artist {
+      "artistId": 88,
+      "name": "Guns N' Roses",
+    },
+    89,
+  ],
+  [
+    Artist {
+      "artistId": 88,
+      "name": "Guns N' Roses",
+    },
+    89,
+  ],
+  [
+    Artist {
+      "artistId": 88,
+      "name": "Guns N' Roses",
+    },
+    89,
+  ],
+  [
+    Artist {
+      "artistId": 89,
+      "name": "Incognito",
+    },
+    90,
+  ],
+  [
+    Artist {
+      "artistId": 90,
+      "name": "Iron Maiden",
+    },
+    91,
+  ],
+  [
+    Artist {
+      "artistId": 90,
+      "name": "Iron Maiden",
+    },
+    91,
+  ],
+  [
+    Artist {
+      "artistId": 90,
+      "name": "Iron Maiden",
+    },
+    91,
+  ],
+  [
+    Artist {
+      "artistId": 90,
+      "name": "Iron Maiden",
+    },
+    91,
+  ],
+  [
+    Artist {
+      "artistId": 90,
+      "name": "Iron Maiden",
+    },
+    91,
+  ],
+  [
+    Artist {
+      "artistId": 90,
+      "name": "Iron Maiden",
+    },
+    91,
+  ],
+  [
+    Artist {
+      "artistId": 90,
+      "name": "Iron Maiden",
+    },
+    91,
+  ],
+  [
+    Artist {
+      "artistId": 90,
+      "name": "Iron Maiden",
+    },
+    91,
+  ],
+  [
+    Artist {
+      "artistId": 90,
+      "name": "Iron Maiden",
+    },
+    91,
+  ],
+  [
+    Artist {
+      "artistId": 90,
+      "name": "Iron Maiden",
+    },
+    91,
+  ],
+  [
+    Artist {
+      "artistId": 90,
+      "name": "Iron Maiden",
+    },
+    91,
+  ],
+  [
+    Artist {
+      "artistId": 90,
+      "name": "Iron Maiden",
+    },
+    91,
+  ],
+  [
+    Artist {
+      "artistId": 90,
+      "name": "Iron Maiden",
+    },
+    91,
+  ],
+  [
+    Artist {
+      "artistId": 90,
+      "name": "Iron Maiden",
+    },
+    91,
+  ],
+  [
+    Artist {
+      "artistId": 90,
+      "name": "Iron Maiden",
+    },
+    91,
+  ],
+  [
+    Artist {
+      "artistId": 90,
+      "name": "Iron Maiden",
+    },
+    91,
+  ],
+  [
+    Artist {
+      "artistId": 90,
+      "name": "Iron Maiden",
+    },
+    91,
+  ],
+  [
+    Artist {
+      "artistId": 90,
+      "name": "Iron Maiden",
+    },
+    91,
+  ],
+  [
+    Artist {
+      "artistId": 90,
+      "name": "Iron Maiden",
+    },
+    91,
+  ],
+  [
+    Artist {
+      "artistId": 90,
+      "name": "Iron Maiden",
+    },
+    91,
+  ],
+  [
+    Artist {
+      "artistId": 90,
+      "name": "Iron Maiden",
+    },
+    91,
+  ],
+  [
+    Artist {
+      "artistId": 91,
+      "name": "James Brown",
+    },
+    92,
+  ],
+  [
+    Artist {
+      "artistId": 92,
+      "name": "Jamiroquai",
+    },
+    93,
+  ],
+  [
+    Artist {
+      "artistId": 92,
+      "name": "Jamiroquai",
+    },
+    93,
+  ],
+  [
+    Artist {
+      "artistId": 92,
+      "name": "Jamiroquai",
+    },
+    93,
+  ],
+  [
+    Artist {
+      "artistId": 93,
+      "name": "JET",
+    },
+    94,
+  ],
+  [
+    Artist {
+      "artistId": 94,
+      "name": "Jimi Hendrix",
+    },
+    95,
+  ],
+  [
+    Artist {
+      "artistId": 95,
+      "name": "Joe Satriani",
+    },
+    96,
+  ],
+  [
+    Artist {
+      "artistId": 96,
+      "name": "Jota Quest",
+    },
+    97,
+  ],
+  [
+    Artist {
+      "artistId": 97,
+      "name": "João Suplicy",
+    },
+    98,
+  ],
+  [
+    Artist {
+      "artistId": 98,
+      "name": "Judas Priest",
+    },
+    99,
+  ],
+  [
+    Artist {
+      "artistId": 99,
+      "name": "Legião Urbana",
+    },
+    100,
+  ],
+  [
+    Artist {
+      "artistId": 99,
+      "name": "Legião Urbana",
+    },
+    100,
+  ],
+  [
+    Artist {
+      "artistId": 100,
+      "name": "Lenny Kravitz",
+    },
+    101,
+  ],
+  [
+    Artist {
+      "artistId": 101,
+      "name": "Lulu Santos",
+    },
+    102,
+  ],
+  [
+    Artist {
+      "artistId": 101,
+      "name": "Lulu Santos",
+    },
+    102,
+  ],
+  [
+    Artist {
+      "artistId": 102,
+      "name": "Marillion",
+    },
+    103,
+  ],
+  [
+    Artist {
+      "artistId": 103,
+      "name": "Marisa Monte",
+    },
+    104,
+  ],
+  [
+    Artist {
+      "artistId": 104,
+      "name": "Marvin Gaye",
+    },
+    105,
+  ],
+  [
+    Artist {
+      "artistId": 105,
+      "name": "Men At Work",
+    },
+    106,
+  ],
+  [
+    Artist {
+      "artistId": 106,
+      "name": "Motörhead",
+    },
+    107,
+  ],
+  [
+    Artist {
+      "artistId": 108,
+      "name": "Mônica Marianno",
+    },
+    109,
+  ],
+  [
+    Artist {
+      "artistId": 109,
+      "name": "Mötley Crüe",
+    },
+    110,
+  ],
+  [
+    Artist {
+      "artistId": 110,
+      "name": "Nirvana",
+    },
+    111,
+  ],
+  [
+    Artist {
+      "artistId": 110,
+      "name": "Nirvana",
+    },
+    111,
+  ],
+  [
+    Artist {
+      "artistId": 111,
+      "name": "O Terço",
+    },
+    112,
+  ],
+  [
+    Artist {
+      "artistId": 112,
+      "name": "Olodum",
+    },
+    113,
+  ],
+  [
+    Artist {
+      "artistId": 113,
+      "name": "Os Paralamas Do Sucesso",
+    },
+    114,
+  ],
+  [
+    Artist {
+      "artistId": 113,
+      "name": "Os Paralamas Do Sucesso",
+    },
+    114,
+  ],
+  [
+    Artist {
+      "artistId": 113,
+      "name": "Os Paralamas Do Sucesso",
+    },
+    114,
+  ],
+  [
+    Artist {
+      "artistId": 114,
+      "name": "Ozzy Osbourne",
+    },
+    115,
+  ],
+  [
+    Artist {
+      "artistId": 114,
+      "name": "Ozzy Osbourne",
+    },
+    115,
+  ],
+  [
+    Artist {
+      "artistId": 114,
+      "name": "Ozzy Osbourne",
+    },
+    115,
+  ],
+  [
+    Artist {
+      "artistId": 114,
+      "name": "Ozzy Osbourne",
+    },
+    115,
+  ],
+  [
+    Artist {
+      "artistId": 114,
+      "name": "Ozzy Osbourne",
+    },
+    115,
+  ],
+  [
+    Artist {
+      "artistId": 114,
+      "name": "Ozzy Osbourne",
+    },
+    115,
+  ],
+  [
+    Artist {
+      "artistId": 115,
+      "name": "Page & Plant",
+    },
+    116,
+  ],
+  [
+    Artist {
+      "artistId": 116,
+      "name": "Passengers",
+    },
+    117,
+  ],
+  [
+    Artist {
+      "artistId": 117,
+      "name": "Paul D'Ianno",
+    },
+    118,
+  ],
+  [
+    Artist {
+      "artistId": 118,
+      "name": "Pearl Jam",
+    },
+    119,
+  ],
+  [
+    Artist {
+      "artistId": 118,
+      "name": "Pearl Jam",
+    },
+    119,
+  ],
+  [
+    Artist {
+      "artistId": 118,
+      "name": "Pearl Jam",
+    },
+    119,
+  ],
+  [
+    Artist {
+      "artistId": 118,
+      "name": "Pearl Jam",
+    },
+    119,
+  ],
+  [
+    Artist {
+      "artistId": 118,
+      "name": "Pearl Jam",
+    },
+    119,
+  ],
+  [
+    Artist {
+      "artistId": 120,
+      "name": "Pink Floyd",
+    },
+    121,
+  ],
+  [
+    Artist {
+      "artistId": 121,
+      "name": "Planet Hemp",
+    },
+    122,
+  ],
+  [
+    Artist {
+      "artistId": 122,
+      "name": "R.E.M. Feat. Kate Pearson",
+    },
+    123,
+  ],
+  [
+    Artist {
+      "artistId": 124,
+      "name": "R.E.M.",
+    },
+    125,
+  ],
+  [
+    Artist {
+      "artistId": 124,
+      "name": "R.E.M.",
+    },
+    125,
+  ],
+  [
+    Artist {
+      "artistId": 124,
+      "name": "R.E.M.",
+    },
+    125,
+  ],
+  [
+    Artist {
+      "artistId": 125,
+      "name": "Raimundos",
+    },
+    126,
+  ],
+  [
+    Artist {
+      "artistId": 126,
+      "name": "Raul Seixas",
+    },
+    127,
+  ],
+  [
+    Artist {
+      "artistId": 127,
+      "name": "Red Hot Chili Peppers",
+    },
+    128,
+  ],
+  [
+    Artist {
+      "artistId": 127,
+      "name": "Red Hot Chili Peppers",
+    },
+    128,
+  ],
+  [
+    Artist {
+      "artistId": 127,
+      "name": "Red Hot Chili Peppers",
+    },
+    128,
+  ],
+  [
+    Artist {
+      "artistId": 128,
+      "name": "Rush",
+    },
+    129,
+  ],
+  [
+    Artist {
+      "artistId": 130,
+      "name": "Skank",
+    },
+    131,
+  ],
+  [
+    Artist {
+      "artistId": 130,
+      "name": "Skank",
+    },
+    131,
+  ],
+  [
+    Artist {
+      "artistId": 131,
+      "name": "Smashing Pumpkins",
+    },
+    132,
+  ],
+  [
+    Artist {
+      "artistId": 131,
+      "name": "Smashing Pumpkins",
+    },
+    132,
+  ],
+  [
+    Artist {
+      "artistId": 132,
+      "name": "Soundgarden",
+    },
+    133,
+  ],
+  [
+    Artist {
+      "artistId": 133,
+      "name": "Stevie Ray Vaughan & Double Trouble",
+    },
+    134,
+  ],
+  [
+    Artist {
+      "artistId": 134,
+      "name": "Stone Temple Pilots",
+    },
+    135,
+  ],
+  [
+    Artist {
+      "artistId": 135,
+      "name": "System Of A Down",
+    },
+    136,
+  ],
+  [
+    Artist {
+      "artistId": 136,
+      "name": "Terry Bozzio, Tony Levin & Steve Stevens",
+    },
+    137,
+  ],
+  [
+    Artist {
+      "artistId": 137,
+      "name": "The Black Crowes",
+    },
+    138,
+  ],
+  [
+    Artist {
+      "artistId": 137,
+      "name": "The Black Crowes",
+    },
+    138,
+  ],
+  [
+    Artist {
+      "artistId": 138,
+      "name": "The Clash",
+    },
+    139,
+  ],
+  [
+    Artist {
+      "artistId": 139,
+      "name": "The Cult",
+    },
+    140,
+  ],
+  [
+    Artist {
+      "artistId": 139,
+      "name": "The Cult",
+    },
+    140,
+  ],
+  [
+    Artist {
+      "artistId": 140,
+      "name": "The Doors",
+    },
+    141,
+  ],
+  [
+    Artist {
+      "artistId": 141,
+      "name": "The Police",
+    },
+    142,
+  ],
+  [
+    Artist {
+      "artistId": 142,
+      "name": "The Rolling Stones",
+    },
+    143,
+  ],
+  [
+    Artist {
+      "artistId": 142,
+      "name": "The Rolling Stones",
+    },
+    143,
+  ],
+  [
+    Artist {
+      "artistId": 142,
+      "name": "The Rolling Stones",
+    },
+    143,
+  ],
+  [
+    Artist {
+      "artistId": 143,
+      "name": "The Tea Party",
+    },
+    144,
+  ],
+  [
+    Artist {
+      "artistId": 143,
+      "name": "The Tea Party",
+    },
+    144,
+  ],
+  [
+    Artist {
+      "artistId": 144,
+      "name": "The Who",
+    },
+    145,
+  ],
+  [
+    Artist {
+      "artistId": 145,
+      "name": "Tim Maia",
+    },
+    146,
+  ],
+  [
+    Artist {
+      "artistId": 145,
+      "name": "Tim Maia",
+    },
+    146,
+  ],
+  [
+    Artist {
+      "artistId": 146,
+      "name": "Titãs",
+    },
+    147,
+  ],
+  [
+    Artist {
+      "artistId": 146,
+      "name": "Titãs",
+    },
+    147,
+  ],
+  [
+    Artist {
+      "artistId": 147,
+      "name": "Battlestar Galactica",
+    },
+    148,
+  ],
+  [
+    Artist {
+      "artistId": 147,
+      "name": "Battlestar Galactica",
+    },
+    148,
+  ],
+  [
+    Artist {
+      "artistId": 148,
+      "name": "Heroes",
+    },
+    149,
+  ],
+  [
+    Artist {
+      "artistId": 149,
+      "name": "Lost",
+    },
+    150,
+  ],
+  [
+    Artist {
+      "artistId": 149,
+      "name": "Lost",
+    },
+    150,
+  ],
+  [
+    Artist {
+      "artistId": 149,
+      "name": "Lost",
+    },
+    150,
+  ],
+  [
+    Artist {
+      "artistId": 149,
+      "name": "Lost",
+    },
+    150,
+  ],
+  [
+    Artist {
+      "artistId": 150,
+      "name": "U2",
+    },
+    151,
+  ],
+  [
+    Artist {
+      "artistId": 150,
+      "name": "U2",
+    },
+    151,
+  ],
+  [
+    Artist {
+      "artistId": 150,
+      "name": "U2",
+    },
+    151,
+  ],
+  [
+    Artist {
+      "artistId": 150,
+      "name": "U2",
+    },
+    151,
+  ],
+  [
+    Artist {
+      "artistId": 150,
+      "name": "U2",
+    },
+    151,
+  ],
+  [
+    Artist {
+      "artistId": 150,
+      "name": "U2",
+    },
+    151,
+  ],
+  [
+    Artist {
+      "artistId": 150,
+      "name": "U2",
+    },
+    151,
+  ],
+  [
+    Artist {
+      "artistId": 150,
+      "name": "U2",
+    },
+    151,
+  ],
+  [
+    Artist {
+      "artistId": 150,
+      "name": "U2",
+    },
+    151,
+  ],
+  [
+    Artist {
+      "artistId": 150,
+      "name": "U2",
+    },
+    151,
+  ],
+  [
+    Artist {
+      "artistId": 151,
+      "name": "UB40",
+    },
+    152,
+  ],
+  [
+    Artist {
+      "artistId": 152,
+      "name": "Van Halen",
+    },
+    153,
+  ],
+  [
+    Artist {
+      "artistId": 152,
+      "name": "Van Halen",
+    },
+    153,
+  ],
+  [
+    Artist {
+      "artistId": 152,
+      "name": "Van Halen",
+    },
+    153,
+  ],
+  [
+    Artist {
+      "artistId": 152,
+      "name": "Van Halen",
+    },
+    153,
+  ],
+  [
+    Artist {
+      "artistId": 153,
+      "name": "Velvet Revolver",
+    },
+    154,
+  ],
+  [
+    Artist {
+      "artistId": 155,
+      "name": "Zeca Pagodinho",
+    },
+    156,
+  ],
+  [
+    Artist {
+      "artistId": 156,
+      "name": "The Office",
+    },
+    157,
+  ],
+  [
+    Artist {
+      "artistId": 156,
+      "name": "The Office",
+    },
+    157,
+  ],
+  [
+    Artist {
+      "artistId": 156,
+      "name": "The Office",
+    },
+    157,
+  ],
+  [
+    Artist {
+      "artistId": 157,
+      "name": "Dread Zeppelin",
+    },
+    158,
+  ],
+  [
+    Artist {
+      "artistId": 158,
+      "name": "Battlestar Galactica (Classic)",
+    },
+    159,
+  ],
+  [
+    Artist {
+      "artistId": 159,
+      "name": "Aquaman",
+    },
+    160,
+  ],
+  [
+    Artist {
+      "artistId": 179,
+      "name": "Scorpions",
+    },
+    180,
+  ],
+  [
+    Artist {
+      "artistId": 180,
+      "name": "House Of Pain",
+    },
+    181,
+  ],
+  [
+    Artist {
+      "artistId": 196,
+      "name": "Cake",
+    },
+    197,
+  ],
+  [
+    Artist {
+      "artistId": 197,
+      "name": "Aisha Duo",
+    },
+    198,
+  ],
+  [
+    Artist {
+      "artistId": 198,
+      "name": "Habib Koité and Bamada",
+    },
+    199,
+  ],
+  [
+    Artist {
+      "artistId": 199,
+      "name": "Karsh Kale",
+    },
+    200,
+  ],
+  [
+    Artist {
+      "artistId": 200,
+      "name": "The Posies",
+    },
+    201,
+  ],
+  [
+    Artist {
+      "artistId": 201,
+      "name": "Luciana Souza/Romero Lubambo",
+    },
+    202,
+  ],
+  [
+    Artist {
+      "artistId": 202,
+      "name": "Aaron Goldberg",
+    },
+    203,
+  ],
+  [
+    Artist {
+      "artistId": 203,
+      "name": "Nicolaus Esterhazy Sinfonia",
+    },
+    204,
+  ],
+  [
+    Artist {
+      "artistId": 204,
+      "name": "Temple of the Dog",
+    },
+    205,
+  ],
+  [
+    Artist {
+      "artistId": 205,
+      "name": "Chris Cornell",
+    },
+    206,
+  ],
+  [
+    Artist {
+      "artistId": 206,
+      "name": "Alberto Turco & Nova Schola Gregoriana",
+    },
+    207,
+  ],
+  [
+    Artist {
+      "artistId": 207,
+      "name": "Richard Marlow & The Choir of Trinity College, Cambridge",
+    },
+    208,
+  ],
+  [
+    Artist {
+      "artistId": 208,
+      "name": "English Concert & Trevor Pinnock",
+    },
+    209,
+  ],
+  [
+    Artist {
+      "artistId": 208,
+      "name": "English Concert & Trevor Pinnock",
+    },
+    209,
+  ],
+  [
+    Artist {
+      "artistId": 209,
+      "name": "Anne-Sophie Mutter, Herbert Von Karajan & Wiener Philharmoniker",
+    },
+    210,
+  ],
+  [
+    Artist {
+      "artistId": 210,
+      "name": "Hilary Hahn, Jeffrey Kahane, Los Angeles Chamber Orchestra & Margaret Batjer",
+    },
+    211,
+  ],
+  [
+    Artist {
+      "artistId": 211,
+      "name": "Wilhelm Kempff",
+    },
+    212,
+  ],
+  [
+    Artist {
+      "artistId": 212,
+      "name": "Yo-Yo Ma",
+    },
+    213,
+  ],
+  [
+    Artist {
+      "artistId": 213,
+      "name": "Scholars Baroque Ensemble",
+    },
+    214,
+  ],
+  [
+    Artist {
+      "artistId": 214,
+      "name": "Academy of St. Martin in the Fields & Sir Neville Marriner",
+    },
+    215,
+  ],
+  [
+    Artist {
+      "artistId": 215,
+      "name": "Academy of St. Martin in the Fields Chamber Ensemble & Sir Neville Marriner",
+    },
+    216,
+  ],
+  [
+    Artist {
+      "artistId": 216,
+      "name": "Berliner Philharmoniker, Claudio Abbado & Sabine Meyer",
+    },
+    217,
+  ],
+  [
+    Artist {
+      "artistId": 217,
+      "name": "Royal Philharmonic Orchestra & Sir Thomas Beecham",
+    },
+    218,
+  ],
+  [
+    Artist {
+      "artistId": 218,
+      "name": "Orchestre Révolutionnaire et Romantique & John Eliot Gardiner",
+    },
+    219,
+  ],
+  [
+    Artist {
+      "artistId": 219,
+      "name": "Britten Sinfonia, Ivor Bolton & Lesley Garrett",
+    },
+    220,
+  ],
+  [
+    Artist {
+      "artistId": 220,
+      "name": "Chicago Symphony Chorus, Chicago Symphony Orchestra & Sir Georg Solti",
+    },
+    221,
+  ],
+  [
+    Artist {
+      "artistId": 221,
+      "name": "Sir Georg Solti & Wiener Philharmoniker",
+    },
+    222,
+  ],
+  [
+    Artist {
+      "artistId": 222,
+      "name": "Academy of St. Martin in the Fields, John Birch, Sir Neville Marriner & Sylvia McNair",
+    },
+    223,
+  ],
+  [
+    Artist {
+      "artistId": 223,
+      "name": "London Symphony Orchestra & Sir Charles Mackerras",
+    },
+    224,
+  ],
+  [
+    Artist {
+      "artistId": 224,
+      "name": "Barry Wordsworth & BBC Concert Orchestra",
+    },
+    225,
+  ],
+  [
+    Artist {
+      "artistId": 225,
+      "name": "Herbert Von Karajan, Mirella Freni & Wiener Philharmoniker",
+    },
+    226,
+  ],
+  [
+    Artist {
+      "artistId": 226,
+      "name": "Eugene Ormandy",
+    },
+    227,
+  ],
+  [
+    Artist {
+      "artistId": 226,
+      "name": "Eugene Ormandy",
+    },
+    227,
+  ],
+  [
+    Artist {
+      "artistId": 226,
+      "name": "Eugene Ormandy",
+    },
+    227,
+  ],
+  [
+    Artist {
+      "artistId": 227,
+      "name": "Luciano Pavarotti",
+    },
+    228,
+  ],
+  [
+    Artist {
+      "artistId": 228,
+      "name": "Leonard Bernstein & New York Philharmonic",
+    },
+    229,
+  ],
+  [
+    Artist {
+      "artistId": 229,
+      "name": "Boston Symphony Orchestra & Seiji Ozawa",
+    },
+    230,
+  ],
+  [
+    Artist {
+      "artistId": 230,
+      "name": "Aaron Copland & London Symphony Orchestra",
+    },
+    231,
+  ],
+  [
+    Artist {
+      "artistId": 231,
+      "name": "Ton Koopman",
+    },
+    232,
+  ],
+  [
+    Artist {
+      "artistId": 232,
+      "name": "Sergei Prokofiev & Yuri Temirkanov",
+    },
+    233,
+  ],
+  [
+    Artist {
+      "artistId": 233,
+      "name": "Chicago Symphony Orchestra & Fritz Reiner",
+    },
+    234,
+  ],
+  [
+    Artist {
+      "artistId": 234,
+      "name": "Orchestra of The Age of Enlightenment",
+    },
+    235,
+  ],
+  [
+    Artist {
+      "artistId": 235,
+      "name": "Emanuel Ax, Eugene Ormandy & Philadelphia Orchestra",
+    },
+    236,
+  ],
+  [
+    Artist {
+      "artistId": 236,
+      "name": "James Levine",
+    },
+    237,
+  ],
+  [
+    Artist {
+      "artistId": 237,
+      "name": "Berliner Philharmoniker & Hans Rosbaud",
+    },
+    238,
+  ],
+  [
+    Artist {
+      "artistId": 238,
+      "name": "Maurizio Pollini",
+    },
+    239,
+  ],
+  [
+    Artist {
+      "artistId": 240,
+      "name": "Gustav Mahler",
+    },
+    241,
+  ],
+  [
+    Artist {
+      "artistId": 241,
+      "name": "Felix Schmidt, London Symphony Orchestra & Rafael Frühbeck de Burgos",
+    },
+    242,
+  ],
+  [
+    Artist {
+      "artistId": 242,
+      "name": "Edo de Waart & San Francisco Symphony",
+    },
+    243,
+  ],
+  [
+    Artist {
+      "artistId": 243,
+      "name": "Antal Doráti & London Symphony Orchestra",
+    },
+    244,
+  ],
+  [
+    Artist {
+      "artistId": 244,
+      "name": "Choir Of Westminster Abbey & Simon Preston",
+    },
+    245,
+  ],
+  [
+    Artist {
+      "artistId": 245,
+      "name": "Michael Tilson Thomas & San Francisco Symphony",
+    },
+    246,
+  ],
+  [
+    Artist {
+      "artistId": 245,
+      "name": "Michael Tilson Thomas & San Francisco Symphony",
+    },
+    246,
+  ],
+  [
+    Artist {
+      "artistId": 246,
+      "name": "Chor der Wiener Staatsoper, Herbert Von Karajan & Wiener Philharmoniker",
+    },
+    247,
+  ],
+  [
+    Artist {
+      "artistId": 247,
+      "name": "The King's Singers",
+    },
+    248,
+  ],
+  [
+    Artist {
+      "artistId": 248,
+      "name": "Berliner Philharmoniker & Herbert Von Karajan",
+    },
+    249,
+  ],
+  [
+    Artist {
+      "artistId": 248,
+      "name": "Berliner Philharmoniker & Herbert Von Karajan",
+    },
+    249,
+  ],
+  [
+    Artist {
+      "artistId": 248,
+      "name": "Berliner Philharmoniker & Herbert Von Karajan",
+    },
+    249,
+  ],
+  [
+    Artist {
+      "artistId": 249,
+      "name": "Sir Georg Solti, Sumi Jo & Wiener Philharmoniker",
+    },
+    250,
+  ],
+  [
+    Artist {
+      "artistId": 250,
+      "name": "Christopher O'Riley",
+    },
+    251,
+  ],
+  [
+    Artist {
+      "artistId": 251,
+      "name": "Fretwork",
+    },
+    252,
+  ],
+  [
+    Artist {
+      "artistId": 252,
+      "name": "Amy Winehouse",
+    },
+    253,
+  ],
+  [
+    Artist {
+      "artistId": 252,
+      "name": "Amy Winehouse",
+    },
+    253,
+  ],
+  [
+    Artist {
+      "artistId": 253,
+      "name": "Calexico",
+    },
+    254,
+  ],
+  [
+    Artist {
+      "artistId": 254,
+      "name": "Otto Klemperer & Philharmonia Orchestra",
+    },
+    255,
+  ],
+  [
+    Artist {
+      "artistId": 255,
+      "name": "Yehudi Menuhin",
+    },
+    256,
+  ],
+  [
+    Artist {
+      "artistId": 256,
+      "name": "Philharmonia Orchestra & Sir Neville Marriner",
+    },
+    257,
+  ],
+  [
+    Artist {
+      "artistId": 257,
+      "name": "Academy of St. Martin in the Fields, Sir Neville Marriner & Thurston Dart",
+    },
+    258,
+  ],
+  [
+    Artist {
+      "artistId": 258,
+      "name": "Les Arts Florissants & William Christie",
+    },
+    259,
+  ],
+  [
+    Artist {
+      "artistId": 259,
+      "name": "The 12 Cellists of The Berlin Philharmonic",
+    },
+    260,
+  ],
+  [
+    Artist {
+      "artistId": 260,
+      "name": "Adrian Leaper & Doreen de Feis",
+    },
+    261,
+  ],
+  [
+    Artist {
+      "artistId": 261,
+      "name": "Roger Norrington, London Classical Players",
+    },
+    262,
+  ],
+  [
+    Artist {
+      "artistId": 262,
+      "name": "Charles Dutoit & L'Orchestre Symphonique de Montréal",
+    },
+    263,
+  ],
+  [
+    Artist {
+      "artistId": 263,
+      "name": "Equale Brass Ensemble, John Eliot Gardiner & Munich Monteverdi Orchestra and Choir",
+    },
+    264,
+  ],
+  [
+    Artist {
+      "artistId": 264,
+      "name": "Kent Nagano and Orchestre de l'Opéra de Lyon",
+    },
+    265,
+  ],
+  [
+    Artist {
+      "artistId": 265,
+      "name": "Julian Bream",
+    },
+    266,
+  ],
+  [
+    Artist {
+      "artistId": 266,
+      "name": "Martin Roscoe",
+    },
+    267,
+  ],
+  [
+    Artist {
+      "artistId": 267,
+      "name": "Göteborgs Symfoniker & Neeme Järvi",
+    },
+    268,
+  ],
+  [
+    Artist {
+      "artistId": 268,
+      "name": "Itzhak Perlman",
+    },
+    269,
+  ],
+  [
+    Artist {
+      "artistId": 269,
+      "name": "Michele Campanella",
+    },
+    270,
+  ],
+  [
+    Artist {
+      "artistId": 270,
+      "name": "Gerald Moore",
+    },
+    271,
+  ],
+  [
+    Artist {
+      "artistId": 271,
+      "name": "Mela Tenenbaum, Pro Musica Prague & Richard Kapp",
+    },
+    272,
+  ],
+  [
+    Artist {
+      "artistId": 272,
+      "name": "Emerson String Quartet",
+    },
+    273,
+  ],
+  [
+    Artist {
+      "artistId": 273,
+      "name": "C. Monteverdi, Nigel Rogers - Chiaroscuro; London Baroque; London Cornett & Sackbu",
+    },
+    274,
+  ],
+  [
+    Artist {
+      "artistId": 274,
+      "name": "Nash Ensemble",
+    },
+    275,
+  ],
+  [
+    Artist {
+      "artistId": 275,
+      "name": "Philip Glass Ensemble",
+    },
+    276,
+  ],
+]
