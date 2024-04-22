@@ -3,6 +3,7 @@ import { Driver, DriverInfo, ExecuteStatement } from "@operativa/verse/db/driver
 import {
   primitiveToSql,
   SqlAddColumn,
+  SqlAlterColumn,
   sqlBin,
   SqlBinary,
   SqlColumn,
@@ -40,11 +41,48 @@ export interface Migration {
   (db: DB): void;
 }
 
-export function column(type: SqlType, nullable = true) {
-  return (name: string) => new SqlColumn(sqlId(name), type, nullable);
+export type DefaultOptions =
+  | {
+      value: Primitive;
+    }
+  | {
+      sql: string;
+    };
+
+export type ColumnOptions = {
+  nullable?: boolean;
+  identity?: boolean;
+  default?: DefaultOptions;
+};
+
+export function column(type: SqlType, options?: ColumnOptions) {
+  return (name: string) =>
+    new SqlColumn(
+      sqlId(name),
+      type,
+      options?.nullable,
+      options?.identity,
+      defaultNode(options?.default)
+    );
+}
+
+function defaultNode(value: DefaultOptions | undefined) {
+  if (value) {
+    if ("value" in value) {
+      return primitiveToSql(value.value)[0];
+    } else {
+      return new SqlRaw(List.of(value.sql));
+    }
+  }
+
+  return undefined;
 }
 
 type Literal = Primitive | Date;
+
+export type TableOptions<T> = {
+  key?: keyof T | readonly (keyof T)[];
+};
 
 export class DB {
   readonly #model: Model;
@@ -64,9 +102,21 @@ export class DB {
 
   createTable<T extends { [key: string]: (name: string) => SqlColumn }>(
     name: string,
-    columns: NonEmptyObject<T>
+    columns: NonEmptyObject<T>,
+    options?: TableOptions<T>
   ) {
-    this.#op(new SqlCreateTable(sqlId(name), List(Object.keys(columns).map(k => columns[k]!(k)))));
+    const columnNodes = List(Object.keys(columns).map(k => columns[k]!(k)));
+    const key = [];
+
+    if (options?.key) {
+      if (Array.isArray(options.key)) {
+        key.push(...options.key.map(k => sqlId(k as string)));
+      } else {
+        key.push(sqlId(options.key as string));
+      }
+    }
+
+    this.#op(new SqlCreateTable(sqlId(name), columnNodes, List(key)));
   }
 
   dropTable(name: string) {
@@ -77,8 +127,38 @@ export class DB {
     this.#op(new SqlRenameTable(sqlId(oldName), sqlId(newName)));
   }
 
-  addColumn(table: string, name: string, type: SqlType) {
-    this.#op(new SqlAddColumn(sqlId(table), new SqlColumn(sqlId(name), type)));
+  addColumn(table: string, name: string, type: SqlType, options?: ColumnOptions) {
+    this.#op(
+      new SqlAddColumn(
+        sqlId(table),
+        new SqlColumn(
+          sqlId(name),
+          type,
+          options?.nullable,
+          options?.identity,
+          defaultNode(options?.default)
+        )
+      )
+    );
+  }
+
+  alterColumn(
+    table: string,
+    name: string,
+    options: { type?: SqlType | undefined } & ColumnOptions
+  ) {
+    this.#op(
+      new SqlAlterColumn(
+        sqlId(table),
+        new SqlColumn(
+          sqlId(name),
+          options.type,
+          options.nullable,
+          options.identity,
+          defaultNode(options.default)
+        )
+      )
+    );
   }
 
   dropColumn(table: string, name: string) {

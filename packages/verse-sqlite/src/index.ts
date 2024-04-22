@@ -314,7 +314,7 @@ class SqlitePrinter extends SqlPrinter {
 class Validator extends ModelRewriter {
   override visitScalarProperty(scalarProperty: ScalarPropertyModel) {
     if (scalarProperty.generate?.using === "seqhilo") {
-      throw error(
+      error(
         `Scalar property '${scalarProperty.name}' cannot use 'seqhilo' generator.
         SQLite does not support sequences.`
       );

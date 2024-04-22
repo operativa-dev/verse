@@ -14,6 +14,7 @@ import { explodeIn, hasInParameter } from "@operativa/verse/db/in";
 import { SqlPrinter } from "@operativa/verse/db/printer";
 import { SqlRewriter } from "@operativa/verse/db/rewriter";
 import {
+  SqlAlterColumn,
   sqlBin,
   SqlBinary,
   SqlBinaryOperator,
@@ -29,6 +30,7 @@ import {
   SqlInsert,
   SqlMember,
   SqlNode,
+  SqlNull,
   SqlNumber,
   SqlParameter,
   SqlSelect,
@@ -454,6 +456,43 @@ class MySqlPrinter extends SqlPrinter {
     return sql;
   }
 
+  override visitAlterColumn(alterColumn: SqlAlterColumn): string {
+    let alters = [];
+
+    const table = alterColumn.table;
+    const column = alterColumn.column;
+    const name = column.name.accept(this);
+    const base = `alter table ${table.accept(this)}`;
+
+    if (column.default !== undefined) {
+      if (column.default === SqlNull.INSTANCE) {
+        alters.push(`${base} alter ${name} drop default`);
+      } else {
+        alters.push(`${base} alter ${name} set default ${column.default.accept(this)}`);
+      }
+    }
+
+    if (
+      column.type !== undefined ||
+      column.nullable !== undefined ||
+      column.identity !== undefined
+    ) {
+      if (!column.type) {
+        error(
+          `Column type is required in order to modify to column: '${table.name}.${column.name.name}'.`
+        );
+      }
+
+      alters.push(
+        `${base} modify column ${name} ${column.type}` +
+          `${column.nullable == false ? " not null" : ""}` +
+          `${column.identity ? " auto_increment" : ""}`
+      );
+    }
+
+    return alters.join(";\n");
+  }
+
   protected override visitOffset(offset: SqlNode) {
     return `\nlimit 18446744073709551615 offset ${offset.accept(this)}`;
   }
@@ -480,7 +519,7 @@ class MySqlPrinter extends SqlPrinter {
 class Validator extends ModelRewriter {
   override visitScalarProperty(scalarProperty: ScalarPropertyModel) {
     if (scalarProperty.generate?.using === "seqhilo") {
-      throw error(
+      error(
         `Scalar property '${scalarProperty.name}' cannot use 'seqhilo' generator.
         MySQL does not support sequences.`
       );

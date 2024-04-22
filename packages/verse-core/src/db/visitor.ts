@@ -2,6 +2,7 @@ import {
   SqlAddColumn,
   SqlAddForeignKey,
   SqlAlias,
+  SqlAlterColumn,
   SqlBinary,
   SqlBoolean,
   SqlCase,
@@ -144,6 +145,10 @@ export abstract class SqlVisitor<T, S = unknown> {
 
   public visitAddColumn(addColumn: SqlAddColumn, state?: S): T {
     return this.visitNode(addColumn, state);
+  }
+
+  public visitAlterColumn(alterColumn: SqlAlterColumn, state?: S): T {
+    return this.visitNode(alterColumn, state);
   }
 
   public visitDropColumn(dropColumn: SqlDropColumn, state?: S): T {

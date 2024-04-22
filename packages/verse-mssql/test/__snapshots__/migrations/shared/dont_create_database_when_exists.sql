@@ -37,11 +37,13 @@ insert into "__verse_migrations" ("Id") values ('2023-11-16-08-42-Second')
 
 -- Executing SQL: Parameters: []
 create table "all_ops" (
-  "col1" integer
+  "col1" integer default 42,
+  "col9" varchar(12) not null,
+  primary key ("col1")
 )
 
 -- Executing SQL: Parameters: []
-create index "idx1" on "all_ops" ("col1")
+create index "idx1" on "all_ops" ("col9")
 
 -- Executing SQL: Parameters: []
 drop index "all_ops"."idx1"
@@ -51,6 +53,26 @@ sp_rename 'all_ops', 'all_ops2'
 
 -- Executing SQL: Parameters: []
 alter table "all_ops2" add "col2" integer
+
+-- Executing SQL: Parameters: []
+alter table "all_ops2" add "col4" varchar(255)
+
+-- Executing SQL: Parameters: []
+alter table "all_ops2" alter column "col4" varchar(255);
+alter table "all_ops2" add constraint "df_all_ops2_col4" default 'hello!' for "col4"
+
+-- Executing SQL: Parameters: []
+declare @name nvarchar(128)
+select @name = object_name(default_object_id) from sys.columns
+where object_id = object_id('all_ops2') and name = 'col4'
+exec('alter table "all_ops2" drop constraint ' + @name);
+alter table "all_ops2" alter column "col4" varchar(256)
+
+-- Executing SQL: Parameters: []
+alter table "all_ops2" alter column "col9" varchar(45)
+
+-- Executing SQL: Parameters: []
+alter table "all_ops2" alter column "col9" varchar(45) not null
 
 -- Executing SQL: Parameters: []
 sp_rename 'all_ops2.col2', "col3", 'COLUMN'
