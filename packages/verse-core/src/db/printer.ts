@@ -1,10 +1,11 @@
 import { List } from "immutable";
 import { OnDelete } from "../model/model.js";
-import { indent } from "../utils/utils.js";
+import { error, indent } from "../utils/utils.js";
 import {
   SqlAddColumn,
   SqlAddForeignKey,
   SqlAlias,
+  SqlAlterColumn,
   SqlBinary,
   SqlBoolean,
   SqlCase,
@@ -131,6 +132,14 @@ export class SqlPrinter extends SqlVisitor<string> {
     return `alter table ${addColumn.table.accept(this)} add ${addColumn.column.accept(this)}`;
   }
 
+  override visitAlterColumn(alterColumn: SqlAlterColumn) {
+    error(
+      "ALTER COLUMN is not implemented by this driver. Use raw sql to perform a table rebuild."
+    );
+
+    return super.visitAlterColumn(alterColumn);
+  }
+
   override visitDropColumn(dropColumn: SqlDropColumn): string {
     return `alter table ${dropColumn.table.accept(this)} drop column ${dropColumn.column.accept(
       this
@@ -186,9 +195,9 @@ export class SqlPrinter extends SqlVisitor<string> {
   }
 
   override visitColumn(column: SqlColumn): string {
-    return `${column.name.accept(this)} ${this.visitType(column.type)}${
-      column.nullable ? "" : " not null"
-    }`;
+    return `${column.name.accept(this)}${column.type ? ` ${this.visitType(column.type)}` : ""}${
+      column.nullable === false ? " not null" : ""
+    }${column.default ? ` default ${column.default.accept(this)}` : ""}`;
   }
 
   protected visitType(type: SqlType) {

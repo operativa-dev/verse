@@ -13,6 +13,7 @@ import { explodeIn, hasInParameter } from "@operativa/verse/db/in";
 import { SqlPrinter } from "@operativa/verse/db/printer";
 import { SqlRewriter } from "@operativa/verse/db/rewriter";
 import {
+  SqlAlterColumn,
   sqlBin,
   SqlBinary,
   SqlBinaryOperator,
@@ -324,6 +325,33 @@ class PgSqlPrinter extends SqlPrinter {
     }
 
     return sql;
+  }
+
+  override visitAlterColumn(alterColumn: SqlAlterColumn): string {
+    const alters = [];
+    const column = alterColumn.column;
+
+    if (column.default !== undefined) {
+      alters.push(`alter ${column.name.accept(this)} set default ${column.default.accept(this)}`);
+    }
+
+    if (column.identity) {
+      alters.push(`alter ${column.name.accept(this)} add generated always as identity`);
+    } else if (column.identity === false) {
+      alters.push(`alter ${column.name.accept(this)} drop identity`);
+    }
+
+    if (column.nullable !== undefined) {
+      alters.push(`alter ${column.name.accept(this)} ${column.nullable ? "drop" : "set"} not null`);
+    }
+
+    if (column.type !== undefined) {
+      alters.push(`alter ${column.name.accept(this)} type ${column.type}`);
+    }
+
+    return alters.length > 0
+      ? `alter table ${alterColumn.table.accept(this)}\n  ${alters.join(",\n  ")}`
+      : "";
   }
 
   override visitTimestamp(timestamp: SqlTimestamp) {
