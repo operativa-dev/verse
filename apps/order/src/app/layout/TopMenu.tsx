@@ -1,4 +1,4 @@
-// import LocalLibraryIcon from "@mui/icons-material/LocalLibrary";
+import LocalLibraryIcon from "@mui/icons-material/LocalLibrary";
 import { Sheet } from "@mui/joy";
 export default function TopMenu() {
   return (
@@ -18,7 +18,7 @@ export default function TopMenu() {
           boxShadow: "sm",
         }}
       >
-        {/* <LocalLibraryIcon /> */}
+        <LocalLibraryIcon />
         Order app
       </Sheet>
     </>

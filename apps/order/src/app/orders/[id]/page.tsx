@@ -14,6 +14,7 @@ export default async function Orders({ params }: { params: Props }) {
 
   return (
     <>
+      <p>Edit this page in a new tab to see conflict handling.</p>
       <EditOrder
         orderId={parseInt(params.id)}
         orderIn={order}

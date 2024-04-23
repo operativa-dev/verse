@@ -58,6 +58,9 @@ export function CreateOrder({
     setItems(tempItems);
     setUpdateCount(updateCount + 1);
   };
+  // const createOrder = () => {
+  //   createOrderServer(items);
+  // };
 
   return (
     <>

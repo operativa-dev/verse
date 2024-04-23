@@ -24,9 +24,7 @@
       ],
       "label": "users",
       "table": "users",
-      "key": [
-        "userId"
-      ],
+      "key": ["userId"],
       "foreignKeys": [],
       "conditions": []
     },
@@ -69,9 +67,7 @@
       ],
       "label": "products",
       "table": "products",
-      "key": [
-        "productId"
-      ],
+      "key": ["productId"],
       "foreignKeys": [],
       "conditions": []
     },
@@ -139,9 +135,7 @@
       ],
       "label": "orders",
       "table": "orders",
-      "key": [
-        "orderId"
-      ],
+      "key": ["orderId"],
       "foreignKeys": [],
       "conditions": [],
       "concurrency": {
@@ -202,9 +196,7 @@
       ],
       "label": "items",
       "table": "items",
-      "key": [
-        "itemId"
-      ],
+      "key": ["itemId"],
       "foreignKeys": [],
       "conditions": [],
       "concurrency": {

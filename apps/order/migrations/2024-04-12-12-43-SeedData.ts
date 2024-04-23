@@ -1,8 +1,8 @@
 import { DB, Migration } from "@operativa/verse-migrations";
 
 const migration: Migration = (db: DB) => {
-  db.insert("users", ["FirstName"], ["Will"]);
-  db.insert("users", ["FirstName"], ["Ben"]);
+  db.insert("users", ["UserId", "FirstName"], [1, "Will"]);
+  db.insert("users", ["UserId", "FirstName"], [2, "Jason"]);
   db.insert(
     "products",
     ["ProductId", "Name", "Description", "Price"],

@@ -1,16 +1,8 @@
-// import DashboardRoundedIcon from "@mui/icons-material/DashboardRounded";
-// import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
-// import PeopleIcon from "@mui/icons-material/People";
-// import ProductionQuantityLimits from "@mui/icons-material/ProductionQuantityLimits";
-import {
-  Box,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemContent,
-  Sheet,
-  Typography,
-} from "@mui/joy";
+import DashboardRoundedIcon from "@mui/icons-material/DashboardRounded";
+import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
+import PeopleIcon from "@mui/icons-material/People";
+import ProductionQuantityLimits from "@mui/icons-material/ProductionQuantityLimits";
+import { Box, List, ListItem, ListItemButton, ListItemContent, Sheet, Typography } from "@mui/joy";
 import Link from "next/link";
 
 export default async function SideMenu() {
@@ -75,7 +67,7 @@ export default async function SideMenu() {
           >
             <ListItem>
               <ListItemButton>
-                {/* <HomeRoundedIcon /> */}
+                <HomeRoundedIcon />
                 <ListItemContent>
                   <Link href="/">
                     <Typography level="title-sm">Home</Typography>
@@ -86,7 +78,7 @@ export default async function SideMenu() {
 
             <ListItem>
               <ListItemButton>
-                {/* <DashboardRoundedIcon /> */}
+                <DashboardRoundedIcon />
                 <ListItemContent>
                   <Link href="/users">
                     <Typography level="title-sm"> Users</Typography>
@@ -97,7 +89,7 @@ export default async function SideMenu() {
 
             <ListItem>
               <ListItemButton>
-                {/* <PeopleIcon /> */}
+                <PeopleIcon />
                 <ListItemContent>
                   <Link href="/orders">
                     <Typography level="title-sm">Orders</Typography>
@@ -107,7 +99,7 @@ export default async function SideMenu() {
             </ListItem>
             <ListItem>
               <ListItemButton>
-                {/* <ProductionQuantityLimits /> */}
+                <ProductionQuantityLimits />
                 <ListItemContent>
                   <Link href="/products">
                     <Typography level="title-sm">Products</Typography>
