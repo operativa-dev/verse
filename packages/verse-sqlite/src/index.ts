@@ -15,6 +15,8 @@ import { explodeIn, hasInParameter } from "@operativa/verse/db/in";
 import { SqlPrinter } from "@operativa/verse/db/printer";
 import { SqlRewriter } from "@operativa/verse/db/rewriter";
 import {
+  SqlAddForeignKey,
+  SqlAddPrimaryKey,
   sqlBin,
   SqlColumn,
   SqlFunction,
@@ -308,6 +310,24 @@ class SqlitePrinter extends SqlPrinter {
 
   protected override visitOffset(offset: SqlNode) {
     return `\nlimit -1 offset ${offset.accept(this)}`;
+  }
+
+  override visitAddPrimaryKey(_: SqlAddPrimaryKey) {
+    this.#noAlterTable();
+
+    return super.visitAddPrimaryKey(_);
+  }
+
+  override visitAddForeignKey(_: SqlAddForeignKey) {
+    this.#noAlterTable();
+
+    return super.visitAddForeignKey(_);
+  }
+
+  #noAlterTable() {
+    error(
+      "SQLite does not support most alter table operations. Use raw SQL to recreate the table."
+    );
   }
 }
 

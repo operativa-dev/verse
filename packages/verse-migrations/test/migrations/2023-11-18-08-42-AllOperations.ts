@@ -53,6 +53,31 @@ const migration: Migration = (db: DB) => {
   db.insert("t1", ["id", "active"], [2, false], [3, true]);
   db.update("t1", { name: "foo" }, { id: 2 });
   db.delete("t1", { id: 3 });
+
+  db.createTable("moar", {
+    colA: column("integer", { nullable: false }),
+    colB: column("varchar(12)"),
+  });
+
+  db.createTable(
+    "other",
+    {
+      colA1: column("integer"),
+      colB2: column("varchar(12)"),
+    },
+    {
+      foreignKeys: {
+        columns: "colA1",
+        target: "moar",
+        references: "colA",
+      },
+    }
+  );
+
+  if (db.info.name !== "sqlite") {
+    db.addPrimaryKey("moar", "colA");
+    db.addForeignKey("other", "colA1", "moar", "colA");
+  }
 };
 
 export default migration;

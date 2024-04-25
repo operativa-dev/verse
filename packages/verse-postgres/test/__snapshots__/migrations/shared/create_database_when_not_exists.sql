@@ -117,6 +117,25 @@ update "t1" set "name" = 'foo' where "id" = 2
 delete from "t1" where "id" = 3
 
 -- Executing SQL: Parameters: []
+create table "moar" (
+  "colA" integer not null,
+  "colB" varchar(12)
+)
+
+-- Executing SQL: Parameters: []
+create table "other" (
+  "colA1" integer,
+  "colB2" varchar(12)
+)
+
+-- Executing SQL: Parameters: []
+alter table "moar"
+  add primary key ("colA")
+
+-- Executing SQL: Parameters: []
+alter table "other" add foreign key ("colA1") references "moar" ("colA")
+
+-- Executing SQL: Parameters: []
 insert into "__verse_migrations" ("Id") values ('2023-11-18-08-42-AllOperations')
 
 -- Executing SQL: Parameters: [$1='create_database_when_not_exist']
