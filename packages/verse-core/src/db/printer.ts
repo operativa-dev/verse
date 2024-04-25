@@ -4,6 +4,7 @@ import { error, indent } from "../utils/utils.js";
 import {
   SqlAddColumn,
   SqlAddForeignKey,
+  SqlAddPrimaryKey,
   SqlAlias,
   SqlAlterColumn,
   SqlBinary,
@@ -94,6 +95,14 @@ export class SqlPrinter extends SqlVisitor<string> {
     }
 
     return sql + "\n)";
+  }
+
+  override visitAddPrimaryKey(addPrimaryKey: SqlAddPrimaryKey): string {
+    let sql = `alter table ${addPrimaryKey.table.accept(this)}`;
+
+    sql += `\n  add primary key (${addPrimaryKey.columns.map(c => c.accept(this)).join(", ")})`;
+
+    return sql;
   }
 
   override visitDropTable(dropTable: SqlDropDatabase): string {

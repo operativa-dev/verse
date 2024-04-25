@@ -37,7 +37,7 @@
   "devDependencies": {
     "@operativa/verse": "workspace:*",
     "@operativa/verse-migrations": "workspace:*",
-    "@types/better-sqlite3": "^7.6.9",
+    "@types/better-sqlite3": "^7.6.10",
     "eslint-config-custom": "workspace:*",
     "tsconfig": "workspace:*"
   }

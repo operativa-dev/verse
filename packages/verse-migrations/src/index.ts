@@ -3,6 +3,8 @@ import { Driver, DriverInfo, ExecuteStatement } from "@operativa/verse/db/driver
 import {
   primitiveToSql,
   SqlAddColumn,
+  SqlAddForeignKey,
+  SqlAddPrimaryKey,
   SqlAlterColumn,
   sqlBin,
   SqlBinary,
@@ -15,6 +17,7 @@ import {
   SqlDropIndex,
   SqlDropSequence,
   SqlDropTable,
+  SqlForeignKey,
   sqlId,
   SqlInsert,
   SqlNode,
@@ -30,6 +33,7 @@ import { entity, string } from "@operativa/verse/model/builder";
 import { EntityModel, Model } from "@operativa/verse/model/model";
 import { notNull } from "@operativa/verse/utils/check";
 import { Logger, NullLogger } from "@operativa/verse/utils/logging";
+import { array } from "@operativa/verse/utils/utils";
 import fs, { existsSync } from "fs";
 import Immutable, { List } from "immutable";
 import * as path from "path";
@@ -80,8 +84,16 @@ function defaultNode(value: DefaultOptions | undefined) {
 
 type Literal = Primitive | Date;
 
+export type ForeignKey<T = any> = {
+  table?: string | undefined;
+  columns: keyof T | readonly (keyof T)[];
+  target: string;
+  references: string | readonly string[];
+};
+
 export type TableOptions<T> = {
   key?: keyof T | readonly (keyof T)[];
+  foreignKeys?: ForeignKey<T> | readonly ForeignKey<T>[] | undefined;
 };
 
 export class DB {
@@ -121,6 +133,28 @@ export class DB {
 
   dropTable(name: string) {
     this.#op(new SqlDropTable(sqlId(name)));
+  }
+
+  addPrimaryKey(table: string, ...columns: readonly string[]) {
+    this.#op(new SqlAddPrimaryKey(sqlId(table), List(columns.map(c => sqlId(c)))));
+  }
+
+  addForeignKey(
+    table: string,
+    columns: string | readonly string[],
+    references: string,
+    referencedColumns: string | readonly string[]
+  ) {
+    this.#op(
+      new SqlAddForeignKey(
+        sqlId(table),
+        new SqlForeignKey(
+          List((array(columns) ?? []).map(c => sqlId(c))),
+          sqlId(references),
+          List((array(referencedColumns) ?? []).map(c => sqlId(c)))
+        )
+      )
+    );
   }
 
   renameTable(oldName: string, newName: string) {

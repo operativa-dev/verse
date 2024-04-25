@@ -169,6 +169,7 @@ export abstract class SqlNode implements ValueObject {
   rewrite(rewriter: SqlRewriter): SqlNode {
     return this;
   }
+
   abstract equals(other: unknown): boolean;
 
   abstract hashCode(): number;
@@ -226,9 +227,15 @@ export class SqlCreateTable extends SqlNode {
 
   override rewrite(rewriter: SqlRewriter) {
     const newColumns = rewriter.rewriteList(this.columns)!;
+    const newPrimaryKey = rewriter.rewriteList(this.primaryKey)!;
+    const newForeignKeys = rewriter.rewriteList(this.foreignKeys)!;
 
-    if (this.columns !== newColumns) {
-      return new SqlCreateTable(this.name, newColumns, this.primaryKey, this.foreignKeys);
+    if (
+      this.columns !== newColumns ||
+      this.primaryKey !== newPrimaryKey ||
+      this.foreignKeys !== newForeignKeys
+    ) {
+      return new SqlCreateTable(this.name, newColumns, newPrimaryKey, newForeignKeys);
     }
 
     return this;
@@ -446,6 +453,42 @@ export class SqlAlterColumn extends SqlNode {
 
   override hashCode() {
     return (hash(this.table) * 31) ^ (hash(this.column) * 31);
+  }
+}
+
+export class SqlAddPrimaryKey extends SqlNode {
+  constructor(
+    readonly table: SqlIdentifier,
+    readonly columns: List<SqlIdentifier>
+  ) {
+    super();
+  }
+
+  override accept<T, S = unknown>(visitor: SqlVisitor<T>, state?: S) {
+    return visitor.visitAddPrimaryKey(this, state);
+  }
+
+  override rewrite(rewriter: SqlRewriter) {
+    const newColumns = rewriter.rewriteList(this.columns)!;
+
+    if (this.columns !== newColumns) {
+      return new SqlAddPrimaryKey(this.table, newColumns);
+    }
+
+    return this;
+  }
+
+  override equals(other: unknown) {
+    return (
+      this === other ||
+      (other instanceof SqlAddPrimaryKey &&
+        is(this.table, other.table) &&
+        is(this.columns, other.columns))
+    );
+  }
+
+  override hashCode() {
+    return (hash(this.table) * 31) ^ (hash(this.columns) * 31);
   }
 }
 

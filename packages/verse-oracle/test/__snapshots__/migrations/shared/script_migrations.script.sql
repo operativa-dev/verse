@@ -71,5 +71,20 @@ update t1 set name = 'foo' where id = 2;
 
 delete from t1 where id = 3;
 
+create table moar (
+  colA integer not null,
+  colB varchar(12)
+);
+
+create table other (
+  colA1 integer,
+  colB2 varchar(12)
+);
+
+alter table moar
+  add primary key (colA);
+
+alter table other add foreign key (colA1) references moar (colA);
+
 insert into "__verse_migrations" (Id) values ('2023-11-18-08-42-AllOperations');
 

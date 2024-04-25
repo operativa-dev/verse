@@ -1,6 +1,8 @@
 import { List } from "immutable";
 import {
   SqlAddColumn,
+  SqlAddForeignKey,
+  SqlAddPrimaryKey,
   SqlAlias,
   SqlAlterColumn,
   SqlBinary,
@@ -19,6 +21,7 @@ import {
   SqlDropSequence,
   SqlDropTable,
   SqlExists,
+  SqlForeignKey,
   SqlFunction,
   SqlIdentifier,
   SqlIn,
@@ -173,6 +176,11 @@ export abstract class SqlRewriter extends SqlVisitor<SqlNode> {
     return alterColumn.rewrite(this);
   }
 
+  override visitAddPrimaryKey(addPrimaryKey: SqlAddPrimaryKey) {
+    this.beforeVisit(addPrimaryKey);
+    return addPrimaryKey.rewrite(this);
+  }
+
   override visitDropColumn(dropColumn: SqlDropColumn) {
     this.beforeVisit(dropColumn);
     return dropColumn.rewrite(this);
@@ -276,6 +284,16 @@ export abstract class SqlRewriter extends SqlVisitor<SqlNode> {
   override visitIsNotNull(isNotNull: SqlIsNotNull) {
     this.beforeVisit(isNotNull);
     return isNotNull.rewrite(this);
+  }
+
+  override visitAddForeignKey(addConstraint: SqlAddForeignKey) {
+    this.beforeVisit(addConstraint);
+    return addConstraint.rewrite(this);
+  }
+
+  override visitForeignKey(foreignKey: SqlForeignKey) {
+    this.beforeVisit(foreignKey);
+    return foreignKey.rewrite(this);
   }
 
   override visitString(str: SqlString) {
