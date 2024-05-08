@@ -1,5 +1,4 @@
 import { Application } from "typedoc";
-import { FrontmatterEvent } from "typedoc-plugin-frontmatter";
 import { MarkdownPageEvent } from "typedoc-plugin-markdown";
 
 export function load(app: Application) {
@@ -11,9 +10,9 @@ export function load(app: Application) {
     }
   });
 
-  app.renderer.on(FrontmatterEvent.PREPARE_FRONTMATTER, (event: FrontmatterEvent) => {
+  app.renderer.on(MarkdownPageEvent.BEGIN, (event: MarkdownPageEvent) => {
     event.frontmatter = {
-      title: event.page.model?.name,
+      title: event.model?.name,
     };
   });
 }

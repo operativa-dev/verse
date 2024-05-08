@@ -1,4 +1,4 @@
-import { column, DB, Migration } from "@operativa/verse-migrations";
+import { column, DB, Migration } from "@operativa/verse/migrations/index";
 
 const migration: Migration = (db: DB) => {
   db.createTable("todos", {

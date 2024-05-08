@@ -1,4 +1,4 @@
-import { differTests } from "@operativa/verse-migrations/test/differ";
+import { differTests } from "@operativa/verse/test/migrations/differ";
 import { describe } from "vitest";
 import { testDb } from "./infra.js";
 

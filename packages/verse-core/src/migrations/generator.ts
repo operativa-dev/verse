@@ -10,8 +10,8 @@ import {
   SqlString,
   SqlTimestamp,
   SqlUpdate,
-} from "@operativa/verse/db/sql";
-import { SqlVisitor } from "@operativa/verse/db/visitor";
+} from "../db/sql.js";
+import { SqlVisitor } from "../db/visitor.js";
 
 export class CodeGenerator extends SqlVisitor<string> {
   generate(ops: readonly SqlNode[]) {
@@ -21,7 +21,7 @@ export class CodeGenerator extends SqlVisitor<string> {
       code = "// Add your migration code here...";
     }
 
-    return `import { DB, Migration } from "@operativa/verse-migrations";
+    return `import { DB, Migration } from "@operativa/verse/migrations/index";
 
 const migration: Migration = (db: DB) => {
   ${code}

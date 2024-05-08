@@ -11,8 +11,5 @@
     "@operativa/verse": "workspace:*",
     "@operativa/verse-sqlite": "workspace:*"
   },
-  "devDependencies": {
-    "@operativa/verse-cli": "workspace:*",
-    "@operativa/verse-migrations": "workspace:*"
-  }
+  "devDependencies": {}
 }

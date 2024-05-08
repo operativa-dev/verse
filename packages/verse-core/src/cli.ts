@@ -1,9 +1,5 @@
 #!/usr/bin/env -S npx tsx
 
-import { Verse } from "@operativa/verse";
-import { Migrator } from "@operativa/verse-migrations";
-import { PrettyConsoleLogger } from "@operativa/verse/utils/logging";
-import { indent } from "@operativa/verse/utils/utils";
 import camelcase from "camelcase";
 import chalk from "chalk";
 import { highlight } from "cli-highlight";
@@ -12,6 +8,10 @@ import * as console from "console";
 import * as fs from "fs";
 import yargs, { ArgumentsCamelCase, Argv, CommandModule } from "yargs";
 import { hideBin } from "yargs/helpers";
+import { Migrator } from "./migrations/index.js";
+import { PrettyConsoleLogger } from "./utils/logging.js";
+import { indent } from "./utils/utils.js";
+import { Verse } from "./verse.js";
 
 const logo =
   "  ██╗   ██╗ ███████╗ ██████╗  ███████╗ ███████╗\n" +

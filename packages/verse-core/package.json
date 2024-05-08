@@ -1,5 +1,46 @@
 {
   "name": "@operativa/verse",
+  "description": "Verse is a modern, fast, object/relational mapper for TypeScript inspired by Entity Framework Core. It features LINQ-style queries, unit of work updates, and a powerful convention-based mapping system. It supports SQLite, Postgres, MySQL, SQL Server and Oracle databases.",
+  "keywords": [
+    "ORM",
+    "O/RM",
+    "object-relational-mapper",
+    "object-relational mapping",
+    "Entity Framework",
+    "Entity Framework Core",
+    "EF",
+    "EF Core",
+    "EFCore",
+    "LINQ",
+    "Linq to SQL",
+    "DbContext",
+    "Migration",
+    "Migrations",
+    "TypeScript",
+    "TS",
+    "Unit of Work",
+    "mapping",
+    "conventions",
+    "identity",
+    "inheritance",
+    "convention over configuration",
+    "model",
+    "modeling",
+    "query",
+    "query-builder",
+    "database",
+    "db",
+    "SQL",
+    "SQLite",
+    "pg",
+    "Postgres",
+    "PostgreSQL",
+    "MySQL",
+    "MSSQL",
+    "SQL Server",
+    "SQLServer",
+    "Oracle"
+  ],
   "version": "0.7.7",
   "license": "Apache-2.0",
   "publishConfig": {
@@ -16,6 +57,9 @@
   "type": "module",
   "main": "dist/src/verse.js",
   "module": "dist/src/verse.js",
+  "bin": {
+    "verse": "./dist/src/cli.js"
+  },
   "exports": {
     ".": "./dist/src/verse.js",
     "./uow": "./dist/src/uow.js",
@@ -23,6 +67,7 @@
     "./db/*": "./dist/src/db/*.js",
     "./identity/*": "./dist/src/identity/*.js",
     "./inheritance/*": "./dist/src/inheritance/*.js",
+    "./migrations/*": "./dist/src/migrations/*.js",
     "./model/*": "./dist/src/model/*.js",
     "./query/*": "./dist/src/query/*.js",
     "./utils/*": "./dist/src/utils/*.js",
@@ -30,8 +75,9 @@
     "./test/db/*": "./dist/test/db/*.js",
     "./test/identity/*": "./dist/test/identity/*.js",
     "./test/infra": "./dist/test/infra.js",
-    "./test/model/*": "./dist/test/model/*.js",
     "./test/mapping/*": "./dist/test/mapping/*.js",
+    "./test/migrations/*": "./dist/test/migrations/*.js",
+    "./test/model/*": "./dist/test/model/*.js",
     "./test/query/*": "./dist/test/query/*.js",
     "./test/update/*": "./dist/test/update/*.js"
   },
@@ -51,15 +97,18 @@
     "pluralize": "^8.0.0",
     "rfdc": "^1.3.1",
     "tiny-invariant": "^1.3.3",
-    "ts-essentials": "^9.4.2",
-    "uuid": "^9.0.1"
+    "ts-essentials": "^10.0.0",
+    "uuid": "^9.0.1",
+    "cli-table": "^0.3.11",
+    "yargs": "^17.7.2"
   },
   "devDependencies": {
     "@types/json-stringify-safe": "^5.0.3",
     "@types/pluralize": "^0.0.33",
     "@types/uuid": "^9.0.8",
-    "eslint-config-custom": "workspace:*",
     "json-stringify-safe": "^5.0.1",
-    "tsconfig": "workspace:*"
+    "tsconfig": "workspace:*",
+    "@types/cli-table": "^0.3.4",
+    "@types/yargs": "^17.0.32"
   }
 }

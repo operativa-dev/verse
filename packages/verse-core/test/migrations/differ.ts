@@ -1,11 +1,11 @@
-import { Entities, Metadata } from "@operativa/verse";
-import { Driver } from "@operativa/verse/db/driver";
-import { date, entity, int, string } from "@operativa/verse/model/builder";
-import { Model } from "@operativa/verse/model/model";
-import { fixture, snap } from "@operativa/verse/test/infra";
 import { afterEach, beforeEach, test } from "vitest";
-import { ModelDiffer } from "../src/differ.js";
-import { CodeGenerator } from "../src/generator.js";
+import { Driver } from "../../src/db/driver.js";
+import { ModelDiffer } from "../../src/migrations/differ.js";
+import { CodeGenerator } from "../../src/migrations/generator.js";
+import { date, entity, int, string } from "../../src/model/builder.js";
+import { Model } from "../../src/model/model.js";
+import { Entities, Metadata } from "../../src/verse.js";
+import { fixture, snap } from "../infra.js";
 
 class Customer {
   constructor(id?: number, name?: string, dob?: Date) {

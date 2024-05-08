@@ -14,6 +14,7 @@
     </JSCodeStyleSettings>
     <Markdown>
       <option name="KEEP_LINE_BREAKS_INSIDE_TEXT_BLOCKS" value="false" />
+      <option name="WRAP_TEXT_INSIDE_BLOCKQUOTES" value="false" />
     </Markdown>
     <TypeScriptCodeStyleSettings version="0">
       <option name="FORCE_SEMICOLON_STYLE" value="true" />
