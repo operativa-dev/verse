@@ -1,4 +1,4 @@
-# Verse O/RM
+# Verse ORM
 
 Verse is a modern, fast, object/relational mapper for TypeScript inspired by Entity Framework Core. It features LINQ-style querying, unit of work updates, and a powerful convention-based mapping system. It supports SQLite, Postgres, MySQL, SQL Server and Oracle databases.
 

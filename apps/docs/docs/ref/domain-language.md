@@ -1,9 +1,9 @@
 # Domain Language
 
-The jargon we use to talk about core concepts in O/RM.
+The jargon we use to talk about core concepts in object-relational mapping.
 
 |          Term           | Definition                                                                                                                                                  |
-| :---------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| :---------------------: |:------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |     **Association**     | A relationship between two entities. E.g. `customer.orders` or `customer.address`.                                                                          |
 |   **Change Tracking**   | Keeping track of modifications to loaded entities, so that we can generate SQL DML to persist the changes.                                                  |
 |   **Compiled Query**    | Allowing user-code to reference a query executor component to remove any query preparation overhead.                                                        |
@@ -19,7 +19,7 @@ The jargon we use to talk about core concepts in O/RM.
 |  **Query Compilation**  | The process of turning a logical query, expressed in API calls, into a physical, reusable execution plan.                                                   |
 |   **Query Operator**    | A function that describes a specific query operation. e.g. `map`, `where`, `limit` etc.                                                                     |
 | **Navigation Property** | A property on an entity type that references another entity type (either single or collection).                                                             |
-| **Persistent Ignorant** | When user-code does not directly depend on any O/RM code.                                                                                                   |
+| **Persistent Ignorant** | When user-code does not directly depend on any ORM code.                                                                                                    |
 |   **Shadow Property**   | A property that exists on an entity in the model, but does not exist on the corresponding Typescript class.                                                 |
 |   **Streaming Query**   | When the results of a query are loaded as they are needed, usually via iteration.                                                                           |
 |    **Unit of Work**     | A logical set of operations against a model that will be flushed to the database in a single transaction.                                                   |

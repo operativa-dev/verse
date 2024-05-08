@@ -3,8 +3,8 @@ import type { Config } from "@docusaurus/types";
 import { themes as prismThemes } from "prism-react-renderer";
 
 const config: Config = {
-  title: "Verse",
-  tagline: "Beautiful TypeScript data access",
+  title: "Verse ORM",
+  tagline: "Beautiful TypeScript data access.",
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here
@@ -72,7 +72,7 @@ const config: Config = {
     image: "img/icon.png",
 
     navbar: {
-      title: "Verse",
+      title: "Verse ORM",
       logo: {
         alt: "Operativa Logo",
         src: "img/icon.svg",
