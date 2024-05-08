@@ -1,10 +1,9 @@
 Verse is a modern, fast, object/relational mapper for TypeScript inspired by Entity Framework Core. It features LINQ-style querying, unit of work updates, and a powerful convention-based mapping system. It supports SQLite, Postgres, MySQL, SQL Server and Oracle databases.
 
-`verse-postgres` is the driver package for Verse that provides support for PostgreSQL databases.
+`verse-postgres` is the driver package for Verse that provides support for PostgreSQL databases. It must be used in
+combination with the core `verse` [package](https://www.npmjs.com/package/@operativa/verse).
 
 The Getting Started guide is available at [getting started](https://verse.operativa.dev/docs/ref/Tutorials/getting-started).
-
-The core Verse package is available on [npm](https://www.npmjs.com/package/@operativa/verse).
 
 Reference and API documentation is available at [verse docs](https://operativa-dev.github.io/verse).
 

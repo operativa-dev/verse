@@ -15,14 +15,15 @@ Some of its key features are:
 - **Migrations**: Supports database migrations, allowing you to manage your database schema in a versioned and
   repeatable way.
 - **Reliability**: Verse is designed to be reliable and robust, with a strong focus on testing and quality.
+- **Runtime only**: No external DSLs or code generation required.
+
+The Getting Started guide is available at [getting started](https://verse.operativa.dev/docs/ref/Tutorials/getting-started).
+
+Reference and API documentation is available at [verse documentation](https://operativa-dev.github.io/verse).
 
 Verse is licensed under the [Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0).
 
-The Getting Started guide is available at [Verse documentation](https://operativa-dev.github.io/verse/getting-started).
-
-Reference and API documentation is available at [Verse documentation](https://operativa-dev.github.io/verse).
-
-[Join the Verse Discord Server](https://discord.gg/r2Zcuq7xpR)
+Ask questions on the Verse [Discord server](https://discord.gg/r2Zcuq7xpR).
 
 ## Installation
 
@@ -44,7 +45,7 @@ npm i @operativa/verse-oracle
 
 ## Basic usage
 
-The following code demonstrates basic usage of Verse.
+The following code demonstrates basic usage of Verse with SQLite.
 
 ```ts include ./apps/snippets/src/basic.ts
 import { verse } from "@operativa/verse";
@@ -135,12 +136,6 @@ You can then navigate to a sample and run it with:
 cd apps/basic/
 pnpm dev
 ```
-
-## Development Status
-
-Please note that "Verse" is in its early development and the presented version is an alpha release. It's intended to be
-a preview for select developers. We appreciate bug reports and improvement suggestions as we continue to refine and
-enhance this library.
 
 ## Contributing
 
