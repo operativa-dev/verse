@@ -1,6 +1,6 @@
 {
   "name": "@operativa/verse-sqlite",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "Verse is a modern, fast, object/relational mapper for TypeScript inspired by Entity Framework Core. It features LINQ-style queries, unit of work updates, and a powerful convention-based mapping system. It supports SQLite, Postgres, MySQL, SQL Server and Oracle databases.",
   "keywords": [
     "ORM",
