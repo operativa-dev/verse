@@ -1,4 +1,4 @@
-import { column, DB, Migration } from "../../src/index.js";
+import { column, DB, Migration } from "../../../src/migrations/index.js";
 
 const migration: Migration = (db: DB) => {
   db.createTable(

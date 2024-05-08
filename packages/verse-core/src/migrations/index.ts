@@ -1,5 +1,8 @@
-import { Metadata, verse, Verse } from "@operativa/verse";
-import { Driver, DriverInfo, ExecuteStatement } from "@operativa/verse/db/driver";
+import fs, { existsSync } from "fs";
+import Immutable, { List } from "immutable";
+import * as path from "path";
+import { NonEmptyObject, Primitive } from "ts-essentials";
+import { Driver, DriverInfo, ExecuteStatement } from "../db/driver.js";
 import {
   primitiveToSql,
   SqlAddColumn,
@@ -28,16 +31,13 @@ import {
   sqlStr,
   SqlType,
   SqlUpdate,
-} from "@operativa/verse/db/sql";
-import { entity, string } from "@operativa/verse/model/builder";
-import { EntityModel, Model } from "@operativa/verse/model/model";
-import { notNull } from "@operativa/verse/utils/check";
-import { Logger, NullLogger } from "@operativa/verse/utils/logging";
-import { array } from "@operativa/verse/utils/utils";
-import fs, { existsSync } from "fs";
-import Immutable, { List } from "immutable";
-import * as path from "path";
-import { NonEmptyObject, Primitive } from "ts-essentials";
+} from "../db/sql.js";
+import { entity, string } from "../model/builder.js";
+import { EntityModel, Model } from "../model/model.js";
+import { notNull } from "../utils/check.js";
+import { Logger, NullLogger } from "../utils/logging.js";
+import { array } from "../utils/utils.js";
+import { Metadata, verse, Verse } from "../verse.js";
 import { ModelDiffer } from "./differ.js";
 import { CodeGenerator } from "./generator.js";
 

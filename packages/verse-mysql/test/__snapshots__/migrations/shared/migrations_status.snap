@@ -1,7 +1,7 @@
 {
   "database": "migrations_status",
   "databaseExists": true,
-  "directory": "/Users/andrewpeters/Development/Operativa/verse/packages/verse-migrations/dist/test/migrations",
+  "directory": "/Users/andrewpeters/Development/Operativa/verse/packages/verse-core/dist/test/migrations/migrations",
   "directoryExists": true,
   "migrations": [
     {

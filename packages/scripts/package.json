@@ -5,7 +5,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "tsc && pnpm tsx inject.ts"
+    "build": "tsc && npx tsx inject.ts"
   },
   "dependencies": {
     "glob": "^10.3.12"
@@ -14,9 +14,8 @@
     "@types/fs-extra": "^11.0.4",
     "snippets": "workspace:*",
     "tsconfig": "workspace:*",
-    "tsx": "^4.7.2",
     "typedoc": "^0.25.13",
-    "typedoc-plugin-frontmatter": "^0.0.2",
-    "typedoc-plugin-markdown": "4.0.0-next.53"
+    "typedoc-plugin-frontmatter": "^1.0.0",
+    "typedoc-plugin-markdown": "4.0.1"
   }
 }

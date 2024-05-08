@@ -1,4 +1,4 @@
-import { DB, Migration } from "@operativa/verse-migrations";
+import { DB, Migration } from "@operativa/verse/migrations/index";
 
 const migration: Migration = (db: DB) => {
   db.delete("Customer", { "Name": "B", "Dob": "2000-01-31T22:00:00.000Z" });

@@ -52,7 +52,7 @@ const Album = entity(
 
 const db = verse({
   config: {
-    driver: sqlite(`${__dirname}/Chinook_Sqlite.sqlite`),
+    driver: sqlite(`Chinook_Sqlite.sqlite`),
     logger: new PrettyConsoleLogger(),
   },
   model: {

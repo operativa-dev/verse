@@ -1,10 +1,10 @@
-import { Verse } from "@operativa/verse";
-import { Driver } from "@operativa/verse/db/driver";
-import { entity, int, string } from "@operativa/verse/model/builder";
-import { fixture, resetSql, snap, snapModel, snapSql } from "@operativa/verse/test/infra";
 import fs, { existsSync } from "fs";
 import { afterEach, beforeEach, expect, test } from "vitest";
-import { Migrator } from "../src/index.js";
+import { Driver } from "../../src/db/driver.js";
+import { Migrator } from "../../src/migrations/index.js";
+import { entity, int, string } from "../../src/model/builder.js";
+import { Verse } from "../../src/verse.js";
+import { fixture, resetSql, snap, snapModel, snapSql } from "../infra.js";
 
 class Customer {
   id!: number;

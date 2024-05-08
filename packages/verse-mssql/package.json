@@ -1,6 +1,43 @@
 {
   "name": "@operativa/verse-mssql",
   "version": "0.7.7",
+  "description": "Verse is a modern, fast, object/relational mapper for TypeScript inspired by Entity Framework Core. It features LINQ-style queries, unit of work updates, and a powerful convention-based mapping system. It supports SQLite, Postgres, MySQL, SQL Server and Oracle databases.",
+  "keywords": [
+    "ORM",
+    "O/RM",
+    "object-relational-mapper",
+    "object-relational mapping",
+    "Entity Framework",
+    "Entity Framework Core",
+    "EF",
+    "EF Core",
+    "EFCore",
+    "LINQ",
+    "Linq to SQL",
+    "DbContext",
+    "Migration",
+    "Migrations",
+    "TypeScript",
+    "TS",
+    "Unit of Work",
+    "mapping",
+    "conventions",
+    "identity",
+    "inheritance",
+    "convention over configuration",
+    "model",
+    "modeling",
+    "query",
+    "query-builder",
+    "database",
+    "db",
+    "SQL",
+    "SQL Server",
+    "SQLServer",
+    "mssql",
+    "mssql-server",
+    "ms-sql"
+  ],
   "license": "Apache-2.0",
   "publishConfig": {
     "access": "public"
@@ -36,9 +73,7 @@
   },
   "devDependencies": {
     "@operativa/verse": "workspace:*",
-    "@operativa/verse-migrations": "workspace:*",
     "@types/mssql": "^9.1.5",
-    "eslint-config-custom": "workspace:*",
     "tsconfig": "workspace:*"
   }
 }

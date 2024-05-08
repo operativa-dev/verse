@@ -1,4 +1,5 @@
-import { Metadata } from "@operativa/verse";
+import { List } from "immutable";
+import { Primitive } from "ts-essentials";
 import {
   primitiveToSql,
   sqlBin,
@@ -7,12 +8,10 @@ import {
   sqlId,
   SqlInsert,
   SqlNode,
-} from "@operativa/verse/db/sql";
-import { EntityModel, Model } from "@operativa/verse/model/model";
-import { UnitOfWorkSpy } from "@operativa/verse/uow";
-import { List } from "immutable";
-
-import { Primitive } from "ts-essentials";
+} from "../db/sql.js";
+import { EntityModel, Model } from "../model/model.js";
+import { UnitOfWorkSpy } from "../uow.js";
+import { Metadata } from "../verse.js";
 
 export class ModelDiffer {
   readonly #metadata: Metadata;

@@ -1,4 +1,4 @@
-import { migrationsFixture, migrationsTests } from "@operativa/verse-migrations/test/migrations";
+import { migrationsFixture, migrationsTests } from "@operativa/verse/test/migrations/migrations";
 import { describe } from "vitest";
 import { testDb } from "./infra.js";
 
