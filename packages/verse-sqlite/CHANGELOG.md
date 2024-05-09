@@ -1,5 +1,13 @@
 # @operativa/verse-sqlite
 
+## 0.8.2
+
+### Patch Changes
+
+- Tweak keywords
+- Updated dependencies
+  - @operativa/verse@0.8.2
+
 ## 0.8.1
 
 ### Patch Changes

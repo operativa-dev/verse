@@ -1,5 +1,11 @@
 # @operativa/verse
 
+## 0.8.2
+
+### Patch Changes
+
+- Tweak keywords
+
 ## 0.8.1
 
 ### Patch Changes
