@@ -76,7 +76,7 @@ export type Token = {
   value?: string | number | RegExp | bigint | undefined;
 };
 
-export const tokenNames = [
+const TokenNames = [
   "&",
   "&&",
   "^",
@@ -215,7 +215,7 @@ const Tokens = {
 };
 
 export function nameof(token: TokenType) {
-  return tokenNames[token];
+  return TokenNames[token];
 }
 
 function ws(cp: number) {
@@ -1099,6 +1099,45 @@ const Expressions = {
   Super: { type: "SuperExpression" },
 };
 
+const Precedence: number[] = [];
+
+Precedence[TokenType.Comma] = 1;
+Precedence[TokenType.DotDotDot] = 2;
+Precedence[TokenType.EqGt] = 2;
+Precedence[TokenType.Question] = 2;
+Precedence[TokenType.PipePipe] = 3;
+Precedence[TokenType.QuestionQuestion] = 3;
+Precedence[TokenType.AndAnd] = 4;
+Precedence[TokenType.Pipe] = 5;
+Precedence[TokenType.Caret] = 6;
+Precedence[TokenType.And] = 7;
+Precedence[TokenType.EqEq] = 8;
+Precedence[TokenType.EqEqEq] = 8;
+Precedence[TokenType.NotEq] = 8;
+Precedence[TokenType.NotEqEq] = 8;
+Precedence[TokenType.Lt] = 9;
+Precedence[TokenType.LtEq] = 9;
+Precedence[TokenType.Gt] = 9;
+Precedence[TokenType.GtEq] = 9;
+Precedence[TokenType.In] = 9;
+Precedence[TokenType.InstanceOf] = 9;
+Precedence[TokenType.LtLt] = 10;
+Precedence[TokenType.GtGt] = 10;
+Precedence[TokenType.GtGtGt] = 10;
+Precedence[TokenType.Plus] = 11;
+Precedence[TokenType.Minus] = 11;
+Precedence[TokenType.Star] = 12;
+Precedence[TokenType.Slash] = 12;
+Precedence[TokenType.Percent] = 12;
+Precedence[TokenType.StarStar] = 13;
+Precedence[TokenType.PlusPlus] = 15;
+Precedence[TokenType.MinusMinus] = 15;
+Precedence[TokenType.Dot] = 17;
+Precedence[TokenType.QuestionDot] = 17;
+Precedence[TokenType.LBracket] = 17;
+Precedence[TokenType.Backtick] = 17;
+Precedence[TokenType.LParen] = 17;
+
 class Parser {
   readonly #tokens: ReadonlyArray<Token>;
 
@@ -1122,7 +1161,7 @@ class Parser {
     let token = this.#next();
     let expr = this.#prefix(token);
 
-    while (precedence < this.#precedence()) {
+    while (precedence < Precedence[this.#cur.type]!) {
       token = this.#next();
       expr = this.#infix(token, expr);
     }
@@ -1435,79 +1474,6 @@ class Parser {
       optional,
       property,
     };
-  }
-
-  #precedence() {
-    switch (this.#cur.type) {
-      case TokenType.Comma:
-        return 1;
-
-      case TokenType.DotDotDot:
-      case TokenType.EqGt:
-      case TokenType.Question:
-        return 2;
-
-      case TokenType.PipePipe:
-      case TokenType.QuestionQuestion:
-        return 3;
-
-      case TokenType.AndAnd:
-        return 4;
-
-      case TokenType.Pipe:
-        return 5;
-
-      case TokenType.Caret:
-        return 6;
-
-      case TokenType.And:
-        return 7;
-
-      case TokenType.EqEq:
-      case TokenType.EqEqEq:
-      case TokenType.NotEq:
-      case TokenType.NotEqEq:
-        return 8;
-
-      case TokenType.Lt:
-      case TokenType.LtEq:
-      case TokenType.Gt:
-      case TokenType.GtEq:
-      case TokenType.In:
-      case TokenType.InstanceOf:
-        return 9;
-
-      case TokenType.LtLt:
-      case TokenType.GtGt:
-      case TokenType.GtGtGt:
-        return 10;
-
-      case TokenType.Plus:
-      case TokenType.Minus:
-        return 11;
-
-      case TokenType.Star:
-      case TokenType.Slash:
-      case TokenType.Percent:
-        return 12;
-
-      case TokenType.StarStar:
-        return 13;
-
-      case TokenType.PlusPlus:
-      case TokenType.MinusMinus:
-        return 15;
-
-      case TokenType.Dot:
-      case TokenType.QuestionDot:
-      case TokenType.LBracket:
-      case TokenType.Backtick:
-      case TokenType.LParen:
-        return 17;
-
-      default:
-        return 0;
-    }
   }
 
   #match(expected: TokenType) {
