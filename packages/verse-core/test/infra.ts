@@ -85,9 +85,9 @@ export async function snap(ctx: TaskContext<Test | Custom>, $it: unknown, extens
   }
 
   const file = `./__snapshots__/${path.basename(
-    ctx.task.suite.file!.name,
+    ctx.task.suite!.file!.name,
     ".test.ts"
-  )}/${ctx.task.suite.name.replaceAll(" ", "_")}/${ctx.task.name.replaceAll(" ", "_")}.${extension}`;
+  )}/${ctx.task.suite!.name.replaceAll(" ", "_")}/${ctx.task.name.replaceAll(" ", "_")}.${extension}`;
 
   return await ctx.task.context.expect($it).toMatchFileSnapshot(file);
 }

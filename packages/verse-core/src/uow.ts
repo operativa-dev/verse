@@ -731,6 +731,8 @@ export class UnitOfWorkImpl {
           );
         }
       );
+    } else {
+      this.#metadata.config.logger?.warn("Warning: No operations to commit.");
     }
   }
 
@@ -962,8 +964,6 @@ export class UnitOfWorkSpy extends UnitOfWorkImpl {
 /**
  * Thrown when an optimistic concurrency violation is detected. This occurs when an entity is updated or deleted
  * and the expected number of rows affected is not met.
- *
- * @extends Error
  */
 export class ConcurrencyError extends Error {
   constructor() {

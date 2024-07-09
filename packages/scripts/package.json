@@ -8,14 +8,14 @@
     "build": "tsc && npx tsx inject.ts"
   },
   "dependencies": {
-    "glob": "^10.3.12"
+    "glob": "^11.0.0"
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
     "snippets": "workspace:*",
     "tsconfig": "workspace:*",
-    "typedoc": "^0.25.13",
+    "typedoc": "^0.26.3",
     "typedoc-plugin-frontmatter": "^1.0.0",
-    "typedoc-plugin-markdown": "4.0.1"
+    "typedoc-plugin-markdown": "4.1.2"
   }
 }

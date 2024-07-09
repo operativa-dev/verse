@@ -1,7 +1,6 @@
 import { expect, test } from "vitest";
-
 import { Driver } from "../../src/db/driver.js";
-import { entity, int, many, one, string } from "../../src/model/builder.js";
+import { entity, int, many, one, string, boolean } from "../../src/model/builder.js";
 import { EntityType, Verse } from "../../src/verse.js";
 import { dbTest, fixture, snap } from "../infra.js";
 
@@ -131,5 +130,58 @@ export const objectsTests = (verse: Verse<typeof objectsModel.entities>) => {
     await expect(async () => uow.add(album)).rejects.toThrow(
       'Unable to determine an entity type for object: \'{"albumId":1,"title":"a"}\'.'
     );
+  });
+};
+
+const Post = entity({
+  id: int(),
+  blogId: int(),
+  title: string(),
+  content: string(),
+  published: boolean(),
+});
+
+const Blog = entity({
+  id: int(),
+  name: string(),
+  description: string(),
+  posts: many(Post),
+});
+
+const blogModel = {
+  entities: {
+    blogs: Blog,
+    posts: Post,
+  },
+};
+
+export const blogFixture = (driver: Driver) => {
+  return fixture(driver, blogModel);
+};
+
+export const blogTests = (verse: Verse<typeof blogModel.entities>) => {
+  dbTest(verse);
+
+  test("uow", async () => {
+    let uow = verse.uow();
+
+    await uow.blogs.add({
+      name: "My Blog",
+      description: "This is my blog",
+    });
+
+    await uow.commit();
+
+    uow = verse.uow();
+
+    const blog = await uow.blogs.single();
+
+    blog.posts.push({
+      title: "My First Post",
+      content: "Hello, world!",
+      published: false,
+    });
+
+    await uow.commit();
   });
 };

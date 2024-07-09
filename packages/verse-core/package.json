@@ -41,7 +41,7 @@
     "SQLServer",
     "Oracle"
   ],
-  "version": "0.8.2",
+  "version": "0.8.3",
   "license": "Apache-2.0",
   "publishConfig": {
     "access": "public"
@@ -93,22 +93,22 @@
     "camelcase": "^8.0.0",
     "chalk": "^5.3.0",
     "cli-highlight": "^2.1.11",
+    "cli-table": "^0.3.11",
     "immutable": "5.0.0-beta.5",
     "pluralize": "^8.0.0",
-    "rfdc": "^1.3.1",
+    "rfdc": "^1.4.1",
     "tiny-invariant": "^1.3.3",
-    "ts-essentials": "^10.0.0",
-    "uuid": "^9.0.1",
-    "cli-table": "^0.3.11",
+    "ts-essentials": "^10.0.1",
+    "uuid": "^10.0.0",
     "yargs": "^17.7.2"
   },
   "devDependencies": {
+    "@types/cli-table": "^0.3.4",
     "@types/json-stringify-safe": "^5.0.3",
     "@types/pluralize": "^0.0.33",
-    "@types/uuid": "^9.0.8",
+    "@types/uuid": "^10.0.0",
+    "@types/yargs": "^17.0.32",
     "json-stringify-safe": "^5.0.1",
-    "tsconfig": "workspace:*",
-    "@types/cli-table": "^0.3.4",
-    "@types/yargs": "^17.0.32"
+    "tsconfig": "workspace:*"
   }
 }

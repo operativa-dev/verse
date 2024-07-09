@@ -749,14 +749,33 @@ export type ManyOptions<T extends object> = {
 
 /**
  * Adds a collection navigation property to the entity and allows for configuration of the property.
- * @param target The target entity class or name.
+ * @param target The target entity class.
  * @param options The options for the collection navigation property.
  */
-export const many = <T extends object>(
+export function many<T extends object>(target: Newable<T>, options?: ManyOptions<T>): Property<T[]>;
+
+/**
+ * Adds a collection navigation property to the entity and allows for configuration of the property.
+ * @param target The target entity model.
+ * @param options The options for the collection navigation property.
+ */
+export function many<T extends object>(
+  target: EntityModel<T>,
+  options?: ManyOptions<T>
+): Property<Partial<UnwrapProperties<T>>[]>;
+
+/**
+ * Adds a collection navigation property to the entity and allows for configuration of the property.
+ * @param target The target entity name.
+ * @param options The options for the collection navigation property.
+ */
+export function many<T extends object>(target: string, options?: ManyOptions<T>): Property<T[]>;
+
+export function many<T extends object>(
   target: Newable<T> | EntityModel<T> | string,
   options?: ManyOptions<T>
-) =>
-  ((name: string) => {
+) {
+  return ((name: string) => {
     const targetName = typeof target === "string" ? target : target.name;
 
     return new NavigationPropertyModel({
@@ -770,6 +789,7 @@ export const many = <T extends object>(
         : undefined,
     });
   }) as Property<T[]>;
+}
 
 /**
  * Options for reference navigation properties.

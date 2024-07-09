@@ -19,6 +19,13 @@ export interface Logger {
   info(message: any): void;
 
   /**
+   * Logs the given message at the warn level.
+   *
+   * @param message The message to be logged.
+   */
+  warn(message: any): void;
+
+  /**
    * Logs the given message at the debug level.
    *
    * @param message The message to be logged.
@@ -93,6 +100,12 @@ export class ConsoleLogger implements Logger {
     }
   }
 
+  warn(message: any) {
+    if (this.infoEnabled) {
+      console.warn(message);
+    }
+  }
+
   debug(message: any) {
     if (this.debugEnabled) {
       console.debug(message);
@@ -151,6 +164,7 @@ export class NullLogger implements Logger {
   ) {}
 
   info(_: any) {}
+  warn(_: any) {}
   debug(_: any) {}
   sql(_: string) {}
 }

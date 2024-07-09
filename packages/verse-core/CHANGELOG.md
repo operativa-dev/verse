@@ -1,5 +1,11 @@
 # @operativa/verse
 
+## 0.8.3
+
+### Patch Changes
+
+- Updated deps. Fixed typing bug with `many`
+
 ## 0.8.2
 
 ### Patch Changes
