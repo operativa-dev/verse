@@ -17,24 +17,24 @@
     "publish:dev": "changeset publish --tag dev"
   },
   "devDependencies": {
-    "@changesets/cli": "2.27.1",
-    "@changesets/get-release-plan": "4.0.0",
+    "@changesets/cli": "2.27.7",
+    "@changesets/get-release-plan": "4.0.3",
     "@changesets/types": "6.0.0",
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
-    "@types/node": "^20.12.10",
+    "@types/node": "^20.14.10",
     "husky": "^9.0.11",
-    "lint-staged": "^15.2.2",
-    "prettier": "^3.2.5",
-    "rimraf": "^5.0.5",
-    "storybook": "^8.0.10",
+    "lint-staged": "^15.2.7",
+    "prettier": "^3.3.2",
+    "rimraf": "^6.0.0",
+    "storybook": "^8.1.11",
     "tsconfig": "workspace:*",
-    "turbo": "^1.13.3",
-    "typescript": "^5.4.5",
-    "vite": "^5.2.11",
-    "vitest": "^1.6.0"
+    "turbo": "^2.0.6",
+    "typescript": "^5.5.3",
+    "vite": "^5.3.3",
+    "vitest": "^2.0.1"
   },
-  "packageManager": "pnpm@9.0.6",
   "name": "@operativa/verse",
-  "type": "module"
+  "type": "module",
+  "packageManager": "pnpm@9.0.6"
 }

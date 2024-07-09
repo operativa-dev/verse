@@ -1,0 +1,133 @@
+{
+  "entities": [
+    {
+      "name": "Blog",
+      "properties": [
+        {
+          "name": "id",
+          "column": "Id",
+          "type": "integer",
+          "nullable": false,
+          "generate": {
+            "using": "identity"
+          },
+          "kind": "int"
+        },
+        {
+          "name": "name",
+          "column": "Name",
+          "type": "varchar(255)",
+          "nullable": false,
+          "kind": "string",
+          "maxLength": 255
+        },
+        {
+          "name": "description",
+          "column": "Description",
+          "type": "varchar(255)",
+          "nullable": false,
+          "kind": "string",
+          "maxLength": 255
+        },
+        {
+          "name": "posts",
+          "target": "Post",
+          "foreignKey": [
+            "blogId"
+          ],
+          "many": true,
+          "nullable": false
+        }
+      ],
+      "label": "blogs",
+      "table": "Blog",
+      "key": [
+        "id"
+      ],
+      "foreignKeys": [],
+      "conditions": []
+    },
+    {
+      "name": "Post",
+      "properties": [
+        {
+          "name": "id",
+          "column": "Id",
+          "type": "integer",
+          "nullable": false,
+          "generate": {
+            "using": "identity"
+          },
+          "kind": "int"
+        },
+        {
+          "name": "blogId",
+          "column": "BlogId",
+          "type": "integer",
+          "nullable": false,
+          "kind": "int"
+        },
+        {
+          "name": "title",
+          "column": "Title",
+          "type": "varchar(255)",
+          "nullable": false,
+          "kind": "string",
+          "maxLength": 255
+        },
+        {
+          "name": "content",
+          "column": "Content",
+          "type": "varchar(255)",
+          "nullable": false,
+          "kind": "string",
+          "maxLength": 255
+        },
+        {
+          "name": "published",
+          "column": "Published",
+          "type": "boolean",
+          "nullable": false,
+          "convert": {
+            "read": "(v) => (v === 1 ? true : v === 0 ? false : v)",
+            "write": "(v) => (v === true ? 1 : v === false ? 0 : v)"
+          },
+          "kind": "boolean"
+        }
+      ],
+      "label": "posts",
+      "table": "Post",
+      "key": [
+        "id"
+      ],
+      "foreignKeys": [
+        {
+          "references": "Blog",
+          "properties": [
+            "blogId"
+          ],
+          "onDelete": "cascade"
+        }
+      ],
+      "conditions": []
+    }
+  ],
+  "values": [],
+  "sequences": [],
+  "conversions": [
+    [
+      null,
+      {
+        "read": "(v) => (v === 1 ? true : v === 0 ? false : v)",
+        "write": "(v) => (v === true ? 1 : v === false ? 0 : v)"
+      }
+    ],
+    [
+      null,
+      {
+        "read": "(s) => (s ? new Date(s) : s)",
+        "write": "(d) => (d ? d.toISOString() : d)"
+      }
+    ]
+  ]
+}

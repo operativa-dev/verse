@@ -1,17 +1,17 @@
-import Heading from "@theme/Heading";
 import clsx from "clsx";
+import Heading from "@theme/Heading";
 import styles from "./styles.module.css";
 
 type FeatureItem = {
   title: string;
-  Svg: string;
+  img: string;
   description: JSX.Element;
 };
 
 const FeatureList: FeatureItem[] = [
   {
     title: "Easy to Use",
-    Svg: require("@site/static/img/blue-easy.png").default,
+    img: require("@site/static/img/blue_easy.png").default,
     description: (
       <>
         Verse was designed from the ground up to allow you to easily get your application up and
@@ -21,7 +21,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: "Focus on What Matters",
-    Svg: require("@site/static/img/blue-focus.png").default,
+    img: require("@site/static/img/blue_focus.png").default,
     description: (
       <>
         You focus on your application, and we do the heavy lifting. Write clean and safe TypeScript
@@ -31,7 +31,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: "Performance First",
-    Svg: require("@site/static/img/blue-performance.png").default,
+    img: require("@site/static/img/blue_performance.png").default,
     description: (
       <>
         Verse is built with performance in mind. Full support for efficient eager loading patterns,
@@ -41,11 +41,11 @@ const FeatureList: FeatureItem[] = [
   },
 ];
 
-function Feature({ title, Svg, description }: FeatureItem) {
+function Feature({ title, img, description }: FeatureItem) {
   return (
     <div className={clsx("col col--4")}>
       <div className="text--center">
-        <img className={styles.featureSvg} role="img" src={Svg} />
+        <img className={styles.featureSvg} role="img" src={img} />
       </div>
       <div className="text--center padding-horiz--md">
         <Heading as="h3">{title}</Heading>

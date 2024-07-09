@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-dirs=("verse-cli" "verse-core" "verse-migrations" "verse-mssql" "verse-mysql" "verse-postgres" "verse-sqlite")
+dirs=("verse-core" "verse-mssql" "verse-mysql" "verse-oracle" "verse-postgres" "verse-sqlite")
 
 for dir in "${dirs[@]}"
 do

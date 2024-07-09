@@ -15,28 +15,26 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@docusaurus/core": "^3.3.2",
-    "@docusaurus/plugin-google-tag-manager": "^3.3.2",
-    "@docusaurus/preset-classic": "^3.3.2",
-    "@docusaurus/theme-live-codeblock": "^3.3.2",
-    "@mdx-js/react": "^3.0.1",
-    "clsx": "^2.1.1",
-    "prism-react-renderer": "^2.3.1",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "@docusaurus/core": "3.4.0",
+    "@docusaurus/preset-classic": "3.4.0",
+    "@mdx-js/react": "^3.0.0",
+    "clsx": "^2.0.0",
+    "prism-react-renderer": "^2.3.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "^3.3.2",
-    "@docusaurus/remark-plugin-npm2yarn": "^3.3.2",
-    "@docusaurus/tsconfig": "^3.3.2",
-    "@docusaurus/types": "^3.3.2",
-    "docusaurus-plugin-typedoc": "^1.0.1",
+    "@docusaurus/module-type-aliases": "3.4.0",
+    "@docusaurus/remark-plugin-npm2yarn": "^3.4.0",
+    "@docusaurus/tsconfig": "3.4.0",
+    "@docusaurus/types": "3.4.0",
+    "docusaurus-plugin-typedoc": "^1.0.2",
     "scripts": "workspace:*",
-    "typedoc": "^0.25.13",
+    "typedoc": "^0.26.3",
     "typedoc-plugin-frontmatter": "^1.0.0",
     "typedoc-plugin-include-example": "^1.2.0",
-    "typedoc-plugin-markdown": "^4.0.1",
-    "typedoc-plugin-mdn-links": "^3.1.24"
+    "typedoc-plugin-markdown": "^4.1.2",
+    "typedoc-plugin-mdn-links": "^3.2.3"
   },
   "browserslist": {
     "production": [

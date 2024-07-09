@@ -1,5 +1,13 @@
 # @operativa/verse-mssql
 
+## 0.8.3
+
+### Patch Changes
+
+- Updated deps. Fixed typing bug with `many`
+- Updated dependencies
+  - @operativa/verse@0.8.3
+
 ## 0.8.2
 
 ### Patch Changes
