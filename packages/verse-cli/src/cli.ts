@@ -13,6 +13,7 @@ import * as fs from "fs";
 import path from "path";
 import yargs, { ArgumentsCamelCase, Argv, CommandModule } from "yargs";
 import { hideBin } from "yargs/helpers";
+import { whichPackageManager } from "./package-manager.js";
 
 const logo =
   "  ██╗   ██╗ ███████╗ ██████╗  ███████╗ ███████╗\n" +
@@ -62,6 +63,14 @@ class InitCommand implements CommandModule {
       if (fs.existsSync(modelPath)) {
         throw new Error(`A file already exists at ${modelPath}.`);
       }
+
+      const pkgPath = `${cwd}/package.json`;
+      if (!fs.existsSync(pkgPath)) {
+        throw new Error(`Cannot find ${pkgPath}.`);
+      }
+
+      const install = whichPackageManager(cwd);
+      await install("@operativa/verse", { stdout: process.stdout, stderr: process.stderr });
 
       fs.mkdirSync(`${cwd}/src/model`, { recursive: true });
       fs.writeFileSync(
